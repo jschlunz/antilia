@@ -1,0 +1,30 @@
+<html>
+	<body>
+		<wicket:panel>
+			<div>		
+				<div wicket:id="dialog" class="panel" style="left:100;top:100;" 
+							onmousedown="dragPanels.orderPanels('dialog');">				
+					<div wicket:id="header" id="header" class="header" style="cursor: move;">Header</div>
+					<div style="background-color: #c38c51;">					
+						<div wicket:id="dialogBody" id="dialogBody" class="panelBody" style="margin-left: 1px; margin-right: 1px;">
+							<div wicket:id="body"></div>
+						</div>
+					</div>
+					<div class='dialogFooter' style="">
+						<div wicket:id="resizeHandle" id="dialogResize" class="resizeHandle" style="">
+						</div>
+					</div>
+				</div>	
+				<script wicket:id="script" type="text/javascript">dragPanels.addPanel('panel');</script>
+			</div>			
+		</wicket:panel>						
+	</body>
+</html>
+
+
+
+
+
+
+
+

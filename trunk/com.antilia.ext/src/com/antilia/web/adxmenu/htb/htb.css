@@ -1,0 +1,136 @@
+/* page styling, unimportant for the menu. only makes the page looks nicer */
+
+body {
+    font-family: Calibri, "Trebuchet MS", sans-serif;
+    font-size: 12px;
+}
+
+
+/* remove all list stylings */
+.menu, .menu ul {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    list-style-type: none;
+    display: block;
+}
+
+.menu li {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    display: block;
+    float: left;    
+    position: relative; 
+    z-index: 5;
+}
+
+.menu li:hover {
+    z-index: 10000; 
+    white-space: normal;    
+}
+
+.menu li li {
+    float: none;
+}
+
+.menu ul {
+    visibility: hidden; 
+    position: absolute;
+    z-index: 10;
+    left: 0;    
+    top: 0;
+}
+
+.menu li:hover>ul {
+    visibility: visible;    
+    top: 100%;  
+}
+
+.menu li li:hover>ul {
+    top: 0;
+    left: 100%;
+}
+
+/* -- float.clear --
+    force containment of floated LIs inside of UL */
+.menu:after, .menu ul:after {
+    content: ".";
+    height: 0;
+    display: block;
+    visibility: hidden;
+    overflow: hidden;
+    clear: both;
+}
+
+.menu, .menu ul {   
+	/* IE7 float clear: */
+    min-height: 0;
+}
+
+.menu ul {
+    background-image: url('empty.gif'); 
+    padding: 10px 30px 30px 30px;
+    margin: -10px 0 0 -30px;
+    /*background: #f00;*/   
+}
+.menu ul ul {
+    padding: 30px 30px 30px 10px;
+    margin: -30px 0 0 -10px;
+}
+
+
+/* - - - ADxMenu: DESIGN styles [ OPTIONAL, design your heart out :) ] - - - */
+
+.menu, .menu ul li {
+    color: #eee;
+    background: #234;
+}
+
+.menu ul {
+    width: 11em;
+}
+
+.menu a {
+    text-decoration: none;
+    color: #eee;
+    padding: .4em 1em;
+    display: block;
+    position: relative;
+}
+
+.menu span {
+    text-decoration: none;
+    color: #eee;
+    padding: .4em 1em;
+    display: block;
+    position: relative;
+}
+
+.menu a:hover, .menu li:hover>a {
+    color: #fc3;
+}
+
+.menu li li {
+    border: 1px solid #ccc;
+}
+.menu ul>li + li {  
+    border-top: 0;
+}
+
+.menu li li:hover>ul {
+    top: 5px;
+    left: 90%;
+}
+
+/* special colouring for "Main menu:", and for "xx submenu" items in ADxMenu
+    placed here to clarify the terminology I use when referencing submenus in posts */
+.menu>li:first-child>a, .menu li + li + li li:first-child>a {
+    color: #567;
+}
+
+/* Fix for IE5/Mac \*//*/
+.menu a {
+    float: left;
+}
+/* End Fix */
