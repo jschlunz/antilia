@@ -17,14 +17,14 @@ import com.antilia.web.dialog.DialogButton;
  * 
  * @author Ernesto Reinaldo Barreiro (reiern70@gmail.com)
  */
-public class TablePanel extends SearchPanel<Person> {
+public class PersonSearchPanel extends SearchPanel<Person> {
 
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @param id
 	 */
-	public TablePanel(String id) {
+	public PersonSearchPanel(String id) {
 		super(id, Person.class);
 	}
 	

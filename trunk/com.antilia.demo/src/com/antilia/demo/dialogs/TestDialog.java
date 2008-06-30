@@ -30,7 +30,7 @@ public class TestDialog extends DefaultDialog {
 	 */
 	@Override
 	protected Component createBody(String id) {
-		return new TablePanel(id);
+		return new PersonCRUD(id);
 	}
 
 }
