@@ -11,27 +11,26 @@ import com.antilia.web.button.IMenuItemsFactory;
  * 
  * @author Ernesto Reinaldo Barreiro (reiern70@gmail.com)
  */
-public class SearchPanelButtonsFactory implements IMenuItemsFactory {
+public class EditPanelButtonsFactory implements IMenuItemsFactory {
 	
 	private static final long serialVersionUID = 1L;
 	
-	private static SearchPanelButtonsFactory instance;
+	private static EditPanelButtonsFactory instance;
 
-	private SearchPanelButtonsFactory() {
+	private EditPanelButtonsFactory() {
 	}
 	
 	@SuppressWarnings("unchecked")
 	public void populateMenuItems(String menuId, IMenuItemHolder itemHolder) {			
-		itemHolder.addMenuItem(new ReloadButton());
-		itemHolder.addMenuItem(new EditButton());
+		itemHolder.addMenuItem(new CancelButton());
 	}
 
 	/**
 	 * @return the instance
 	 */
-	public static SearchPanelButtonsFactory getInstance() {
+	public static EditPanelButtonsFactory getInstance() {
 		if(instance == null)
-			instance = new SearchPanelButtonsFactory();
+			instance = new EditPanelButtonsFactory();
 		return instance;
 	}
 

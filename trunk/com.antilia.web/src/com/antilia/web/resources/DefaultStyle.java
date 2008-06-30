@@ -45,6 +45,8 @@ public class DefaultStyle {
 	
 	public static ResourceReference IMG_REFRESH = new ResourceReference(ImgDummy.class, "refresh_small.png");
 	
+	public static ResourceReference IMG_BACK = new ResourceReference(ImgDummy.class, "arrow_back.gif");
+	public static ResourceReference IMG_EDIT = new ResourceReference(ImgDummy.class, "reply.gif");
 	
 	public static ResourceReference IMG_LOAD = new ResourceReference(ImgDummy.class, "load.png");
 	

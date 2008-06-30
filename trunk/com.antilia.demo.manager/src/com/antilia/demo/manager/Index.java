@@ -2,7 +2,7 @@ package com.antilia.demo.manager;
 
 import org.apache.wicket.markup.html.WebMarkupContainer;
 
-import com.antilia.demo.manager.crud.TablePanel;
+import com.antilia.demo.manager.crud.CityCRUDPanel;
 
 
 public class Index extends BasePage implements IContainer {
@@ -19,7 +19,7 @@ public class Index extends BasePage implements IContainer {
 		
 		add(content);
 		
-		content.add(new TablePanel(getBodyId()));
+		content.add(new CityCRUDPanel(getBodyId()));
 		
 		//content.add(new Label(getBodyId(), ""));
 	}

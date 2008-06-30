@@ -18,14 +18,14 @@ import com.antilia.web.hibernate.provider.HibernatePageableProvider;
  * 
  * @author Ernesto Reinaldo Barreiro (reiern70@gmail.com)
  */
-public class TablePanel extends SearchPanel<City> {
+public class CitySearchPanel extends SearchPanel<City> {
 
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @param id
 	 */
-	public TablePanel(String id) {
+	public CitySearchPanel(String id) {
 		super(id, City.class);
 	}
 	
