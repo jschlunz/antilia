@@ -6,7 +6,6 @@ package com.antilia.web.crud;
 
 import com.antilia.web.button.IMenuItemHolder;
 import com.antilia.web.button.IMenuItemsFactory;
-import com.antilia.web.button.SeparatorButton;
 
 /**
  * 
