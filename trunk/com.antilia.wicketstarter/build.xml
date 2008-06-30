@@ -1,0 +1,26 @@
+<project name="com.antilia.wicketstarter plugin build file" default="dist" basedir=".">
+	<!-- Set the next 2 values for your plugin -->
+	<property name="plugin.name" value="com.antilia.wicketstarter" />
+	<property name="dist.folder" value="C:/dave_work/inqle/dist/InqleWicket" />
+	
+	<!-- Usually no need to touch the below ant code -->
+	<property name="plugin.folder" value="${dist.folder}/plugins/${plugin.name}"/>
+	
+	<target name="dist" description="Copy this plugin to the dist folder">
+		
+		<delete dir="${plugin.folder}" quiet="true" />
+		
+		<mkdir dir="${plugin.folder}" />
+		
+		<!-- Copy everything in this dir to the dist location, except .project, .classpath, etc. -->
+		<copy todir="${plugin.folder}" includeemptydirs="false">
+			<fileset dir=".">
+				<exclude name=".**"/>
+				<exclude name=".settings/**"/>
+				<exclude name="build.xml"/>
+				<exclude name="build.properties"/>
+			</fileset>
+		</copy>
+		
+	</target>
+</project>
