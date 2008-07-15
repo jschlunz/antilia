@@ -5,15 +5,17 @@
 </head>
 <body>
     <wicket:extend>
-        <table style="background: transparent;">
+        <table style="background: transparent; width: 100%">
                 <tr>
-                    <td valign="top">
-                        <div style="height: 488px; width: 300px; overflow: auto; background: transparent;">
+                    <td valign="top" nowrap="nowrap">
+                        <div style="bottom:  10px ;  height: 500px; overflow: auto; background: transparent;">
                             <span>Left</span>
                         </div>
                     </td>
-                    <td valign="top">
-                        <div wicket:id="content" style="background: transparent;">
+                    <td style="width: 2px; background: red;" nowrap="nowrap">
+                    </td>
+                    <td valign="top" width="80%" nowrap="nowrap">
+                        <div wicket:id="content" style="background: transparent; height: 500px; overflow: scroll;">
                                 <span wicket:id="body"></span>
                         </div>
                     </td>

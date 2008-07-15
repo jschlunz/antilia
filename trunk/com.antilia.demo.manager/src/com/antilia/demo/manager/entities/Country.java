@@ -110,4 +110,12 @@ public class Country implements java.io.Serializable, Comparable<Country> {
 	public String toString() {
 		return getName();
 	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		if(obj instanceof Country) {
+			return name.equals(((Country)obj).getName());
+		}
+		return false;
+	}
 }
