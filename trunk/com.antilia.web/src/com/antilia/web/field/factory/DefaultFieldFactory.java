@@ -23,6 +23,7 @@ public class DefaultFieldFactory implements IFieldFactory {
 	
 	static {
 		factories.add(EnumDropDownFieldFactory.getInstance());
+		factories.add(SelectionFieldFieldFactory.getInstance());
 	}
 	
 	private static DefaultFieldFactory instance;
