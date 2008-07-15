@@ -27,6 +27,7 @@ public class EnumDropDownChoice extends DropDownChoice {
 	public EnumDropDownChoice(String id, Class<Enum> enumClass ,IModel model) {
 		super(id);		
 		setModel(model);
+		setNullValid(true);
 		setChoiceRenderer(new ChoiceRenderer() {
 			
 			private static final long serialVersionUID = 1L;

@@ -8,6 +8,8 @@ import java.io.Serializable;
 
 import org.apache.wicket.markup.html.panel.Panel;
 
+import com.antilia.web.beantable.provider.IProviderSelector;
+
 /**
  * 
  * @author Ernesto Reinaldo Barreiro (reiern70@gmail.com)
@@ -39,6 +41,9 @@ public abstract class CRUDPanel<B extends Serializable> extends Panel {
 		super.onBeforeRender();
 	}
 	
+	 public IProviderSelector<B> getSelected() {
+		 return getSearchPanel().getSelected();
+	 }
 	
 	protected abstract SearchPanel<B> getSearchPanel(String id); 
 	

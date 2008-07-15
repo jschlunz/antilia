@@ -5,6 +5,7 @@
 package com.antilia.demo.dialogs;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.apache.wicket.ResourceReference;
@@ -72,6 +73,7 @@ public class DialogsPanel extends Panel {
 		person.setId(new Long(i));
 		person.setName("Person "+i);
 		person.setLastName1("Lastname "+i);
+		person.setBirthDay(new Date());
 		return person;
 	}
 }

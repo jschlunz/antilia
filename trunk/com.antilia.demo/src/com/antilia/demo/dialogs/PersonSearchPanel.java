@@ -51,11 +51,11 @@ public class PersonSearchPanel extends SearchPanel<Person> {
 	
 	@Override
 	protected String[] getSearchFields() {
-		return new String[]{"id", "name", "lastName1", "lastName2", "maritalStatus"};
+		return new String[]{"id", "name", "lastName1", "lastName2", "maritalStatus", "birthDay"};
 	}
 	
 	@Override
 	protected String[] getTableColumns() {
-		return new String[]{"id", "name", "lastName1", "maritalStatus"};
+		return new String[]{"id", "name", "lastName1", "maritalStatus", "birthDay"};
 	}
 }

@@ -5,11 +5,15 @@
 package com.antilia.web.crud;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
 
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.panel.Panel;
 
 import com.antilia.hibernate.query.IQuery;
+import com.antilia.web.beantable.provider.IProviderSelector;
 import com.antilia.web.field.AutoFieldModel;
 import com.antilia.web.field.AutoFieldPanel;
 import com.antilia.web.field.BeanForm;
@@ -27,39 +31,62 @@ public abstract class EditPanel<B extends Serializable> extends Panel {
 
 	private BeanProxy<B> beanProxy;
 	
+	private Collection<B> beans;
+
+	
 	/**
 	 * 
 	 * @param id
 	 * @param beanClass
 	 * @param filterQuery
 	 */
-	public EditPanel(String id, Class<B> beanClass) {
+	public EditPanel(String id) {
 		super(id);
 		
 		setOutputMarkupId(true);
 				
-		this.beanProxy = new BeanProxy<B>(beanClass);
+		this.beans = new ArrayList<B>();
+			
+		
+	}
+	
+	@Override
+	protected void onBeforeRender() {
+		this.beans.clear();
+		IProviderSelector<B> selector = getCRUDPanel().getSelected();		
+		Iterator<B> it = selector.getSelected();
+		while(it.hasNext() ) {
+			B bean = it.next();
+			this.beans.add(bean);
+		}
+		
+		this.beanProxy = new BeanProxy<B>(beans.iterator().next());
 		
 		IAutoFieldModel<B> autoFieldModel = newAutoFieldModel(null, this.beanProxy);
 		configureFieldModel(autoFieldModel);
 		
 		BeanForm<B> beanForm = newForm("form", this.beanProxy);
-		add(beanForm);
+		addOrReplace(beanForm);
 				
 				
 		 Menu menu = Menu.createMenu("topMenu", EditPanelButtonsFactory.getInstance());
 		 
-		beanForm.add(menu);
+		beanForm.addOrReplace(menu);
 		 
-		//AutoFieldPanel<B> autoFieldPanel = newAutoFieldPanel("autofield",autoFieldModel);
-		Label autoFieldPanel = new Label("autofield", "autofield");
+		AutoFieldPanel<B> autoFieldPanel = newAutoFieldPanel("autofield",autoFieldModel);
 		
-		beanForm.add(autoFieldPanel);
+		beanForm.addOrReplace(autoFieldPanel);
+		super.onBeforeRender();
+	}
+	
+	@SuppressWarnings("unchecked")
+	private CRUDPanel<B> getCRUDPanel() {
+		return (CRUDPanel<B>) findParent(CRUDPanel.class);
 		
 	}
 	
 	protected void configureFieldModel(IAutoFieldModel<B> autoFieldModel) {
-		String[] searchFields = getSearchFields();
+		String[] searchFields = getEditFields();
 		if(searchFields != null) {
 			for(String propertyPath: searchFields) {
 				autoFieldModel.newFieldModel(propertyPath);
@@ -83,7 +110,7 @@ public abstract class EditPanel<B extends Serializable> extends Panel {
 		return new AutoFieldModel<B>(query, beanProxy);
 	}
 	
-	protected abstract String[] getSearchFields();
+	protected abstract String[] getEditFields();
 
 
 	/**

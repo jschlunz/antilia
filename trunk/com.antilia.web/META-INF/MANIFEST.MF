@@ -188,7 +188,10 @@ Export-Package: com.antilia.web,
 Bundle-ClassPath: .,
  lib/acme.jar,
  lib/wicket-1.3.1.jar,
- lib/wicket-extensions-1.3.1.jar
+ lib/wicket-extensions-1.3.1.jar,
+ lib/wicket-datetime-1.3.1.jar,
+ lib/wicket-yui-1.3.1.jar,
+ lib/joda-time-1.4.jar
 Require-Bundle: com.antilia.common,
  javax.servlet,
  com.antilia.hibernate

@@ -16,6 +16,8 @@ import com.antilia.web.crud.SearchPanel;
  *
  */
 public class PersonCRUD extends CRUDPanel<Person> {
+	
+	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @param id
@@ -29,13 +31,13 @@ public class PersonCRUD extends CRUDPanel<Person> {
 	 */
 	@Override
 	protected EditPanel<Person> getEditPanel(String id) {
-		return new EditPanel<Person>(id,Person.class) {
+		return new EditPanel<Person>(id) {
 			
 			private static final long serialVersionUID = 1L;
 
 			@Override
-			protected String[] getSearchFields() {
-				return new String[]{"id", "name", "lastName1", "lastName2", "maritalStatus"};
+			protected String[] getEditFields() {
+				return new String[]{"id", "name", "lastName1", "lastName2", "maritalStatus", "birthDay"};
 			}
 		};
 	}

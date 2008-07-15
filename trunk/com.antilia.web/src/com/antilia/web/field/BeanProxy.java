@@ -38,7 +38,15 @@ public class BeanProxy<B extends Serializable> implements Serializable {
 		} catch (Exception e) {
 		}
 	}
-		
+	
+	@SuppressWarnings("unchecked")
+	public BeanProxy(B bean) {
+		this.beanClass = (Class<? extends B>)bean.getClass();
+		try {
+			this.beans.add(bean);
+		} catch (Exception e) {
+		}
+	}
 	
 	public void addPropertyValue(String propertyName, PropertyValue<?> value) {
 		propertyValues.put(propertyName, value);

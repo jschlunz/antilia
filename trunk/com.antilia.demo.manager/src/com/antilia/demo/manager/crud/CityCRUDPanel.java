@@ -33,12 +33,12 @@ public class CityCRUDPanel extends CRUDPanel<City> {
 
 	@Override
 	protected EditPanel<City> getEditPanel(String id) {
-		return new EditPanel<City>(id, City.class) {
+		return new EditPanel<City>(id) {
 						
 			private static final long serialVersionUID = 1L;
 
 			@Override
-			protected String[] getSearchFields() {
+			protected String[] getEditFields() {
 				return new String[]{"id", "name", "country"};
 			}
 			

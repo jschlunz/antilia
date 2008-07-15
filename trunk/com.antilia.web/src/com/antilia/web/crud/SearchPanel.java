@@ -15,6 +15,7 @@ import com.antilia.web.beantable.model.ITableModel;
 import com.antilia.web.beantable.model.TableModel;
 import com.antilia.web.beantable.provider.ILoadable;
 import com.antilia.web.beantable.provider.IPageableProvider;
+import com.antilia.web.beantable.provider.IProviderSelector;
 import com.antilia.web.field.AutoFieldModel;
 import com.antilia.web.field.AutoFieldPanel;
 import com.antilia.web.field.BeanForm;
@@ -35,6 +36,8 @@ public abstract class SearchPanel<B extends Serializable> extends Panel implemen
 	private BeanProxy<B> beanProxy;
 	
 	private IPageableProvider<B> pageableProvider;
+	
+	private Table<B> table;
 	
 	public SearchPanel(String id, Class<B> beanClass) {
 		this(id, beanClass, null);
@@ -75,9 +78,13 @@ public abstract class SearchPanel<B extends Serializable> extends Panel implemen
 		beanForm.add(autoFieldPanel);
 		
 		ITableModel<B> tableModel = newTableModel(beanClass);		
-		Table<B> table = newTable("table",tableModel, this.pageableProvider);
+		table  = newTable("table",tableModel, this.pageableProvider);
 		beanForm.add(table);
 	}
+	
+	 public IProviderSelector<B> getSelected() {
+		 return table.getSourceSelector();
+	 }
 	
 	protected void configureFieldModel(IAutoFieldModel<B> autoFieldModel) {
 		String[] searchFields = getSearchFields();

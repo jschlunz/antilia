@@ -57,7 +57,9 @@ public class AutoFieldPanel<B extends Serializable> extends Panel {
 			List<IFieldModel<B>> fieldModels =  model.getFieldModels();
 			int size = fieldModels.size();
 			// compute the number of rows... and create an Integer model for each row
-			int rows = size%columns + 1;
+			int rows = (size/columns) ;
+			if(size%columns != 0)
+				rows +=1;
 			for(int i = 0; i < rows; i++) {
 				models.add(new Model(new Integer(i)));
 			}				

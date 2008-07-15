@@ -6,6 +6,7 @@ package com.antilia.demo.beans;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -23,6 +24,8 @@ public class Person implements Serializable, Comparable<Person> {
 	private String lastName1;
 	
 	private String lastName2;
+	
+	private Date birthDay;
 	
 	private MaritalStatus maritalStatus;
 	
@@ -109,5 +112,19 @@ public class Person implements Serializable, Comparable<Person> {
 	
 	public void removeFriend(Person person) {
 		friends.remove(person);
+	}
+
+	/**
+	 * @return the birthDay
+	 */
+	public Date getBirthDay() {
+		return birthDay;
+	}
+
+	/**
+	 * @param birthDay the birthDay to set
+	 */
+	public void setBirthDay(Date birthDay) {
+		this.birthDay = birthDay;
 	}
 }
