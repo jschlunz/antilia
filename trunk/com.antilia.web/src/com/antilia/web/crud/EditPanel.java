@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 
-import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.panel.Panel;
 
 import com.antilia.hibernate.query.IQuery;
