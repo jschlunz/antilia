@@ -1,6 +1,6 @@
 td, th, input, textarea, select, a, li , span, button, p{
 	font-family: Verdana, Arial, Helvetica, sans-serif; 
-	font-size: 11px; 
+	font-size: 10px; 
 }
 
 .smallbutton {
@@ -93,7 +93,7 @@ div.nav-menu {
 
 .nav-menu li span
 {
-	color: #e7953d;
+	color: black;
 }
 
 div.trans-menu {
@@ -136,7 +136,7 @@ span.ajax-indicator {
      background-color:#fff;  
      border:1px solid #666;  
      overflow:auto;  
-     font-family:"Lucida Grande",Verdana;  
+     font-family: "Lucida Grande",Verdana;  
      font-size:12px;  
      color:#333;  
      text-align:left;  
