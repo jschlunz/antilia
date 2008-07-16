@@ -61,6 +61,11 @@ public class SourceSelector<E extends Serializable> implements IProviderSelector
 			count++;
 		}
 	}
+	
+	public boolean clear() {
+		selected.clear();
+		return true;
+	}
 
 	public Iterator<E> getSelected() {
 		return selected.iterator();

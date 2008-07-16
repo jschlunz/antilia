@@ -35,6 +35,8 @@ public interface IProviderSelector<E extends Serializable> extends  Serializable
 	
 	boolean isPageSelected();
 	
+	boolean clear();
+	
 	Iterator<E> getSelected();
 	
 	void setSelectionMode(SelectionMode selectionMode);

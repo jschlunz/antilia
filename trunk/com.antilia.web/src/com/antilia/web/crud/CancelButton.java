@@ -47,6 +47,7 @@ public class CancelButton<E extends Serializable> extends AbstractButton {
 	protected void onSubmit(AjaxRequestTarget target, Form form) {
 			CRUDPanel<E> crudPanel = getCRUDPanel();
 			if(crudPanel != null) {				
+				crudPanel.getSelected().clear();
 				crudPanel.setCurrentPanel(crudPanel.getSearchPanel());
 				target.addComponent((Component)crudPanel);
 			}		
