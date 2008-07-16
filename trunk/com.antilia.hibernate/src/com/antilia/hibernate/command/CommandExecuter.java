@@ -141,6 +141,11 @@ public class CommandExecuter {
 		PersistCommand<E> command = new PersistCommand<E>(entity) ;
 		return DefaultCommandExecuter.getInstance().execute(command);
 	}
+	
+	public static <E extends Serializable> E update(E entity)  {
+		UpdateCommand<E> command = new UpdateCommand<E>(entity) ;
+		return DefaultCommandExecuter.getInstance().execute(command);
+	}
 
 	public static <E extends Serializable> Collection<E>persistAll(Collection<E> entities)  {
 		PersistAllCommand<E> command = new PersistAllCommand<E>(entities) ;

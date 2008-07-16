@@ -19,12 +19,12 @@ import com.antilia.web.resources.DefaultStyle;
  * 
  * @author Ernesto Reinaldo Barreiro (reiern70@gmail.com)
  */
-public class CancelButton<E extends Serializable> extends AbstractButton {
+public class PreviousRecordButton<E extends Serializable> extends AbstractButton {
 
 	private static final long serialVersionUID = 1L;
 
-	public CancelButton() {
-		super("cancel", true);
+	public PreviousRecordButton() {
+		super("previous", true);
 	}
 	
 	/* (non-Javadoc)
@@ -32,7 +32,7 @@ public class CancelButton<E extends Serializable> extends AbstractButton {
 	 */
 	@Override
 	protected ResourceReference getImage() {
-		return DefaultStyle.IMG_BACK;
+		return DefaultStyle.IMG_PREVIOUS;
 	}
 
 	/* (non-Javadoc)
@@ -40,22 +40,36 @@ public class CancelButton<E extends Serializable> extends AbstractButton {
 	 */
 	@Override
 	protected String getLabel() {
-		return "Cancel";
+		return "Previous";
+	}
+	
+	@Override
+	public boolean isVisible() {
+		EditPanel<E> component = findEditPanel();
+		return component.getPageableProvider().size()>1;
+	}
+	
+	@Override
+	public boolean isEnabled() {
+		EditPanel<E> component = findEditPanel();
+		return component.getPageableProvider().hasPrevious();
 	}
 	
 	@Override
 	protected void onSubmit(AjaxRequestTarget target, Form form) {
-			CRUDPanel<E> crudPanel = getCRUDPanel();
-			if(crudPanel != null) {	
-				crudPanel.getEditPanel().clearPageableProvider();
-				crudPanel.getSelected().clear();
-				crudPanel.setCurrentPanel(crudPanel.getSearchPanel());
-				target.addComponent((Component)crudPanel);
-			}		
+		EditPanel<E> component = findEditPanel();
+		component.getPageableProvider().previous();
+		target.addComponent((Component)component);
+	}
+	
+	
+	@Override
+	public void onSubmit() {
+		
 	}
 
 	@SuppressWarnings("unchecked")
-	public CRUDPanel<E> getCRUDPanel() {
-		return (CRUDPanel<E> )findParent(CRUDPanel.class);
+	private EditPanel<E> findEditPanel() {
+		return (EditPanel<E>)findParent(EditPanel.class);
 	}
 }

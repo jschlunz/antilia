@@ -6,13 +6,15 @@ package com.antilia.web.crud;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Iterator;
 
+import org.apache.commons.beanutils.BeanUtils;
 import org.apache.wicket.markup.html.panel.Panel;
 
 import com.antilia.hibernate.query.IQuery;
+import com.antilia.web.beantable.provider.IPageableProvider;
 import com.antilia.web.beantable.provider.IProviderSelector;
+import com.antilia.web.beantable.provider.impl.InMemoryPageableProvider;
 import com.antilia.web.field.AutoFieldModel;
 import com.antilia.web.field.AutoFieldPanel;
 import com.antilia.web.field.BeanForm;
@@ -30,8 +32,8 @@ public abstract class EditPanel<B extends Serializable> extends Panel {
 
 	private BeanProxy<B> beanProxy;
 	
-	private Collection<B> beans;
 
+	IPageableProvider<B> pageableProvider;
 	
 	/**
 	 * 
@@ -40,26 +42,29 @@ public abstract class EditPanel<B extends Serializable> extends Panel {
 	 * @param filterQuery
 	 */
 	public EditPanel(String id) {
-		super(id);
-		
-		setOutputMarkupId(true);
-				
-		this.beans = new ArrayList<B>();
-			
-		
+		super(id);		
+		setOutputMarkupId(true);		
 	}
 	
+	@SuppressWarnings("unchecked")
 	@Override
 	protected void onBeforeRender() {
-		this.beans.clear();
-		IProviderSelector<B> selector = getCRUDPanel().getSelected();		
-		Iterator<B> it = selector.getSelected();
-		while(it.hasNext() ) {
-			B bean = it.next();
-			this.beans.add(bean);
-		}
+		if(pageableProvider == null) {
+			ArrayList< B> beans = new ArrayList<B>();
+			IProviderSelector<B> selector = getCRUDPanel().getSelected();		
+			Iterator<B> it = selector.getSelected();			
+			while(it.hasNext() ) {
+				B bean = it.next();
+				try {
+					beans.add((B)BeanUtils.cloneBean(bean));
+				} catch (Exception e) {
+					beans.add(bean);
+				}
+			}
+			pageableProvider = new InMemoryPageableProvider<B>(beans);
+		}		
 		
-		this.beanProxy = new BeanProxy<B>(beans.iterator().next());
+		this.beanProxy = new BeanProxy<B>(pageableProvider.current());
 		
 		IAutoFieldModel<B> autoFieldModel = newAutoFieldModel(null, this.beanProxy);
 		configureFieldModel(autoFieldModel);
@@ -82,6 +87,10 @@ public abstract class EditPanel<B extends Serializable> extends Panel {
 	private CRUDPanel<B> getCRUDPanel() {
 		return (CRUDPanel<B>) findParent(CRUDPanel.class);
 		
+	}
+	
+	public B getCurrentBean() {
+		return this.beanProxy.getBean();
 	}
 	
 	protected void configureFieldModel(IAutoFieldModel<B> autoFieldModel) {
@@ -117,5 +126,19 @@ public abstract class EditPanel<B extends Serializable> extends Panel {
 	 */
 	public BeanProxy<B> getBeanProxy() {
 		return beanProxy;
+	}
+
+	/**
+	 * @return the pageableProvider
+	 */
+	public IPageableProvider<B> getPageableProvider() {
+		return pageableProvider;
+	}
+
+	/**
+	 * @param pageableProvider the pageableProvider to set
+	 */
+	public void clearPageableProvider() {
+		this.pageableProvider = null;
 	}
 }

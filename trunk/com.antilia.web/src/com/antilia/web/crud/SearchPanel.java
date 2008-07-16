@@ -154,4 +154,11 @@ public abstract class SearchPanel<B extends Serializable> extends Panel implemen
 	public BeanProxy<B> getBeanProxy() {
 		return beanProxy;
 	}
+
+	/**
+	 * @return the pageableProvider
+	 */
+	public IPageableProvider<B> getPageableProvider() {
+		return pageableProvider;
+	}
 }

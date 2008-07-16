@@ -47,6 +47,7 @@ public class EditButton<E extends Serializable> extends AbstractButton {
 	protected void onSubmit(AjaxRequestTarget target, Form form) {
 			CRUDPanel<E> crudPanel = getCRUDPanel();
 			if(crudPanel != null && crudPanel.getSelected().getSelected().hasNext()) {
+				crudPanel.getEditPanel().clearPageableProvider();
 				crudPanel.setCurrentPanel(crudPanel.getEditPanel());
 				target.addComponent((Component)crudPanel);
 			}		

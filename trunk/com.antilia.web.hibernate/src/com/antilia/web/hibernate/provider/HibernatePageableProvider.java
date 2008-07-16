@@ -95,6 +95,12 @@ public class HibernatePageableProvider<E extends Serializable> implements ILoada
 		clearCached();
 	}
 	
+	@Override
+	public boolean update(E bean) {
+		CommandExecuter.update(bean);
+		return true;
+	
+	}
 	/* (non-Javadoc)
 	 * @see com.antilia.common.sonullurces.IPageableSource#getCurrentPage()
 	 */

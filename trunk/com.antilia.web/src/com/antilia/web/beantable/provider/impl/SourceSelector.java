@@ -63,7 +63,7 @@ public class SourceSelector<E extends Serializable> implements IProviderSelector
 	}
 	
 	public boolean clear() {
-		selected.clear();
+		onClear();
 		return true;
 	}
 

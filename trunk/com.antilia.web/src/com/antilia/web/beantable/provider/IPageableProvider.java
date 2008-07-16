@@ -33,6 +33,8 @@ public interface IPageableProvider<E extends Serializable> extends IProvider<E> 
 	
 	void reset();
 	
+	boolean update(E bean);
+	
 	boolean hasNextPage();
 	
 	boolean hasPreviousPage();

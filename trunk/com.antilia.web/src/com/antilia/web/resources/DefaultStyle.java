@@ -57,5 +57,8 @@ public class DefaultStyle {
 	public static ResourceReference IMG_RESIZE = new ResourceReference(ImgDummy.class, "resize.gif");
 	public static ResourceReference IMG_SEPARATOR = new ResourceReference(ImgDummy.class, "separator.gif");
 	
+	public static ResourceReference IMG_SAVE_ENABLED = new ResourceReference(ImgDummy.class, "saveEnabled.png");
+	
+	
 	public static ResourceReference IMG_MINIMIZED = new ResourceReference(ImgDummy.class, "minimized.gif");
 }

@@ -22,7 +22,10 @@ public class EditPanelButtonsFactory implements IMenuItemsFactory {
 	
 	@SuppressWarnings("unchecked")
 	public void populateMenuItems(String menuId, IMenuItemHolder itemHolder) {			
-		itemHolder.addMenuItem(new CancelButton());
+		itemHolder.addMenuItem(new UpdateRecordButton());
+		itemHolder.addMenuItem(new CancelButton());		
+		itemHolder.addMenuItem(new PreviousRecordButton());
+		itemHolder.addMenuItem(new NextRecordButton());
 	}
 
 	/**

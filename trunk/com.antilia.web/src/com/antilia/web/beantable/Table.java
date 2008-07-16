@@ -90,7 +90,7 @@ public class Table<E extends Serializable> extends Panel implements IPageableCom
 		add(HeaderContributor.forJavaScript(DefaultStyle.JS_COMMON));
 		add(HeaderContributor.forJavaScript(DefaultStyle.JS_TABLE));
 		
-	addMenuItemsAfterNavidation(getAfterNavigationMenuItemsFactory());
+		addMenuItemsAfterNavidation(getAfterNavigationMenuItemsFactory());
 		
 		getFirstHeaderMenuItemsFactory().addItem(
 				AjaxRefreshableMenuItem.createRefreshableMenuItem(
