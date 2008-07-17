@@ -17,7 +17,7 @@ public class DefaultDialogStyle extends DialogStyle {
 	 * 
 	 */
 	public DefaultDialogStyle() {
-		setBackgroundColor("#c38c51");
+		setBackgroundColor("#9eb7e8");
 		setHandleColor("#000000");
 		setTitleStyle("color: #000000;");
 	}

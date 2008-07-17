@@ -33,7 +33,12 @@ public class LastPageButton<E extends Serializable> extends AbstractButton {
 	 */
 	@Override
 	protected ResourceReference getImage() {
-		return DefaultStyle.IMG_LAST;
+		return DefaultStyle.IMG_LAST_ENABLED;
+	}
+	
+	@Override
+	protected ResourceReference getDisabledImage() {
+		return DefaultStyle.IMG_LAST_DISABLED;
 	}
 
 	/* (non-Javadoc)

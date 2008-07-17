@@ -156,7 +156,7 @@ public abstract class AbstractButton extends Panel implements IMenuItem {
 
 			@Override
 			protected ResourceReference getImageResourceReference() {
-				if(isEnabled()) {
+				if(AbstractButton.this.isEnabled()) {
 					return getImage();
 				} 
 				ResourceReference reference = getDisabledImage();

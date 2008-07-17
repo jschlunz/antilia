@@ -30,6 +30,9 @@ public class DefaultStyle {
 	public static ResourceReference JS_SLIDER = new ResourceReference(DefaultStyle.class, "slider.js");
 	
 	public static ResourceReference IMG_CANCEL = new ResourceReference(ImgDummy.class, "cancel.gif");
+	
+	public static ResourceReference IMG_CLOSE = new ResourceReference(ImgDummy.class, "close_bule.gif");
+	
 	public static ResourceReference IMG_BOTTOM = new ResourceReference(ImgDummy.class, "bottom.gif");
 	public static ResourceReference IMG_OK = new ResourceReference(ImgDummy.class, "ok.gif");
 	public static ResourceReference IMG_TRANSPARENT = new ResourceReference(ImgDummy.class, "transparent.gif");
@@ -42,6 +45,17 @@ public class DefaultStyle {
 	public static ResourceReference IMG_PREVIOUS = new ResourceReference(ImgDummy.class, "mv_previous.gif");
 	public static ResourceReference IMG_LAST = new ResourceReference(ImgDummy.class, "mv_last.gif");
 	public static ResourceReference IMG_FIRST = new ResourceReference(ImgDummy.class, "mv_first.gif");
+	
+	
+	public static ResourceReference IMG_NEXT_ENABLED  = new ResourceReference(ImgDummy.class, "next_enabled.png");
+	public static ResourceReference IMG_PREVIOUS_ENABLED = new ResourceReference(ImgDummy.class, "previous_enabled.png");
+	public static ResourceReference IMG_LAST_ENABLED  = new ResourceReference(ImgDummy.class, "last_enabled.png");
+	public static ResourceReference IMG_FIRST_ENABLED  = new ResourceReference(ImgDummy.class, "first_enabled.png");
+	
+	public static ResourceReference IMG_NEXT_DISABLED = new ResourceReference(ImgDummy.class, "next_disabled.png");
+	public static ResourceReference IMG_PREVIOUS_DISABLED = new ResourceReference(ImgDummy.class, "previous_disabled.png");
+	public static ResourceReference IMG_LAST_DISABLED  = new ResourceReference(ImgDummy.class, "last_disabled.png");
+	public static ResourceReference IMG_FIRST_DISABLED  = new ResourceReference(ImgDummy.class, "first_disabled.png");
 	
 	public static ResourceReference IMG_REFRESH = new ResourceReference(ImgDummy.class, "refresh_small.png");
 	

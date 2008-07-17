@@ -32,8 +32,15 @@ public class PreviousRecordButton<E extends Serializable> extends AbstractButton
 	 */
 	@Override
 	protected ResourceReference getImage() {
-		return DefaultStyle.IMG_PREVIOUS;
+		return DefaultStyle.IMG_PREVIOUS_ENABLED;
 	}
+	
+	@Override
+	protected ResourceReference getDisabledImage() {
+		return DefaultStyle.IMG_PREVIOUS_DISABLED;
+	}
+	
+	
 
 	/* (non-Javadoc)
 	 * @see com.antilia.web.toolbar.AButton#getLabel()

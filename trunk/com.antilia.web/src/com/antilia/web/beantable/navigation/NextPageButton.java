@@ -33,7 +33,12 @@ public class NextPageButton<E extends Serializable> extends AbstractButton {
 	 */
 	@Override
 	protected ResourceReference getImage() {
-		return DefaultStyle.IMG_NEXT;
+		return DefaultStyle.IMG_NEXT_ENABLED;
+	}
+	
+	@Override
+	protected ResourceReference getDisabledImage() {
+		return DefaultStyle.IMG_NEXT_DISABLED;
 	}
 
 	/* (non-Javadoc)

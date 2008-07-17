@@ -35,7 +35,7 @@ public class CloseDialogButton extends AbstractButton {
 	 */
 	@Override
 	protected ResourceReference getImage() {
-		return DefaultStyle.IMG_CANCEL;
+		return DefaultStyle.IMG_CLOSE;
 	}
 
 	/* (non-Javadoc)
