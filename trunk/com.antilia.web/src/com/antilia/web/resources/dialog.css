@@ -47,9 +47,9 @@ td.droundtop {
 
 .panelSelected {
 	position:absolute;
-	border: none;
+	border: 1px dashed  #3a6ac4;
 	font-size:13px;
-	font-family:vardana;		
+	font-family: Verdana, Arial, Helvetica, sans-serif;		
 }
 
 .panelDrag {
@@ -60,7 +60,7 @@ td.droundtop {
 }
 
 .dialogFooter {
-	background-color: #c38c51;
+	background-color: #9eb7e8;
 	height: 10px; 
 	margin: 0px; 
 	width: 100%; 
@@ -83,7 +83,7 @@ td.droundtop {
 	width: 36px;
 	height: 41px;
 	vertical-align: middle; 
-	background: #fdebd7;
+	background: #9eb7e8;
 	border: 1px solid #c38c51;
 }
 
@@ -100,7 +100,7 @@ td.droundtop {
 .panelBody {
 	width: auto;
 	overflow: hidden;
-	background-color: #f4e6d7;
+	background-color: #ebf6fd;
 	margin-left: 2px;
 	font-size:13px;
 	font-family: Verdana, Arial, Helvetica, sans-serif;
