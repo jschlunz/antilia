@@ -5,6 +5,7 @@ import org.apache.wicket.markup.html.WebPage;
 import org.wicketstuff.yui.markup.html.menu2.YuiMenuBar;
 
 import com.antilia.demo.manager.resources.AppStyle;
+import com.antilia.web.adxmenu.htb.TestPanel;
 import com.antilia.web.resources.DefaultStyle;
 
 public class BasePage extends WebPage {
@@ -21,8 +22,11 @@ public class BasePage extends WebPage {
 		add(HeaderContributor.forCss(AppStyle.CSS_MANAGER));		
 		add(HeaderContributor.forJavaScript(AppStyle.CSS_TABLE));
 		add(HeaderContributor.forCss(AppStyle.YUI_SAM_MENU));	
+		add(HeaderContributor.forCss(TestPanel.HTB_CSS));
 		
-		add(createMenu2("menuBar", "menuBar"));
+		add(new TestPanel("menuBar"));
+		
+		//add(createMenu2("menuBar", "menuBar"));
 								
 	}
 	
