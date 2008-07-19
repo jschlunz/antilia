@@ -17,6 +17,8 @@ import org.apache.wicket.model.StringResourceModel;
 
 import com.antilia.common.util.ResourceUtils;
 import com.antilia.web.beantable.model.IColumnModel;
+import com.antilia.web.beantable.navigation.ColumnMenuItemsFactory;
+import com.antilia.web.menu.Menu;
 
 /**
  * 
@@ -60,6 +62,10 @@ public class DefaultHeaderCell<E extends Serializable> extends Panel {
 			
 			
 		}, Integer.class));
+		
+		Menu menu = Menu.createMenu("menu",ColumnMenuItemsFactory.getInstance());
+		menu.setMenuStyle("width: auto; background: transparent; right: 0px;  float: right;");
+		add(menu);
 		add(new Label("title",DefaultHeaderCell.this.getLabelModel()));
 		WebMarkupContainer dragTd = new WebMarkupContainer("dragTd");
 		dragTd.add(new AttributeModifier("id", new Model() {

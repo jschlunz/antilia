@@ -70,7 +70,7 @@ td.droundtop {
 
 .resizeHandle {
 	height: 10px; 
-	width: 10px; 
+	width: 20px; 
 	background: url("images/dialog_handle.gif") repeat-x transparent; 
 	margin: 0px; 
 	padding: 0px;

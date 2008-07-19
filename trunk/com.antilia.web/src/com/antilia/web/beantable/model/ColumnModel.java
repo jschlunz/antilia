@@ -23,6 +23,8 @@ public class ColumnModel<E extends Serializable> extends Model implements IColum
 	private String propertyPath;
 	
 	private ITableModel<E> tableModel;
+	
+	private boolean sortable;
 		
 	/**
 	 * 
@@ -70,6 +72,20 @@ public class ColumnModel<E extends Serializable> extends Model implements IColum
 
 	public void setTableModel(ITableModel<E> tableModel) {
 		this.tableModel = tableModel;
+	}
+
+	/**
+	 * @return the sortable
+	 */
+	public boolean isSortable() {
+		return sortable;
+	}
+
+	/**
+	 * @param sortable the sortable to set
+	 */
+	public void setSortable(boolean sortable) {
+		this.sortable = sortable;
 	}
 
 }

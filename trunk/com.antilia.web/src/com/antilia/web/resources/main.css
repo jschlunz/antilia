@@ -88,7 +88,7 @@ div.vertical-menu {
 }
 
 .vertical-menu .menubody {
-	background: transparent url('images/vertical-menu.png') repeat;
+	background: transparent url('images/vertmenu_background.png') repeat;
 	width: 100%;
 	vertical-align: top;
 	padding-top: 0px;

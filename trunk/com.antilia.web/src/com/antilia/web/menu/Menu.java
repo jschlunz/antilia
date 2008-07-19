@@ -137,8 +137,12 @@ public  class Menu extends Panel implements IMenuItem, IMenuItemHolder {
 	}
 	
 	public void populateMenuItems(String menuId) {
+		if(factories == null | factories.length == 0) {
+			return;
+		}
 		for(IMenuItemsFactory factory: factories) {
-			factory.populateMenuItems(menuId, this);
+			if(factory != null)
+				factory.populateMenuItems(menuId, this);
 		}
 	}
 		
