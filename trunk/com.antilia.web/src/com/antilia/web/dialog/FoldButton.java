@@ -48,6 +48,6 @@ public class FoldButton extends ScriptButton {
 
 	@Override
 	protected String getJavaScript() {
-		return "dragPanels.foldPanel('"+dialog.getDialogId()+"');";
+		return "Antilia_dragPanels.foldPanel('"+dialog.getDialogId()+"');";
 	}
 }

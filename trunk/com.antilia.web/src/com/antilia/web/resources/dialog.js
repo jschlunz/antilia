@@ -13,9 +13,10 @@
 		else
 			this.minHeight = 100;
 		this.panel = document.getElementById(id);
+		
 		this.parentPanel = document.getElementById(parentId);
 		this.height = parseInt(this.panel.style.height, 10);	
-		this.panelBody = document.getElementById(id+"Body");
+		this.panelBody = document.getElementById(id+"Body");		
 		this.panelHeader = document.getElementById(id+"Header");
 		this.panelResize = document.getElementById(id+"Resize");	
 		
@@ -30,7 +31,7 @@
 		this.addModalLayer();
 		this.addLoadingLayer();
 		if(this.parentId) {	
-			this.parent = dragPanels.getPanel(this.parentId);
+			this.parent = Antilia_dragPanels.getPanel(this.parentId);
 			if(this.parent) {
 				this.toggleModal();
 			}
@@ -162,7 +163,18 @@
 	}
 	
 	Panel.prototype.onDrag = function(element, deltaX, deltaY) {
-		var w = element.parentNode;						
+		var w = element.parentNode;	
+		if(this.drag != true) {
+		    this.drag = true;
+		    var panel = Antilia_dragPanels.getPanel(element.parentNode.id);
+            new Effect.toggle(panel.panel, 
+                'appear',
+                {
+                    duration: 0,
+                    from: 1,
+                    to: 0.6
+                });
+         }					
 		var x = parseInt(w.style.left, 10) + deltaX;
 		var y = parseInt(w.style.top, 10) + deltaY;
 
@@ -184,15 +196,25 @@
 	}
 	
 	Panel.prototype.onBeginDrag = function(element) {
-		var panel = dragPanels.getPanel(element.parentNode.id);
-		//panel.panelBody.style.display = 'none';		
-		dragPanels.orderPanels(panel.id);
+		var panel = Antilia_dragPanels.getPanel(element.parentNode.id);
+		//panel.panelBody.style.display = 'none';
+		this.drag = true;			
+		Antilia_dragPanels.orderPanels(panel.id);
 		panel.panel.className='panelDrag';					
 	}
 	
 	Panel.prototype.onEndDrag = function(element) {
-		var panel = dragPanels.getPanel(element.parentNode.id);
-		//panel.panelBody.style.display = 'block';
+		var panel = Antilia_dragPanels.getPanel(element.parentNode.id);
+		if(this.drag == true) {
+		    this.drag = false;
+			new Effect.toggle(panel.panel, 
+	            'appear',
+	            {
+	                duration: 0,
+	                from: 0.6,
+	                to: 1
+	            });
+            } 
 		panel.panel.className='panel';		
 	}
 	
@@ -201,7 +223,7 @@
 		var bodyId = element.parentNode.parentNode.id+"Body";
 		var frameId = element.parentNode.parentNode.id+"Frame";
 		
-		var panel = dragPanels.getPanel(element.parentNode.parentNode.id);		
+		var panel = Antilia_dragPanels.getPanel(element.parentNode.parentNode.id);		
 		
 		var res = [0, 0];
 		
@@ -332,8 +354,10 @@
 					if(!panel.minimized) {
 						if(panel.id==current || panel.id == currentPanel.parentId || panel.parentId == current) {
 							panel.panel.style.zIndex = 2; 
+							panel.panel.className='panelSelected';									
 						} else {
-							panel.panel.style.zIndex = 1;
+						    panel.panel.className='panel';
+							panel.panel.style.zIndex = 1;							
 						}
 					}						
 				}
@@ -342,5 +366,5 @@
 		}										
 	}	
 	
-	var dragPanels = new Panels();
+	var Antilia_dragPanels = new Panels();
 	

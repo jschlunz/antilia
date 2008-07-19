@@ -141,7 +141,7 @@ public abstract class DefaultDialog extends Panel implements IDialogScope, IMenu
 
 			@Override
 			public Object getObject() {
-				return "dragPanels.orderPanels('"+DefaultDialog.this.getDialogId()+"');";
+				return "Antilia_dragPanels.orderPanels('"+DefaultDialog.this.getDialogId()+"');";
 			}
 		}));					
 		innerPanel.add(new AttributeModifier("style", new Model() {
@@ -171,7 +171,19 @@ public abstract class DefaultDialog extends Panel implements IDialogScope, IMenu
 		else {
 			innerPanel.add(new Label("header", ""));
 		}
-	
+		
+		WebMarkupContainer dialogBackground = new WebMarkupContainer("dialogBackground");
+		dialogBackground.add(new AttributeModifier("style", new Model() {
+			private static final long serialVersionUID = 1L;
+
+			@Override
+			public Object getObject() {
+				return "background-color: " + dialogStyle.getBackgroundColor();
+			}
+		}));	
+		
+		innerPanel.add(dialogBackground);
+		
 		WebMarkupContainer dialogBody = new WebMarkupContainer("dialogBody");
 		dialogBody.add(new AttributeModifier("id", new Model() {
 
@@ -198,10 +210,14 @@ public abstract class DefaultDialog extends Panel implements IDialogScope, IMenu
 				sb.append(DefaultDialog.this.getHeight()-28);
 				sb.append("px;");
 				sb.append("overflow: auto;");
+				if(dialogStyle.getBodyColor() != null) {
+					sb.append("background-color: ");				
+					sb.append(dialogStyle.getBodyColor());
+				}
 				return sb.toString();
 			}
 		}));
-		innerPanel.add(dialogBody);	
+		dialogBackground.add(dialogBody);
 				
 		// call createBody to retrieve user defined body.
 		Component body = createBody("body");
@@ -213,6 +229,19 @@ public abstract class DefaultDialog extends Panel implements IDialogScope, IMenu
 			dialogBody.add(new Label("body", ""));
 		
 		
+		WebMarkupContainer footer = new WebMarkupContainer("footer") ;
+		footer.add(new AttributeModifier("style", new Model() {
+			
+			private static final long serialVersionUID = 1L;
+
+			@Override
+			public Object getObject() {
+				return "background-color: " + dialogStyle.getBackgroundColor();
+			}
+		}));
+		
+		innerPanel.add(footer);
+			
 		WebMarkupContainer resizeHandle = new WebMarkupContainer("resizeHandle") {
 			private static final long serialVersionUID = 1L;
 
@@ -231,7 +260,7 @@ public abstract class DefaultDialog extends Panel implements IDialogScope, IMenu
 			}
 		}));
 		
-		innerPanel.add(resizeHandle);
+		footer.add(resizeHandle);
 				
 		Label script = new Label("script", new Model()) {
 			private static final long serialVersionUID = 1L;
@@ -241,7 +270,7 @@ public abstract class DefaultDialog extends Panel implements IDialogScope, IMenu
 				boolean ie = DefaultDialog.this.isBrowserIExplorer();
 				String parentId =  DefaultDialog.this.getParentDialog()!=null?DefaultDialog.this.getParentDialog().getDialogId():"";
 				StringBuffer sb = new StringBuffer();
-				sb.append("dragPanels.addPanel('");
+				sb.append("Antilia_dragPanels.addPanel('");
 				sb.append(DefaultDialog.this.getDialogId());
 				sb.append("','");
 				sb.append(parentId);

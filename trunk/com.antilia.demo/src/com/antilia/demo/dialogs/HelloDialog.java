@@ -8,6 +8,7 @@ import org.apache.wicket.Component;
 import org.apache.wicket.markup.html.basic.Label;
 
 import com.antilia.web.dialog.DefaultDialog;
+import com.antilia.web.dialog.DefaultDialogStyle;
 
 /**
  * 
@@ -21,7 +22,7 @@ public class HelloDialog extends DefaultDialog {
 	 * @param id
 	 */
 	public HelloDialog(String id) {
-		super(id);
+		super(id, null,  new DefaultDialogStyle().setBackgroundColor("#d73957").setBodyColor("#f1d0d6"));
 		setPosX(10);
 		setPosY(10);
 		setWidth(300);

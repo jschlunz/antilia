@@ -50,7 +50,7 @@ public class DefaultHeader extends Panel  {
 
 			@Override
 			public Object getObject() {
-				return "dragPanels.orderPanels('"+DefaultHeader.this.dialog.getDialogId()+"');";
+				return "Antilia_dragPanels.orderPanels('"+DefaultHeader.this.dialog.getDialogId()+"');";
 			}
 		}));
 		
@@ -78,7 +78,7 @@ public class DefaultHeader extends Panel  {
 		};
 		add(tl);
 		
-		WebMarkupContainer middlePanel = new WebMarkupContainer("middlePanel");
+		WebMarkupContainer middlePanel = new WebMarkupContainer("middlePanel");		
 		middlePanel.add(new AttributeModifier("style", new Model(){
 			private static final long serialVersionUID = 1L;
 
@@ -109,6 +109,18 @@ public class DefaultHeader extends Panel  {
 			}
 			
 		});
+		/*
+		title.setOutputMarkupId(true);
+		title.add(new AttributeModifier("id", new Model() {
+
+			private static final long serialVersionUID = 1L;
+
+			@Override
+			public Object getObject() {
+				return DefaultHeader.this.dialog.getDialogId()+"Title";
+			}
+		}));
+		*/
 		title.add(new AttributeModifier("style", new Model() {
 			
 			private static final long serialVersionUID = 1L;

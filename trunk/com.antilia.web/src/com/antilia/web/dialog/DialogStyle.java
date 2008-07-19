@@ -20,7 +20,7 @@ public class DialogStyle implements Serializable {
 	
 	private String titleStyle;
 	
-	private String bodyStyle;
+	private String bodyColor;
 	
 	/**
 	 * 
@@ -33,32 +33,36 @@ public class DialogStyle implements Serializable {
 		return backgroundColor;
 	}
 
-	public void setBackgroundColor(String backgroundColor) {
+	public DialogStyle setBackgroundColor(String backgroundColor) {
 		this.backgroundColor = backgroundColor;
+		return this;
 	}
 
 	public String getHandleColor() {
 		return handleColor;
 	}
 
-	public void setHandleColor(String handleColor) {
+	public DialogStyle setHandleColor(String handleColor) {
 		this.handleColor = handleColor;
+		return this;
 	}
 
 	public String getTitleStyle() {
 		return titleStyle;
 	}
 
-	public void setTitleStyle(String titleColor) {
+	public DialogStyle setTitleStyle(String titleColor) {
 		this.titleStyle = titleColor;
+		return this;
 	}
 
-	public String getBodyStyle() {
-		return bodyStyle;
+	public String getBodyColor() {
+		return bodyColor;
 	}
 
-	public void setBodyStyle(String bodyStyle) {
-		this.bodyStyle = bodyStyle;
+	public DialogStyle setBodyColor(String bodyStyle) {
+		this.bodyColor = bodyStyle;
+		return this;
 	}
 
 }

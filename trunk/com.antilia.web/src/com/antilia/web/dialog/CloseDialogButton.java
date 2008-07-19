@@ -75,7 +75,7 @@ public class CloseDialogButton extends AbstractButton {
 			}
 
 			public CharSequence decorateOnSuccessScript(CharSequence script) {
-				return "dragPanels.deletePanel('"+dialog.getDialogId()+"');"+script;
+				return "Antilia_dragPanels.deletePanel('"+dialog.getDialogId()+"');"+script;
 			}
 
 			public CharSequence decorateScript(CharSequence script) {

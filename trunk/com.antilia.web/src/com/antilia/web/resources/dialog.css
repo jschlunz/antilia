@@ -54,7 +54,7 @@ td.droundtop {
 
 .panelDrag {
 	position:absolute;
-	border: none;
+	border: 1px dashed  #3a6ac4;
 	font-size:13px;
 	font-family: Verdana, Arial, Helvetica, sans-serif;
 }
@@ -71,7 +71,7 @@ td.droundtop {
 .resizeHandle {
 	height: 10px; 
 	width: 10px; 
-	background: url("images/dialog_handle.gif") repeat-x; 
+	background: url("images/dialog_handle.gif") repeat-x transparent; 
 	margin: 0px; 
 	padding: 0px;
 	overflow:hidden; 
@@ -100,7 +100,6 @@ td.droundtop {
 .panelBody {
 	width: auto;
 	overflow: hidden;
-	background-color: #ebf6fd;
 	margin-left: 2px;
 	font-size:13px;
 	font-family: Verdana, Arial, Helvetica, sans-serif;
