@@ -4,11 +4,13 @@
  */
 package com.antilia.web.beantable.navigation;
 
+import java.io.Serializable;
+
 import org.apache.wicket.ResourceReference;
 
+import com.antilia.web.beantable.model.IColumnModel;
 import com.antilia.web.button.IMenuItemHolder;
 import com.antilia.web.button.IMenuItemsFactory;
-import com.antilia.web.button.SeparatorButton;
 import com.antilia.web.menu.DropDownButton;
 import com.antilia.web.menu.DropDownMenu;
 import com.antilia.web.resources.DefaultStyle;
@@ -19,14 +21,14 @@ import com.antilia.web.resources.DefaultStyle;
  * @author Ernesto Reinaldo Barreiro (reiern70@gmail.com)
  *
  */
-public class ColumnProperties extends DropDownButton {
+public abstract class ColumnProperties<E extends Serializable> extends DropDownButton {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	
-
+	
 	public ColumnProperties() {
 		super("columnsProperties");
 	}
@@ -55,21 +57,28 @@ public class ColumnProperties extends DropDownButton {
 		return new DropDownMenu(id, 
 				new IMenuItemsFactory() {
 			
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
+
+			@SuppressWarnings("unchecked")
 			@Override
 			public void populateMenuItems(String menuId,
 					IMenuItemHolder itemHolder) {
-				itemHolder.addMenuItem(new FirstPageButton());
-				itemHolder.addMenuItem(new PreviousPageButton());
-				itemHolder.addMenuItem(new PageNumberItem());
-				itemHolder.addMenuItem(new NextPageButton());
-				itemHolder.addMenuItem(new LastPageButton());
-				
-				itemHolder.addMenuItem(new SeparatorButton());		
-				itemHolder.addMenuItem(new PageSizeButton());
-				itemHolder.addMenuItem(new RefreshButton());
+				if(getColumnModel() != null) {
+					itemHolder.addMenuItem( new SortAscendingButton("ascending", getColumnModel().getPropertyPath()));	
+					itemHolder.addMenuItem( new SortDescendingButton("descending", getColumnModel().getPropertyPath()));	
+				}
 			}
 		}
 		);
 	}
+
+	/**
+	 * @return the columnModel
+	 */
+	public abstract IColumnModel<E> getColumnModel();
+
 
 }

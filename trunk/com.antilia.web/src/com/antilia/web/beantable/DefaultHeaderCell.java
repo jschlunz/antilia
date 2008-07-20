@@ -63,8 +63,18 @@ public class DefaultHeaderCell<E extends Serializable> extends Panel {
 			
 		}, Integer.class));
 		
-		Menu menu = Menu.createMenu("menu",ColumnMenuItemsFactory.getInstance());
+		Menu menu = Menu.createMenu("menu",new ColumnMenuItemsFactory<E>() {
+			
+			private static final long serialVersionUID = 1L;
+
+			@Override
+			public IColumnModel<E> getColumnModel() {
+				return DefaultHeaderCell.this.getColumnModel();
+			}
+		});
 		menu.setMenuStyle("width: auto; background: transparent; right: 0px;  float: right;");
+		menu.setRenderBodyOnly(true);
+		menu.setOutputMarkupId(false);
 		add(menu);
 		add(new Label("title",DefaultHeaderCell.this.getLabelModel()));
 		WebMarkupContainer dragTd = new WebMarkupContainer("dragTd");

@@ -10,6 +10,7 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
+import com.antilia.hibernate.query.IQuery;
 import com.antilia.hibernate.query.Query;
 import com.antilia.web.beantable.provider.ILoadablePageableProvider;
 import com.antilia.web.beantable.provider.IPageableProviderNavigationListener;
@@ -30,6 +31,8 @@ public class InMemoryPageableProvider<E extends Serializable> implements ILoadab
 	private int currentIndex;
 	
 	private int currentPage;
+	
+	private IQuery<E> query;
 	
 	private int pageSize = DEFAULT_PAGE_SIZE;
 		
@@ -313,6 +316,20 @@ public class InMemoryPageableProvider<E extends Serializable> implements ILoadab
 	public void removeNavigationListener(
 			IPageableProviderNavigationListener listener) {
 		navigationListeners.remove(listener);
+	}
+
+	/**
+	 * @return the query
+	 */
+	public IQuery<E> getQuery() {
+		return query;
+	}
+
+	/**
+	 * @param query the query to set
+	 */
+	public void setQuery(IQuery<E> query) {
+		this.query = query;
 	}
 	
 }

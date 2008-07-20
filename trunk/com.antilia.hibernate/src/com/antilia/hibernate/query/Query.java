@@ -18,7 +18,7 @@ public class Query<B extends Serializable> implements IQuery<B> {
 
 	private List<IFilter> filters = new ArrayList<IFilter>();
 	
-	private List<IOrder> orders = new ArrayList<IOrder>();
+	private List<IOrder<B>> orders = new ArrayList<IOrder<B>>();
 	
 	private IProjection projection;
 	
@@ -43,10 +43,14 @@ public class Query<B extends Serializable> implements IQuery<B> {
 		filters.clear();
 	}
 	
+	public void clearOrders() {
+		orders.clear();
+	}
+	
 	/* (non-Javadoc)
 	 * @see com.antilia.persistence.filter.IQuery#addOrder(com.antilia.persistence.filter.IOrder)
 	 */
-	public IQuery<B> addOrder(IOrder order) {
+	public IQuery<B> addOrder(IOrder<B> order) {
 		orders.add(order);
 		return this;
 	}
@@ -64,7 +68,7 @@ public class Query<B extends Serializable> implements IQuery<B> {
 		return filters;
 	}
 
-	public Iterable<IOrder> getOrders() {
+	public Iterable<IOrder<B>> getOrders() {
 		return orders;
 	}
 	

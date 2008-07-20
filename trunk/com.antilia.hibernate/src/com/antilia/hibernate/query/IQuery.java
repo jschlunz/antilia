@@ -23,9 +23,11 @@ public interface IQuery<B extends Serializable> extends Serializable  {
 	
 	public void clearFilters();
 	
-	IQuery<B> addOrder(IOrder order);
+	IQuery<B> addOrder(IOrder<B> order);
 	
-	Iterable<IOrder> getOrders();
+	Iterable<IOrder<B>> getOrders();
+	
+	public void clearOrders();
 	
 	IQuery<B> setProjection(IProjection projection);
 	

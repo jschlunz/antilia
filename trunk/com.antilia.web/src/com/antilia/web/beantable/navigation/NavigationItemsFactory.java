@@ -35,7 +35,8 @@ public class NavigationItemsFactory implements IMenuItemsFactory {
 		itemHolder.addMenuItem(new PageSizeButton());
 		itemHolder.addMenuItem(new RefreshButton());
 		
-		itemHolder.addMenuItem(new ColumnProperties());		
+		//itemHolder.addMenuItem(new ColumnProperties());	
+		
 	}
 
 	/**

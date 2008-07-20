@@ -6,12 +6,9 @@ package com.antilia.web.beantable.navigation;
 
 import java.io.Serializable;
 
-import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.panel.Panel;
-import org.apache.wicket.model.Model;
 
-import com.antilia.web.beantable.IPageableComponent;
-import com.antilia.web.beantable.provider.IPageableProvider;
+import com.antilia.web.beantable.model.IColumnModel;
 import com.antilia.web.button.AbstractButton;
 import com.antilia.web.button.IMenuItem;
 
@@ -28,37 +25,15 @@ public class SortColumnItem<E extends Serializable> extends Panel implements IMe
 	/**
 	 * @param id
 	 */
-	public SortColumnItem() {
+	public SortColumnItem(IColumnModel<E> columnModel) {
 		super("sortColumns");		
-		add(new Label("page", new Model() {
-			private static final long serialVersionUID = 1L;
-
-			@Override
-			public Object getObject() {
-				IPageableProvider<E> source = findPageableComponent().getPageableProvider();
-				if(source.isEmpty())
-					return 1;
-				return (source.currentPageNumber()+1);
-			}
-		}));
 		
-		add(new Label("npages", new Model() {
-			
-			private static final long serialVersionUID = 1L;
-
-			@Override
-			public Object getObject() {
-				IPageableProvider<E> source = findPageableComponent().getPageableProvider();
-				if(source.isEmpty())
-					return 1;
-				return source.getNumberOfPages();
-			}
-		}));
-	}
-	
-	@SuppressWarnings("unchecked")
-	private IPageableComponent<E> findPageableComponent() {
-		return (IPageableComponent<E>)findParent(IPageableComponent.class);
+		SortAscendingButton<E> ascendingButton = new SortAscendingButton<E>("ascending",columnModel.getPropertyPath());
+		add(ascendingButton);
+		
+		
+		SortDescendingButton<E> descendingButton = new SortDescendingButton<E>("descending", columnModel.getPropertyPath());
+		add(descendingButton);
 	}
 
 	/**

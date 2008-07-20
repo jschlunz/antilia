@@ -10,13 +10,13 @@ import java.io.Serializable;
  * 
  * @author Ernesto Reinaldo Barreiro (reiern70@gmail.com)
  */
-public class Order<B extends Serializable> implements IOrder {
+public class Order<B extends Serializable> implements IOrder<B> {
 
 	private static final long serialVersionUID = 1L;	
 	
-	private String propertyPath;
-	private OrderType type;
-	private boolean ignoreCase;	
+	String propertyPath;
+	OrderType type;
+	boolean ignoreCase;	
 	
 	public Order() {
 		super();
@@ -53,14 +53,14 @@ public class Order<B extends Serializable> implements IOrder {
 	/**
 	 * @return the type
 	 */
-	protected OrderType getType() {
+	public OrderType getType() {
 		return type;
 	}
 
 	/**
 	 * @param type the type to set
 	 */
-	protected Order<B> setType(OrderType type) {
+	public Order<B> setType(OrderType type) {
 		this.type = type;
 		return this;
 	}
@@ -68,14 +68,14 @@ public class Order<B extends Serializable> implements IOrder {
 	/**
 	 * @return the ignoreCase
 	 */
-	protected boolean isIgnoreCase() {
+	public boolean isIgnoreCase() {
 		return ignoreCase;
 	}
 
 	/**
 	 * @param ignoreCase the ignoreCase to set
 	 */
-	protected Order<B> ignoreCase(boolean ignoreCase) {
+	public Order<B> ignoreCase(boolean ignoreCase) {
 		this.ignoreCase = ignoreCase;
 		return this;
 	}

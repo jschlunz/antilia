@@ -57,6 +57,9 @@ public class DefaultStyle {
 	public static ResourceReference IMG_LAST_DISABLED  = new ResourceReference(ImgDummy.class, "last_disabled.png");
 	public static ResourceReference IMG_FIRST_DISABLED  = new ResourceReference(ImgDummy.class, "first_disabled.png");
 	
+	public static ResourceReference IMG_SORT_ASC = new ResourceReference(ImgDummy.class, "bullet_arrow_up.png");
+	public static ResourceReference IMG_SORT_DES = new ResourceReference(ImgDummy.class, "bullet_arrow_down.png");
+	
 	public static ResourceReference IMG_REFRESH = new ResourceReference(ImgDummy.class, "refresh_small.png");
 	public static ResourceReference IMG_DOWN = new ResourceReference(ImgDummy.class, "bullet_arrow_down.png");
 	

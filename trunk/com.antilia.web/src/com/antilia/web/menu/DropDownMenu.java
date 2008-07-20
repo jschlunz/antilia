@@ -73,7 +73,7 @@ public  class DropDownMenu extends Panel implements IMenuItem, IMenuItemHolder {
 		add(mainDiv);
 		// close button 
 		
-		mainDiv.add( new CloseDropDownButton("close"));
+		//mainDiv.add( new CloseDropDownButton("close"));
 		
 		WebMarkupContainer menu = new WebMarkupContainer("menu");
 		populateMenuItems(id);
