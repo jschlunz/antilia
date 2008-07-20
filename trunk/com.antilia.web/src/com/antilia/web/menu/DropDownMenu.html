@@ -2,10 +2,13 @@
 <head>
 </head>
 <wicket:panel>
-    <div wicket:id="mainDiv" class="nav-menu" style="overflow: visible;" onclick="">
+    <div wicket:id="mainDiv" class="nav-menu" style="width: 100px;overflow: visible;" onclick="this.parentNode.style.display='none';">
+        <div style="height: 16px; background: #9eb7e8; margin: 0px; padding: 0px; vertical-align: middle;">
+                        <div style="height: 16px; background: transparent; float: right;  margin: 0px; padding: 0px; vertical-align: middle;"><span wicket:id="close"></span></div>
+        </div>
         <div wicket:id="menu" class="menubody" style="overflow: visible;">
-            <table width="100px;">
-	    	  <tr wicket:id="toolbar">			    
+            <table width="100 px;">
+	    	    <tr wicket:id="toolbar">			    
 			   </tr>
 			</table>
 		</div>

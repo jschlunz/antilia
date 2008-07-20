@@ -22,7 +22,7 @@ public class ColumnMenuItemsFactory implements IMenuItemsFactory {
 	
 	@SuppressWarnings("unchecked")
 	public void populateMenuItems(String menuId, IMenuItemHolder itemHolder) {
-		itemHolder.addMenuItem(new SortColumnItem());				
+		itemHolder.addMenuItem(new ColumnProperties());				
 	}
 
 	/**

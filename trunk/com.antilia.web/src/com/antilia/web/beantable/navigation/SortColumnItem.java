@@ -4,72 +4,75 @@
  */
 package com.antilia.web.beantable.navigation;
 
-import org.apache.wicket.ResourceReference;
+import java.io.Serializable;
 
-import com.antilia.web.button.IMenuItemHolder;
-import com.antilia.web.button.IMenuItemsFactory;
-import com.antilia.web.button.SeparatorButton;
-import com.antilia.web.menu.DropDownButton;
-import com.antilia.web.menu.DropDownMenu;
-import com.antilia.web.resources.DefaultStyle;
+import org.apache.wicket.markup.html.basic.Label;
+import org.apache.wicket.markup.html.panel.Panel;
+import org.apache.wicket.model.Model;
+
+import com.antilia.web.beantable.IPageableComponent;
+import com.antilia.web.beantable.provider.IPageableProvider;
+import com.antilia.web.button.AbstractButton;
+import com.antilia.web.button.IMenuItem;
 
 /**
  * 
- *
  * @author Ernesto Reinaldo Barreiro (reiern70@gmail.com)
- *
  */
-public class SortColumnItem extends DropDownButton {
+public class SortColumnItem<E extends Serializable> extends Panel implements IMenuItem {
+
+	private static final long serialVersionUID = 1L;
+
+	private int order = AbstractButton.NO_ORDER;
+	
+	/**
+	 * @param id
+	 */
+	public SortColumnItem() {
+		super("sortColumns");		
+		add(new Label("page", new Model() {
+			private static final long serialVersionUID = 1L;
+
+			@Override
+			public Object getObject() {
+				IPageableProvider<E> source = findPageableComponent().getPageableProvider();
+				if(source.isEmpty())
+					return 1;
+				return (source.currentPageNumber()+1);
+			}
+		}));
+		
+		add(new Label("npages", new Model() {
+			
+			private static final long serialVersionUID = 1L;
+
+			@Override
+			public Object getObject() {
+				IPageableProvider<E> source = findPageableComponent().getPageableProvider();
+				if(source.isEmpty())
+					return 1;
+				return source.getNumberOfPages();
+			}
+		}));
+	}
+	
+	@SuppressWarnings("unchecked")
+	private IPageableComponent<E> findPageableComponent() {
+		return (IPageableComponent<E>)findParent(IPageableComponent.class);
+	}
 
 	/**
-	 * 
+	 * @return the order
 	 */
-	private static final long serialVersionUID = 1L;
-	
-
-	public SortColumnItem() {
-		super("sort");
-	}
-	
-	/* (non-Javadoc)
-	 * @see com.antilia.web.menu.DropDownButton#getImage()
-	 */
-	@Override
-	protected ResourceReference getImage() {
-		return DefaultStyle.IMG_DOWN;
+	public int getOrder() {
+		return order;
 	}
 
-	/* (non-Javadoc)
-	 * @see com.antilia.web.menu.DropDownButton#getLabel()
+	/**
+	 * @param order the order to set
 	 */
-	@Override
-	protected String getLabel() {
-		return null;
-	}
-
-	/* (non-Javadoc)
-	 * @see com.antilia.web.menu.DropDownButton#newMenu(java.lang.String)
-	 */
-	@Override
-	public DropDownMenu newMenu(String id) {		
-		return new DropDownMenu(id, 
-				new IMenuItemsFactory() {
-			
-			@Override
-			public void populateMenuItems(String menuId,
-					IMenuItemHolder itemHolder) {
-				itemHolder.addMenuItem(new FirstPageButton());
-				itemHolder.addMenuItem(new PreviousPageButton());
-				itemHolder.addMenuItem(new PageNumberItem());
-				itemHolder.addMenuItem(new NextPageButton());
-				itemHolder.addMenuItem(new LastPageButton());
-				
-				itemHolder.addMenuItem(new SeparatorButton());		
-				itemHolder.addMenuItem(new PageSizeButton());
-				itemHolder.addMenuItem(new RefreshButton());
-			}
-		}
-		);
+	public void setOrder(int order) {
+		this.order = order;
 	}
 
 }
