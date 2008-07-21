@@ -70,6 +70,7 @@ public class SortAscendingButton<E extends Serializable> extends AbstractButton 
 		IPageableComponent<E> component = findPageableComponent();
 		IQuery<E> query = component.getPageableProvider().getQuery();
 		IOrder<E> order = Order.asc(this.propertyPath);
+		query.clearOrders();
 		query.addOrder(order);
 		component.getPageableProvider().reset();
 		target.addComponent((Component)component);

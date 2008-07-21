@@ -69,7 +69,7 @@ public class Table<E extends Serializable> extends Panel implements IPageableCom
 	 * @param elements
 	 */
 	public Table(String id, ITableModel<E> tableModel, List<E> elements) {
-		this(id, tableModel, new InMemoryPageableProvider<E>(elements));
+		this(id, tableModel, new InMemoryPageableProvider<E>(elements, tableModel.getBeanClass()));
 	}
 	
 	/**

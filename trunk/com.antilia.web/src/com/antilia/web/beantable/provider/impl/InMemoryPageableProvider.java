@@ -43,16 +43,18 @@ public class InMemoryPageableProvider<E extends Serializable> implements ILoadab
 	 * 
 	 * @param collection
 	 */
-	public InMemoryPageableProvider(Collection<E> collection) {
+	public InMemoryPageableProvider(Collection<E> collection, Class<E> beanClass) {
 		this.collection = new ArrayList<E>(collection);		
 		this.currentIndex = 0;
 		this.currentPage = 0;
+		this.query  = new Query<E>(beanClass);
 	}
 	
-	public InMemoryPageableProvider(Iterable<E> iterable) {
+	public InMemoryPageableProvider(Iterable<E> iterable, Class<E> beanClass) {
 		this.collection = toList(iterable);		
 		this.currentIndex = 0;
 		this.currentPage = 0;
+		this.query  = new Query<E>(beanClass);
 	}
 	
 	@Override

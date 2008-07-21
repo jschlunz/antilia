@@ -30,6 +30,8 @@ public abstract class EditPanel<B extends Serializable> extends Panel {
 
 	private static final long serialVersionUID = 1L;
 
+	private Class<B> beanClass;
+	
 	private BeanProxy<B> beanProxy;
 	
 
@@ -41,8 +43,9 @@ public abstract class EditPanel<B extends Serializable> extends Panel {
 	 * @param beanClass
 	 * @param filterQuery
 	 */
-	public EditPanel(String id) {
+	public EditPanel(String id, Class<B> beanClass) {
 		super(id);		
+		this.beanClass = beanClass;
 		setOutputMarkupId(true);		
 	}
 	
@@ -61,7 +64,7 @@ public abstract class EditPanel<B extends Serializable> extends Panel {
 					beans.add(bean);
 				}
 			}
-			pageableProvider = new InMemoryPageableProvider<B>(beans);
+			pageableProvider = new InMemoryPageableProvider<B>(beans, beanClass);
 		}		
 		
 		this.beanProxy = new BeanProxy<B>(pageableProvider.current());
