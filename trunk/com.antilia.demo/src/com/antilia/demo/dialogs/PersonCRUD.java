@@ -31,7 +31,7 @@ public class PersonCRUD extends CRUDPanel<Person> {
 	 */
 	@Override
 	protected EditPanel<Person> getEditPanel(String id) {
-		return new EditPanel<Person>(id) {
+		return new EditPanel<Person>(id, Person.class) {
 			
 			private static final long serialVersionUID = 1L;
 

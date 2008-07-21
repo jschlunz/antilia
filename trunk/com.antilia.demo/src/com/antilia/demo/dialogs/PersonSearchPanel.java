@@ -46,7 +46,7 @@ public class PersonSearchPanel extends SearchPanel<Person> {
 	
 	@Override
 	protected IPageableProvider<Person> getTableData() {
-		return new InMemoryPageableProvider<Person>(DialogsPanel.createPersons());
+		return new InMemoryPageableProvider<Person>(DialogsPanel.createPersons(), Person.class);
 	}
 	
 	@Override
