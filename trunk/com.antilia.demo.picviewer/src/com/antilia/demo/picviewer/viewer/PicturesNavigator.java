@@ -46,7 +46,7 @@ public class PicturesNavigator extends RoundPane implements IPageableComponent<I
 		setMinWidth(500);
 		setMinHeight(300);
 		
-		pageableProvider = new InMemoryPageableProvider<IPicture>(source.getPictures()) ;
+		pageableProvider = new InMemoryPageableProvider<IPicture>(source.getPictures(),IPicture.class) ;
 		
 		imageContainer = new WebMarkupContainer("imageContainer") {
 			
