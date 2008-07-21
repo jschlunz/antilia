@@ -17,7 +17,7 @@ function Table(id, rows, ncols) {
 
 Table.prototype.createDropables = function() { 
     for(var j = 1; j < this.ncols; j++) {               
-        var titleId = this.id + '_title_' + j;
+        //var titleId = this.id + '_title_' + j;
         alert(titleId);
         new Draggable(titleId, { revert: true, ghosting: true, zindex: 100});        
     }
