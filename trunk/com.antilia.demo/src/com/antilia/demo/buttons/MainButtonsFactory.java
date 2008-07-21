@@ -8,7 +8,7 @@ import com.antilia.demo.Index;
 import com.antilia.web.button.IMenuItem;
 import com.antilia.web.button.IMenuItemHolder;
 import com.antilia.web.button.IMenuItemsFactory;
-import com.antilia.web.menu.Menu;
+import com.antilia.web.menu.DropDownButton;
 
 /**
  * 
@@ -24,20 +24,17 @@ public class MainButtonsFactory implements IMenuItemsFactory {
 	}
 	
 	public void populateMenuItems(String menuId, IMenuItemHolder itemHolder) {
-		Menu menu = Menu.createVerticalMenu("simple", "Simple", new IMenuItem[]{
-				new HelloWorldButton(page), 
-				new FormButton(page)});
-		itemHolder.addMenuItem(menu);
-		menu = Menu.createVerticalMenu("otherMenu", "Other", new IMenuItem[]{
+		DropDownButton dropDownButton = DropDownButton.createDropDownButton("otherMenu", "Other", null, new IMenuItem[]{
 				new EffectsPageButton(page), 
 				new RoundBoxButton(page),
 				new DialogsPageButton(page)});
-		itemHolder.addMenuItem(menu);
-		menu = Menu.createVerticalMenu("tablesMenu", "Tables", 
+		itemHolder.addMenuItem(dropDownButton);
+		
+		dropDownButton = DropDownButton.createDropDownButton("tablesMenu", "Tables", null, 
 				new IMenuItem[]{
 				new TablesButton(page),
 				new NestedTablesButton(page)
-				});
-		itemHolder.addMenuItem(menu);
+				});		
+		itemHolder.addMenuItem(dropDownButton);
 	}
 }

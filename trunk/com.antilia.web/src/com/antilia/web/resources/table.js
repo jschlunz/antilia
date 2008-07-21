@@ -4,10 +4,23 @@ function Table(id, rows, ncols) {
 	// rows is an array of Rows	
 	this.rows = rows;
 	this.ncols = ncols;	
-	this.columns = new Array();	
-	for(var i = 0; i < this.ncols; i++) {				
-		this.addColumn(i);
-	} 		
+	
+	this.columns = new Array();    
+    for(var i = 0; i < this.ncols; i++) {               
+        this.addColumn(i);
+    }    
+    
+    alert('here');
+   	 		
+   	 this.createDropables();
+}
+
+Table.prototype.createDropables = function() { 
+    for(var j = 1; j < this.ncols; j++) {               
+        var titleId = this.id + '_title_' + j;
+        alert(titleId);
+        new Draggable(titleId, { revert: true, ghosting: true, zindex: 100});        
+    }
 }
 
 Table.prototype.addColumn = function(col) {	

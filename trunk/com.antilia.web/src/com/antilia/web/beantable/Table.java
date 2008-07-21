@@ -85,6 +85,9 @@ public class Table<E extends Serializable> extends Panel implements IPageableCom
 		this.tableModel = tableModel;
 		this.firstColumnModel = new FirstColumnModel(65);
 		
+		add(HeaderContributor.forJavaScript(DefaultStyle.JS_PROTOTYPE));
+		add(HeaderContributor.forJavaScript(DefaultStyle.JS_EFFECT));
+		add(HeaderContributor.forJavaScript(DefaultStyle.JS_DRAGDROP));
 		add(HeaderContributor.forCss(DefaultStyle.CSS_MAIN));
 		add(HeaderContributor.forCss(getTableCSS()));
 		add(HeaderContributor.forJavaScript(DefaultStyle.JS_COMMON));

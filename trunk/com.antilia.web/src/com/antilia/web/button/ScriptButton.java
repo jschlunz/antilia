@@ -83,7 +83,15 @@ public abstract class ScriptButton extends Panel implements IMenuItem {
 	 * @return
 	 */
 	protected Image newImage(String id) {
-		return new Image(id, getImage());
+		return new Image(id, getImage()) {
+			
+			private static final long serialVersionUID = 1L;
+
+			@Override
+			public boolean isVisible() {
+				return getImage() != null;
+			}
+		};
 	}
 	
 	protected Label newLabel(String id) {

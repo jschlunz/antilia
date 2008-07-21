@@ -4,11 +4,14 @@
  */
 package com.antilia.web.menu;
 
+import java.awt.MenuItem;
+
 import org.apache.wicket.ResourceReference;
 import org.apache.wicket.markup.html.panel.Panel;
 
 import com.antilia.web.button.AbstractButton;
 import com.antilia.web.button.IMenuItem;
+import com.antilia.web.button.MenuItemsFactory;
 import com.antilia.web.button.ScriptButton;
 
 
@@ -54,6 +57,29 @@ public abstract class DropDownButton extends Panel implements IMenuItem {
 		menu.setOutputMarkupId(true);
 		
 		add(menu);
+	}
+	
+	public static DropDownButton createDropDownButton(String id, final String label, final ResourceReference image, final IMenuItem[] items)  {
+		return new DropDownButton(id) {
+
+			private static final long serialVersionUID = 1L;
+
+			@Override
+			protected ResourceReference getImage() {
+				// TODO Auto-generated method stub
+				return image;
+			}
+
+			@Override
+			protected String getLabel() {
+				return label;
+			}
+
+			@Override
+			public DropDownMenu newMenu(String id) {
+				return new DropDownMenu(id, new MenuItemsFactory(items));
+			}						
+		};
 	}
 	
 	protected abstract String getLabel();

@@ -45,7 +45,7 @@ public class Index extends WebPage {
 			}
 		};				
 		form.add(contents);
-		form.add(Menu.createVerticalMenu("menu", "Components", new MainButtonsFactory(this)));
+		form.add(Menu.createMenu("menu",  new MainButtonsFactory(this)));
 		body = createBody("body");
 		contents.setOutputMarkupId(true);
 		contents.setVisible(true);

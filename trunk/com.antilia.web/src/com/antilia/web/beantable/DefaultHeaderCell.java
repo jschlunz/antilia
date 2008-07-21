@@ -76,7 +76,18 @@ public class DefaultHeaderCell<E extends Serializable> extends Panel {
 		menu.setRenderBodyOnly(true);
 		menu.setOutputMarkupId(false);
 		add(menu);
-		add(new Label("title",DefaultHeaderCell.this.getLabelModel()));
+		
+		Label title = new Label("title",DefaultHeaderCell.this.getLabelModel());
+		title.setOutputMarkupId(true);
+		title.add(new AttributeModifier("id", new Model() {
+			private static final long serialVersionUID = 1L;
+
+			@Override
+			public Object getObject() {
+				return DefaultHeaderCell.this.getTable().getMarkupId()+"_title_"+DefaultHeaderCell.this.getColumn();
+			}
+		}));
+		add(title);
 		WebMarkupContainer dragTd = new WebMarkupContainer("dragTd");
 		dragTd.add(new AttributeModifier("id", new Model() {
 			private static final long serialVersionUID = 1L;
