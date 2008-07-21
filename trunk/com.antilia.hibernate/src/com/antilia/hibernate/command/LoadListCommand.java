@@ -56,7 +56,7 @@ public class LoadListCommand<E extends Serializable> extends AbstractPersistentC
 	@Override
 	protected List<E> doExecute() {
 		if(getQuery() != null) {
-			Criteria criteria =new QueryToCriteriaTransformer<E>().transform(getQuery());
+			Criteria criteria =new QueryToCriteriaTransformer<E>().transform(getQuery(), true);
 			return (List<E>)criteria.list();
 		} else if(getCriteria() != null) {
 			Criteria criteria =getSession().createCriteria(getPersistentClass());		

@@ -12,6 +12,8 @@ import com.antilia.hibernate.query.IQuery;
  * 
  * @author Ernesto Reinaldo Barreiro (reiern70@gmail.com)
  */
-public interface IQueryTransformer<E extends Serializable, R> extends ITransformer<IQuery<E>, R> {
+public interface IQueryTransformer<E extends Serializable, R> {
+	
+	R transform(IQuery<E> source, boolean includeOrder);
 	
 }

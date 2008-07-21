@@ -65,7 +65,7 @@ public class CountCommand<E extends Serializable> extends AbstractPersistentComm
 	@Override
 	protected Long doExecute() throws Throwable {
 		if(getQuery() != null) {
-			Criteria criteria =new QueryToCriteriaTransformer<E>().transform(getQuery());
+			Criteria criteria =new QueryToCriteriaTransformer<E>().transform(getQuery(), false);
 			criteria.setProjection(Projections.rowCount());
 			return new Long(criteria.uniqueResult().toString());
 		} else if(getCriteria() != null) {
