@@ -10,7 +10,7 @@ function Table(id, rows, ncols) {
         this.addColumn(i);
     }    
     
-    alert('here');
+    //alert('here');
    	 		
    	 this.createDropables();
 }
