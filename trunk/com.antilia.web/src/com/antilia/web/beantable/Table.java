@@ -151,7 +151,9 @@ public class Table<E extends Serializable> extends Panel implements IPageableCom
 				}		
 				sb.append(")");
 				sb.append("," + Table.this.getTableModel().getColumns()+1);
-				sb.append(");");				
+				sb.append(");");
+				sb.append(tableId+".");
+				sb.append("createDropables();");				
 				replaceComponentTagBody(markupStream, openTag, sb.toString());
 			}
 		};
