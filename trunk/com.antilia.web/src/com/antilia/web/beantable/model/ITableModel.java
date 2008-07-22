@@ -20,6 +20,8 @@ public interface ITableModel<E extends Serializable> extends IModel {
 	
 	Iterator<IColumnModel<E>> getColumnModels();
 	
+	boolean swapColumns(int i, int j);
+	
 	int getColumns();
 	
 	void setSelectionModel(SelectionMode selectionModel);

@@ -27,7 +27,8 @@ public class MainButtonsFactory implements IMenuItemsFactory {
 		DropDownButton dropDownButton = DropDownButton.createDropDownButton("otherMenu", "Other", null, new IMenuItem[]{
 				new EffectsPageButton(page), 
 				new RoundBoxButton(page),
-				new DialogsPageButton(page)});
+				new DialogsPageButton(page),
+				new DragDropPageButton(page)});
 		itemHolder.addMenuItem(dropDownButton);
 		
 		dropDownButton = DropDownButton.createDropDownButton("tablesMenu", "Tables", null, 

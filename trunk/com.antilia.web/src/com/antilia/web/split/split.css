@@ -1,0 +1,49 @@
+td.hseparator {	 
+	width: 1px; 
+	border-top: 1px solid gray; 
+	border-bottom: 1px solid gray; 
+	border-right: 1px solid gray; 
+	cursor: e-resize;
+}
+
+td.paneCell {		
+	vertical-align: top; 
+	border-left: 1px solid gray;
+	border-top: 1px solid gray; 
+	border-bottom: 1px solid gray;
+	border-right: 1px solid gray;
+}
+
+td.paneCell1 {		
+	vertical-align: top;
+	border-left: 1px solid gray;
+	border-top: 1px solid gray; 
+	border-bottom: 1px solid gray; 
+	border-right: 1px solid gray;
+}
+
+td.vseparator {	 
+	height: 2px; 
+	border-left: 1px solid gray; 
+	border-bottom: 1px solid gray; 
+	border-right: 1px solid gray; 
+	cursor: n-resize;
+}
+
+td.vpaneCell {		
+	border-left: 1px solid gray;
+	border-right: 1px solid gray;
+	border-bottom: 1px solid gray;
+	border-top: 1px solid gray;
+}
+
+td.vpaneCell1 {		
+	border-left: 1px solid gray;
+	border-top: 1px solid gray; 
+	border-right: 1px solid gray;
+	border-bottom: 1px solid gray;
+}
+
+td.vpaneNoborders {		
+	border: none;
+}

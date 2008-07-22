@@ -8,7 +8,6 @@ import java.io.Serializable;
 
 import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.markup.html.WebMarkupContainer;
-import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.HiddenField;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.IModel;
@@ -77,6 +76,9 @@ public class DefaultHeaderCell<E extends Serializable> extends Panel {
 		menu.setOutputMarkupId(false);
 		add(menu);
 		
+		HeaderTitleLabel<E> title = new HeaderTitleLabel<E>("title", this);
+		
+		/*
 		Label title = new Label("title",DefaultHeaderCell.this.getLabelModel());
 		title.setOutputMarkupId(true);
 		title.add(new AttributeModifier("id", new Model() {
@@ -88,6 +90,7 @@ public class DefaultHeaderCell<E extends Serializable> extends Panel {
 			}
 		}));
 		add(title);
+		*/
 		WebMarkupContainer dragTd = new WebMarkupContainer("dragTd");
 		dragTd.add(new AttributeModifier("id", new Model() {
 			private static final long serialVersionUID = 1L;

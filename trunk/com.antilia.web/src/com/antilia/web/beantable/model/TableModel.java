@@ -94,6 +94,21 @@ public class TableModel<E extends Serializable> extends Model implements ITableM
 	public Iterator<IColumnModel<E>> getColumnModels() {
 		return models.iterator();
 	}
+	
+	public boolean swapColumns(int i, int j) {
+		if(i==j) {
+			return false;
+		}
+		if(i>=0 && i< models.size())	{
+			IColumnModel<E> tempi = models.get(i);
+			if(j>=0 && j< models.size())	{
+				IColumnModel<E> tempj = models.get(j);
+				models.set(i, tempj);
+				models.set(j, tempi);
+			}
+		}
+		return false;
+	}
 
 	public int getColumns() {
 		return models.size();
