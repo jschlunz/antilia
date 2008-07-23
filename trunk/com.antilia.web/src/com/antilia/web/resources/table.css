@@ -53,8 +53,8 @@ tr.highlightedRow {
 	border-right: 1px solid white;
 }
 
-span.ondrop {
-    border: 1px dotted red;
+.ondrop {
+    border: 1px solid white;
 }
 
 td.tbodycol {

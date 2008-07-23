@@ -71,11 +71,15 @@ public class HeaderTitleLabel<E extends Serializable> extends Label implements I
 
 		onDropBehavior.addAcceptClass(headerCell.getTable().getMarkupId());
 
-		onDropBehavior.getDropOptions().put("onDrop", new JavascriptHelper.JavascriptFunction("function(draggable, droppable, event) { wicketAjaxGet('" + onDropBehavior.getCallbackUrl()
+		onDropBehavior.getDropOptions().put("onDrop", new JavascriptHelper.JavascriptFunction("function(draggable, droppable, event) { " +
+				headerCell.getTable().getMarkupId() +".removeDroppables();"+
+				"wicketAjaxGet('" + onDropBehavior.getCallbackUrl()
 				+ "&id=' + draggable.id); }"));
 
+		String titleId = headerCell.getTable().getMarkupId()+"_title_"+headerCell.getColumn();
 		JavascriptHelper builder = new JavascriptHelper();
-		builder.addLine("Droppables.add('" + headerCell.getTable().getMarkupId()+"_title_"+headerCell.getColumn() + "', ");
+		builder.addLine("  try { Droppables.remove(document.getElementById('" +titleId +"')) } catch (err) {};");
+		builder.addLine("Droppables.add('" + titleId + "', ");
 		builder.addOptions(onDropBehavior.getDropOptions());
 		builder.addLine(");");
 
@@ -91,7 +95,6 @@ public class HeaderTitleLabel<E extends Serializable> extends Label implements I
 	
 	@Override
 	public void onDrop(String input, AjaxRequestTarget target) {
-		System.out.println("onDrop: " +  input);
 		int dropedColumn = getDropedColumnIndex(input)-1;
 		int thisColumn = this.headerCell.getColumn()-1;
 		if(dropedColumn == -2 || dropedColumn == thisColumn)

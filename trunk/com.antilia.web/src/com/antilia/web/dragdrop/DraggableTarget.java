@@ -23,7 +23,7 @@ import com.antilia.web.resources.DefaultStyle;
 public abstract class DraggableTarget extends WebMarkupContainer implements IDraggableTarget
 {
 	private static final long serialVersionUID = 1L;
-	private final ScriptaculousAjaxBehavior onDropBehavior;
+	protected final DraggableTargetBehavior onDropBehavior;
 	private final Map<String, Object> dropOptions = new HashMap<String, Object>();
 
 	public DraggableTarget(String id)
@@ -88,16 +88,22 @@ public abstract class DraggableTarget extends WebMarkupContainer implements IDra
 	protected void onRender(MarkupStream markupStream)
 	{
 		super.onRender(markupStream);
-
-
+		renderOnDrag(markupStream);
+	}
+	
+	
+	protected void renderOnDrag(MarkupStream markupStream) {
+		
 		dropOptions.put("onDrop", new JavascriptHelper.JavascriptFunction("function(draggable, droppable, event) { wicketAjaxGet('" + onDropBehavior.getCallbackUrl()
 				+ "&id=' + draggable.id); }"));
-
 		JavascriptHelper builder = new JavascriptHelper();
 		builder.addLine("Droppables.add('" + getMarkupId() + "', ");
 		builder.addOptions(dropOptions);
 		builder.addLine(");");
 
 		getResponse().write(builder.buildScript());
-	}	
+	}
+	
+	
+	
 }
