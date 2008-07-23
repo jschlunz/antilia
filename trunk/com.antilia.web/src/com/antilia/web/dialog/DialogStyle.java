@@ -22,6 +22,8 @@ public class DialogStyle implements Serializable {
 	
 	private String bodyColor;
 	
+	private boolean roundedHeader = false;
+	
 	/**
 	 * 
 	 */
@@ -62,6 +64,21 @@ public class DialogStyle implements Serializable {
 
 	public DialogStyle setBodyColor(String bodyStyle) {
 		this.bodyColor = bodyStyle;
+		return this;
+	}
+
+	/**
+	 * @return the roundedHeader
+	 */
+	public boolean isRoundedHeader() {
+		return roundedHeader;
+	}
+
+	/**
+	 * @param roundedHeader the roundedHeader to set
+	 */
+	public DialogStyle setRoundedHeader(boolean roundedHeader) {
+		this.roundedHeader = roundedHeader;
 		return this;
 	}
 

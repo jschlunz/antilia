@@ -1,9 +1,14 @@
 	//Class for dragable panel.	
-	function Panel(id, parentId, ie, minWidth, minHeight, modal) {
+	function Panel(id, parentId, ie, minWidth, minHeight, modal, panelClass, onDragClass, selectedClass) {
 		this.id = id;
 		this.parentId = parentId;
 		this.ie = ie;
+			
 		this.modal = modal;
+		this.panelClass = panelClass;
+		this.onDragClass =  onDragClass;
+		this.selectedClass = selectedClass;
+		
 		if(minWidth)
 			this.minWidth = minWidth;
 		else 
@@ -200,7 +205,7 @@
 		//panel.panelBody.style.display = 'none';
 		this.drag = true;			
 		Antilia_dragPanels.orderPanels(panel.id);
-		panel.panel.className='panelDrag';					
+		panel.panel.className=panel.onDragClass;					
 	}
 	
 	Panel.prototype.onEndDrag = function(element) {
@@ -215,7 +220,7 @@
 	                to: 1
 	            });
             } 
-		panel.panel.className='panel';		
+		panel.panel.className=panel.panelClass;		
 	}
 	
 	Panel.prototype.onResize = function(element, deltaX, deltaY) {
@@ -276,10 +281,10 @@
 	function Panels() {
 		this.panels = new Array();
 		
-		this.addPanel = function(id, parentId, ie, minWidth, minHeight, modal) {
+		this.addPanel = function(id, parentId, ie, minWidth, minHeight, modal, panelClass, onDragClass, selectedClass) {
 			var panel = this.getPanel(id)
 			if(panel == null) {
-				panel = new Panel(id, parentId, ie, minWidth, minHeight, modal);
+				panel = new Panel(id, parentId, ie, minWidth, minHeight, modal, panelClass, onDragClass, selectedClass);
 				this.panels[this.panels.length]= panel;
 				this.panels.id = id;
 				if(panel.parentPanel) {
@@ -354,9 +359,9 @@
 					if(!panel.minimized) {
 						if(panel.id==current || panel.id == currentPanel.parentId || panel.parentId == current) {
 							panel.panel.style.zIndex = 2; 
-							panel.panel.className='panelSelected';									
+							panel.panel.className=panel.selectedClass;									
 						} else {
-						    panel.panel.className='panel';
+						    panel.panel.className=panel.panelClass;
 							panel.panel.style.zIndex = 1;							
 						}
 					}						

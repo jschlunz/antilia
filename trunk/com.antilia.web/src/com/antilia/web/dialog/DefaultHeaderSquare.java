@@ -20,7 +20,7 @@ import com.antilia.web.roundpane.TopRightImg;
  * 
  * @author Ernesto Reinaldo Barreiro (reiern70@gmail.com)
  */
-public class DefaultHeader extends Panel  {
+public class DefaultHeaderSquare extends Panel  {
 		
 	/**
 	 * 
@@ -31,7 +31,7 @@ public class DefaultHeader extends Panel  {
 	/**
 	 * @param id
 	 */
-	public DefaultHeader(String id, DefaultDialog dialog) {
+	public DefaultHeaderSquare(String id, DefaultDialog dialog) {
 		super(id);
 		this.dialog = dialog;
 		
@@ -41,7 +41,7 @@ public class DefaultHeader extends Panel  {
 
 			@Override
 			public Object getObject() {
-				return DefaultHeader.this.dialog.getDialogId()+"Header";
+				return DefaultHeaderSquare.this.dialog.getDialogId()+"Header";
 			}
 		}));
 		
@@ -50,33 +50,35 @@ public class DefaultHeader extends Panel  {
 
 			@Override
 			public Object getObject() {
-				return "Antilia_dragPanels.orderPanels('"+DefaultHeader.this.dialog.getDialogId()+"');";
+				return "Antilia_dragPanels.orderPanels('"+DefaultHeaderSquare.this.dialog.getDialogId()+"');";
 			}
 		}));
 		
+		/*
 		Image tr = new DiscriminatedImage("tr", new TopRightImg(
-				DefaultHeader.this.getDialog().getDialogStyle().getBackgroundColor(), 
-				DefaultHeader.this.getDialog().isBrowserIExplorer6())) {
+				DefaultHeader1.this.getDialog().getDialogStyle().getBackgroundColor(), 
+				DefaultHeader1.this.getDialog().isBrowserIExplorer6())) {
 			private static final long serialVersionUID = 1L;
 
 			@Override
 			protected String getDiscriminator() {
-				return DefaultHeader.this.getDialog().getDialogStyle().getBackgroundColor();
+				return DefaultHeader1.this.getDialog().getDialogStyle().getBackgroundColor();
 			}
 		};
 		
 		add(tr);
 		Image tl = new DiscriminatedImage("tl", 
-				new TopLeftImg(DefaultHeader.this.getDialog().getDialogStyle().getBackgroundColor(), 
-						DefaultHeader.this.getDialog().isBrowserIExplorer6())) {
+				new TopLeftImg(DefaultHeader1.this.getDialog().getDialogStyle().getBackgroundColor(), 
+						DefaultHeader1.this.getDialog().isBrowserIExplorer6())) {
 			
 			private static final long serialVersionUID = 1L;
 
 			protected String getDiscriminator() {
-				return DefaultHeader.this.getDialog().getDialogStyle().getBackgroundColor();
+				return DefaultHeader1.this.getDialog().getDialogStyle().getBackgroundColor();
 			}
 		};
 		add(tl);
+		*/
 		
 		WebMarkupContainer middlePanel = new WebMarkupContainer("middlePanel");		
 		middlePanel.add(new AttributeModifier("style", new Model(){
@@ -98,14 +100,14 @@ public class DefaultHeader extends Panel  {
 
 			@Override
 			public Object getObject() {
-				return DefaultHeader.this.getDialog().getTitle();
+				return DefaultHeaderSquare.this.getDialog().getTitle();
 			}
 			
 			@Override
 			public void setObject(Object object) {
 				super.setObject(object);
 				if(object != null)
-					DefaultHeader.this.getDialog().setTitle(object.toString());
+					DefaultHeaderSquare.this.getDialog().setTitle(object.toString());
 			}
 			
 		});
@@ -127,12 +129,12 @@ public class DefaultHeader extends Panel  {
 
 			@Override
 			public Object getObject() {
-				return "float: left; text-align: center;"+DefaultHeader.this.getDialog().getDialogStyle().getTitleStyle();
+				return "float: left; text-align: center;"+DefaultHeaderSquare.this.getDialog().getDialogStyle().getTitleStyle();
 			}
 		}));		
 		middlePanel.add(title);
 		Menu menu = Menu.createMenu("menu", 
-				new DialogHeaderMenuItemsFactory(DefaultHeader.this.getDialog()));		
+				new DialogHeaderMenuItemsFactory(DefaultHeaderSquare.this.getDialog()));		
 		menu.setMenuStyle("width: auto; background: transparent; right: 0px; position: relative; float: right;");
 		menu.setOutputMarkupId(false);
 		menu.setRenderBodyOnly(true);		

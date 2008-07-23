@@ -44,12 +44,25 @@ td.droundtop {
 	font-family: Verdana, Arial, Helvetica, sans-serif;
 }
 
+.panelSquare {
+    position:absolute;
+    border: 1px solid #ebf6fd;
+    font-size:13px;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+}
 
 .panelSelected {
 	position:absolute;
 	border: 1px dashed  #3a6ac4;
 	font-size:13px;
 	font-family: Verdana, Arial, Helvetica, sans-serif;		
+}
+
+.panelSquareSelected {
+    position:absolute;
+    border: 1px solid  #3a6ac4;
+    font-size:13px;
+    font-family: Verdana, Arial, Helvetica, sans-serif;     
 }
 
 .panelDrag {

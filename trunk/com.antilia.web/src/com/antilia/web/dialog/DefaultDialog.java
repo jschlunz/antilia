@@ -85,6 +85,12 @@ public abstract class DefaultDialog extends Panel implements IDialogScope, IMenu
 	
 	private IMenuItemsFactory topMenuItemFactory;
 	
+	private String panelClass = "panel";
+	
+	private String onDragClass = "panelDrag";
+	
+	private String panelSelectedClass = "panelSelected";
+	
 	/**
 	 * Constructor.
 	 * 
@@ -115,6 +121,10 @@ public abstract class DefaultDialog extends Panel implements IDialogScope, IMenu
 		this.dialogButton = button;
 		this.dialogStyle = dialogStyle;
 		setOutputMarkupId(true);
+		if(!dialogStyle.isRoundedHeader()) {
+			panelClass = "panelSquare";
+			panelSelectedClass = "panelSquareSelected";
+		}
 		ClientProperties properties = ((WebClientInfo)getRequestCycle().getClientInfo()).getProperties();
 		setBrowserIExplorer(properties.isBrowserInternetExplorer());
 		if(isBrowserIExplorer()) {
@@ -133,6 +143,15 @@ public abstract class DefaultDialog extends Panel implements IDialogScope, IMenu
 		
 		innerPanel = new WebMarkupContainer("dialog");
 		innerPanel.setOutputMarkupId(true);
+		
+		innerPanel.add(new AttributeModifier("class", new Model() {
+			private static final long serialVersionUID = 1L;
+
+			@Override
+			public Object getObject() {
+				return panelClass;
+			}
+		}));
 				
 		add(innerPanel);
 		
@@ -282,7 +301,13 @@ public abstract class DefaultDialog extends Panel implements IDialogScope, IMenu
 				sb.append(DefaultDialog.this.getMinimumHeight());
 				sb.append(",");
 				sb.append(DefaultDialog.this.isModal());
-				sb.append(");");				
+				sb.append(",'");
+				sb.append(DefaultDialog.this.getPanelClass());
+				sb.append("','");
+				sb.append(DefaultDialog.this.getOnDragClass());
+				sb.append("','");
+				sb.append(DefaultDialog.this.getPanelSelectedClass());
+				sb.append("');");				
 				replaceComponentTagBody(markupStream, openTag, sb.toString());
 			}
 		};
@@ -329,7 +354,9 @@ public abstract class DefaultDialog extends Panel implements IDialogScope, IMenu
 	 * @return
 	 */
 	protected Panel newDialogHeader(String id) {
-		return new DefaultHeader(id, this);
+		if(getDialogStyle().isRoundedHeader())
+			return new DefaultHeaderRounded(id, this);
+		return new DefaultHeaderSquare(id, this);
 	}
 	
 	public void populateMenuItems(String menuId, IMenuItemHolder itemHolder) {
@@ -525,4 +552,47 @@ public abstract class DefaultDialog extends Panel implements IDialogScope, IMenu
 	public void setTopMenuItemFactory(IMenuItemsFactory topMenuItemFactory) {
 		this.topMenuItemFactory = topMenuItemFactory;
 	}
+
+	/**
+	 * @return the panelClass
+	 */
+	public String getPanelClass() {
+		return panelClass;
+	}
+
+	/**
+	 * @param panelClass the panelClass to set
+	 */
+	public void setPanelClass(String panelClass) {
+		this.panelClass = panelClass;
+	}
+
+	/**
+	 * @return the onDragClass
+	 */
+	public String getOnDragClass() {
+		return onDragClass;
+	}
+
+	/**
+	 * @param onDragClass the onDragClass to set
+	 */
+	public void setOnDragClass(String onDragClass) {
+		this.onDragClass = onDragClass;
+	}
+
+	/**
+	 * @return the panelSelectedClass
+	 */
+	public String getPanelSelectedClass() {
+		return panelSelectedClass;
+	}
+
+	/**
+	 * @param panelSelectedClass the panelSelectedClass to set
+	 */
+	public void setPanelSelectedClass(String panelSelectedClass) {
+		this.panelSelectedClass = panelSelectedClass;
+	}
+ 
 }
