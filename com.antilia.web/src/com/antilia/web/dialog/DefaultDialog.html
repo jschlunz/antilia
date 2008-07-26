@@ -1,0 +1,30 @@
+<html>
+	<body>
+		<wicket:panel>
+			<div>		
+				<div wicket:id="dialog" class="panel" style="left:100;top:100;" 
+							onmousedown="Antilia_dragPanels.orderPanels('dialog');">				
+					<div wicket:id="header" id="header" class="header" style="cursor: move;">Header</div>
+					<div style="" wicket:id="dialogBackground">					
+						<div wicket:id="dialogBody" id="dialogBody" class="panelBody" style="margin-left: 1px; margin-right: 1px;">
+							<div wicket:id="body"></div>
+						</div>
+					</div>
+					<div wicket:id="footer" class='dialogFooter' style="">
+						<div wicket:id="resizeHandle" id="dialogResize" class="resizeHandle" style="">
+						</div>
+					</div>
+				</div>	
+				<script wicket:id="script" type="text/javascript">Antilia_dragPanels.addPanel('panel');</script>
+			</div>			
+		</wicket:panel>						
+	</body>
+</html>
+
+
+
+
+
+
+
+

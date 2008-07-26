@@ -1,0 +1,129 @@
+.ddmx {
+    background: url('./images/menu.png') repeat-x;
+}
+.ddmx .item1,
+.ddmx .item1:hover,
+.ddmx .item1-active,
+.ddmx .item1-active:hover {
+    padding: 3px 10px 3px 10px;
+    background: transparent;
+    font: 12px arial;
+    color: black;
+    font-weight: bold;
+    text-decoration: none;
+    display: block;
+    white-space: nowrap;
+    position: relative;
+}
+
+.ddmx .smallbutton {
+    border: 0 solid transparent;
+    font: 12px arial;
+    background: transparent;
+    cursor: pointer;
+    padding: 0px;  
+    margin: 0px;
+    vertical-align: middle;
+}
+
+.ddmx .smallbutton img {
+    background-color:transparent;
+    border: solid 0px black;
+    vertical-align: middle;
+    padding: 0px;
+    margin-top: 1px;
+} 
+
+.ddmx .smallbutton span {
+    background-color:transparent;
+    border: solid 0px black;
+    vertical-align: middle;
+    padding: 0px;
+    margin-top: 1px;    
+}
+
+.ddmx .item2,
+.ddmx .smallbutton2,
+.ddmx .item2:hover,
+.ddmx .item2-active,
+.ddmx .item2-active:hover {
+    padding: 3px 8px 4px 8px;
+    font: 11px tahoma;
+    color: #000000;
+    font-weight: bold;
+    text-decoration: none;
+    display: block;
+    white-space: nowrap;
+    position: relative;
+    z-index: 500;
+}
+
+.ddmx .item2  {
+    background: url('./images/menu.png') repeat-x;
+    text-align: left;
+}
+
+.ddmx .item2back {
+    background: url('./images/menu.png') repeat-x;
+}
+
+.ddmx .smallbutton2 {
+    background: transparent;
+    cursor: pointer;
+    text-align: left;
+    border: 0 solid transparent;    
+}
+
+.ddmx .item2back:hover, .ddmx .smallbutton2:hover {
+    background: #ffffff;
+}
+
+.ddmx .smallbutton2 img {
+    background: transparent;
+    border: solid 0px black;
+    vertical-align: middle;
+    padding: 0px;
+    margin-top: 1px;
+} 
+
+.ddmx .smallbutton2 span {
+    background: transparent;
+    border: solid 0px black;
+    vertical-align: middle;
+    padding: 0px;
+    margin-top: 1px;    
+}
+
+.ddmx .item2:hover,
+.ddmx .item2-active,
+.ddmx .item2-active:hover {
+    background: #ffffff;
+}
+.ddmx .arrow,
+.ddmx .arrow:hover {
+    padding: 3px 16px 4px 8px;
+}
+.ddmx .item2 img,
+.ddmx .item2-active img{
+    position: absolute;
+    top: 4px;
+    right: 1px;
+    border: 0;
+}
+
+.ddmx .section {
+    border: 1px solid #b8b4ae;
+    position: absolute;
+    visibility: hidden;
+    z-index: -1;
+}
+
+.ddmx .section td {
+    background: url('./images/menu.png') repeat-x;
+}
+
+.ddmx .section td:hover {
+     background: #ffffff;
+}
+
+* html .ddmx td { position: relative; } /* ie 5.0 fix */

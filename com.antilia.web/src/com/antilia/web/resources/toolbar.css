@@ -1,0 +1,33 @@
+.htoolbar {
+    width: 100%;
+    background: url('./images/menu.png') repeat-x;
+    height: 20px;
+}
+
+.vtoolbar {
+    width: auto;
+    height: auto;
+    background: url('./images/menu.png') repeat-x;
+    height: 20px;
+}
+
+.htoolbar .section {
+    border: 1px solid #b8b4ae;
+    position: absolute;
+    visibility: hidden;
+    z-index: -1;
+}
+
+.dropDownArrow {
+    width: 16px;
+    height: 16px;
+    display: inline;
+    background: url('./images/bullet_arrow_down.png') repeat-x;
+}
+
+.toolbarItem1 {
+    height: 16px;
+    white-space: normal;
+    overflow: auto;
+    border: 1px solid black;
+}

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+"-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory name="manager">
+        <property name="hibernate.bytecode.use_reflection_optimizer">false</property>
+        <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
+        <property name="hibernate.connection.password">tetris11</property>
+        <property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/manager</property>
+        <property name="hibernate.connection.username">reiern70</property>
+        <property name="hibernate.default_schema">public</property>
+        <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
+        <mapping class="com.antilia.demo.manager.entities.Role" />
+        <mapping class="com.antilia.demo.manager.entities.Project" />
+        <mapping class="com.antilia.demo.manager.entities.EmployeeRole" />
+        <mapping class="com.antilia.demo.manager.entities.Customer" />
+        <mapping class="com.antilia.demo.manager.entities.City" />
+        <mapping class="com.antilia.demo.manager.entities.Task" />
+        <mapping class="com.antilia.demo.manager.entities.Chargerate" />
+        <mapping class="com.antilia.demo.manager.entities.Employee" />
+        <mapping class="com.antilia.demo.manager.entities.Asignment" />
+        <mapping class="com.antilia.demo.manager.entities.Country" />
+        <mapping class="com.antilia.demo.manager.entities.Address" />
+    </session-factory>
+</hibernate-configuration>

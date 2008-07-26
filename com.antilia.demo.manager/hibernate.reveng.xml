@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd" >
+
+<hibernate-reverse-engineering>
+	<type-mapping>
+		<sql-type jdbc-type="VARCHAR" hibernate-type="string"></sql-type>
+		<sql-type jdbc-type="INTEGER" hibernate-type="long"
+			not-null="true">
+		</sql-type>
+	</type-mapping>
+	<table name="city">
+		<column name="country" jdbc-type=''></column>
+		<column name="name" jdbc-type=''></column>
+	</table>
+	<table name="employee_role">
+		<column name="startdate" jdbc-type=''></column>
+		<column name="enddate" jdbc-type=''></column>
+	</table>
+	<table name="asignment">
+		<column name="task" jdbc-type=''></column>
+		<column name="employee" jdbc-type=''></column>
+		<column name="startdate" jdbc-type=''></column>
+		<column name="enddate" jdbc-type=''></column>
+		<column name="estimatedhours" jdbc-type=''></column>
+	</table>
+	<table name="project">
+		<column name="customer" jdbc-type=''></column>
+		<column name="name" jdbc-type=''></column>
+		<column name="description" jdbc-type=''></column>
+		<column name="starttime" jdbc-type=''></column>
+		<column name="endtime" jdbc-type=''></column>
+	</table>
+	<table name="role">
+		<column name="name" jdbc-type=''></column>
+		<column name="shortdescription" jdbc-type=''></column>
+		<column name="description" jdbc-type=''></column>
+	</table>
+	<table name="customer">
+		<column name="address" jdbc-type=''></column>
+		<column name="name" jdbc-type=''></column>
+		<column name="status" jdbc-type=''></column>
+	</table>
+	<table name="employee">
+		<column name="homeaddress" jdbc-type=''></column>
+		<column name="name" jdbc-type=''></column>
+		<column name="lastname1" jdbc-type=''></column>
+		<column name="lastname2" jdbc-type=''></column>
+		<column name="hired" jdbc-type=''></column>
+		<column name="fired" jdbc-type=''></column>
+	</table>
+	<table name="country">
+		<column name="name" jdbc-type=''></column>
+		<column name="domain" jdbc-type=''></column>
+	</table>
+	<table name="chargerate">
+		<column name="customer" jdbc-type=''></column>
+		<column name="role" jdbc-type=''></column>
+		<column name="chargeperhour" jdbc-type=''></column>
+	</table>
+	<table name="address">
+		<column name="city" jdbc-type=''></column>
+		<column name="address1" jdbc-type=''></column>
+		<column name="address2" jdbc-type=''></column>
+		<column name="address3" jdbc-type=''></column>
+		<column name="zipcode" jdbc-type=''></column>
+	</table>
+	<table name="task">
+		<column name="project" jdbc-type=''></column>
+		<column name="name" jdbc-type=''></column>
+		<column name="description" jdbc-type=''></column>
+		<column name="startdate" jdbc-type=''></column>
+		<column name="enddate" jdbc-type=''></column>
+		<column name="estimatedhours" jdbc-type=''></column>
+	</table>
+</hibernate-reverse-engineering>
