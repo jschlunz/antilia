@@ -1,0 +1,192 @@
+td, th, input, textarea, select, a, li , span, button, p{
+	font-family: Verdana, Arial, Helvetica, sans-serif; 
+	font-size: 10px; 
+}
+
+input {    
+    vertical-align: middle;
+}
+
+.smallbutton {
+	border: 0 solid transparent;
+  	background-color: transparent;
+  	cursor: pointer;
+  	padding: 0px;  
+  	margin: 0px;
+  	vertical-align: middle;
+}
+
+.smallbuttonOver {
+    border: 0 solid transparent;
+    background: transparent url('images/buttons_back.png');
+    cursor: pointer;
+    padding: 0px;     
+    margin: 0px;
+    vertical-align: middle;
+}
+
+.smallbutton img {
+ 	background-color:transparent;
+ 	border: solid 0px black;
+  	vertical-align: middle;
+  	padding: 0px;
+  	margin-top: 1px;
+} 
+
+.smallbutton span {
+	background-color:transparent;
+	border: solid 0px black;
+  	vertical-align: middle;
+  	padding: 0px;
+	margin-top: 1px;	
+}
+
+.smallbutton input {
+    vertical-align: middle;
+    padding: 0px;
+    margin: 0px;
+    height:  16px;
+}
+
+.smallbuttonOver img {
+    background-color:transparent;
+    border: solid 0px black;
+    vertical-align: middle; 
+    margin-top: 1px;
+} 
+
+.smallbuttonOver span {
+    background-color:transparent;
+    border: solid 0px black;
+    vertical-align: middle;
+    padding: 0px;
+    margin-top: 1px;    
+}
+
+div.vertical-menu {	
+	vertical-align: top;
+	width: 100%;
+	height: auto;
+	padding: 0px;
+	margin: 0px;
+	white-space: nowrap;
+}
+
+.vertical-menu .handle {
+	background: transparent url('images/menu.png') repeat-x;
+	vertical-align: text-bottom;
+	text-align: left;
+	padding-top: 2px;
+	padding-left: 4px;
+	padding-bottom: 0px;
+	margin-bottom: 0px;	
+	font-weight: bold;
+	margin-right: 0px;
+	white-space: nowrap;
+	height: 16px;
+	color: #e7953d;
+}
+
+.vertical-menu .menubody {
+	background: transparent url('images/vertmenu_background.png') repeat;
+	width: 100%;
+	vertical-align: top;
+	padding-top: 0px;
+	padding-right: 0px;
+	margin-right: 0px;
+	margin-top: 0px;	
+}
+
+.vertical-menu ul
+{	
+	width: 100%;
+	background-color:transparent;
+	list-style: none;
+  	padding: 0;
+	margin: 0;	
+}
+
+div.nav-menu {
+	width: 100%;
+	white-space: nowrap;
+	height: 20px;
+	background: transparent url('images/menu.png') repeat-x;		
+}
+
+.nav-menu ul
+{	
+	background-color:transparent;
+	list-style: none;
+  	padding: 0;
+	margin: 0;	
+}
+
+.nav-menu li 
+{
+	background-color:transparent;
+	float: left;
+	margin: 0px;
+	padding: 0px;
+	display: inline;
+}
+
+.nav-menu li span
+{
+	color: black;
+}
+
+div.trans-menu {
+	width: 100%;
+	white-space: nowrap;
+	height: 18px;
+	background: transparent;		
+}
+
+.trans-menu ul
+{	
+	background-color:transparent;
+	list-style: none;
+  	padding: 0;
+	margin: 0;	
+}
+
+.trans-menu li 
+{
+	background-color:transparent;
+	float: left;
+	margin: 0px;
+	padding: 0px;
+	display: inline;
+}
+
+.trans-menu li span
+{
+	color: #e7953d;
+}
+
+span.ajax-indicator {
+	width: 30px;
+	height: 18px;
+	vertical-align: bottom;
+}
+
+.modal_container {  
+     padding:5px;  
+     background-color:#fff;  
+     border:1px solid #666;  
+     overflow:auto;  
+     font-family: "Lucida Grande",Verdana;  
+     font-size:12px;  
+     color:#333;  
+     text-align:left;  
+} 
+  
+.modal_overlay { 
+	 position: absolute; 
+	 top: 0;
+	 left: 0;
+     background-color: #000;
+     width: 100%;
+     height: 100%;
+     z-index: 0;            
+}

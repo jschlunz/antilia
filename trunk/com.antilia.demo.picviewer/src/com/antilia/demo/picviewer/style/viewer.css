@@ -1,0 +1,34 @@
+td.banner-left {
+	background: url("banner_background.gif") repeat-x;
+	height: 75px;
+	padding: 0 0 0 0;
+	width: 238px;
+	margin: 0 0 0 0;	
+}
+
+td.banner-right {
+	background: url("banner_background_small.gif") repeat-x;
+	height: 75px;
+	padding: 0 0 0 0;
+	margin: 0 0 0 0;	
+}
+
+div.logo {
+	background: url("banner_title.gif") transparent no-repeat;
+	position: absolute;
+	left: 40px;
+	top: 10px;
+	height: 90px;
+	width: 300px;
+	margin: 0px;
+}
+div.main {
+	padding: 0px; 
+	margin: 0px; 
+	width: 100%; 
+	height: 100%;
+}
+
+body {
+	background-color: #f4ece3;
+}
