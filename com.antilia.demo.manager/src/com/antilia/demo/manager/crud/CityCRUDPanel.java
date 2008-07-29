@@ -6,8 +6,7 @@ package com.antilia.demo.manager.crud;
 
 import com.antilia.demo.manager.entities.City;
 import com.antilia.web.crud.CRUDPanel;
-import com.antilia.web.crud.EditPanel;
-import com.antilia.web.crud.SearchPanel;
+import com.antilia.web.crud.CrudStyler;
 
 /**
  * 
@@ -19,29 +18,19 @@ public class CityCRUDPanel extends CRUDPanel<City> {
 
 	private static final long serialVersionUID = 1L;
 
+	private static class CityCRUDStyle extends CrudStyler<City> {
+		
+		private static final long serialVersionUID = 1L;
+
+		public CityCRUDStyle() {
+			super(City.class);
+			addEditFields("name", "country");
+			addTableColumns("id", "name", "country");
+			addSearchFields("id", "name", "country");
+		}		
+	}
 	public CityCRUDPanel(String id) {
-		super(id);
+		super(id, new CityCRUDStyle());
 	}
 	
-	/* (non-Javadoc)
-	 * @see com.antilia.web.crud.CRUDPanel#getSearchPanel(java.lang.String)
-	 */
-	@Override
-	protected SearchPanel<City> getSearchPanel(String id) {
-		return new CitySearchPanel(id);
-	}
-
-	@Override
-	protected EditPanel<City> getEditPanel(String id) {
-		return new EditPanel<City>(id, City.class) {
-						
-			private static final long serialVersionUID = 1L;
-
-			@Override
-			protected String[] getEditFields() {
-				return new String[]{"id", "name", "country"};
-			}
-			
-		};
-	}
 }

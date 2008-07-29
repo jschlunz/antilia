@@ -39,7 +39,7 @@ function DropDownMenuX(id) {
     }
 
     /* fix ie selectbox bug ? */
-    this.fixIeSelectBoxBug = true;
+    this.fixIeSelectBoxBug = false;
 
     /* Z-index property for .section */
     this.zIndex = {

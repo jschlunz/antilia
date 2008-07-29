@@ -6,7 +6,7 @@ package com.antilia.demo.dialogs;
 
 import com.antilia.demo.beans.Person;
 import com.antilia.web.crud.CRUDPanel;
-import com.antilia.web.crud.EditPanel;
+import com.antilia.web.crud.CrudStyler;
 import com.antilia.web.crud.SearchPanel;
 
 /**
@@ -19,35 +19,32 @@ public class PersonCRUD extends CRUDPanel<Person> {
 	
 	private static final long serialVersionUID = 1L;
 
+	private static class PersonCrudStyler extends CrudStyler<Person> {
+		
+		private static final long serialVersionUID = 1L;
+
+		public PersonCrudStyler() {
+			super(Person.class);
+			addSearchFields("id", "name", "lastName1", "lastName2", "maritalStatus", "birthDay");
+			addTableColumns("id", "name", "lastName1", "maritalStatus", "birthDay");
+			addEditFields("id", "name", "lastName1", "lastName2", "maritalStatus", "birthDay");
+		}		
+	}
 	/**
 	 * @param id
 	 */
 	public PersonCRUD(String id) {
-		super(id);
+		super(id, new PersonCrudStyler());
+		
 	}
 
-	/* (non-Javadoc)
-	 * @see com.antilia.web.crud.CRUDPanel#getEditPanel(java.lang.String)
-	 */
-	@Override
-	protected EditPanel<Person> getEditPanel(String id) {
-		return new EditPanel<Person>(id, Person.class) {
-			
-			private static final long serialVersionUID = 1L;
-
-			@Override
-			protected String[] getEditFields() {
-				return new String[]{"id", "name", "lastName1", "lastName2", "maritalStatus", "birthDay"};
-			}
-		};
-	}
 
 	/* (non-Javadoc)
 	 * @see com.antilia.web.crud.CRUDPanel#getSearchPanel(java.lang.String)
 	 */
 	@Override
-	protected SearchPanel<Person> getSearchPanel(String id) {
-		return new PersonSearchPanel(id);
+	protected SearchPanel<Person> getSearchPanel(String id, CrudStyler<Person> styler) {
+		return new PersonSearchPanel(id, styler);
 	}
 
 }

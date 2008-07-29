@@ -2,25 +2,28 @@
  * This software is provided as IS by Antilia-Soft SL.
  * Copyright 2006-2007.
  */
-package com.antilia.web.hibernate.provider;
+package com.antilia.web.beantable.provider.impl;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import org.apache.wicket.markup.repeater.data.IDataProvider;
+
 import com.antilia.hibernate.command.CommandExecuter;
 import com.antilia.hibernate.query.IQuery;
 import com.antilia.hibernate.query.Query;
 import com.antilia.web.beantable.provider.ILoadablePageableProvider;
 import com.antilia.web.beantable.provider.IPageableProviderNavigationListener;
+import com.antilia.web.beantable.provider.IQuerable;
 
 
 /**
  * 
  * @author Ernesto Reinaldo Barreiro (reiern70@gmail.com)
  */
-public class HibernatePageableProvider<E extends Serializable> implements ILoadablePageableProvider<E> {
+public class DataProviderPageableProvider<E extends Serializable> implements ILoadablePageableProvider<E> {
 
 	public static final int DEFAULT_PAGE_SIZE = 10;
 	
@@ -45,9 +48,12 @@ public class HibernatePageableProvider<E extends Serializable> implements ILoada
 	private List<IPageableProviderNavigationListener>  navigationListeners = new ArrayList<IPageableProviderNavigationListener>();
 	
 	private List<E> cachedEntities;
+	
+	private IDataProvider dataProvider;
 
-	public HibernatePageableProvider(IQuery<E> query, boolean shouldLoad) {
+	public DataProviderPageableProvider(IDataProvider dataProvider, IQuery<E> query, boolean shouldLoad) {
 		this.query = query;
+		this.dataProvider = dataProvider;
 		this.currentIndex = 0;
 		this.currentPage = 0;
 		this.totalSize = UNDEFINED_SIZE;
@@ -60,8 +66,8 @@ public class HibernatePageableProvider<E extends Serializable> implements ILoada
 	 * 
 	 * @param collection
 	 */
-	public HibernatePageableProvider(IQuery<E> query) {
-		this(query, false);
+	public DataProviderPageableProvider(IDataProvider dataProvider, IQuery<E> query) {
+		this(dataProvider, query, false);
 	}
 	
 	@Override
@@ -95,15 +101,18 @@ public class HibernatePageableProvider<E extends Serializable> implements ILoada
 		clearCached();
 	}
 	
+	@Override
 	public boolean update(E bean) {
 		CommandExecuter.update(bean);
 		return true;	
 	}
 	
+	@Override
 	public boolean persist(E bean) {
 		CommandExecuter.persist(bean);
-		return false;
+		return true;		
 	}
+	
 	
 	/* (non-Javadoc)
 	 * @see com.antilia.common.sonullurces.IPageableSource#getCurrentPage()
@@ -115,13 +124,21 @@ public class HibernatePageableProvider<E extends Serializable> implements ILoada
 	/**
 	 * @return the cachedEntities
 	 */
+	@SuppressWarnings("unchecked")
 	private List<E> getCachedEntities() {
 		if(cachedEntities == null) {
 			int start = (currentPage*pageSize);
 			currentIndex = pageStart = start;			
 			query.setFirstResult(start);
 			query.setMaxResults(pageSize);
-			cachedEntities = CommandExecuter.loadList(query);
+			if(dataProvider instanceof IQuerable) {
+				((IQuerable<E>)dataProvider).setQuery(query)	;			
+			}
+			cachedEntities = new ArrayList<E>();
+			Iterator<E> it = (Iterator<E>)dataProvider.iterator(start, pageSize);
+			while(it.hasNext()) {
+				cachedEntities.add(it.next());
+			}			
 			totalSize = getTotalSize();
 			pageEnd = Math.min(((currentPage+1)*pageSize),totalSize);
 		}
@@ -361,7 +378,7 @@ public class HibernatePageableProvider<E extends Serializable> implements ILoada
 	 */
 	public int getTotalSize() {
 		if(totalSize == UNDEFINED_SIZE) {
-			totalSize = ((Long)CommandExecuter.count((Query<E>)query)).intValue();
+			totalSize = dataProvider.size();
 		}
 		return totalSize;
 	}

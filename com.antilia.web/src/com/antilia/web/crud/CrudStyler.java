@@ -24,7 +24,7 @@ public class CrudStyler<E extends Serializable> implements Serializable {
 	
 	private java.util.List<String> searchFields = new ArrayList<String>();
 	
-	public Class<E> beanClass;
+	private Class<E> beanClass;
 	
 	public CrudStyler(Class<E> beanClass) {
 		this.beanClass = beanClass;
@@ -35,22 +35,34 @@ public class CrudStyler<E extends Serializable> implements Serializable {
 	 */
 	public java.util.List<String> getEditFields() {
 		return editFields;
-	}
+	}	
 	
-	/**
-	 * @param editFields the editFields to set
-	 */
-	public void addEditFields(String[] editFields) {
-		for(String field: editFields) {
-			this.editFields.add(field);
+	public void addEditFields(String... editFields) {
+		if(editFields != null) {
+			for(String field: editFields) {
+				this.editFields.add(field);
+			}
 		}
 	}
 	
 	/**
 	 * @param editFields the editFields to set
 	 */
-	public void setEditFields(java.util.List<String> editFields) {
-		this.editFields = editFields;
+	public void removeEditFields(String[] editFields) {
+		for(String field: editFields) {
+			this.editFields.remove(field);
+		}
+	}
+	
+	/**
+	 * @param editFields the editFields to set
+	 */
+	public void addEditFields(java.util.List<String> editFields) {
+		if(editFields != null) {
+			for(String field: editFields) {
+				this.editFields.add(field);
+			}
+		}
 	}
 
 	/**
@@ -63,16 +75,31 @@ public class CrudStyler<E extends Serializable> implements Serializable {
 	/**
 	 * @param tableColumns the tableColumns to set
 	 */
-	public void setTableColumns(java.util.List<String> tableColumns) {
-		this.tableColumns = tableColumns;
+	public void addTableColumns(java.util.List<String> tableColumns) {
+		if(tableColumns != null) {
+			for(String field: tableColumns) {
+				this.tableColumns.add(field);
+			}
+		}
 	}
 
 	/**
 	 * @param editFields the editFields to set
 	 */
-	public void addTableColumns(String[] tableColums) {
+	public void addTableColumns(String...  tableColumns) {
+		if(tableColumns != null) {
+			for(String field: tableColumns) {
+				this.tableColumns.add(field);
+			}
+		}
+	}
+	
+	/**
+	 * @param editFields the editFields to set
+	 */
+	public void removeTableColumns(String[] tableColums) {
 		for(String field: tableColums) {
-			this.tableColumns.add(field);
+			this.tableColumns.remove(field);
 		}
 	}
 	
@@ -86,17 +113,45 @@ public class CrudStyler<E extends Serializable> implements Serializable {
 	/**
 	 * @param searchFields the searchFields to set
 	 */
-	public void setSearchFields(java.util.List<String> searchFields) {
-		this.searchFields = searchFields;
+	public void addSearchFields(java.util.List<String> searchFields) {
+		if(searchFields != null) {
+			for(String field: searchFields) {
+				this.searchFields.add(field);
+			}
+		}
 	}
 	
 	/**
 	 * @param editFields the editFields to set
 	 */
-	public void addSearchFields(String[] tableColums) {
-		for(String field: tableColums) {
-			this.tableColumns.add(field);
+	public void addSearchFields(String... searchFields) {
+		if(searchFields != null) {
+			for(String field: searchFields) {
+				this.searchFields.add(field);
+			}
 		}
 	}
 
+	/**
+	 * @param editFields the editFields to set
+	 */
+	public void removeSearchFields(String[] searchFields) {
+		for(String field: searchFields) {
+			this.searchFields.remove(field);
+		}
+	}
+
+	/**
+	 * @return the beanClass
+	 */
+	public Class<E> getBeanClass() {
+		return beanClass;
+	}
+
+	/**
+	 * @param beanClass the beanClass to set
+	 */
+	public void setBeanClass(Class<E> beanClass) {
+		this.beanClass = beanClass;
+	}
 }

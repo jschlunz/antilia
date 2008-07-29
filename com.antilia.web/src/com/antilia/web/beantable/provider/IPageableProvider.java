@@ -35,7 +35,21 @@ public interface IPageableProvider<E extends Serializable> extends IProvider<E> 
 	
 	void reset();
 	
+	/**
+	 * Updates a bean.
+	 * 
+	 * @param bean
+	 * @return
+	 */
 	boolean update(E bean);
+	
+	/**
+	 * Persists a bean.
+	 * 
+	 * @param bean
+	 * @return
+	 */
+	boolean persist(E bean);
 	
 	boolean hasNextPage();
 	

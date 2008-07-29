@@ -6,6 +6,7 @@ package com.antilia.web.beantable.model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
@@ -41,6 +42,12 @@ public class TableModel<E extends Serializable> extends Model implements ITableM
 		this.expresions = new ArrayList<String>();
 	}
 	
+	public TableModel(Class<E> beanClass, List<String> columnNames) {
+		this();
+		this.beanClass = beanClass;
+		init(beanClass, columnNames);
+	}
+	
 	/**
 	 * 
 	 * @param beanClass
@@ -49,11 +56,11 @@ public class TableModel<E extends Serializable> extends Model implements ITableM
 	public TableModel(Class<E> beanClass, String... columnNames) {
 		this();
 		this.beanClass = beanClass;
-		init(beanClass, columnNames);
+		init(beanClass, Arrays.asList(columnNames));
 	}
 	
 
-	private void init(Class<E> beanClass, String... expresions) {
+	private void init(Class<E> beanClass, Iterable<String> expresions) {
 		this.beanClass = beanClass;		
 		this.models = new ArrayList<IColumnModel<E>>();
 		if(expresions != null) {
@@ -64,6 +71,7 @@ public class TableModel<E extends Serializable> extends Model implements ITableM
 			}
 		}		
 	}
+	
 	
 	protected void addExpresion(String expresion) {
 		expresions.add(expresion);
