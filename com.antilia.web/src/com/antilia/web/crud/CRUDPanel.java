@@ -11,6 +11,7 @@ import org.apache.wicket.markup.html.panel.Panel;
 import com.antilia.web.beantable.provider.IProviderSelector;
 
 /**
+ * Panel that automates the creation of CRUD pages.
  * 
  * @author Ernesto Reinaldo Barreiro (reiern70@gmail.com)
  */
