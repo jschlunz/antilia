@@ -10,6 +10,7 @@ import com.antilia.web.beantable.model.ITableModel;
 import com.antilia.web.beantable.provider.IPageableProvider;
 import com.antilia.web.beantable.provider.impl.InMemoryPageableProvider;
 import com.antilia.web.button.MenuItemsFactory;
+import com.antilia.web.crud.CrudStyler;
 import com.antilia.web.crud.SearchPanel;
 import com.antilia.web.dialog.DialogButton;
 
@@ -24,8 +25,8 @@ public class PersonSearchPanel extends SearchPanel<Person> {
 	/**
 	 * @param id
 	 */
-	public PersonSearchPanel(String id) {
-		super(id, Person.class);
+	public PersonSearchPanel(String id, CrudStyler<Person> styler) {
+		super(id, null, new InMemoryPageableProvider<Person>(DialogsPanel.createPersons(), Person.class), styler);
 	}
 	
 	 @Override
@@ -41,21 +42,5 @@ public class PersonSearchPanel extends SearchPanel<Person> {
 					factory.addItem(testLoadingButton);				
 				}
 			};
-	}
-		
-	
-	@Override
-	protected IPageableProvider<Person> getTableData() {
-		return new InMemoryPageableProvider<Person>(DialogsPanel.createPersons(), Person.class);
-	}
-	
-	@Override
-	protected String[] getSearchFields() {
-		return new String[]{"id", "name", "lastName1", "lastName2", "maritalStatus", "birthDay"};
-	}
-	
-	@Override
-	protected String[] getTableColumns() {
-		return new String[]{"id", "name", "lastName1", "maritalStatus", "birthDay"};
 	}
 }

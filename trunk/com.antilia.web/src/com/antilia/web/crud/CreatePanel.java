@@ -5,17 +5,11 @@
 package com.antilia.web.crud;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
-import org.apache.commons.beanutils.BeanUtils;
 import org.apache.wicket.markup.html.panel.Panel;
 
 import com.antilia.hibernate.query.IQuery;
-import com.antilia.web.beantable.provider.IPageableProvider;
-import com.antilia.web.beantable.provider.IProviderSelector;
-import com.antilia.web.beantable.provider.impl.InMemoryPageableProvider;
 import com.antilia.web.field.AutoFieldModel;
 import com.antilia.web.field.AutoFieldPanel;
 import com.antilia.web.field.BeanForm;
@@ -27,16 +21,13 @@ import com.antilia.web.menu.Menu;
  * 
  * @author Ernesto Reinaldo Barreiro (reiern70@gmail.com)
  */
-public class EditPanel<B extends Serializable> extends Panel {
+public class CreatePanel<B extends Serializable> extends Panel {
 
 	private static final long serialVersionUID = 1L;
 
 	private Class<B> beanClass;
 	
 	private BeanProxy<B> beanProxy;
-	
-
-	IPageableProvider<B> pageableProvider;
 	
 	private CrudStyler<B> styler;
 	
@@ -46,41 +37,30 @@ public class EditPanel<B extends Serializable> extends Panel {
 	 * @param beanClass
 	 * @param filterQuery
 	 */
-	public EditPanel(String id, CrudStyler<B> styler) {
+	public CreatePanel(String id, CrudStyler<B> styler) {
 		super(id);		
 		this.beanClass = styler.getBeanClass();
 		this.styler = styler;
+		
 		setOutputMarkupId(true);		
 	}
 	
 	@SuppressWarnings("unchecked")
 	@Override
 	protected void onBeforeRender() {
-		if(pageableProvider == null) {
-			ArrayList< B> beans = new ArrayList<B>();
-			IProviderSelector<B> selector = getCRUDPanel().getSelected();		
-			Iterator<B> it = selector.getSelected();			
-			while(it.hasNext() ) {
-				B bean = it.next();
-				try {
-					beans.add((B)BeanUtils.cloneBean(bean));
-				} catch (Exception e) {
-					beans.add(bean);
-				}
-			}
-			pageableProvider = new InMemoryPageableProvider<B>(beans, beanClass);
-		}		
-		
-		this.beanProxy = new BeanProxy<B>(pageableProvider.current());
+						
+		try {
+			this.beanProxy =  new BeanProxy<B>(beanClass.newInstance());
+		} catch (Exception e) {
+		}
 		
 		IAutoFieldModel<B> autoFieldModel = newAutoFieldModel(null, this.beanProxy);
 		configureFieldModel(autoFieldModel);
 		
 		BeanForm<B> beanForm = newForm("form", this.beanProxy);
-		addOrReplace(beanForm);
+		addOrReplace(beanForm);				
 				
-				
-		 Menu menu = Menu.createMenu("topMenu", EditPanelButtonsFactory.getInstance());
+		 Menu menu = Menu.createMenu("topMenu", CreatePanelPanelButtonsFactory.getInstance());
 		 
 		beanForm.addOrReplace(menu);
 		 
@@ -91,7 +71,7 @@ public class EditPanel<B extends Serializable> extends Panel {
 	}
 	
 	@SuppressWarnings("unchecked")
-	private CRUDPanel<B> getCRUDPanel() {
+	public CRUDPanel<B> getCRUDPanel() {
 		return (CRUDPanel<B>) findParent(CRUDPanel.class);
 		
 	}
@@ -131,19 +111,5 @@ public class EditPanel<B extends Serializable> extends Panel {
 	 */
 	public BeanProxy<B> getBeanProxy() {
 		return beanProxy;
-	}
-
-	/**
-	 * @return the pageableProvider
-	 */
-	public IPageableProvider<B> getPageableProvider() {
-		return pageableProvider;
-	}
-
-	/**
-	 * @param pageableProvider the pageableProvider to set
-	 */
-	public void clearPageableProvider() {
-		this.pageableProvider = null;
 	}
 }

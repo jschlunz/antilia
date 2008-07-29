@@ -96,8 +96,12 @@ public class InMemoryPageableProvider<E extends Serializable> implements ILoadab
 	}
 	
 	
-	@Override
 	public boolean update(E bean) {
+		return false;
+	}
+	
+	
+	public boolean persist(E bean) {
 		return false;
 	}
 	

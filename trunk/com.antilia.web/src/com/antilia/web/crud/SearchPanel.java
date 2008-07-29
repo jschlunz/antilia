@@ -5,6 +5,7 @@
 package com.antilia.web.crud;
 
 import java.io.Serializable;
+import java.util.List;
 
 import org.apache.wicket.markup.html.panel.Panel;
 
@@ -16,6 +17,8 @@ import com.antilia.web.beantable.model.TableModel;
 import com.antilia.web.beantable.provider.ILoadable;
 import com.antilia.web.beantable.provider.IPageableProvider;
 import com.antilia.web.beantable.provider.IProviderSelector;
+import com.antilia.web.beantable.provider.impl.DataProviderPageableProvider;
+import com.antilia.web.beantable.provider.impl.HibernateQueryDataProvider;
 import com.antilia.web.field.AutoFieldModel;
 import com.antilia.web.field.AutoFieldPanel;
 import com.antilia.web.field.BeanForm;
@@ -27,7 +30,7 @@ import com.antilia.web.menu.Menu;
  * 
  * @author Ernesto Reinaldo Barreiro (reiern70@gmail.com)
  */
-public abstract class SearchPanel<B extends Serializable> extends Panel implements ILoadablePanel<B> {
+public class SearchPanel<B extends Serializable> extends Panel implements ILoadablePanel<B> {
 
 	private static final long serialVersionUID = 1L;
 
@@ -39,8 +42,10 @@ public abstract class SearchPanel<B extends Serializable> extends Panel implemen
 	
 	private Table<B> table;
 	
-	public SearchPanel(String id, Class<B> beanClass) {
-		this(id, beanClass, null);
+	private CrudStyler<B> styler;
+	
+	public SearchPanel(String id, CrudStyler<B> styler) {
+		this(id,  null, null, styler);
 	}
 	
 	/**
@@ -49,7 +54,7 @@ public abstract class SearchPanel<B extends Serializable> extends Panel implemen
 	 * @param beanClass
 	 * @param filterQuery
 	 */
-	public SearchPanel(String id, Class<B> beanClass, Query<B> filterQuery) {
+	public SearchPanel(String id,  Query<B> filterQuery, IPageableProvider<B> pageableProvider, CrudStyler<B> styler) {
 		super(id);
 		
 		setOutputMarkupId(true);
@@ -57,11 +62,17 @@ public abstract class SearchPanel<B extends Serializable> extends Panel implemen
 		if(filterQuery != null)			
 			this.filterQuery = filterQuery;
 		else 
-			this.filterQuery =  new Query<B>(beanClass);
+			this.filterQuery =  new Query<B>(styler.getBeanClass());
 		// create the form
 		
 		this.beanProxy = new BeanProxy<B>(this.filterQuery.getEntityClass());
-		this.pageableProvider =  getTableData();
+		if(pageableProvider != null) 
+			this.pageableProvider =  pageableProvider;
+		else {
+			this.pageableProvider = new DataProviderPageableProvider<B>(new HibernateQueryDataProvider<B>(this.filterQuery), this.filterQuery);
+		}
+		
+		this.styler = styler;
 		
 		IAutoFieldModel<B> autoFieldModel = newAutoFieldModel(this.filterQuery, this.beanProxy);
 		configureFieldModel(autoFieldModel);
@@ -77,7 +88,7 @@ public abstract class SearchPanel<B extends Serializable> extends Panel implemen
 		AutoFieldPanel<B> autoFieldPanel = newAutoFieldPanel("autofield",autoFieldModel);
 		beanForm.add(autoFieldPanel);
 		
-		ITableModel<B> tableModel = newTableModel(beanClass);		
+		ITableModel<B> tableModel = newTableModel(styler.getBeanClass());		
 		table  = newTable("table",tableModel, this.pageableProvider);
 		beanForm.add(table);
 	}
@@ -87,7 +98,7 @@ public abstract class SearchPanel<B extends Serializable> extends Panel implemen
 	 }
 	
 	protected void configureFieldModel(IAutoFieldModel<B> autoFieldModel) {
-		String[] searchFields = getSearchFields();
+		List<String> searchFields = styler.getSearchFields();
 		if(searchFields != null) {
 			for(String propertyPath: searchFields) {
 				autoFieldModel.newFieldModel(propertyPath);
@@ -112,7 +123,7 @@ public abstract class SearchPanel<B extends Serializable> extends Panel implemen
 	}
 	
 	protected ITableModel<B> newTableModel(Class<B> beanClass) {
-		return new TableModel<B>(beanClass, getTableColumns());
+		return new TableModel<B>(beanClass, styler.getTableColumns());
 	}
 	
 	protected IAutoFieldModel<B> newAutoFieldModel(IQuery<B> query, BeanProxy<B> beanProxy) {
@@ -127,12 +138,6 @@ public abstract class SearchPanel<B extends Serializable> extends Panel implemen
 			((ILoadable)this.pageableProvider).load(getFilterQuery());
 		}
 	}
-	
-	protected abstract IPageableProvider<B>  getTableData();
-	
-	protected abstract String[] getTableColumns();
-	
-	protected abstract String[] getSearchFields();
 
 	/**
 	 * @return the filterQuery
