@@ -70,7 +70,7 @@ public class DefaultStyle {
 	
 	
 	public static ResourceReference IMG_BACK = new ResourceReference(ImgDummy.class, "arrow_back.gif");
-	public static ResourceReference IMG_EDIT = new ResourceReference(ImgDummy.class, "reply.gif");
+	public static ResourceReference IMG_EDIT = new ResourceReference(ImgDummy.class, "form_edit.png");
 	public static ResourceReference IMG_NEW = new ResourceReference(ImgDummy.class, "form_new.png");
 	
 	
