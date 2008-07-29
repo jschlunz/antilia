@@ -32,7 +32,7 @@ public class EditButton<E extends Serializable> extends AbstractButton {
 	 */
 	@Override
 	protected ResourceReference getImage() {
-		return DefaultStyle.IMG_EDIT;
+		return DefaultStyle.IMG_EDIT;	
 	}
 
 	/* (non-Javadoc)
