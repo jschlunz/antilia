@@ -13,7 +13,7 @@ import com.antilia.hibernate.query.IQuery;
  * 
  * @author Ernesto Reinaldo Barreiro (reiern70@gmail.com)
  */
-public interface IPageableProvider<E extends Serializable> extends IProvider<E> {
+public interface IPageableProvider<E extends Serializable> extends IProvider<E>, IUpdatable<E> {
 
 	int getPageSize();
 	
@@ -34,22 +34,6 @@ public interface IPageableProvider<E extends Serializable> extends IProvider<E> 
 	int currentPageNumber();
 	
 	void reset();
-	
-	/**
-	 * Updates a bean.
-	 * 
-	 * @param bean
-	 * @return
-	 */
-	boolean update(E bean);
-	
-	/**
-	 * Persists a bean.
-	 * 
-	 * @param bean
-	 * @return
-	 */
-	boolean persist(E bean);
 	
 	boolean hasNextPage();
 	
