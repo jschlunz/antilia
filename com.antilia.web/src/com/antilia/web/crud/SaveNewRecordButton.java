@@ -47,7 +47,7 @@ public class SaveNewRecordButton<E extends Serializable> extends AbstractButton 
 	protected void onSubmit(AjaxRequestTarget target, Form form) {
 		CRUDPanel<E> crudPanel = findCRUDPanel();		
 		if(crudPanel != null) {	
-			crudPanel.getSearchPanel().getPageableProvider().persist(findCreatePanel().getCurrentBean());
+			crudPanel.getSearchPanel().getPageableProvider().add(findCreatePanel().getCurrentBean());
 			crudPanel.getSelected().clear();
 			crudPanel.setCurrentPanel(crudPanel.getSearchPanel());
 			target.addComponent((Component)crudPanel);

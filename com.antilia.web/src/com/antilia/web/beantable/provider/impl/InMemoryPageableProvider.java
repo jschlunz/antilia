@@ -96,16 +96,37 @@ public class InMemoryPageableProvider<E extends Serializable> implements ILoadab
 	}
 	
 	
-	public boolean update(E bean) {
-		return false;
+	public void update(E bean) {
 	}
 	
-	
-	public boolean persist(E bean) {
-		return false;
-	}
 	
 
+	@Override
+	public void add(E element) {
+		
+	}
+	
+	@Override
+	public void addAll(Collection<E> element) {
+		
+	}
+	
+	@Override
+	public void remove(E element) {
+		
+	}
+	
+	@Override
+	public void removeAll(Collection<E> element) {
+		
+	}
+	
+	@Override
+	public void updateAll(Collection<E> element) {
+		
+	}
+	
+	
 	/* (non-Javadoc)
 	 * @see com.antilia.common.sources.IPageableSource#currentPageNumber()
 	 */

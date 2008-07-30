@@ -25,6 +25,7 @@ public class SearchPanelButtonsFactory implements IMenuItemsFactory {
 		itemHolder.addMenuItem(new ReloadButton());
 		itemHolder.addMenuItem(new EditButton());
 		itemHolder.addMenuItem(new CreateNewButton());
+		itemHolder.addMenuItem(new DeleteConfirmationDialogButton());
 	}
 
 	/**

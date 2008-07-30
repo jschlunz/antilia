@@ -6,6 +6,7 @@ package com.antilia.web.hibernate.provider;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
@@ -95,14 +96,33 @@ public class HibernatePageableProvider<E extends Serializable> implements ILoada
 		clearCached();
 	}
 	
-	public boolean update(E bean) {
-		CommandExecuter.update(bean);
-		return true;	
+	@Override
+	public void add(E element) {
+		CommandExecuter.persist(element);
 	}
 	
-	public boolean persist(E bean) {
-		CommandExecuter.persist(bean);
-		return false;
+	@Override
+	public void addAll(Collection<E> element) {
+		CommandExecuter.persistAll(element);
+	}
+	
+	@Override
+	public void remove(E element) {
+		CommandExecuter.delete(element);
+	}
+	
+	@Override
+	public void removeAll(Collection<E> element) {
+		CommandExecuter.deleteAll(element);
+	}
+	
+	@Override
+	public void updateAll(Collection<E> element) {
+		CommandExecuter.updateAll(element);
+	}
+	@Override
+	public void update(E bean) {
+		CommandExecuter.update(bean);
 	}
 	
 	/* (non-Javadoc)

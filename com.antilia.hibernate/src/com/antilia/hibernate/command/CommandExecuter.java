@@ -140,15 +140,34 @@ public class CommandExecuter {
 	public static <E extends Serializable> E persist(E entity)  {
 		PersistCommand<E> command = new PersistCommand<E>(entity) ;
 		return DefaultCommandExecuter.getInstance().execute(command);
+	}	
+
+	public static <E extends Serializable> Collection<E>persistAll(Collection<E> entities)  {
+		PersistAllCommand<E> command = new PersistAllCommand<E>(entities) ;
+		return DefaultCommandExecuter.getInstance().execute(command);
 	}
-	
+
+	/**
+	 * Update a single entity.
+	 * 
+	 * @param <E>
+	 * @param entity
+	 * @return
+	 */
 	public static <E extends Serializable> E update(E entity)  {
 		UpdateCommand<E> command = new UpdateCommand<E>(entity) ;
 		return DefaultCommandExecuter.getInstance().execute(command);
 	}
-
-	public static <E extends Serializable> Collection<E>persistAll(Collection<E> entities)  {
-		PersistAllCommand<E> command = new PersistAllCommand<E>(entities) ;
+	
+	/**
+	 * Update a collection of entities.
+	 * 
+	 * @param <E>
+	 * @param entities
+	 * @return
+	 */
+	public static <E extends Serializable> Collection<E> updateAll(Collection<E> entities)  {
+		UpdateAllCommand<E> command = new UpdateAllCommand<E>(entities) ;
 		return DefaultCommandExecuter.getInstance().execute(command);
 	}
 	

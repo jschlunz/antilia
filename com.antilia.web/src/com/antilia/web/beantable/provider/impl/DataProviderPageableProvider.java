@@ -6,17 +6,18 @@ package com.antilia.web.beantable.provider.impl;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
 import org.apache.wicket.markup.repeater.data.IDataProvider;
 
-import com.antilia.hibernate.command.CommandExecuter;
 import com.antilia.hibernate.query.IQuery;
 import com.antilia.hibernate.query.Query;
 import com.antilia.web.beantable.provider.ILoadablePageableProvider;
 import com.antilia.web.beantable.provider.IPageableProviderNavigationListener;
 import com.antilia.web.beantable.provider.IQuerable;
+import com.antilia.web.beantable.provider.IUpdatable;
 
 
 /**
@@ -101,16 +102,52 @@ public class DataProviderPageableProvider<E extends Serializable> implements ILo
 		clearCached();
 	}
 	
+	@SuppressWarnings("unchecked")
 	@Override
-	public boolean update(E bean) {
-		CommandExecuter.update(bean);
-		return true;	
+	public void add(E element) {
+		if(dataProvider instanceof IUpdatable) {
+			((IUpdatable<E>)dataProvider).add(element);
+		}		
 	}
 	
+	@SuppressWarnings("unchecked")
 	@Override
-	public boolean persist(E bean) {
-		CommandExecuter.persist(bean);
-		return true;		
+	public void addAll(Collection<E> element) {
+		if(dataProvider instanceof IUpdatable) {
+			((IUpdatable<E>)dataProvider).addAll(element);
+		}		
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public void remove(E element) {
+		if(dataProvider instanceof IUpdatable) {
+			((IUpdatable<E>)dataProvider).remove(element);
+		}		
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public void removeAll(Collection<E> element) {
+		if(dataProvider instanceof IUpdatable) {
+			((IUpdatable<E>)dataProvider).removeAll(element);
+		}	
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public void updateAll(Collection<E> element) {
+		if(dataProvider instanceof IUpdatable) {
+			((IUpdatable<E>)dataProvider).updateAll(element);
+		}	
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public void update(E bean) {
+		if(dataProvider instanceof IUpdatable) {
+			((IUpdatable<E>)dataProvider).update(bean);
+		}
 	}
 	
 	

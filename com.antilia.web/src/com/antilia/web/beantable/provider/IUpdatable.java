@@ -15,11 +15,11 @@ public interface IUpdatable<E extends Serializable> {
 
 	void add(E element);
 	
-	void add(int index, E element);
-	
 	void addAll(Collection<E> element);	
 	
-	void remove(int index);
+	void update(E element);
+	
+	void updateAll(Collection<E> element);
 	
 	void remove(E element);
 	
