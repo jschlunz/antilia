@@ -14,9 +14,9 @@ public interface IAggregator<A> {
 	
 	IAggregator<A> add(A a);
 	
-	IAggregator<A> remove(A a);
+	IAggregator<A> delete(A a);
 	
-	IAggregator<A> removeAll();
+	IAggregator<A> deleteAll();
 	
 	Iterable<A> elements();
 	

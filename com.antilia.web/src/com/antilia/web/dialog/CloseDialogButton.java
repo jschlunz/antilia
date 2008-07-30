@@ -4,8 +4,6 @@
  */
 package com.antilia.web.dialog;
 
-import java.util.Iterator;
-
 import org.apache.wicket.ResourceReference;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.IAjaxCallDecorator;
@@ -48,6 +46,7 @@ public class CloseDialogButton extends AbstractButton {
 	
 	@Override
 	protected void onSubmit(AjaxRequestTarget target, Form form) {
+		/*
 		dialog.setVisible(false);
 		target.addComponent(dialog);
 		// hide all sub dialogs as well
@@ -61,11 +60,14 @@ public class CloseDialogButton extends AbstractButton {
 				target.addComponent(dialog.getDialogButton().getButton());
 			}		
 		}
+		*/
+		new CloseDialogAction(this, dialog).onSubmit(target, form);
 	}
 
 
 	@Override
 	protected IAjaxCallDecorator getAjaxCallDecorator() {
+		/*
 		return new IAjaxCallDecorator() 
 		{
 			private static final long serialVersionUID = 1L;
@@ -83,5 +85,7 @@ public class CloseDialogButton extends AbstractButton {
 			}
 			
 		};
+		*/
+		return new CloseDialogAction(this, dialog).getAjaxCallDecorator();
 	}
 }
