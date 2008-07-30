@@ -40,7 +40,7 @@ public class PicturesService extends Aggregator<IPicturesSource> implements IPic
 	 * @see com.antilia.demo.picviewer.osgi.IPicturesService#removePicturesSource(com.antilia.demo.picviewer.osgi.IPicturesSource)
 	 */
 	public IPicturesService removePicturesSource(IPicturesSource source) {
-		remove(source);
+		delete(source);
 		return this;
 	}
 

@@ -35,7 +35,7 @@ public class Aggregator<B> implements IAggregator<B> {
 	/* (non-Javadoc)
 	 * @see com.antilia.common.osgi.IAggregator#remove(java.lang.Object)
 	 */
-	public IAggregator<B> remove(B a) {
+	public IAggregator<B> delete(B a) {
 		elements.remove(a);
 		return this;
 	}
@@ -45,7 +45,7 @@ public class Aggregator<B> implements IAggregator<B> {
 		return elements.size();
 	}
 	
-	public IAggregator<B> removeAll() {
+	public IAggregator<B> deleteAll() {
 		elements.clear();
 		return this;
 	}

@@ -6,6 +6,7 @@ package com.antilia.web.dialog.util;
 
 import org.apache.wicket.Component;
 
+import com.antilia.web.button.AbstractButton;
 import com.antilia.web.dialog.DefaultDialog;
 import com.antilia.web.dialog.DialogButton;
 import com.antilia.web.dialog.DialogStyle;
@@ -16,7 +17,7 @@ import com.antilia.web.dialog.DialogStyle;
  * @author Ernesto Reinaldo Barreiro (reiern70@gmail.com)
  *
  */
-public class ConfirmationDialog extends DefaultDialog {
+public  class ConfirmationDialog extends DefaultDialog {
 
 	private static final long serialVersionUID = 1L;
 
@@ -57,7 +58,27 @@ public class ConfirmationDialog extends DefaultDialog {
 	 */
 	@Override
 	protected Component createBody(String id) {
-		return new ConfirmationPanel(id, message);
-	}
+		return new ConfirmationPanel(id, message) {
+			
+			private static final long serialVersionUID = 1L;
 
+			@Override
+			AbstractButton newCancelButton(String id) {
+				return ConfirmationDialog.this.newCancelButton(id);
+			}
+			
+			@Override
+			AbstractButton newOkButton(String id) {
+				return ConfirmationDialog.this.newOkButton(id);
+			}
+		};
+	}
+	
+	AbstractButton newCancelButton(String id) {
+		return new CancelDialogButton(id, this);
+	}
+	
+	AbstractButton newOkButton(String id) {
+		return new OklDialogButton(id, this);
+	}
 }
