@@ -9,7 +9,7 @@ import org.apache.wicket.behavior.AbstractAjaxBehavior;
 
 
 /**
- * Helper class for programatically constructing javascript.
+ * Helper class for programmatically constructing javascript.
  * 
  */
 public class JavascriptHelper {

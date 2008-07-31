@@ -24,4 +24,5 @@ public interface IUpdatable<E extends Serializable> {
 	void remove(E element);
 	
 	void removeAll(Collection<E> element);
+
 }

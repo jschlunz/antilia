@@ -68,12 +68,26 @@ public abstract class DialogButton extends Panel implements IMenuItem {
 
 	
 	protected void onSubmit(AjaxRequestTarget target, Form form) {
-		dialog.setVisible(true);
-		target.addComponent(dialog);
-		target.addComponent(button);
+		if(showDialog(target, form)) {
+			dialog.setVisible(true);
+			target.addComponent(dialog);
+			target.addComponent(button);
+		}
 	}
 	
 
+	/**
+	 * Override this function if you want to check a condition in order to show the dialog.
+	 * By default  the function returns true.
+	 * 
+	 * @param target
+	 * @param form
+	 * @return
+	 */
+	protected boolean showDialog(AjaxRequestTarget target, Form form) {
+		return true;
+	}
+	
 	public abstract DefaultDialog newDialog(String id);
 
 	public int getOrder() {

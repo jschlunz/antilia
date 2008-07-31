@@ -37,21 +37,23 @@ public class CrudStyler<E extends Serializable> implements Serializable {
 		return editFields;
 	}	
 	
-	public void addEditFields(String... editFields) {
+	public CrudStyler<E> addEditFields(String... editFields) {
 		if(editFields != null) {
 			for(String field: editFields) {
 				this.editFields.add(field);
 			}
 		}
+		return this;
 	}
 	
 	/**
 	 * @param editFields the editFields to set
 	 */
-	public void removeEditFields(String[] editFields) {
+	public CrudStyler<E> removeEditFields(String[] editFields) {
 		for(String field: editFields) {
 			this.editFields.remove(field);
 		}
+		return this;
 	}
 	
 	/**
@@ -75,32 +77,35 @@ public class CrudStyler<E extends Serializable> implements Serializable {
 	/**
 	 * @param tableColumns the tableColumns to set
 	 */
-	public void addTableColumns(java.util.List<String> tableColumns) {
+	public CrudStyler<E> addTableColumns(java.util.List<String> tableColumns) {
 		if(tableColumns != null) {
 			for(String field: tableColumns) {
 				this.tableColumns.add(field);
 			}
 		}
+		return this;
 	}
 
 	/**
 	 * @param editFields the editFields to set
 	 */
-	public void addTableColumns(String...  tableColumns) {
+	public CrudStyler<E> addTableColumns(String...  tableColumns) {
 		if(tableColumns != null) {
 			for(String field: tableColumns) {
 				this.tableColumns.add(field);
 			}
 		}
+		return this;
 	}
 	
 	/**
 	 * @param editFields the editFields to set
 	 */
-	public void removeTableColumns(String[] tableColums) {
+	public CrudStyler<E> removeTableColumns(String[] tableColums) {
 		for(String field: tableColums) {
 			this.tableColumns.remove(field);
 		}
+		return this;
 	}
 	
 	/**
@@ -113,32 +118,35 @@ public class CrudStyler<E extends Serializable> implements Serializable {
 	/**
 	 * @param searchFields the searchFields to set
 	 */
-	public void addSearchFields(java.util.List<String> searchFields) {
+	public CrudStyler<E> addSearchFields(java.util.List<String> searchFields) {
 		if(searchFields != null) {
 			for(String field: searchFields) {
 				this.searchFields.add(field);
 			}
 		}
+		return this;
 	}
 	
 	/**
 	 * @param editFields the editFields to set
 	 */
-	public void addSearchFields(String... searchFields) {
+	public CrudStyler<E> addSearchFields(String... searchFields) {
 		if(searchFields != null) {
 			for(String field: searchFields) {
 				this.searchFields.add(field);
 			}
 		}
+		return this;
 	}
 
 	/**
 	 * @param editFields the editFields to set
 	 */
-	public void removeSearchFields(String[] searchFields) {
+	public CrudStyler<E> removeSearchFields(String[] searchFields) {
 		for(String field: searchFields) {
 			this.searchFields.remove(field);
 		}
+		return this;
 	}
 
 	/**

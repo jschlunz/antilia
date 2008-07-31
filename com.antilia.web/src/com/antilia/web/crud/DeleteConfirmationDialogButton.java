@@ -4,8 +4,13 @@
  */
 package com.antilia.web.crud;
 
-import org.apache.wicket.ResourceReference;
+import java.io.Serializable;
 
+import org.apache.wicket.ResourceReference;
+import org.apache.wicket.ajax.AjaxRequestTarget;
+import org.apache.wicket.markup.html.form.Form;
+
+import com.antilia.web.button.AbstractButton;
 import com.antilia.web.dialog.DefaultDialog;
 import com.antilia.web.dialog.DialogButton;
 import com.antilia.web.dialog.util.ConfirmationDialog;
@@ -17,7 +22,7 @@ import com.antilia.web.resources.DefaultStyle;
  * @author Ernesto Reinaldo Barreiro (reiern70@gmail.com)
  *
  */
-public class DeleteConfirmationDialogButton extends DialogButton {
+public class DeleteConfirmationDialogButton<E extends Serializable> extends DialogButton {
 
 	/**
 	 * 
@@ -52,7 +57,31 @@ public class DeleteConfirmationDialogButton extends DialogButton {
 	 */
 	@Override
 	public DefaultDialog newDialog(String id) {
-		return new ConfirmationDialog(id, this, "Do you want to delete records?");
+		ConfirmationDialog confirmationDialog = new ConfirmationDialog(id, this, "Do you want to delete records?") {
+			
+			private static final long serialVersionUID = 1L;
+
+			@Override
+			protected AbstractButton newOkButton(String id) {
+				return new DeleteRecordsButton<E>(id, this);
+			}
+			
+		};
+		return confirmationDialog;
+	}
+	
+	@Override
+	protected boolean showDialog(AjaxRequestTarget target, Form form) {
+		CRUDPanel<E> crudPanel = getCRUDPanel();
+		if(crudPanel != null && crudPanel.getSelected().getSelected().size() > 0) {
+			return true;
+		}
+		return false;
+	}
+	
+	@SuppressWarnings("unchecked")
+	public CRUDPanel<E> getCRUDPanel() {
+		return (CRUDPanel<E> )findParent(CRUDPanel.class);
 	}
 
 }
