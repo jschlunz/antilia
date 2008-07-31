@@ -71,6 +71,11 @@ public  class ConfirmationDialog extends DefaultDialog {
 			AbstractButton newOkButton(String id) {
 				return ConfirmationDialog.this.newOkButton(id);
 			}
+			
+			@Override
+			String getMessage() {
+				return ConfirmationDialog.this.message;
+			}
 		};
 	}
 	
