@@ -5,7 +5,7 @@
 package com.antilia.web.beantable.provider;
 
 import java.io.Serializable;
-import java.util.Iterator;
+import java.util.Set;
 
 /**
  * @author Ernesto Reinaldo Barreiro (reiern70@gmail.com)
@@ -37,8 +37,8 @@ public interface IProviderSelector<E extends Serializable> extends  Serializable
 	
 	boolean clear();
 	
-	Iterator<E> getSelected();
-	
+	Set<E> getSelected();
+		
 	void setSelectionMode(SelectionMode selectionMode);
 	
 	SelectionMode getSelectionMode();

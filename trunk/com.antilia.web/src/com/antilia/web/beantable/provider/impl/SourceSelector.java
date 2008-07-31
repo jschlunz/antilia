@@ -67,9 +67,10 @@ public class SourceSelector<E extends Serializable> implements IProviderSelector
 		return true;
 	}
 
-	public Iterator<E> getSelected() {
-		return selected.iterator();
+	public Set<E> getSelected() {
+		return selected;
 	}
+	
 
 	public boolean isSelected(E bean) {
 		return selected.contains(bean);

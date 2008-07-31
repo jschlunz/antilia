@@ -59,7 +59,7 @@ public class EditPanel<B extends Serializable> extends Panel {
 		if(pageableProvider == null) {
 			ArrayList< B> beans = new ArrayList<B>();
 			IProviderSelector<B> selector = getCRUDPanel().getSelected();		
-			Iterator<B> it = selector.getSelected();			
+			Iterator<B> it = selector.getSelected().iterator();
 			while(it.hasNext() ) {
 				B bean = it.next();
 				try {

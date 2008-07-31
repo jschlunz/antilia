@@ -45,8 +45,8 @@ public  class ConfirmationDialog extends DefaultDialog {
 	}
 	
 	private void init() {
-		setWidth(300);
-		setHeight(210);
+		setWidth(200);
+		setHeight(150);
 		setResizable(false);
 		setFoldable(false);
 		setModal(true);
@@ -79,11 +79,11 @@ public  class ConfirmationDialog extends DefaultDialog {
 		};
 	}
 	
-	AbstractButton newCancelButton(String id) {
+	protected AbstractButton newCancelButton(String id) {
 		return new CancelDialogButton(id, this);
 	}
 	
-	AbstractButton newOkButton(String id) {
+	protected  AbstractButton newOkButton(String id) {
 		return new OklDialogButton(id, this);
 	}
 }
