@@ -24,7 +24,7 @@ public class BasePage extends WebPage {
 		add(HeaderContributor.forCss(AppStyle.YUI_SAM_MENU));	
 		add(HeaderContributor.forCss(TestPanel.HTB_CSS));
 		
-		add(new TestPanel("menuBar"));
+		//add(new TestPanel("menuBar"));
 		
 		//add(createMenu2("menuBar", "menuBar"));
 								

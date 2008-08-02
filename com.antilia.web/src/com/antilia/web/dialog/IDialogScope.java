@@ -6,16 +6,22 @@ package com.antilia.web.dialog;
 
 import java.util.Iterator;
 
+import org.apache.wicket.Component;
+
 /**
  * @author Ernesto Reinaldo Barreiro (reiern70@gmail.com)
  *
  */
 public interface IDialogScope {
 
+	boolean isVisible();
+	
+	Component setVisible(boolean visible);
+	
 	String getDialogId();
 	
-	void addDialog(DefaultDialog dialog);
+	void addDialog(IDialogScope dialog);
 	
 	//TODO: see if I can come up with an interface for Dialogs.
-	Iterator<DefaultDialog> getDialogs();
+	Iterator<IDialogScope> getDialogs();
 }

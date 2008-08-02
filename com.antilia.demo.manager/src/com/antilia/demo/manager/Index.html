@@ -1,26 +1,7 @@
 <html xmlns:wicket="org.apache.wicket">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
-</head>
 <body>
     <wicket:extend>
-        <table style="background: transparent; width: 100%">
-                <tr>
-                    <td valign="top" nowrap="nowrap">
-                        <div style="bottom:  10px ;  height: 500px; overflow: auto; background: transparent;">
-                            <span>Left</span>
-                        </div>
-                    </td>
-                    <td style="width: 2px; background: red;" nowrap="nowrap">
-                    </td>
-                    <td valign="top" width="80%" nowrap="nowrap">
-                        <div wicket:id="content" style="background: transparent; height: 500px; overflow: scroll;">
-                                <span wicket:id="body"></span>
-                        </div>
-                    </td>
-                </tr>
-            </table>
+        <div wicket:id="content" style="position: relative;"></div>        
      </wicket:extend>
 </body>
 </html>

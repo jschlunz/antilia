@@ -3,6 +3,7 @@ package com.antilia.demo.manager;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 
 import com.antilia.demo.manager.crud.CityCRUDPanel;
+import com.antilia.demo.manager.crud.CityModalContainer;
 
 
 public class Index extends BasePage implements IContainer {
@@ -14,12 +15,12 @@ public class Index extends BasePage implements IContainer {
 	public Index() {		
 		super();			
 		
-		content = new WebMarkupContainer("content");
+		content = new CityModalContainer("content");
 		content.setOutputMarkupId(true);		
 		
 		add(content);
 		
-		content.add(new CityCRUDPanel(getBodyId()));
+		//content.add(new CityCRUDPanel(getBodyId()));
 		
 		//content.add(new Label(getBodyId(), ""));
 	}
