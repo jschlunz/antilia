@@ -42,7 +42,7 @@ public class DefaultStyle {
 	public static ResourceReference IMG_OK = new ResourceReference(ImgDummy.class, "ok.gif");
 	public static ResourceReference IMG_TRANSPARENT = new ResourceReference(ImgDummy.class, "transparent.gif");
 	public static ResourceReference IMG_FOLD = new ResourceReference(ImgDummy.class, "fold.gif");
-	public static ResourceReference IMG_REVERT_SELECTED = new ResourceReference(ImgDummy.class, "revertSelected.gif");
+	public static ResourceReference IMG_REVERT_SELECTED = new ResourceReference(ImgDummy.class, "revert_small.png");
 	
 	public static ResourceReference IMG_VERTICAL_MENU  = new ResourceReference(ImgDummy.class, "vertical-menu.gif");
 	

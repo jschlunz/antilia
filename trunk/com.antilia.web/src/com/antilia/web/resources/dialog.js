@@ -34,7 +34,7 @@
 		this.overlayVisible = false;
 		this.loadingVisible = false;
 		this.addModalLayer();
-		this.addLoadingLayer();
+		this.addLoadingLayer();	
 		if(this.parentId) {	
 			this.parent = Antilia_dragPanels.getPanel(this.parentId);
 			if(this.parent) {
@@ -69,7 +69,7 @@
 		if(this.modal == false)
 			return;
 		if(!this.overlayVisible) {			
-			this.overlayVisible = true;
+			this.overlayVisible = true;	
 			if(this.parent) {
 			new Effect.toggle(this.parent.overlay, 
 			'appear',
@@ -373,3 +373,46 @@
 	
 	var Antilia_dragPanels = new Panels();
 	
+	
+	function ModalContainer(id) {
+	   this.id = id;
+	   this.overlayVisible = false;
+	   this.addModalLayer();
+	}
+	
+	ModalContainer.prototype.addModalLayer = function() {
+        this.overlay = $(document.createElement('div'));
+        this.overlay.id = this.id + 'modal_overlay';
+        this.overlay.className = 'modal_overlay';
+        this.panelBody.appendChild(this.overlay);
+        this.overlay.style.display = 'none';
+        this.overlay.style.width = "1900px";
+        this.overlay.style.height = "1800px";
+    }
+	
+	
+	ModalContainer.prototype.toggleModal = function() {
+        if(!this.overlayVisible) {          
+            this.overlayVisible = true;
+            new Effect.toggle(this.overlay, 
+            'appear',
+            {
+                afterFinish: this.afterFold,
+                beforeStart: this.beforeFold, 
+                duration: 0.1,
+                from: 0,
+                to: 0.3
+            });        
+        } else {
+            this.overlayVisible = false;
+            new Effect.toggle(this.overlay, 
+            'appear',
+            {
+                afterFinish: this.afterFold,
+                beforeStart: this.beforeFold, 
+                duration: 0.1,
+                from: 0.3,
+                to: 0
+            });        
+        }       
+    }

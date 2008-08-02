@@ -41,8 +41,8 @@ public class CloseDialogAction extends AbstractAction {
 		dialog.setVisible(false);
 		target.addComponent(dialog);
 		// hide all sub dialogs as well
-		for(Iterator<DefaultDialog> it = dialog.getDialogs();it.hasNext();) {
-			DefaultDialog subDialog = it.next();
+		for(Iterator<IDialogScope> it = dialog.getDialogs();it.hasNext();) {
+			IDialogScope subDialog = it.next();
 			if(subDialog.isVisible())
 				subDialog.setVisible(false);
 		}

@@ -30,7 +30,7 @@ import com.antilia.web.resources.DefaultStyle;
  * 
  * @author Ernesto Reinaldo Barreiro (reiern70@gmail.com)
  */
-public abstract class DefaultDialog extends Panel implements IDialogScope, IMenuItemsFactory {
+public abstract class ModalContainer extends Panel implements IDialogScope, IMenuItemsFactory {
 
 	public static final int DEFAULT_MIN_WIDTH=200;
 	
@@ -51,8 +51,10 @@ public abstract class DefaultDialog extends Panel implements IDialogScope, IMenu
 	private int width = DEFAULT_WIDTH;
 	
 	private int height = DEFAULT_HEIGHT;
+		
+	private int widthPercentage = 100;
 	
-	private boolean modal = false;
+	private int heightPercentage = 100;
 	
 	private int minimumWidth = DEFAULT_MIN_WIDTH;
 	
@@ -60,7 +62,7 @@ public abstract class DefaultDialog extends Panel implements IDialogScope, IMenu
 	
 	private String title  = "Title";
 	
-	private IDialogScope parent;
+	private ModalContainer parent;
 	
 	/**
 	 * If the dialog is re-sizable or not
@@ -71,11 +73,7 @@ public abstract class DefaultDialog extends Panel implements IDialogScope, IMenu
 	 * Flag that determines if the dialog is foldable.
 	 */
 	private boolean foldable = true;
-	
-	/**
-	 * The button opening a dialog. It may be null;
-	 */
-	private DialogButton dialogButton;
+
 	
 	private WebMarkupContainer innerPanel;
 	
@@ -96,8 +94,8 @@ public abstract class DefaultDialog extends Panel implements IDialogScope, IMenu
 	 * 
 	 * @param id
 	 */
-	public DefaultDialog(String id) {
-		this(id, null);
+	public ModalContainer(String id) {
+		this(id, new DefaultDialogStyle());
 	}
 	
 	/**
@@ -106,19 +104,12 @@ public abstract class DefaultDialog extends Panel implements IDialogScope, IMenu
 	 * @param id
 	 * @param button
 	 */
-	public DefaultDialog(String id, DialogButton button) {
-		this(id, button, new DefaultDialogStyle());
-	}
-	
-	/**
-	 * Constructor.
-	 * 
-	 * @param id
-	 * @param button
-	 */
-	public DefaultDialog(String id, DialogButton button, final DialogStyle dialogStyle) {
+	public ModalContainer(String id,  final DialogStyle dialogStyle) {
 		super(id);
-		this.dialogButton = button;
+		setPosX(0);
+		setPosY(0);
+		setWidth(900);
+		setHeight(600);
 		this.dialogStyle = dialogStyle;
 		setOutputMarkupId(true);
 		if(!dialogStyle.isRoundedHeader()) {
@@ -160,7 +151,7 @@ public abstract class DefaultDialog extends Panel implements IDialogScope, IMenu
 
 			@Override
 			public Object getObject() {
-				return "Antilia_dragPanels.orderPanels('"+DefaultDialog.this.getDialogId()+"');";
+				return "Antilia_dragPanels.orderPanels('"+ModalContainer.this.getDialogId()+"');";
 			}
 		}));					
 		innerPanel.add(new AttributeModifier("style", new Model() {
@@ -170,38 +161,38 @@ public abstract class DefaultDialog extends Panel implements IDialogScope, IMenu
 			public Object getObject() {
 				StringBuffer sb = new StringBuffer();
 				sb.append("left: ");
-				sb.append(DefaultDialog.this.getPosX());
+				sb.append(ModalContainer.this.getPosX());
 				sb.append("; top:");
-				sb.append(DefaultDialog.this.getPosY());
+				sb.append(ModalContainer.this.getPosY());
 				sb.append(";");
-				sb.append(" width:");
-				sb.append(DefaultDialog.this.getWidth());
-				sb.append(";");
-				sb.append(" height:");
-				sb.append(DefaultDialog.this.getHeight());
-				sb.append(";");
+				sb.append("right:");
+				sb.append("1");
+				sb.append("px;");
+				sb.append("bottom:");
+				sb.append("1");
+				sb.append("px;");
+				//sb.append("border: solid 1px red;");
+				sb.append("height: ");
+				sb.append(ModalContainer.this.getHeight());
 				return sb.toString();
 			}
 		}));
-				
-		Panel header = newDialogHeader("header");						
-		if(header != null)
-			innerPanel.add(header);
-		else {
-			innerPanel.add(new Label("header", ""));
-		}
 		
+		/*
 		WebMarkupContainer dialogBackground = new WebMarkupContainer("dialogBackground");
+		
+		
 		dialogBackground.add(new AttributeModifier("style", new Model() {
 			private static final long serialVersionUID = 1L;
 
 			@Override
 			public Object getObject() {
-				return "background-color: " + dialogStyle.getBackgroundColor();
+				return "background-color: " + dialogStyle.getBackgroundColor() + "; bottom: 0px;";
 			}
 		}));	
 		
 		innerPanel.add(dialogBackground);
+		*/
 		
 		WebMarkupContainer dialogBody = new WebMarkupContainer("dialogBody");
 		dialogBody.add(new AttributeModifier("id", new Model() {
@@ -210,7 +201,7 @@ public abstract class DefaultDialog extends Panel implements IDialogScope, IMenu
 
 			@Override
 			public Object getObject() {
-				return DefaultDialog.this.getDialogId()+"Body";
+				return ModalContainer.this.getDialogId()+"Body";
 			}
 		}));		
 		dialogBody.add(new AttributeModifier("style", new Model() {
@@ -221,14 +212,15 @@ public abstract class DefaultDialog extends Panel implements IDialogScope, IMenu
 				StringBuffer sb = new StringBuffer();
 				sb.append("position: relative; left: 0px;");
 				sb.append("; top: 0px;");
-				sb.append(" width:");
-				int width = DefaultDialog.this.getWidth();
-				sb.append(width-4);
+				sb.append("right:");
+				sb.append(0);
 				sb.append("px;");
-				sb.append(" height:");
-				sb.append(DefaultDialog.this.getHeight()-28);
+				sb.append("bottom:");
+				sb.append(0);
 				sb.append("px;");
 				sb.append("overflow: auto;");
+				sb.append("height: auto;");
+				//sb.append(ModalContainer.this.getHeight());
 				if(dialogStyle.getBodyColor() != null) {
 					sb.append("background-color: ");				
 					sb.append(dialogStyle.getBodyColor());
@@ -236,8 +228,11 @@ public abstract class DefaultDialog extends Panel implements IDialogScope, IMenu
 				return sb.toString();
 			}
 		}));
-		dialogBackground.add(dialogBody);
-				
+		
+		//dialogBackground.add(dialogBody);
+		
+		innerPanel.add(dialogBody);
+		
 		// call createBody to retrieve user defined body.
 		Component body = createBody("body");
 		if(body != null) {
@@ -246,67 +241,33 @@ public abstract class DefaultDialog extends Panel implements IDialogScope, IMenu
 		}
 		else 
 			dialogBody.add(new Label("body", ""));
-		
-		
-		WebMarkupContainer footer = new WebMarkupContainer("footer") ;
-		footer.add(new AttributeModifier("style", new Model() {
-			
-			private static final long serialVersionUID = 1L;
-
-			@Override
-			public Object getObject() {
-				return "background-color: " + dialogStyle.getBackgroundColor();
-			}
-		}));
-		
-		innerPanel.add(footer);
-			
-		WebMarkupContainer resizeHandle = new WebMarkupContainer("resizeHandle") {
-			private static final long serialVersionUID = 1L;
-
-			@Override
-			public boolean isVisible() {
-				return DefaultDialog.this.isResizable();
-			}
-		};
-		resizeHandle.add(new AttributeModifier("id", new Model() {
-
-			private static final long serialVersionUID = 1L;
-
-			@Override
-			public Object getObject() {
-				return DefaultDialog.this.getDialogId()+"Resize";
-			}
-		}));
-		
-		footer.add(resizeHandle);
 				
 		Label script = new Label("script", new Model()) {
 			private static final long serialVersionUID = 1L;
 
 			@Override
 			protected void onComponentTagBody(MarkupStream markupStream, ComponentTag openTag) {
-				boolean ie = DefaultDialog.this.isBrowserIExplorer();
-				String parentId =  DefaultDialog.this.getParentDialog()!=null?DefaultDialog.this.getParentDialog().getDialogId():"";
+				boolean ie = ModalContainer.this.isBrowserIExplorer();
+				String parentId =  ModalContainer.this.getParentDialog()!=null?ModalContainer.this.getParentDialog().getDialogId():"";
 				StringBuffer sb = new StringBuffer();
 				sb.append("Antilia_dragPanels.addPanel('");
-				sb.append(DefaultDialog.this.getDialogId());
+				sb.append(ModalContainer.this.getDialogId());
 				sb.append("','");
 				sb.append(parentId);
 				sb.append("',");
 				sb.append(ie);
 				sb.append(",");
-				sb.append(DefaultDialog.this.getMinimumWidth());
+				sb.append(ModalContainer.this.getMinimumWidth());
 				sb.append(",");
-				sb.append(DefaultDialog.this.getMinimumHeight());
+				sb.append(ModalContainer.this.getMinimumHeight());
 				sb.append(",");
-				sb.append(DefaultDialog.this.isModal());
+				sb.append("false");
 				sb.append(",'");
-				sb.append(DefaultDialog.this.getPanelClass());
+				sb.append(ModalContainer.this.getPanelClass());
 				sb.append("','");
-				sb.append(DefaultDialog.this.getOnDragClass());
+				sb.append(ModalContainer.this.getOnDragClass());
 				sb.append("','");
-				sb.append(DefaultDialog.this.getPanelSelectedClass());
+				sb.append(ModalContainer.this.getPanelSelectedClass());
 				sb.append("');");				
 				replaceComponentTagBody(markupStream, openTag, sb.toString());
 			}
@@ -332,8 +293,8 @@ public abstract class DefaultDialog extends Panel implements IDialogScope, IMenu
 		return menu;
 	}
 	
-	private IDialogScope findParentDialog() {
-		return (IDialogScope)findParent(IDialogScope.class);
+	private ModalContainer findParentDialog() {
+		return (ModalContainer)findParent(ModalContainer.class);
 	}
 	
 	@Override
@@ -346,18 +307,6 @@ public abstract class DefaultDialog extends Panel implements IDialogScope, IMenu
 		super.onRender(markupStream);
 	}
 	
-	/**
-	 * Creates a new Dialog Header. Override it of you dare to define your 
-	 * own header.
-	 * 
-	 * @param id
-	 * @return
-	 */
-	protected Panel newDialogHeader(String id) {
-		if(getDialogStyle().isRoundedHeader())
-			return new DefaultHeaderRounded(id, this);
-		return new DefaultHeaderSquare(id, this);
-	}
 	
 	public void populateMenuItems(String menuId, IMenuItemHolder itemHolder) {
 		
@@ -464,29 +413,21 @@ public abstract class DefaultDialog extends Panel implements IDialogScope, IMenu
 		this.browserIExplorer = exporer;
 	}
 
-	public IDialogScope getParentDialog() {
+	public ModalContainer getParentDialog() {
 		return parent;
 	}
 
-	public void setParentDialog(DefaultDialog parent) {
+	public void setParentDialog(ModalContainer parent) {
 		this.parent = parent;
 	}
 	
+	@Override
 	public void addDialog(IDialogScope dialog) {
 		dialogs.add(dialog);
 	}
 	
-	//TODO: see if I can come up with an interface for Dialogs.
 	public Iterator<IDialogScope> getDialogs(){
 		return dialogs.iterator();
-	}
-
-	public DialogButton getDialogButton() {
-		return dialogButton;
-	}
-
-	public void setDialogButton(DialogButton button) {
-		this.dialogButton = button;
 	}
 
 	public int getMinimumWidth() {
@@ -519,14 +460,6 @@ public abstract class DefaultDialog extends Panel implements IDialogScope, IMenu
 
 	public void setFoldable(boolean foldable) {
 		this.foldable = foldable;
-	}
-
-	public boolean isModal() {
-		return modal;
-	}
-
-	public void setModal(boolean modal) {
-		this.modal = modal;
 	}
 
 	public DialogStyle getDialogStyle() {
@@ -593,6 +526,34 @@ public abstract class DefaultDialog extends Panel implements IDialogScope, IMenu
 	 */
 	public void setPanelSelectedClass(String panelSelectedClass) {
 		this.panelSelectedClass = panelSelectedClass;
+	}
+
+	/**
+	 * @return the widthPercentage
+	 */
+	public int getWidthPercentage() {
+		return widthPercentage;
+	}
+
+	/**
+	 * @param widthPercentage the widthPercentage to set
+	 */
+	public void setWidthPercentage(int widthPercentage) {
+		this.widthPercentage = widthPercentage;
+	}
+
+	/**
+	 * @return the heightPercentage
+	 */
+	public int getHeightPercentage() {
+		return heightPercentage;
+	}
+
+	/**
+	 * @param heightPercentage the heightPercentage to set
+	 */
+	public void setHeightPercentage(int heightPercentage) {
+		this.heightPercentage = heightPercentage;
 	}
  
 }
