@@ -1,0 +1,46 @@
+<html>
+    <head>                
+         <script type="text/javascript" src="yahoo-dom-event.js" ></script>
+        <script type="text/javascript" src="dom-min.js"></script>        
+        <script type="text/javascript" src="event-min.js"></script>
+        <script type="text/javascript" src="dragdrop-min.js"></script>
+        <script type="text/javascript" src="animation-min.js"></script>
+        <script type="text/javascript" src="columns.js"></script>
+    </head>
+    <body>
+               
+        <table id="test">
+            <tr>
+                <td>
+                   <div id="c1" style="width: 40px; height: 40px; border: solid 1px red;">
+                    </div> 
+                </td>
+                <td>
+                    <div id="c2" style="width: 40px; height: 40px; border: solid 1px blue;">
+                    </div>
+                </td>
+            </tr>
+        </table>
+         <script type="text/javascript">
+            var column1 = new TColumn('test', 'c1');
+            var column2 = new TColumn('test', 'c2');
+        </script>
+        
+         <table id="test2">
+            <tr>
+                <td>
+                   <div id="c2_1" style="width: 40px; height: 40px; border: solid 1px red;">
+                    </div> 
+                </td>
+                <td>
+                    <div id="c2_2" style="width: 40px; height: 40px; border: solid 1px blue;">
+                    </div>
+                </td>
+            </tr>
+        </table>
+         <script type="text/javascript">
+            new TColumn('test2', 'c2_1');
+            new TColumn('test2', 'c2_2');
+        </script>
+    </body>
+</html>

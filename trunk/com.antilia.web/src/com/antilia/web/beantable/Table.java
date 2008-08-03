@@ -61,6 +61,13 @@ public class Table<E extends Serializable> extends Panel implements IPageableCom
 	
 	private List<WebMarkupContainer> rowCheckboxes = new ArrayList<WebMarkupContainer>();
 	
+	//private List<String> draggerIds = new ArrayList<String>();
+	
+	/**
+	 * This variable is needed t fix a problem with drag and drop not working for IE
+	 */
+	private int rendringCount = 0;
+	
 	/**
 	 * Constructor accepting a List.
 	 * 
@@ -112,6 +119,10 @@ public class Table<E extends Serializable> extends Panel implements IPageableCom
 	protected void onBeforeRender() {	
 		super.onBeforeRender();		
 	
+		rendringCount++;
+		
+		//draggerIds.clear();
+		
 		addOrReplace(newTableHeader("header"));
 
 		// add table header
@@ -150,17 +161,29 @@ public class Table<E extends Serializable> extends Panel implements IPageableCom
 					i++;					
 				}		
 				sb.append(")");
-				sb.append("," + Table.this.getTableModel().getColumns()+1);
+				sb.append("," + (Table.this.getTableModel().getColumns()+1));
+				sb.append("," + (Table.this.getRendringCount()));
 				sb.append(");");
-				//sb.append(tableId+".");
-				//sb.append("removeDroppables();");				
 				sb.append(tableId+".");
-				sb.append("createDropables();");				
+				sb.append("removeOldDroppables();");				
+				sb.append(tableId+".");
+				sb.append("createDraggables();");				
+				/*
+				for(String dragger: draggerIds) {
+					sb.append(dragger);
+				}
+				*/
 				replaceComponentTagBody(markupStream, openTag, sb.toString());
 			}
 		};
 		addOrReplace(script);
 	}
+	
+	/*
+	public void addDraggerId(String id) {
+			draggerIds.add(id);
+	}
+	*/
 	
 	protected ResourceReference getTableCSS() {
 		return DefaultStyle.CSS_TABLE;
@@ -413,6 +436,20 @@ public class Table<E extends Serializable> extends Panel implements IPageableCom
 	
 	public Component getUpdatableComponent() {
 		return this;
+	}
+
+	/**
+	 * @return the rendringCount
+	 */
+	public int getRendringCount() {
+		return rendringCount;
+	}
+
+	/**
+	 * @param rendringCount the rendringCount to set
+	 */
+	public void setRendringCount(int rendringCount) {
+		this.rendringCount = rendringCount;
 	}
 	
 	
