@@ -34,8 +34,11 @@ public abstract class DraggableTarget extends WebMarkupContainer implements IDra
 		add(HeaderContributor.forJavaScript(DefaultStyle.JS_BUILDER));
 		add(HeaderContributor.forJavaScript(DefaultStyle.JS_EFFECT));
 		add(HeaderContributor.forJavaScript(DefaultStyle.JS_DRAGDROP));
-		add(HeaderContributor.forJavaScript(DefaultStyle.JS_CONTROL));				
-		add(HeaderContributor.forJavaScript(DefaultStyle.JS_SLIDER));
+		//add(HeaderContributor.forJavaScript(DefaultStyle.JS_CONTROL));				
+		//add(HeaderContributor.forJavaScript(DefaultStyle.JS_SLIDER));
+		
+		//add(HeaderContributor.forJavaScript(DefaultStyle.JS_SCRIPTACULOUS));
+		
 		
 		setOutputMarkupId(true);
 		this.onDropBehavior = new DraggableTargetBehavior(this);

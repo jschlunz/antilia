@@ -1,6 +1,7 @@
 
-function Table(id, rows, ncols) {
+function Table(id, rows, ncols, rendringCount) {
 	this.id = id;
+	this.rendringCount = rendringCount;
 	// rows is an array of Rows	
 	this.rows = rows;
 	this.ncols = ncols;	
@@ -13,22 +14,32 @@ function Table(id, rows, ncols) {
     //alert('here');
 }
 
-Table.prototype.createDropables = function() { 
+Table.prototype.createDraggables = function() { 
     for(var j = 1; j < this.ncols; j++) {               
-        //var titleId = this.id + '_title_' + j;
-        var titleId = this.id + '_dragger_' + j;                      
-        //alert(titleId);
+        var titleId = this.id + '_dragger_'  + this.rendringCount+ '_' + j;
         new Draggable(titleId, { revert: true, ghosting: true, zindex: 100});                
     }
 }
 
-Table.prototype.removeDroppables = function() { 
-    for(var j = 1; j < this.ncols; j++) {               
-        //var titleId = this.id + '_title_' + j;              
-        var titleId = this.id + '_dragger_' + j;
-        try { Droppables.remove(document.getElementById(titleId)) } catch (err) {};
-        
-    }
+Table.prototype.removeOldDroppables = function() { 
+    if(this.rendringCount > 1) {
+	    for(var j = 1; j < this.ncols; j++) {               
+	        //var titleId = this.id + '_title_' + j;                      
+	        var titleId = this.id + '_dragger_' +(this.rendringCount-1) + '_'+ j;
+	        try {
+	           Droppables.remove(titleId);         
+	            /*
+	            var element = document.getElementById(titleId);
+	            Droppables.remove(element);
+	            if(element) {                
+	               alert('Here');	                                
+	             }
+	             */
+	          } catch (err) {
+	            alert(err);
+	          }	        
+	    }
+	}
 }
 
 Table.prototype.addColumn = function(col) {	

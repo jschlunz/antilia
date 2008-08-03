@@ -1,0 +1,26 @@
+<html>
+    <head>                
+        <script type="text/javascript" src="yahoo-dom-event.js" ></script>
+        <script type="text/javascript" src="dragdrop-min.js" ></script>
+        <script type="text/javascript" src="animation-min.js"></script>
+    </head>
+    <body>
+        <div id="element1" style="width: 40px; height: 40px; position: absolute; top: 60px; left: 60px; border: solid 1px red;">
+        </div>
+        <script type="text/javascript">
+            var dd2 = new YAHOO.util.DDProxy("element1", "group1");             
+            dd2.on('dragDropEvent', function(ev) { 
+                    alert('Element is being dragged.' + this.id); 
+            }, dd2, true);
+        </script>
+        
+        <div id="element2" style="width: 40px; height: 40px; position: absolute; top: 160px; left: 160px; border: solid 1px blue;">
+        </div>
+        <script type="text/javascript">
+            var dd3 =new YAHOO.util.DDProxy("element2", "group1"); 
+             dd3.on('dragDropEvent', function(ev) { 
+                    alert('Element is being dragged.' + this.id);                     
+            }, dd3, true);
+        </script>
+    </body>
+</html>

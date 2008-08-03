@@ -107,17 +107,17 @@ public class DefaultHeaderCell1<E extends Serializable> extends Panel {
 				onDropBehavior.addAcceptClass(getTable().getMarkupId());
 				onDropBehavior.setHoverClass("ondrop");
 				onDropBehavior.getDropOptions().put("onDrop", new JavascriptHelper.JavascriptFunction("function(draggable, droppable, event) { " +
-						getTable().getMarkupId() +".removeDroppables();"+
 						"wicketAjaxGet('" + onDropBehavior.getCallbackUrl()
 						+ "&id=' + draggable.id); }"));
 
-				String titleId = getTable().getMarkupId()+"_dragger_"+ getColumn();
+				String titleId = getTable().getMarkupId()+"_dragger_"+ getTable().getRendringCount() + "_" +getColumn();
 				JavascriptHelper builder = new JavascriptHelper();
-				builder.addLine("  try { Droppables.remove(document.getElementById('" +titleId +"')) } catch (err) {};");
 				builder.addLine("Droppables.add('" + titleId + "', ");
 				builder.addOptions(onDropBehavior.getDropOptions());
 				builder.addLine(");");
 
+				//getTable().addDraggerId(builder.toJavascript());
+				
 				getResponse().write(builder.buildScript());
 			}
 						
@@ -128,7 +128,7 @@ public class DefaultHeaderCell1<E extends Serializable> extends Panel {
 
 			@Override
 			public Object getObject() {
-				return getTable().getMarkupId()+"_dragger_"+ getColumn();
+				return getTable().getMarkupId()+"_dragger_"+ getTable().getRendringCount() + "_" +getColumn();
 			}
 		}));
 		
