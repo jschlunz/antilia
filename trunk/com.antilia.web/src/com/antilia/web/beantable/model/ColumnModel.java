@@ -23,7 +23,6 @@ public class ColumnModel<E extends Serializable> extends Model implements IColum
 	private String propertyPath;
 	
 	private ITableModel<E> tableModel;
-
 	
 	/**
 	 * This property says if a column is sortable;
@@ -91,4 +90,5 @@ public class ColumnModel<E extends Serializable> extends Model implements IColum
 	public void setSortable(boolean sortable) {
 		this.sortable = sortable;
 	}
+
 }

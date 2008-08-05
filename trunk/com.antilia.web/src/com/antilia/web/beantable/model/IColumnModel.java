@@ -17,7 +17,7 @@ public interface IColumnModel<E extends Serializable> extends IModel {
 	int getWidth();
 	
 	void setWidth(int width);
-	
+		
 	String getPropertyPath();
 	
 	ITableModel<E> getTableModel();

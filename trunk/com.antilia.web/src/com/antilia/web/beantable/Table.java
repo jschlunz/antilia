@@ -50,7 +50,7 @@ public class Table<E extends Serializable> extends Panel implements IPageableCom
 	private IProviderSelector<E> sourceSelector;
 	
 	private ITableModel<E> tableModel;
-	
+			
 	private FirstColumnModel firstColumnModel;
 	
 	private MenuItemsFactory beforeNavigationMenuItemsFactory = new MenuItemsFactory();
@@ -241,7 +241,8 @@ public class Table<E extends Serializable> extends Panel implements IPageableCom
 			models.add(new Model(""));
 			Iterator<IModel> it =  tableModel.getColumnModels();
 			while(it.hasNext()) {
-				models.add(it.next());
+				IModel model = it.next();
+				models.add(model);
 			}
 			return models.iterator();
 		}
@@ -249,7 +250,7 @@ public class Table<E extends Serializable> extends Panel implements IPageableCom
 		@Override
 		protected Item newItem(String id, int index, final IModel model) {
 			Item item = super.newItem(id, index, model);
-			if(model instanceof IColumnModel) {				
+			if(model instanceof IColumnModel) {			
 				item.add(new AttributeModifier("width", true, new Model() {
 					
 					private static final long serialVersionUID = 1L;

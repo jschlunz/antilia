@@ -18,9 +18,13 @@ import com.antilia.web.beantable.provider.SelectionMode;
  */
 public interface ITableModel<E extends Serializable> extends IModel {
 	
-	Iterator<IColumnModel<E>> getColumnModels();
+	Iterator<IColumnModel<E>> getColumnModels();	
+	
+	Iterator<IColumnModel<E>> getHiddenModels();
 	
 	boolean swapColumns(int i, int j);
+	
+	boolean hideColumn(int i);
 	
 	int getColumns();
 	

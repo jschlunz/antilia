@@ -30,6 +30,8 @@ public class TableModel<E extends Serializable> extends Model implements ITableM
 	
 	private List<IColumnModel<E>> models;
 	
+	private List<IColumnModel<E>> hiddenModels;
+		
 	private SelectionMode selectionModel = SelectionMode.MULTIPLE;
 	
 	/**
@@ -39,6 +41,7 @@ public class TableModel<E extends Serializable> extends Model implements ITableM
 	public TableModel() {
 		super(new ArrayList<IColumnModel<E>>());	
 		this.models = (List<IColumnModel<E>>) getObject();
+		this.hiddenModels = new ArrayList<IColumnModel<E>>();
 		this.expresions = new ArrayList<String>();
 	}
 	
@@ -82,6 +85,7 @@ public class TableModel<E extends Serializable> extends Model implements ITableM
 		IColumnModel<E> model = new ColumnModel<E>(this, ColumnModel.DEFAULT_WIDTH, 1, expresion);
 		addColumnModel(model);
  	}
+
 	
 	public IComponentInheritedModel newModel(E object) {
 		return new CompoundPropertyModel(object);
@@ -103,6 +107,21 @@ public class TableModel<E extends Serializable> extends Model implements ITableM
 		return models.iterator();
 	}
 	
+	@Override
+	public Iterator<IColumnModel<E>> getHiddenModels() {
+		return hiddenModels.iterator();
+	}
+	
+	@Override
+	public boolean hideColumn(int i) {
+		if(i>=0 && i < models.size()) {
+			IColumnModel<E> model = models.remove(i);
+			hiddenModels.add(model);
+			return true;
+		}
+		return false;
+	}
+	
 	public boolean swapColumns(int i, int j) {
 		if(i==j) {
 			return false;
@@ -118,9 +137,11 @@ public class TableModel<E extends Serializable> extends Model implements ITableM
 		return false;
 	}
 
+	
 	public int getColumns() {
 		return models.size();
 	}
+	
 
 	public Class<E> getBeanClass() {
 		return beanClass;
