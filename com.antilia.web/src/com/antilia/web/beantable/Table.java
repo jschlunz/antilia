@@ -61,7 +61,7 @@ public class Table<E extends Serializable> extends Panel implements IPageableCom
 	
 	private List<WebMarkupContainer> rowCheckboxes = new ArrayList<WebMarkupContainer>();
 	
-	//private List<String> draggerIds = new ArrayList<String>();
+	private List<String> draggerURL= new ArrayList<String>();
 	
 	/**
 	 * This variable is needed t fix a problem with drag and drop not working for IE
@@ -97,6 +97,13 @@ public class Table<E extends Serializable> extends Panel implements IPageableCom
 		add(HeaderContributor.forJavaScript(DefaultStyle.JS_DRAGDROP));
 		add(HeaderContributor.forCss(DefaultStyle.CSS_MAIN));
 		add(HeaderContributor.forCss(getTableCSS()));
+		
+		add(HeaderContributor.forJavaScript(DefaultStyle.JS_YUI_DOM_EVENT));
+		add(HeaderContributor.forJavaScript(DefaultStyle.JS_YUI_DOM_MIN));
+		add(HeaderContributor.forJavaScript(DefaultStyle.JS_YUI_EVENT));
+		add(HeaderContributor.forJavaScript(DefaultStyle.JS_YUI_ANIMATION));
+		add(HeaderContributor.forJavaScript(DefaultStyle.JS_YUI_DRAG_DROP));
+		
 		add(HeaderContributor.forJavaScript(DefaultStyle.JS_COMMON));
 		add(HeaderContributor.forJavaScript(DefaultStyle.JS_TABLE));
 		
@@ -121,7 +128,7 @@ public class Table<E extends Serializable> extends Panel implements IPageableCom
 	
 		rendringCount++;
 		
-		//draggerIds.clear();
+		draggerURL.clear();
 		
 		addOrReplace(newTableHeader("header"));
 
@@ -163,6 +170,7 @@ public class Table<E extends Serializable> extends Panel implements IPageableCom
 				sb.append(")");
 				sb.append("," + (Table.this.getTableModel().getColumns()+1));
 				sb.append("," + (Table.this.getRendringCount()));
+				sb.append("," + Table.this.getDraggerUrlAsArray());
 				sb.append(");");
 				sb.append(tableId+".");
 				sb.append("removeOldDroppables();");				
@@ -179,11 +187,27 @@ public class Table<E extends Serializable> extends Panel implements IPageableCom
 		addOrReplace(script);
 	}
 	
-	/*
-	public void addDraggerId(String id) {
-			draggerIds.add(id);
+	public void addDraggerUrl(String id) {
+			draggerURL.add(id);
 	}
-	*/
+	
+	public String getDraggerUrlAsArray() {
+		StringBuffer sb = new StringBuffer();
+		sb .append("new Array(");
+		Iterator<String> it = draggerURL.iterator();
+		while(it.hasNext()) {
+			String url = it.next();			
+			sb .append("'");	
+			sb .append(url);
+			sb .append("'");
+			if(it.hasNext()) {
+				sb .append(",");	
+			}
+		}
+		sb .append(")");
+		return sb.toString();		
+	}
+	
 	
 	protected ResourceReference getTableCSS() {
 		return DefaultStyle.CSS_TABLE;
