@@ -1,11 +1,11 @@
 
-function Table(id, rows, ncols, rendringCount) {
+function Table(id, rows, ncols, rendringCount, urls) {
 	this.id = id;
-	this.rendringCount = rendringCount;
 	// rows is an array of Rows	
 	this.rows = rows;
 	this.ncols = ncols;	
-	
+	this.rendringCount = rendringCount;
+	this.urls = urls;
 	this.columns = new Array();    
     for(var i = 0; i < this.ncols; i++) {               
         this.addColumn(i);
@@ -17,7 +17,10 @@ function Table(id, rows, ncols, rendringCount) {
 Table.prototype.createDraggables = function() { 
     for(var j = 1; j < this.ncols; j++) {               
         var titleId = this.id + '_dragger_'  + this.rendringCount+ '_' + j;
-        new Draggable(titleId, { revert: true, ghosting: true, zindex: 100});                
+        //new Draggable(titleId, { revert: true, ghosting: true, zindex: 100});                
+        var url = this.urls[j-1];
+        //alert(url);
+       new TColumn(this.id, titleId, url);
     }
 }
 
@@ -86,6 +89,47 @@ Column.prototype.onResize = function (obj, deltaX, deltaY) {
   	var res = [0, 0];
 	return res;
 }	
+ 
+
+function TColumn(tableId, id, url) {
+    this.tableId = tableId;
+    this.id = id;
+    this.url = url;
+    this.initialize();
+}
+
+TColumn.prototype.initialize = function() { 
+    var el = YAHOO.util.Dom.get(this.id);     
+    this.dd = new YAHOO.util.DD(this.id, this.tableId);    
+    this.startPos = YAHOO.util.Dom.getXY(el);
+    this.dd.url = this.url;
+    //alert(this.dd.url);
+      
+    this.dd.onDragDrop = function(e, id) { 
+       //alert('Column ' + this.getEl().id + ' dopped on column ' +id); 
+        wicketAjaxGet(this.url+ '&sourceId=' + this.getEl().id + '&targetId=' + id);
+    }
+    
+    this.dd.onInvalidDrop = function(e) { 
+        // return to the start position 
+        // Dom.setXY(this.getEl(), startPos); 
+        // Animating the move is more intesting 
+               new YAHOO.util.Motion(  
+                this.getEl().id, {  
+                              points: {  
+                                  to: this.startPos 
+                              } 
+                          },  
+                          0.3,  
+                          YAHOO.util.Easing.easeOut  
+                      ).animate(); 
+       
+     }
+     
+    this.dd.onMouseDown  = function(e) {  
+        this.startPos  = YAHOO.util.Dom.getXY(this.getEl());
+     }
+}
  
 function Row(tableId, number, selected) {
 	this.tableId = tableId;

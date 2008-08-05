@@ -21,8 +21,7 @@ import com.antilia.common.util.ResourceUtils;
 import com.antilia.common.util.StringUtils;
 import com.antilia.web.beantable.model.IColumnModel;
 import com.antilia.web.beantable.navigation.ColumnMenuItemsFactory;
-import com.antilia.web.dragdrop.DraggableTarget;
-import com.antilia.web.effect.JavascriptHelper;
+import com.antilia.web.dragdrop.YuiDraggableTarget;
 import com.antilia.web.menu.Menu;
 
 /**
@@ -68,14 +67,14 @@ public class DefaultHeaderCell1<E extends Serializable> extends Panel {
 			
 		}, Integer.class));
 		
-		DraggableTarget draggableTarget =  new DraggableTarget("dragger") {
+		YuiDraggableTarget draggableTarget =  new YuiDraggableTarget("dragger") {
 			
 			private static final long serialVersionUID = 1L;
 
 			@Override
-			public void onDrop(String input, AjaxRequestTarget target) {
-				int dropedColumn = getDropedColumnIndex(input)-1;
-				int thisColumn = DefaultHeaderCell1.this.getColumn()-1;
+			public void onDrop(String sourceId, String targetId, AjaxRequestTarget target) {
+				int dropedColumn = getDropedColumnIndex(sourceId)-1;
+				int thisColumn = getDropedColumnIndex(targetId)-1;
 				if(dropedColumn == -2 || dropedColumn == thisColumn)
 					return;
 				if(target != null) {
@@ -104,21 +103,7 @@ public class DefaultHeaderCell1<E extends Serializable> extends Panel {
 			
 			@Override
 			protected void renderOnDrag(MarkupStream markupStream) {
-				onDropBehavior.addAcceptClass(getTable().getMarkupId());
-				onDropBehavior.setHoverClass("ondrop");
-				onDropBehavior.getDropOptions().put("onDrop", new JavascriptHelper.JavascriptFunction("function(draggable, droppable, event) { " +
-						"wicketAjaxGet('" + onDropBehavior.getCallbackUrl()
-						+ "&id=' + draggable.id); }"));
-
-				String titleId = getTable().getMarkupId()+"_dragger_"+ getTable().getRendringCount() + "_" +getColumn();
-				JavascriptHelper builder = new JavascriptHelper();
-				builder.addLine("Droppables.add('" + titleId + "', ");
-				builder.addOptions(onDropBehavior.getDropOptions());
-				builder.addLine(");");
-
-				//getTable().addDraggerId(builder.toJavascript());
-				
-				getResponse().write(builder.buildScript());
+				getTable().addDraggerUrl(onDropBehavior.getCallbackUrl().toString());
 			}
 						
 		};
