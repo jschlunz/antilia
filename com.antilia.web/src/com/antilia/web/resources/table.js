@@ -15,6 +15,9 @@ function Table(id, rows, ncols, rendringCount, urls) {
 }
 
 Table.prototype.createDraggables = function() { 
+    var trashId  = this.id + '_' + 'dropCol';
+    new YAHOO.util.DDTarget(trashId , this.id);
+    
     for(var j = 1; j < this.ncols; j++) {               
         var titleId = this.id + '_dragger_'  + this.rendringCount+ '_' + j;
         //new Draggable(titleId, { revert: true, ghosting: true, zindex: 100});                
@@ -103,17 +106,16 @@ TColumn.prototype.initialize = function() {
     this.dd = new YAHOO.util.DD(this.id, this.tableId);    
     this.startPos = YAHOO.util.Dom.getXY(el);
     this.dd.url = this.url;
-    //alert(this.dd.url);
       
     this.dd.onDragDrop = function(e, id) { 
        //alert('Column ' + this.getEl().id + ' dopped on column ' +id); 
         wicketAjaxGet(this.url+ '&sourceId=' + this.getEl().id + '&targetId=' + id);
     }
     
-    this.dd.onInvalidDrop = function(e) { 
-        // return to the start position 
-        // Dom.setXY(this.getEl(), startPos); 
+    this.dd.onInvalidDrop = function(e) {         
         // Animating the move is more intesting 
+               var Dom = YAHOO.util.Dom;
+               Dom.setStyle(this.getEl(), "opacity", 1);
                new YAHOO.util.Motion(  
                 this.getEl().id, {  
                               points: {  
@@ -127,8 +129,25 @@ TColumn.prototype.initialize = function() {
      }
      
     this.dd.onMouseDown  = function(e) {  
-        this.startPos  = YAHOO.util.Dom.getXY(this.getEl());
+        this.startPos  = YAHOO.util.Dom.getXY(this.getEl());        
      }
+     
+    this.dd.startDrag = function(x, y) { 
+        var Dom = YAHOO.util.Dom;
+        Dom.setStyle(this.getEl(), "opacity", 0.5);
+    }
+    
+    this.dd.onDragOver =  function(e, id) { 
+        var Dom = YAHOO.util.Dom;
+        var el = YAHOO.util.Dom.get(id);
+        Dom.setStyle(el, "border", '1px solid white');
+    }
+    
+    this.dd.onDragOut =  function(e, id) { 
+        var Dom = YAHOO.util.Dom;
+        var el = YAHOO.util.Dom.get(id);
+        Dom.setStyle(el, "border", 'none');                 
+    }
 }
  
 function Row(tableId, number, selected) {

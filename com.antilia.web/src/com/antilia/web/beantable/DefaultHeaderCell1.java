@@ -73,13 +73,25 @@ public class DefaultHeaderCell1<E extends Serializable> extends Panel {
 
 			@Override
 			public void onDrop(String sourceId, String targetId, AjaxRequestTarget target) {
-				int dropedColumn = getDropedColumnIndex(sourceId)-1;
-				int thisColumn = getDropedColumnIndex(targetId)-1;
-				if(dropedColumn == -2 || dropedColumn == thisColumn)
+				if(StringUtils.isEmpty(targetId)) 
 					return;
-				if(target != null) {
-					DefaultHeaderCell1.this.getTable().getTableModel().swapColumns(thisColumn, dropedColumn);
-					target.addComponent(DefaultHeaderCell1.this.getTable());
+				if(targetId.indexOf("drop")>0)  {
+					int dropedColumn = getDropedColumnIndex(sourceId)-1;
+					if(dropedColumn == -2)
+						return;
+					if(target != null) {
+						DefaultHeaderCell1.this.getTable().getTableModel().hideColumn(dropedColumn);
+						target.addComponent(DefaultHeaderCell1.this.getTable());
+					}
+				} else {
+					int dropedColumn = getDropedColumnIndex(sourceId)-1;
+					int thisColumn = getDropedColumnIndex(targetId)-1;
+					if(dropedColumn == -2 || dropedColumn == thisColumn)
+						return;
+					if(target != null) {
+						DefaultHeaderCell1.this.getTable().getTableModel().swapColumns(thisColumn, dropedColumn);
+						target.addComponent(DefaultHeaderCell1.this.getTable());
+					}
 				}
 			}
 			
