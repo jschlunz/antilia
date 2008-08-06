@@ -77,6 +77,9 @@ public class DefaultStyle {
 	
 	public static ResourceReference IMG_TRASH = new ResourceReference(ImgDummy.class, "basket_delete.png");
 	
+	public static ResourceReference IMG_DELETE_COLS = new ResourceReference(ImgDummy.class, "table_delete.png");
+	public static ResourceReference IMG_ADD_COLS = new ResourceReference(ImgDummy.class, "table_add.png");
+	
 	
 	public static ResourceReference IMG_REFRESH = new ResourceReference(ImgDummy.class, "refresh_small.png");
 	public static ResourceReference IMG_DOWN = new ResourceReference(ImgDummy.class, "bullet_arrow_down.png");

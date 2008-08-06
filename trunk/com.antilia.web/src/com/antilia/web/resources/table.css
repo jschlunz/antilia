@@ -63,7 +63,14 @@ td.tbodycol {
 	vertical-align: middle;
 }
 
+.columns ul {
+    list-style:  none;    
+}
 
+.columns li {
+    display: block;
+    float: none;
+}
 
 .theaderrow .addCol {
 	white-space: nowrap; 
