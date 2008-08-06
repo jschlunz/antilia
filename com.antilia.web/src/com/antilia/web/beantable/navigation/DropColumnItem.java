@@ -59,7 +59,7 @@ public class DropColumnItem<E extends Serializable> extends Panel implements IMe
 	 * @see com.antilia.web.toolbar.AButton#getImage()
 	 */
 	protected ResourceReference getImage() {
-		return DefaultStyle.IMG_TRASH;
+		return DefaultStyle.IMG_DELETE_COLS;
 	}
 
 	/**

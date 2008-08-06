@@ -39,6 +39,9 @@ public class NavigationItemsFactory implements IMenuItemsFactory {
 		
 		itemHolder.addMenuItem(new DropColumnItem());
 		
+		itemHolder.addMenuItem(new UnusedColumnsButton());
+	
+		
 		//itemHolder.addMenuItem(new ColumnProperties());	
 		
 	}
