@@ -6,6 +6,7 @@ package com.antilia.web.beantable.model;
 
 import java.io.Serializable;
 import java.util.Iterator;
+import java.util.List;
 
 import org.apache.wicket.model.IComponentInheritedModel;
 import org.apache.wicket.model.IModel;
@@ -18,9 +19,13 @@ import com.antilia.web.beantable.provider.SelectionMode;
  */
 public interface ITableModel<E extends Serializable> extends IModel {
 	
-	Iterator<IColumnModel<E>> getColumnModels();	
+	Iterator<IColumnModel<E>> getColumnModels();
+	
+	void setColumnModels(List<IColumnModel<E>> models);
 	
 	Iterator<IColumnModel<E>> getHiddenModels();
+	
+	void setHiddenModels(List<IColumnModel<E>> models);
 	
 	boolean swapColumns(int i, int j);
 	

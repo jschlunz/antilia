@@ -137,6 +137,10 @@ public class TableModel<E extends Serializable> extends Model implements ITableM
 		return false;
 	}
 
+	@Override
+	public void setColumnModels(List<IColumnModel<E>> models) {
+		this.models = models;
+	}
 	
 	public int getColumns() {
 		return models.size();
@@ -152,6 +156,13 @@ public class TableModel<E extends Serializable> extends Model implements ITableM
 	 */
 	public void setBeanClass(Class<E> beanClass) {
 		this.beanClass = beanClass;
+	}
+
+	/**
+	 * @param hiddenModels the hiddenModels to set
+	 */
+	public void setHiddenModels(List<IColumnModel<E>> hiddenModels) {
+		this.hiddenModels = hiddenModels;
 	}
 
 }

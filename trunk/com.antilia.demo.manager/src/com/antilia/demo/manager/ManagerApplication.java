@@ -31,6 +31,7 @@ public class ManagerApplication extends WebApplication {
 	@Override
 	public Class<?> getHomePage() {
 		return Index.class;
+		//return SortableListPage.class;
 	}
 
 	@Override

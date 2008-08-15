@@ -17,6 +17,7 @@ public class DefaultStyle {
 	public static ResourceReference CSS_MAIN = new ResourceReference(DefaultStyle.class, "main.css");
 	public static ResourceReference CSS_TABLE = new ResourceReference(DefaultStyle.class, "table.css");
 	public static ResourceReference CSS_DIALOG = new ResourceReference(DefaultStyle.class, "dialog.css");
+	public static ResourceReference CSS_PALETTE = new ResourceReference(DefaultStyle.class, "palette.css");
 	
 	public static ResourceReference JS_COMMON = new ResourceReference(DefaultStyle.class, "common.js");
 	public static ResourceReference JS_TABLE = new ResourceReference(DefaultStyle.class, "table.js");

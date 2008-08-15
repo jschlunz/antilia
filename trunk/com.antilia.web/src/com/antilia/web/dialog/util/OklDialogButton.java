@@ -19,7 +19,7 @@ import com.antilia.web.resources.DefaultStyle;
  * 
  * @author Ernesto Reinaldo Barreiro (reiern70@gmail.com)
  */
-public class OklDialogButton extends AbstractButton {
+public abstract class OklDialogButton extends AbstractButton {
 
 	private static final long serialVersionUID = 1L;
 
@@ -49,8 +49,10 @@ public class OklDialogButton extends AbstractButton {
 	@Override
 	protected void onSubmit(AjaxRequestTarget target, Form form) {
 			new CloseDialogAction(this, dialog).onSubmit(target, form);
+			onOk(target, form);
 	}
 
+	protected abstract void onOk(AjaxRequestTarget target, Form form);
 
 	@Override
 	protected IAjaxCallDecorator getAjaxCallDecorator() {

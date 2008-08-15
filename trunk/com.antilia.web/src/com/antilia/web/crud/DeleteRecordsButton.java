@@ -26,18 +26,16 @@ public class DeleteRecordsButton<E extends Serializable> extends OklDialogButton
 	public DeleteRecordsButton(String id, DefaultDialog dialog) {
 		super(id, dialog);
 	}
-	
-
+		
 	@Override
-	protected void onSubmit(AjaxRequestTarget target, Form form) {
-		super.onSubmit(target, form);			
+	protected void onOk(AjaxRequestTarget target, Form form) {
 		CRUDPanel<E> crudPanel = getCRUDPanel();
 		if(crudPanel != null && crudPanel.getSelected().getSelected().size() > 0) {			
 			crudPanel.getSearchPanel().getPageableProvider().removeAll(crudPanel.getSelected().getSelected());
 			crudPanel.getSearchPanel().getPageableProvider().reset();
 			crudPanel.getSelected().clear();			
 			target.addComponent((Component)crudPanel);
-		}		
+		}
 	}
 	
 	@SuppressWarnings("unchecked")

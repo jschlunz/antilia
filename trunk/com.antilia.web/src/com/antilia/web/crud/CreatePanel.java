@@ -7,6 +7,7 @@ package com.antilia.web.crud;
 import java.io.Serializable;
 import java.util.List;
 
+import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.markup.html.panel.Panel;
 
 import com.antilia.hibernate.query.IQuery;
@@ -31,6 +32,8 @@ public class CreatePanel<B extends Serializable> extends Panel {
 	
 	private CrudStyler<B> styler;
 	
+	private FeedbackPanel messages;
+	
 	/**
 	 * 
 	 * @param id
@@ -43,6 +46,9 @@ public class CreatePanel<B extends Serializable> extends Panel {
 		this.styler = styler;
 		
 		setOutputMarkupId(true);		
+		messages  = new FeedbackPanel("messages");
+		messages.setOutputMarkupId(true);
+		add(messages);
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -67,6 +73,9 @@ public class CreatePanel<B extends Serializable> extends Panel {
 		AutoFieldPanel<B> autoFieldPanel = newAutoFieldPanel("autofield",autoFieldModel);
 		
 		beanForm.addOrReplace(autoFieldPanel);
+		
+
+		
 		super.onBeforeRender();
 	}
 	
@@ -111,5 +120,12 @@ public class CreatePanel<B extends Serializable> extends Panel {
 	 */
 	public BeanProxy<B> getBeanProxy() {
 		return beanProxy;
+	}
+
+	/**
+	 * @return the messages
+	 */
+	public FeedbackPanel getMessages() {
+		return messages;
 	}
 }
