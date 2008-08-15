@@ -8,6 +8,7 @@ import java.io.Serializable;
 
 import org.apache.wicket.Component;
 import org.apache.wicket.ResourceReference;
+import org.apache.wicket.Session;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.markup.html.form.Form;
 
@@ -45,13 +46,18 @@ public class SaveNewRecordButton<E extends Serializable> extends AbstractButton 
 	
 	@Override
 	protected void onSubmit(AjaxRequestTarget target, Form form) {
-		CRUDPanel<E> crudPanel = findCRUDPanel();		
-		if(crudPanel != null) {	
-			crudPanel.getSearchPanel().getPageableProvider().add(findCreatePanel().getCurrentBean());
-			crudPanel.getSelected().clear();
-			crudPanel.setCurrentPanel(crudPanel.getSearchPanel());
-			target.addComponent((Component)crudPanel);
-		}		
+		CRUDPanel<E> crudPanel = findCRUDPanel();
+		try {		
+			if(crudPanel != null) {	
+				crudPanel.getSearchPanel().getPageableProvider().add(findCreatePanel().getCurrentBean());
+				crudPanel.getSelected().clear();
+				crudPanel.setCurrentPanel(crudPanel.getSearchPanel());
+				target.addComponent((Component)crudPanel);
+			}
+		} catch (Exception e) {
+			getPage().error(e.getMessage());
+			target.addComponent(findCreatePanel().getMessages());
+		}
 	}
 	
 	

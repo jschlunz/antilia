@@ -5,6 +5,8 @@
 package com.antilia.web.dialog.util;
 
 import org.apache.wicket.Component;
+import org.apache.wicket.ajax.AjaxRequestTarget;
+import org.apache.wicket.markup.html.form.Form;
 
 import com.antilia.web.button.AbstractButton;
 import com.antilia.web.dialog.DefaultDialog;
@@ -84,6 +86,14 @@ public  class ConfirmationDialog extends DefaultDialog {
 	}
 	
 	protected  AbstractButton newOkButton(String id) {
-		return new OklDialogButton(id, this);
+		return new OklDialogButton(id, this) {
+			
+			private static final long serialVersionUID = 1L;
+
+			@Override
+			protected void onOk(AjaxRequestTarget target, Form form) {
+				// do nothing
+			}
+		};
 	}
 }

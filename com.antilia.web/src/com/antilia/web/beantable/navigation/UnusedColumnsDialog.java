@@ -23,11 +23,11 @@ public class UnusedColumnsDialog<E extends Serializable> extends DefaultDialog {
 	 * @param id
 	 */
 	public UnusedColumnsDialog(String id) {
-		super(id, null,  new DefaultDialogStyle().setBackgroundColor("#d73957").setBodyColor("#f1d0d6"));
+		super(id, null,  new DefaultDialogStyle());
 		setPosX(10);
 		setPosY(10);
-		setWidth(300);
-		setHeight(210);
+		setWidth(320);
+		setHeight(240);
 		setTitle("Table Columns");
 	}
 
@@ -36,7 +36,8 @@ public class UnusedColumnsDialog<E extends Serializable> extends DefaultDialog {
 	 */
 	@Override
 	protected Component createBody(String id) {
-		return new UnusedColumnsPanel<E>(id);
+		return new UnusedColumnsPanel<E>(id, this);
+		//return new ColumnModelPalette<E>(id);
 	}
 
 }

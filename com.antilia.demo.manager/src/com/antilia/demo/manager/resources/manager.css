@@ -1,7 +1,7 @@
 @CHARSET "ISO-8859-1";
 
 div.LOGO {
-    background: url("Logo.gif");
+    background: transparent;
     width:  248px;
     height: 52px;
 }

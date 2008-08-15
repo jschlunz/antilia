@@ -5,14 +5,16 @@
 package com.antilia.web.beantable.navigation;
 
 import java.io.Serializable;
-import java.util.Iterator;
+import java.util.List;
 
-import org.apache.wicket.markup.html.basic.Label;
+import org.apache.wicket.ajax.AjaxRequestTarget;
+import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.panel.Panel;
-import org.apache.wicket.markup.repeater.RepeatingView;
 
 import com.antilia.web.beantable.Table;
 import com.antilia.web.beantable.model.IColumnModel;
+import com.antilia.web.dialog.util.CancelDialogButton;
+import com.antilia.web.dialog.util.OklDialogButton;
 
 /**
  * 
@@ -24,41 +26,48 @@ public class UnusedColumnsPanel<E extends Serializable> extends Panel {
 
 	private static final long serialVersionUID = 1L;
 
+	private ColumnModelPalette<E> palette;
 	/**
 	 * @param id
 	 */
-	public UnusedColumnsPanel(String id) {
+	public UnusedColumnsPanel(String id, UnusedColumnsDialog<E> dialog ) {
 		super(id);
+		
+		
+		add(new OklDialogButton("ok", dialog) {
+			
+			private static final long serialVersionUID = 1L;
+
+			@Override
+			protected void onOk(AjaxRequestTarget target, Form form) {
+				List<IColumnModel<E>>  selected = palette.getSelected();
+				List<IColumnModel<E>>  hidden = palette.getAvailable();
+				Table<E> table = findTable();
+				table.getTableModel().setColumnModels(selected);
+				table.getTableModel().setHiddenModels(hidden);
+				if(target != null) {
+					target.addComponent(table);
+				}
+			}
+		});
+		
+		add(new CancelDialogButton("cancel", dialog));
 	}
 	
 	@Override
 	protected void onBeforeRender() {
 		super.onBeforeRender();
-		Table<E> table =  findTable();
-		Iterator<IColumnModel<E>> it = table.getTableModel().getHiddenModels(); 
-		if(it.hasNext()) {
-			RepeatingView columns = new RepeatingView("columns");		
-			while(it.hasNext()) {
-				IColumnModel<E> model = it.next();
-				columns.add(new Label(columns.newChildId(), model.getPropertyPath()));
-			}
-			addOrReplace(columns);
-		} else {
-			/*
-			Label columns = new Label("columns", "");
-			addOrReplace(columns);
-			*/
-				RepeatingView columns = new RepeatingView("columns");		
-				columns.add(new Label(columns.newChildId(), "1-one"));
-				columns.add(new Label(columns.newChildId(), "1-two"));
-				columns.add(new Label(columns.newChildId(), "1-three"));
-				addOrReplace(columns);
-		}
+		
+		palette = new ColumnModelPalette<E>("palette", findTable());
+		palette.setRenderBodyOnly(true);
+		addOrReplace(palette);
 	}
-	
 	
 	@SuppressWarnings("unchecked")
 	private Table<E> findTable() {
 		return (Table<E>)findParent(Table.class);
 	}
+	
+	
+	
 }
