@@ -4,8 +4,6 @@
  */
 package com.antilia.web.menu;
 
-import java.awt.MenuItem;
-
 import org.apache.wicket.ResourceReference;
 import org.apache.wicket.markup.html.panel.Panel;
 
