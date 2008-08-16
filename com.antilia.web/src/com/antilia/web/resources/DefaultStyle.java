@@ -64,9 +64,12 @@ public class DefaultStyle {
 	
 	
 	public static ResourceReference IMG_NEXT_ENABLED  = new ResourceReference(ImgDummy.class, "next_enabled.png");
-	public static ResourceReference IMG_PREVIOUS_ENABLED = new ResourceReference(ImgDummy.class, "previous_enabled.png");
+	public static ResourceReference IMG_PREVIOUS_ENABLED = new ResourceReference(ImgDummy.class, "previous_enabled.png");	
 	public static ResourceReference IMG_LAST_ENABLED  = new ResourceReference(ImgDummy.class, "last_enabled.png");
 	public static ResourceReference IMG_FIRST_ENABLED  = new ResourceReference(ImgDummy.class, "first_enabled.png");
+	
+	public static ResourceReference IMG_UP_ENABLED  = new ResourceReference(ImgDummy.class, "up_enabled.png");
+	public static ResourceReference IMG_DOWN_ENABLED = new ResourceReference(ImgDummy.class, "down_enabled.png");
 	
 	public static ResourceReference IMG_NEXT_DISABLED = new ResourceReference(ImgDummy.class, "next_disabled.png");
 	public static ResourceReference IMG_PREVIOUS_DISABLED = new ResourceReference(ImgDummy.class, "previous_disabled.png");
