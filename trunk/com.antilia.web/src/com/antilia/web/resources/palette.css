@@ -25,7 +25,6 @@ table.palette td.header {
 	font-size: 9pt;
 	background-color: #eef7ff;
 	padding: 2px;
-	border-bottom: 1px solid #729ac2;
 }
 
 table.palette td.pane {
@@ -44,7 +43,7 @@ table.palette td.buttons {
 }
 
 table.palette td.buttons button {
-	width: 18px;
+	width: 20px;
 	height: 18px;
 	border: none;
 	background: transparent;
