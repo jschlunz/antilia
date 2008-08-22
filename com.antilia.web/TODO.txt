@@ -1,0 +1,30 @@
+- HIBERNATE-Persistence layer.
+
+-Decouple filters form Hibernate.
+
+* See projections.
+* Reorganize code so that references to Hibernate are removed.
+
+
+CRUD
+* Review the use of beanProxy and the way filters are built.
+* Validation.
+* Required fields. Length.
+* New components. Refine Date-Picker.
+* Large selection.
+* Drag drop of search fields...
+* Configure search fields....
+* Views..
+* Tabs  (withow Ajax) for grouping fields.
+
+DIALOGS.
+
+* Open the at mouse click location.
+* Better ways to do modal.
+
+-Table
+* Sortable buttons...
+* Selection models...
+* Grouping and ordering.
+
+MY-GOSUB MENU.

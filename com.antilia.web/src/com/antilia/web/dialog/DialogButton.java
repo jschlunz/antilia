@@ -6,18 +6,22 @@ package com.antilia.web.dialog;
 
 import org.apache.wicket.ResourceReference;
 import org.apache.wicket.ajax.AjaxRequestTarget;
+import org.apache.wicket.ajax.IAjaxCallDecorator;
+import org.apache.wicket.behavior.AttributeAppender;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.panel.Panel;
+import org.apache.wicket.model.Model;
 
 import com.antilia.web.button.AbstractButton;
 import com.antilia.web.button.IMenuItem;
+import com.antilia.web.toolbar.IToolbarItem;
 
 
 /**
  * 
  * @author Ernesto Reinaldo Barreiro (reiern70@gmail.com)
  */
-public abstract class DialogButton extends Panel implements IMenuItem {
+public abstract class DialogButton extends Panel implements IMenuItem, IToolbarItem {
 
 	private static final long serialVersionUID = 1L;
 
@@ -26,6 +30,11 @@ public abstract class DialogButton extends Panel implements IMenuItem {
 	private int order = AbstractButton.NO_ORDER;
 	
 	private AbstractButton button;
+	
+	/**
+	 * If the dialog should be opened at mouse position!
+	 */
+	private boolean showAtMousePosition = false;
 	
 	public DialogButton(String id) {
 		super(id);
@@ -51,6 +60,11 @@ public abstract class DialogButton extends Panel implements IMenuItem {
 			protected void onSubmit(AjaxRequestTarget target, Form form) {
 				DialogButton.this.onSubmit(target, form);
 			}
+			
+			@Override
+			protected IAjaxCallDecorator getAjaxCallDecorator() {
+				return DialogButton.this.getAjaxCallDecorator();
+			}			
 		};
 		
 		add(button);
@@ -58,6 +72,7 @@ public abstract class DialogButton extends Panel implements IMenuItem {
 		dialog = newDialog("dialog"); 
 		dialog.setVisible(false);				
 		dialog.setOutputMarkupPlaceholderTag(true);
+		dialog.add(new AttributeAppender("style", new Model("position: relavive; z-index: 2;"), ";"));
 		dialog.setDialogButton(this);
 		add(dialog);
 	}
@@ -66,6 +81,28 @@ public abstract class DialogButton extends Panel implements IMenuItem {
 
 	protected abstract ResourceReference getImage();
 
+	
+	protected IAjaxCallDecorator getAjaxCallDecorator() {
+		return new IAjaxCallDecorator() 
+		{
+			private static final long serialVersionUID = 1L;
+
+			public CharSequence decorateOnFailureScript(CharSequence script) {
+				return script;
+			}
+
+			public CharSequence decorateOnSuccessScript(CharSequence script) {
+				if(showAtMousePosition)
+					return  script  + "Antilia_dragPanels.showPanel('"+dialog.getDialogId()+"','"+button.getMarkupId()+"');";
+				return  script ;
+			}
+
+			public CharSequence decorateScript(CharSequence script) {
+				return   script;
+			}
+			
+		};
+	}
 	
 	protected void onSubmit(AjaxRequestTarget target, Form form) {
 		if(showDialog(target, form)) {
@@ -100,5 +137,19 @@ public abstract class DialogButton extends Panel implements IMenuItem {
 
 	public AbstractButton getButton() {
 		return button;
+	}
+
+	/**
+	 * @return the showAtMousePoistion
+	 */
+	public boolean isShowAtMousePosition() {
+		return showAtMousePosition;
+	}
+
+	/**
+	 * @param showAtMousePoistion the showAtMousePoistion to set
+	 */
+	public void setShowAtMousePosition(boolean showAtMousePoistion) {
+		this.showAtMousePosition = showAtMousePoistion;
 	}
 }

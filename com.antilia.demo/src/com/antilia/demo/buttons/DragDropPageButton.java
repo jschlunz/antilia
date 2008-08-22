@@ -7,7 +7,6 @@ package com.antilia.demo.buttons;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 
 import com.antilia.demo.Index;
-import com.antilia.demo.dialogs.DialogsPanel;
 import com.antilia.demo.dragdrop.DragDropPanel;
 
 /**

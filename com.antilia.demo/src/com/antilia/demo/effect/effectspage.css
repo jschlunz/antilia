@@ -1,16 +1,4 @@
-	body {
-		font-family:Lucida Grande,Verdana,Arial,Helvetica,sans serif;
-		font-size:11px;
-		font-size-adjust:none;
-		font-stretch:normal;
-		font-style:normal;
-		font-variant:normal;
-		font-weight:normal;
-		line-height:normal;
-		margin:0px 0px 70px;
-	}
-	
-	.c {
+  .c {
 		cursor:pointer;
 		float:left;
 		height:120px;

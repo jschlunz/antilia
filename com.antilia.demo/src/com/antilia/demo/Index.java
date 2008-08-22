@@ -11,10 +11,9 @@ import org.apache.wicket.markup.html.form.Form;
 
 import com.antilia.demo.buttons.MainButtonsFactory;
 import com.antilia.demo.style.Style;
-import com.antilia.web.adxmenu.htb.TestPanel;
 import com.antilia.web.menu.Menu;
 import com.antilia.web.resources.DefaultStyle;
-import com.antilia.web.toolbar.TestMenu;
+import com.antilia.web.toolbar.Toolbar;
 
 /**
  * 
@@ -47,9 +46,11 @@ public class Index extends WebPage {
 			}
 		};				
 		form.add(contents);
-		form.add(Menu.createMenu("menu",  new MainButtonsFactory(this)));
+		//form.add(Menu.createMenu("menu",  new MainButtonsFactory(this)));
 		
-		form.add(new TestMenu("adxMenu"));
+		form.add(Toolbar.createToolbar("menu",  new MainButtonsFactory(this)));
+		
+		//form.add(new TestMenu("adxMenu"));
 		
 		body = createBody("body");
 		contents.setOutputMarkupId(true);

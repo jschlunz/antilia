@@ -9,12 +9,15 @@ import com.antilia.web.button.IMenuItem;
 import com.antilia.web.button.IMenuItemHolder;
 import com.antilia.web.button.IMenuItemsFactory;
 import com.antilia.web.menu.DropDownButton;
+import com.antilia.web.toolbar.IToolbar;
+import com.antilia.web.toolbar.IToolbarItemsFactory;
+import com.antilia.web.toolbar.SubToolbar;
 
 /**
  * 
  * @author Ernesto Reinaldo Barreiro (reiern70@gmail.com)
  */
-public class MainButtonsFactory implements IMenuItemsFactory {
+public class MainButtonsFactory implements IMenuItemsFactory, IToolbarItemsFactory {
 	
 	private static final long serialVersionUID = 1L;
 
@@ -37,5 +40,41 @@ public class MainButtonsFactory implements IMenuItemsFactory {
 				new NestedTablesButton(page)
 				});		
 		itemHolder.addMenuItem(dropDownButton);
+	}
+	
+	@Override
+	public void populateMenuItems(String menuId, IToolbar toolbar) {
+		SubToolbar subToolbar = new SubToolbar("other", toolbar) {
+			
+			private static final long serialVersionUID = 1L;
+
+			@Override
+			protected String getTitle() {
+				return "Other";
+			}
+		};
+		
+		toolbar.addItem(subToolbar);
+		
+		subToolbar.addItem(new EffectsPageButton(page)); 
+		subToolbar.addItem(new RoundBoxButton(page));
+		subToolbar.addItem(new DialogsPageButton(page));
+		subToolbar.addItem(new DragDropPageButton(page));
+			
+		subToolbar = new SubToolbar("Tables", toolbar) {
+			
+			private static final long serialVersionUID = 1L;
+
+			@Override
+			protected String getTitle() {
+				return "Tables ";
+			}
+		};
+		
+		toolbar.addItem(subToolbar);
+		
+		subToolbar.addItem(new TablesButton(page)); 
+		subToolbar.addItem(new NestedTablesButton(page));
+		
 	}
 }

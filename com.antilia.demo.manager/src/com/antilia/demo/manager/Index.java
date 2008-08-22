@@ -2,9 +2,6 @@ package com.antilia.demo.manager;
 
 import org.apache.wicket.markup.html.WebMarkupContainer;
 
-import com.antilia.demo.manager.crud.CityCRUDPanel;
-import com.antilia.demo.manager.crud.CityModalContainer;
-
 
 public class Index extends BasePage implements IContainer {
 
@@ -12,22 +9,25 @@ public class Index extends BasePage implements IContainer {
 	
 	private WebMarkupContainer content;
 	
+	private WebMarkupContainer body;
+	
 	public Index() {		
 		super();			
 		
-		content = new CityModalContainer("content");
-		content.setOutputMarkupId(true);		
+		body = new WebMarkupContainer("body");
+		body.setOutputMarkupId(true);
 		
-		add(content);
+		add(body);
 		
-		//content.add(new CityCRUDPanel(getBodyId()));
-		
-		//content.add(new Label(getBodyId(), ""));
+		content = new InitialPanel("content", this);				
 	}
 
 	@Override
-	public String getBodyId() {
-		return "body";
+	protected void onBeforeRender() {
+		super.onBeforeRender();
+		
+		body.addOrReplace(content);
+	
 	}
 	
 	/**
@@ -42,6 +42,14 @@ public class Index extends BasePage implements IContainer {
 	 */
 	public void setContent(WebMarkupContainer content) {
 		this.content = content;
+	}
+
+
+	/**
+	 * @return the body
+	 */
+	public WebMarkupContainer getBody() {
+		return body;
 	}
 	
 }

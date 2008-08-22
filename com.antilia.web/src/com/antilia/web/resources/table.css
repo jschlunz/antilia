@@ -18,10 +18,12 @@ tr.tbodyrow0 {
 
 span.pageNumber  {
 	background-color:transparent;
-	border: solid 0px black;
+	border: none;
   	vertical-align: middle;
   	padding: 0px;
-	margin: 0px;	
+	margin: 0px;
+	padding-top: 3px;
+	height: 16px;
 }
 
 tr.tbodyrow1 {	

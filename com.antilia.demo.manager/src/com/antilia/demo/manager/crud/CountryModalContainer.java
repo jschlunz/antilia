@@ -14,7 +14,7 @@ import com.antilia.web.dialog.ModalContainer;
  * @author Ernesto Reinaldo Barreiro (reiern70@gmail.com)
  *
  */
-public class CityModalContainer extends ModalContainer {
+public class CountryModalContainer extends ModalContainer {
 
 	/**
 	 * 
@@ -24,7 +24,7 @@ public class CityModalContainer extends ModalContainer {
 	/**
 	 * @param id
 	 */
-	public CityModalContainer(String id) {
+	public CountryModalContainer(String id) {
 		super(id);
 		setRenderBodyOnly(true);
 	}
@@ -35,7 +35,7 @@ public class CityModalContainer extends ModalContainer {
 	 */
 	@Override
 	protected Component createBody(String id) {
-		return new CityCRUDPanel(id);
+		return new CountryCRUDPanel(id);
 	}
 	
 }

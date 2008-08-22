@@ -14,12 +14,13 @@ import com.antilia.web.beantable.IPageableComponent;
 import com.antilia.web.beantable.provider.IPageableProvider;
 import com.antilia.web.button.AbstractButton;
 import com.antilia.web.button.IMenuItem;
+import com.antilia.web.toolbar.IToolbarItem;
 
 /**
  * 
  * @author Ernesto Reinaldo Barreiro (reiern70@gmail.com)
  */
-public class PageNumberItem<E extends Serializable> extends Panel implements IMenuItem {
+public class PageNumberItem<E extends Serializable> extends Panel implements IMenuItem, IToolbarItem {
 
 	private static final long serialVersionUID = 1L;
 
@@ -35,7 +36,10 @@ public class PageNumberItem<E extends Serializable> extends Panel implements IMe
 
 			@Override
 			public Object getObject() {
-				IPageableProvider<E> source = findPageableComponent().getPageableProvider();
+				IPageableComponent< E> component = findPageableComponent();
+				if(component  == null)
+					return 0;
+				IPageableProvider<E> source = component.getPageableProvider();
 				if(source.isEmpty())
 					return 1;
 				return (source.currentPageNumber()+1);
@@ -48,7 +52,10 @@ public class PageNumberItem<E extends Serializable> extends Panel implements IMe
 
 			@Override
 			public Object getObject() {
-				IPageableProvider<E> source = findPageableComponent().getPageableProvider();
+				IPageableComponent< E> component = findPageableComponent();
+				if(component  == null)
+					return 0;
+				IPageableProvider<E> source = component.getPageableProvider();
 				if(source.isEmpty())
 					return 1;
 				return source.getNumberOfPages();
