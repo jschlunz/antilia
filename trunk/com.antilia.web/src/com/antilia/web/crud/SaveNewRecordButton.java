@@ -8,12 +8,12 @@ import java.io.Serializable;
 
 import org.apache.wicket.Component;
 import org.apache.wicket.ResourceReference;
-import org.apache.wicket.Session;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.markup.html.form.Form;
 
 import com.antilia.web.button.AbstractButton;
 import com.antilia.web.resources.DefaultStyle;
+import com.antilia.web.utils.ExceptionUtils;
 
 
 /**
@@ -55,7 +55,7 @@ public class SaveNewRecordButton<E extends Serializable> extends AbstractButton 
 				target.addComponent((Component)crudPanel);
 			}
 		} catch (Exception e) {
-			getPage().error(e.getMessage());
+			getPage().error(ExceptionUtils.getFeedBackMessage(e));
 			target.addComponent(findCreatePanel().getMessages());
 		}
 	}

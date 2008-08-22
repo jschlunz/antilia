@@ -1,0 +1,35 @@
+<html>
+    <head>                
+        <script type="text/javascript" src="yahoo-dom-event.js" ></script>
+        <script type="text/javascript" src="dragdrop-min.js" ></script>
+        <script type="text/javascript" src="animation-min.js"></script>
+    </head>
+    <body onresize="init();">
+        <script type="text/javascript"> 
+             
+             function init() { 
+                YAHOO.util.Dom.setStyle("frame", "visibility", ""); 
+                YAHOO.util.Dom.setStyle("frame", "width", (YAHOO.util.Dom.getViewportWidth() -20)+ "px"); 
+                YAHOO.util.Dom.setStyle("frame", "height", (YAHOO.util.Dom.getViewportHeight() -35) + "px");
+                
+                YAHOO.util.Dom.setStyle("frameBody", "height", (YAHOO.util.Dom.getViewportHeight() -35 -57) + "px");
+                
+            }    
+            
+            YAHOO.util.Event.onDOMReady(init);
+
+        </script> 
+   
+        <div id="frame" style="border: solid 1px red;">
+            <div style="width: 100%; height: 56px;">
+                Header            
+            </div>       
+            <div id ="frameBody"  style="width: 100%; border: solid 1px blue; position: relative; overflow: auto;">
+                Body
+                    <div style="position:absolute; top: 100px; left: 20px; width: 200px; height: 200px; border: solid 1px red;">
+                    </div>                    
+            </div>     
+        </div> 
+           
+    </body>
+</html>

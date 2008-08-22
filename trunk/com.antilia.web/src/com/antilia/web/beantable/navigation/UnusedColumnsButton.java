@@ -22,6 +22,7 @@ public class UnusedColumnsButton<E extends Serializable> extends DialogButton {
 
 	public UnusedColumnsButton() {
 		super("unusedColumns");
+		setShowAtMousePosition(true);
 	}
 
 	/* (non-Javadoc)

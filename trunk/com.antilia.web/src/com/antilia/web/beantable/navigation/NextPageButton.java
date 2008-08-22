@@ -52,7 +52,9 @@ public class NextPageButton<E extends Serializable> extends AbstractButton {
 	@Override
 	public boolean isEnabled() {
 		IPageableComponent<E> component = findPageableComponent();
-		return component.getPageableProvider().hasNextPage();
+		if(component != null)
+			return component.getPageableProvider().hasNextPage();
+		return false;
 	}
 	
 	@Override

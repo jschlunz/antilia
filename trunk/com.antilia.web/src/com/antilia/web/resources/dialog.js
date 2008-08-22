@@ -1,4 +1,4 @@
-	//Class for dragable panel.	
+	//Class for draggable panel.	
 	function Panel(id, parentId, ie, minWidth, minHeight, modal, panelClass, onDragClass, selectedClass) {
 		this.id = id;
 		this.parentId = parentId;
@@ -277,10 +277,16 @@
 		return res;
 	}	
 	
+	function Coordinate(id, e) {
+	       this.id = id;
+	       this.x = e.clientX;
+	       this.y = e.clientY;
+	}
+	
 	//prototypes for dragable panels.	
 	function Panels() {
 		this.panels = new Array();
-		
+			
 		this.addPanel = function(id, parentId, ie, minWidth, minHeight, modal, panelClass, onDragClass, selectedClass) {
 			var panel = this.getPanel(id)
 			if(panel == null) {
@@ -300,6 +306,15 @@
 			}			
 		}
 		
+		// shows the panel at the same position of the button the was clicket.		
+		this.showPanel = function(id, buttonId) {
+		      var panel = this.getPanel(id);
+		      var pos = YAHOO.util.Dom.getXY(buttonId);    	      	      	      
+		      if(panel != null) {                    
+		            YAHOO.util.Dom.setXY(panel.panel, pos);
+               }
+		}
+		        
 		// retrieves a panel based in its ID.
 		this.getPanel = function(id) {
 			for(var i=this.panels.length-1; i>=0 ; i--) {
@@ -309,7 +324,7 @@
 				}				
 			}
 			return null;
-		}
+		}	
 				
 		// folds/unfiolds a given panel		
 		this.foldPanel = function(id) {

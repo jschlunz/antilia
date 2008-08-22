@@ -16,6 +16,4 @@ public interface IContainer {
 
 	WebMarkupContainer getContent();
 	
-	String getBodyId();
-	
 }

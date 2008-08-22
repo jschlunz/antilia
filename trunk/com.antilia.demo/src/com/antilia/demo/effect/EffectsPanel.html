@@ -1,113 +1,154 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html xmlns:wicket="http://wicket.sourceforge.net/">
 <body>	
 	<wicket:panel>
-	<div class="c">
+	<div style="margin: 10px;">
+	<table>
+	   <tr>
+	   <td>
+	   <div class="c">
 		<div wicket:id="Effect.Fade"></div>
-	</div>
+	   </div>
+	   </td>
+       <td>
 	<div class="c"> 				
 		<div wicket:id="Effect.Puff"></div>
 	</div>
+	</td>
+     <td>
 	<div class="c"> 				
 		<div wicket:id="Effect.BlindDown"></div>
 	</div>
+	</td>
+	<td>
 	<div class="c"> 				
 		<div wicket:id="Effect.BlindUp"></div>
 	</div>
+	</td>
+	<td>
 	<div class="c"> 				
 		<div wicket:id="Effect.SwitchOff"></div>
 	</div>
+	</td>
+	   <td>
 	<div class="c"> 				
 		<div wicket:id="Effect.DropOut"></div>
 	</div>
-	
-	<p style="clear: left;">
-	</p>
-	<br/>
-	
+	</td>
+	</tr>
+	</table>
+			
+	<table>
+	<tr>
+	<td>
 	<div class="c"> 				
 		<div wicket:id="Effect.SlideDown"></div>
 	</div>
+	</td>
+	<td>
 	<div class="c"> 				
 		<div wicket:id="Effect.SlideUp"></div>
 	</div>
+	</td>
+	<td>
 	<div class="c"> 				
 		<div wicket:id="Effect.Shake"></div>
-	</div>		
+	</div>
+	</td>
+	<td>		
 	<div class="c"> 				
 		<div wicket:id="Effect.Pulsate"></div>
 	</div>
+	</td>
+	<td>
 	<div class="c"> 				
 		<div wicket:id="Effect.Squish"></div>
 	</div>
+	</td>
+	<td>
 	<div class="c"> 				
 		<div wicket:id="Effect.Fold"></div>
 	</div>
+	</td>
+	</tr>
+	</table>.
 	
-	<p style="clear: left;">
-	</p>
-	<br/>
-	 
+	
+	<table>
+	<tr>
+	<td> 
 	<div class="c"> 				
 		<div wicket:id="Effect.Grow.center"></div>
 	</div>
+	</td>
+	<td>
 	<div class="c"> 				
 		<div wicket:id="Effect.Grow.bottom_left"></div>
 	</div>
+	</td>
+	<td>
 	<div class="c"> 				
 		<div wicket:id="Effect.Grow.bottom_right"></div>
 	</div>
+	</td>
+	<td>
 	<div class="c"> 				
 		<div wicket:id="Effect.Grow.top_right"></div>
 	</div>
+	</td>
+	<td>
 	<div class="c"> 				
 		<div wicket:id="Effect.Grow.top_left"></div>
 	</div>
+	</td>
+	<td>
 	<div class="c"> 				
 		<div wicket:id="Effect.Shrink"></div>
-	</div>	
+	</div>
+	</td>
+	</tr>	
+	</table>
 	
-	<p style="clear: left;">
-	</p>
 	
-	<br/>
-	
-	<p style="padding: 1em;">
+	<div>
 		You can use Effect.Parallel to execute several effect in one blow. This can be done for one component as bellow: 
-	</p>
+	</div>
 	
+	<table>
+	<tr>
+	<td>
 	<div class="c"> 				
 		<div wicket:id="Effect.Parallel.same"></div>
 	</div>	
+	</td>
+	</tr>
+	</table>
 	
-	<p style="clear: left;">
-	</p>
-	
-	<br/>
-	
-	<p style="padding: 1em;">
+	<div>
 		or for several component as bellow <span wicket:id="clickme" style="color: red; cursor: pointer;" onclick="">click me</span> 
-	</p>
-			
+	</div>
+
+	<table>
+	<tr>
+	   <td>		
 	<div class="c"> 				
 		<div wicket:id="Effect.Parallel.one"></div>
 	</div>
-	
+	</td>
+	<td>	
 	<div class="c"> 				
 		<div wicket:id="Effect.Parallel.two"></div>
 	</div>
-	
-	<p style="clear: left;">
-	</p>
-	
-	<br/>
+	</td>
+	</tr>
+	</table>
 	
 	<form wicket:id="form">			
-			<div style="padding: 1em; width: 500px; height: 400px;">
+			<div style="padding: 1em; width: 500px; height: 400px; overflow: visible;">
 				<span wicket:id="clickme" style="color: red; cursor: pointer;" onclick="">click me</span>				
 				<div wicket:id="table" style="width: auto; overflow: auto;"></div>				
 			</div>
 	</form>
-	</wicket:panel>	
+	</div>
+	</wicket:panel>		
 </body>
 </html>

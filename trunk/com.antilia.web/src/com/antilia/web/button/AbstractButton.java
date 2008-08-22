@@ -13,12 +13,14 @@ import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.image.Image;
 import org.apache.wicket.markup.html.panel.Panel;
 
+import com.antilia.web.toolbar.IToolbarItem;
+
 
 /**
  * 
  * @author Ernesto Reinaldo Barreiro (reiern70@gmail.com)
  */
-public abstract class AbstractButton extends Panel implements IMenuItem {
+public abstract class AbstractButton extends Panel implements IMenuItem, IToolbarItem {
 
 	private static final long serialVersionUID = 1L;
 

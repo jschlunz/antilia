@@ -29,6 +29,7 @@ public class CityCRUDPanel extends CRUDPanel<City> {
 			addSearchFields("id", "name", "country");
 		}		
 	}
+	
 	public CityCRUDPanel(String id) {
 		super(id, new CityCRUDStyle());
 	}

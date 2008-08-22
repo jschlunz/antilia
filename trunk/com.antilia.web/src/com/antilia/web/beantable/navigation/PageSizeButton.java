@@ -13,12 +13,13 @@ import org.apache.wicket.model.Model;
 import com.antilia.web.beantable.IPageableComponent;
 import com.antilia.web.button.AbstractButton;
 import com.antilia.web.button.IMenuItem;
+import com.antilia.web.toolbar.IToolbarItem;
 
 /**
  * 
  * @author Ernesto Reinaldo Barreiro (reiern70@gmail.com)
  */
-public class PageSizeButton<E extends Serializable> extends Panel implements IMenuItem {
+public class PageSizeButton<E extends Serializable> extends Panel implements IMenuItem, IToolbarItem {
 
 	private static final long serialVersionUID = 1L;
 
@@ -35,8 +36,11 @@ public class PageSizeButton<E extends Serializable> extends Panel implements IMe
 			private static final long serialVersionUID = 1L;
 
 			@Override
-			public Object getObject() {				
-				return findPageableComponent().getPageableProvider().getPageSize();
+			public Object getObject() {
+				IPageableComponent<E> pageableComponent = findPageableComponent();
+				if(pageableComponent != null)
+					return pageableComponent.getPageableProvider().getPageSize();
+				return 10;
 			}
 			
 			@Override
