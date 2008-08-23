@@ -31,11 +31,13 @@ public class ColumnModelPalette<E extends Serializable> extends MyPalette {
 		
 		private static final long serialVersionUID = 1L;
 
+		@SuppressWarnings("unchecked")
 		@Override
 		public Object getDisplayValue(Object object) {
 			return ((IColumnModel<E>)object).getPropertyPath();
 		}
 		
+		@SuppressWarnings("unchecked")
 		@Override
 		public String getIdValue(Object object, int index) {
 			return ((IColumnModel<E>)object).getPropertyPath();
