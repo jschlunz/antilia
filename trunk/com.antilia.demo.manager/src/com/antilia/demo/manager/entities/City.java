@@ -79,5 +79,17 @@ public class City implements java.io.Serializable, Comparable<City>{
 		return country;
 	}
 	
+	@Override
+	public boolean equals(Object obj) {
+		if(obj instanceof City) {
+			City city = (City)obj;
+			return name.equals(city.getName()) && getCountry().equals(city.getCountry());
+		}
+		return false;
+	}		
 	
+	@Override
+	public String toString() {
+		return getName() + " ("+getCountry().getName()+")";
+	}
 }
