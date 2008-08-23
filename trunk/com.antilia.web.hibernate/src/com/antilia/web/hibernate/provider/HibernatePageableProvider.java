@@ -97,6 +97,12 @@ public class HibernatePageableProvider<E extends Serializable> implements ILoada
 	}
 	
 	@Override
+	public void clearcache() {
+		clearCached();
+	}
+	
+	
+	@Override
 	public void add(E element) {
 		CommandExecuter.persist(element);
 	}
