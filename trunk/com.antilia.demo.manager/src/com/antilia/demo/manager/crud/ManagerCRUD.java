@@ -9,10 +9,10 @@ import java.io.Serializable;
 import com.antilia.demo.manager.HomeLink;
 import com.antilia.web.button.IMenuItemHolder;
 import com.antilia.web.button.IMenuItemsFactory;
-import com.antilia.web.crud.CRUDPanel;
 import com.antilia.web.crud.CrudStyler;
 import com.antilia.web.crud.SearchPanel;
 import com.antilia.web.crud.SearchPanelButtonsFactory;
+import com.antilia.web.crud.TitledCRUDPanel;
 import com.antilia.web.menu.Menu;
 
 /**
@@ -21,7 +21,7 @@ import com.antilia.web.menu.Menu;
  * @author Ernesto Reinaldo Barreiro (reiern70@gmail.com)
  *
  */
-public class ManagerCRUD<B extends Serializable> extends CRUDPanel<B> {
+public class ManagerCRUD<B extends Serializable> extends TitledCRUDPanel<B> {
 
 	private static final long serialVersionUID = 1L;
 
@@ -42,7 +42,7 @@ public class ManagerCRUD<B extends Serializable> extends CRUDPanel<B> {
 	}
 
 	@Override
-	protected SearchPanel<B> getSearchPanel(String id, CrudStyler<B> styler) {
+	protected SearchPanel<B> newSearchPanel(String id, CrudStyler<B> styler) {
 		return new SearchPanel<B>(id, styler) {
 			
 			private static final long serialVersionUID = 1L;

@@ -121,14 +121,18 @@ public class ResourceUtils {
 		
 		key.append(getDefaultBundle(beanClass));
 		key.append(BUNDLE_KEY_SEPARATOR);
-		key.append(ClassUtils.getUnqualifiedName(beanClass));
+		key.append(ClassUtils.getUnqualifiedName(beanClass));		
+		if(StringUtils.isEmpty(propertyPath)) {
+			return key.toString();
+		}			
 		key.append(PROPERTY_SEPARATOR);
-		key.append(propertyPath);
+		key.append(propertyPath);		
 		if(beanClass.getSuperclass()!=null && !beanClass.getSuperclass().equals(Object.class) &&
 			ReflectionUtils.isFieldDeclared(beanClass.getSuperclass(), propertyPath)) {
 			key.append(KEYS_SEPARATOR);
 			key.append(getPropertyResourceKey(beanClass.getSuperclass(), propertyPath));
 		}
+		
 		// property name is a path
 		if(propertyPath.indexOf('.') !=-1) {
 			try {

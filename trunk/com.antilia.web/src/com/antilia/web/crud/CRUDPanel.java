@@ -6,6 +6,8 @@ package com.antilia.web.crud;
 
 import java.io.Serializable;
 
+import org.apache.wicket.Component;
+import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.panel.Panel;
 
 import com.antilia.web.beantable.provider.IProviderSelector;
@@ -28,6 +30,12 @@ public abstract class CRUDPanel<B extends Serializable> extends Panel {
 	private Panel currentPanel;
 	
 	private CrudStyler<B> styler;
+	
+	public static final String BEFORE_BODY_ID = "beforeBody";
+	
+	public static final String AFTER_BODY_ID = "afterBody";
+	
+	public static final String BODY_ID = "body";
 	
 	/**
 	 * Constructs a default CRUD panel.
@@ -52,15 +60,19 @@ public abstract class CRUDPanel<B extends Serializable> extends Panel {
 		
 		configureStyler(this.styler);
 		
-		this.searchPanel = getSearchPanel("body", styler);				
+		add(newBeforeBody(BEFORE_BODY_ID, styler));
+		
+		this.searchPanel = newSearchPanel(BODY_ID, styler);				
 		currentPanel = searchPanel;
-		
-		editPanel = getEditPanel("body", styler);		
-		
-		
-		createPanel = getCreatePanel("body", styler);
-		
+		// edit panel
+		editPanel = newEditPanel(BODY_ID, styler);				
+		// create panel
+		createPanel = newCreatePanel(BODY_ID, styler);		
+	
+		add(newAfterBody(AFTER_BODY_ID, styler));
 	}
+	
+	
 	
 	/**
 	 * Override this method on supper classes in case you want to tune the style before 
@@ -81,6 +93,32 @@ public abstract class CRUDPanel<B extends Serializable> extends Panel {
 		 return getSearchPanel().getSelected();
 	 }
 	
+	 /**
+		 * Override this method to create your custom component before the search panel.
+		 * 
+		 * @param id
+		 * @param styler
+		 * @return
+		 */
+		protected Component newBeforeBody(String id, CrudStyler<B> styler) {
+			Label label = new Label(id, "");
+			label.setRenderBodyOnly(true);
+			return label;
+		}
+		
+		/**
+		 * Override this method to create your custom component after the search panel.
+		 * 
+		 * @param id
+		 * @param styler
+		 * @return
+		 */
+		protected Component newAfterBody(String id, CrudStyler<B> styler) {
+			Label label = new Label(id, "");
+			label.setRenderBodyOnly(true);
+			return label;
+		}
+		
 	/**
 	 * Override this method to create your custom SearchPanel.
 	 * 
@@ -88,7 +126,7 @@ public abstract class CRUDPanel<B extends Serializable> extends Panel {
 	 * @param styler
 	 * @return
 	 */
-	protected SearchPanel<B> getSearchPanel(String id, CrudStyler<B> styler) {
+	protected SearchPanel<B> newSearchPanel(String id, CrudStyler<B> styler) {
 		return new SearchPanel<B>(id, styler);
 	}
 	
@@ -98,7 +136,7 @@ public abstract class CRUDPanel<B extends Serializable> extends Panel {
 	 * @param styler
 	 * @return
 	 */
-	protected EditPanel<B> getEditPanel(String id, CrudStyler<B> styler) {
+	protected EditPanel<B> newEditPanel(String id, CrudStyler<B> styler) {
 		return new EditPanel<B>(id, styler);
 	}
 	
@@ -108,7 +146,7 @@ public abstract class CRUDPanel<B extends Serializable> extends Panel {
 	 * @param styler
 	 * @return
 	 */
-	protected CreatePanel<B> getCreatePanel(String id, CrudStyler<B> styler) {
+	protected CreatePanel<B> newCreatePanel(String id, CrudStyler<B> styler) {
 		return new CreatePanel<B>(id, styler);
 	}
 
