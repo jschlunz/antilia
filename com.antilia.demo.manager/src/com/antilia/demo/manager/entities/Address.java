@@ -8,10 +8,12 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 /**
@@ -19,27 +21,48 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "address")
-public class Address implements java.io.Serializable {
+public class Address implements java.io.Serializable, Comparable<Address> {
 
-	private long id;
+	private static final long serialVersionUID = 1L;
+	
+	@Id
+	@Column(name = "id", unique = true, nullable = false)
+	@GeneratedValue(generator="address_seq")
+	@SequenceGenerator(name="address_seq",sequenceName="address_seq", allocationSize=1)
+	private Long id;
+	
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "city", nullable = false)
 	private City city;
+	
+	@Column(name = "address1", nullable = false, length = 300)	
 	private String address1;
+	
+	@Column(name = "address2", length = 300)
 	private String address2;
+	
+	@Column(name = "address3", length = 300)
 	private String address3;
+	
+	@Column(name = "zipcode", length = 40)
 	private String zipcode;
+	
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "address")
 	private Set<Customer> customers = new HashSet<Customer>(0);
+	
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "address")
 	private Set<Employee> employees = new HashSet<Employee>(0);
 
 	public Address() {
 	}
 
-	public Address(long id, City city, String address1) {
+	public Address(Long id, City city, String address1) {
 		this.id = id;
 		this.city = city;
 		this.address1 = address1;
 	}
 
-	public Address(long id, City city, String address1, String address2,
+	public Address(Long id, City city, String address1, String address2,
 			String address3, String zipcode, Set<Customer> customers,
 			Set<Employee> employees) {
 		this.id = id;
@@ -52,18 +75,15 @@ public class Address implements java.io.Serializable {
 		this.employees = employees;
 	}
 
-	@Id
-	@Column(name = "id", unique = true, nullable = false)
-	public long getId() {
+	
+	public Long getId() {
 		return this.id;
 	}
 
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
-
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "city", nullable = false)
+	
 	public City getCity() {
 		return this.city;
 	}
@@ -72,7 +92,6 @@ public class Address implements java.io.Serializable {
 		this.city = city;
 	}
 
-	@Column(name = "address1", nullable = false, length = 300)
 	public String getAddress1() {
 		return this.address1;
 	}
@@ -81,7 +100,6 @@ public class Address implements java.io.Serializable {
 		this.address1 = address1;
 	}
 
-	@Column(name = "address2", length = 300)
 	public String getAddress2() {
 		return this.address2;
 	}
@@ -90,7 +108,6 @@ public class Address implements java.io.Serializable {
 		this.address2 = address2;
 	}
 
-	@Column(name = "address3", length = 300)
 	public String getAddress3() {
 		return this.address3;
 	}
@@ -99,7 +116,6 @@ public class Address implements java.io.Serializable {
 		this.address3 = address3;
 	}
 
-	@Column(name = "zipcode", length = 40)
 	public String getZipcode() {
 		return this.zipcode;
 	}
@@ -108,7 +124,6 @@ public class Address implements java.io.Serializable {
 		this.zipcode = zipcode;
 	}
 
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "address")
 	public Set<Customer> getCustomers() {
 		return this.customers;
 	}
@@ -117,13 +132,17 @@ public class Address implements java.io.Serializable {
 		this.customers = customers;
 	}
 
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "address")
 	public Set<Employee> getEmployees() {
 		return this.employees;
 	}
 
 	public void setEmployees(Set<Employee> employees) {
 		this.employees = employees;
+	}
+	
+	@Override
+	public int compareTo(Address o) {
+		return address1.compareTo(o.getAddress1());
 	}
 
 }

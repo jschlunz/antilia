@@ -30,7 +30,7 @@ public class Country implements java.io.Serializable, Comparable<Country> {
 	@GeneratedValue(generator="country_seq")
 	@SequenceGenerator(name="country_seq",sequenceName="country_seq", allocationSize=1)
 	//@GeneratedValue(strategy=GenerationType.IDENTITY, generator="country_seq")
-	private long id;
+	private Long id;
 	
 	@Column(name = "name", unique = true, nullable = false, length = 300)
 	private String name;
@@ -57,11 +57,11 @@ public class Country implements java.io.Serializable, Comparable<Country> {
 	}
 
 	
-	public long getId() {
+	public Long getId() {
 		return this.id;
 	}
 
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
