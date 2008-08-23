@@ -28,7 +28,7 @@ import com.antilia.web.field.impl.TextField;
  * @author Ernesto Reinaldo Barreiro (reiern70@gmail.com)
  *
  */
-public class AutoFieldPanel<B extends Serializable> extends Panel {
+public class AutoFieldPanel<B extends Serializable> extends Panel implements IFieldPanel {
 
 	private static final long serialVersionUID = 1L;
 
@@ -93,6 +93,8 @@ public class AutoFieldPanel<B extends Serializable> extends Panel {
 	 */
 	public AutoFieldPanel(String id, IAutoFieldModel<B> autoFieldModel) {
 		super(id);
+		
+		setOutputMarkupId(true);
 		
 		if(autoFieldModel == null)
 			throw new IllegalArgumentException("autoFieldModel cannnot be null");

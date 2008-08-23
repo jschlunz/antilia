@@ -69,14 +69,21 @@ public abstract class DialogButton extends Panel implements IMenuItem, IToolbarI
 		
 		add(button);
 		
-		dialog = newDialog("dialog"); 
-		dialog.setVisible(false);				
-		dialog.setOutputMarkupPlaceholderTag(true);
-		dialog.add(new AttributeAppender("style", new Model("position: relavive; z-index: 2;"), ";"));
-		dialog.setDialogButton(this);
-		add(dialog);
+		
 	}
 	
+	@Override
+	protected void onBeforeRender() {
+		super.onBeforeRender();	
+		if(dialog == null) {
+			dialog = newDialog("dialog"); 
+			dialog.setVisible(false);				
+			dialog.setOutputMarkupPlaceholderTag(true);
+			dialog.add(new AttributeAppender("style", new Model("position: relavive; z-index: 2;"), ";"));
+			dialog.setDialogButton(this);
+			add(dialog);
+		}
+	}
 	protected abstract String getLabel();
 
 	protected abstract ResourceReference getImage();
