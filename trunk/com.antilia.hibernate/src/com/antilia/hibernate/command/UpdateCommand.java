@@ -6,6 +6,9 @@ package com.antilia.hibernate.command;
 
 import java.io.Serializable;
 
+import com.antilia.common.util.ExceptionUtils;
+import com.antilia.hibernate.util.CommandUtils;
+
 /**
  * 
  *
@@ -25,8 +28,25 @@ public class UpdateCommand<E extends Serializable> extends AbstractPersistentCom
 	
 	@Override
 	protected E doExecute() throws Throwable {
-		getSession().update(getTransientInstance());
-		return getTransientInstance();
+		try {
+			
+			
+			//validate(entity);			
+			// invoke beforeUpdate
+			//invokeAnnotatedMethod(entity,BeforeUpdate.class);	
+			
+			//entity = em.merge(centity));
+			
+			
+			// invoke afterUpdate
+			//invokeAnnotatedMethod(entity,AfterUpdate.class);
+			
+			getSession().update(CommandUtils.attachObject(getTransientInstance()));
+			
+			return getTransientInstance();
+		} catch (Throwable e) {
+			throw ExceptionUtils.getRootCause(e);
+		}
 	}
 
 	/**
