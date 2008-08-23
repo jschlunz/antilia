@@ -5,7 +5,6 @@
 package com.antilia.demo.manager.crud;
 
 import com.antilia.demo.manager.entities.City;
-import com.antilia.web.crud.CRUDPanel;
 import com.antilia.web.crud.CrudStyler;
 
 /**
@@ -14,7 +13,7 @@ import com.antilia.web.crud.CrudStyler;
  * @author Ernesto Reinaldo Barreiro (reiern70@gmail.com)
  *
  */
-public class CityCRUDPanel extends CRUDPanel<City> {
+public class CityCRUDPanel extends ManagerCRUD<City> {
 
 	private static final long serialVersionUID = 1L;
 

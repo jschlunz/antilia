@@ -4,6 +4,7 @@
  */
 package com.antilia.demo.manager;
 
+import com.antilia.demo.manager.crud.AddressModalContainer;
 import com.antilia.demo.manager.crud.CityModalContainer;
 import com.antilia.demo.manager.crud.CountryModalContainer;
 import com.antilia.web.toolbar.IToolbar;
@@ -37,6 +38,8 @@ public class MainMenuFactory implements IToolbarItemsFactory {
 	@Override
 	public void populateMenuItems(String menuId, IToolbar toolbar) {
 			SubToolbar subToolbar = new SubToolbar("cities", toolbar) {
+				private static final long serialVersionUID = 1L;
+
 				@Override
 				protected String getTitle() {
 					return "Cities";
@@ -46,6 +49,17 @@ public class MainMenuFactory implements IToolbarItemsFactory {
 			
 			subToolbar.addItem(new CRUDButton("city", "Cities", this.page, new CityModalContainer(this.contentId)));
 			subToolbar.addItem(new CRUDButton("county", "Counties", this.page, new CountryModalContainer(this.contentId)));
+			
+			subToolbar = new SubToolbar("other", toolbar) {
+				private static final long serialVersionUID = 1L;
+
+				@Override
+				protected String getTitle() {
+					return "Other";
+				}
+			};
+			toolbar.addItem(subToolbar);
+			subToolbar.addItem(new CRUDButton("Addresses", "Addresses", this.page, new AddressModalContainer(this.contentId)));
 	}
 
 }
