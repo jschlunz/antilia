@@ -6,7 +6,6 @@ package com.antilia.demo.manager;
 
 import org.apache.wicket.ResourceReference;
 import org.apache.wicket.ajax.AjaxRequestTarget;
-import org.apache.wicket.markup.html.image.Image;
 
 import com.antilia.web.button.AbstractLink;
 import com.antilia.web.dialog.ModalContainer;
@@ -43,7 +42,7 @@ public class CRUDButton extends AbstractLink {
 	 */
 	@Override
 	protected ResourceReference getImage() {
-		return DefaultStyle.IMG_DOWN;
+		return DefaultStyle.IMG_TRANSPARENT;
 	}
 
 	/* (non-Javadoc)
@@ -61,7 +60,6 @@ public class CRUDButton extends AbstractLink {
 	protected void onClick(AjaxRequestTarget target) {
 		if(target != null) {
 			this.page.getBody().addOrReplace(modalContainer);
-			page.setContent(modalContainer);
 			target.addComponent(this.page.getBody());
 		}
 	}
