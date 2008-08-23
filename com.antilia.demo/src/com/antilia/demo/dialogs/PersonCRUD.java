@@ -43,7 +43,7 @@ public class PersonCRUD extends CRUDPanel<Person> {
 	 * @see com.antilia.web.crud.CRUDPanel#getSearchPanel(java.lang.String)
 	 */
 	@Override
-	protected SearchPanel<Person> getSearchPanel(String id, CrudStyler<Person> styler) {
+	protected SearchPanel<Person> newSearchPanel(String id, CrudStyler<Person> styler) {
 		return new PersonSearchPanel(id, styler);
 	}
 
