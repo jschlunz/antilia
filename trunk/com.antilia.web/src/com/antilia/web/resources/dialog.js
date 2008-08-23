@@ -46,7 +46,7 @@
 	Panel.prototype.addModalLayer = function() {
 		this.overlay = $(document.createElement('div'));
 		this.overlay.id = this.id + 'modal_overlay';
-		this.overlay.className = 'modal_overlay';
+		this.overlay.className = 'dark-mask-dark';
 		this.panelBody.appendChild(this.overlay);
 		this.overlay.style.display = 'none';
 		this.overlay.style.width = "1900px";
@@ -71,6 +71,7 @@
 		if(!this.overlayVisible) {			
 			this.overlayVisible = true;	
 			if(this.parent) {
+			/*
 			new Effect.toggle(this.parent.overlay, 
 			'appear',
 			{
@@ -80,10 +81,13 @@
  				from: 0,
  				to: 0.3
 			});
+			*/
+			this.parent.overlay.style.display = 'block'; 
 		}
 		} else {
 			this.overlayVisible = false;
 			if(this.parent) {
+			/*
 			new Effect.toggle(this.parent.overlay, 
 			'appear',
 			{
@@ -93,6 +97,8 @@
  				from: 0.3,
  				to: 0
 			});
+			*/
+			this.parent.overlay.style.display = 'none'; 
 		}
 		}		
 	}	
@@ -398,7 +404,7 @@
 	ModalContainer.prototype.addModalLayer = function() {
         this.overlay = $(document.createElement('div'));
         this.overlay.id = this.id + 'modal_overlay';
-        this.overlay.className = 'modal_overlay';
+        this.overlay.className = 'dark-mask-dark';
         this.panelBody.appendChild(this.overlay);
         this.overlay.style.display = 'none';
         this.overlay.style.width = "1900px";
@@ -409,6 +415,7 @@
 	ModalContainer.prototype.toggleModal = function() {
         if(!this.overlayVisible) {          
             this.overlayVisible = true;
+            /*
             new Effect.toggle(this.overlay, 
             'appear',
             {
@@ -417,9 +424,12 @@
                 duration: 0.1,
                 from: 0,
                 to: 0.3
-            });        
+            });
+            */ 
+            this.parent.overlay.style.display = 'block';       
         } else {
             this.overlayVisible = false;
+            /*
             new Effect.toggle(this.overlay, 
             'appear',
             {
@@ -428,6 +438,8 @@
                 duration: 0.1,
                 from: 0.3,
                 to: 0
-            });        
+            });
+            */
+            this.parent.overlay.style.display  = 'none';        
         }       
     }

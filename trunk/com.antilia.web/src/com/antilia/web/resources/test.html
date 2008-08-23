@@ -1,0 +1,91 @@
+<html xmlns:wicket="org.apache.wicket">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+    <title>Antilia Demo</title>
+<script type="text/javascript" src="./common.js"></script>
+<script type="text/javascript" src="./table.js"></script>
+<script type="text/javascript" src="./dialog.js"></script>
+<link rel="stylesheet" type="text/css" href="./main.css" />
+<script type="text/javascript" src="./table.css"></script>
+<link rel="stylesheet" type="text/css" href="./dialog.css" />
+<link rel="stylesheet" type="text/css" href="./menu.css" />
+<script type="text/javascript" src="./ie5.js"></script>
+<script type="text/javascript" src="./DropDownMenuX.js"></script>
+<script type="text/javascript" src="./wicket-event.js"></script>
+<script type="text/javascript" src="./wicket-ajax.js"></script>
+</head>
+<body>
+     <div class="main" style="padding: 0 0 0 0; margin: 0 0 0 0;">
+            <table  style="margin: 0; padding: 0; width: 100%; height: 75px;" cellpadding="0" cellspacing="0">
+                <tr>
+                    <td class="banner-right" nowrap="nowrap">
+                        &nbsp;
+                    </td>
+                    <td class="banner-right" nowrap="nowrap">
+                        &nbsp;
+                    </td>
+                </tr>
+            </table>            
+            <div style="position: relative; width: 100%; height: 100%; vertical-align: top; overflow: visible;">
+                
+            <div id="body3">
+                <span id="content4">
+          <div>
+            <div id="dialog5" style="left: 0; top:0; position: absolute; overflow: auto;right:1px;bottom:1px;height: 600; background-color: #ebf6fd" class="modalContainerBody">                                    
+                    <div id="dialog5Body" style="position: relative; left: 0px;; top: 0px;right:0px;bottom:0px;overflow: visible;height: auto;background-color: #ebf6fd" class="panelBody2">
+                        <div style="width: 100%; height: 100%;">
+    <div class="ddmx">
+        <div class="nav-menu" >
+            <table id="table6" cellpadding="0" cellspacing="0">
+                <tr>
+                <td>
+   <a class="item1 arrow" href="javascript:void(0)"><span>Cities</span></a>
+    <div class="section">
+        <table cellpadding="0" cellspacing="0">
+            <tr>
+                <td>
+    <a id="link7" onclick="var wcall=wicketAjaxGet('?wicket:interface=:1:body:content:dialog:dialogBody:body:toolbar:table:items:cities:items:1:item:city:link::IBehaviorListener:0:',null,null, function() {return Wicket.$('link7') != null;}.bind(this));return !wcall;" class="smallbutton" href="?wicket:interface=:1:body:content:dialog:dialogBody:body:toolbar:table:items:cities:items:1:item:city:link::ILinkListener::"><img src="resources/com.antilia.web.resources.images.ImgDummy/transparent.gif"/><span>Cities</span></a>
+    
+</td>                         
+            </tr><tr>
+                <td>
+    <a id="link9" onclick="var wcall=wicketAjaxGet('?wicket:interface=:1:body:content:dialog:dialogBody:body:toolbar:table:items:cities:items:2:item:county:link::IBehaviorListener:0:',null,null, function() {return Wicket.$('link9') != null;}.bind(this));return !wcall;" class="smallbutton" href="?wicket:interface=:1:body:content:dialog:dialogBody:body:toolbar:table:items:cities:items:2:item:county:link::ILinkListener::"><img src="resources/com.antilia.web.resources.images.ImgDummy/transparent.gif"/><span>Counties</span></a>
+    
+</td>                         
+            </tr>
+        </table>
+     </div>                          
+</td><td>
+   <a class="item1 arrow" href="javascript:void(0)"><span>Other</span></a>
+    <div class="section">
+        <table cellpadding="0" cellspacing="0">
+            <tr>
+                <td>
+    <a id="link11" onclick="var wcall=wicketAjaxGet('?wicket:interface=:1:body:content:dialog:dialogBody:body:toolbar:table:items:other:items:1:item:Addresses:link::IBehaviorListener:0:',null,null, function() {return Wicket.$('link11') != null;}.bind(this));return !wcall;" class="smallbutton" href="?wicket:interface=:1:body:content:dialog:dialogBody:body:toolbar:table:items:other:items:1:item:Addresses:link::ILinkListener::"><img src="resources/com.antilia.web.resources.images.ImgDummy/transparent.gif"/><span>Addresses</span></a>
+    
+</td>                         
+            </tr>
+        </table>
+     </div>                          
+</td>
+</tr>
+            </table>
+        </div>
+        <script type="text/javascript">var table6 = new DropDownMenuX('table6');
+table6.delay.show = 0;
+table6.delay.hide = 400;
+table6.position.levelX.left = 2;
+table6.init();
+</script>
+     </div>
+</div>
+                    </div>
+                </div>  
+        </div>
+        </span>        
+            </div>
+                   
+            </div>          
+        </div>
+</body>
+</html>

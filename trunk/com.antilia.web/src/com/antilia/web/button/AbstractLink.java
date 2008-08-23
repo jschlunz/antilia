@@ -14,6 +14,7 @@ import org.apache.wicket.markup.html.image.Image;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.Model;
 
+import com.antilia.common.util.StringUtils;
 import com.antilia.web.toolbar.IToolbarItem;
 
 /**
@@ -32,6 +33,9 @@ public abstract class AbstractLink extends Panel implements IMenuItem, IToolbarI
 				
 	public static final String LABEL_ID = "label";
 	
+	private Image image;
+	
+	Label text;
 	/**
 	 * Constructor.
 	 * @param id
@@ -49,9 +53,20 @@ public abstract class AbstractLink extends Panel implements IMenuItem, IToolbarI
 			}
 		}));
 		add(link);
-		Image image = newImage("image");
+		image = newImage("image");
 		link.add(image);
-		link.add(newLabel(LABEL_ID));
+		
+	}
+	
+	
+	@Override
+	protected void onBeforeRender() {
+		super.onBeforeRender();
+		
+		if(text == null) {
+			text = newLabel(LABEL_ID);
+			link.add(text);
+		}
 	}
 	
 	protected WebMarkupContainer newLink(String id) {
@@ -67,7 +82,11 @@ public abstract class AbstractLink extends Panel implements IMenuItem, IToolbarI
 	}
 	
 	protected Label newLabel(String id) {
-		return new Label(id, getLabel());
+		String text = getLabel();
+		Label label = new Label(id, text);
+		if(StringUtils.isEmpty(text))
+			label.setVisible(false);
+		return label;
 	}
 	
 	protected abstract void onClick(AjaxRequestTarget target);

@@ -48,6 +48,7 @@ public class CreateNewButton<E extends Serializable> extends AbstractButton {
 			CRUDPanel<E> crudPanel = getCRUDPanel();
 			if(crudPanel != null) {			
 				crudPanel.setCurrentPanel(crudPanel.getCreatePanel());
+				crudPanel.getSearchPanel().getPageableProvider().clearcache();
 				target.addComponent((Component)crudPanel);
 			}		
 	}

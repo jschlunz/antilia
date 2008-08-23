@@ -35,6 +35,8 @@ public interface IPageableProvider<E extends Serializable> extends IProvider<E>,
 	
 	void reset();
 	
+	void clearcache();
+	
 	boolean hasNextPage();
 	
 	boolean hasPreviousPage();

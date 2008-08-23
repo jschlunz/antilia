@@ -81,7 +81,7 @@ public class SearchPanel<B extends Serializable> extends Panel implements ILoada
 		add(beanForm);
 				
 				
-		 Menu menu = Menu.createMenu("topMenu", SearchPanelButtonsFactory.getInstance());
+		 Menu menu = newTopMenuMenu("topMenu");
 		 
 		beanForm.add(menu);
 		 
@@ -91,6 +91,10 @@ public class SearchPanel<B extends Serializable> extends Panel implements ILoada
 		ITableModel<B> tableModel = newTableModel(styler.getBeanClass());		
 		table  = newTable("table",tableModel, this.pageableProvider);
 		beanForm.add(table);
+	}
+	
+	protected Menu newTopMenuMenu(String id) {
+		return Menu.createMenu(id, SearchPanelButtonsFactory.getInstance());
 	}
 	
 	 public IProviderSelector<B> getSelected() {

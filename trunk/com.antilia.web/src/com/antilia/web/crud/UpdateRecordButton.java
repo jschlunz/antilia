@@ -6,7 +6,6 @@ package com.antilia.web.crud;
 
 import java.io.Serializable;
 
-import org.apache.wicket.Component;
 import org.apache.wicket.ResourceReference;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.markup.html.form.Form;
@@ -46,8 +45,17 @@ public class UpdateRecordButton<E extends Serializable> extends AbstractButton {
 	@Override
 	protected void onSubmit(AjaxRequestTarget target, Form form) {
 		CRUDPanel<E> crud = findCRUDPanel();		
-		crud.getSearchPanel().getPageableProvider().update(findEditPanel().getCurrentBean());
-		target.addComponent((Component)crud);
+		// use the pageable provider to update the record.
+		E bean = findEditPanel().getCurrentBean();
+		crud.getSearchPanel().getPageableProvider().update(bean);		
+		// remove it  form the edit provider		
+		crud.getEditPanel().getPageableProvider().removeCurrent();
+		if(crud.getEditPanel().getPageableProvider().size() > 0) {
+			// do nothing
+		} else {
+			crud.setCurrentPanel(crud.getSearchPanel());
+		}
+		target.addComponent(crud);
 	}
 	
 	

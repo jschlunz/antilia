@@ -48,6 +48,8 @@ public class EditButton<E extends Serializable> extends AbstractButton {
 			CRUDPanel<E> crudPanel = getCRUDPanel();
 			if(crudPanel != null && crudPanel.getSelected().getSelected().size() > 0) {
 				crudPanel.getEditPanel().clearPageableProvider();
+				// clearing records for the search panel so next time will be reloaded
+				crudPanel.getSearchPanel().getPageableProvider().clearcache();
 				crudPanel.setCurrentPanel(crudPanel.getEditPanel());
 				target.addComponent((Component)crudPanel);
 			}		

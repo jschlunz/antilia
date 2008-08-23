@@ -75,6 +75,8 @@ public abstract class ModalContainer extends Panel implements IDialogScope, IMen
 	private boolean foldable = true;
 
 	
+	private WebMarkupContainer dialogBody;
+	
 	private WebMarkupContainer innerPanel;
 	
 	private List<IDialogScope> dialogs = new ArrayList<IDialogScope>();
@@ -83,11 +85,14 @@ public abstract class ModalContainer extends Panel implements IDialogScope, IMen
 	
 	private IMenuItemsFactory topMenuItemFactory;
 	
-	private String panelClass = "panel";
+	private String panelClass = "modalContainerBody";
 	
 	private String onDragClass = "panelDrag";
 	
-	private String panelSelectedClass = "panelSelected";
+	private String panelSelectedClass = "modalContainerBody";
+	
+	
+	private Component body;
 	
 	/**
 	 * Constructor.
@@ -112,10 +117,6 @@ public abstract class ModalContainer extends Panel implements IDialogScope, IMen
 		setHeight(600);
 		this.dialogStyle = dialogStyle;
 		setOutputMarkupId(true);
-		if(!dialogStyle.isRoundedHeader()) {
-			panelClass = "panelSquare";
-			panelSelectedClass = "panelSquareSelected";
-		}
 		ClientProperties properties = ((WebClientInfo)getRequestCycle().getClientInfo()).getProperties();
 		setBrowserIExplorer(properties.isBrowserInternetExplorer());
 		if(isBrowserIExplorer()) {
@@ -164,7 +165,7 @@ public abstract class ModalContainer extends Panel implements IDialogScope, IMen
 				sb.append(ModalContainer.this.getPosX());
 				sb.append("; top:");
 				sb.append(ModalContainer.this.getPosY());
-				sb.append(";");
+				sb.append("; position: absolute; overflow: auto;");
 				sb.append("right:");
 				sb.append("1");
 				sb.append("px;");
@@ -174,27 +175,15 @@ public abstract class ModalContainer extends Panel implements IDialogScope, IMen
 				//sb.append("border: solid 1px red;");
 				sb.append("height: ");
 				sb.append(ModalContainer.this.getHeight());
+				if(dialogStyle.getBodyColor() != null) {
+					sb.append("; background-color: ");				
+					sb.append(dialogStyle.getBodyColor());
+				}
 				return sb.toString();
 			}
 		}));
-		
-		/*
-		WebMarkupContainer dialogBackground = new WebMarkupContainer("dialogBackground");
-		
-		
-		dialogBackground.add(new AttributeModifier("style", new Model() {
-			private static final long serialVersionUID = 1L;
-
-			@Override
-			public Object getObject() {
-				return "background-color: " + dialogStyle.getBackgroundColor() + "; bottom: 0px;";
-			}
-		}));	
-		
-		innerPanel.add(dialogBackground);
-		*/
-		
-		WebMarkupContainer dialogBody = new WebMarkupContainer("dialogBody");
+				
+		dialogBody = new WebMarkupContainer("dialogBody");
 		dialogBody.add(new AttributeModifier("id", new Model() {
 
 			private static final long serialVersionUID = 1L;
@@ -218,7 +207,7 @@ public abstract class ModalContainer extends Panel implements IDialogScope, IMen
 				sb.append("bottom:");
 				sb.append(0);
 				sb.append("px;");
-				sb.append("overflow: auto;");
+				sb.append("overflow: visible;");
 				sb.append("height: auto;");
 				//sb.append(ModalContainer.this.getHeight());
 				if(dialogStyle.getBodyColor() != null) {
@@ -233,14 +222,7 @@ public abstract class ModalContainer extends Panel implements IDialogScope, IMen
 		
 		innerPanel.add(dialogBody);
 		
-		// call createBody to retrieve user defined body.
-		Component body = createBody("body");
-		if(body != null) {
-			//body.setRenderBodyOnly(true);
-			dialogBody.add(body);
-		}
-		else 
-			dialogBody.add(new Label("body", ""));
+	
 				
 		Label script = new Label("script", new Model()) {
 			private static final long serialVersionUID = 1L;
@@ -275,6 +257,23 @@ public abstract class ModalContainer extends Panel implements IDialogScope, IMen
 		add(script);		
 	}
 	
+	
+	@Override
+	protected void onBeforeRender() {
+		super.onBeforeRender();
+		
+		if(body  == null) {
+			// call createBody to retrieve user defined body.
+			body = createBody("body");
+			
+			if(body != null) {
+				//body.setRenderBodyOnly(true);
+				dialogBody.add(body);
+			}
+			else 
+				dialogBody.add(new Label("body", ""));
+		}
+	}
 	
 	protected void appendToScript(StringBuffer script) {
 		
