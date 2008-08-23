@@ -76,6 +76,11 @@ public class InMemoryPageableProvider<E extends Serializable> implements ILoadab
 		this.currentPage = 0;
 	}	
 	
+	@Override
+	public void clearcache() {
+		// do nothing
+	}
+	
 	/**
 	 * Override  this method to handle custom collection loading 
 	 * @return
@@ -96,35 +101,54 @@ public class InMemoryPageableProvider<E extends Serializable> implements ILoadab
 	}
 	
 	
+	public boolean removeCurrent() {
+		if(collection.size()>0 && currentIndex>=0 && currentIndex < collection.size()) {
+			collection.remove(currentIndex);
+			if(collection.size() == 0) 
+				currentIndex = 0;
+			else if (currentIndex > (collection.size()-1)){
+				currentIndex = collection.size() - 1;
+			} 
+			return true;
+		}		
+		return false;
+	}
+	
 	public void update(E bean) {
-	}
-	
-	
-
-	@Override
-	public void add(E element) {
-		
-	}
-	
-	@Override
-	public void addAll(Collection<E> element) {
-		
-	}
-	
-	@Override
-	public void remove(E element) {
-		
-	}
-	
-	@Override
-	public void removeAll(Collection<E> element) {
-		
+		// is not going to work?
+		int i = collection.indexOf(bean);
+		if(i >= 0) {
+			collection.remove(i);
+			collection.set(i, bean);
+		}	
 	}
 	
 	@Override
 	public void updateAll(Collection<E> element) {
 		
 	}
+
+	@Override
+	public void add(E element) {
+		collection.add(element);
+	}
+	
+	@Override
+	public void addAll(Collection<E> element) {
+		collection.addAll(element);
+	}
+	
+	@Override
+	public void remove(E element) {		
+		collection.remove(element);
+	}
+	
+	@Override
+	public void removeAll(Collection<E> element) {
+		collection.removeAll(element);
+	}
+	
+	
 	
 	
 	/* (non-Javadoc)
@@ -357,6 +381,13 @@ public class InMemoryPageableProvider<E extends Serializable> implements ILoadab
 	 */
 	public void setQuery(IQuery<E> query) {
 		this.query = query;
+	}
+
+	/**
+	 * @return the currentIndex
+	 */
+	public int getCurrentIndex() {
+		return currentIndex;
 	}
 	
 }

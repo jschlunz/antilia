@@ -102,6 +102,11 @@ public class DataProviderPageableProvider<E extends Serializable> implements ILo
 		clearCached();
 	}
 	
+	@Override
+	public void clearcache() {
+		clearCached();
+	}
+	
 	@SuppressWarnings("unchecked")
 	@Override
 	public void add(E element) {

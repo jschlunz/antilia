@@ -13,7 +13,6 @@ import org.apache.commons.beanutils.BeanUtils;
 import org.apache.wicket.markup.html.panel.Panel;
 
 import com.antilia.hibernate.query.IQuery;
-import com.antilia.web.beantable.provider.IPageableProvider;
 import com.antilia.web.beantable.provider.IProviderSelector;
 import com.antilia.web.beantable.provider.impl.InMemoryPageableProvider;
 import com.antilia.web.field.AutoFieldModel;
@@ -36,7 +35,7 @@ public class EditPanel<B extends Serializable> extends Panel {
 	private BeanProxy<B> beanProxy;
 	
 
-	IPageableProvider<B> pageableProvider;
+	private InMemoryPageableProvider<B> pageableProvider;
 	
 	private CrudStyler<B> styler;
 	
@@ -136,7 +135,7 @@ public class EditPanel<B extends Serializable> extends Panel {
 	/**
 	 * @return the pageableProvider
 	 */
-	public IPageableProvider<B> getPageableProvider() {
+	public InMemoryPageableProvider<B> getPageableProvider() {
 		return pageableProvider;
 	}
 
