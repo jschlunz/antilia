@@ -1,6 +1,6 @@
 - HIBERNATE-Persistence layer.
 
--Decouple filters form Hibernate.
+-Decouple filters from Hibernate.
 * See projections.
 * Reorganize code so that (unnecessary) references to Hibernate are removed.
 
@@ -12,7 +12,9 @@ CRUD
     -Refine Date-Picker.
     -sliders
     - spinner.
-    -Time-stamp component.    
+    -Time-stamp component.
+    -Combo reload
+    
 * Large selection: opening a new (modal) window that allows to select (even create a new record).
 * Drag drop of search fields... (user can design the search part of the CRUD)
 * Configure search fields (operator).

@@ -17,7 +17,7 @@ import com.antilia.web.beantable.provider.IProviderSelector;
  * 
  * @author Ernesto Reinaldo Barreiro (reiern70@gmail.com)
  */
-public abstract class CRUDPanel<B extends Serializable> extends Panel {
+public class CRUDPanel<B extends Serializable> extends Panel {
 
 	private static final long serialVersionUID = 1L;
 	

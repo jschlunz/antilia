@@ -6,6 +6,7 @@ package com.antilia.web.crud;
 
 import java.io.Serializable;
 import java.lang.reflect.Field;
+import java.lang.reflect.Modifier;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,9 +38,9 @@ public class AutoCrudStyler<E extends Serializable> extends CrudStyler<E> {
 		
 		Field[] fields  = beanClass.getDeclaredFields();		
 		for(Field field: fields) {			
-			fieldNames.add(field.getName());
-		}
-		
+			if(!Modifier.isStatic(field.getModifiers())) 
+				fieldNames.add(field.getName());
+		}		
 		addEditFields(fieldNames);
 		addSearchFields(fieldNames);		
 		addTableColumns(fieldNames);

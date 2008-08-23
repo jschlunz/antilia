@@ -91,6 +91,10 @@ public abstract class DefaultDialog extends Panel implements IDialogScope, IMenu
 	
 	private String panelSelectedClass = "panelSelected";
 	
+	private WebMarkupContainer dialogBody;
+	
+	private Component body;
+	
 	/**
 	 * Constructor.
 	 * 
@@ -203,7 +207,7 @@ public abstract class DefaultDialog extends Panel implements IDialogScope, IMenu
 		
 		innerPanel.add(dialogBackground);
 		
-		WebMarkupContainer dialogBody = new WebMarkupContainer("dialogBody");
+		dialogBody = new WebMarkupContainer("dialogBody");
 		dialogBody.add(new AttributeModifier("id", new Model() {
 
 			private static final long serialVersionUID = 1L;
@@ -238,14 +242,7 @@ public abstract class DefaultDialog extends Panel implements IDialogScope, IMenu
 		}));
 		dialogBackground.add(dialogBody);
 				
-		// call createBody to retrieve user defined body.
-		Component body = createBody("body");
-		if(body != null) {
-			//body.setRenderBodyOnly(true);
-			dialogBody.add(body);
-		}
-		else 
-			dialogBody.add(new Label("body", ""));
+		
 		
 		
 		WebMarkupContainer footer = new WebMarkupContainer("footer") ;
@@ -314,6 +311,21 @@ public abstract class DefaultDialog extends Panel implements IDialogScope, IMenu
 		add(script);		
 	}
 	
+	@Override
+	protected void onBeforeRender() {
+		super.onBeforeRender();
+	
+		if(body == null) {
+			// call createBody to retrieve user defined body.
+			body = createBody("body");
+			if(body != null) {
+				//body.setRenderBodyOnly(true);
+				dialogBody.add(body);
+			}
+			else 
+				dialogBody.add(new Label("body", ""));
+		}
+	}
 	
 	protected void appendToScript(StringBuffer script) {
 		
