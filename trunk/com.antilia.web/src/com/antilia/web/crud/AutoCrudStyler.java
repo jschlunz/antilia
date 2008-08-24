@@ -10,6 +10,9 @@ import java.lang.reflect.Modifier;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+
 /**
  * 
  *
@@ -38,11 +41,20 @@ public class AutoCrudStyler<E extends Serializable> extends CrudStyler<E> {
 		
 		Field[] fields  = beanClass.getDeclaredFields();		
 		for(Field field: fields) {			
-			if(!Modifier.isStatic(field.getModifiers())) 
+			if(!rejectField(field)) 
 				fieldNames.add(field.getName());
 		}		
 		addEditFields(fieldNames);
 		addSearchFields(fieldNames);		
 		addTableColumns(fieldNames);
+	}
+	
+	private boolean rejectField(Field field) {
+		int modifiers = field.getModifiers();
+		if(Modifier.isStatic(modifiers))
+			return true;		
+		if(field.isAnnotationPresent(OneToMany.class) || field.isAnnotationPresent(ManyToMany.class))
+			return true;
+		return false;
 	}
 }
