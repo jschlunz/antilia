@@ -110,6 +110,8 @@ public class DefaultStyle {
 	
 	public static ResourceReference IMG_SAVE_ENABLED = new ResourceReference(ImgDummy.class, "saveEnabled.png");
 	
+	public static ResourceReference IMG_SEARCH = new ResourceReference(ImgDummy.class, "search.gif");
+	
 	
 	public static ResourceReference IMG_MINIMIZED = new ResourceReference(ImgDummy.class, "minimized.gif");
 }
