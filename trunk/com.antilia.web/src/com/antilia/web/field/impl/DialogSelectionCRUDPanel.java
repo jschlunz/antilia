@@ -8,6 +8,9 @@ import java.io.Serializable;
 
 import com.antilia.web.button.IMenuItemHolder;
 import com.antilia.web.crud.CrudStyler;
+import com.antilia.web.field.BeanProxy;
+import com.antilia.web.field.IFieldModel;
+import com.antilia.web.field.IFieldPanel;
 
 /**
  * 
@@ -21,21 +24,29 @@ public class DialogSelectionCRUDPanel<B extends Serializable> extends SelectionC
 	
 	private LargeSelectionDialog<B> selectionDialog;
 	
+	private BeanProxy<B> beanProxy; 
+	private IFieldModel<B> fieldModel;
+	private IFieldPanel fieldPanel;
 	/**
 	 * @param id
 	 * @param beanClass
 	 */
-	public DialogSelectionCRUDPanel(String id, Class<B> beanClass, LargeSelectionDialog<B> selectionDialog) {
+	public DialogSelectionCRUDPanel(String id, Class<B> beanClass, LargeSelectionDialog<B> selectionDialog, BeanProxy<B> beanProxy, IFieldModel<B> fieldModel, IFieldPanel fieldPanel) {
 		super(id, beanClass);
 		this.selectionDialog = selectionDialog;
+		this.beanProxy  = beanProxy;
+		this.fieldModel = fieldModel;
+		this.fieldPanel = fieldPanel;
 	}
 
 	/**
 	 * @param id
 	 * @param styler
 	 */
-	public DialogSelectionCRUDPanel(String id, CrudStyler<B> styler) {
+	public DialogSelectionCRUDPanel(String id, CrudStyler<B> styler, BeanProxy<B> beanProxy, IFieldModel<B> fieldModel) {
 		super(id, styler);
+		this.beanProxy  = beanProxy;
+		this.fieldModel = fieldModel;
 	}
 
 	/* (non-Javadoc)
@@ -43,7 +54,7 @@ public class DialogSelectionCRUDPanel<B extends Serializable> extends SelectionC
 	 */
 	@Override
 	public void populateRowMenu(IMenuItemHolder menu, int row, B bean) {
-		menu.addMenuItem(new SelectRowButton("selectRow", selectionDialog));
+		menu.addMenuItem(new SelectRowButton<B>("selectRow", selectionDialog, this.beanProxy, this.fieldModel, this.fieldPanel, bean));
 	}
 
 }
