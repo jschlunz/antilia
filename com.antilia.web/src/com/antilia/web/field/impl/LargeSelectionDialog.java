@@ -13,6 +13,7 @@ import com.antilia.web.dialog.DefaultDialog;
 import com.antilia.web.dialog.DialogButton;
 import com.antilia.web.field.BeanProxy;
 import com.antilia.web.field.IFieldModel;
+import com.antilia.web.field.IFieldPanel;
 
 /**
  * 
@@ -50,7 +51,10 @@ public class LargeSelectionDialog<B extends Serializable> extends DefaultDialog 
 	@SuppressWarnings("unchecked")
 	@Override
 	protected Component createBody(String id) {		
-		return new DialogSelectionCRUDPanel(id, ReflectionUtils.getPropertyClass(beanProxy.getBeanClass(), fieldModel.getPropertyPath()), this);
+		return new DialogSelectionCRUDPanel(id, ReflectionUtils.getPropertyClass(beanProxy.getBeanClass(), fieldModel.getPropertyPath()), this, this.beanProxy, this.fieldModel, findFieldPanel());
 	}
 
+	private IFieldPanel findFieldPanel() {
+			return (IFieldPanel)findParent(IFieldPanel.class);
+	}
 }
