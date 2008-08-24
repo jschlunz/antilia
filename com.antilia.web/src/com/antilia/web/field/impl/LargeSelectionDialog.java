@@ -9,7 +9,6 @@ import java.io.Serializable;
 import org.apache.wicket.Component;
 
 import com.antilia.common.util.ReflectionUtils;
-import com.antilia.web.crud.CRUDPanel;
 import com.antilia.web.dialog.DefaultDialog;
 import com.antilia.web.dialog.DialogButton;
 import com.antilia.web.field.BeanProxy;
@@ -51,7 +50,7 @@ public class LargeSelectionDialog<B extends Serializable> extends DefaultDialog 
 	@SuppressWarnings("unchecked")
 	@Override
 	protected Component createBody(String id) {		
-		return new CRUDPanel(id, ReflectionUtils.getPropertyClass(beanProxy.getBeanClass(), fieldModel.getPropertyPath()));
+		return new DialogSelectionCRUDPanel(id, ReflectionUtils.getPropertyClass(beanProxy.getBeanClass(), fieldModel.getPropertyPath()), this);
 	}
 
 }
