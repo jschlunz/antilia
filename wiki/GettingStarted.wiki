@@ -1,6 +1,23 @@
 = Introduction =
 
-This page describes who to get started using Antilia Wicket components and building your own Antila powered OSGi-wicket applications.
-
+This page describes how to get started using Antilia Wicket components and building your own Antila powered OSGi-wicket applications.
 
 = Details =
+
+For the time being we just describe how to get the couple of demo application we provide. Our demo applications, as Antilia itself, are build as (equinox) OSGI application. So, you will need to use Eclipse as IDE if you want to be able to run the demos as they are now. NOTE: this doesn't imply that some of the component we provide cannot be used in non-OSGi WEB applications.
+
+We provide two demos:
+
+# One demo for showing Antilia's components
+# A demo showing how to use Antilia to build a small DATA0based oriented application.
+
+In order to get the first demo application working you have to check-out the following bundles into a workspace.
+
+com.antilia.common
+com.antilia.hibernate
+com.antilia.web
+com.antilia.demo
+
+The last one is the main application bundle. If you open the Debugs dialog configuration  and you go to the section OSGi Framework, you will find the demo launcher. You can use it to start the application. The browse to http:localhost:8080/demo to see the application working.
+
+In order to get the second application working 
