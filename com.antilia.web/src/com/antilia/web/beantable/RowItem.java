@@ -11,7 +11,7 @@ import org.apache.wicket.ajax.AjaxEventBehavior;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.IAjaxCallDecorator;
 import org.apache.wicket.markup.repeater.Item;
-import org.apache.wicket.model.IModel;
+import org.apache.wicket.model.IComponentInheritedModel;
 import org.apache.wicket.model.Model;
 
 /**
@@ -30,7 +30,7 @@ public class RowItem<E extends Serializable> extends Item {
 	 * @param index
 	 * @param model
 	 */
-	public RowItem(String id, int index, IModel model, Table<E> table) {
+	public RowItem(String id, int index, final IComponentInheritedModel model, Table<E> table) {
 		super(id, index, model);
 		this.table = table;
 		String tableId = table.getMarkupId(); 

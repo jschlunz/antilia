@@ -34,6 +34,7 @@ import com.antilia.web.beantable.provider.IProviderSelector;
 import com.antilia.web.beantable.provider.impl.InMemoryPageableProvider;
 import com.antilia.web.beantable.provider.impl.SourceSelector;
 import com.antilia.web.button.AjaxRefreshableMenuItem;
+import com.antilia.web.button.IMenuItemHolder;
 import com.antilia.web.button.MenuItemsFactory;
 import com.antilia.web.resources.DefaultStyle;
 
@@ -208,6 +209,9 @@ public class Table<E extends Serializable> extends Panel implements IPageableCom
 		return sb.toString();		
 	}
 	
+	public void populateRowMenu(IMenuItemHolder menu, int row, E bean) {
+		
+	}
 	
 	protected ResourceReference getTableCSS() {
 		return DefaultStyle.CSS_TABLE;
@@ -354,7 +358,7 @@ public class Table<E extends Serializable> extends Panel implements IPageableCom
 
 		@Override
 		protected Item newItem(String id, int index, IModel model) {
-			return new RowItem<E>(id, index, model, table);
+			return new RowItem<E>(id, index, (IComponentInheritedModel)model, table);
 		}
 		
 		@Override
