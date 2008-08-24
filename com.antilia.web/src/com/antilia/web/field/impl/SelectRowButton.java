@@ -6,9 +6,11 @@ package com.antilia.web.field.impl;
 
 import java.io.Serializable;
 
+import org.apache.wicket.Component;
 import org.apache.wicket.ResourceReference;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.markup.html.form.Form;
+import org.apache.wicket.util.lang.PropertyResolver;
 
 import com.antilia.web.dialog.DefaultDialog;
 import com.antilia.web.dialog.util.OklDialogButton;
@@ -50,7 +52,11 @@ public class SelectRowButton<B extends Serializable> extends OklDialogButton {
 	 */
 	@Override
 	protected void onOk(AjaxRequestTarget target, Form form) {
-		String path = fieldModel.getPropertyPath();
+		String propertyName = fieldModel.getPropertyPath();
+		PropertyResolver.setValue(propertyName, beanProxy.getBean(), bean, null);
+		if(target != null) {
+			target.addComponent((Component) fieldPanel);
+		}
 	}
 	
 	@Override

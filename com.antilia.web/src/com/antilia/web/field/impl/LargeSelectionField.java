@@ -20,7 +20,7 @@ public class LargeSelectionField<B extends Serializable> extends BaseFormField<B
 
 	private static final long serialVersionUID = 1L;
 
-	private org.apache.wicket.markup.html.form.TextField textField;
+	private Label textField;
 	
 	/**
 	 * @param id
@@ -40,7 +40,7 @@ public class LargeSelectionField<B extends Serializable> extends BaseFormField<B
 	protected void onBeforeRender() {
 		super.onBeforeRender();
 		if(textField == null) {
-			textField = new org.apache.wicket.markup.html.form.TextField(
+			textField = new Label(
 				"field", 
 				getBeanProxy().getPropertyValue(getPropertyPath()).getModel());
 			add(textField);
