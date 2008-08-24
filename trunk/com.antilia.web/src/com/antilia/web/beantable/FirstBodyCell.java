@@ -9,6 +9,10 @@ import java.io.Serializable;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.panel.Panel;
 
+import com.antilia.web.button.IMenuItemHolder;
+import com.antilia.web.button.IMenuItemsFactory;
+import com.antilia.web.menu.Menu;
+
 /**
  * 
  * @author Ernesto Reinaldo Barreiro (reiern70@gmail.com)
@@ -26,10 +30,10 @@ public class FirstBodyCell<E extends Serializable> extends Panel {
 	 * @param id
 	 * @param model
 	 */
-	public FirstBodyCell(String id, int row, Table<E> table, RowItem<E> item) {
+	public FirstBodyCell(String id, int row, Table<E> table, final RowItem<E> item) {
 		super(id);
 		this.table = table;
-		this.row = row;	
+		this.row = row;			
 		imagePanel = new WebMarkupContainer("imagePanel");
 		/*
 		Image image = new Image("checkboxImage") {
@@ -49,6 +53,23 @@ public class FirstBodyCell<E extends Serializable> extends Panel {
 		imagePanel.add(selectRowButton);
 		table.addRowCheckBox(imagePanel);
 		add(imagePanel);
+		
+		Menu menu = Menu.createMenu("menu", new IMenuItemsFactory() {
+			
+			private static final long serialVersionUID = 1L;
+
+			@SuppressWarnings("unchecked")
+			@Override
+			public void populateMenuItems(String menuId, IMenuItemHolder itemHolder) {				
+				E bean = (E)item.getModel().getObject();
+				FirstBodyCell.this.table.populateRowMenu(itemHolder,FirstBodyCell.this.row, bean) ;
+			}
+		});
+		menu.setMenuStyle("width: auto; background: transparent;");
+		menu.setRenderBodyOnly(true);
+		menu.setOutputMarkupId(false);
+		imagePanel.add(menu);
+
 	}
 	
 	/*
