@@ -13,7 +13,7 @@ import org.apache.wicket.model.IModel;
  * @author Ernesto Reinaldo Barreiro (reiern70@gmail.com)
  *
  */
-public class ExportPanel extends Panel {
+public class ExportPdfPanel extends Panel {
 
 	/**
 	 * 
@@ -23,7 +23,7 @@ public class ExportPanel extends Panel {
 	/**
 	 * @param id
 	 */
-	public ExportPanel(String id) {
+	public ExportPdfPanel(String id) {
 		super(id);
 	}
 
@@ -31,7 +31,7 @@ public class ExportPanel extends Panel {
 	 * @param id
 	 * @param model
 	 */
-	public ExportPanel(String id, IModel model) {
+	public ExportPdfPanel(String id, IModel model) {
 		super(id, model);
 	}
 
