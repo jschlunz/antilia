@@ -4,15 +4,14 @@
  */
 package com.antilia.web.button;
 
-import java.io.Serializable;
+import com.antilia.common.osgi.IAggregator;
 
 
 /**
  * 
  * @author Ernesto Reinaldo Barreiro (reiern70@gmail.com)
  */
-public interface IMenuItemsFactory  extends Serializable {
+public interface IMenuItemsCollection  extends IAggregator<IMenuItem> {
 
-	void populateMenuItems(String menuId, IMenuItemHolder  itemHolder);
 	
 }

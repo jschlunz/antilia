@@ -25,6 +25,8 @@ public abstract class WebApplicationActivator extends AggregatedActivator {
 	public WebApplicationActivator() {
 		super();
 		addServiceActivator(new LoggingServiceActivator());
+		// instantiate a serve that allows to plug in menu entries.		
+		addServiceActivator(MenuFactoryServiceActivator.getInstance());
 		addServiceActivator( new WicketServletServiceActivator() {
 
 			private static final long serialVersionUID = 1L;

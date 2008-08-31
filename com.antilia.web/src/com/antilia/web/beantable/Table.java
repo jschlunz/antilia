@@ -36,6 +36,7 @@ import com.antilia.web.beantable.provider.impl.SourceSelector;
 import com.antilia.web.button.AjaxRefreshableMenuItem;
 import com.antilia.web.button.IMenuItemHolder;
 import com.antilia.web.button.MenuItemsFactory;
+import com.antilia.web.osgi.MenuFactoryService;
 import com.antilia.web.resources.DefaultStyle;
 
 /**
@@ -54,15 +55,23 @@ public class Table<E extends Serializable> extends Panel implements IPageableCom
 			
 	private FirstColumnModel firstColumnModel;
 	
-	private MenuItemsFactory beforeNavigationMenuItemsFactory = new MenuItemsFactory();
+	private MenuItemsFactory beforeNavigationMenuItemsFactory = new MenuItemsFactory(BEFORE_NAVIGATION_MENU);
 	
-	private MenuItemsFactory afterNavigationMenuItemsFactory = new MenuItemsFactory();
+	private MenuItemsFactory afterNavigationMenuItemsFactory = new MenuItemsFactory(AFTER_NAVIGATION_MENU);
 	
-	private MenuItemsFactory firstHeaderMenuItemsFactory = new MenuItemsFactory();
+	private MenuItemsFactory firstHeaderMenuItemsFactory = new MenuItemsFactory(FIRST_HEADER_MENU);
 	
 	private List<WebMarkupContainer> rowCheckboxes = new ArrayList<WebMarkupContainer>();
 	
 	private List<String> draggerURL= new ArrayList<String>();
+	
+	
+	public static final String AFTER_NAVIGATION_MENU = "AFTER_NAVIGATION_MENU";
+	
+	public static final String BEFORE_NAVIGATION_MENU = "BEFORE_NAVIGATION_MENU";
+	
+	public static final String FIRST_HEADER_MENU = "FIRST_HEADER_MENU";
+	
 	
 	/**
 	 * This variable is needed t fix a problem with drag and drop not working for IE
@@ -322,7 +331,7 @@ public class Table<E extends Serializable> extends Panel implements IPageableCom
 	}
 	
 	protected void addMenuItemsAfterNavidation(MenuItemsFactory factory) {
-		
+		MenuFactoryService.getInstance().populateFactory(AFTER_NAVIGATION_MENU, factory);
 	}
 
 	protected void addFirstHeaderMenuItems(MenuItemsFactory factory) {

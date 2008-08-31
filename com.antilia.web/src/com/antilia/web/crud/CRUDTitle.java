@@ -27,6 +27,7 @@ public class CRUDTitle<B extends Serializable> extends Panel {
 	 */
 	public CRUDTitle(String id, Class<B> beanClass) {
 		super(id);
+		setRenderBodyOnly(true);
 		String key = ResourceUtils.getPropertyResourceKey(beanClass, null);
 		add(new Label("title",  new StringResourceModel(key, this, null, beanClass.getSimpleName())));
 	}

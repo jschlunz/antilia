@@ -29,7 +29,7 @@ public class DefaultTableHeader<E extends Serializable> extends Panel {
 	}
 	
 	protected Menu newTableMenu(String id, Table<E> table) {
-		return Menu.createMenu("menu", 
+		return Menu.createMenu(id, 
 				table.getBeforeNavigationMenuItemsFactory(), 
 				NavigationItemsFactory.getInstance(),
 				table.getAfterNavigationMenuItemsFactory());
