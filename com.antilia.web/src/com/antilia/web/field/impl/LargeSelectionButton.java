@@ -42,7 +42,7 @@ public class LargeSelectionButton<B extends Serializable> extends DialogButton {
 	 */
 	@Override
 	protected ResourceReference getImage() {
-		return DefaultStyle.IMG_SEARCH;
+		return DefaultStyle.IMG_VIEW ;
 	}
 
 	/* (non-Javadoc)

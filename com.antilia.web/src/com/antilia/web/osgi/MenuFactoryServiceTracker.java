@@ -10,7 +10,6 @@ import com.antilia.common.osgi.Aggregator;
 import com.antilia.common.osgi.IServiceActivator;
 import com.antilia.common.osgi.TypedServiceTracker;
 import com.antilia.web.button.IMenuFactoryPopulator;
-import com.antilia.web.button.IMenuItem;
 
 /**
  * 
