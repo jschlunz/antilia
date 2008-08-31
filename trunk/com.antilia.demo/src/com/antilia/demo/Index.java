@@ -11,7 +11,6 @@ import org.apache.wicket.markup.html.form.Form;
 
 import com.antilia.demo.buttons.MainButtonsFactory;
 import com.antilia.demo.style.Style;
-import com.antilia.web.menu.Menu;
 import com.antilia.web.resources.DefaultStyle;
 import com.antilia.web.toolbar.Toolbar;
 
