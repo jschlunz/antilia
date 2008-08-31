@@ -2,7 +2,7 @@
  * This software is provided as IS by Antilia-Soft SL.
  * Copyright 2006-2007.
  */
-package com.antilia.export.pdf;
+package com.antilia.export.excel;
 
 import org.apache.wicket.Component;
 import org.apache.wicket.ResourceReference;
@@ -17,7 +17,7 @@ import com.antilia.web.resources.DefaultStyle;
  * @author Ernesto Reinaldo Barreiro (reiern70@gmail.com)
  *
  */
-public class ExportPdfButton extends DialogButton {
+public class ExportExcelButton extends DialogButton {
 
 	/**
 	 * 
@@ -27,7 +27,7 @@ public class ExportPdfButton extends DialogButton {
 	/**
 	 * @param id
 	 */
-	public ExportPdfButton(String id) {
+	public ExportExcelButton(String id) {
 		super(id);
 	}
 
@@ -36,7 +36,7 @@ public class ExportPdfButton extends DialogButton {
 	 */
 	@Override
 	protected ResourceReference getImage() {
-		return DefaultStyle.IMG_EXPORT_PDF;
+		return DefaultStyle.IMG_EXPORT_EXCEL;
 	}
 
 	/* (non-Javadoc)
@@ -57,7 +57,7 @@ public class ExportPdfButton extends DialogButton {
 
 			@Override
 			protected Component createBody(String id) {
-				return new ExportPdfPanel(id);
+				return new ExportExcelPanel(id);
 			}
 		};
 	}

@@ -4,6 +4,7 @@
  */
 package com.antilia.export;
 
+import com.antilia.export.excel.ExportExcelButton;
 import com.antilia.export.pdf.ExportPdfButton;
 import com.antilia.web.button.IMenuFactoryPopulator;
 import com.antilia.web.button.MenuItemsFactory;
@@ -22,6 +23,7 @@ public class ExportPopulator implements IMenuFactoryPopulator {
 	@Override
 	public void populateMenuFactory(MenuItemsFactory factory) {
 		factory.addItem(new ExportPdfButton("exportPDF"));
+		factory.addItem(new ExportExcelButton("exportExcel"));
 	}
 
 }
