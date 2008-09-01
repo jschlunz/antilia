@@ -47,7 +47,7 @@ public class LargeSelectionField<B extends Serializable> extends BaseFormField<B
 		}		
 		
 		add(new LargeSelectionButton<B>("selectionPanel", getBeanProxy(), getFieldModel()));		
-		add(new DropSelectionButton("dropSelection"));
+		add(new DropSelectionButton("dropSelection",getBeanProxy(), getFieldModel()));
 	}
 
 }
