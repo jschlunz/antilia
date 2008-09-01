@@ -4,9 +4,14 @@
  */
 package com.antilia.export.pdf;
 
+import java.io.Serializable;
+
 import org.apache.wicket.Component;
 import org.apache.wicket.ResourceReference;
+import org.apache.wicket.ajax.AjaxRequestTarget;
+import org.apache.wicket.markup.html.form.Form;
 
+import com.antilia.web.beantable.IPageableComponent;
 import com.antilia.web.dialog.DefaultDialog;
 import com.antilia.web.dialog.DialogButton;
 import com.antilia.web.resources.DefaultStyle;
@@ -17,13 +22,15 @@ import com.antilia.web.resources.DefaultStyle;
  * @author Ernesto Reinaldo Barreiro (reiern70@gmail.com)
  *
  */
-public class ExportPdfButton extends DialogButton {
+public class ExportPdfButton<B extends Serializable> extends DialogButton {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
+	private ExportPdfTask<B> exportPdfTask;
+	
 	/**
 	 * @param id
 	 */
@@ -47,19 +54,43 @@ public class ExportPdfButton extends DialogButton {
 		return null;
 	}
 
+	@Override
+	protected void onSubmit(AjaxRequestTarget target, Form form) {
+		super.onSubmit(target, form);
+		exportPdfTask = new ExportPdfTask<B>(findPageableComponent().getPageableProvider());
+		Thread thread = new Thread(exportPdfTask);
+		thread.start();
+	}
 	/* (non-Javadoc)
 	 * @see com.antilia.web.dialog.DialogButton#newDialog(java.lang.String)
 	 */
 	@Override
 	public DefaultDialog newDialog(String id) {
-		return new DefaultDialog(id, this) {
+		DefaultDialog dialog =new DefaultDialog(id, this) {
 			private static final long serialVersionUID = 1L;
 
 			@Override
 			protected Component createBody(String id) {
-				return new ExportPdfPanel(id);
+				return new ExportPdfPanel<B>(id, ExportPdfButton.this);
 			}
 		};
+		dialog.setTitle("Exporting to PDF...");
+		dialog.setModal(true);
+		dialog.setWidth(300);
+		dialog.setHeight(200);
+		dialog.setResizable(false);
+		return dialog;
 	}
 
+	/**
+	 * @return the exportPdfTask
+	 */
+	public ExportPdfTask<B> getExportPdfTask() {
+		return exportPdfTask;
+	}
+	
+	@SuppressWarnings("unchecked")
+	private IPageableComponent<B> findPageableComponent() {
+		return (IPageableComponent<B>)findParent(IPageableComponent.class);
+	}
 }

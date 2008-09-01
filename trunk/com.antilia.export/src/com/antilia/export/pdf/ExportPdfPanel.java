@@ -4,8 +4,14 @@
  */
 package com.antilia.export.pdf;
 
+import java.io.Serializable;
+
+import org.apache.wicket.ajax.AjaxSelfUpdatingTimerBehavior;
+import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.panel.Panel;
-import org.apache.wicket.model.IModel;
+import org.apache.wicket.util.time.Duration;
+
+import com.antilia.web.progress.ProgressPanel;
 
 /**
  * 
@@ -13,26 +19,56 @@ import org.apache.wicket.model.IModel;
  * @author Ernesto Reinaldo Barreiro (reiern70@gmail.com)
  *
  */
-public class ExportPdfPanel extends Panel {
+public class ExportPdfPanel<B extends Serializable> extends Panel {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
+	private ExportPdfButton<B> button;
+	
+	private WebMarkupContainer progress;
+	
 	/**
 	 * @param id
 	 */
-	public ExportPdfPanel(String id) {
-		super(id);
+	public ExportPdfPanel(String id, ExportPdfButton<B> button) {
+		super(id);		
+		this.button = button;		
+		setOutputMarkupId(true);		
 	}
-
-	/**
-	 * @param id
-	 * @param model
-	 */
-	public ExportPdfPanel(String id, IModel model) {
-		super(id, model);
+	
+	@Override
+	protected void onBeforeRender() {				
+		if(!this.button.getExportPdfTask().isFinished()) {			
+			for(Object behavior : getBehaviors()) {
+				if(behavior instanceof AjaxSelfUpdatingTimerBehavior) {
+					remove((AjaxSelfUpdatingTimerBehavior)behavior);
+				}
+			}
+			add(new AjaxSelfUpdatingTimerBehavior(Duration.seconds(2)));
+			progress = new ProgressPanel("progress") {
+				
+				private static final long serialVersionUID = 1L;
+	
+				@Override
+				protected int getProgress() {
+					return ExportPdfPanel.this.button.getExportPdfTask().getProgress();
+				}
+			};						
+			addOrReplace(progress);
+		} else {
+			for(Object behavior : getBehaviors()) {
+				if(behavior instanceof AjaxSelfUpdatingTimerBehavior) {
+					remove((AjaxSelfUpdatingTimerBehavior)behavior);
+				}
+			}
+			add(new AjaxSelfUpdatingTimerBehavior(Duration.seconds(100)));
+			progress = new DownLoadExportPanel("progress", this.button.getExportPdfTask().getFile());
+			progress.setOutputMarkupId(true);
+			addOrReplace(progress);
+		}
+		super.onBeforeRender();
 	}
-
 }

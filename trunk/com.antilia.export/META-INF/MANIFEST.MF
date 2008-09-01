@@ -13,3 +13,5 @@ Require-Bundle: com.antilia.common,
  com.antilia.web.hibernate
 Eclipse-BuddyPolicy: registered
 Eclipse-RegisterBuddy: com.antilia.common, com.antilia.web, com.antilia.hibernate, com.antilia.web.hibernate
+Bundle-ClassPath: lib/iText-2.1.3.jar,
+ .
