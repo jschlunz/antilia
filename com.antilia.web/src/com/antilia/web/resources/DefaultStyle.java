@@ -98,6 +98,8 @@ public class DefaultStyle {
 	public static ResourceReference IMG_DELETE = new ResourceReference(ImgDummy.class, "form_delete.png");
 	public static ResourceReference IMG_VIEW = new ResourceReference(ImgDummy.class, "form_view.png");
 	
+	public static ResourceReference IMG_REMOVE = new ResourceReference(ImgDummy.class, "delete.png");
+	
 	
 	public static ResourceReference IMG_LOAD = new ResourceReference(ImgDummy.class, "load.png");
 	
