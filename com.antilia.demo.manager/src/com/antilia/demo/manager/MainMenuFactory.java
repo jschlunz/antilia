@@ -48,7 +48,7 @@ public class MainMenuFactory implements IToolbarItemsFactory {
 			toolbar.addItem(subToolbar);
 			
 			subToolbar.addItem(new CRUDButton("city", "Cities", this.page, new CityModalContainer(this.contentId)));
-			subToolbar.addItem(new CRUDButton("county", "Counties", this.page, new CountryModalContainer(this.contentId)));
+			subToolbar.addItem(new CRUDButton("county", "Countries", this.page, new CountryModalContainer(this.contentId)));
 			
 			subToolbar = new SubToolbar("other", toolbar) {
 				private static final long serialVersionUID = 1L;
