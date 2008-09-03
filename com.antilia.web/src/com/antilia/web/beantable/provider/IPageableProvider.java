@@ -48,4 +48,6 @@ public interface IPageableProvider<E extends Serializable> extends IProvider<E>,
 	Iterator<IPageableProviderNavigationListener> getNavigationListeners();
 	
 	IQuery<E> getQuery();
+	
+	public IPageableProvider<E> duplicate();
 }

@@ -7,12 +7,14 @@ package com.antilia.web.beantable.provider.impl;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
 import com.antilia.hibernate.query.IQuery;
 import com.antilia.hibernate.query.Query;
 import com.antilia.web.beantable.provider.ILoadablePageableProvider;
+import com.antilia.web.beantable.provider.IPageableProvider;
 import com.antilia.web.beantable.provider.IPageableProviderNavigationListener;
 
 
@@ -390,4 +392,10 @@ public class InMemoryPageableProvider<E extends Serializable> implements ILoadab
 		return currentIndex;
 	}
 	
+	@Override
+	public IPageableProvider<E> duplicate() {
+		ArrayList<E> newColection = new ArrayList<E>();
+		Collections.copy(newColection, this.collection);
+		return new InMemoryPageableProvider<E>(newColection, this.query.getEntityClass());
+	}
 }
