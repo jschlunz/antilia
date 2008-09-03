@@ -10,6 +10,7 @@ import org.apache.wicket.Component;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.panel.Panel;
 
+import com.antilia.web.beantable.model.IColumnModel;
 import com.antilia.web.beantable.provider.IProviderSelector;
 
 /**
@@ -127,7 +128,23 @@ public class CRUDPanel<B extends Serializable> extends Panel {
 	 * @return
 	 */
 	protected SearchPanel<B> newSearchPanel(String id, CrudStyler<B> styler) {
-		return new SearchPanel<B>(id, styler);
+		return new SearchPanel<B>(id, styler) {
+			 private static final long serialVersionUID = 1L;
+
+			@Override
+			protected void configureColumnModel(IColumnModel<B> model) {
+				CRUDPanel.this.configureColumnModel(model);
+			}
+		};
+	}
+	
+	/**
+	 * This method is called for each column model to give the user a chance to configure the 
+	 * columns...
+	 * @param model
+	 */
+	protected void configureColumnModel(IColumnModel<B> model) {
+		
 	}
 	
 	/**

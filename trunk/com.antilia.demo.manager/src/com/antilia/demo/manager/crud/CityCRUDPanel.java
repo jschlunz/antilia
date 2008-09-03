@@ -5,6 +5,7 @@
 package com.antilia.demo.manager.crud;
 
 import com.antilia.demo.manager.entities.City;
+import com.antilia.web.beantable.model.IColumnModel;
 import com.antilia.web.crud.CrudStyler;
 
 /**
@@ -24,7 +25,8 @@ public class CityCRUDPanel extends ManagerCRUD<City> {
 		public CityCRUDStyle() {
 			super(City.class);
 			addEditFields("name", "country");
-			addTableColumns("id", "name", "country");
+			addTableColumns("name", "country");
+			addHiddenTableColumns("id");
 			addSearchFields("id", "name", "country");
 		}		
 	}
@@ -33,4 +35,10 @@ public class CityCRUDPanel extends ManagerCRUD<City> {
 		super(id, new CityCRUDStyle());
 	}
 	
+	@Override
+	protected void configureColumnModel(IColumnModel<City> model) {
+		if(model.getPropertyPath().equals("country"))  {
+			model.setWidth(300);
+		}
+	}
 }
