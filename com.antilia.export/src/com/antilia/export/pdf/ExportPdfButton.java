@@ -11,7 +11,8 @@ import org.apache.wicket.ResourceReference;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.markup.html.form.Form;
 
-import com.antilia.web.beantable.IPageableComponent;
+import com.antilia.hibernate.context.RequestContext;
+import com.antilia.web.beantable.Table;
 import com.antilia.web.dialog.DefaultDialog;
 import com.antilia.web.dialog.DialogButton;
 import com.antilia.web.resources.DefaultStyle;
@@ -57,7 +58,8 @@ public class ExportPdfButton<B extends Serializable> extends DialogButton {
 	@Override
 	protected void onSubmit(AjaxRequestTarget target, Form form) {
 		super.onSubmit(target, form);
-		exportPdfTask = new ExportPdfTask<B>(findPageableComponent().getPageableProvider());
+		Table<B> table = findPageableComponent();
+		exportPdfTask = new ExportPdfTask<B>(table.getPageableProvider(), RequestContext.get().getPersistenceUnit(), RequestContext.get().getUser(), table.getTableModel());
 		Thread thread = new Thread(exportPdfTask);
 		thread.start();
 	}
@@ -90,7 +92,7 @@ public class ExportPdfButton<B extends Serializable> extends DialogButton {
 	}
 	
 	@SuppressWarnings("unchecked")
-	private IPageableComponent<B> findPageableComponent() {
-		return (IPageableComponent<B>)findParent(IPageableComponent.class);
+	private Table<B> findPageableComponent() {
+		return (Table<B>)findParent(Table.class);
 	}
 }
