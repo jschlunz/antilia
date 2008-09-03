@@ -14,6 +14,7 @@ import com.antilia.hibernate.command.CommandExecuter;
 import com.antilia.hibernate.query.IQuery;
 import com.antilia.hibernate.query.Query;
 import com.antilia.web.beantable.provider.ILoadablePageableProvider;
+import com.antilia.web.beantable.provider.IPageableProvider;
 import com.antilia.web.beantable.provider.IPageableProviderNavigationListener;
 
 
@@ -393,5 +394,9 @@ public class HibernatePageableProvider<E extends Serializable> implements ILoada
 	}
 
 
+	 @Override
+	public IPageableProvider<E> duplicate() {
+		return  new HibernatePageableProvider<E>(this.query, false);
+	}
 	
 }

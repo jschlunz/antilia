@@ -15,6 +15,7 @@ import org.apache.wicket.markup.repeater.data.IDataProvider;
 import com.antilia.hibernate.query.IQuery;
 import com.antilia.hibernate.query.Query;
 import com.antilia.web.beantable.provider.ILoadablePageableProvider;
+import com.antilia.web.beantable.provider.IPageableProvider;
 import com.antilia.web.beantable.provider.IPageableProviderNavigationListener;
 import com.antilia.web.beantable.provider.IQuerable;
 import com.antilia.web.beantable.provider.IUpdatable;
@@ -34,10 +35,13 @@ public class DataProviderPageableProvider<E extends Serializable> implements ILo
 	
 	 private IQuery<E> query;
 	
+	// the current index...	starts in 0 
 	private int currentIndex;
 	
+	// page start currentPage*pageSize
 	private int pageStart;
 	
+	// page end Min(pageStart+pageSize-1, total-1)
 	private int pageEnd;
 	
 	private int currentPage;
@@ -182,7 +186,7 @@ public class DataProviderPageableProvider<E extends Serializable> implements ILo
 				cachedEntities.add(it.next());
 			}			
 			totalSize = getTotalSize();
-			pageEnd = Math.min(((currentPage+1)*pageSize),totalSize);
+			pageEnd = Math.min((pageStart+pageSize)-1,totalSize-1);
 		}
 		return cachedEntities;
 	}
@@ -352,10 +356,14 @@ public class DataProviderPageableProvider<E extends Serializable> implements ILo
 	 * @see com.antilia.common.sources.ISource#next()
 	 */
 	public E next() {
-		if(currentIndex < (size()-1)) {
+		if(currentIndex <= (size()-1)) {			
 			currentIndex++;
-			if(currentIndex >= pageEnd)
-				clearCached();
+			if(currentIndex > pageEnd) {				
+				currentIndex--;
+				if(hasNext()) {
+					nextPage();
+				}
+			}
 			return current();
 		}
 		return null;
@@ -378,6 +386,7 @@ public class DataProviderPageableProvider<E extends Serializable> implements ILo
 	 * @see com.antilia.common.sources.ISource#size()
 	 */
 	public int size() {
+		getCachedEntities();
 		return totalSize;
 	}
 
@@ -426,5 +435,8 @@ public class DataProviderPageableProvider<E extends Serializable> implements ILo
 	}
 
 
+	public IPageableProvider<E> duplicate() {
+		return new DataProviderPageableProvider<E>(this.dataProvider, this.query, true);
+	}
 	
 }
