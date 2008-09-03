@@ -5,6 +5,7 @@
 package com.antilia.web.crud;
 
 import java.io.Serializable;
+import java.util.Iterator;
 import java.util.List;
 
 import org.apache.wicket.markup.html.panel.Panel;
@@ -12,6 +13,7 @@ import org.apache.wicket.markup.html.panel.Panel;
 import com.antilia.hibernate.query.IQuery;
 import com.antilia.hibernate.query.Query;
 import com.antilia.web.beantable.Table;
+import com.antilia.web.beantable.model.IColumnModel;
 import com.antilia.web.beantable.model.ITableModel;
 import com.antilia.web.beantable.model.TableModel;
 import com.antilia.web.beantable.provider.ILoadable;
@@ -88,7 +90,21 @@ public class SearchPanel<B extends Serializable> extends Panel implements ILoada
 		AutoFieldPanel<B> autoFieldPanel = newAutoFieldPanel("autofield",autoFieldModel);
 		beanForm.add(autoFieldPanel);
 		
+		// allow users to configure the column models.
 		ITableModel<B> tableModel = newTableModel(styler.getBeanClass());		
+		Iterator<IColumnModel<B>> it = tableModel.getColumnModels();		
+		while(it.hasNext() ) {
+			IColumnModel<B> columnModel = it.next();
+			configureColumnModel(columnModel);
+		}
+		
+		// allow users to configure hidden column models.
+		it = tableModel.getHiddenModels();		
+		while(it.hasNext() ) {
+			IColumnModel<B> columnModel = it.next();
+			configureColumnModel(columnModel);
+		}
+		
 		table  = newTable("table",tableModel, this.pageableProvider);
 		beanForm.add(table);
 	}
@@ -127,7 +143,16 @@ public class SearchPanel<B extends Serializable> extends Panel implements ILoada
 	}
 	
 	protected ITableModel<B> newTableModel(Class<B> beanClass) {
-		return new TableModel<B>(beanClass, styler.getTableColumns());
+		return new TableModel<B>(beanClass, styler.getTableColumns(), styler.getHiddenTableColumns());
+	}
+	
+	/**
+	 * This method is called for each column model to give the user a chance to configure the 
+	 * columns...
+	 * @param model
+	 */
+	protected void configureColumnModel(IColumnModel<B> model) {
+		
 	}
 	
 	protected IAutoFieldModel<B> newAutoFieldModel(IQuery<B> query, BeanProxy<B> beanProxy) {

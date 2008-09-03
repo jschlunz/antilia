@@ -7,6 +7,7 @@ package com.antilia.demo.manager.crud;
 import java.io.Serializable;
 
 import com.antilia.demo.manager.HomeLink;
+import com.antilia.web.beantable.model.IColumnModel;
 import com.antilia.web.button.IMenuItemHolder;
 import com.antilia.web.button.IMenuItemsFactory;
 import com.antilia.web.crud.CrudStyler;
@@ -59,7 +60,12 @@ public class ManagerCRUD<B extends Serializable> extends TitledCRUDPanel<B> {
 					}
 					
 				},SearchPanelButtonsFactory.getInstance());
-			}			 
+			}
+			
+			@Override
+			protected void configureColumnModel(IColumnModel<B> model) {
+				ManagerCRUD.this.configureColumnModel(model);
+			}
 		};
 	}
 	

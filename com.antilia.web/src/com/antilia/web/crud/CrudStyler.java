@@ -22,6 +22,8 @@ public class CrudStyler<E extends Serializable> implements Serializable {
 	
 	private java.util.List<String> tableColumns = new ArrayList<String>();
 	
+	private java.util.List<String> hiddenTableColumns = new ArrayList<String>();
+	
 	private java.util.List<String> searchFields = new ArrayList<String>();
 	
 	private Class<E> beanClass;
@@ -109,6 +111,28 @@ public class CrudStyler<E extends Serializable> implements Serializable {
 	}
 	
 	/**
+	 * @param editFields the editFields to set
+	 */
+	public CrudStyler<E> addHiddenTableColumns(String...  tableColumns) {
+		if(tableColumns != null) {
+			for(String field: tableColumns) {
+				this.hiddenTableColumns.add(field);
+			}
+		}
+		return this;
+	}
+	
+	/**
+	 * @param editFields the editFields to set
+	 */
+	public CrudStyler<E> removeHiddenTableColumns(String[] tableColums) {
+		for(String field: tableColums) {
+			this.hiddenTableColumns.remove(field);
+		}
+		return this;
+	}
+	
+	/**
 	 * @return the searchFields
 	 */
 	public java.util.List<String> getSearchFields() {
@@ -161,5 +185,9 @@ public class CrudStyler<E extends Serializable> implements Serializable {
 	 */
 	public void setBeanClass(Class<E> beanClass) {
 		this.beanClass = beanClass;
+	}
+
+	public java.util.List<String> getHiddenTableColumns() {
+		return hiddenTableColumns;
 	}
 }

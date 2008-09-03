@@ -24,8 +24,6 @@ public class TableModel<E extends Serializable> extends Model implements ITableM
 
 	private static final long serialVersionUID = 1L;
 
-	private List<String> expresions;
-	
 	private Class<E> beanClass;
 	
 	private List<IColumnModel<E>> models;
@@ -42,13 +40,12 @@ public class TableModel<E extends Serializable> extends Model implements ITableM
 		super(new ArrayList<IColumnModel<E>>());	
 		this.models = (List<IColumnModel<E>>) getObject();
 		this.hiddenModels = new ArrayList<IColumnModel<E>>();
-		this.expresions = new ArrayList<String>();
 	}
 	
-	public TableModel(Class<E> beanClass, List<String> columnNames) {
+	public TableModel(Class<E> beanClass, List<String> columnNames, List<String> hiddenNames) {
 		this();
 		this.beanClass = beanClass;
-		init(beanClass, columnNames);
+		init(beanClass, columnNames, hiddenNames);
 	}
 	
 	/**
@@ -59,33 +56,36 @@ public class TableModel<E extends Serializable> extends Model implements ITableM
 	public TableModel(Class<E> beanClass, String... columnNames) {
 		this();
 		this.beanClass = beanClass;
-		init(beanClass, Arrays.asList(columnNames));
+		init(beanClass, Arrays.asList(columnNames), null);
 	}
 	
 
-	private void init(Class<E> beanClass, Iterable<String> expresions) {
+	private void init(Class<E> beanClass, Iterable<String> expresions, Iterable<String> hidden) {
 		this.beanClass = beanClass;		
 		this.models = new ArrayList<IColumnModel<E>>();
 		if(expresions != null) {
 			for(String expresion:expresions) {	
 				createColumnModel(expresion);
-				// add a dummy column model for drag columns
-				//addColumnModel(new DummyColumnModel<E>(this));
 			}
 		}		
+		
+		if(hidden != null) {
+			for(String expresion: hidden) {	
+				createHiddenColumnModel(expresion);
+			}
+		}
 	}
 	
-	
-	protected void addExpresion(String expresion) {
-		expresions.add(expresion);
-	}
-	
+		
 	protected  void createColumnModel(String expresion) {
-		addExpresion(expresion);
 		IColumnModel<E> model = new ColumnModel<E>(this, ColumnModel.DEFAULT_WIDTH, 1, expresion);
 		addColumnModel(model);
  	}
 
+	protected  void createHiddenColumnModel(String expresion) {
+		IColumnModel<E> model = new ColumnModel<E>(this, ColumnModel.DEFAULT_WIDTH, 1, expresion);
+		addHiddenColumnModel(model);
+ 	}
 	
 	public IComponentInheritedModel newModel(E object) {
 		return new CompoundPropertyModel(object);
@@ -93,6 +93,10 @@ public class TableModel<E extends Serializable> extends Model implements ITableM
 	
 	protected void addColumnModel(IColumnModel<E> model) {
 		models.add(model);
+	}
+	
+	protected void addHiddenColumnModel(IColumnModel<E> model) {
+		hiddenModels.add(model);
 	}
 	
 	public SelectionMode getSelectionModel() {
