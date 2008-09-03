@@ -20,6 +20,7 @@ public class ExportPopulator implements IMenuFactoryPopulator {
 	/* (non-Javadoc)
 	 * @see com.antilia.web.button.IMenuFactoryPopulator#populateMenuFactory(com.antilia.web.button.MenuItemsFactory)
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void populateMenuFactory(MenuItemsFactory factory) {
 		factory.addItem(new ExportPdfButton("exportPDF"));
