@@ -26,7 +26,6 @@ public class CountryModalContainer extends ModalContainer {
 	 */
 	public CountryModalContainer(String id) {
 		super(id);
-		setRenderBodyOnly(true);
 	}
 
 

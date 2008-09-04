@@ -26,7 +26,6 @@ public class AddressModalContainer extends ModalContainer {
 	 */
 	public AddressModalContainer(String id) {
 		super(id);
-		setRenderBodyOnly(true);
 	}
 
 

@@ -42,6 +42,7 @@ public class ManagerCRUD<B extends Serializable> extends TitledCRUDPanel<B> {
 		super(id, styler);
 	}
 
+	
 	@Override
 	protected SearchPanel<B> newSearchPanel(String id, CrudStyler<B> styler) {
 		return new SearchPanel<B>(id, styler) {

@@ -39,6 +39,7 @@ public class CityCRUDPanel extends ManagerCRUD<City> {
 	protected void configureColumnModel(IColumnModel<City> model) {
 		if(model.getPropertyPath().equals("country"))  {
 			model.setWidth(300);
+			//model.setSortable(false);
 		}
 	}
 }

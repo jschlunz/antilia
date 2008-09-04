@@ -26,7 +26,6 @@ public class CityModalContainer extends ModalContainer {
 	 */
 	public CityModalContainer(String id) {
 		super(id);
-		setRenderBodyOnly(true);
 	}
 
 
