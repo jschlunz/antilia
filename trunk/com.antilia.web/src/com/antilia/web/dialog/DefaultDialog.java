@@ -142,6 +142,10 @@ public abstract class DefaultDialog extends Panel implements IDialogScope, IMenu
 		
 		add(HeaderContributor.forJavaScript(DefaultStyle.JS_PROTOTYPE));
 		add(HeaderContributor.forJavaScript(DefaultStyle.JS_EFFECT));
+		
+		add(HeaderContributor.forJavaScript(DefaultStyle.JS_YUI_DOM_EVENT));
+		add(HeaderContributor.forJavaScript(DefaultStyle.JS_YUI_DOM_MIN));
+		
 		add(HeaderContributor.forJavaScript(DefaultStyle.JS_COMMON));
 		add(HeaderContributor.forJavaScript(DefaultStyle.JS_DIALOG));			
 		
@@ -605,6 +609,11 @@ public abstract class DefaultDialog extends Panel implements IDialogScope, IMenu
 	 */
 	public void setPanelSelectedClass(String panelSelectedClass) {
 		this.panelSelectedClass = panelSelectedClass;
+	}
+	
+	public void replaceBody(Component body) {
+		this.body = body;
+		this.dialogBody.addOrReplace(body);
 	}
  
 }

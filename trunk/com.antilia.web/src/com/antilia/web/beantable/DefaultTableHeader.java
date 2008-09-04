@@ -29,9 +29,12 @@ public class DefaultTableHeader<E extends Serializable> extends Panel {
 	}
 	
 	protected Menu newTableMenu(String id, Table<E> table) {
-		return Menu.createMenu(id, 
+		Menu menu =  Menu.createMenu(id, 
 				table.getBeforeNavigationMenuItemsFactory(), 
 				NavigationItemsFactory.getInstance(),
 				table.getAfterNavigationMenuItemsFactory());
+		menu.setRenderBodyOnly(true);
+		menu.setOutputMarkupId(false);
+		return menu;
 	}
 }

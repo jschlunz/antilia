@@ -13,6 +13,7 @@ import java.util.List;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
+
 /**
  * 
  *
@@ -41,20 +42,40 @@ public class AutoCrudStyler<E extends Serializable> extends CrudStyler<E> {
 		
 		Field[] fields  = beanClass.getDeclaredFields();		
 		for(Field field: fields) {			
-			if(!rejectField(field)) 
+			if(!rejectField(field, CRUDMode.SEARCH)) 
+				fieldNames.add(field.getName());
+		}		
+		addSearchFields(fieldNames);				
+		
+		fieldNames.clear();
+		
+		for(Field field: fields) {			
+			if(!rejectField(field, CRUDMode.EDIT)) 
 				fieldNames.add(field.getName());
 		}		
 		addEditFields(fieldNames);
-		addSearchFields(fieldNames);		
+		
 		addTableColumns(fieldNames);
 	}
 	
-	private boolean rejectField(Field field) {
+	
+	
+	private boolean rejectField(Field field, CRUDMode mode) {
 		int modifiers = field.getModifiers();
 		if(Modifier.isStatic(modifiers))
 			return true;		
 		if(field.isAnnotationPresent(OneToMany.class) || field.isAnnotationPresent(ManyToMany.class))
-			return true;
+			return true;		
+		if(field.isAnnotationPresent(Exclude.class)) {
+			Exclude exclude = field.getAnnotation(Exclude.class);
+			if(exclude.types().length == 0)
+				return true;			
+			for(CRUDMode crudMode: exclude.types()) {
+				crudMode.equals(mode);
+				return true;
+			}
+		}
+	   
 		return false;
 	}
 }

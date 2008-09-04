@@ -32,7 +32,7 @@ import com.antilia.web.menu.Menu;
  * 
  * @author Ernesto Reinaldo Barreiro (reiern70@gmail.com)
  */
-public class SearchPanel<B extends Serializable> extends Panel implements ILoadablePanel<B> {
+public class SearchPanel<B extends Serializable> extends Panel implements ILoadablePanel<B>, ICRUDModeReporter {
 
 	private static final long serialVersionUID = 1L;
 
@@ -194,5 +194,10 @@ public class SearchPanel<B extends Serializable> extends Panel implements ILoada
 	 */
 	public IPageableProvider<B> getPageableProvider() {
 		return pageableProvider;
+	}
+	
+	@Override
+	public CRUDMode getCrudMode() {
+		return CRUDMode.SEARCH;
 	}
 }

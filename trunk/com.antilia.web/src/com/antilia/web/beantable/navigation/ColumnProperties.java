@@ -67,8 +67,8 @@ public abstract class ColumnProperties<E extends Serializable> extends DropDownB
 			public void populateMenuItems(String menuId,
 					IMenuItemHolder itemHolder) {
 				if(getColumnModel() != null) {
-					itemHolder.addMenuItem( new SortAscendingButton("ascending", getColumnModel().getPropertyPath()));	
-					itemHolder.addMenuItem( new SortDescendingButton("descending", getColumnModel().getPropertyPath()));	
+					itemHolder.addMenuItem( new SortAscendingButton("ascending", getColumnModel()));	
+					itemHolder.addMenuItem( new SortDescendingButton("descending", getColumnModel()));
 				}
 			}
 		}

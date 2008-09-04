@@ -8,6 +8,7 @@ import java.io.Serializable;
 
 import org.apache.wicket.markup.html.basic.Label;
 
+import com.antilia.common.util.AnnotationUtils;
 import com.antilia.web.field.IFieldModel;
 
 /**
@@ -45,8 +46,16 @@ public class LargeSelectionField<B extends Serializable> extends BaseFormField<B
 				getBeanProxy().getPropertyValue(getPropertyPath()).getModel());
 			add(textField);
 		}		
-		
-		add(new LargeSelectionButton<B>("selectionPanel", getBeanProxy(), getFieldModel()));		
+		try {
+			SelectionType selectionType = AnnotationUtils.findFieldAnnotation(getFieldModel().getBeanClass(), getFieldModel().getPropertyPath(), SelectionType.class);
+			if(selectionType.type().equals(SelectionMode.LARGE_IN_MODAL_DIALOG) )				
+				add(new LargeSelectionDialogButton<B>("selectionPanel", getBeanProxy(), getFieldModel()));
+			else if(selectionType.type().equals(SelectionMode.LARGE_ON_NEXT_PAGE)) {
+				add(new InPlaceLargeSelectionButton<B>("selectionPanel", getBeanProxy(), getFieldModel()));
+			}
+		} catch (Exception e) {
+			add(new Label("selectionPanel", e.getMessage()));
+		}
 		add(new DropSelectionButton("dropSelection",getBeanProxy(), getFieldModel()));
 	}
 

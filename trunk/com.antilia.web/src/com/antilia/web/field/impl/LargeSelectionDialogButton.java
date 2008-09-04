@@ -20,7 +20,7 @@ import com.antilia.web.resources.DefaultStyle;
  * @author Ernesto Reinaldo Barreiro (reiern70@gmail.com)
  *
  */
-public class LargeSelectionButton<B extends Serializable> extends DialogButton {
+public class LargeSelectionDialogButton<B extends Serializable> extends DialogButton {
 
 	private static final long serialVersionUID = 1L;
 
@@ -31,7 +31,7 @@ public class LargeSelectionButton<B extends Serializable> extends DialogButton {
 	/**
 	 * @param id
 	 */
-	public LargeSelectionButton(String id, BeanProxy<B> beanProxy, IFieldModel<B> fieldModel) {
+	public LargeSelectionDialogButton(String id, BeanProxy<B> beanProxy, IFieldModel<B> fieldModel) {
 		super(id);
 		this.beanProxy  = beanProxy;
 		this.fieldModel = fieldModel;

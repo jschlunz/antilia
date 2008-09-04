@@ -264,14 +264,14 @@ public abstract class ModalContainer extends Panel implements IDialogScope, IMen
 		
 		if(body  == null) {
 			// call createBody to retrieve user defined body.
-			body = createBody("body");
+			body = createBody(IDialogScope.BODY_ID);
 			
 			if(body != null) {
 				//body.setRenderBodyOnly(true);
 				dialogBody.add(body);
 			}
 			else 
-				dialogBody.add(new Label("body", ""));
+				dialogBody.add(new Label(IDialogScope.BODY_ID, ""));
 		}
 	}
 	
@@ -553,6 +553,11 @@ public abstract class ModalContainer extends Panel implements IDialogScope, IMen
 	 */
 	public void setHeightPercentage(int heightPercentage) {
 		this.heightPercentage = heightPercentage;
+	}
+
+	public void replaceBody(Component body) {
+		this.body = body;
+		this.dialogBody.addOrReplace(body);
 	}
  
 }

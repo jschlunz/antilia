@@ -178,6 +178,10 @@
 		if(this.drag != true) {
 		    this.drag = true;
 		    var panel = Antilia_dragPanels.getPanel(element.parentNode.id);
+            var Dom = YAHOO.util.Dom;
+            Dom.setStyle(panel.panel, "opacity", 0.6);
+             
+            /*   
             new Effect.toggle(panel.panel, 
                 'appear',
                 {
@@ -185,6 +189,7 @@
                     from: 1,
                     to: 0.6
                 });
+                */
          }					
 		var x = parseInt(w.style.left, 10) + deltaX;
 		var y = parseInt(w.style.top, 10) + deltaY;
@@ -218,6 +223,9 @@
 		var panel = Antilia_dragPanels.getPanel(element.parentNode.id);
 		if(this.drag == true) {
 		    this.drag = false;
+		    var Dom = YAHOO.util.Dom;
+            Dom.setStyle(panel.panel, "opacity", 1);
+		    /*
 			new Effect.toggle(panel.panel, 
 	            'appear',
 	            {
@@ -225,6 +233,8 @@
 	                from: 0.6,
 	                to: 1
 	            });
+	          */
+	          
             } 
 		panel.panel.className=panel.panelClass;		
 	}

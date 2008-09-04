@@ -14,6 +14,8 @@ import org.apache.wicket.Component;
  */
 public interface IDialogScope {
 
+	public static final String BODY_ID = "body";
+	
 	boolean isVisible();
 	
 	Component setVisible(boolean visible);
@@ -24,4 +26,6 @@ public interface IDialogScope {
 	
 	//TODO: see if I can come up with an interface for Dialogs.
 	Iterator<IDialogScope> getDialogs();
+
+	public void replaceBody(Component body);
 }

@@ -26,7 +26,7 @@ import com.antilia.web.menu.Menu;
  * 
  * @author Ernesto Reinaldo Barreiro (reiern70@gmail.com)
  */
-public class EditPanel<B extends Serializable> extends Panel {
+public class EditPanel<B extends Serializable> extends Panel implements ICRUDModeReporter {
 
 	private static final long serialVersionUID = 1L;
 
@@ -144,5 +144,10 @@ public class EditPanel<B extends Serializable> extends Panel {
 	 */
 	public void clearPageableProvider() {
 		this.pageableProvider = null;
+	}
+	
+	@Override
+	public CRUDMode getCrudMode() {
+		return CRUDMode.EDIT;
 	}
 }

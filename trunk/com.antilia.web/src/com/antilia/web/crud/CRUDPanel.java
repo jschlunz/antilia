@@ -18,7 +18,7 @@ import com.antilia.web.beantable.provider.IProviderSelector;
  * 
  * @author Ernesto Reinaldo Barreiro (reiern70@gmail.com)
  */
-public class CRUDPanel<B extends Serializable> extends Panel {
+public class CRUDPanel<B extends Serializable> extends Panel implements ICRUDModeReporter {
 
 	private static final long serialVersionUID = 1L;
 	
@@ -31,6 +31,8 @@ public class CRUDPanel<B extends Serializable> extends Panel {
 	private Panel currentPanel;
 	
 	private CrudStyler<B> styler;
+	
+	private CRUDPanel<Serializable> parentCrud;
 	
 	public static final String BEFORE_BODY_ID = "beforeBody";
 	
@@ -48,20 +50,18 @@ public class CRUDPanel<B extends Serializable> extends Panel {
 		this(id, new AutoCrudStyler<B>(beanClass));
 	}
 	
-	/**
-	 * 
-	 * @param id
-	 * @param styler
-	 */
-	public CRUDPanel(String id, CrudStyler<B> styler) {
-		super(id,  null);		
-		setOutputMarkupId(true);
+	public CRUDPanel(String id, Class<B> beanClass,  CRUDPanel<Serializable> parentCrud) {
+		this(id, new AutoCrudStyler<B>(beanClass), parentCrud);
+	}
+	
+	public CRUDPanel(String id, CrudStyler<B> styler, CRUDPanel<Serializable> parentCrud) {
+		super(id, null);
+		this.parentCrud = parentCrud;
+		setOutputMarkupId(true);		 		
 		
 		this.styler = styler;
 		
 		configureStyler(this.styler);
-		
-		add(newBeforeBody(BEFORE_BODY_ID, styler));
 		
 		this.searchPanel = newSearchPanel(BODY_ID, styler);				
 		currentPanel = searchPanel;
@@ -71,6 +71,15 @@ public class CRUDPanel<B extends Serializable> extends Panel {
 		createPanel = newCreatePanel(BODY_ID, styler);		
 	
 		add(newAfterBody(AFTER_BODY_ID, styler));
+	}
+	
+	/**
+	 * 
+	 * @param id
+	 * @param styler
+	 */
+	public CRUDPanel(String id, CrudStyler<B> styler) {
+		this(id,  styler, (CRUDPanel<Serializable>)null);			
 	}
 	
 	
@@ -86,6 +95,8 @@ public class CRUDPanel<B extends Serializable> extends Panel {
 	
 	@Override
 	protected void onBeforeRender() {
+		addOrReplace(newBeforeBody(BEFORE_BODY_ID, styler));
+		
 		addOrReplace(currentPanel);
 		super.onBeforeRender();
 	}
@@ -232,6 +243,21 @@ public class CRUDPanel<B extends Serializable> extends Panel {
 	 */
 	public CreatePanel<B> getCreatePanel() {
 		return createPanel;
+	}
+
+	public CRUDPanel<Serializable> getParentCrud() {
+		return parentCrud;
+	}
+
+	public void setParentCrud(CRUDPanel<Serializable> parentCrud) {
+		this.parentCrud = parentCrud;
+	}
+	
+	@Override
+	public CRUDMode getCrudMode() {
+		if(currentPanel != null && currentPanel instanceof ICRUDModeReporter)
+			return ((ICRUDModeReporter)currentPanel).getCrudMode();
+		return CRUDMode.SEARCH;
 	}
 	
 }
