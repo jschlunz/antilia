@@ -25,7 +25,6 @@ public class InitialPanel extends ModalContainer {
 	 */
 	public InitialPanel(String id, Index page) {
 		super(id);
-		setOutputMarkupId(true);
 		this.page = page;
 	}
 	
