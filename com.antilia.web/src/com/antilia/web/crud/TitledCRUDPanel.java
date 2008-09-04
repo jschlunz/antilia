@@ -18,7 +18,7 @@ public class TitledCRUDPanel<B extends Serializable> extends CRUDPanel<B> {
 	
 
 	private static final long serialVersionUID = 1L;
-
+	
 	/**
 	 * @param id
 	 * @param beanClass
@@ -37,7 +37,7 @@ public class TitledCRUDPanel<B extends Serializable> extends CRUDPanel<B> {
 	
 	@Override
 	protected Component newBeforeBody(String id, CrudStyler<B> styler) {
-		return new CRUDTitle<B>(id, styler.getBeanClass());
+		return new CRUDTitle(id, new CRUDTitle.CRUDInfo(styler.getBeanClass(), getCrudMode()));
 	}
 
 }

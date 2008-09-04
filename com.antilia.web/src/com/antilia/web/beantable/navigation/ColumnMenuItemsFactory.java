@@ -23,6 +23,10 @@ public abstract class ColumnMenuItemsFactory<E extends Serializable> implements 
 	
 	@SuppressWarnings("unchecked")
 	public void populateMenuItems(String menuId, IMenuItemHolder itemHolder) {
+		itemHolder.addMenuItem(new SortColumnButton("sortColumn", getColumnModel()));
+		itemHolder.addMenuItem(new SortAscendingButton("sortAscColumn", getColumnModel()));
+		itemHolder.addMenuItem(new SortDescendingButton("sortDescColumn", getColumnModel()));
+		/*
 		itemHolder.addMenuItem(new ColumnProperties() {
 			
 			private static final long serialVersionUID = 1L;
@@ -31,7 +35,8 @@ public abstract class ColumnMenuItemsFactory<E extends Serializable> implements 
 			public IColumnModel getColumnModel() {
 				return ColumnMenuItemsFactory.this.getColumnModel();
 			}
-		});		
+		});	
+		*/	
 	}
 
 	/**

@@ -22,7 +22,7 @@ import com.antilia.web.menu.Menu;
  * 
  * @author Ernesto Reinaldo Barreiro (reiern70@gmail.com)
  */
-public class CreatePanel<B extends Serializable> extends Panel {
+public class CreatePanel<B extends Serializable> extends Panel implements ICRUDModeReporter {
 
 	private static final long serialVersionUID = 1L;
 
@@ -54,10 +54,12 @@ public class CreatePanel<B extends Serializable> extends Panel {
 	@SuppressWarnings("unchecked")
 	@Override
 	protected void onBeforeRender() {
-						
-		try {
-			this.beanProxy =  new BeanProxy<B>(beanClass.newInstance());
-		} catch (Exception e) {
+				
+		if(this.beanProxy == null) {
+			try {
+				this.beanProxy =  new BeanProxy<B>(beanClass.newInstance());
+			} catch (Exception e) {
+			}
 		}
 		
 		IAutoFieldModel<B> autoFieldModel = newAutoFieldModel(null, this.beanProxy);
@@ -83,6 +85,11 @@ public class CreatePanel<B extends Serializable> extends Panel {
 	public CRUDPanel<B> getCRUDPanel() {
 		return (CRUDPanel<B>) findParent(CRUDPanel.class);
 		
+	}
+	
+	public CreatePanel<B> reset() {
+		this.beanProxy = null;
+		return this;
 	}
 	
 	public B getCurrentBean() {
@@ -127,5 +134,10 @@ public class CreatePanel<B extends Serializable> extends Panel {
 	 */
 	public FeedbackPanel getMessages() {
 		return messages;
+	}
+	
+	@Override
+	public CRUDMode getCrudMode() {
+		return CRUDMode.CREATE;
 	}
 }

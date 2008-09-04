@@ -82,6 +82,9 @@ public class DefaultStyle {
 	public static ResourceReference IMG_SORT_ASC = new ResourceReference(ImgDummy.class, "bullet_arrow_up.png");
 	public static ResourceReference IMG_SORT_DES = new ResourceReference(ImgDummy.class, "bullet_arrow_down.png");
 	
+	public static ResourceReference IMG_SORT_ASC_SMALL = new ResourceReference(ImgDummy.class, "bullet_arrow_up_small.gif");
+	public static ResourceReference IMG_SORT_DES_SMALL = new ResourceReference(ImgDummy.class, "bullet_arrow_down_small.gif");
+	
 	public static ResourceReference IMG_TRASH = new ResourceReference(ImgDummy.class, "basket_delete.png");
 	
 	public static ResourceReference IMG_DELETE_COLS = new ResourceReference(ImgDummy.class, "table_delete.png");

@@ -47,7 +47,8 @@ public class CreateNewButton<E extends Serializable> extends AbstractButton {
 	protected void onSubmit(AjaxRequestTarget target, Form form) {
 			CRUDPanel<E> crudPanel = getCRUDPanel();
 			if(crudPanel != null) {			
-				crudPanel.setCurrentPanel(crudPanel.getCreatePanel());
+				// resets the create panel and sets it as the current panel
+				crudPanel.setCurrentPanel(crudPanel.getCreatePanel().reset());
 				crudPanel.getSearchPanel().getPageableProvider().clearcache();
 				target.addComponent((Component)crudPanel);
 			}		

@@ -37,7 +37,7 @@ public class LageSelectionFieldFactory<B extends Serializable> implements IField
 				if(AnnotationUtils.isFieldAnnotationPresent(model.getBeanClass(), model.getPropertyPath(), SelectionType.class)) {
 					SelectionType selectionType = AnnotationUtils.findFieldAnnotation(model.getBeanClass(), model.getPropertyPath(), SelectionType.class);
 					if(selectionType != null) {
-						return selectionType.type().equals(SelectionMode.LARGE_IN_MODAL_DIALOG);
+						return selectionType.type().equals(SelectionMode.LARGE_IN_MODAL_DIALOG) || selectionType.type().equals(SelectionMode.LARGE_ON_NEXT_PAGE);
 					}
 				}
 				return false;

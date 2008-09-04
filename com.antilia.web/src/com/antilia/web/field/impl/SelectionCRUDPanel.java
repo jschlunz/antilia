@@ -32,12 +32,22 @@ public abstract class SelectionCRUDPanel<B extends Serializable> extends CRUDPan
 		super(id, beanClass);
 	}
 
+	
 	/**
 	 * @param id
 	 * @param styler
 	 */
 	public SelectionCRUDPanel(String id, CrudStyler<B> styler) {
 		super(id, styler);
+	}
+	
+	
+	public SelectionCRUDPanel(String id, Class<B> beanClass,  CRUDPanel<Serializable> parentCrud) {
+		super(id,beanClass, parentCrud);
+	}	
+	
+	public SelectionCRUDPanel(String id, CrudStyler<B> styler, CRUDPanel<Serializable> parentCrud) {
+		super(id, styler, parentCrud);
 	}
 	
 	@Override
