@@ -27,6 +27,13 @@ public interface IQuery<B extends Serializable> extends Serializable  {
 	
 	Iterable<IOrder<B>> getOrders();
 	
+	/**
+	 * Returns the order for the property <code>propertyPath</code> or null if no order is found for that property.
+	 * @param propertyPath
+	 * @return
+	 */
+	IOrder<B> getOrder(String propertyPath);
+	
 	public void clearOrders();
 	
 	IQuery<B> setProjection(IProjection projection);
