@@ -72,6 +72,15 @@ public class Query<B extends Serializable> implements IQuery<B> {
 		return orders;
 	}
 	
+	@Override
+	public IOrder<B> getOrder(String propertyPath) {
+		for(IOrder<B> order: orders) {
+			if(order.getPropertyPath().equals(propertyPath)) 
+				return order;
+		}
+		return null;
+	}
+	
 	public Class<B> getEntityClass() {
 		return beanClass;
 	}
