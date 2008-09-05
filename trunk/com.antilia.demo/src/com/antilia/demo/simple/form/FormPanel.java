@@ -58,12 +58,12 @@ public class FormPanel extends Panel {
 		
 		form.add(button);
 		
-		hidden = new Label("hidden", new Model( ) {
+		hidden = new Label("hidden", new Model<String>( ) {
 			
 			private static final long serialVersionUID = 1L;
 
 			@Override
-			public Object getObject() {
+			public String getObject() {
 				return "Submit button clicked. Full name:  " + person.getName() + " " + person.getLastName1(); 
 			}					
 		});
