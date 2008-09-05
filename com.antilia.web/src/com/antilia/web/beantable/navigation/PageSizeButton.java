@@ -29,6 +29,7 @@ public class PageSizeButton<E extends Serializable> extends Panel implements IMe
 	/**
 	 * @param id
 	 */
+	@SuppressWarnings("unchecked")
 	public PageSizeButton() {
 		super("pageSize");		
 		textField  = new TextField("field",  new Model<Serializable>() {
