@@ -30,11 +30,11 @@ public class ElementNumberItem<E extends Serializable> extends Panel implements 
 	 */
 	public ElementNumberItem() {
 		super("elementnumber");		
-		add(new Label("page", new Model() {
+		add(new Label("page", new Model<Integer>() {
 			private static final long serialVersionUID = 1L;
 
 			@Override
-			public Object getObject() {
+			public Integer getObject() {
 				IPageableProvider<E> source = findPageableComponent().getPageableProvider();
 				if(source.isEmpty())
 					return 0;
@@ -42,12 +42,12 @@ public class ElementNumberItem<E extends Serializable> extends Panel implements 
 			}
 		}));
 		
-		add(new Label("npages", new Model() {
+		add(new Label("npages", new Model<Integer>() {
 			
 			private static final long serialVersionUID = 1L;
 
 			@Override
-			public Object getObject() {
+			public Integer getObject() {
 				IPageableProvider<E> source = findPageableComponent().getPageableProvider();
 				if(source.isEmpty())
 					return 0;
