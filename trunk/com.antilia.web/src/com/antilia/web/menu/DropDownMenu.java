@@ -53,20 +53,20 @@ public  class DropDownMenu extends Panel implements IMenuItem, IMenuItemHolder {
 		toolBar = new RepeatingView("toolbar");	
 		
 		WebMarkupContainer mainDiv = new WebMarkupContainer("mainDiv");		
-		mainDiv.add(new AttributeModifier("class", new Model() {
+		mainDiv.add(new AttributeModifier("class", new Model<String>() {
 			private static final long serialVersionUID = 1L;
 
 			@Override
-			public Object getObject() {
+			public String getObject() {
 				return DropDownMenu.this.getVerticalStyleClass();
 							
 			}
 		}));
-		mainDiv.add(new AttributeModifier("style", new Model() {
+		mainDiv.add(new AttributeModifier("style", new Model<String>() {
 			private static final long serialVersionUID = 1L;
 
 			@Override
-			public Object getObject() {
+			public String getObject() {
 				return menuStyle;							
 			}
 		}));

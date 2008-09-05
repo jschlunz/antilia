@@ -264,25 +264,25 @@ public class Table<E extends Serializable> extends Panel implements IPageableCom
 		protected Item newItem(String id, int index, final IModel model) {
 			Item item = super.newItem(id, index, model);
 			if(model instanceof IColumnModel) {			
-				item.add(new AttributeModifier("width", true, new Model() {
+				item.add(new AttributeModifier("width", true, new Model<String>() {
 					
 					private static final long serialVersionUID = 1L;
 	
 					@SuppressWarnings("unchecked")
 					@Override
-					public Object getObject() {
+					public String getObject() {
 						String width = ((IColumnModel<E>)model).getWidth()+" px";
 						return width;
 					}
 					
 				}));
 			} else {
-				item.add(new AttributeModifier("width", new Model() {
+				item.add(new AttributeModifier("width", new Model<String>() {
 					
 					private static final long serialVersionUID = 1L;
 	
 					@Override
-					public Object getObject() {
+					public String getObject() {
 						String width = Table.this.getFirstColumnModel().getWidth()+ "px";
 						return width;
 					}

@@ -43,17 +43,17 @@ public class DefaultHeaderCell<E extends Serializable> extends Panel {
 		this.column = column;
 		this.beanClass  = beanClass;
 		setRenderBodyOnly(true);
-		add(new HiddenField("colWidth", new Model() {
+		add(new HiddenField<Integer>("colWidth", new Model<Integer>() {
 	
 			private static final long serialVersionUID = 1L;
 
 			@Override
-			public Object getObject() {
+			public Integer getObject() {
 				return DefaultHeaderCell.this.getColumnModel().getWidth();
 			}
 			
 			@Override
-			public void setObject(Object object) {
+			public void setObject(Integer object) {
 				if(object instanceof Integer) {
 					DefaultHeaderCell.this.getColumnModel().setWidth(((Integer)object).intValue());
 				}
@@ -79,11 +79,11 @@ public class DefaultHeaderCell<E extends Serializable> extends Panel {
 		HeaderTitleLabel<E> title = new HeaderTitleLabel<E>("title", this);
 		
 		WebMarkupContainer dragTd = new WebMarkupContainer("dragTd");
-		dragTd.add(new AttributeModifier("id", new Model() {
+		dragTd.add(new AttributeModifier("id", new Model<String>() {
 			private static final long serialVersionUID = 1L;
 
 			@Override
-			public Object getObject() {
+			public String getObject() {
 				return DefaultHeaderCell.this.getTable().getMarkupId()+"_c_"+DefaultHeaderCell.this.getColumn();
 			}
 		}));	
@@ -99,7 +99,7 @@ public class DefaultHeaderCell<E extends Serializable> extends Panel {
 	
 	@SuppressWarnings("unchecked")
 	protected IColumnModel<E> getColumnModel() {
-		return (IColumnModel<E>)getModel();
+		return (IColumnModel<E>)getDefaultModel();
 	}
 	
 	public Table<E> getTable() {

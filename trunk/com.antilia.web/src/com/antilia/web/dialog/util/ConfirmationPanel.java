@@ -26,11 +26,11 @@ public abstract class ConfirmationPanel extends Panel {
 	public ConfirmationPanel(String id, String message) {
 		super(id);
 		
-		add(new Label("message", new Model() {
+		add(new Label("message", new Model<String>() {
 			private static final long serialVersionUID = 1L;
 
 			@Override
-			public Object getObject() {
+			public String getObject() {
 				return ConfirmationPanel.this.getMessage();
 			}
 		}));

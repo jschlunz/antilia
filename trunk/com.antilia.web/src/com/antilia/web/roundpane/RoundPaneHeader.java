@@ -50,21 +50,21 @@ public class RoundPaneHeader extends Panel {
 			}
 		};
 		add(tl);
-		tl.add(new AttributeModifier("id", true, new Model() {
+		tl.add(new AttributeModifier("id", true, new Model<String>() {
 			private static final long serialVersionUID = 1L;
 
 			@Override
-			public Object getObject() {
+			public String getObject() {
 				return getRoundBox().getMarkupId() + "TopLeft";
 			}
 		}));
 		
 		titleColumn = new WebMarkupContainer("titleColumn");
-		titleColumn.add(new AttributeModifier("style", new Model() {
+		titleColumn.add(new AttributeModifier("style", new Model<String>() {
 			private static final long serialVersionUID = 1L;
 
 			@Override
-			public Object getObject() {
+			public String getObject() {
 				StringBuffer sb = new StringBuffer();
 				sb.append("background-color: ");
 				sb.append(getRoundBox().getBoxStyle().getBackgroundColor());				
@@ -72,11 +72,11 @@ public class RoundPaneHeader extends Panel {
 			}
 		}));
 		
-		titleColumn.add(new AttributeModifier("ondblclick", new Model() {
+		titleColumn.add(new AttributeModifier("ondblclick", new Model<String>() {
 			private static final long serialVersionUID = 1L;
 
 			@Override
-			public Object getObject() {
+			public String getObject() {
 				if(getRoundBox().isFoldable())
 					return getRoundBox().getMarkupId()+"Box.toggleFold();";
 				else 
@@ -95,11 +95,11 @@ public class RoundPaneHeader extends Panel {
 			}
 		};
 		
-		ltitle.add(new AttributeModifier("style", new Model() {
+		ltitle.add(new AttributeModifier("style", new Model<String>() {
 			private static final long serialVersionUID = 1L;
 
 			@Override
-			public Object getObject() {
+			public String getObject() {
 				return getRoundBox().getBoxStyle().getTitleStyle();
 			}
 		}));

@@ -55,19 +55,19 @@ public  class NMenu extends Panel implements IMenuItem, IMenuItemHolder {
 		toolBar = new RepeatingView("toolbar");	
 		
 		WebMarkupContainer menu = new WebMarkupContainer("menu");		
-		menu.add(new AttributeModifier("class", new Model() {
+		menu.add(new AttributeModifier("class", new Model<String>() {
 			private static final long serialVersionUID = 1L;
 
 			@Override
-			public Object getObject() {
+			public String getObject() {
 				return NMenu.this.getHorizontalStyleClass();							
 			}
 		}));
-		menu.add(new AttributeModifier("style", new Model() {
+		menu.add(new AttributeModifier("style", new Model<String>() {
 			private static final long serialVersionUID = 1L;
 
 			@Override
-			public Object getObject() {
+			public String getObject() {
 				return menuStyle;							
 			}
 		}));

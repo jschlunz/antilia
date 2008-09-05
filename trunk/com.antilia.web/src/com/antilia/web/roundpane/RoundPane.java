@@ -109,11 +109,11 @@ public class RoundPane extends Panel implements IMenuItemsFactory {
 			}
 		};
 		roundpane.setOutputMarkupId(true);
-		roundpane.add(new AttributeModifier("style", true, new Model() {
+		roundpane.add(new AttributeModifier("style", true, new Model<String>() {
 			private static final long serialVersionUID = 1L;
 
 			@Override
-			public Object getObject() {
+			public String getObject() {
 				StringBuffer sb = new StringBuffer();				
 				sb.append("width: ");
 				sb.append(RoundPane.this.getWidth());
@@ -125,17 +125,17 @@ public class RoundPane extends Panel implements IMenuItemsFactory {
 		}));
 		add(roundpane);
 		
-		HiddenField widthField = new HiddenField("width", new Model() {
+		HiddenField widthField = new HiddenField<Integer>("width", new Model<Integer>() {
 			
 			private static final long serialVersionUID = 1L;
 
 			@Override
-			public Object getObject() {
+			public Integer getObject() {
 				return new Integer(width);
 			}
 			
 			@Override
-			public void setObject(Object object) {
+			public void setObject(Integer object) {
 				super.setObject(object);
 				try {
 					setWidth(new Integer(object.toString()));
@@ -144,11 +144,11 @@ public class RoundPane extends Panel implements IMenuItemsFactory {
 			}
 		});
 		
-		widthField.add(new AttributeModifier("id", new Model() {
+		widthField.add(new AttributeModifier("id", new Model<String>() {
 			private static final long serialVersionUID = 1L;
 
 			@Override
-			public Object getObject() {
+			public String getObject() {
 				return RoundPane.this.getMarkupId() + "Width";
 			}
 			
@@ -156,17 +156,17 @@ public class RoundPane extends Panel implements IMenuItemsFactory {
 		
 		roundpane.add(widthField);
 		
-		HiddenField heightField = new HiddenField("height", new Model() {
+		HiddenField heightField = new HiddenField<Integer>("height", new Model<Integer>() {
 			
 			private static final long serialVersionUID = 1L;
 
 			@Override
-			public Object getObject() {
+			public Integer getObject() {
 				return new Integer(height);
 			}
 			
 			@Override
-			public void setObject(Object object) {
+			public void setObject(Integer object) {
 				super.setObject(object);
 				try {
 					setHeight(new Integer(object.toString()));
@@ -175,11 +175,11 @@ public class RoundPane extends Panel implements IMenuItemsFactory {
 			}
 		});
 		
-		heightField.add(new AttributeModifier("id", new Model() {
+		heightField.add(new AttributeModifier("id", new Model<String>() {
 			private static final long serialVersionUID = 1L;
 
 			@Override
-			public Object getObject() {
+			public String getObject() {
 				return RoundPane.this.getMarkupId() + "Height";
 			}
 			
@@ -203,27 +203,27 @@ public class RoundPane extends Panel implements IMenuItemsFactory {
 		roundpane.add(new RoundPaneHeader("roundboxHeader", this));
 		
 		WebMarkupContainer middlePanel = new WebMarkupContainer("middlePanel");
-		middlePanel.add(new AttributeModifier("style", new Model("background-color: "+getBoxStyle().getBackgroundColor())));
+		middlePanel.add(new AttributeModifier("style", new Model<String>("background-color: "+getBoxStyle().getBackgroundColor())));
 		roundpane.add(middlePanel);
 		
 		// creating the body
 		body = new WebMarkupContainer("body");
 		if(getBoxStyle().getBodyStyle() != null)
-			body.add(new AttributeModifier("style", new Model(getBoxStyle().getBodyStyle())));
-		body.add(new AttributeModifier("id", new Model() {
+			body.add(new AttributeModifier("style", new Model<String>(getBoxStyle().getBodyStyle())));
+		body.add(new AttributeModifier("id", new Model<String>() {
 			private static final long serialVersionUID = 1L;
 
 			@Override
-			public Object getObject() {
+			public String getObject() {
 				return RoundPane.this.getMarkupId() + "Body";
 			}
 			
 		}));
-		body.add(new AttributeModifier("style", true, new Model() {
+		body.add(new AttributeModifier("style", true, new Model<String>() {
 			private static final long serialVersionUID = 1L;
 
 			@Override
-			public Object getObject() {
+			public String getObject() {
 				StringBuffer sb = new StringBuffer();
 				if(getBoxStyle().getBodyStyle() != null)
 					sb.append(getBoxStyle().getBodyStyle());

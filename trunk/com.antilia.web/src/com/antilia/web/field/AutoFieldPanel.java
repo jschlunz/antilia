@@ -142,7 +142,7 @@ public class AutoFieldPanel<B extends Serializable> extends Panel implements IFi
 			private static final long serialVersionUID = 1L;
 
 			@Override
-			protected Object load() {				
+			protected String load() {				
 				return super.load() + ":";
 			}
 		};		

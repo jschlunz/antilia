@@ -54,21 +54,21 @@ public class RoundBoxHeader extends Panel {
 			}
 		};
 		add(tl);
-		tl.add(new AttributeModifier("id", true, new Model() {
+		tl.add(new AttributeModifier("id", true, new Model<String>() {
 			private static final long serialVersionUID = 1L;
 
 			@Override
-			public Object getObject() {
+			public String getObject() {
 				return getDefaultDialog().getMarkupId() + "TopLeft";
 			}
 		}));
 		
 		WebMarkupContainer titleColumn = new WebMarkupContainer("titleColumn");
-		titleColumn.add(new AttributeModifier("style", new Model() {
+		titleColumn.add(new AttributeModifier("style", new Model<String>() {
 			private static final long serialVersionUID = 1L;
 
 			@Override
-			public Object getObject() {
+			public String getObject() {
 				StringBuffer sb = new StringBuffer();
 				sb.append("background-color: ");
 				sb.append(getDefaultDialog().getDialogStyle().getBackgroundColor());				
@@ -76,11 +76,11 @@ public class RoundBoxHeader extends Panel {
 			}
 		}));
 		
-		titleColumn.add(new AttributeModifier("ondblclick", new Model() {
+		titleColumn.add(new AttributeModifier("ondblclick", new Model<String>() {
 			private static final long serialVersionUID = 1L;
 
 			@Override
-			public Object getObject() {
+			public String getObject() {
 				if(getDefaultDialog().isFoldable())
 					return getDefaultDialog().getMarkupId()+"Box.toggleFold();";
 				else 
@@ -90,12 +90,12 @@ public class RoundBoxHeader extends Panel {
 		
 		add(titleColumn);
 		
-		Label ltitle = new Label("title", new Model() {
+		Label ltitle = new Label("title", new Model<String>() {
 			
 			private static final long serialVersionUID = 1L;
 
 			@Override
-			public Object getObject() {
+			public String getObject() {
 				return getDefaultDialog().getTitle();
 			}
 		}) {
@@ -107,11 +107,11 @@ public class RoundBoxHeader extends Panel {
 			}
 		};
 		
-		ltitle.add(new AttributeModifier("style", new Model() {
+		ltitle.add(new AttributeModifier("style", new Model<String>() {
 			private static final long serialVersionUID = 1L;
 
 			@Override
-			public Object getObject() {
+			public String getObject() {
 				return getDefaultDialog().getDialogStyle().getTitleStyle();
 			}
 		}));

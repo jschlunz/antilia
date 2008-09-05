@@ -35,17 +35,17 @@ public class FirstHeaderCell<E extends Serializable> extends Panel {
 		this.table = table;
 		this.column = column;
 		setRenderBodyOnly(true);		
-		add(new HiddenField("colWidth", new Model() {
+		add(new HiddenField("colWidth", new Model<Integer>() {
 			
 			private static final long serialVersionUID = 1L;
 
 			@Override
-			public Object getObject() {
+			public Integer getObject() {
 				return FirstHeaderCell.this.getTable().getFirstColumnModel().getWidth();
 			}
 			
 			@Override
-			public void setObject(Object object) {
+			public void setObject(Integer object) {
 				if(object instanceof Integer) {
 					FirstHeaderCell.this.getTable().getFirstColumnModel().setWidth((Integer)object);
 				}
@@ -58,11 +58,11 @@ public class FirstHeaderCell<E extends Serializable> extends Panel {
 		menu.setHorizontalStyleClass("trans-menu");
 		add(menu);
 		WebMarkupContainer dragTd = new WebMarkupContainer("dragTd");
-		dragTd.add(new AttributeModifier("id", new Model() {
+		dragTd.add(new AttributeModifier("id", new Model<String>() {
 			private static final long serialVersionUID = 1L;
 
 			@Override
-			public Object getObject() {
+			public String getObject() {
 				return FirstHeaderCell.this.getTable().getMarkupId()+"_c_"+FirstHeaderCell.this.getColumn();
 			}
 		}));

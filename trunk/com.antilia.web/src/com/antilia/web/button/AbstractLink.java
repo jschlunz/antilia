@@ -43,12 +43,12 @@ public abstract class AbstractLink extends Panel implements IMenuItem, IToolbarI
 	public AbstractLink(String id) {
 		super(id);
 		link = newLink("link");
-		link.add(new AttributeModifier("class", true, new Model() {
+		link.add(new AttributeModifier("class", true, new Model<String>() {
 			
 			private static final long serialVersionUID = 1L;
 
 			@Override
-			public Object getObject() {
+			public String getObject() {
 				return AbstractLink.this.getLinkClass();
 			}
 		}));
