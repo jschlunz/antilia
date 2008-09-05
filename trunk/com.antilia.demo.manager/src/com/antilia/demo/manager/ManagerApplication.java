@@ -4,6 +4,7 @@
  */
 package com.antilia.demo.manager;
 
+import org.apache.wicket.Page;
 import org.apache.wicket.Request;
 import org.apache.wicket.RequestCycle;
 import org.apache.wicket.Response;
@@ -29,7 +30,7 @@ public class ManagerApplication extends WebApplication {
 	 * @see org.apache.wicket.Application#getHomePage()
 	 */
 	@Override
-	public Class<?> getHomePage() {
+	public Class<? extends Page> getHomePage() {
 		return Index.class;
 		//return SortableListPage.class;
 	}
