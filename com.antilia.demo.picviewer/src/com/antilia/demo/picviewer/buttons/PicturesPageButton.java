@@ -39,12 +39,12 @@ public class PicturesPageButton extends AppNavigationButton {
 	}
 	
 	protected Label newLabel(String id) {
-		return new Label(id, new Model() {
+		return new Label(id, new Model<String>() {
 			
 			private static final long serialVersionUID = 1L;
 
 			@Override
-			public Object getObject() {
+			public String getObject() {
 				return PicturesPageButton.this.getLabel();
 			}
 		});
