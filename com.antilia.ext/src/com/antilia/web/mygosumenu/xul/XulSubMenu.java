@@ -41,11 +41,11 @@ public class XulSubMenu extends Panel implements IMenuItem, IMenuItemHolder {
 			throw new IllegalArgumentException("Title should be not null");		
 		this.title = title;
 		
-		Label label = new Label("title", new Model() {
+		Label label = new Label("title", new Model<String>() {
 			private static final long serialVersionUID = 1L;
 
 			@Override
-			public Object getObject() {
+			public String getObject() {
 				return XulSubMenu.this.getTitle();
 			}
 		});
