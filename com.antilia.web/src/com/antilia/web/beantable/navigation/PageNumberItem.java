@@ -31,11 +31,11 @@ public class PageNumberItem<E extends Serializable> extends Panel implements IMe
 	 */
 	public PageNumberItem() {
 		super("pagenumber");		
-		add(new Label("page", new Model() {
+		add(new Label("page", new Model<Integer>() {
 			private static final long serialVersionUID = 1L;
 
 			@Override
-			public Object getObject() {
+			public Integer getObject() {
 				IPageableComponent< E> component = findPageableComponent();
 				if(component  == null)
 					return 0;
@@ -46,12 +46,12 @@ public class PageNumberItem<E extends Serializable> extends Panel implements IMe
 			}
 		}));
 		
-		add(new Label("npages", new Model() {
+		add(new Label("npages", new Model<Integer>() {
 			
 			private static final long serialVersionUID = 1L;
 
 			@Override
-			public Object getObject() {
+			public Integer getObject() {
 				IPageableComponent< E> component = findPageableComponent();
 				if(component  == null)
 					return 0;

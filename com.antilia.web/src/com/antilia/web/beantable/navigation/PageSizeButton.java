@@ -31,12 +31,12 @@ public class PageSizeButton<E extends Serializable> extends Panel implements IMe
 	 */
 	public PageSizeButton() {
 		super("pageSize");		
-		textField  = new TextField("field",  new Model() {
+		textField  = new TextField("field",  new Model<Serializable>() {
 			
 			private static final long serialVersionUID = 1L;
 
 			@Override
-			public Object getObject() {
+			public Serializable getObject() {
 				IPageableComponent<E> pageableComponent = findPageableComponent();
 				if(pageableComponent != null)
 					return pageableComponent.getPageableProvider().getPageSize();
@@ -44,7 +44,7 @@ public class PageSizeButton<E extends Serializable> extends Panel implements IMe
 			}
 			
 			@Override
-			public void setObject(Object object) {
+			public void setObject(Serializable object) {
 				try {
 					findPageableComponent().getPageableProvider().setPageSize(Integer.parseInt(object.toString()));
 				} catch (Exception e) {

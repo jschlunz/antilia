@@ -41,20 +41,20 @@ public class HeaderTitleLabel<E extends Serializable> extends Label implements I
 		this.headerCell = headerCell;
 		
 		setOutputMarkupId(true);
-		add(new AttributeModifier("id", new Model() {
+		add(new AttributeModifier("id", new Model<String>() {
 			private static final long serialVersionUID = 1L;
 
 			@Override
-			public Object getObject() {
+			public String getObject() {
 				return headerCell.getTable().getMarkupId()+"_title_"+headerCell.getColumn();
 			}
 		}));
 		
-		add(new AttributeModifier("class", new Model() {
+		add(new AttributeModifier("class", new Model<String>() {
 			private static final long serialVersionUID = 1L;
 
 			@Override
-			public Object getObject() {
+			public String getObject() {
 				return headerCell.getTable().getMarkupId();
 			}
 		}));		

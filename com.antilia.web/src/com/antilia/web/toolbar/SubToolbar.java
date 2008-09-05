@@ -48,12 +48,12 @@ public abstract class   SubToolbar extends Panel implements IToolbarItem, IToolb
 		image = newImage("image");
 		
 		WebMarkupContainer link = new WebMarkupContainer("link");
-		link.add(new AttributeModifier("class", new Model() {			
+		link.add(new AttributeModifier("class", new Model<String>() {			
 			
 			private static final long serialVersionUID = 1L;
 
 			@Override
-			public Object getObject() {
+			public String getObject() {
 				StringBuffer sb = new StringBuffer();
 				if(SubToolbar.this.parentToolbar.isOnTop())
 					sb.append("item1");

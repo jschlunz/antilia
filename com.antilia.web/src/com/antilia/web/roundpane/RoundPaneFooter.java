@@ -45,11 +45,11 @@ public class RoundPaneFooter extends Panel {
 			}
 		}; 
 		add(br);
-		br.add(new AttributeModifier("id", new Model() {
+		br.add(new AttributeModifier("id", new Model<String>() {
 			private static final long serialVersionUID = 1L;
 
 			@Override
-			public Object getObject() {
+			public String getObject() {
 				if(getRoundBox().isResizable())
 					return getRoundBox().getMarkupId() + "Handle";
 				else 
@@ -58,11 +58,11 @@ public class RoundPaneFooter extends Panel {
 			
 		}));
 		
-		br.add(new AttributeModifier("style", new Model() {
+		br.add(new AttributeModifier("style", new Model<String>() {
 			private static final long serialVersionUID = 1L;
 
 			@Override
-			public Object getObject() {
+			public String getObject() {
 				if(getRoundBox().isResizable())
 					return "display: none; cursor: nw-resize;";
 				else 

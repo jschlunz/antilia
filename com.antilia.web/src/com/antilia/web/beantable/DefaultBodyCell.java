@@ -38,6 +38,6 @@ public class DefaultBodyCell<E extends Serializable> extends Panel {
 
 	@SuppressWarnings("unchecked")
 	protected IColumnModel<E> getColumnModel() {
-		return (IColumnModel<E>)getModel();
+		return (IColumnModel<E>)getDefaultModel();
 	}
 }

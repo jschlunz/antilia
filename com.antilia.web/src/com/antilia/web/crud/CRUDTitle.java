@@ -74,7 +74,7 @@ public class CRUDTitle  extends Panel {
 		}
 	}
 	
-	private static class ChainedReourceModel extends Model {
+	private static class ChainedReourceModel extends Model<String> {
 		
 		private static final long serialVersionUID = 1L;
 
@@ -97,7 +97,7 @@ public class CRUDTitle  extends Panel {
 		}
 		
 		@Override
-		public Object getObject() {
+		public String getObject() {
 			if(models != null) {
 				StringBuffer sb = new StringBuffer();
 				Iterator<StringResourceModel>  it =models.iterator();

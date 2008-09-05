@@ -48,17 +48,17 @@ public class DefaultHeaderCell1<E extends Serializable> extends Panel {
 		this.column = column;
 		this.beanClass  = beanClass;
 		setRenderBodyOnly(true);
-		add(new HiddenField("colWidth", new Model() {
+		add(new HiddenField<Integer>("colWidth", new Model<Integer>() {
 	
 			private static final long serialVersionUID = 1L;
 
 			@Override
-			public Object getObject() {
+			public Integer getObject() {
 				return DefaultHeaderCell1.this.getColumnModel().getWidth();
 			}
 			
 			@Override
-			public void setObject(Object object) {
+			public void setObject(Integer object) {
 				if(object instanceof Integer) {
 					DefaultHeaderCell1.this.getColumnModel().setWidth(((Integer)object).intValue());
 				}
@@ -120,20 +120,20 @@ public class DefaultHeaderCell1<E extends Serializable> extends Panel {
 						
 		};
 		
-		draggableTarget .add(new AttributeModifier("id", new Model() {
+		draggableTarget .add(new AttributeModifier("id", new Model<String>() {
 			private static final long serialVersionUID = 1L;
 
 			@Override
-			public Object getObject() {
+			public String getObject() {
 				return getTable().getMarkupId()+"_dragger_"+ getTable().getRendringCount() + "_" +getColumn();
 			}
 		}));
 		
-		draggableTarget .add(new AttributeModifier("class", new Model() {
+		draggableTarget .add(new AttributeModifier("class", new Model<String>() {
 			private static final long serialVersionUID = 1L;
 
 			@Override
-			public Object getObject() {
+			public String getObject() {
 				return getTable().getMarkupId();
 			}
 		}));
@@ -175,11 +175,11 @@ public class DefaultHeaderCell1<E extends Serializable> extends Panel {
 		add(title);
 		*/
 		WebMarkupContainer dragTd = new WebMarkupContainer("dragTd");
-		dragTd.add(new AttributeModifier("id", new Model() {
+		dragTd.add(new AttributeModifier("id", new Model<String>() {
 			private static final long serialVersionUID = 1L;
 
 			@Override
-			public Object getObject() {
+			public String getObject() {
 				return DefaultHeaderCell1.this.getTable().getMarkupId()+"_c_"+DefaultHeaderCell1.this.getColumn();
 			}
 		}));	
@@ -195,7 +195,7 @@ public class DefaultHeaderCell1<E extends Serializable> extends Panel {
 	
 	@SuppressWarnings("unchecked")
 	protected IColumnModel<E> getColumnModel() {
-		return (IColumnModel<E>)getModel();
+		return (IColumnModel<E>)getDefaultModel();
 	}
 	
 	public Table<E> getTable() {

@@ -35,21 +35,21 @@ public class DefaultHeaderRounded extends Panel  {
 		super(id);
 		this.dialog = dialog;
 		
-		add(new AttributeModifier("id", new Model() {
+		add(new AttributeModifier("id", new Model<String>() {
 
 			private static final long serialVersionUID = 1L;
 
 			@Override
-			public Object getObject() {
+			public String getObject() {
 				return DefaultHeaderRounded.this.dialog.getDialogId()+"Header";
 			}
 		}));
 		
-		add(new AttributeModifier("onclick", true, new Model() {
+		add(new AttributeModifier("onclick", true, new Model<String>() {
 			private static final long serialVersionUID = 1L;
 
 			@Override
-			public Object getObject() {
+			public String getObject() {
 				return "Antilia_dragPanels.orderPanels('"+DefaultHeaderRounded.this.dialog.getDialogId()+"');";
 			}
 		}));
@@ -79,11 +79,11 @@ public class DefaultHeaderRounded extends Panel  {
 		add(tl);
 		
 		WebMarkupContainer middlePanel = new WebMarkupContainer("middlePanel");		
-		middlePanel.add(new AttributeModifier("style", new Model(){
+		middlePanel.add(new AttributeModifier("style", new Model<String>(){
 			private static final long serialVersionUID = 1L;
 
 			@Override
-			public Object getObject() {
+			public String getObject() {
 				StringBuffer sb = new StringBuffer();
 				sb.append("position: relative; height: 18px;"); 
 				sb.append("background-color: ");
@@ -93,16 +93,16 @@ public class DefaultHeaderRounded extends Panel  {
 			}
 		}));
 		add(middlePanel);
-		Label title = new Label("title", new Model() {			
+		Label title = new Label("title", new Model<String>() {			
 			private static final long serialVersionUID = 1L;
 
 			@Override
-			public Object getObject() {
+			public String getObject() {
 				return DefaultHeaderRounded.this.getDialog().getTitle();
 			}
 			
 			@Override
-			public void setObject(Object object) {
+			public void setObject(String object) {
 				super.setObject(object);
 				if(object != null)
 					DefaultHeaderRounded.this.getDialog().setTitle(object.toString());
@@ -121,12 +121,12 @@ public class DefaultHeaderRounded extends Panel  {
 			}
 		}));
 		*/
-		title.add(new AttributeModifier("style", new Model() {
+		title.add(new AttributeModifier("style", new Model<String>() {
 			
 			private static final long serialVersionUID = 1L;
 
 			@Override
-			public Object getObject() {
+			public String getObject() {
 				return "float: left; text-align: center;"+DefaultHeaderRounded.this.getDialog().getDialogStyle().getTitleStyle();
 			}
 		}));		

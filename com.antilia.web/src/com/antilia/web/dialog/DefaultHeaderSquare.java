@@ -35,21 +35,21 @@ public class DefaultHeaderSquare extends Panel  {
 		super(id);
 		this.dialog = dialog;
 		
-		add(new AttributeModifier("id", new Model() {
+		add(new AttributeModifier("id", new Model<String>() {
 
 			private static final long serialVersionUID = 1L;
 
 			@Override
-			public Object getObject() {
+			public String getObject() {
 				return DefaultHeaderSquare.this.dialog.getDialogId()+"Header";
 			}
 		}));
 		
-		add(new AttributeModifier("onclick", true, new Model() {
+		add(new AttributeModifier("onclick", true, new Model<String>() {
 			private static final long serialVersionUID = 1L;
 
 			@Override
-			public Object getObject() {
+			public String getObject() {
 				return "Antilia_dragPanels.orderPanels('"+DefaultHeaderSquare.this.dialog.getDialogId()+"');";
 			}
 		}));
@@ -81,11 +81,11 @@ public class DefaultHeaderSquare extends Panel  {
 		*/
 		
 		WebMarkupContainer middlePanel = new WebMarkupContainer("middlePanel");		
-		middlePanel.add(new AttributeModifier("style", new Model(){
+		middlePanel.add(new AttributeModifier("style", new Model<String>(){
 			private static final long serialVersionUID = 1L;
 
 			@Override
-			public Object getObject() {
+			public String getObject() {
 				StringBuffer sb = new StringBuffer();
 				sb.append("position: relative; height: 18px;"); 
 				sb.append("background-color: ");
@@ -95,16 +95,16 @@ public class DefaultHeaderSquare extends Panel  {
 			}
 		}));
 		add(middlePanel);
-		Label title = new Label("title", new Model() {			
+		Label title = new Label("title", new Model<String>() {			
 			private static final long serialVersionUID = 1L;
 
 			@Override
-			public Object getObject() {
+			public String getObject() {
 				return DefaultHeaderSquare.this.getDialog().getTitle();
 			}
 			
 			@Override
-			public void setObject(Object object) {
+			public void setObject(String object) {
 				super.setObject(object);
 				if(object != null)
 					DefaultHeaderSquare.this.getDialog().setTitle(object.toString());
@@ -123,12 +123,12 @@ public class DefaultHeaderSquare extends Panel  {
 			}
 		}));
 		*/
-		title.add(new AttributeModifier("style", new Model() {
+		title.add(new AttributeModifier("style", new Model<String>() {
 			
 			private static final long serialVersionUID = 1L;
 
 			@Override
-			public Object getObject() {
+			public String getObject() {
 				return "float: left; text-align: center;"+DefaultHeaderSquare.this.getDialog().getDialogStyle().getTitleStyle();
 			}
 		}));		

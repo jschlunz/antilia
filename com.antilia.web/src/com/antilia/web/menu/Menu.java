@@ -70,11 +70,11 @@ public  class Menu extends Panel implements IMenuItem, IMenuItemHolder {
 		toolBar = new RepeatingView("toolbar");	
 		
 		WebMarkupContainer mainDiv = new WebMarkupContainer("mainDiv");		
-		mainDiv.add(new AttributeModifier("class", new Model() {
+		mainDiv.add(new AttributeModifier("class", new Model<String>() {
 			private static final long serialVersionUID = 1L;
 
 			@Override
-			public Object getObject() {
+			public String getObject() {
 				if(Menu.this.getType().equals(Type.HORIZONTAL)) 
 					return Menu.this.getHorizontalStyleClass();
 				else 
@@ -82,17 +82,17 @@ public  class Menu extends Panel implements IMenuItem, IMenuItemHolder {
 							
 			}
 		}));
-		mainDiv.add(new AttributeModifier("style", new Model() {
+		mainDiv.add(new AttributeModifier("style", new Model<String>() {
 			private static final long serialVersionUID = 1L;
 
 			@Override
-			public Object getObject() {
+			public String getObject() {
 				return menuStyle;							
 			}
 		}));
 		add(mainDiv);
 		WebMarkupContainer menu = new WebMarkupContainer("menu");
-		Label handle = new Label("handle", new Model(title)) {
+		Label handle = new Label("handle", new Model<String>(title)) {
 			private static final long serialVersionUID = 1L;
 
 			@Override

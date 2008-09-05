@@ -136,30 +136,30 @@ public abstract class ModalContainer extends Panel implements IDialogScope, IMen
 		innerPanel = new WebMarkupContainer("dialog");
 		innerPanel.setOutputMarkupId(true);
 		
-		innerPanel.add(new AttributeModifier("class", new Model() {
+		innerPanel.add(new AttributeModifier("class", new Model<String>() {
 			private static final long serialVersionUID = 1L;
 
 			@Override
-			public Object getObject() {
+			public String getObject() {
 				return panelClass;
 			}
 		}));
 				
 		add(innerPanel);
 		
-		innerPanel.add(new AttributeModifier("onmousedown", new Model() {
+		innerPanel.add(new AttributeModifier("onmousedown", new Model<String>() {
 			private static final long serialVersionUID = 1L;
 
 			@Override
-			public Object getObject() {
+			public String getObject() {
 				return "Antilia_dragPanels.orderPanels('"+ModalContainer.this.getDialogId()+"');";
 			}
 		}));					
-		innerPanel.add(new AttributeModifier("style", new Model() {
+		innerPanel.add(new AttributeModifier("style", new Model<String>() {
 			private static final long serialVersionUID = 1L;
 
 			@Override
-			public Object getObject() {
+			public String getObject() {
 				StringBuffer sb = new StringBuffer();
 				sb.append("left: ");
 				sb.append(ModalContainer.this.getPosX());
@@ -184,20 +184,20 @@ public abstract class ModalContainer extends Panel implements IDialogScope, IMen
 		}));
 				
 		dialogBody = new WebMarkupContainer("dialogBody");
-		dialogBody.add(new AttributeModifier("id", new Model() {
+		dialogBody.add(new AttributeModifier("id", new Model<String>() {
 
 			private static final long serialVersionUID = 1L;
 
 			@Override
-			public Object getObject() {
+			public String getObject() {
 				return ModalContainer.this.getDialogId()+"Body";
 			}
 		}));		
-		dialogBody.add(new AttributeModifier("style", new Model() {
+		dialogBody.add(new AttributeModifier("style", new Model<String>() {
 			private static final long serialVersionUID = 1L;
 
 			@Override
-			public Object getObject() {
+			public String getObject() {
 				StringBuffer sb = new StringBuffer();
 				sb.append("position: relative; left: 0px;");
 				sb.append("; top: 0px;");

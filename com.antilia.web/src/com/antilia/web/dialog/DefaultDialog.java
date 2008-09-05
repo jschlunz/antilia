@@ -152,30 +152,30 @@ public abstract class DefaultDialog extends Panel implements IDialogScope, IMenu
 		innerPanel = new WebMarkupContainer("dialog");
 		innerPanel.setOutputMarkupId(true);
 		
-		innerPanel.add(new AttributeModifier("class", new Model() {
+		innerPanel.add(new AttributeModifier("class", new Model<String>() {
 			private static final long serialVersionUID = 1L;
 
 			@Override
-			public Object getObject() {
+			public String getObject() {
 				return panelClass;
 			}
 		}));
 				
 		add(innerPanel);
 		
-		innerPanel.add(new AttributeModifier("onmousedown", new Model() {
+		innerPanel.add(new AttributeModifier("onmousedown", new Model<String>() {
 			private static final long serialVersionUID = 1L;
 
 			@Override
-			public Object getObject() {
+			public String getObject() {
 				return "Antilia_dragPanels.orderPanels('"+DefaultDialog.this.getDialogId()+"');";
 			}
 		}));					
-		innerPanel.add(new AttributeModifier("style", new Model() {
+		innerPanel.add(new AttributeModifier("style", new Model<String>() {
 			private static final long serialVersionUID = 1L;
 
 			@Override
-			public Object getObject() {
+			public String getObject() {
 				StringBuffer sb = new StringBuffer();
 				sb.append("left: ");
 				sb.append(DefaultDialog.this.getPosX());
@@ -200,11 +200,11 @@ public abstract class DefaultDialog extends Panel implements IDialogScope, IMenu
 		}
 		
 		WebMarkupContainer dialogBackground = new WebMarkupContainer("dialogBackground");
-		dialogBackground.add(new AttributeModifier("style", new Model() {
+		dialogBackground.add(new AttributeModifier("style", new Model<String>() {
 			private static final long serialVersionUID = 1L;
 
 			@Override
-			public Object getObject() {
+			public String getObject() {
 				return "background-color: " + dialogStyle.getBackgroundColor();
 			}
 		}));	
@@ -212,20 +212,20 @@ public abstract class DefaultDialog extends Panel implements IDialogScope, IMenu
 		innerPanel.add(dialogBackground);
 		
 		dialogBody = new WebMarkupContainer("dialogBody");
-		dialogBody.add(new AttributeModifier("id", new Model() {
+		dialogBody.add(new AttributeModifier("id", new Model<String>() {
 
 			private static final long serialVersionUID = 1L;
 
 			@Override
-			public Object getObject() {
+			public String getObject() {
 				return DefaultDialog.this.getDialogId()+"Body";
 			}
 		}));		
-		dialogBody.add(new AttributeModifier("style", new Model() {
+		dialogBody.add(new AttributeModifier("style", new Model<String>() {
 			private static final long serialVersionUID = 1L;
 
 			@Override
-			public Object getObject() {
+			public String getObject() {
 				StringBuffer sb = new StringBuffer();
 				sb.append("position: relative; left: 0px;");
 				sb.append("; top: 0px;");
@@ -250,12 +250,12 @@ public abstract class DefaultDialog extends Panel implements IDialogScope, IMenu
 		
 		
 		WebMarkupContainer footer = new WebMarkupContainer("footer") ;
-		footer.add(new AttributeModifier("style", new Model() {
+		footer.add(new AttributeModifier("style", new Model<String>() {
 			
 			private static final long serialVersionUID = 1L;
 
 			@Override
-			public Object getObject() {
+			public String getObject() {
 				return "background-color: " + dialogStyle.getBackgroundColor();
 			}
 		}));
@@ -270,12 +270,12 @@ public abstract class DefaultDialog extends Panel implements IDialogScope, IMenu
 				return DefaultDialog.this.isResizable();
 			}
 		};
-		resizeHandle.add(new AttributeModifier("id", new Model() {
+		resizeHandle.add(new AttributeModifier("id", new Model<String>() {
 
 			private static final long serialVersionUID = 1L;
 
 			@Override
-			public Object getObject() {
+			public String getObject() {
 				return DefaultDialog.this.getDialogId()+"Resize";
 			}
 		}));

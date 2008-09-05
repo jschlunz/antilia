@@ -35,11 +35,11 @@ public class DropColumnItem<E extends Serializable> extends Panel implements IMe
 		super("dropColumn");				
 		WebMarkupContainer drop = new WebMarkupContainer("drop");
 		drop.setOutputMarkupId(true); 
-		drop.add(new AttributeModifier("id",  new Model() {
+		drop.add(new AttributeModifier("id",  new Model<String>() {
 			private static final long serialVersionUID = 1L;
 
 			@Override
-			public Object getObject() {
+			public String getObject() {
 				Table<E> table = DropColumnItem.this.findTable();
 				return  table.getMarkupId() + "_dropCol";
 			}
