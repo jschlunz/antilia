@@ -25,14 +25,14 @@ public class PageSizeButton<E extends Serializable> extends Panel implements IMe
 
 	private int order = AbstractButton.NO_ORDER;
 	
-	private TextField textField;
+	private TextField<Serializable> textField;
 	/**
 	 * @param id
 	 */
 	@SuppressWarnings("unchecked")
 	public PageSizeButton() {
 		super("pageSize");		
-		textField  = new TextField("field",  new Model<Serializable>() {
+		textField  = new TextField<Serializable>("field",  new Model<Serializable>() {
 			
 			private static final long serialVersionUID = 1L;
 
