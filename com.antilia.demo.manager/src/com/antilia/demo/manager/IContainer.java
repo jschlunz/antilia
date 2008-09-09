@@ -1,7 +1,3 @@
-/**
- * This software is private property of FCC (www.fcc.es).
- *
- */
 package com.antilia.demo.manager;
 
 import org.apache.wicket.markup.html.WebMarkupContainer;
