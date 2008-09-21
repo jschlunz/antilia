@@ -37,7 +37,7 @@ public class CloseDialogAction extends AbstractAction {
 	 * @see com.antilia.web.button.IAjaxAction#onSubmit(org.apache.wicket.ajax.AjaxRequestTarget, org.apache.wicket.markup.html.form.Form)
 	 */
 	@Override
-	public void onSubmit(AjaxRequestTarget target, Form form) {
+	public void onSubmit(AjaxRequestTarget target, Form<?> form) {
 		dialog.setVisible(false);
 		target.addComponent(dialog);
 		// hide all sub dialogs as well

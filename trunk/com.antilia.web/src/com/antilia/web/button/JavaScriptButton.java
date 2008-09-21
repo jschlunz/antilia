@@ -82,7 +82,7 @@ public abstract class JavaScriptButton extends Panel implements IMenuItem {
 				private static final long serialVersionUID = 1L;
 
 				@Override
-				protected void onSubmit(AjaxRequestTarget target, Form form) {
+				protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
 					JavaScriptButton.this.onSubmit(target, form);
 				}
 				
@@ -110,7 +110,7 @@ public abstract class JavaScriptButton extends Panel implements IMenuItem {
 	 * @param target
 	 * @param form
 	 */
-	protected void onSubmit(AjaxRequestTarget target, Form form) {
+	protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
 				
 	}
 	

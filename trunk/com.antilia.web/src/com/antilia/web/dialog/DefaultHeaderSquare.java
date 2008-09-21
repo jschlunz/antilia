@@ -7,14 +7,10 @@ package com.antilia.web.dialog;
 import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
-import org.apache.wicket.markup.html.image.Image;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.Model;
 
 import com.antilia.web.menu.Menu;
-import com.antilia.web.roundpane.DiscriminatedImage;
-import com.antilia.web.roundpane.TopLeftImg;
-import com.antilia.web.roundpane.TopRightImg;
 
 /**
  * 

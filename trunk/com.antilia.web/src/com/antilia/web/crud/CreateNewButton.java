@@ -44,7 +44,7 @@ public class CreateNewButton<E extends Serializable> extends AbstractButton {
 	}
 	
 	@Override
-	protected void onSubmit(AjaxRequestTarget target, Form form) {
+	protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
 			CRUDPanel<E> crudPanel = getCRUDPanel();
 			if(crudPanel != null) {			
 				// resets the create panel and sets it as the current panel

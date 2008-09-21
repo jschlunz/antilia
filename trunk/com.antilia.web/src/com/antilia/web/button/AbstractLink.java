@@ -69,6 +69,7 @@ public abstract class AbstractLink extends Panel implements IMenuItem, IToolbarI
 		}
 	}
 	
+	@SuppressWarnings("unchecked")
 	protected WebMarkupContainer newLink(String id) {
 		return new AjaxFallbackLink(id) {
 			

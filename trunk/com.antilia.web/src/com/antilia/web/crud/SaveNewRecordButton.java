@@ -45,7 +45,7 @@ public class SaveNewRecordButton<E extends Serializable> extends AbstractButton 
 	}
 	
 	@Override
-	protected void onSubmit(AjaxRequestTarget target, Form form) {
+	protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
 		CRUDPanel<E> crudPanel = findCRUDPanel();
 		try {		
 			if(crudPanel != null) {	

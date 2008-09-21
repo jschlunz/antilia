@@ -87,7 +87,7 @@ public abstract class AbstractButton extends Panel implements IMenuItem, IToolba
 				private static final long serialVersionUID = 1L;
 
 				@Override
-				protected void onSubmit(AjaxRequestTarget target, Form form) {
+				protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
 					AbstractButton.this.onSubmit(target, form);
 				}
 				
@@ -125,7 +125,7 @@ public abstract class AbstractButton extends Panel implements IMenuItem, IToolba
 	 * @param target
 	 * @param form
 	 */
-	protected void onSubmit(AjaxRequestTarget target, Form form) {
+	protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
 				
 	}
 	

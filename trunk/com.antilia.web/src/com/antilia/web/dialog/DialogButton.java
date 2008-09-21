@@ -57,7 +57,7 @@ public abstract class DialogButton extends Panel implements IMenuItem, IToolbarI
 			}
 			 
 			@Override
-			protected void onSubmit(AjaxRequestTarget target, Form form) {
+			protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
 				DialogButton.this.onSubmit(target, form);
 			}
 			
@@ -79,7 +79,7 @@ public abstract class DialogButton extends Panel implements IMenuItem, IToolbarI
 			dialog = newDialog("dialog"); 
 			dialog.setVisible(false);				
 			dialog.setOutputMarkupPlaceholderTag(true);
-			dialog.add(new AttributeAppender("style", new Model("position: relavive; z-index: 2;"), ";"));
+			dialog.add(new AttributeAppender("style", new Model<String>("position: relavive; z-index: 2;"), ";"));
 			dialog.setDialogButton(this);
 			add(dialog);
 		}
@@ -111,7 +111,7 @@ public abstract class DialogButton extends Panel implements IMenuItem, IToolbarI
 		};
 	}
 	
-	protected void onSubmit(AjaxRequestTarget target, Form form) {
+	protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
 		if(showDialog(target, form)) {
 			dialog.setVisible(true);
 			target.addComponent(dialog);
@@ -128,7 +128,7 @@ public abstract class DialogButton extends Panel implements IMenuItem, IToolbarI
 	 * @param form
 	 * @return
 	 */
-	protected boolean showDialog(AjaxRequestTarget target, Form form) {
+	protected boolean showDialog(AjaxRequestTarget target, Form<?> form) {
 		return true;
 	}
 	

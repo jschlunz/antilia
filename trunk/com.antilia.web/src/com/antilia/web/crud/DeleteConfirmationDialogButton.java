@@ -71,7 +71,7 @@ public class DeleteConfirmationDialogButton<E extends Serializable> extends Dial
 	}
 	
 	@Override
-	protected boolean showDialog(AjaxRequestTarget target, Form form) {
+	protected boolean showDialog(AjaxRequestTarget target, Form<?> form) {
 		CRUDPanel<E> crudPanel = getCRUDPanel();
 		if(crudPanel != null && crudPanel.getSelected().getSelected().size() > 0) {
 			return true;

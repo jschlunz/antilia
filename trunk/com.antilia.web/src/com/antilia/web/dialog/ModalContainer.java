@@ -221,10 +221,26 @@ public abstract class ModalContainer extends Panel implements IDialogScope, IMen
 		//dialogBackground.add(dialogBody);
 		
 		innerPanel.add(dialogBody);
-		
+					
+	}
 	
-				
-		Label script = new Label("script", new Model()) {
+	
+	@Override
+	protected void onBeforeRender() {
+		super.onBeforeRender();
+		
+		if(body  == null) {
+			// call createBody to retrieve user defined body.
+			body = createBody(IDialogScope.BODY_ID);
+			
+			if(body != null) {
+				//body.setRenderBodyOnly(true);
+				dialogBody.add(body);
+			}
+			else 
+				dialogBody.add(new Label(IDialogScope.BODY_ID, ""));
+		}
+		Label script = new Label("script", new Model<String>()) {
 			private static final long serialVersionUID = 1L;
 
 			@Override
@@ -232,7 +248,7 @@ public abstract class ModalContainer extends Panel implements IDialogScope, IMen
 				boolean ie = ModalContainer.this.isBrowserIExplorer();
 				String parentId =  ModalContainer.this.getParentDialog()!=null?ModalContainer.this.getParentDialog().getDialogId():"";
 				StringBuffer sb = new StringBuffer();
-				sb.append("Antilia_dragPanels.addPanel('");
+				sb.append("Antilia_dragPanels.addAndRemovePanel('");
 				sb.append(ModalContainer.this.getDialogId());
 				sb.append("','");
 				sb.append(parentId);
@@ -254,25 +270,7 @@ public abstract class ModalContainer extends Panel implements IDialogScope, IMen
 				replaceComponentTagBody(markupStream, openTag, sb.toString());
 			}
 		};
-		add(script);		
-	}
-	
-	
-	@Override
-	protected void onBeforeRender() {
-		super.onBeforeRender();
-		
-		if(body  == null) {
-			// call createBody to retrieve user defined body.
-			body = createBody(IDialogScope.BODY_ID);
-			
-			if(body != null) {
-				//body.setRenderBodyOnly(true);
-				dialogBody.add(body);
-			}
-			else 
-				dialogBody.add(new Label(IDialogScope.BODY_ID, ""));
-		}
+		addOrReplace(script);
 	}
 	
 	protected void appendToScript(StringBuffer script) {

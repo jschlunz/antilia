@@ -33,7 +33,7 @@ public abstract class IndicatingAjaxSubmitLink extends AjaxSubmitLink implements
 	 * @param id
 	 * @param form
 	 */
-	public IndicatingAjaxSubmitLink(String id, Form form) {
+	public IndicatingAjaxSubmitLink(String id, Form<?> form) {
 		super(id, form);
 		add(indicatorAppender);
 	}

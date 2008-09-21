@@ -33,13 +33,13 @@ public abstract class IndicatingAjaxSubmitButton extends AjaxButton implements I
 	 * @param id
 	 * @param form
 	 */
-	public IndicatingAjaxSubmitButton(String id, Form form)
+	public IndicatingAjaxSubmitButton(String id, Form<?> form)
 	{
 		super(id, form);
 		add(indicatorAppender);
 	}
 
-	protected abstract void onSubmit(AjaxRequestTarget target, Form form);
+	protected abstract void onSubmit(AjaxRequestTarget target, Form<?> form);
 
 	/**
 	 * @see IAjaxIndicatorAware#getAjaxIndicatorMarkupId()
