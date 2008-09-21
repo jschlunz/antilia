@@ -11,6 +11,7 @@ import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.util.time.Duration;
 
+import com.antilia.web.progress.HtmlProgressBar;
 import com.antilia.web.progress.ProgressPanel;
 
 /**
@@ -48,16 +49,17 @@ public class ExportPdfPanel<B extends Serializable> extends Panel {
 				}
 			}
 			add(new AjaxSelfUpdatingTimerBehavior(Duration.seconds(2)));
-			progress = new ProgressPanel("progress") {
+			progress = new HtmlProgressBar("progress") {
 				
 				private static final long serialVersionUID = 1L;
 	
 				@Override
-				protected int getProgress() {
+				public int getProgress() {
 					return ExportPdfPanel.this.button.getExportPdfTask().getProgress();
 				}
-			};						
+			};	
 			addOrReplace(progress);
+			
 		} else {
 			for(Object behavior : getBehaviors()) {
 				if(behavior instanceof AjaxSelfUpdatingTimerBehavior) {
