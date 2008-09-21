@@ -43,7 +43,7 @@ public class UpdateRecordButton<E extends Serializable> extends AbstractButton {
 	}
 	
 	@Override
-	protected void onSubmit(AjaxRequestTarget target, Form form) {
+	protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
 		CRUDPanel<E> crud = findCRUDPanel();		
 		// use the pageable provider to update the record.
 		E bean = findEditPanel().getCurrentBean();

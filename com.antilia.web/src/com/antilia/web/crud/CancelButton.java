@@ -44,7 +44,7 @@ public class CancelButton<E extends Serializable> extends AbstractButton {
 	}
 	
 	@Override
-	protected void onSubmit(AjaxRequestTarget target, Form form) {
+	protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
 			CRUDPanel<E> crudPanel = getCRUDPanel();
 			if(crudPanel != null) {	
 				crudPanel.getEditPanel().clearPageableProvider();

@@ -61,7 +61,7 @@ public class NextRecordButton<E extends Serializable> extends AbstractButton {
 	}
 	
 	@Override
-	protected void onSubmit(AjaxRequestTarget target, Form form) {
+	protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
 		EditPanel<E> component = findEditPanel();
 		component.getPageableProvider().next();
 		target.addComponent((Component)component);

@@ -28,7 +28,7 @@ public class DeleteRecordsButton<E extends Serializable> extends OklDialogButton
 	}
 		
 	@Override
-	protected void onOk(AjaxRequestTarget target, Form form) {
+	protected void onOk(AjaxRequestTarget target, Form<?> form) {
 		CRUDPanel<E> crudPanel = getCRUDPanel();
 		if(crudPanel != null && crudPanel.getSelected().getSelected().size() > 0) {			
 			crudPanel.getSearchPanel().getPageableProvider().removeAll(crudPanel.getSelected().getSelected());

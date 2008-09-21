@@ -14,7 +14,7 @@ import org.apache.wicket.model.IModel;
  * @author Ernesto Reinaldo Barreiro (reiern70@gmail.com)
  *
  */
-public abstract class IndicatingAjaxLink extends AjaxLink implements
+public abstract class IndicatingAjaxLink<T> extends AjaxLink<T> implements
 		IAjaxIndicatorAware {
 
 	private static final long serialVersionUID = 1L;
@@ -33,7 +33,7 @@ public abstract class IndicatingAjaxLink extends AjaxLink implements
 	 * @param id
 	 * @param form
 	 */
-	public IndicatingAjaxLink(String id, final IModel model) {
+	public IndicatingAjaxLink(String id, final IModel<T> model) {
 		super(id, model);
 		add(indicatorAppender);
 	}

@@ -81,7 +81,7 @@ public abstract class AbstractActionSetButton extends AbstractButton implements 
 	};
 	
 	@Override
-	protected void onSubmit(AjaxRequestTarget target, Form form) {
+	protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
 		for(IAction action: elements()) {
 			action.onSubmit(target, form);
 		}

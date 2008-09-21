@@ -29,7 +29,7 @@ public interface IAction extends Serializable {
 	 * @param target
 	 * @param form
 	 */
-	void onSubmit(AjaxRequestTarget target, Form form);
+	void onSubmit(AjaxRequestTarget target, Form<?> form);
 	
 	/**
 	 * NON-AJAX submit

@@ -282,7 +282,7 @@ public abstract class DefaultDialog extends Panel implements IDialogScope, IMenu
 		
 		footer.add(resizeHandle);
 				
-		Label script = new Label("script", new Model()) {
+		Label script = new Label("script", new Model<String>()) {
 			private static final long serialVersionUID = 1L;
 
 			@Override

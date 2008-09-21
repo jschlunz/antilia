@@ -322,6 +322,23 @@
 			}			
 		}
 		
+		this.addAndRemovePanel = function(id, parentId, ie, minWidth, minHeight, modal, panelClass, onDragClass, selectedClass) {
+            var panel = this.getPanel(id)
+           if(panel != null) {
+                this.deletePanel(id);
+           }
+            panel = new Panel(id, parentId, ie, minWidth, minHeight, modal, panelClass, onDragClass, selectedClass);
+            this.panels[this.panels.length]= panel;
+            this.panels.id = id;
+            if(panel.parentPanel) {
+                panel.panel.zIndex = panel.parentPanel.zIndex;
+                this.orderPanels(id);
+            } else  {
+                this.orderPanels(id);
+            }                       
+        }
+		
+		
 		// shows the panel at the same position of the button the was clicket.		
 		this.showPanel = function(id, buttonId) {
 		      var panel = this.getPanel(id);

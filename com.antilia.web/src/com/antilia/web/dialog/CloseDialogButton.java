@@ -45,7 +45,7 @@ public class CloseDialogButton extends AbstractButton {
 	}
 	
 	@Override
-	protected void onSubmit(AjaxRequestTarget target, Form form) {
+	protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
 		/*
 		dialog.setVisible(false);
 		target.addComponent(dialog);
