@@ -8,10 +8,10 @@ input {
 }
 
 .antilia-ajax-indicator {
-    position: absolute;
+    position: fixed;
     top: 10px;
-    left: 100px;
-    z-index: 1000;
+    left: 10px;
+    z-index: 6000;
 }
 
 .smallbutton {

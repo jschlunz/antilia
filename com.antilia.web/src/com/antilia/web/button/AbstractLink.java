@@ -7,14 +7,17 @@ package com.antilia.web.button;
 import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.ResourceReference;
 import org.apache.wicket.ajax.AjaxRequestTarget;
+import org.apache.wicket.ajax.IAjaxCallDecorator;
 import org.apache.wicket.ajax.markup.html.AjaxFallbackLink;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.image.Image;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.Model;
+import org.wicketstuff.minis.veil.VeilResources;
 
 import com.antilia.common.util.StringUtils;
+import com.antilia.web.dialog.IDialogScope;
 import com.antilia.web.toolbar.IToolbarItem;
 
 /**
@@ -32,6 +35,8 @@ public abstract class AbstractLink extends Panel implements IMenuItem, IToolbarI
 	private String linkClass = "smallbutton";
 				
 	public static final String LABEL_ID = "label";
+	
+	private IDialogScope dialogScope;
 	
 	private Image image;
 	
@@ -79,7 +84,57 @@ public abstract class AbstractLink extends Panel implements IMenuItem, IToolbarI
 			public void onClick(AjaxRequestTarget target) {
 				AbstractLink.this.onClick(target);
 			}
+			
+			@Override
+			protected IAjaxCallDecorator getAjaxCallDecorator() {
+				return AbstractLink.this.getAjaxCallDecorator();
+			}
+			
 		};
+	}
+	
+	protected IAjaxCallDecorator getAjaxCallDecorator() {
+		return  new IAjaxCallDecorator() {
+			
+			private static final long serialVersionUID = 1L;
+
+			@Override
+			public CharSequence decorateOnFailureScript(CharSequence script) {
+				IDialogScope dialogScope = getDialogScope();
+				if(dialogScope != null) {
+					return script + ";" + VeilResources.Javascript.Generic.toggle(dialogScope.getDialogId()) + ";" ;
+				}
+				return script;
+			}
+			
+			@Override
+			public CharSequence decorateOnSuccessScript(CharSequence script) {
+				IDialogScope dialogScope = getDialogScope();
+				if(dialogScope != null) {
+					return script + ";" + VeilResources.Javascript.Generic.toggle(dialogScope.getDialogId()) + ";" ;
+				}
+				return script;
+			}
+			
+			@Override
+			public CharSequence decorateScript(CharSequence script) {
+				IDialogScope dialogScope = getDialogScope();
+				if(dialogScope != null) {
+					return VeilResources.Javascript.Generic.show(dialogScope.getDialogId()) + ";" + script;
+				}
+				return script;
+			}
+		};
+	}
+	
+	private IDialogScope findParentDialog() {
+		return (IDialogScope)findParent(IDialogScope.class);
+	}
+	
+	public IDialogScope getDialogScope() {
+		if(dialogScope == null)
+			dialogScope = findParentDialog();
+		return dialogScope;
 	}
 	
 	protected Label newLabel(String id) {

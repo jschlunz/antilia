@@ -64,7 +64,7 @@ public class SortDescendingButton<E extends Serializable> extends AbstractButton
 		return true;
 	}
 	
-	protected void onSubmit(AjaxRequestTarget target, Form form) {
+	protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
 		IPageableComponent<E> component = findPageableComponent();
 		IQuery<E> query = component.getPageableProvider().getQuery();
 		query.clearOrders();

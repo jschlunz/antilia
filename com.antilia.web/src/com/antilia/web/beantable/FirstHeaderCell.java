@@ -35,7 +35,7 @@ public class FirstHeaderCell<E extends Serializable> extends Panel {
 		this.table = table;
 		this.column = column;
 		setRenderBodyOnly(true);		
-		add(new HiddenField("colWidth", new Model<Integer>() {
+		add(new HiddenField<Integer >("colWidth", new Model<Integer>() {
 			
 			private static final long serialVersionUID = 1L;
 

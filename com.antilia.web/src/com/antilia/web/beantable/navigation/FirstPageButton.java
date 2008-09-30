@@ -55,7 +55,7 @@ public class FirstPageButton<E extends Serializable> extends AbstractButton {
 		return "";
 	}
 	@Override
-	protected void onSubmit(AjaxRequestTarget target, Form form) {
+	protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
 		IPageableComponent<E> component = findPageableComponent();
 		component.getPageableProvider().firstPage();
 		target.addComponent((Component)component);
