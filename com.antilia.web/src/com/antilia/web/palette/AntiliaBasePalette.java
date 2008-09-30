@@ -4,6 +4,9 @@
  */
 package com.antilia.web.palette;
 
+import java.util.Collection;
+import java.util.List;
+
 import org.apache.wicket.Component;
 import org.apache.wicket.ResourceReference;
 import org.apache.wicket.extensions.markup.html.form.palette.Palette;
@@ -20,7 +23,7 @@ import com.antilia.web.resources.DefaultStyle;
  * @author Ernesto Reinaldo Barreiro (reiern70@gmail.com)
  *
  */
-public class MyPalette extends Palette {
+public class AntiliaBasePalette<T> extends Palette<T> {
 
 	private static final long serialVersionUID = 1L;
 
@@ -31,8 +34,8 @@ public class MyPalette extends Palette {
 	 * @param rows
 	 * @param allowOrder
 	 */
-	public MyPalette(String id, IModel choicesModel,
-			IChoiceRenderer choiceRenderer, int rows, boolean allowOrder) {
+	public AntiliaBasePalette(String id, IModel<Collection<T>> choicesModel,
+			IChoiceRenderer<T> choiceRenderer, int rows, boolean allowOrder) {
 		super(id, choicesModel, choiceRenderer, rows, allowOrder);
 	}
 
@@ -44,8 +47,8 @@ public class MyPalette extends Palette {
 	 * @param rows
 	 * @param allowOrder
 	 */
-	public MyPalette(String id, IModel model, IModel choicesModel,
-			IChoiceRenderer choiceRenderer, int rows, boolean allowOrder) {
+	public AntiliaBasePalette(String id, IModel<List<T>> model, IModel<Collection<T>> choicesModel,
+			IChoiceRenderer<T> choiceRenderer, int rows, boolean allowOrder) {
 		super(id, model, choicesModel, choiceRenderer, rows, allowOrder);
 	}
 	
