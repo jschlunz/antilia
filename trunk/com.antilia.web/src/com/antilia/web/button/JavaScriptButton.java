@@ -7,6 +7,7 @@ package com.antilia.web.button;
 import org.apache.wicket.ResourceReference;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.IAjaxCallDecorator;
+import org.apache.wicket.ajax.markup.html.form.AjaxButton;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.Button;
 import org.apache.wicket.markup.html.form.Form;
@@ -77,7 +78,7 @@ public abstract class JavaScriptButton extends Panel implements IMenuItem {
 	 */
 	protected Button newLink(String id) {
 		if(isAjaxButton()) {
-			return new IndicatingAjaxSubmitButton(id) {
+			return new AjaxButton(id) {
 				
 				private static final long serialVersionUID = 1L;
 

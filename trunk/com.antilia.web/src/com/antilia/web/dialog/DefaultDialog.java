@@ -20,12 +20,12 @@ import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.protocol.http.ClientProperties;
 import org.apache.wicket.protocol.http.request.WebClientInfo;
-import org.wicketstuff.minis.veil.VeilResources;
 
 import com.antilia.web.button.IMenuItemHolder;
 import com.antilia.web.button.IMenuItemsFactory;
 import com.antilia.web.menu.Menu;
 import com.antilia.web.resources.DefaultStyle;
+import com.antilia.web.veil.AntiliaVeilResource;
 
 /**
  * 
@@ -152,7 +152,7 @@ public abstract class DefaultDialog extends Panel implements IDialogScope, IMenu
 		
 		innerPanel = new WebMarkupContainer("dialog");
 		innerPanel.setOutputMarkupId(true);
-		innerPanel.add(new VeilResources());
+		innerPanel.add(new AntiliaVeilResource());
 		
 		innerPanel.add(new AttributeModifier("class", new Model<String>() {
 			private static final long serialVersionUID = 1L;

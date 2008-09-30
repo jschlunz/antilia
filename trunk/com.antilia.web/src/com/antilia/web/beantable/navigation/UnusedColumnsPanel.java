@@ -39,7 +39,7 @@ public class UnusedColumnsPanel<E extends Serializable> extends Panel {
 			private static final long serialVersionUID = 1L;
 
 			@Override
-			protected void onOk(AjaxRequestTarget target, Form form) {
+			protected void onOk(AjaxRequestTarget target, Form<?> form) {
 				List<IColumnModel<E>>  selected = palette.getSelected();
 				List<IColumnModel<E>>  hidden = palette.getAvailable();
 				Table<E> table = findTable();

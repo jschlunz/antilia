@@ -1,0 +1,10 @@
+div.wicket-veil {
+	background-color: gray;
+	filter:alpha(opacity=50);
+	-moz-opacity:0.5;
+	opacity: 0.5;
+}
+
+div.wicket-veil-busy {
+    background: url('ajax-loader.gif') no-repeat;
+}

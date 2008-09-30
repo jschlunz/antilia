@@ -50,7 +50,7 @@ public class LastPageButton<E extends Serializable> extends AbstractButton {
 	}
 	
 	@Override
-	protected void onSubmit(AjaxRequestTarget target, Form form) {
+	protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
 		IPageableComponent<E> component = findPageableComponent();
 		component.getPageableProvider().lastPage();
 		target.addComponent((Component)component);

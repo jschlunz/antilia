@@ -9,9 +9,11 @@ import java.io.Serializable;
 import org.apache.wicket.Component;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.IAjaxCallDecorator;
+import org.apache.wicket.ajax.markup.html.form.AjaxButton;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.image.Image;
 import org.apache.wicket.markup.html.panel.Panel;
+import org.wicketstuff.minis.veil.VeilResources;
 
 import com.antilia.hibernate.query.IOrder;
 import com.antilia.hibernate.query.IQuery;
@@ -19,7 +21,7 @@ import com.antilia.hibernate.query.Order;
 import com.antilia.web.beantable.IPageableComponent;
 import com.antilia.web.beantable.model.IColumnModel;
 import com.antilia.web.button.IMenuItem;
-import com.antilia.web.button.IndicatingAjaxSubmitButton;
+import com.antilia.web.dialog.IDialogScope;
 import com.antilia.web.resources.DefaultStyle;
 
 /**
@@ -34,6 +36,8 @@ public class SortColumnButton<E extends Serializable> extends Panel implements I
 
 	private IColumnModel<E> columnModel;
 	
+	private IDialogScope dialogScope;
+	
 	/**
 	 * @param id
 	 */
@@ -42,18 +46,18 @@ public class SortColumnButton<E extends Serializable> extends Panel implements I
 	
 		this.columnModel = columnModel;
 		
-		IndicatingAjaxSubmitButton ascending =  new IndicatingAjaxSubmitButton("ascending") {
+		AjaxButton ascending =  new AjaxButton("ascending") {
 			
 			private static final long serialVersionUID = 1L;
 
 			@Override
-			protected void onSubmit(AjaxRequestTarget target, Form form) {
+			protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
 				SortColumnButton.this.onAscendingSubmit(target, form);
 			}
 			
 			@Override
 			protected IAjaxCallDecorator getAjaxCallDecorator() {
-				return null;/*SortColumnButton.this.getAjaxCallDecorator()*/
+				return SortColumnButton.this.getAjaxCallDecorator();
 			}
 			
 			@Override
@@ -67,19 +71,21 @@ public class SortColumnButton<E extends Serializable> extends Panel implements I
 		Image image = new Image("image", DefaultStyle.IMG_SORT_ASC_SMALL);		
 		ascending.add(image);
 		
-		IndicatingAjaxSubmitButton descending =  new IndicatingAjaxSubmitButton("descending") {
+		AjaxButton descending =  new AjaxButton("descending") {
 			
 			private static final long serialVersionUID = 1L;
 
 			@Override
-			protected void onSubmit(AjaxRequestTarget target, Form form) {
+			protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
 				SortColumnButton.this.onDescendingSubmit(target, form);
 			}
 			
 			@Override
 			protected IAjaxCallDecorator getAjaxCallDecorator() {
-				return null;/*SortColumnButton.this.getAjaxCallDecorator()*/
+				return SortColumnButton.this.getAjaxCallDecorator();
 			}
+			
+			
 			
 			@Override
 			public boolean isEnabled() {
@@ -93,6 +99,50 @@ public class SortColumnButton<E extends Serializable> extends Panel implements I
 		descending.add(image);
 	}
 
+	protected IAjaxCallDecorator getAjaxCallDecorator()
+	{
+		return new IAjaxCallDecorator() {
+			
+			private static final long serialVersionUID = 1L;
+
+			@Override
+			public CharSequence decorateOnFailureScript(CharSequence script) {
+				IDialogScope dialogScope = getDialogScope();
+				if(dialogScope != null) {
+					return script + ";" + VeilResources.Javascript.Generic.toggle(dialogScope.getDialogId()) + ";" ;
+				}
+				return script;
+			}
+			
+			@Override
+			public CharSequence decorateOnSuccessScript(CharSequence script) {
+				IDialogScope dialogScope = getDialogScope();
+				if(dialogScope != null) {
+					return script + ";" + VeilResources.Javascript.Generic.toggle(dialogScope.getDialogId()) + ";" ;
+				}
+				return script;
+			}
+			
+			@Override
+			public CharSequence decorateScript(CharSequence script) {
+				IDialogScope dialogScope = getDialogScope();
+				if(dialogScope != null) {
+					return VeilResources.Javascript.Generic.show(dialogScope.getDialogId()) + ";" + script;
+				}
+				return script;
+			}
+		};
+	}
+	
+	public IDialogScope getDialogScope() {
+		if(dialogScope == null)
+			dialogScope = findParentDialog();
+		return dialogScope;
+	}
+	
+	private IDialogScope findParentDialog() {
+		return (IDialogScope)findParent(IDialogScope.class);
+	}
 	
 	/**
 	 * Callback method for Ajax buttons.
@@ -100,7 +150,7 @@ public class SortColumnButton<E extends Serializable> extends Panel implements I
 	 * @param target
 	 * @param form
 	 */
-	protected void onAscendingSubmit(AjaxRequestTarget target, Form form) {
+	protected void onAscendingSubmit(AjaxRequestTarget target, Form<?> form) {
 		IPageableComponent<E> component = findPageableComponent();
 		IQuery<E> query = component.getPageableProvider().getQuery();
 		IOrder<E> order = Order.asc(this.columnModel.getPropertyPath());
@@ -129,7 +179,7 @@ public class SortColumnButton<E extends Serializable> extends Panel implements I
 	 * @param target
 	 * @param form
 	 */
-	protected void onDescendingSubmit(AjaxRequestTarget target, Form form) {
+	protected void onDescendingSubmit(AjaxRequestTarget target, Form<?> form) {
 		IPageableComponent<E> component = findPageableComponent();
 		IQuery<E> query = component.getPageableProvider().getQuery();
 		query.clearOrders();

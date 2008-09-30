@@ -7,6 +7,7 @@ package com.antilia.web.button;
 import org.apache.wicket.ResourceReference;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.IAjaxCallDecorator;
+import org.apache.wicket.ajax.markup.html.form.AjaxButton;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.Button;
 import org.apache.wicket.markup.html.form.Form;
@@ -86,7 +87,7 @@ public abstract class AbstractButton extends Panel implements IMenuItem, IToolba
 	 */
 	protected Button newLink(String id) {
 		if(isAjaxButton()) {
-			return new IndicatingAjaxSubmitButton(id) {
+			return new AjaxButton(id) {
 				
 				private static final long serialVersionUID = 1L;
 
@@ -155,7 +156,7 @@ public abstract class AbstractButton extends Panel implements IMenuItem, IToolba
 			public CharSequence decorateOnFailureScript(CharSequence script) {
 				IDialogScope dialogScope = getDialogScope();
 				if(dialogScope != null) {
-					//return script + ";" + VeilResources.Javascript.Generic.toggle(dialogScope.getDialogId()) + ";" ;
+					return script + ";" + VeilResources.Javascript.Generic.toggle(dialogScope.getDialogId()) + ";" ;
 				}
 				return script;
 			}

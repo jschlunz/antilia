@@ -7,7 +7,6 @@ package com.antilia.web.beantable.provider.impl;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
@@ -394,8 +393,7 @@ public class InMemoryPageableProvider<E extends Serializable> implements ILoadab
 	
 	@Override
 	public IPageableProvider<E> duplicate() {
-		ArrayList<E> newColection = new ArrayList<E>();
-		Collections.copy(newColection, this.collection);
+		ArrayList<E> newColection = new ArrayList<E>(this.collection);
 		return new InMemoryPageableProvider<E>(newColection, this.query.getEntityClass());
 	}
 }

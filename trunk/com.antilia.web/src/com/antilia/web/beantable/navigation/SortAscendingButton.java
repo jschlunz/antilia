@@ -73,7 +73,7 @@ public class SortAscendingButton<E extends Serializable> extends AbstractButton 
 	
 	
 	@Override
-	protected void onSubmit(AjaxRequestTarget target, Form form) {
+	protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
 		IPageableComponent<E> component = findPageableComponent();
 		IQuery<E> query = component.getPageableProvider().getQuery();
 		IOrder<E> order = Order.asc(this.columnModel.getPropertyPath());
