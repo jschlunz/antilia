@@ -20,6 +20,7 @@ import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.protocol.http.ClientProperties;
 import org.apache.wicket.protocol.http.request.WebClientInfo;
+import org.wicketstuff.minis.veil.VeilResources;
 
 import com.antilia.web.button.IMenuItemHolder;
 import com.antilia.web.button.IMenuItemsFactory;
@@ -134,6 +135,8 @@ public abstract class ModalContainer extends Panel implements IDialogScope, IMen
 		add(HeaderContributor.forJavaScript(DefaultStyle.JS_DIALOG));			
 		
 		innerPanel = new WebMarkupContainer("dialog");
+		innerPanel.add(new VeilResources());
+		
 		innerPanel.setOutputMarkupId(true);
 		
 		innerPanel.add(new AttributeModifier("class", new Model<String>() {

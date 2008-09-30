@@ -22,6 +22,8 @@ import com.antilia.web.beantable.provider.IUpdatable;
 
 
 /**
+ * Wrapper pageable provider around an IDataProvider<E>.
+ * 
  * 
  * @author Ernesto Reinaldo Barreiro (reiern70@gmail.com)
  */
@@ -54,9 +56,9 @@ public class DataProviderPageableProvider<E extends Serializable> implements ILo
 	
 	private List<E> cachedEntities;
 	
-	private IDataProvider dataProvider;
+	private IDataProvider<E> dataProvider;
 
-	public DataProviderPageableProvider(IDataProvider dataProvider, IQuery<E> query, boolean shouldLoad) {
+	public DataProviderPageableProvider(IDataProvider<E> dataProvider, IQuery<E> query, boolean shouldLoad) {
 		this.query = query;
 		this.dataProvider = dataProvider;
 		this.currentIndex = 0;
@@ -71,7 +73,7 @@ public class DataProviderPageableProvider<E extends Serializable> implements ILo
 	 * 
 	 * @param collection
 	 */
-	public DataProviderPageableProvider(IDataProvider dataProvider, IQuery<E> query) {
+	public DataProviderPageableProvider(IDataProvider<E> dataProvider, IQuery<E> query) {
 		this(dataProvider, query, false);
 	}
 	

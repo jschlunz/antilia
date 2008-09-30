@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
 	<classpathentry kind="src" path="src"/>
+	<classpathentry exported="true" kind="lib" path="lib/wicket-mini-1.4.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/wicket-1.4.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/wicket-datetime-1.4.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/wicket-extensions-1.4.jar"/>

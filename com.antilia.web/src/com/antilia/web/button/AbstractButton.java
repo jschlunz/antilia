@@ -12,7 +12,9 @@ import org.apache.wicket.markup.html.form.Button;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.image.Image;
 import org.apache.wicket.markup.html.panel.Panel;
+import org.wicketstuff.minis.veil.VeilResources;
 
+import com.antilia.web.dialog.IDialogScope;
 import com.antilia.web.toolbar.IToolbarItem;
 
 
@@ -33,6 +35,8 @@ public abstract class AbstractButton extends Panel implements IMenuItem, IToolba
 	private boolean ajaxButton = false;
 	
 	private int order = NO_ORDER;
+	
+	private IDialogScope dialogScope;
 	
 	/**
 	 * Constructor.
@@ -143,7 +147,41 @@ public abstract class AbstractButton extends Panel implements IMenuItem, IToolba
 	 */
 	protected IAjaxCallDecorator getAjaxCallDecorator()
 	{
-		return null;
+		return new IAjaxCallDecorator() {
+			
+			private static final long serialVersionUID = 1L;
+
+			@Override
+			public CharSequence decorateOnFailureScript(CharSequence script) {
+				IDialogScope dialogScope = getDialogScope();
+				if(dialogScope != null) {
+					//return script + ";" + VeilResources.Javascript.Generic.toggle(dialogScope.getDialogId()) + ";" ;
+				}
+				return script;
+			}
+			
+			@Override
+			public CharSequence decorateOnSuccessScript(CharSequence script) {
+				IDialogScope dialogScope = getDialogScope();
+				if(dialogScope != null) {
+					return script + ";" + VeilResources.Javascript.Generic.toggle(dialogScope.getDialogId()) + ";" ;
+				}
+				return script;
+			}
+			
+			@Override
+			public CharSequence decorateScript(CharSequence script) {
+				IDialogScope dialogScope = getDialogScope();
+				if(dialogScope != null) {
+					return VeilResources.Javascript.Generic.show(dialogScope.getDialogId()) + ";" + script;
+				}
+				return script;
+			}
+		};
+	}
+	
+	private IDialogScope findParentDialog() {
+		return (IDialogScope)findParent(IDialogScope.class);
 	}
 	
 	/**
@@ -227,5 +265,11 @@ public abstract class AbstractButton extends Panel implements IMenuItem, IToolba
 	 */
 	public Button getLink() {
 		return link;
+	}
+
+	public IDialogScope getDialogScope() {
+		if(dialogScope == null)
+			dialogScope = findParentDialog();
+		return dialogScope;
 	}
 }
