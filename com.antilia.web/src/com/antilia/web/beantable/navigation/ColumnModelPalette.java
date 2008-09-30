@@ -15,7 +15,7 @@ import org.apache.wicket.model.Model;
 import com.antilia.web.beantable.Table;
 import com.antilia.web.beantable.model.IColumnModel;
 import com.antilia.web.beantable.model.ITableModel;
-import com.antilia.web.palette.MyPalette;
+import com.antilia.web.palette.AntiliaBasePalette;
 
 /**
  * 
@@ -23,23 +23,23 @@ import com.antilia.web.palette.MyPalette;
  * @author Ernesto Reinaldo Barreiro (reiern70@gmail.com)
  *
  */
-public class ColumnModelPalette<E extends Serializable> extends MyPalette {
+public class ColumnModelPalette<E extends Serializable> extends AntiliaBasePalette<IColumnModel<E>> {
 
 	private static final long serialVersionUID = 1L;
 
-	private static class ColumnModelChoiceRenderer<E extends Serializable> implements IChoiceRenderer {
+	private static class ColumnModelChoiceRenderer<E extends Serializable> implements IChoiceRenderer<IColumnModel<E>> {
 		
 		private static final long serialVersionUID = 1L;
 
 		@SuppressWarnings("unchecked")
 		@Override
-		public Object getDisplayValue(Object object) {
+		public Object getDisplayValue(IColumnModel<E> object) {
 			return ((IColumnModel<E>)object).getPropertyPath();
 		}
 		
 		@SuppressWarnings("unchecked")
 		@Override
-		public String getIdValue(Object object, int index) {
+		public String getIdValue(IColumnModel<E> object, int index) {
 			return ((IColumnModel<E>)object).getPropertyPath();
 		}		
 	}
@@ -77,19 +77,20 @@ public class ColumnModelPalette<E extends Serializable> extends MyPalette {
 		}
 	}
 
-	private Table<E> table;
+	//private Table<E> table;
 	/**
 	 * @param id
 	 * @param selected
 	 * @param available
 	 * @param renderer
 	 */
+	@SuppressWarnings("unchecked")
 	public ColumnModelPalette(String id, Table<E> table) {
 		super(id, 
 				new Model(new SelectedList<E>(table.getTableModel())),  
 				new Model(new AvailableList<E>(table.getTableModel())), 
 				new ColumnModelChoiceRenderer<E>(), 10, true);
-		this.table = table;
+		//this.table = table;
 	}
 	
 	@SuppressWarnings("unchecked")
