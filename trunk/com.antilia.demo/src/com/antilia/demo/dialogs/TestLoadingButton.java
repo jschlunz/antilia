@@ -68,7 +68,7 @@ public class TestLoadingButton extends AbstractButton {
 	
 	@SuppressWarnings("static-access")
 	@Override
-	protected void onSubmit(AjaxRequestTarget target, Form form) {
+	protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
 		for(int i = 0; i < 50; i++) {
 			try {
 				Thread.currentThread().sleep(100);
@@ -78,7 +78,7 @@ public class TestLoadingButton extends AbstractButton {
 	}
 
 
-	private IDialogScope getDialogScope() {
+	public IDialogScope getDialogScope() {
 		return (IDialogScope)findParent(IDialogScope.class);
 	}
 	
