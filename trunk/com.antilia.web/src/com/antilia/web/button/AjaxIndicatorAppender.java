@@ -32,7 +32,7 @@ public class AjaxIndicatorAppender extends AbstractBehavior
 	public void onRendered(Component component)
 	{
 		final Response r = component.getResponse();
-		r.write("<span style=\"display:none;\" class=\"");
+		r.write("<div style=\"display:none;\" class=\"");
 		r.write(getSpanClass());
 		r.write("\" ");
 		r.write("id=\"");
@@ -40,7 +40,7 @@ public class AjaxIndicatorAppender extends AbstractBehavior
 		r.write("\">");
 		r.write("<img src=\"");
 		r.write(getIndicatorUrl());
-		r.write("\"/></span>");
+		r.write("\"/></div>");
 	}
 
 	/**
@@ -56,7 +56,7 @@ public class AjaxIndicatorAppender extends AbstractBehavior
 	 */
 	protected String getSpanClass()
 	{
-		return "ajax-indicator";
+		return "antilia-ajax-indicator";
 	}
 
 	/**

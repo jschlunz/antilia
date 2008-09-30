@@ -31,7 +31,7 @@ public abstract class DraggableBehavior extends ScriptaculousAjaxBehavior
 		super.onBind();
 
 		getComponent().setOutputMarkupId(true);
-		getComponent().add(new AttributeAppender("class", new Model(getDraggableClassName()), " "));
+		getComponent().add(new AttributeAppender("class", new Model<String>(getDraggableClassName()), " "));
 	}
 
 	@Override

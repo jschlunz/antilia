@@ -201,7 +201,8 @@ Bundle-ClassPath: .,
  lib/wicket-1.4.jar,
  lib/wicket-datetime-1.4.jar,
  lib/wicket-extensions-1.4.jar,
- lib/wicket-yui-1.4.jar
+ lib/wicket-yui-1.4.jar,
+ lib/wicket-mini-1.4.jar
 Require-Bundle: com.antilia.common,
  javax.servlet,
  com.antilia.hibernate

@@ -23,7 +23,7 @@ import com.antilia.web.beantable.provider.IUpdatable;
  * @author Ernesto Reinaldo Barreiro (reiern70@gmail.com)
  *
  */
-public class HibernateQueryDataProvider<E extends Serializable> implements IDataProvider, IQuerable<E>, IUpdatable<E> {
+public class HibernateQueryDataProvider<E extends Serializable> implements IDataProvider<E>, IQuerable<E>, IUpdatable<E> {
 
 	private static final long serialVersionUID = 1L;
 	
@@ -50,7 +50,7 @@ public class HibernateQueryDataProvider<E extends Serializable> implements IData
 	 * @see org.apache.wicket.markup.repeater.data.IDataProvider#model(java.lang.Object)
 	 */
 	@Override
-	public IModel model(Object object) {
+	public IModel<E> model(E object) {
 		return null;
 	}
 

@@ -18,7 +18,7 @@ import org.apache.wicket.Component;
 
 
 /**
- * This class is based on a similar call of project wicket.scriptaculous (maintained by Ryna Sonneck).
+ * This class is based on a similar call of project wicket.scriptaculous (maintained by Ryan Sonneck).
  * It adds additional methods as well as enumerations helping in remembering scriptaculous syntax..
  * 
  * @author Ernesto Reinaldo Barreiro (reiern70@gmail.com)
