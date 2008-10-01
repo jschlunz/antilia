@@ -1,5 +1,0 @@
-#summary The full power of OSGi.
-
-= The full power of OSGi =
-
-As our applications run in an OSGi environment (equinox by now) we can use this to make our application modular. How? Well just to give an example  
