@@ -13,10 +13,10 @@ We provide two demos:
 
 In order to get the first demo application working you have to check-out the following bundles into a workspace.
 
-com.antilia.common
-com.antilia.hibernate
-com.antilia.web
-com.antilia.demo
+* com.antilia.common
+* com.antilia.hibernate
+* com.antilia.web
+* com.antilia.demo
 
 The last one is the main application bundle. If you open the Debugs dialog configuration  and you go to the section OSGi Framework, you will find the demo launcher. You can use it to start the application. The browse to http:localhost:8080/demo to see the application working.
 
