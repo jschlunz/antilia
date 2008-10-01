@@ -26,5 +26,13 @@ If we them type *stop 19* and so *ss* again we see export bundle is no longer ac
 
 http://antilia.googlecode.com/svn/wiki/exportpdf3.PNG
 
+If we go back to our application and reload the pages we we in before we see the buttons for exporting to PDF and Excel are no longer available!
+
+http://antilia.googlecode.com/svn/wiki/exportpdf4.PNG
+
+
+
+
+
 
   
