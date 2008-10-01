@@ -1,0 +1,13 @@
+#summary The full power of OSGi.
+
+= The full power of OSGi =
+
+As our applications run on an OSGi environment (equinox by now) we can use this to make our applications modular. How? Well just to give an example: 
+
+ * By installing the bundle (plug-in) com.antilia.export suddenly all the tables of your application are capable of exporting themselves to PDF, Excel, CSV, etcetera. This is shown in following screen shots:
+
+http://antilia.googlecode.com/svn/wiki/exportpdf.PNG  
+
+and 
+
+http://antilia.googlecode.com/svn/wiki/exportpdf2.PNG
