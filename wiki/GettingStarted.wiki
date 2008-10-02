@@ -1,3 +1,6 @@
+#labels Featured
+#Getting started.
+
 = Introduction =
 
 This page describes how to get started using Antilia Wicket components and building your own Antila powered OSGi-wicket applications.
