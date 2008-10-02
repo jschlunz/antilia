@@ -1,4 +1,5 @@
 #summary The full power of OSGi.
+#labels Featured
 
 = The full power of OSGi =
 
