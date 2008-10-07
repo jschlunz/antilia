@@ -65,7 +65,7 @@ public class FirstBodyCell<E extends Serializable> extends Panel {
 				FirstBodyCell.this.table.populateRowMenu(itemHolder,FirstBodyCell.this.row, bean) ;
 			}
 		});
-		menu.setMenuStyle("width: auto; background: transparent;");
+		menu.setMenuStyle("width: auto; background: transparent; height: 18px;");
 		menu.setRenderBodyOnly(true);
 		menu.setOutputMarkupId(false);
 		imagePanel.add(menu);

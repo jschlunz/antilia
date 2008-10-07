@@ -32,8 +32,8 @@ public class DefaultBodyCell<E extends Serializable> extends Panel {
 	}
 	
 	
-	protected IModel newBodyCellModel(IColumnModel<E> columnModel, E object) {
-		return new PropertyModel(object, columnModel.getPropertyPath());
+	protected IModel<E> newBodyCellModel(IColumnModel<E> columnModel, E object) {
+		return new PropertyModel<E>(object, columnModel.getPropertyPath());
 	}
 
 	@SuppressWarnings("unchecked")

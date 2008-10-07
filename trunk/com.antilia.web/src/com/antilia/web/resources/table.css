@@ -42,13 +42,15 @@ tr.highlightedRow {
 }
 
 .theaderrow {	
-	background-color: #9eb7e8;
+	background-color: #9eb7e8;	
 }
 
 .theaderrow td {	
 	color: black;
 	text-align: center;
 	font-weight: bold;
+	padding-bottom: 2px;
+	padding-top: 1px;
 }
 
 .theaderrow .resizeCell {
@@ -56,13 +58,18 @@ tr.highlightedRow {
 }
 
 .ondrop {
-    border: 1px solid white;
+    border-left: 1px solid white;
 }
 
 td.tbodycol {
-	padding: 2px; 
+	padding: 1px; 
 	margin: 0px;
 	vertical-align: middle;
+	border-right: 1px solid white;
+}
+
+td.droptarget {    
+    background: url("images/drop-arrow-black.png") 0px 2px no-repeat transparent;
 }
 
 .columns ul {
