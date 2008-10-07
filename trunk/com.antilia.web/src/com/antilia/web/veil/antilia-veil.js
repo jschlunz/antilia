@@ -21,8 +21,9 @@ Wicket.Veil = {
 		options map must at least contain className key
 	*/
 	show:function(targetId, options) {
+		var veil =document.getElementById("wicket_veil_"+targetId);
 		var target=document.getElementById(targetId);
-		var veil=document.createElement("div");	
+		veil=document.createElement("div");	
 		veil.innerHTML="&nbsp;";
 		veil.className=options.className;
 		veil.style.position="absolute";
@@ -44,7 +45,7 @@ Wicket.Veil = {
         body.style.position="absolute";        
         body.style.top = (parseInt (veil.style.top, 10) + (parseInt (veil.style.height, 10)/2) -40) + 'px';        
         body.style.left = (parseInt (veil.style.left, 10) + (parseInt (veil.style.width, 10)/2) -40) + 'px';
-        document.body.appendChild(body);                
+        document.body.appendChild(body);	                  
 	},
 
 	/**
@@ -56,9 +57,8 @@ Wicket.Veil = {
 		if (veil!=null) {
 			veil.style.display="none";
 			document.body.removeChild(veil);
-		} else {
-		      return false;
-		}
+		} 
+		
 		var body = document.getElementById("wicket_veil_re_"+targetId);
 		if (body!=null) {
             body.style.display="none";
