@@ -419,7 +419,7 @@ public class Table<E extends Serializable> extends Panel implements IPageableCom
 	
 	protected  WebMarkupContainer newHeaderCell(String id, int index, Table<E> table, IColumnModel<E> columnModel, Class<E> beanClass) {
 		//return new DefaultHeaderCell<E>(id, index, table, columnModel, beanClass);
-		return new DefaultHeaderCell1<E>(id, index, table, columnModel, beanClass);
+		return new DefaultHeaderCell<E>(id, index, table, columnModel, beanClass);
 	}
 
 	

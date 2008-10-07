@@ -28,7 +28,7 @@ import com.antilia.web.menu.Menu;
  * 
  * @author Ernesto Reinaldo Barreiro (reiern70@gmail.com)
  */
-public class DefaultHeaderCell1<E extends Serializable> extends Panel {
+public class DefaultHeaderCell<E extends Serializable> extends Panel {
 
 	private static final long serialVersionUID = 1L;
 
@@ -42,7 +42,7 @@ public class DefaultHeaderCell1<E extends Serializable> extends Panel {
 	 * @param id
 	 * @param model
 	 */
-	public DefaultHeaderCell1(String id, int column, Table<E> table, IColumnModel<E> columnModel, Class<E> beanClass) {
+	public DefaultHeaderCell(String id, int column, Table<E> table, IColumnModel<E> columnModel, Class<E> beanClass) {
 		super(id, columnModel);
 		this.table = table;
 		this.column = column;
@@ -54,13 +54,13 @@ public class DefaultHeaderCell1<E extends Serializable> extends Panel {
 
 			@Override
 			public Integer getObject() {
-				return DefaultHeaderCell1.this.getColumnModel().getWidth();
+				return DefaultHeaderCell.this.getColumnModel().getWidth();
 			}
 			
 			@Override
 			public void setObject(Integer object) {
 				if(object instanceof Integer) {
-					DefaultHeaderCell1.this.getColumnModel().setWidth(((Integer)object).intValue());
+					DefaultHeaderCell.this.getColumnModel().setWidth(((Integer)object).intValue());
 				}
 			}
 			
@@ -80,8 +80,8 @@ public class DefaultHeaderCell1<E extends Serializable> extends Panel {
 					if(dropedColumn == -2)
 						return;
 					if(target != null) {
-						DefaultHeaderCell1.this.getTable().getTableModel().hideColumn(dropedColumn);
-						target.addComponent(DefaultHeaderCell1.this.getTable());
+						DefaultHeaderCell.this.getTable().getTableModel().hideColumn(dropedColumn);
+						target.addComponent(DefaultHeaderCell.this.getTable());
 					}
 				} else {
 					int dropedColumn = getDropedColumnIndex(sourceId)-1;
@@ -89,8 +89,8 @@ public class DefaultHeaderCell1<E extends Serializable> extends Panel {
 					if(dropedColumn == -2 || dropedColumn == thisColumn)
 						return;
 					if(target != null) {
-						DefaultHeaderCell1.this.getTable().getTableModel().swapColumns(thisColumn, dropedColumn);
-						target.addComponent(DefaultHeaderCell1.this.getTable());
+						DefaultHeaderCell.this.getTable().getTableModel().swapColumns(thisColumn, dropedColumn);
+						target.addComponent(DefaultHeaderCell.this.getTable());
 					}
 				}
 			}
@@ -102,7 +102,7 @@ public class DefaultHeaderCell1<E extends Serializable> extends Panel {
 			private int getDropedColumnIndex(String input) {
 				if(StringUtils.isEmpty(input))
 					return -1;
-				String tableId = DefaultHeaderCell1.this.getTable().getMarkupId();
+				String tableId = DefaultHeaderCell.this.getTable().getMarkupId();
 				if(input.startsWith(tableId)) {
 					try {
 						String columnId = input.substring(input.lastIndexOf('_')+1);
@@ -148,7 +148,7 @@ public class DefaultHeaderCell1<E extends Serializable> extends Panel {
 
 			@Override
 			public IColumnModel<E> getColumnModel() {
-				return DefaultHeaderCell1.this.getColumnModel();
+				return DefaultHeaderCell.this.getColumnModel();
 			}
 		});
 		menu.setMenuStyle("width: auto; height: 16px; background: transparent; right: 0px;  float: right;");
@@ -158,7 +158,7 @@ public class DefaultHeaderCell1<E extends Serializable> extends Panel {
 		
 		//HeaderTitleLabel<E> title = new HeaderTitleLabel<E>("title", this);
 		
-		Label title = new Label("title", DefaultHeaderCell1.this.getLabelModel());
+		Label title = new Label("title", DefaultHeaderCell.this.getLabelModel());
 		draggableTarget.add(title);
 		
 		/*
@@ -180,7 +180,7 @@ public class DefaultHeaderCell1<E extends Serializable> extends Panel {
 
 			@Override
 			public String getObject() {
-				return DefaultHeaderCell1.this.getTable().getMarkupId()+"_c_"+DefaultHeaderCell1.this.getColumn();
+				return DefaultHeaderCell.this.getTable().getMarkupId()+"_c_"+DefaultHeaderCell.this.getColumn();
 			}
 		}));	
 		//dragTd.add(new Image("dragImage",  DefaultStyle.IMG_RESIZE));
