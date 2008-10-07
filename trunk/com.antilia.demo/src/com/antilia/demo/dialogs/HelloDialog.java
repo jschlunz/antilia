@@ -22,7 +22,7 @@ public class HelloDialog extends DefaultDialog {
 	 * @param id
 	 */
 	public HelloDialog(String id) {
-		super(id, null,  new DefaultDialogStyle().setBackgroundColor("#d73957").setBodyColor("#f1d0d6"));
+		super(id, null,  new DefaultDialogStyle().setBackgroundColor("#d73957").setBodyColor("#f1d0d6").setRoundedHeader(true));
 		setPosX(10);
 		setPosY(10);
 		setWidth(300);
