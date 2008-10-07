@@ -148,7 +148,7 @@ public class Table<E extends Serializable> extends Panel implements IPageableCom
 		// add table body
 		addOrReplace(getBodyRows("rows"));
 		
-		Label script = new Label("script", new Model()) {
+		Label script = new Label("script", new Model<String>()) {
 			private static final long serialVersionUID = 1L;
 
 			@Override
@@ -226,16 +226,16 @@ public class Table<E extends Serializable> extends Panel implements IPageableCom
 		return DefaultStyle.CSS_TABLE;
 	}
 	
-	protected RefreshingView getHeaderRows(String id) {
+	protected RefreshingView<E> getHeaderRows(String id) {
 		return new HeaderRows("hcols", this);
 	}
 	
-	protected RefreshingView getBodyRows(String id) {
+	protected RefreshingView<E> getBodyRows(String id) {
 		return new BodyRows(id, this);
 	}
 	
 	
-	private class HeaderRows extends RefreshingView {
+	private class HeaderRows extends RefreshingView<E> {
 
 		private static final long serialVersionUID = 1L;
 		
@@ -248,9 +248,9 @@ public class Table<E extends Serializable> extends Panel implements IPageableCom
 
 		@SuppressWarnings("unchecked")
 		@Override
-		protected Iterator<IModel> getItemModels() {
+		protected Iterator<IModel<E>> getItemModels() {
 			ITableModel tableModel = getTable().getTableModel();		
-			List<IModel> models = new ArrayList<IModel>();
+			List<IModel<E>> models = new ArrayList<IModel<E>>();
 			models.add(new Model(""));
 			Iterator<IModel> it =  tableModel.getColumnModels();
 			while(it.hasNext()) {
@@ -261,8 +261,8 @@ public class Table<E extends Serializable> extends Panel implements IPageableCom
 		}
 		
 		@Override
-		protected Item newItem(String id, int index, final IModel model) {
-			Item item = super.newItem(id, index, model);
+		protected Item<E> newItem(String id, int index, final IModel<E> model) {
+			Item<E> item = super.newItem(id, index, model);
 			if(model instanceof IColumnModel) {			
 				item.add(new AttributeModifier("width", true, new Model<String>() {
 					
@@ -338,11 +338,11 @@ public class Table<E extends Serializable> extends Panel implements IPageableCom
 		
 	}
 	
-	private class BodyRows extends RefreshingView {
+	private class BodyRows extends RefreshingView<E> {
 
 		private static final long serialVersionUID = 1L;
 	
-		private List<IComponentInheritedModel> models;
+		private List<IModel<E>> models;
 		
 		private Table<E> table;
 		
@@ -354,7 +354,7 @@ public class Table<E extends Serializable> extends Panel implements IPageableCom
 		@SuppressWarnings("unchecked")
 		private void initialize() {
 			Table.this.clearRowCheckBoxes();
-			models = new ArrayList<IComponentInheritedModel>();
+			models = new ArrayList<IModel<E>>();
 			ITableModel tableModel = getTable().getTableModel();
 			if(tableModel == null)
 				return;	
@@ -366,12 +366,12 @@ public class Table<E extends Serializable> extends Panel implements IPageableCom
 		}
 
 		@Override
-		protected Item newItem(String id, int index, IModel model) {
-			return new RowItem<E>(id, index, (IComponentInheritedModel)model, table);
+		protected Item<E> newItem(String id, int index, IModel<E> model) {
+			return new RowItem<E>(id, index, (IComponentInheritedModel<E>)model, table);
 		}
 		
 		@Override
-		protected Iterator<IComponentInheritedModel> getItemModels() {
+		protected Iterator<IModel<E>> getItemModels() {
 			initialize();
 			return models.iterator();
 		}

@@ -134,19 +134,22 @@ TColumn.prototype.initialize = function() {
      
     this.dd.startDrag = function(x, y) { 
         var Dom = YAHOO.util.Dom;
+        //        
         Dom.setStyle(this.getEl(), "opacity", 0.5);
     }
     
     this.dd.onDragOver =  function(e, id) { 
         var Dom = YAHOO.util.Dom;
         var el = YAHOO.util.Dom.get(id);
-        Dom.setStyle(el, "border", '1px solid white');
+        el.parentNode.className='droptarget';
+        Dom.setStyle(el, "opacity", 0.5);
     }
     
     this.dd.onDragOut =  function(e, id) { 
         var Dom = YAHOO.util.Dom;
         var el = YAHOO.util.Dom.get(id);
-        Dom.setStyle(el, "border", 'none');                 
+        el.parentNode.className='';
+        Dom.setStyle(el, "opacity", 1);                 
     }
 }
  

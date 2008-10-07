@@ -18,7 +18,7 @@ import org.apache.wicket.model.Model;
  * 
  * @author Ernesto Reinaldo Barreiro (reiern70@gmail.com)
  */
-public class RowItem<E extends Serializable> extends Item {
+public class RowItem<E extends Serializable> extends Item<E> {
 
 	private static final long serialVersionUID = 1L;
 
@@ -30,15 +30,15 @@ public class RowItem<E extends Serializable> extends Item {
 	 * @param index
 	 * @param model
 	 */
-	public RowItem(String id, int index, final IComponentInheritedModel model, Table<E> table) {
+	public RowItem(String id, int index, final IComponentInheritedModel<E> model, Table<E> table) {
 		super(id, index, model);
 		this.table = table;
 		String tableId = table.getMarkupId(); 
-		add(new AttributeModifier("id", new Model(tableId+"_r_"+index)));
+		add(new AttributeModifier("id", new Model<String>(tableId+"_r_"+index)));
 		String clazz = "tbodyrow"+(index%2);
-		add(new AttributeModifier("class", new Model(clazz)));
-		add(new AttributeModifier("onmouseover",new Model(tableId+".highlight("+index+");")));
-		add(new AttributeModifier("onmouseout",new Model(tableId+".unhighlight("+index+");")));
+		add(new AttributeModifier("class", new Model<String>(clazz)));
+		add(new AttributeModifier("onmouseover",new Model<String>(tableId+".highlight("+index+");")));
+		add(new AttributeModifier("onmouseout",new Model<String>(tableId+".unhighlight("+index+");")));
 		add(new AjaxEventBehavior("onclick") {
 
 			private static final long serialVersionUID = 1L;
