@@ -49,7 +49,7 @@ public class InPlaceSelectRowButton<B extends Serializable> extends AbstractButt
 	}
 
 	@Override
-	protected void onSubmit(AjaxRequestTarget target, Form form) {
+	protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
 		String propertyName = fieldModel.getPropertyPath();
 		PropertyResolver.setValue(propertyName, beanProxy.getBean(), bean, null);
 		IDialogScope dialogScope = findDialogScope();
