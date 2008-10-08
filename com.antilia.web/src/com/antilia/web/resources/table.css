@@ -54,7 +54,7 @@ tr.highlightedRow {
 }
 
 .theaderrow .resizeCell {
-	border-right: 1px solid white;
+	border-right: 1px inset #f6faff;
 }
 
 .ondrop {
@@ -65,7 +65,7 @@ td.tbodycol {
 	padding: 1px; 
 	margin: 0px;
 	vertical-align: middle;
-	border-right: 1px solid white;
+	border-right: 1px inset #f6faff;	
 }
 
 td.droptarget {    

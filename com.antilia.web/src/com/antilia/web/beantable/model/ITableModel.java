@@ -29,6 +29,8 @@ public interface ITableModel<E extends Serializable> extends IModel {
 	
 	boolean swapColumns(int i, int j);
 	
+	boolean moveColumnBefore(int toMove, int before);
+	
 	boolean hideColumn(int i);
 	
 	int getColumns();

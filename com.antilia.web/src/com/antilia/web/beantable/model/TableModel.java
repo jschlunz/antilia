@@ -140,6 +140,24 @@ public class TableModel<E extends Serializable> extends Model implements ITableM
 		}
 		return false;
 	}
+	
+	@Override
+	public boolean moveColumnBefore(int toMove, int before) {		
+		if(toMove==before || toMove==before-1 ) {
+			return false;		
+		}
+		if(toMove>=0 && toMove< models.size())	{
+			if(before>=0 && before< models.size())	{
+				IColumnModel<E> tempi = models.remove(toMove);			
+				models.add(before>0?before-1:0, tempi);
+			} else {
+				IColumnModel<E> tempi = models.remove(toMove);			
+				models.add(tempi);			
+			}
+			return true;
+		}
+		return false;
+	}
 
 	@Override
 	public void setColumnModels(List<IColumnModel<E>> models) {

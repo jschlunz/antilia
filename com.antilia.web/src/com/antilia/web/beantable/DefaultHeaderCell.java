@@ -75,7 +75,7 @@ public class DefaultHeaderCell<E extends Serializable> extends Panel {
 			public void onDrop(String sourceId, String targetId, AjaxRequestTarget target) {
 				if(StringUtils.isEmpty(targetId)) 
 					return;
-				if(targetId.indexOf("drop")>0)  {
+				if(targetId.indexOf("dropCol")>0)  {
 					int dropedColumn = getDropedColumnIndex(sourceId)-1;
 					if(dropedColumn == -2)
 						return;
@@ -83,13 +83,26 @@ public class DefaultHeaderCell<E extends Serializable> extends Panel {
 						DefaultHeaderCell.this.getTable().getTableModel().hideColumn(dropedColumn);
 						target.addComponent(DefaultHeaderCell.this.getTable());
 					}
-				} else {
+				} else if(targetId.indexOf("dropLas")>0)  {
+					int dropedColumn = getDropedColumnIndex(sourceId)-1;
+					if(dropedColumn == -2 || dropedColumn ==DefaultHeaderCell.this.getTable().getTableModel().getColumns()-1) {
+						if(target != null) {
+							target.addComponent(DefaultHeaderCell.this.getTable());
+						}
+						return;
+					}
+					if(target != null) {
+						DefaultHeaderCell.this.getTable().getTableModel().moveColumnBefore(dropedColumn, DefaultHeaderCell.this.getTable().getTableModel().getColumns());
+						target.addComponent(DefaultHeaderCell.this.getTable());
+					}
+				}  else {
 					int dropedColumn = getDropedColumnIndex(sourceId)-1;
 					int thisColumn = getDropedColumnIndex(targetId)-1;
 					if(dropedColumn == -2 || dropedColumn == thisColumn)
 						return;
 					if(target != null) {
-						DefaultHeaderCell.this.getTable().getTableModel().swapColumns(thisColumn, dropedColumn);
+						//DefaultHeaderCell.this.getTable().getTableModel().swapColumns(thisColumn, dropedColumn);
+						DefaultHeaderCell.this.getTable().getTableModel().moveColumnBefore(dropedColumn, thisColumn);
 						target.addComponent(DefaultHeaderCell.this.getTable());
 					}
 				}
