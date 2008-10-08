@@ -25,6 +25,9 @@ Table.prototype.createDraggables = function() {
         //alert(url);
        new TColumn(this.id, titleId, url);
     }
+    
+    var lastHeader  = this.id + '_' + 'dropLas';
+    new YAHOO.util.DDTarget(lastHeader , this.id);
 }
 
 Table.prototype.removeOldDroppables = function() { 

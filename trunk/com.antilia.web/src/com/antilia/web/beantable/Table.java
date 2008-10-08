@@ -144,7 +144,22 @@ public class Table<E extends Serializable> extends Panel implements IPageableCom
 
 		// add table header
 		addOrReplace(getHeaderRows("hcols"));
+		
+		
 	
+		WebMarkupContainer lastHeader = new WebMarkupContainer("lastHeader");
+		lastHeader.setOutputMarkupId(true); 
+		lastHeader.add(new AttributeModifier("id",  new Model<String>() {
+			private static final long serialVersionUID = 1L;
+
+			@Override
+			public String getObject() {
+				return  Table.this.getMarkupId() + "_dropLas";
+			}
+		}));
+		
+		addOrReplace(lastHeader);
+		
 		// add table body
 		addOrReplace(getBodyRows("rows"));
 		
