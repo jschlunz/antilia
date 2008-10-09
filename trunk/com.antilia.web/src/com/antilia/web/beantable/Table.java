@@ -65,6 +65,7 @@ public class Table<E extends Serializable> extends Panel implements IPageableCom
 	
 	private List<String> draggerURL= new ArrayList<String>();
 	
+	private String firstColumnUrl;
 	
 	public static final String AFTER_NAVIGATION_MENU = "AFTER_NAVIGATION_MENU";
 	
@@ -94,7 +95,7 @@ public class Table<E extends Serializable> extends Panel implements IPageableCom
 	 * 
 	 * @param id
 	 */
-	public Table(String id, ITableModel<E> tableModel, IPageableProvider<E> pageableSource) {
+	public Table(String id, ITableModel<E> tableModel, IPageableProvider<E> pageableSource)  {
 		super(id);
 		setOutputMarkupId(true);
 		this.pageableProvider = pageableSource;
@@ -172,7 +173,8 @@ public class Table<E extends Serializable> extends Panel implements IPageableCom
 				StringBuffer sb = new StringBuffer();
 				sb.append("var ");
 				sb.append(tableId);
-				sb.append(" = new Table('" + tableId + "',");
+				sb.append(" = new Table('" + tableId + "','");
+				sb.append(getFirstColumnUrl()+ "',");
 				sb.append("new Array(");
 				IPageableProvider<E> source = Table.this.getPageableProvider();
 				IProviderSelector<E> selector = Table.this.getSourceSelector();
@@ -503,6 +505,14 @@ public class Table<E extends Serializable> extends Panel implements IPageableCom
 	 */
 	public void setRendringCount(int rendringCount) {
 		this.rendringCount = rendringCount;
+	}
+
+	public String getFirstColumnUrl() {
+		return firstColumnUrl;
+	}
+
+	public void setFirstColumnUrl(String firstColumnUrl) {
+		this.firstColumnUrl = firstColumnUrl;
 	}
 	
 	

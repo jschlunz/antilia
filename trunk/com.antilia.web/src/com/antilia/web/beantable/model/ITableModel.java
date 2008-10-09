@@ -21,6 +21,8 @@ public interface ITableModel<E extends Serializable> extends IModel {
 	
 	Iterator<IColumnModel<E>> getColumnModels();
 	
+	IColumnModel<E> getColumnModel(int index);
+	
 	void setColumnModels(List<IColumnModel<E>> models);
 	
 	Iterator<IColumnModel<E>> getHiddenModels();
