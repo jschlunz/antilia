@@ -28,7 +28,9 @@ public class DefaultBodyCell<E extends Serializable> extends Panel {
 	 */
 	public DefaultBodyCell(String id, IColumnModel<E> columnModel, E object) {
 		super(id, columnModel);		
-		add(new Label("cell",newBodyCellModel(columnModel, object)));
+		Label label = new Label("cell",newBodyCellModel(columnModel, object));
+		label.setRenderBodyOnly(true);
+		add(label);
 	}
 	
 	

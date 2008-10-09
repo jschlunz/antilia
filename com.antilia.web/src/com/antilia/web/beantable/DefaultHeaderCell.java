@@ -72,9 +72,9 @@ public class DefaultHeaderCell<E extends Serializable> extends Panel {
 			private static final long serialVersionUID = 1L;
 
 			@Override
-			public void onDrop(String sourceId, String targetId, AjaxRequestTarget target) {
+			public void onDrop(String sourceId, String targetId, AjaxRequestTarget target) {				
 				if(StringUtils.isEmpty(targetId)) 
-					return;
+					return;				
 				if(targetId.indexOf("dropCol")>0)  {
 					int dropedColumn = getDropedColumnIndex(sourceId)-1;
 					if(dropedColumn == -2)

@@ -112,6 +112,11 @@ public class TableModel<E extends Serializable> extends Model implements ITableM
 	}
 	
 	@Override
+	public IColumnModel<E> getColumnModel(int index) {
+		return models.get(index);
+	}
+	
+	@Override
 	public Iterator<IColumnModel<E>> getHiddenModels() {
 		return hiddenModels.iterator();
 	}

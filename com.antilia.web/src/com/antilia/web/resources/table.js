@@ -1,8 +1,9 @@
 
-function Table(id, rows, ncols, rendringCount, urls) {
+function Table(id, url, rows, ncols, rendringCount, urls) {
 	this.id = id;
 	// rows is an array of Rows	
 	this.rows = rows;
+	this.url = url;
 	this.ncols = ncols;	
 	this.rendringCount = rendringCount;
 	this.urls = urls;
@@ -51,8 +52,9 @@ Table.prototype.removeOldDroppables = function() {
 	}
 }
 
-Table.prototype.addColumn = function(col) {	
-	var column = new Column(this.id, col);	
+Table.prototype.addColumn = function(col) {
+    var url = this.url;	
+	var column = new Column(this.id, col, url);	
 	this.columns[this.columns.length]= column;
 }
 
@@ -74,13 +76,17 @@ Table.prototype.unhighlight = function(row) {
 		rowObj.unhighlight();
 }
 
-function Column(tableId, number) {
+function Column(tableId, number, url) {
 	this.tableId = tableId;
+	this.url = url;
 	this.number = number;
 	this.resizeHandleId = this.tableId + '_c_' + this.number;
 	this.resizeHandle = document.getElementById(this.resizeHandleId);	
-	if(this.resizeHandle)
-		Antilia.Drag.init(this.resizeHandle, function() {} , function() { }, this.onResize);		
+	if(this.resizeHandle) {
+	     this.resizeHandle.url = url;
+	     this.resizeHandle.number = number;
+		Antilia.Drag.init(this.resizeHandle, function() {} , this.onEndDrag, this.onResize);
+	}		
 }
 
 
@@ -96,6 +102,11 @@ Column.prototype.onResize = function (obj, deltaX, deltaY) {
 	return res;
 }	
  
+Column.prototype.onEndDrag = function (obj) {
+    var td = obj.parentNode.parentNode.parentNode.parentNode;  
+    var url = this.url+ '&sourceId=' + parseInt(td.style.width) + '&targetId=resize' + '&number=' + this.number
+     wicketAjaxGet(url);      
+}
 
 function TColumn(tableId, id, url) {
     this.tableId = tableId;
