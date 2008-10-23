@@ -84,7 +84,7 @@ public class ExportPdfTask<E extends Serializable> implements Runnable {
 				
 				for(int i=1; i<= total; i++) {
 					this.progress = (int)(((float)i/(float)total)*100);
-					Thread.currentThread().sleep(100);
+					Thread.currentThread().sleep(10);
 					table = new PdfPTable(widths);
 					
 					E bean = pageableProvider.current();
