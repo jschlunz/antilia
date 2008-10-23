@@ -4,6 +4,7 @@
  */
 package com.antilia.common.util;
 
+import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 
 public class ClassUtils {
@@ -38,5 +39,16 @@ public class ClassUtils {
 			}
 		}
 		return field;
+	}
+	
+	
+	public static <T> T  createInstance(Class<T> clz, String id) {
+		try {
+			Constructor<T> constructor = clz.getConstructor(String.class);
+			return constructor.newInstance(id);
+		} catch (Exception e) {
+			// do nothing and return null
+		}
+		return null;
 	}
 }
