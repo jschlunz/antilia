@@ -30,7 +30,7 @@ public class ExportPdfButton<B extends Serializable> extends DialogButton {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	private ExportPdfTask<B> exportPdfTask;
+	private transient ExportPdfTask<B> exportPdfTask;
 	
 	/**
 	 * @param id
