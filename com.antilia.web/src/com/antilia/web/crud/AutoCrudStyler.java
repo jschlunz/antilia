@@ -9,6 +9,7 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
@@ -62,6 +63,8 @@ public class AutoCrudStyler<E extends Serializable> extends CrudStyler<E> {
 	
 	private boolean rejectField(Field field, CRUDMode mode) {
 		int modifiers = field.getModifiers();
+		if(Set.class.isAssignableFrom(field.getType()))
+			return true;
 		if(Modifier.isStatic(modifiers))
 			return true;		
 		if(field.isAnnotationPresent(OneToMany.class) || field.isAnnotationPresent(ManyToMany.class))

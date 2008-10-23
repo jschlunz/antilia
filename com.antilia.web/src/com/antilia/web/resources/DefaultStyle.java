@@ -119,7 +119,8 @@ public class DefaultStyle {
 	
 	public static ResourceReference IMG_EXPORT_PDF = new ResourceReference(ImgDummy.class, "export_pdf.png");
 	public static ResourceReference IMG_EXPORT_EXCEL = new ResourceReference(ImgDummy.class, "export_excel.png");
-	
+	public static ResourceReference IMG_EXPORT_XML = new ResourceReference(ImgDummy.class, "page_xml.png");
+	public static ResourceReference IMG_EXPORT_SQL = new ResourceReference(ImgDummy.class, "page_sql.png");
 	
 	public static ResourceReference IMG_MINIMIZED = new ResourceReference(ImgDummy.class, "minimized.gif");
 }

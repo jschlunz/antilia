@@ -6,11 +6,14 @@ package com.antilia.web.beantable;
 
 import java.io.Serializable;
 
+import org.apache.wicket.markup.ComponentTag;
+import org.apache.wicket.markup.MarkupStream;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.PropertyModel;
 
+import com.antilia.common.util.StringUtils;
 import com.antilia.web.beantable.model.IColumnModel;
 
 /**
@@ -28,7 +31,23 @@ public class DefaultBodyCell<E extends Serializable> extends Panel {
 	 */
 	public DefaultBodyCell(String id, IColumnModel<E> columnModel, E object) {
 		super(id, columnModel);		
-		Label label = new Label("cell",newBodyCellModel(columnModel, object));
+		Label label = new Label("cell",newBodyCellModel(columnModel, object)) {
+			
+			/**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
+
+			@Override
+			protected void onComponentTagBody(MarkupStream markupStream, ComponentTag openTag) {
+				if(!StringUtils.isEmpty(getDefaultModelObjectAsString().trim())) {
+					super.onComponentTagBody(markupStream, openTag);
+					return;
+				}
+				replaceComponentTagBody(markupStream, openTag, "&nbsp;");
+			}
+		
+		};
 		label.setRenderBodyOnly(true);
 		add(label);
 	}

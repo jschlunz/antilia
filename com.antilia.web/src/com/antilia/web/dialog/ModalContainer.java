@@ -115,7 +115,7 @@ public abstract class ModalContainer extends Panel implements IDialogScope, IMen
 		setPosX(0);
 		setPosY(0);
 		setWidth(900);
-		setHeight(600);
+		setHeight(700);
 		this.dialogStyle = dialogStyle;
 		setOutputMarkupId(true);
 		ClientProperties properties = ((WebClientInfo)getRequestCycle().getClientInfo()).getProperties();
