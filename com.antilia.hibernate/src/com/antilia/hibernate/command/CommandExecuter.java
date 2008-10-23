@@ -115,6 +115,7 @@ public class CommandExecuter {
 		T entity = DefaultCommandExecuter.getInstance().execute(command);
 		return entity;
 	}
+		
 	
 	/**
 	 * Finds a single entity based on its primary key.
@@ -126,6 +127,20 @@ public class CommandExecuter {
 	 */
 	public static <T extends Serializable> T findById(String entityClassName, Serializable key)  {
 		FindByIdCommand<T, Serializable> command = new FindByIdCommand<T, Serializable>(entityClassName, key) ;
+		T entity = DefaultCommandExecuter.getInstance().execute(command);
+		return entity;
+	}
+	
+	/**
+	 * Finds a single entity based on its primary key.
+	 * 
+	 * @param <T>
+	 * @param entityClassName
+	 * @param key
+	 * @return
+	 */
+	public static <T extends Serializable> T findByExample(T example)  {
+		FindByExampleCommand<T> command = new FindByExampleCommand<T>(example.getClass().getName(), example) ;
 		T entity = DefaultCommandExecuter.getInstance().execute(command);
 		return entity;
 	}
