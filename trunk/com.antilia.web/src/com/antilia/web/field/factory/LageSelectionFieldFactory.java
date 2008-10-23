@@ -6,7 +6,9 @@ package com.antilia.web.field.factory;
 
 import java.io.Serializable;
 
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
 import org.apache.wicket.Component;
 
@@ -33,7 +35,7 @@ public class LageSelectionFieldFactory<B extends Serializable> implements IField
 	 */
 	public boolean canHandleField(IFieldModel<B> model) {		
 		try {
-			if(AnnotationUtils.isFieldAnnotationPresent(model.getBeanClass(), model.getPropertyPath(), ManyToOne.class) ) {
+			if(isPreoperlyAnnotated(model)) {
 				if(AnnotationUtils.isFieldAnnotationPresent(model.getBeanClass(), model.getPropertyPath(), SelectionType.class)) {
 					SelectionType selectionType = AnnotationUtils.findFieldAnnotation(model.getBeanClass(), model.getPropertyPath(), SelectionType.class);
 					if(selectionType != null) {
@@ -46,6 +48,18 @@ public class LageSelectionFieldFactory<B extends Serializable> implements IField
 		} catch (Exception e) {
 			return false;
 		}
+	}
+	
+	public boolean isPreoperlyAnnotated(IFieldModel<B> model) {
+		try {
+			if(AnnotationUtils.isFieldAnnotationPresent(model.getBeanClass(), model.getPropertyPath(), ManyToOne.class))
+				return true;
+			if(AnnotationUtils.isFieldAnnotationPresent(model.getBeanClass(), model.getPropertyPath(), OneToOne.class) 
+					&&  AnnotationUtils.isFieldAnnotationPresent(model.getBeanClass(), model.getPropertyPath(), JoinColumn.class))
+				return true;
+		} catch (Exception e) {			
+		}
+		return false;
 	}
 
 	/* (non-Javadoc)

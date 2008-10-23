@@ -105,7 +105,7 @@ Column.prototype.onResize = function (obj, deltaX, deltaY) {
 Column.prototype.onEndDrag = function (obj) {
     var td = obj.parentNode.parentNode.parentNode.parentNode;  
     var url = this.url+ '&sourceId=' + parseInt(td.style.width) + '&targetId=resize' + '&number=' + this.number
-     wicketAjaxGet(url);      
+    wicketAjaxGet(url);      
 }
 
 function TColumn(tableId, id, url) {
