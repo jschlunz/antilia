@@ -21,6 +21,8 @@ public class RequestContext {
 	
 	private IPersistenceUnit persistenceUnit;
 	
+	private IProgressReporter progressReporter;
+
 	private Tier tier;
 	
 	private static final ThreadLocal<RequestContext> current = new ThreadLocal<RequestContext>();
@@ -61,6 +63,14 @@ public class RequestContext {
 		this.persistenceUnit = persistenceUnit;
 	}
 
+	public IProgressReporter getProgressReporter() {
+		return progressReporter;
+	}
+
+	public void setProgressReporter(IProgressReporter progressReporter) {
+		this.progressReporter = progressReporter;
+	}
+	
 	/**
 	 * @return the user
 	 */
