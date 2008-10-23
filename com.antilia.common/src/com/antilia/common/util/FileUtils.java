@@ -86,10 +86,15 @@ public class FileUtils {
                 // Get the list of the files contained in the package
                 String[] files = directory.list();
                 for (String file : files) {
+                	System.out.println(file);
                     // we are only interested in .class files
                     if (file.endsWith(".class")) {
-                        // removes the .class extension
-                        result.add(Class.forName(packageNames.get(directory) + '.' + file.substring(0, file.length() - 6)));
+                    	try {
+                    		// removes the .class extension
+                    		result.add(Class.forName(packageNames.get(directory) + '.' + file.substring(0, file.length() - 6)));
+                    	} catch (Throwable e) {
+                    		// ignore exception and continue 
+                    	}
                     }
                 }
             } else {
