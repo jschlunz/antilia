@@ -23,9 +23,14 @@ public class CloseDialogButton extends AbstractButton {
 
 	private DefaultDialog dialog; 
 	
-	public CloseDialogButton(DefaultDialog dialog) {
-		super("close", true);
+	public CloseDialogButton(String id, DefaultDialog dialog) {
+		super(id, true);
 		this.dialog = dialog;
+	}
+	
+	
+	public CloseDialogButton(DefaultDialog dialog) {
+		this("close", dialog);
 	}
 	
 	/* (non-Javadoc)
