@@ -52,6 +52,14 @@ public class LoadListCommand<E extends Serializable> extends AbstractPersistentC
 		this.criteria = criteria;
 	}	
 
+	public static <T extends Serializable> List<T> findlAll(Class<T> persistentClass) {
+		try {
+			return new LoadListCommand<T>(persistentClass).execute();
+		} catch (Throwable e) {
+			throw new CommandExecutionException(CommandExecutionException.COMMAND_EXECUTION_EXCEPTION, e);
+		}
+	}
+	
 	@SuppressWarnings("unchecked")
 	@Override
 	protected List<E> doExecute() {

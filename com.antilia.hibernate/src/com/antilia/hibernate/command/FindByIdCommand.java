@@ -7,6 +7,7 @@ package com.antilia.hibernate.command;
 import java.io.Serializable;
 import java.lang.reflect.Field;
 
+import javax.persistence.EmbeddedId;
 import javax.persistence.Id;
 
 import org.hibernate.Criteria;
@@ -53,8 +54,18 @@ public class FindByIdCommand<E extends Serializable, K extends Serializable> ext
 	private E load(Class<E> entityClass, K key) {
 		Criteria criteria = getSession().createCriteria(entityClass);
 		Field[] field = AnnotationUtils.findAnnotatedFields(entityClass, Id.class);
+		if(field == null || field.length == 0)
+			field = AnnotationUtils.findAnnotatedFields(entityClass, EmbeddedId.class);
 		criteria.add(Restrictions.eq(field[0].getName(), key));
 		return (E)criteria.uniqueResult();
+	}
+	
+	public static <T extends Serializable> T find(Class<T> persistentClass, Serializable key) {
+		try {
+			return new FindByIdCommand<T, Serializable>(persistentClass, key).execute();
+		} catch (Throwable e) {
+			throw new CommandExecutionException(CommandExecutionException.COMMAND_EXECUTION_EXCEPTION, e);
+		}
 	}
 	
 	/**
