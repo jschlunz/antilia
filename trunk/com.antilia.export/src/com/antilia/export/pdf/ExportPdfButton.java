@@ -6,15 +6,12 @@ package com.antilia.export.pdf;
 
 import java.io.Serializable;
 
-import org.apache.wicket.Component;
 import org.apache.wicket.ResourceReference;
-import org.apache.wicket.ajax.AjaxRequestTarget;
-import org.apache.wicket.markup.html.form.Form;
 
-import com.antilia.hibernate.context.RequestContext;
 import com.antilia.web.beantable.Table;
 import com.antilia.web.dialog.DefaultDialog;
-import com.antilia.web.dialog.DialogButton;
+import com.antilia.web.export.AbstractExportDialogButton;
+import com.antilia.web.export.AbstractExportTask;
 import com.antilia.web.resources.DefaultStyle;
 
 /**
@@ -23,14 +20,12 @@ import com.antilia.web.resources.DefaultStyle;
  * @author Ernesto Reinaldo Barreiro (reiern70@gmail.com)
  *
  */
-public class ExportPdfButton<B extends Serializable> extends DialogButton {
+public class ExportPdfButton<B extends Serializable> extends AbstractExportDialogButton {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-
-	private transient ExportPdfTask<B> exportPdfTask;
 	
 	/**
 	 * @param id
@@ -54,45 +49,35 @@ public class ExportPdfButton<B extends Serializable> extends DialogButton {
 	protected String getLabel() {
 		return null;
 	}
+	@Override
+	public String getContentType() {
+		return "application/pdf";
+	}
 
 	@Override
-	protected void onSubmit(AjaxRequestTarget target, Form form) {
-		super.onSubmit(target, form);
+	protected AbstractExportTask newExportTask() {
 		Table<B> table = findPageableComponent();
-		exportPdfTask = new ExportPdfTask<B>(table.getPageableProvider(), RequestContext.get().getPersistenceUnit(), RequestContext.get().getUser(), table.getTableModel());
-		Thread thread = new Thread(exportPdfTask);
-		thread.start();
+		return new ExportPdfTask<B>(table.getPageableProvider(), table.getTableModel());
 	}
+	
 	/* (non-Javadoc)
 	 * @see com.antilia.web.dialog.DialogButton#newDialog(java.lang.String)
 	 */
 	@Override
 	public DefaultDialog newDialog(String id) {
-		DefaultDialog dialog =new DefaultDialog(id, this) {
-			private static final long serialVersionUID = 1L;
-
-			@Override
-			protected Component createBody(String id) {
-				return new ExportPdfPanel<B>(id, ExportPdfButton.this);
-			}
-		};
+		DefaultDialog dialog = super.newDialog(id);
 		dialog.setTitle("Exporting to PDF...");
-		dialog.setModal(true);
-		dialog.setWidth(300);
-		dialog.setHeight(200);
-		dialog.setResizable(false);
 		return dialog;
 	}
 
-	/**
-	 * @return the exportPdfTask
-	 */
-	public ExportPdfTask<B> getExportPdfTask() {
-		return exportPdfTask;
-	}
 	
 	@SuppressWarnings("unchecked")
 	private Table<B> findPageableComponent() {
 		return (Table<B>)findParent(Table.class);
+	}
+	
+	@Override
+	public String getDowloadMessage() {
+		return "Click here to see the generated PDF";
 	}
 }
