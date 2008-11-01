@@ -17,6 +17,8 @@ public class ProgressReporter implements IProgressReporter {
 	
 	private long current = 0;
 	
+	private boolean canceled = false;
+	
 	public ProgressReporter() {		
 	}
 	
@@ -66,6 +68,16 @@ public class ProgressReporter implements IProgressReporter {
 	@Override
 	public void setTotalTasks(long total) {
 		this.total = total;
+	}
+	
+	@Override
+	public void cancelJob() {
+		this.canceled = true;
+	}
+	
+	@Override
+	public boolean isCanceled() {
+		return this.canceled;
 	}
 
 }
