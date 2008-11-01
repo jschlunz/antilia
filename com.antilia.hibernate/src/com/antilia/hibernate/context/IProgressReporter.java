@@ -16,5 +16,9 @@ public interface IProgressReporter extends Serializable {
 	
 	void setMessage(String message);
 	
-	String getMessage();	
+	String getMessage();
+	
+	void cancelJob();
+	
+	boolean isCanceled();
 }
