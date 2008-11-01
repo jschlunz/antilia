@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.lang.reflect.Field;
 import java.util.List;
 
+import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
@@ -54,6 +55,9 @@ public class EntityUtils {
 		if (entity == null)
 			return null;
 		Field[] fields = AnnotationUtils.findAnnotatedFields(entity.getClass(),Id.class);
+		if (fields == null || fields.length == 0) {
+			fields = AnnotationUtils.findAnnotatedFields(entity.getClass(),EmbeddedId.class);
+		}			
 		if (fields != null && fields.length > 0)
 			try {
 				fields[0].setAccessible(true);
