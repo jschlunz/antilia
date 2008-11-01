@@ -36,6 +36,9 @@ public class LoadPropertyCommand<E extends Serializable, T extends Object> exten
 		Session session = getSession();
 		E entity = (E)session.get(getPersistentClass(),key);
 
+		if(entity == null)
+			return null;
+		
 		T value = (T)EntityUtils.getPropertyValue(entity,property);
 		
 		if (value instanceof Proxy) {
