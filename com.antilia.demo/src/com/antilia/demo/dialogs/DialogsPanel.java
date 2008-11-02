@@ -56,6 +56,11 @@ public class DialogsPanel extends Panel {
 			protected ResourceReference getImage() {
 				return null;
 			}
+			
+			@Override
+			protected String getLabelKey() {
+				return null;
+			}
 		};
 		form.add(button);
 	}

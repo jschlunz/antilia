@@ -37,4 +37,8 @@ public class DragDropPageButton extends AppNavigationButton {
 		return "Drag-Drop";
 	}
 
+	@Override
+	protected String getLabelKey() {
+		return null;
+	}
 }

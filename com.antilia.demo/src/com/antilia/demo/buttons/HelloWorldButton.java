@@ -36,5 +36,10 @@ public class HelloWorldButton extends AppNavigationButton {
 	protected String getLabel() {
 		return "Hello World";
 	}
+	
+	@Override
+	protected String getLabelKey() {
+		return null;
+	}
 
 }
