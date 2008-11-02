@@ -1,5 +1,7 @@
 package com.antilia.demo.manager;
 
+import java.util.Locale;
+
 import org.apache.wicket.Request;
 import org.apache.wicket.Session;
 import org.apache.wicket.protocol.http.WebSession;
@@ -20,6 +22,7 @@ public class ManagerSession extends WebSession {
 	 */
 	public ManagerSession(Request request) {
 		super(request);
+		setLocale(new Locale("es", "ES"));
 	}
 	
 	public static ManagerSession getSession() {
