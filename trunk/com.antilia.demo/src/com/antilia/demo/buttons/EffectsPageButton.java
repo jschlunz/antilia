@@ -37,4 +37,8 @@ public class EffectsPageButton extends AppNavigationButton {
 		return "Effects";
 	}
 
+	@Override
+	protected String getLabelKey() {
+		return null;
+	}
 }

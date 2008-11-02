@@ -87,4 +87,9 @@ public class TestLoadingButton extends AbstractButton {
 	protected IAjaxCallDecorator getAjaxCallDecorator() {
 		return new LoadingDecorartor(getDialogScope());		
 	}
+	
+	@Override
+	protected String getLabelKey() {
+		return null;
+	}
 }

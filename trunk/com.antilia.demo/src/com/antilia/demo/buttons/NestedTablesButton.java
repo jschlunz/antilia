@@ -36,5 +36,10 @@ public class NestedTablesButton extends AppNavigationButton {
 	protected String getLabel() {
 		return "Nested Tables";
 	}
+	
+	@Override
+	protected String getLabelKey() {
+		return null;
+	}
 
 }

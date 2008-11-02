@@ -37,4 +37,8 @@ public class FormButton extends AppNavigationButton {
 		return "Simple Form";
 	}
 
+	@Override
+	protected String getLabelKey() {
+		return null;
+	}
 }

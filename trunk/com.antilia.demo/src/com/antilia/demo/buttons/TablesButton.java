@@ -37,4 +37,8 @@ public class TablesButton extends AppNavigationButton {
 		return "Tables";
 	}
 
+	@Override
+	protected String getLabelKey() {
+		return null;
+	}
 }

@@ -36,5 +36,10 @@ public class DialogsPageButton extends AppNavigationButton {
 	protected String getLabel() {
 		return "Dialogs";
 	}
+	
+	@Override
+	protected String getLabelKey() {
+		return null;
+	}
 
 }

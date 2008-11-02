@@ -37,4 +37,8 @@ public class RoundBoxButton extends AppNavigationButton {
 		return "Round Panes";
 	}
 
+	@Override
+	protected String getLabelKey() {
+		return null;
+	}
 }
