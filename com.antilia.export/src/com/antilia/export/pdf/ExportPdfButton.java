@@ -7,6 +7,8 @@ package com.antilia.export.pdf;
 import java.io.Serializable;
 
 import org.apache.wicket.ResourceReference;
+import org.apache.wicket.model.IModel;
+import org.apache.wicket.model.Model;
 
 import com.antilia.web.beantable.Table;
 import com.antilia.web.dialog.DefaultDialog;
@@ -49,6 +51,12 @@ public class ExportPdfButton<B extends Serializable> extends AbstractExportDialo
 	protected String getLabel() {
 		return null;
 	}
+	
+	@Override
+	protected String getLabelKey() {
+		return null;
+	}
+	
 	@Override
 	public String getContentType() {
 		return "application/pdf";
@@ -66,7 +74,6 @@ public class ExportPdfButton<B extends Serializable> extends AbstractExportDialo
 	@Override
 	public DefaultDialog newDialog(String id) {
 		DefaultDialog dialog = super.newDialog(id);
-		dialog.setTitle("Exporting to PDF...");
 		return dialog;
 	}
 
@@ -79,5 +86,10 @@ public class ExportPdfButton<B extends Serializable> extends AbstractExportDialo
 	@Override
 	public String getDowloadMessage() {
 		return "Click here to see the generated PDF";
+	}
+	
+	@Override
+	protected IModel<String> getTitle() {
+		return new Model<String>("Exporting to PDF...");
 	}
 }
