@@ -61,6 +61,11 @@ public class DialogsPanel extends Panel {
 			protected String getLabelKey() {
 				return null;
 			}
+			
+			@Override
+			protected String getTitleKey() {
+				return null;
+			}
 		};
 		form.add(button);
 	}
