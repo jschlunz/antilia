@@ -48,5 +48,10 @@ public class HelloDialogButton extends DialogButton {
 	protected String getLabel() {
 		return "Hello!";
 	}
+	
+	@Override
+	protected String getLabelKey() {
+		return null;
+	}
 
 }
