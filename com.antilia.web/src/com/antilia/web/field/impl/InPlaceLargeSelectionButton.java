@@ -57,6 +57,11 @@ public class InPlaceLargeSelectionButton<B extends Serializable> extends Abstrac
 	protected String getLabel() {
 		return null;
 	}
+	
+	@Override
+	protected String getLabelKey() {
+		return null;
+	}
 
 	@SuppressWarnings("unchecked")
 	@Override

@@ -13,7 +13,7 @@ import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.util.lang.PropertyResolver;
 
 import com.antilia.web.dialog.DefaultDialog;
-import com.antilia.web.dialog.util.OklDialogButton;
+import com.antilia.web.dialog.util.OkDialogButton;
 import com.antilia.web.field.BeanProxy;
 import com.antilia.web.field.IFieldModel;
 import com.antilia.web.field.IFieldPanel;
@@ -25,7 +25,7 @@ import com.antilia.web.resources.DefaultStyle;
  * @author Ernesto Reinaldo Barreiro (reiern70@gmail.com)
  *
  */
-public class SelectRowButton<B extends Serializable> extends OklDialogButton {
+public class SelectRowButton<B extends Serializable> extends OkDialogButton {
 
 	private static final long serialVersionUID = 1L;
 

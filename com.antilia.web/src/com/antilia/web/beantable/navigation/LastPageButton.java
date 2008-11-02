@@ -41,6 +41,11 @@ public class LastPageButton<E extends Serializable> extends AbstractButton {
 		return DefaultStyle.IMG_LAST_DISABLED;
 	}
 
+	@Override
+	protected String getLabelKey() {
+		return null;
+	}
+	
 	/* (non-Javadoc)
 	 * @see com.antilia.web.toolbar.AButton#getLabel()
 	 */

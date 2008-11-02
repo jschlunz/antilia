@@ -50,6 +50,11 @@ public class CloseDialogButton extends AbstractButton {
 	}
 	
 	@Override
+	protected String getLabelKey() {
+		return null;
+	}
+	
+	@Override
 	protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
 		/*
 		dialog.setVisible(false);

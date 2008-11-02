@@ -19,13 +19,13 @@ import com.antilia.web.resources.DefaultStyle;
  * 
  * @author Ernesto Reinaldo Barreiro (reiern70@gmail.com)
  */
-public abstract class OklDialogButton extends AbstractButton {
+public abstract class OkDialogButton extends AbstractButton {
 
 	private static final long serialVersionUID = 1L;
 
 	private DefaultDialog dialog; 
 	
-	public OklDialogButton(String id,DefaultDialog dialog) {
+	public OkDialogButton(String id,DefaultDialog dialog) {
 		super(id, true);
 		this.dialog = dialog;
 	}
@@ -44,6 +44,11 @@ public abstract class OklDialogButton extends AbstractButton {
 	@Override
 	protected String getLabel() {
 		return "Ok";
+	}
+	
+	@Override
+	protected String getLabelKey() {
+		return "OkDialogButton.label";
 	}
 	
 	@Override

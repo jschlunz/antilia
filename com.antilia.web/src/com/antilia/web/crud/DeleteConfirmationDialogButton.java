@@ -9,6 +9,7 @@ import java.io.Serializable;
 import org.apache.wicket.ResourceReference;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.markup.html.form.Form;
+import org.apache.wicket.model.ResourceModel;
 
 import com.antilia.web.button.AbstractButton;
 import com.antilia.web.dialog.DefaultDialog;
@@ -57,7 +58,7 @@ public class DeleteConfirmationDialogButton<E extends Serializable> extends Dial
 	 */
 	@Override
 	public DefaultDialog newDialog(String id) {
-		ConfirmationDialog confirmationDialog = new ConfirmationDialog(id, this, "Do you want to delete records?") {
+		ConfirmationDialog confirmationDialog = new ConfirmationDialog(id, this, new ResourceModel("deleteCofirmMessage")) {
 			
 			private static final long serialVersionUID = 1L;
 
@@ -84,4 +85,8 @@ public class DeleteConfirmationDialogButton<E extends Serializable> extends Dial
 		return (CRUDPanel<E> )findParent(CRUDPanel.class);
 	}
 
+	@Override
+	protected String getLabelKey() {
+		return "DeleteConfirmationDialogButton.label";
+	}
 }

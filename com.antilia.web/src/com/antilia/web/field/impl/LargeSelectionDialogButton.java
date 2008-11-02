@@ -52,6 +52,11 @@ public class LargeSelectionDialogButton<B extends Serializable> extends DialogBu
 	protected String getLabel() {
 		return null;
 	}
+	
+	@Override
+	protected String getLabelKey() {
+		return null;
+	}
 
 	/* (non-Javadoc)
 	 * @see com.antilia.web.dialog.DialogButton#newDialog(java.lang.String)

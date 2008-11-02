@@ -14,7 +14,7 @@ import org.apache.wicket.markup.html.panel.Panel;
 import com.antilia.web.beantable.Table;
 import com.antilia.web.beantable.model.IColumnModel;
 import com.antilia.web.dialog.util.CancelDialogButton;
-import com.antilia.web.dialog.util.OklDialogButton;
+import com.antilia.web.dialog.util.OkDialogButton;
 
 /**
  * 
@@ -34,7 +34,7 @@ public class UnusedColumnsPanel<E extends Serializable> extends Panel {
 		super(id);
 		
 		
-		add(new OklDialogButton("ok", dialog) {
+		add(new OkDialogButton("ok", dialog) {
 			
 			private static final long serialVersionUID = 1L;
 

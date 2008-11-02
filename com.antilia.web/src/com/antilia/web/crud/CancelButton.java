@@ -44,6 +44,11 @@ public class CancelButton<E extends Serializable> extends AbstractButton {
 	}
 	
 	@Override
+	protected String getLabelKey() {
+		return "CancelButton.label";
+	}
+	
+	@Override
 	protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
 			CRUDPanel<E> crudPanel = getCRUDPanel();
 			if(crudPanel != null) {	

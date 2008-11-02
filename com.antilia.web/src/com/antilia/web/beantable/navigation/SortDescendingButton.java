@@ -58,6 +58,11 @@ public class SortDescendingButton<E extends Serializable> extends AbstractButton
 	}
 	
 	@Override
+	protected String getLabelKey() {
+		return null;
+	}
+	
+	@Override
 	public boolean isEnabled() {
 		//IPageableComponent<E> component = findPageableComponent();
 		//return component.getPageableProvider().hasNextPage();

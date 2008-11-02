@@ -60,6 +60,10 @@ public class SaveNewRecordButton<E extends Serializable> extends AbstractButton 
 		}
 	}
 	
+	@Override
+	protected String getLabelKey() {
+		return "SaveNewRecordButton.label";
+	}
 	
 	@Override
 	public void onSubmit() {

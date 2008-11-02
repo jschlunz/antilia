@@ -51,6 +51,11 @@ public class PreviousRecordButton<E extends Serializable> extends AbstractButton
 	}
 	
 	@Override
+	protected String getLabelKey() {
+		return "PreviousRecordButton.label";
+	}
+	
+	@Override
 	public boolean isVisible() {
 		EditPanel<E> component = findEditPanel();
 		return component.getPageableProvider().size()>1;

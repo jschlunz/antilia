@@ -72,6 +72,11 @@ public class DropSelectionButton<B extends Serializable> extends AbstractButton 
 		return null;
 	}
 	
+	@Override
+	protected String getLabelKey() {
+		return null;
+	}
+	
 	
 	private IFieldPanel findFieldPanel() {
 		return (IFieldPanel)findParent(IFieldPanel.class);

@@ -17,6 +17,7 @@ import org.apache.wicket.markup.MarkupStream;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.panel.Panel;
+import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.protocol.http.ClientProperties;
 import org.apache.wicket.protocol.http.request.WebClientInfo;
@@ -32,6 +33,8 @@ import com.antilia.web.veil.AntiliaVeilResource;
  * @author Ernesto Reinaldo Barreiro (reiern70@gmail.com)
  */
 public abstract class DefaultDialog extends Panel implements IDialogScope, IMenuItemsFactory {
+
+	private static final long serialVersionUID = 1L;
 
 	public static final int DEFAULT_MIN_WIDTH=200;
 	
@@ -59,7 +62,7 @@ public abstract class DefaultDialog extends Panel implements IDialogScope, IMenu
 	
 	private int minimumHeight = DEFAULT_MIN_HEIGHT;
 	
-	private String title  = "Title";
+	private IModel<String> title  = new Model<String>("Title");
 	
 	private IDialogScope parent;
 	
@@ -420,15 +423,22 @@ public abstract class DefaultDialog extends Panel implements IDialogScope, IMenu
 	/**
 	 * @return the title
 	 */
-	public String getTitle() {
+	public IModel<String> getTitle() {
 		return title;
 	}
 
 	/**
 	 * @param title the title to set
 	 */
-	public void setTitle(String title) {
+	public void setTitle(IModel<String> title) {
 		this.title = title;
+	}
+	
+	/**
+	 * @param title the title to set
+	 */
+	public void setTitle(String title) {
+		this.title = new Model<String>(title);
 	}
 
 	/**
