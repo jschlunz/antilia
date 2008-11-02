@@ -41,4 +41,9 @@ public class RoundBoxButton extends AppNavigationButton {
 	protected String getLabelKey() {
 		return null;
 	}
+	
+	@Override
+	protected String getTitleKey() {
+		return null;
+	}
 }

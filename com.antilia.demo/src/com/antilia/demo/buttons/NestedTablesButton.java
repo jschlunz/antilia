@@ -42,4 +42,8 @@ public class NestedTablesButton extends AppNavigationButton {
 		return null;
 	}
 
+	@Override
+	protected String getTitleKey() {
+		return null;
+	}
 }
