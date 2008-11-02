@@ -93,22 +93,7 @@ public class DefaultHeaderRounded extends Panel  {
 			}
 		}));
 		add(middlePanel);
-		Label title = new Label("title", new Model<String>() {			
-			private static final long serialVersionUID = 1L;
-
-			@Override
-			public String getObject() {
-				return DefaultHeaderRounded.this.getDialog().getTitle();
-			}
-			
-			@Override
-			public void setObject(String object) {
-				super.setObject(object);
-				if(object != null)
-					DefaultHeaderRounded.this.getDialog().setTitle(object.toString());
-			}
-			
-		});
+		Label title = new Label("title", DefaultHeaderRounded.this.getDialog().getTitle());
 		/*
 		title.setOutputMarkupId(true);
 		title.add(new AttributeModifier("id", new Model() {

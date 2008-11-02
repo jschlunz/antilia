@@ -46,12 +46,17 @@ public abstract class DialogButton extends Panel implements IMenuItem, IToolbarI
 				return DialogButton.this.getImage();
 			}
 			
-			 @Override
+			@Override
 			protected String getLabel() {
 				return DialogButton.this.getLabel();
 			}
+			
+			@Override
+			protected String getLabelKey() {
+				return DialogButton.this.getLabelKey();
+			}
 			 
-			 @Override
+			@Override
 			public boolean isEnabled() {
 				return !DialogButton.this.dialog.isVisible();
 			}
@@ -84,6 +89,8 @@ public abstract class DialogButton extends Panel implements IMenuItem, IToolbarI
 			add(dialog);
 		}
 	}
+	protected abstract String getLabelKey();
+	
 	protected abstract String getLabel();
 
 	protected abstract ResourceReference getImage();

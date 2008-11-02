@@ -7,6 +7,9 @@ package com.antilia.web.dialog.util;
 import org.apache.wicket.Component;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.markup.html.form.Form;
+import org.apache.wicket.model.IModel;
+import org.apache.wicket.model.Model;
+import org.apache.wicket.model.ResourceModel;
 
 import com.antilia.web.button.AbstractButton;
 import com.antilia.web.dialog.DefaultDialog;
@@ -23,17 +26,23 @@ public  class ConfirmationDialog extends DefaultDialog {
 
 	private static final long serialVersionUID = 1L;
 
-	private String message;
+	private IModel<String> message;
 	
 	/**
 	 * @param id
 	 * @param button
 	 */
 	public ConfirmationDialog(String id, DialogButton button, String message) {
+		this(id, button, new Model<String>(message));
+	}
+	
+	
+	public ConfirmationDialog(String id, DialogButton button, IModel<String> message) {
 		super(id, button);
 		this.message = message;		
 		init();
 	}
+	
 
 	/**
 	 * @param id
@@ -41,18 +50,31 @@ public  class ConfirmationDialog extends DefaultDialog {
 	 * @param dialogStyle
 	 */
 	public ConfirmationDialog(String id, DialogButton button, DialogStyle dialogStyle, String message) {
+		this(id, button, dialogStyle, new Model<String>(message));
+	}
+	
+	/**
+	 * @param id
+	 * @param button
+	 * @param dialogStyle
+	 */
+	public ConfirmationDialog(String id, DialogButton button, DialogStyle dialogStyle, IModel<String> message) {
 		super(id, button, dialogStyle);
 		this.message = message;
 		init();
 	}
 	
+	@Override
+	public IModel<String> getTitle() {
+		return new ResourceModel("dialogTitle");
+	}
+	
 	private void init() {
-		setWidth(200);
+		setWidth(400);
 		setHeight(150);
 		setResizable(false);
 		setFoldable(false);
 		setModal(true);
-		setTitle("Confirmation Dialog");
 	}
 
 	/* (non-Javadoc)
@@ -60,7 +82,7 @@ public  class ConfirmationDialog extends DefaultDialog {
 	 */
 	@Override
 	protected Component createBody(String id) {
-		return new ConfirmationPanel(id, message) {
+		return new ConfirmationPanel(id) {
 			
 			private static final long serialVersionUID = 1L;
 
@@ -75,7 +97,7 @@ public  class ConfirmationDialog extends DefaultDialog {
 			}
 			
 			@Override
-			String getMessage() {
+			IModel<String>getMessage() {
 				return ConfirmationDialog.this.message;
 			}
 		};
@@ -86,7 +108,7 @@ public  class ConfirmationDialog extends DefaultDialog {
 	}
 	
 	protected  AbstractButton newOkButton(String id) {
-		return new OklDialogButton(id, this) {
+		return new OkDialogButton(id, this) {
 			
 			private static final long serialVersionUID = 1L;
 
@@ -94,6 +116,7 @@ public  class ConfirmationDialog extends DefaultDialog {
 			protected void onOk(AjaxRequestTarget target, Form<?> form) {
 				// do nothing
 			}
+			
 		};
 	}
 }

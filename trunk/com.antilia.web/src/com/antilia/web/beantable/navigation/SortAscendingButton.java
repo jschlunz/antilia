@@ -58,6 +58,11 @@ public class SortAscendingButton<E extends Serializable> extends AbstractButton 
 	}
 	
 	@Override
+	protected String getLabelKey() {
+		return null;
+	}
+	
+	@Override
 	public boolean isVisible() {
 		if(!this.columnModel.isSortable()) {
 			return false;

@@ -90,15 +90,7 @@ public class RoundBoxHeader extends Panel {
 		
 		add(titleColumn);
 		
-		Label ltitle = new Label("title", new Model<String>() {
-			
-			private static final long serialVersionUID = 1L;
-
-			@Override
-			public String getObject() {
-				return getDefaultDialog().getTitle();
-			}
-		}) {
+		Label ltitle = new Label("title", getDefaultDialog().getTitle()) {
 			private static final long serialVersionUID = 1L;
 
 			@Override

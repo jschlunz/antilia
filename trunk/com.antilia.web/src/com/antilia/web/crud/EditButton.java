@@ -59,4 +59,9 @@ public class EditButton<E extends Serializable> extends AbstractButton {
 	public CRUDPanel<E> getCRUDPanel() {
 		return (CRUDPanel<E> )findParent(CRUDPanel.class);
 	}
+	
+	@Override
+	protected String getLabelKey() {
+		return "EditButton.label";
+	}
 }

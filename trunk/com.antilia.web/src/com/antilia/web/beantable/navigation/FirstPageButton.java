@@ -54,6 +54,12 @@ public class FirstPageButton<E extends Serializable> extends AbstractButton {
 	protected String getLabel() {
 		return "";
 	}
+	
+	@Override
+	protected String getLabelKey() {
+		return null;
+	}
+	
 	@Override
 	protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
 		IPageableComponent<E> component = findPageableComponent();

@@ -7,6 +7,7 @@ package com.antilia.web.export;
 import org.apache.wicket.Component;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.markup.html.form.Form;
+import org.apache.wicket.model.IModel;
 
 import com.antilia.web.dialog.DefaultDialog;
 import com.antilia.web.dialog.DialogButton;
@@ -53,6 +54,11 @@ public abstract class AbstractExportDialogButton extends DialogButton {
 			private static final long serialVersionUID = 1L;
 
 			@Override
+			public IModel<String> getTitle() {
+				return AbstractExportDialogButton.this.getTitle();
+			}
+			
+			@Override
 			protected Component createBody(String id) {
 				return new DefaultExportPanel(id, AbstractExportDialogButton.this) {
 					
@@ -70,7 +76,6 @@ public abstract class AbstractExportDialogButton extends DialogButton {
 				};
 			}
 		};
-		dialog.setTitle("");
 		dialog.setModal(true);
 		dialog.setWidth(300);
 		dialog.setHeight(200);
@@ -88,4 +93,7 @@ public abstract class AbstractExportDialogButton extends DialogButton {
 	public abstract String getContentType();
 	
 	public abstract String getDowloadMessage();
+	
+	protected abstract IModel<String> getTitle();
+	
 }

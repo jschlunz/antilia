@@ -6,7 +6,7 @@ package com.antilia.web.dialog.util;
 
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.panel.Panel;
-import org.apache.wicket.model.Model;
+import org.apache.wicket.model.IModel;
 
 import com.antilia.web.button.AbstractButton;
 
@@ -23,17 +23,10 @@ public abstract class ConfirmationPanel extends Panel {
 	/**
 	 * @param id
 	 */
-	public ConfirmationPanel(String id, String message) {
+	public ConfirmationPanel(String id) {
 		super(id);
 		
-		add(new Label("message", new Model<String>() {
-			private static final long serialVersionUID = 1L;
-
-			@Override
-			public String getObject() {
-				return ConfirmationPanel.this.getMessage();
-			}
-		}));
+		add(new Label("message", getMessage()));
 		add(newOkButton("ok"));
 		add(newCancelButton("cancel"));
 	}
@@ -43,5 +36,5 @@ public abstract class ConfirmationPanel extends Panel {
 	
 	abstract AbstractButton newOkButton(String id);
 	
-	abstract String getMessage();
+	abstract IModel<String> getMessage();
 }

@@ -59,6 +59,11 @@ public class InPlaceSelectRowButton<B extends Serializable> extends AbstractButt
 		}
 	}	
 	
+	@Override
+	protected String getLabelKey() {
+		return null;
+	}
+	
 	private IDialogScope  findDialogScope() {
 		return (IDialogScope)findParent(IDialogScope.class);
 	}

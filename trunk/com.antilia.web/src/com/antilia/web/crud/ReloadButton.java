@@ -44,6 +44,11 @@ public class ReloadButton<E extends Serializable> extends AbstractButton {
 	}
 	
 	@Override
+	protected String getLabelKey() {
+		return "ReloadButton.label";
+	}
+	
+	@Override
 	protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
 			ILoadablePanel<E> loadablePanel = getLoadablePanel();
 			if(loadablePanel != null) {				

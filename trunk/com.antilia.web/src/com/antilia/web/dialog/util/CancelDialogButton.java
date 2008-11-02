@@ -56,4 +56,9 @@ public class CancelDialogButton extends AbstractButton {
 	protected IAjaxCallDecorator getAjaxCallDecorator() {
 		return new CloseDialogAction(this, dialog).getAjaxCallDecorator();
 	}
+	
+	@Override
+	protected String getLabelKey() {
+		return "CancelDialogButton.label";
+	}
 }

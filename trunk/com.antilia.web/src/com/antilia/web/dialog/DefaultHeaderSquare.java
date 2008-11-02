@@ -91,22 +91,7 @@ public class DefaultHeaderSquare extends Panel  {
 			}
 		}));
 		add(middlePanel);
-		Label title = new Label("title", new Model<String>() {			
-			private static final long serialVersionUID = 1L;
-
-			@Override
-			public String getObject() {
-				return DefaultHeaderSquare.this.getDialog().getTitle();
-			}
-			
-			@Override
-			public void setObject(String object) {
-				super.setObject(object);
-				if(object != null)
-					DefaultHeaderSquare.this.getDialog().setTitle(object.toString());
-			}
-			
-		});
+		Label title = new Label("title", DefaultHeaderSquare.this.getDialog().getTitle());
 		/*
 		title.setOutputMarkupId(true);
 		title.add(new AttributeModifier("id", new Model() {

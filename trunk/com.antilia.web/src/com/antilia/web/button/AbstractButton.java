@@ -13,6 +13,8 @@ import org.apache.wicket.markup.html.form.Button;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.image.Image;
 import org.apache.wicket.markup.html.panel.Panel;
+import org.apache.wicket.model.IModel;
+import org.apache.wicket.model.ResourceModel;
 import org.wicketstuff.minis.veil.VeilResources;
 
 import com.antilia.web.dialog.IDialogScope;
@@ -216,8 +218,25 @@ public abstract class AbstractButton extends Panel implements IMenuItem, IToolba
 	}
 	
 	protected Label newLabel(String id) {
-		return new Label(id, getLabel());
+		IModel<String> model = getLabelModel();
+		if(model != null)
+			return new Label(id, model);
+		else 
+			return new Label(id, getLabel());
 	}
+	
+	/**
+	 * Override this method to get a different resource model.
+	 * @return
+	 */
+	protected IModel<String> getLabelModel() {
+		String key = getLabelKey();
+		if(key != null)
+			return new ResourceModel(getLabelKey(), getLabel());
+		return null;
+	}
+	
+	protected abstract String getLabelKey();
 	
 	protected abstract String getLabel();
 

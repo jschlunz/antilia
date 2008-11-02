@@ -58,6 +58,10 @@ public class UpdateRecordButton<E extends Serializable> extends AbstractButton {
 		target.addComponent(crud);
 	}
 	
+	@Override
+	protected String getLabelKey() {
+		return "UpdateRecordButton.label";
+	}
 	
 	@Override
 	public void onSubmit() {

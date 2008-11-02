@@ -53,6 +53,11 @@ public class CreateNewButton<E extends Serializable> extends AbstractButton {
 				target.addComponent((Component)crudPanel);
 			}		
 	}
+	
+	@Override
+	protected String getLabelKey() {
+		return "CreateNewButton.label";
+	}
 
 	@SuppressWarnings("unchecked")
 	public CRUDPanel<E> getCRUDPanel() {

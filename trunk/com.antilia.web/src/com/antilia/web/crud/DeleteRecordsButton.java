@@ -11,7 +11,7 @@ import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.markup.html.form.Form;
 
 import com.antilia.web.dialog.DefaultDialog;
-import com.antilia.web.dialog.util.OklDialogButton;
+import com.antilia.web.dialog.util.OkDialogButton;
 
 /**
  * 
@@ -19,7 +19,7 @@ import com.antilia.web.dialog.util.OklDialogButton;
  * @author Ernesto Reinaldo Barreiro (reiern70@gmail.com)
  *
  */
-public class DeleteRecordsButton<E extends Serializable> extends OklDialogButton {
+public class DeleteRecordsButton<E extends Serializable> extends OkDialogButton {
 
 	private static final long serialVersionUID = 1L;
 
@@ -41,6 +41,11 @@ public class DeleteRecordsButton<E extends Serializable> extends OklDialogButton
 	@SuppressWarnings("unchecked")
 	public CRUDPanel<E> getCRUDPanel() {
 		return (CRUDPanel<E> )findParent(CRUDPanel.class);
+	}
+	
+	@Override
+	protected String getLabelKey() {
+		return "DeleteRecordsButton.label";
 	}
 	
 }

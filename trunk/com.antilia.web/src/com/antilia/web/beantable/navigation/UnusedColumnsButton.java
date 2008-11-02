@@ -46,6 +46,11 @@ public class UnusedColumnsButton<E extends Serializable> extends DialogButton {
 	}
 	
 	@Override
+	protected String getLabelKey() {
+		return null;
+	}
+	
+	@Override
 	protected String getLabel() {
 		return null;
 	}

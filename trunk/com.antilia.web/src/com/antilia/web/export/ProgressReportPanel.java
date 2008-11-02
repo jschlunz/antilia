@@ -71,6 +71,11 @@ public class ProgressReportPanel extends Panel {
 				protected String getLabel() {
 					return "Cancel";
 				}
+				
+				@Override
+				protected String getLabelKey() {
+					return "ProgressReportPanel.cancel";
+				}
 			};
 			add(cancelButton);
 		}
