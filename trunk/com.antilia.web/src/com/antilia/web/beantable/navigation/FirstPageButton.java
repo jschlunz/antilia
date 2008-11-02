@@ -59,6 +59,7 @@ public class FirstPageButton<E extends Serializable> extends AbstractButton {
 	protected String getLabelKey() {
 		return null;
 	}
+
 	
 	@Override
 	protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
