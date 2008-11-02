@@ -44,6 +44,11 @@ public class PreviousElementButton<E extends Serializable> extends AbstractButto
 	}
 	
 	@Override
+	protected String getLabelKey() {
+			return null;
+	}
+	
+	@Override
 	public boolean isEnabled() {
 		IPageableComponent<E> component = findPageableComponent();
 		return component.getPageableProvider().hasPrevious();

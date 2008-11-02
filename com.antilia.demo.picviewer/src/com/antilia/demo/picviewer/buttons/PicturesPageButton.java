@@ -54,6 +54,11 @@ public class PicturesPageButton extends AppNavigationButton {
 	protected String getLabel() {
 		return getSource().getTitle();
 	}
+	
+	@Override
+	protected String getLabelKey() {
+		return null;
+	}
 
 	public IPicturesSource getSource() {
 		return source;

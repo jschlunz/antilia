@@ -9,6 +9,7 @@ import java.io.Serializable;
 import org.apache.wicket.ResourceReference;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.markup.html.form.Form;
+import org.apache.wicket.model.IModel;
 
 import com.antilia.web.beantable.IPageableComponent;
 import com.antilia.web.button.AbstractButton;
@@ -42,6 +43,12 @@ public class LastElementButton<E extends Serializable> extends AbstractButton {
 	protected String getLabel() {
 		return "";
 	}
+	
+	@Override
+	protected String getLabelKey() {
+		return null;
+	}
+	
 	
 	@Override
 	protected void onSubmit(AjaxRequestTarget target, Form form) {
