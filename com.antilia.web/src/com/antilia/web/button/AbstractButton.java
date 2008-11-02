@@ -4,6 +4,7 @@
  */
 package com.antilia.web.button;
 
+import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.ResourceReference;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.IAjaxCallDecorator;
@@ -73,7 +74,11 @@ public abstract class AbstractButton extends Panel implements IMenuItem, IToolba
 		super(id);
 		setOutputMarkupId(true);
 		this.ajaxButton = ajaxButton;
-		link = newLink("link");
+		link = newLink("link");		
+		IModel<String> title = getTitleModel();
+		if(title != null) {
+			link.add(new AttributeModifier("title", title));
+		}
 		add(link);		
 		Image image = newImage("image");
 		link.add(image);
@@ -232,15 +237,34 @@ public abstract class AbstractButton extends Panel implements IMenuItem, IToolba
 	protected IModel<String> getLabelModel() {
 		String key = getLabelKey();
 		if(key != null)
-			return new ResourceModel(getLabelKey(), getLabel());
+			return new ResourceModel(key, getLabel());
 		return null;
 	}
+	
+	/**
+	 * Creates a new title model.
+	 * 
+	 * @return
+	 */
+	protected IModel<String> getTitleModel() {
+		String key = getTitleKey();
+		if(key != null)
+			return new ResourceModel(key, getLabel());
+		return null;
+	}
+	
 	
 	protected abstract String getLabelKey();
 	
 	protected abstract String getLabel();
 
 	protected abstract ResourceReference getImage();
+		
+	protected String getTitleKey() {
+		return this.getClass().getSimpleName()+".title";
+	}
+	
+	
 
 	/**
 	 * Returns the image of the disable button. By default is null which means 

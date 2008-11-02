@@ -55,6 +55,11 @@ public abstract class DialogButton extends Panel implements IMenuItem, IToolbarI
 			protected String getLabelKey() {
 				return DialogButton.this.getLabelKey();
 			}
+			
+			@Override
+			protected String getTitleKey() {
+				return DialogButton.this.getTitleKey();
+			}
 			 
 			@Override
 			public boolean isEnabled() {
@@ -89,7 +94,12 @@ public abstract class DialogButton extends Panel implements IMenuItem, IToolbarI
 			add(dialog);
 		}
 	}
+	
 	protected abstract String getLabelKey();
+	
+	protected String getTitleKey() {
+		return this.getClass().getSimpleName()+ ".title";
+	}
 	
 	protected abstract String getLabel();
 
