@@ -5,10 +5,10 @@
 package com.antilia.web.beantable.provider.impl;
 
 import java.io.Serializable;
-import java.util.HashSet;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Iterator;
-import java.util.Set;
-import java.util.TreeSet;
+import java.util.List;
 
 import com.antilia.web.beantable.provider.IPageableProvider;
 import com.antilia.web.beantable.provider.IPageableProviderNavigationListener;
@@ -29,7 +29,9 @@ public class SourceSelector<E extends Serializable> implements IProviderSelector
 	
 	private SelectionMode selectionMode;
 	
-	private Set<E> selected;
+	//private Set<E> selected;
+	
+	private List<E> selected;
 	
 	public SourceSelector(IPageableProvider<E> pageableSource) {
 		this(pageableSource, SelectionMode.MULTIPLE);
@@ -40,7 +42,8 @@ public class SourceSelector<E extends Serializable> implements IProviderSelector
 		this.pageableSource.addNavigationListener(this);
 		this.selectionMode = selectionMode;
 		//this.selected = new TreeSet<E>();
-		this.selected = new HashSet<E>();
+		//this.selected = new HashSet<E>();
+		this.selected = new ArrayList<E>();
 	}
 
 	public void addToSelected(E bean) {
@@ -69,7 +72,7 @@ public class SourceSelector<E extends Serializable> implements IProviderSelector
 		return true;
 	}
 
-	public Set<E> getSelected() {
+	public Collection<E> getSelected() {
 		return selected;
 	}
 	
