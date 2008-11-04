@@ -7,6 +7,8 @@ package com.antilia.web.beantable.navigation;
 import java.io.Serializable;
 
 import org.apache.wicket.Component;
+import org.apache.wicket.model.IModel;
+import org.apache.wicket.model.ResourceModel;
 
 import com.antilia.web.dialog.DefaultDialog;
 import com.antilia.web.dialog.DefaultDialogStyle;
@@ -28,7 +30,11 @@ public class UnusedColumnsDialog<E extends Serializable> extends DefaultDialog {
 		setPosY(10);
 		setWidth(320);
 		setHeight(240);
-		setTitle("Table Columns");
+	}
+	
+	@Override
+	public IModel<String> getTitle() {
+		return new ResourceModel("UnusedColumnsDialog.title");
 	}
 
 	/* (non-Javadoc)

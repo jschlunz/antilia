@@ -34,7 +34,7 @@ public class UnusedColumnsPanel<E extends Serializable> extends Panel {
 		super(id);
 		
 		
-		add(new OkDialogButton("ok", dialog) {
+		add(new OkButton("ok", dialog) {
 			
 			private static final long serialVersionUID = 1L;
 

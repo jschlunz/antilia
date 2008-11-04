@@ -48,7 +48,7 @@ public class DefaultBodyCell<E extends Serializable> extends Panel {
 			}
 		
 		};
-		label.setRenderBodyOnly(true);
+		label.setRenderBodyOnly(false);
 		add(label);
 	}
 	
