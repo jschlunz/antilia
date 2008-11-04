@@ -59,6 +59,7 @@ public class DefaultStyle {
 	
 	public static ResourceReference IMG_TOOLBAR_ARROW  = new ResourceReference(ImgDummy.class, "arrow1.gif");
 	
+	public static ResourceReference IMG_transparent_16_16  = new ResourceReference(ImgDummy.class, "transparent_16_16.gif");	
 	
 	public static ResourceReference IMG_NEXT = new ResourceReference(ImgDummy.class, "mv_next.gif");
 	public static ResourceReference IMG_PREVIOUS = new ResourceReference(ImgDummy.class, "mv_previous.gif");
