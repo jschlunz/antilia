@@ -55,6 +55,11 @@ public class CloseDialogButton extends AbstractButton {
 	}
 	
 	@Override
+	protected String getTitleKey() {
+		return "CloseDialogButton.title";
+	}
+	
+	@Override
 	protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
 		/*
 		dialog.setVisible(false);

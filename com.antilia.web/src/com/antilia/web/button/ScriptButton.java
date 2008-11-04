@@ -4,6 +4,7 @@
  */
 package com.antilia.web.button;
 
+import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.ResourceReference;
 import org.apache.wicket.ajax.IAjaxCallDecorator;
 import org.apache.wicket.behavior.SimpleAttributeModifier;
@@ -12,6 +13,8 @@ import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.image.Image;
 import org.apache.wicket.markup.html.panel.Panel;
+import org.apache.wicket.model.IModel;
+import org.apache.wicket.model.ResourceModel;
 
 
 /**
@@ -45,6 +48,11 @@ public abstract class ScriptButton extends Panel implements IMenuItem {
 		Image image = newImage("image");
 		link.add(image);
 		link.add(newLabel("label"));
+		
+		IModel<String> titleModel = getTitleModel();
+		if(titleModel != null) {
+			link.add(new AttributeModifier("title", titleModel));
+		}
 	}
 	
 	/**
@@ -64,6 +72,17 @@ public abstract class ScriptButton extends Panel implements IMenuItem {
 			}
 		};
 	}
+	
+	protected IModel<String> getTitleModel() {
+		String key = getTitleKey();
+		if(key != null) {
+			return new ResourceModel(key, getLabel());
+		}
+		return null;
+	}
+	
+	protected abstract String getTitleKey();
+	
 	
 	protected abstract String getJavaScript();
 	
