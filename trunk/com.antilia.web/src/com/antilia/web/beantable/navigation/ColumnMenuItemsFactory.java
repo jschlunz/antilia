@@ -22,21 +22,10 @@ public abstract class ColumnMenuItemsFactory<E extends Serializable> implements 
 	}
 	
 	@SuppressWarnings("unchecked")
-	public void populateMenuItems(String menuId, IMenuItemHolder itemHolder) {
-		itemHolder.addMenuItem(new SortColumnButton("sortColumn", getColumnModel()));
+	public void populateMenuItems(String menuId, IMenuItemHolder itemHolder) {		
+		itemHolder.addMenuItem(new SortSeparatorButton(getColumnModel()));
 		itemHolder.addMenuItem(new SortAscendingButton("sortAscColumn", getColumnModel()));
-		itemHolder.addMenuItem(new SortDescendingButton("sortDescColumn", getColumnModel()));
-		/*
-		itemHolder.addMenuItem(new ColumnProperties() {
-			
-			private static final long serialVersionUID = 1L;
-
-			@Override
-			public IColumnModel getColumnModel() {
-				return ColumnMenuItemsFactory.this.getColumnModel();
-			}
-		});	
-		*/	
+		itemHolder.addMenuItem(new SortDescendingButton("sortDescColumn", getColumnModel()));		
 	}
 
 	/**

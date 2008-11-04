@@ -7,7 +7,10 @@ package com.antilia.web.beantable;
 import java.io.Serializable;
 
 import org.apache.wicket.AttributeModifier;
+import org.apache.wicket.Component;
+import org.apache.wicket.ajax.AjaxEventBehavior;
 import org.apache.wicket.ajax.AjaxRequestTarget;
+import org.apache.wicket.ajax.IAjaxCallDecorator;
 import org.apache.wicket.markup.MarkupStream;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
@@ -16,11 +19,17 @@ import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.model.StringResourceModel;
+import org.wicketstuff.minis.veil.VeilResources;
 
 import com.antilia.common.util.ResourceUtils;
 import com.antilia.common.util.StringUtils;
+import com.antilia.hibernate.query.IOrder;
+import com.antilia.hibernate.query.IQuery;
+import com.antilia.hibernate.query.Order;
+import com.antilia.hibernate.query.IOrder.OrderType;
 import com.antilia.web.beantable.model.IColumnModel;
 import com.antilia.web.beantable.navigation.ColumnMenuItemsFactory;
+import com.antilia.web.dialog.IDialogScope;
 import com.antilia.web.dragdrop.YuiDraggableTarget;
 import com.antilia.web.menu.Menu;
 
@@ -37,6 +46,8 @@ public class DefaultHeaderCell<E extends Serializable> extends Panel {
 	private int column;
 	
 	private Class<E> beanClass;
+	
+	private IDialogScope dialogScope;
 	
 	/**
 	 * @param id
@@ -71,6 +82,11 @@ public class DefaultHeaderCell<E extends Serializable> extends Panel {
 			
 			private static final long serialVersionUID = 1L;
 
+			@Override
+			public String getMarkupId() {
+				return getTable().getMarkupId()+"_dragger_"+ getTable().getRendringCount() + "_" +getColumn();
+			}
+			
 			@Override
 			public void onDrop(String sourceId, String targetId, AjaxRequestTarget target) {				
 				if(StringUtils.isEmpty(targetId)) 
@@ -151,6 +167,71 @@ public class DefaultHeaderCell<E extends Serializable> extends Panel {
 			}
 		}));
 		
+	
+		
+		if(columnModel.isSortable()) {			
+			draggableTarget.add(new AjaxEventBehavior("ondblclick") {
+				
+				private static final long serialVersionUID = 1L;
+	
+				@Override
+				protected void onEvent(AjaxRequestTarget target) {
+					if(target != null) {
+						IColumnModel<E> columnModel = DefaultHeaderCell.this.getColumnModel();
+						if(!columnModel.isSortable()) {
+							return;
+						}
+						IPageableComponent<E> component = getTable();
+						IQuery<E> query = component.getPageableProvider().getQuery();				
+						IOrder<E> order = query.getOrder(columnModel.getPropertyPath());
+						if(order == null || order.getType().equals(OrderType.DESCENDING))
+							order = Order.asc(columnModel.getPropertyPath());
+						else 
+							order = Order.des(columnModel.getPropertyPath());
+						query.clearOrders();
+						query.addOrder(order);
+						component.getPageableProvider().reset();
+						target.addComponent((Component)component);
+					}
+				}
+				
+				protected IAjaxCallDecorator getAjaxCallDecorator()
+				{
+					return new IAjaxCallDecorator() {
+						
+						private static final long serialVersionUID = 1L;
+
+						@Override
+						public CharSequence decorateOnFailureScript(CharSequence script) {
+							IDialogScope dialogScope = getDialogScope();
+							if(dialogScope != null) {
+								return script + ";" + VeilResources.Javascript.Generic.toggle(dialogScope.getDialogId()) + ";" ;
+							}
+							return script;
+						}
+						
+						@Override
+						public CharSequence decorateOnSuccessScript(CharSequence script) {
+							IDialogScope dialogScope = getDialogScope();
+							if(dialogScope != null) {
+								return script + ";" + VeilResources.Javascript.Generic.toggle(dialogScope.getDialogId()) + ";" ;
+							}
+							return script;
+						}
+						
+						@Override
+						public CharSequence decorateScript(CharSequence script) {
+							IDialogScope dialogScope = getDialogScope();
+							if(dialogScope != null) {
+								return VeilResources.Javascript.Generic.show(dialogScope.getDialogId()) + ";" + script;
+							}
+							return script;
+						}
+					};
+				}
+			});
+		}
+		
 		draggableTarget .setOutputMarkupId(true);
 		
 		add(draggableTarget);
@@ -230,5 +311,15 @@ public class DefaultHeaderCell<E extends Serializable> extends Panel {
 
 	public void setBeanClass(Class<E> beanClass) {
 		this.beanClass = beanClass;
+	}
+	
+	public IDialogScope getDialogScope() {
+		if(dialogScope == null)
+			dialogScope = findParentDialog();
+		return dialogScope;
+	}
+	
+	private IDialogScope findParentDialog() {
+		return (IDialogScope)findParent(IDialogScope.class);
 	}
 }
