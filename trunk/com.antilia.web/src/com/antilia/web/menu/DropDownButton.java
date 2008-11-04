@@ -42,6 +42,10 @@ public abstract class DropDownButton extends Panel implements IMenuItem {
 				return DropDownButton.this.getLabel();
 			}
 			 
+			 @Override
+			protected String getTitleKey() {
+				return null;
+			}
 			
 			@Override
 			protected String getJavaScript() {

@@ -31,6 +31,11 @@ public class CloseDropDownButton extends ScriptButton {
 		return DefaultStyle.IMG_CLOSE;
 	}
 
+	@Override
+	protected String getTitleKey() {
+		return null;
+	}
+	
 	/* (non-Javadoc)
 	 * @see com.antilia.web.button.ScriptButton#getJavaScript()
 	 */

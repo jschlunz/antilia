@@ -45,6 +45,11 @@ public class FoldButton extends ScriptButton {
 	protected String getLabel() {
 		return "";
 	}
+	
+	@Override
+	protected String getTitleKey() {
+		return "FoldButton.title";
+	}
 
 	@Override
 	protected String getJavaScript() {
