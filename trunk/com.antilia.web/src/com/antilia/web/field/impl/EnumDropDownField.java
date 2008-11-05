@@ -20,7 +20,8 @@ public class EnumDropDownField<B extends Serializable> extends BaseFormField<B> 
 
 	private static final long serialVersionUID = 1L;
 
-	private DropDownChoice textField;
+	@SuppressWarnings("unchecked")
+	private DropDownChoice<Enum> textField;
 	
 	/**
 	 * @param id

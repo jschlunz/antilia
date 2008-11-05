@@ -45,7 +45,7 @@ public class DropSelectionButton<B extends Serializable> extends AbstractButton 
 
 	
 	@Override
-	protected void onSubmit(AjaxRequestTarget target, Form form) {
+	protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
 		if(this.fieldPanel == null)
 			this.fieldPanel = findFieldPanel();
 		String propertyName = fieldModel.getPropertyPath();

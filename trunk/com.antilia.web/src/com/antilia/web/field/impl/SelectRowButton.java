@@ -51,7 +51,7 @@ public class SelectRowButton<B extends Serializable> extends OkDialogButton {
 	 * @see com.antilia.web.dialog.util.OklDialogButton#onOk(org.apache.wicket.ajax.AjaxRequestTarget, org.apache.wicket.markup.html.form.Form)
 	 */
 	@Override
-	protected void onOk(AjaxRequestTarget target, Form form) {
+	protected void onOk(AjaxRequestTarget target, Form<?> form) {
 		String propertyName = fieldModel.getPropertyPath();
 		PropertyResolver.setValue(propertyName, beanProxy.getBean(), bean, null);
 		if(target != null) {
