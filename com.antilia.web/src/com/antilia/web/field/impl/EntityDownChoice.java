@@ -16,7 +16,7 @@ import com.antilia.hibernate.command.CommandExecuter;
  * @author Ernesto Reinaldo Barreiro (reiern70@gmail.com)
  *
  */
-public class EntityDownChoice<B extends Serializable> extends DropDownChoice {
+public class EntityDownChoice<B extends Serializable> extends DropDownChoice<B> {
 
 	private static final long serialVersionUID = 1L;
 
@@ -34,7 +34,6 @@ public class EntityDownChoice<B extends Serializable> extends DropDownChoice {
 			
 			private static final long serialVersionUID = 1L;
 
-			@SuppressWarnings("unchecked")
 			@Override
 			public Object getDisplayValue(Object object) {
 				if(object != null && EntityDownChoice.this.beanClass.isAssignableFrom(object.getClass()))

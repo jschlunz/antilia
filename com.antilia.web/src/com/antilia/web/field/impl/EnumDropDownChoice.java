@@ -5,6 +5,7 @@
 package com.antilia.web.field.impl;
 
 import java.util.Arrays;
+import java.util.List;
 
 import org.apache.wicket.markup.html.form.ChoiceRenderer;
 import org.apache.wicket.markup.html.form.DropDownChoice;
@@ -16,14 +17,14 @@ import com.antilia.common.util.ResourceUtils;
  * @author Ernesto Reinaldo Barreiro (reiern70@gmail.com)
  *
  */
-public class EnumDropDownChoice extends DropDownChoice {
+@SuppressWarnings("unchecked")
+public class EnumDropDownChoice extends DropDownChoice<Enum> {
 
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @param id
 	 */
-	@SuppressWarnings("unchecked")
 	public EnumDropDownChoice(String id, Class<Enum> enumClass ,IModel model) {
 		super(id);		
 		setModel(model);
@@ -32,7 +33,6 @@ public class EnumDropDownChoice extends DropDownChoice {
 			
 			private static final long serialVersionUID = 1L;
 
-			@SuppressWarnings("unchecked")
 			@Override
 			public Object getDisplayValue(Object object) {
 				if(object instanceof Enum)
@@ -40,6 +40,7 @@ public class EnumDropDownChoice extends DropDownChoice {
 				return super.getDisplayValue(object);
 			}
 		});		
-		setChoices(Arrays.asList(enumClass.getEnumConstants()));
+		List<Enum> choises = Arrays.asList(enumClass.getEnumConstants());
+		setChoices(choises);
 	}
 }

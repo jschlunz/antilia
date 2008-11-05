@@ -38,7 +38,7 @@ public class InPlaceBackToParentButton<B extends Serializable> extends AbstractB
 	}
 
 	@Override
-	protected void onSubmit(AjaxRequestTarget target, Form form) {
+	protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
 		IDialogScope dialogScope = findDialogScope();
 		dialogScope.replaceBody(parent);
 		if(target != null) {

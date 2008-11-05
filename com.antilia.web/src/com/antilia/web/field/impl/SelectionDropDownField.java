@@ -20,7 +20,7 @@ public class SelectionDropDownField<B extends Serializable> extends BaseFormFiel
 
 	private static final long serialVersionUID = 1L;
 
-	private DropDownChoice textField;
+	private DropDownChoice<B> textField;
 	
 	/**
 	 * @param id
