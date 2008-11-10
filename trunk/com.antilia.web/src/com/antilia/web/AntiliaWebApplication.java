@@ -15,12 +15,12 @@ import com.antilia.web.resources.PackageResourceLoader;
  * 
  * @author Ernesto Reinaldo Barreiro (reiern70@gmail.com)
  */
-public abstract class WebApplication extends org.apache.wicket.protocol.http.WebApplication {
+public abstract class AntiliaWebApplication extends org.apache.wicket.protocol.http.WebApplication {
 
 	/**
 	 * 
 	 */
-	public WebApplication() {
+	public AntiliaWebApplication() {
 		super();
 	}
 	
