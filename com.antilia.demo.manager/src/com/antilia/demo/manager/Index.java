@@ -2,8 +2,11 @@ package com.antilia.demo.manager;
 
 import org.apache.wicket.markup.html.WebMarkupContainer;
 
+import com.antilia.web.layout.FullPage;
+import com.antilia.web.login.IProtectedPage;
 
-public class Index extends BasePage implements IContainer {
+
+public class Index extends FullPage implements IContainer, IProtectedPage {
 
 	private static final long serialVersionUID = 1L;	
 	

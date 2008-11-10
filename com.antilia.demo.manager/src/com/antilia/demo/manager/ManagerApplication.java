@@ -13,7 +13,9 @@ import org.apache.wicket.Session;
 import com.antilia.demo.manager.test.PostgrePersistenceUnit;
 import com.antilia.hibernate.cfg.IPersistenceUnit;
 import com.antilia.hibernate.context.RequestContext;
-import com.antilia.web.WebApplication;
+import com.antilia.web.AntiliaWebApplication;
+import com.antilia.web.layout.FullPage;
+import com.antilia.web.login.DisableAllAuthorizationStrategy;
 
 /**
  * 
@@ -21,8 +23,15 @@ import com.antilia.web.WebApplication;
  * @author Ernesto Reinaldo Barreiro (reiern70@gmail.com)
  *
  */
-public class ManagerApplication extends WebApplication {
+public class ManagerApplication extends AntiliaWebApplication {
 
+	private static final DisableAllAuthorizationStrategy AUTORIZATION_STRATEGY = new DisableAllAuthorizationStrategy() {
+		
+		public java.lang.Class<? extends org.apache.wicket.markup.html.WebPage> getSignInPage() {
+			return LoginPage.class;
+		};
+	};
+	
 	public ManagerApplication() {
 	}
 	
@@ -32,6 +41,8 @@ public class ManagerApplication extends WebApplication {
 	@Override
 	public Class<? extends Page> getHomePage() {
 		return Index.class;
+		//return FullPage.class;
+		//return LoginPage.class;
 		//return SortableListPage.class;
 	}
 
@@ -43,6 +54,13 @@ public class ManagerApplication extends WebApplication {
 	@Override
 	protected void init() {
 		super.init();
+		
+		
+		getSecuritySettings().setUnauthorizedComponentInstantiationListener(AUTORIZATION_STRATEGY);
+		getSecuritySettings().setAuthorizationStrategy(AUTORIZATION_STRATEGY);
+	
+		getApplicationSettings().setAccessDeniedPage(LoginPage.class);
+		getApplicationSettings().setPageExpiredErrorPage(LoginPage.class);
 		
 		getMarkupSettings().setStripWicketTags(true);
 		getDebugSettings().setAjaxDebugModeEnabled(false);

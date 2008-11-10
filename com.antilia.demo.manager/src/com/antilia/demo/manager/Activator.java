@@ -1,6 +1,6 @@
 package com.antilia.demo.manager;
 
-import com.antilia.web.WebApplication;
+import com.antilia.web.AntiliaWebApplication;
 import com.antilia.web.osgi.WebApplicationActivator;
 
 public class Activator extends WebApplicationActivator {
@@ -9,7 +9,7 @@ public class Activator extends WebApplicationActivator {
 	}
 	
 	@Override
-	protected Class<? extends WebApplication> getApplicationClass() {
+	protected Class<? extends AntiliaWebApplication> getApplicationClass() {
 		return ManagerApplication.class;
 	}
 	
