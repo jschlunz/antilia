@@ -12,6 +12,7 @@ import java.util.Map;
 
 import org.hibernate.cfg.AnnotationConfiguration;
 import org.hibernate.cfg.Environment;
+import org.hibernate.connection.ConnectionProvider;
 import org.hibernate.context.CurrentSessionContext;
 import org.hibernate.dialect.Dialect;
 import org.hibernate.transaction.TransactionFactory;
@@ -31,8 +32,8 @@ public  class  PersistenceUnit implements IPersistenceUnit {
 	
 	private Map<String, String> properties = new HashMap<String, String>();
 
-	public String name;	
-	
+	private String name;	
+			
 	/**
 	 * Enumeration for the default supported {@link CurrentSessionContext} classes.
 	 * 
@@ -273,6 +274,11 @@ public  class  PersistenceUnit implements IPersistenceUnit {
 	 */
 	public String getName() {
 		return name;
+	}
+
+
+	public void setConnectionProviderClass(Class<? extends ConnectionProvider> connectionProviderClass) {
+		properties.put(Environment.CONNECTION_PROVIDER, connectionProviderClass.getName());
 	}
 	
 	
