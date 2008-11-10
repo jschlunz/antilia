@@ -33,9 +33,6 @@ public class DefaultBodyCell<E extends Serializable> extends Panel {
 		super(id, columnModel);		
 		Label label = new Label("cell",newBodyCellModel(columnModel, object)) {
 			
-			/**
-			 * 
-			 */
 			private static final long serialVersionUID = 1L;
 
 			@Override
@@ -48,7 +45,8 @@ public class DefaultBodyCell<E extends Serializable> extends Panel {
 			}
 		
 		};
-		label.setRenderBodyOnly(false);
+		label.setRenderBodyOnly(false);		
+		/*ChangeColorPanel label = new ChangeColorPanel("cell");*/
 		add(label);
 	}
 	
