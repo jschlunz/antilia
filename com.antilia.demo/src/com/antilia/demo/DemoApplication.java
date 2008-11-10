@@ -4,7 +4,7 @@
  */
 package com.antilia.demo;
 
-import com.antilia.web.WebApplication;
+import com.antilia.web.AntiliaWebApplication;
 
 
 
@@ -12,7 +12,7 @@ import com.antilia.web.WebApplication;
  * 
  * @author Ernesto Reinaldo Barreiro (reiern70@gmail.com)
  */
-public class DemoApplication extends WebApplication {
+public class DemoApplication extends AntiliaWebApplication {
 
 	/**
 	 * 
