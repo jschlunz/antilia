@@ -6,17 +6,17 @@
     </head>
     <body onresize="init();">
         <script type="text/javascript"> 
+         
+          function init() { 
+             YAHOO.util.Dom.setStyle("frame", "visibility", ""); 
+             YAHOO.util.Dom.setStyle("frame", "width", (YAHOO.util.Dom.getViewportWidth() -20)+ "px"); 
+             YAHOO.util.Dom.setStyle("frame", "height", (YAHOO.util.Dom.getViewportHeight() -35) + "px");
              
-             function init() { 
-                YAHOO.util.Dom.setStyle("frame", "visibility", ""); 
-                YAHOO.util.Dom.setStyle("frame", "width", (YAHOO.util.Dom.getViewportWidth() -20)+ "px"); 
-                YAHOO.util.Dom.setStyle("frame", "height", (YAHOO.util.Dom.getViewportHeight() -35) + "px");
-                
-                YAHOO.util.Dom.setStyle("frameBody", "height", (YAHOO.util.Dom.getViewportHeight() -35 -57) + "px");
-                
-            }    
+             YAHOO.util.Dom.setStyle("frameBody", "height", (YAHOO.util.Dom.getViewportHeight() -35 -57) + "px");
+             
+         }    
             
-            YAHOO.util.Event.onDOMReady(init);
+         YAHOO.util.Event.onDOMReady(init);
 
         </script> 
    
@@ -26,8 +26,13 @@
             </div>       
             <div id ="frameBody"  style="width: 100%; border: solid 1px blue; position: relative; overflow: auto;">
                 Body
-                    <div style="position:absolute; top: 100px; left: 20px; width: 200px; height: 200px; border: solid 1px red;">
-                    </div>                    
+                    <div id="test" style="position:absolute; top: 100px; left: 20px; width: 200px; height: 200px; border: solid 1px red;">
+                    </div>        
+                    <script>
+                    YAHOO.util.Dom.setStyle("test", "visibility", ""); 
+                    YAHOO.util.Dom.setStyle("test", "top", ((YAHOO.util.Dom.getViewportHeight()/2)-200)+ "px"); 
+                    YAHOO.util.Dom.setStyle("test", "left", ((YAHOO.util.Dom.getViewportWidth()/2)-200) + "px");
+                    </script>            
             </div>     
         </div> 
            
