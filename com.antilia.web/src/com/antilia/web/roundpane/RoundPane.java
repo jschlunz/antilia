@@ -67,6 +67,12 @@ public class RoundPane extends Panel implements IMenuItemsFactory {
 	
 	private int minHeight = 200;
 	
+	private boolean centered = false;
+	
+	private Integer top = null; 
+	
+	private Integer left = null;
+		
 	private IMenuItemsFactory topMenuItemFactory;
 	
 	/**
@@ -83,7 +89,7 @@ public class RoundPane extends Panel implements IMenuItemsFactory {
 
 			@Override
 			protected void onBeforeRender() {
-				Label script = new Label("script", new Model()) {
+				Label script = new Label("script", new Model<String>()) {
 					private static final long serialVersionUID = 1L;
 
 					@Override
@@ -99,7 +105,10 @@ public class RoundPane extends Panel implements IMenuItemsFactory {
 						sb.append(RoundPane.this.getMinWidth());
 						sb.append(",");
 						sb.append(RoundPane.this.getMinHeight());
-						sb.append(");");				
+						sb.append(",");
+						sb.append(RoundPane.this.isCentered());
+						sb.append(");");			
+						
 						replaceComponentTagBody(markupStream, openTag, sb.toString());
 					}
 				};
@@ -120,12 +129,23 @@ public class RoundPane extends Panel implements IMenuItemsFactory {
 				sb.append("px; height: ");
 				sb.append(RoundPane.this.getHeight());
 				sb.append("px;");
+				if(RoundPane.this.getTop() != null) {
+					sb.append("position: absolute;");
+					sb.append("top: ");
+					sb.append(RoundPane.this.getTop());
+					sb.append("px;");
+				}
+				if(RoundPane.this.getLeft() != null) {
+					sb.append("left: ");
+					sb.append(RoundPane.this.getLeft());
+					sb.append("px;");
+				}
 				return sb.toString();
 			}
 		}));
 		add(roundpane);
 		
-		HiddenField widthField = new HiddenField<Integer>("width", new Model<Integer>() {
+		HiddenField<Integer> widthField = new HiddenField<Integer>("width", new Model<Integer>() {
 			
 			private static final long serialVersionUID = 1L;
 
@@ -156,7 +176,7 @@ public class RoundPane extends Panel implements IMenuItemsFactory {
 		
 		roundpane.add(widthField);
 		
-		HiddenField heightField = new HiddenField<Integer>("height", new Model<Integer>() {
+		HiddenField<Integer> heightField = new HiddenField<Integer>("height", new Model<Integer>() {
 			
 			private static final long serialVersionUID = 1L;
 
@@ -197,7 +217,13 @@ public class RoundPane extends Panel implements IMenuItemsFactory {
 		add(HeaderContributor.forJavaScript(DefaultStyle.JS_COMMON));
 		add(HeaderContributor.forJavaScript(DefaultStyle.JS_PROTOTYPE));
 		add(HeaderContributor.forJavaScript(DefaultStyle.JS_EFFECT));
+		
+		add(HeaderContributor.forJavaScript(DefaultStyle.JS_YUI_DOM_EVENT));
+		add(HeaderContributor.forJavaScript(DefaultStyle.JS_YUI_DOM_MIN));
+		add(HeaderContributor.forJavaScript(DefaultStyle.JS_YUI_ANIMATION));
+		
 		add(HeaderContributor.forJavaScript(RBOX_JS));
+		
 		
 		// creating the header panel
 		roundpane.add(new RoundPaneHeader("roundboxHeader", this));
@@ -380,5 +406,35 @@ public class RoundPane extends Panel implements IMenuItemsFactory {
 
 	public void setTopMenuItemFactory(IMenuItemsFactory menuItemsFactory) {
 		topMenuItemFactory = menuItemsFactory;
+	}
+
+
+	public Integer getTop() {
+		return top;
+	}
+
+
+	public void setTop(Integer top) {
+		this.top = top;
+	}
+
+
+	public Integer getLeft() {
+		return left;
+	}
+
+
+	public void setLeft(Integer left) {
+		this.left = left;
+	}
+
+
+	public boolean isCentered() {
+		return centered;
+	}
+
+
+	public void setCentered(boolean centered) {
+		this.centered = centered;
 	}	
 }

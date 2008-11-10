@@ -1,7 +1,8 @@
-	function RoundPane(id, ie, minWidth, minHeight) {
+	function RoundPane(id, ie, minWidth, minHeight, center) {
 		this.id = id;
 		this.ie = ie;
 		this.minWidth = minWidth;
+		this.center = center;
 		this.minHeight = minHeight;
 		this.folded = false;
 		this.panel = document.getElementById(id);
@@ -13,7 +14,13 @@
 			this.panelResize.minWidth = minWidth;
 			this.panelResize.minHeight = minHeight;
 			Antilia.Drag.init(this.panelResize, function() {} , function() { }, this.onResize);
-		}		
+		}
+		if(this.center) {
+			var width = parseInt(this.panel.style.width, 10);
+			var height = parseInt(this.panel.style.height, 10);
+			YAHOO.util.Dom.setStyle(this.id, "top", ((YAHOO.util.Dom.getViewportHeight()/2)-height)+ "px"); 
+            YAHOO.util.Dom.setStyle(this.id, "left", ((YAHOO.util.Dom.getViewportWidth()/2)-width) + "px");
+		}
 	}
 	
 	RoundPane.prototype.toggleFold = function() {
