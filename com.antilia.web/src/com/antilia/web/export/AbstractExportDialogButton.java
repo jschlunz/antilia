@@ -80,6 +80,7 @@ public abstract class AbstractExportDialogButton extends DialogButton {
 		dialog.setWidth(300);
 		dialog.setHeight(200);
 		dialog.setResizable(false);
+		dialog.setCentered(true);
 		return dialog;
 	}
 
