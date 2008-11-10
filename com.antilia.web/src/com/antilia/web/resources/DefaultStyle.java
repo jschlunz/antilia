@@ -57,7 +57,9 @@ public class DefaultStyle {
 	
 	public static ResourceReference IMG_VERTICAL_MENU  = new ResourceReference(ImgDummy.class, "vertical-menu.gif");
 	
-	public static ResourceReference IMG_TOOLBAR_ARROW  = new ResourceReference(ImgDummy.class, "arrow1.gif");
+	//public static ResourceReference IMG_TOOLBAR_ARROW  = new ResourceReference(ImgDummy.class, "arrow1.gif");
+	
+	public static ResourceReference IMG_TOOLBAR_ARROW  = new ResourceReference(ImgDummy.class, "arrow_left_blue.gif");
 	
 	public static ResourceReference IMG_transparent_16_16  = new ResourceReference(ImgDummy.class, "transparent_16_16.gif");	
 	
