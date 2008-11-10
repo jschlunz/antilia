@@ -4,7 +4,9 @@ import java.util.Locale;
 
 import org.apache.wicket.Request;
 import org.apache.wicket.Session;
-import org.apache.wicket.protocol.http.WebSession;
+
+import com.antilia.common.util.StringUtils;
+import com.antilia.web.AntiliaSession;
 
 /**
  * 
@@ -12,9 +14,12 @@ import org.apache.wicket.protocol.http.WebSession;
  * @author Ernesto Reinaldo Barreiro (EReinaldoB@fcc.es)
  *
  */
-public class ManagerSession extends WebSession {
+public class ManagerSession extends AntiliaSession {
 
-
+	private String userName;
+	
+	private String passWord;
+	
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -29,4 +34,35 @@ public class ManagerSession extends WebSession {
 		return (ManagerSession)Session.get();
 	}
 
+	@Override
+	public boolean isAuthenticated() {
+		if(!StringUtils.isEmpty(userName))
+			return true;
+		return false;
+	}
+
+	public boolean authenticated(String userName, String passWord) {
+		if(userName.endsWith("reiern70") && passWord.equals("reiern70")) {
+			this.userName = userName;
+			this.passWord = passWord;
+			return true;
+		}
+		return false;
+	}
+	
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
+	public String getPassWord() {
+		return passWord;
+	}
+
+	public void setPassWord(String passWord) {
+		this.passWord = passWord;
+	}	
 }
