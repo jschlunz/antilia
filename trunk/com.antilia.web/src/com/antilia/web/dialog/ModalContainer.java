@@ -134,6 +134,11 @@ public abstract class ModalContainer extends Panel implements IDialogScope, IMen
 		
 		add(HeaderContributor.forJavaScript(DefaultStyle.JS_PROTOTYPE));
 		add(HeaderContributor.forJavaScript(DefaultStyle.JS_EFFECT));
+		
+		add(HeaderContributor.forJavaScript(DefaultStyle.JS_YUI_DOM_EVENT));
+		add(HeaderContributor.forJavaScript(DefaultStyle.JS_YUI_DOM_MIN));
+		add(HeaderContributor.forJavaScript(DefaultStyle.JS_YUI_ANIMATION));
+		
 		add(HeaderContributor.forJavaScript(DefaultStyle.JS_COMMON));
 		add(HeaderContributor.forJavaScript(DefaultStyle.JS_DIALOG));			
 		
@@ -275,7 +280,9 @@ public abstract class ModalContainer extends Panel implements IDialogScope, IMen
 				sb.append(ModalContainer.this.getOnDragClass());
 				sb.append("','");
 				sb.append(ModalContainer.this.getPanelSelectedClass());
-				sb.append("');");				
+				sb.append("',");
+				sb.append(false);
+				sb.append(");");				
 				replaceComponentTagBody(markupStream, openTag, sb.toString());
 			}
 		};

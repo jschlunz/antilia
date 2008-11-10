@@ -1,8 +1,9 @@
 	//Class for draggable panel.	
-	function Panel(id, parentId, ie, minWidth, minHeight, modal, panelClass, onDragClass, selectedClass) {
+	function Panel(id, parentId, ie, minWidth, minHeight, modal, panelClass, onDragClass, selectedClass, centered) {
 		this.id = id;
 		this.parentId = parentId;
 		this.ie = ie;
+		this.centered = centered;
 			
 		this.modal = modal;
 		this.panelClass = panelClass;
@@ -41,6 +42,12 @@
 				this.toggleModal();
 			}
 		}					
+		if(this.centered) {
+			var width = parseInt(this.panel.style.width, 10);
+			var height = parseInt(this.panel.style.height, 10);
+			YAHOO.util.Dom.setStyle(this.id, "top", ((YAHOO.util.Dom.getViewportHeight()/2)-height)+ "px"); 
+            YAHOO.util.Dom.setStyle(this.id, "left", ((YAHOO.util.Dom.getViewportWidth()/2)-width) + "px");
+		}
 	}
 	
 	Panel.prototype.addModalLayer = function() {
@@ -303,10 +310,10 @@
 	function Panels() {
 		this.panels = new Array();
 			
-		this.addPanel = function(id, parentId, ie, minWidth, minHeight, modal, panelClass, onDragClass, selectedClass) {
+		this.addPanel = function(id, parentId, ie, minWidth, minHeight, modal, panelClass, onDragClass, selectedClass, centered) {
 			var panel = this.getPanel(id)
 			if(panel == null) {
-				panel = new Panel(id, parentId, ie, minWidth, minHeight, modal, panelClass, onDragClass, selectedClass);
+				panel = new Panel(id, parentId, ie, minWidth, minHeight, modal, panelClass, onDragClass, selectedClass, centered);
 				this.panels[this.panels.length]= panel;
 				this.panels.id = id;
 				if(panel.parentPanel) {
@@ -322,12 +329,12 @@
 			}			
 		}
 		
-		this.addAndRemovePanel = function(id, parentId, ie, minWidth, minHeight, modal, panelClass, onDragClass, selectedClass) {
+		this.addAndRemovePanel = function(id, parentId, ie, minWidth, minHeight, modal, panelClass, onDragClass, selectedClass, centered) {
             var panel = this.getPanel(id)
            if(panel != null) {
                 this.deletePanel(id);
            }
-            panel = new Panel(id, parentId, ie, minWidth, minHeight, modal, panelClass, onDragClass, selectedClass);
+            panel = new Panel(id, parentId, ie, minWidth, minHeight, modal, panelClass, onDragClass, selectedClass, centered);
             this.panels[this.panels.length]= panel;
             this.panels.id = id;
             if(panel.parentPanel) {
