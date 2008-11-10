@@ -33,6 +33,8 @@ import com.antilia.web.veil.AntiliaVeilResource;
  */
 public abstract class ModalContainer extends Panel implements IDialogScope, IMenuItemsFactory {
 
+	private static final long serialVersionUID = 1L;
+
 	public static final int DEFAULT_MIN_WIDTH=200;
 	
 	public static final int DEFAULT_MIN_HEIGHT=200;
@@ -53,9 +55,9 @@ public abstract class ModalContainer extends Panel implements IDialogScope, IMen
 	
 	private int height = DEFAULT_HEIGHT;
 		
-	private int widthPercentage = 100;
+	private Integer widthPercentage = null;
 	
-	private int heightPercentage = 100;
+	private Integer heightPercentage = null;
 	
 	private int minimumWidth = DEFAULT_MIN_WIDTH;
 	
@@ -116,6 +118,7 @@ public abstract class ModalContainer extends Panel implements IDialogScope, IMen
 		setPosY(0);
 		setWidth(900);
 		setHeight(700);
+		setHeightPercentage(100);
 		this.dialogStyle = dialogStyle;
 		setOutputMarkupId(true);
 		ClientProperties properties = ((WebClientInfo)getRequestCycle().getClientInfo()).getProperties();
@@ -177,7 +180,10 @@ public abstract class ModalContainer extends Panel implements IDialogScope, IMen
 				sb.append("px;");
 				//sb.append("border: solid 1px red;");
 				sb.append("height: ");
-				sb.append(ModalContainer.this.getHeight());
+				if(getHeightPercentage() != null)
+					sb.append(getHeightPercentage() + "%");
+				else 
+					sb.append(ModalContainer.this.getHeight() + "px");
 				if(dialogStyle.getBodyColor() != null) {
 					sb.append("; background-color: ");				
 					sb.append(dialogStyle.getBodyColor());
@@ -538,14 +544,14 @@ public abstract class ModalContainer extends Panel implements IDialogScope, IMen
 	/**
 	 * @param widthPercentage the widthPercentage to set
 	 */
-	public void setWidthPercentage(int widthPercentage) {
+	public void setWidthPercentage(Integer widthPercentage) {
 		this.widthPercentage = widthPercentage;
 	}
 
 	/**
 	 * @return the heightPercentage
 	 */
-	public int getHeightPercentage() {
+	public Integer getHeightPercentage() {
 		return heightPercentage;
 	}
 
