@@ -4,7 +4,7 @@ import org.osgi.framework.ServiceReference;
 
 import com.antilia.demo.picviewer.osgi.IPicturesService;
 import com.antilia.demo.picviewer.osgi.PicturesServiceActivator;
-import com.antilia.web.WebApplication;
+import com.antilia.web.AntiliaWebApplication;
 import com.antilia.web.osgi.WebApplicationActivator;
 
 public class Activator extends WebApplicationActivator {
@@ -14,7 +14,7 @@ public class Activator extends WebApplicationActivator {
 	}
 	
 	@Override
-	protected Class<? extends WebApplication> getApplicationClass() {
+	protected Class<? extends AntiliaWebApplication> getApplicationClass() {
 		return PicViewerApplication.class;
 	}
 	
