@@ -1,0 +1,37 @@
+<html xmlns:wicket="org.apache.wicket">
+    <head>                
+        <script type="text/javascript" src="yahoo-dom-event.js" ></script>
+        <script type="text/javascript" src="dragdrop-min.js" ></script>
+        <script type="text/javascript" src="animation-min.js"></script>
+    </head>
+    <body onresize="init();">         
+        <script type="text/javascript">          
+          function init() { 
+             YAHOO.util.Dom.setStyle("frame", "visibility", ""); 
+             YAHOO.util.Dom.setStyle("frame", "width", (YAHOO.util.Dom.getViewportWidth() -20)+ "px"); 
+             YAHOO.util.Dom.setStyle("frame", "height", (YAHOO.util.Dom.getViewportHeight() -35) + "px");
+             
+             YAHOO.util.Dom.setStyle("frameBody", "height", (YAHOO.util.Dom.getViewportHeight() -35 -57) + "px");
+             
+         }                
+         YAHOO.util.Event.onDOMReady(init);
+        </script>  
+        <div id="frame" class="backFrame">
+            <div style="width: 100%; height: 75px;">
+                <table  style="margin: 0; padding: 0; width: 100%; height: 75px;" cellpadding="0" cellspacing="0">
+	                <tr>
+	                    <td class="banner-right" nowrap="nowrap">
+	                        &nbsp;
+	                    </td>
+	                    <td class="banner-right" nowrap="nowrap">
+	                        &nbsp;
+	                    </td>
+	                </tr>
+	            </table>
+            </div>       
+            <div id ="frameBody"  style="width: 100%; position: relative; overflow: auto; background: transparent;">
+                <wicket:child/>                            
+            </div>     
+        </div>    
+    </body>
+</html>
