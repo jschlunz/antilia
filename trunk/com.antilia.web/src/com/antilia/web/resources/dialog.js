@@ -41,12 +41,29 @@
 			if(this.parent) {
 				this.toggleModal();
 			}
-		}					
-		if(this.centered) {
-			var width = parseInt(this.panel.style.width, 10);
-			var height = parseInt(this.panel.style.height, 10);
-			YAHOO.util.Dom.setStyle(this.id, "top", ((YAHOO.util.Dom.getViewportHeight()/2)-height)+ "px"); 
-            YAHOO.util.Dom.setStyle(this.id, "left", ((YAHOO.util.Dom.getViewportWidth()/2)-width) + "px");
+		}							
+		if(this.centered) {			
+			if(this.parent) {
+				var pwidth = parseInt(this.parent.panel.style.width, 10);
+				var pheight = parseInt(this.parent.panel.style.height, 10);				
+				var cor = 0;
+				if(pwidth == 100 || isNaN(pwidth)) {
+					pwidth = YAHOO.util.Dom.getViewportWidth();
+				}					
+				if(pheight == 100 || isNaN(pheight)) {
+					pheight = YAHOO.util.Dom.getViewportHeight();
+					cor = 75;
+				}				
+				var width = parseInt(this.panel.style.width, 10);
+				var height = parseInt(this.panel.style.height, 10);
+				YAHOO.util.Dom.setStyle(this.id, "top", (((pheight-height)/2)-cor)+ "px"); 
+	            YAHOO.util.Dom.setStyle(this.id, "left", (((pwidth-width)/2)) + "px");
+			} else {
+				var width = parseInt(this.panel.style.width, 10);
+				var height = parseInt(this.panel.style.height, 10);
+				YAHOO.util.Dom.setStyle(this.id, "top", ((YAHOO.util.Dom.getViewportHeight()/2)-height)+ "px"); 
+	            YAHOO.util.Dom.setStyle(this.id, "left", ((YAHOO.util.Dom.getViewportWidth()/2)-width) + "px");
+			}
 		}
 	}
 	

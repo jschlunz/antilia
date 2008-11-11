@@ -43,6 +43,7 @@ public class LargeSelectionDialog<B extends Serializable> extends DefaultDialog 
 		setModal(true);
 		setWidth(800);
 		setHeight(400);
+		setCentered(true);
 	}
 	
 	/* (non-Javadoc)
