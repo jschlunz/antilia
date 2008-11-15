@@ -14,7 +14,7 @@ import com.antilia.hibernate.query.Operator;
  * @author Ernesto Reinaldo Barreiro (reiern70@gmail.com)
  *
  */
-public interface IAutoFieldModel<B extends Serializable> extends Serializable {
+public interface IAutoFieldCreator<B extends Serializable> extends Serializable {
 
 	List<IFieldModel<B>> getFieldModels();
 	

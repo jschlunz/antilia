@@ -12,12 +12,13 @@ import org.apache.wicket.model.Model;
 
 import com.antilia.hibernate.query.IQuery;
 import com.antilia.hibernate.query.Operator;
+import com.antilia.hibernate.query.Query;
 
 /**
  * @author Ernesto Reinaldo Barreiro (reiern70@gmail.com)
  *
  */
-public class AutoFieldModel<B extends Serializable> extends Model implements IAutoFieldModel<B> {
+public class AutoFieldCreator<B extends Serializable> extends Model<BeanProxy<B>> implements IAutoFieldCreator<B> {
 
 	private static final long serialVersionUID = 1L;
 	
@@ -26,25 +27,28 @@ public class AutoFieldModel<B extends Serializable> extends Model implements IAu
 	private IQuery<B> filterQuery;
 	
 	/**
+	 * @param object
+	 */
+	@SuppressWarnings("unchecked")
+	public AutoFieldCreator(B object) {
+		super(new BeanProxy<B>(object));
+		this.filterQuery = new Query<B>((Class<B>)object.getClass());
+	}
+	
+	/**
 	 * 
 	 */
-	public AutoFieldModel(IQuery<B> filterQuery, BeanProxy<B> beanProxy) {
+	public AutoFieldCreator(IQuery<B> filterQuery, BeanProxy<B> beanProxy) {
 		super();
 		this.filterQuery = filterQuery;		
 		setObject(beanProxy);
 	}
 
-	@SuppressWarnings("unchecked")
 	public BeanProxy<B> getBeanProxy() {
 		return (BeanProxy<B>)getObject();
 	}
 	
-	/**
-	 * @param object
-	 */
-	public AutoFieldModel(B object) {
-		super(object);
-	}
+	
 
 	/* (non-Javadoc)
 	 * @see com.antilia.web.field.IAutoFieldModel#getFieldModels()
@@ -59,7 +63,8 @@ public class AutoFieldModel<B extends Serializable> extends Model implements IAu
 	}
 	
 	public IFieldModel<B> newFieldModel(String propertyPath) {
-		FieldModel<B> model = new FieldModel<B>(getBeanProxy(), propertyPath);
+		FieldModel<B> model = new FieldModel<B>(getBeanProxy(), propertyPath);			
+		configureFieldModel(model);
 		models.add(model);
 		return model;
 	}
@@ -68,13 +73,16 @@ public class AutoFieldModel<B extends Serializable> extends Model implements IAu
 		IFieldModel<B> model = newFieldModel(propertyPath);
 		model.setOperators(operators);
 		model.setSelectedOperator(selected);
-		models.add(model);
+		models.add(model);		
 		return model;
 	}
 	
-	@SuppressWarnings("unchecked")
+	private void configureFieldModel(IFieldModel<B> model) {
+		
+	}
+	
 	public B getBean() {
-		return (B)getObject();
+		return getObject().getBean();
 	}
 	
 	@SuppressWarnings("unchecked")

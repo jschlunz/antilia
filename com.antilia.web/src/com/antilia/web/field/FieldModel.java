@@ -16,7 +16,7 @@ import com.antilia.hibernate.query.Operator;
  * @author Ernesto Reinaldo Barreiro (reiern70@gmail.com)
  *
  */
-public class FieldModel<B extends Serializable>  extends Model implements IFieldModel<B> {
+public class FieldModel<B extends Serializable>  extends Model<B> implements IFieldModel<B> {
 
 	private static final long serialVersionUID = 1L;
 
@@ -30,6 +30,9 @@ public class FieldModel<B extends Serializable>  extends Model implements IField
 
 	private Class<?> fieldClass;
 	
+	private int length = 40;	
+	
+	private boolean requiered;
 	
 	private BeanProxy<B> beanProxy;
 	
@@ -37,7 +40,7 @@ public class FieldModel<B extends Serializable>  extends Model implements IField
 	 * 
 	 */
 	@SuppressWarnings("unchecked")
-	public FieldModel( BeanProxy<B> beanProxy, String propertyPath) {		
+	public FieldModel(BeanProxy<B> beanProxy, String propertyPath) {		
 		super();
 		if(beanProxy == null)
 			throw new IllegalArgumentException("Bean proxy cannot be null");		
@@ -120,6 +123,22 @@ public class FieldModel<B extends Serializable>  extends Model implements IField
 	 */
 	public void setBeanProxy(BeanProxy<B> beanProxy) {
 		this.beanProxy = beanProxy;
+	}
+
+	public int getLength() {
+		return length;
+	}
+
+	public void setLength(int length) {
+		this.length = length;
+	}
+
+	public boolean isRequiered() {
+		return requiered;
+	}
+
+	public void setRequiered(boolean requiered) {
+		this.requiered = requiered;
 	}
 
 }

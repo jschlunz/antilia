@@ -34,9 +34,9 @@ public class AutoFieldPanel<B extends Serializable> extends Panel implements IFi
 
 	private int columns = 3;
 	
-	private IAutoFieldModel<B> autoFieldModel;
+	private IAutoFieldCreator<B> autoFieldModel;
 	
-	private class Rows extends RefreshingView {
+	private class Rows extends RefreshingView<B> {
  		
 		private static final long serialVersionUID = 1L;
 
@@ -53,7 +53,7 @@ public class AutoFieldPanel<B extends Serializable> extends Panel implements IFi
 		protected Iterator getItemModels() {
 			List<IModel> models = new ArrayList<IModel>();
 			int columns = autoFieldPanel.getColumns();
-			IAutoFieldModel<B> model = autoFieldPanel.getAutoFieldModel();
+			IAutoFieldCreator<B> model = autoFieldPanel.getAutoFieldModel();
 			List<IFieldModel<B>> fieldModels =  model.getFieldModels();
 			int size = fieldModels.size();
 			// compute the number of rows... and create an Integer model for each row
@@ -67,9 +67,9 @@ public class AutoFieldPanel<B extends Serializable> extends Panel implements IFi
 		}
 		 
 		 @Override
-		protected void populateItem(Item item) {
+		protected void populateItem(Item<B> item) {
 			int columns = autoFieldPanel.getColumns(); 
-			IAutoFieldModel<B> model = autoFieldPanel.getAutoFieldModel();
+			IAutoFieldCreator<B> model = autoFieldPanel.getAutoFieldModel();
 			List<IFieldModel<B>> fieldModels =  model.getFieldModels();
 			int size = fieldModels.size();
 			RepeatingView cols = new RepeatingView("cols");
@@ -91,8 +91,9 @@ public class AutoFieldPanel<B extends Serializable> extends Panel implements IFi
 	/**
 	 * @param id
 	 */
-	public AutoFieldPanel(String id, IAutoFieldModel<B> autoFieldModel) {
-		super(id);
+	public AutoFieldPanel(String id, IAutoFieldCreator<B> autoFieldModel, int columns) {
+		super(id);		
+		this.columns = columns;
 		
 		setOutputMarkupId(true);
 		
@@ -101,6 +102,13 @@ public class AutoFieldPanel<B extends Serializable> extends Panel implements IFi
 		
 		this.autoFieldModel = autoFieldModel;		
 		new Rows("rows", this);
+	}
+	
+	/**
+	 * @param id
+	 */
+	public AutoFieldPanel(String id, IAutoFieldCreator<B> autoFieldModel) {
+		this(id, autoFieldModel, 3);
 	}
 	
 	/**
@@ -135,7 +143,7 @@ public class AutoFieldPanel<B extends Serializable> extends Panel implements IFi
 		};		
 	}
 	
-	protected IModel getLabelModel(final IFieldModel<B> fieldModel) {
+	protected IModel<String> getLabelModel(final IFieldModel<B> fieldModel) {
 		String key = ResourceUtils.getPropertyResourceKey(fieldModel.getBeanClass(), fieldModel.getPropertyPath());
 		return new StringResourceModel(key, this, null) {
 			
@@ -148,11 +156,11 @@ public class AutoFieldPanel<B extends Serializable> extends Panel implements IFi
 		};		
 	}
 
-	public IAutoFieldModel<B> getAutoFieldModel() {
+	public IAutoFieldCreator<B> getAutoFieldModel() {
 		return autoFieldModel;
 	}
 
-	public void setAutoFieldModel(IAutoFieldModel<B> autoFieldModel) {
+	public void setAutoFieldModel(IAutoFieldCreator<B> autoFieldModel) {
 		this.autoFieldModel = autoFieldModel;
 	}
 
