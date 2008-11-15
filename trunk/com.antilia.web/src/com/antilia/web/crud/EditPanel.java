@@ -15,11 +15,12 @@ import org.apache.wicket.markup.html.panel.Panel;
 import com.antilia.hibernate.query.IQuery;
 import com.antilia.web.beantable.provider.IProviderSelector;
 import com.antilia.web.beantable.provider.impl.InMemoryPageableProvider;
-import com.antilia.web.field.AutoFieldModel;
+import com.antilia.web.field.AutoFieldCreator;
 import com.antilia.web.field.AutoFieldPanel;
 import com.antilia.web.field.BeanForm;
 import com.antilia.web.field.BeanProxy;
-import com.antilia.web.field.IAutoFieldModel;
+import com.antilia.web.field.IAutoFieldCreator;
+import com.antilia.web.field.IFieldModel;
 import com.antilia.web.menu.Menu;
 
 /**
@@ -72,8 +73,8 @@ public class EditPanel<B extends Serializable> extends Panel implements ICRUDMod
 		
 		this.beanProxy = new BeanProxy<B>(pageableProvider.current());
 		
-		IAutoFieldModel<B> autoFieldModel = newAutoFieldModel(null, this.beanProxy);
-		configureFieldModel(autoFieldModel);
+		IAutoFieldCreator<B> autoFieldCreator = newAutoFieldCreator(null, this.beanProxy);
+		configureAutoFieldCreator(autoFieldCreator);
 		
 		BeanForm<B> beanForm = newForm("form", this.beanProxy);
 		addOrReplace(beanForm);
@@ -83,7 +84,7 @@ public class EditPanel<B extends Serializable> extends Panel implements ICRUDMod
 		 
 		beanForm.addOrReplace(menu);
 		 
-		AutoFieldPanel<B> autoFieldPanel = newAutoFieldPanel("autofield",autoFieldModel);
+		AutoFieldPanel<B> autoFieldPanel = newAutoFieldPanel("autofield",autoFieldCreator);
 		
 		beanForm.addOrReplace(autoFieldPanel);
 		super.onBeforeRender();
@@ -99,29 +100,34 @@ public class EditPanel<B extends Serializable> extends Panel implements ICRUDMod
 		return this.beanProxy.getBean();
 	}
 	
-	protected void configureFieldModel(IAutoFieldModel<B> autoFieldModel) {
+	protected void configureAutoFieldCreator(IAutoFieldCreator<B> autoFieldModel) {
 		List<String> searchFields = this.styler.getEditFields();
 		if(searchFields != null) {
 			for(String propertyPath: searchFields) {
-				autoFieldModel.newFieldModel(propertyPath);
+				IFieldModel<B> fieldModel = autoFieldModel.newFieldModel(propertyPath);
+				configureFieldModel(propertyPath, fieldModel);
 			}
 		}
 	}
 	
+	protected void configureFieldModel(String propertyPath, IFieldModel<B> fieldModel) {
+		
+	}
+
 	protected void populateTopMenu(Menu topMenu) {
 		
 	}
 	
-	protected AutoFieldPanel<B> newAutoFieldPanel(String id, IAutoFieldModel<B> autoFieldModel) {
-		return new AutoFieldPanel<B>(id,autoFieldModel);
+	protected AutoFieldPanel<B> newAutoFieldPanel(String id, IAutoFieldCreator<B> autoFieldModel) {
+		return new AutoFieldPanel<B>(id,autoFieldModel, 1);
 	}
 	
 	protected BeanForm<B> newForm(String id, BeanProxy<B> beanProxy) {
 		return new BeanForm<B>(id, beanProxy);
 	}
 	
-	protected IAutoFieldModel<B> newAutoFieldModel(IQuery<B> query, BeanProxy<B> beanProxy) {
-		return new AutoFieldModel<B>(query, beanProxy);
+	protected IAutoFieldCreator<B> newAutoFieldCreator(IQuery<B> query, BeanProxy<B> beanProxy) {
+		return new AutoFieldCreator<B>(query, beanProxy);
 	}
 
 

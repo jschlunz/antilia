@@ -21,11 +21,11 @@ import com.antilia.web.beantable.provider.IPageableProvider;
 import com.antilia.web.beantable.provider.IProviderSelector;
 import com.antilia.web.beantable.provider.impl.DataProviderPageableProvider;
 import com.antilia.web.beantable.provider.impl.HibernateQueryDataProvider;
-import com.antilia.web.field.AutoFieldModel;
+import com.antilia.web.field.AutoFieldCreator;
 import com.antilia.web.field.AutoFieldPanel;
 import com.antilia.web.field.BeanForm;
 import com.antilia.web.field.BeanProxy;
-import com.antilia.web.field.IAutoFieldModel;
+import com.antilia.web.field.IAutoFieldCreator;
 import com.antilia.web.menu.Menu;
 
 /**
@@ -76,7 +76,7 @@ public class SearchPanel<B extends Serializable> extends Panel implements ILoada
 		
 		this.styler = styler;
 		
-		IAutoFieldModel<B> autoFieldModel = newAutoFieldModel(this.filterQuery, this.beanProxy);
+		IAutoFieldCreator<B> autoFieldModel = newAutoFieldModel(this.filterQuery, this.beanProxy);
 		configureFieldModel(autoFieldModel);
 		
 		BeanForm<B> beanForm = newForm("form", this.beanProxy);
@@ -117,7 +117,7 @@ public class SearchPanel<B extends Serializable> extends Panel implements ILoada
 		 return table.getSourceSelector();
 	 }
 	
-	protected void configureFieldModel(IAutoFieldModel<B> autoFieldModel) {
+	protected void configureFieldModel(IAutoFieldCreator<B> autoFieldModel) {
 		List<String> searchFields = styler.getSearchFields();
 		if(searchFields != null) {
 			for(String propertyPath: searchFields) {
@@ -130,7 +130,7 @@ public class SearchPanel<B extends Serializable> extends Panel implements ILoada
 		
 	}
 	
-	protected AutoFieldPanel<B> newAutoFieldPanel(String id, IAutoFieldModel<B> autoFieldModel) {
+	protected AutoFieldPanel<B> newAutoFieldPanel(String id, IAutoFieldCreator<B> autoFieldModel) {
 		return new AutoFieldPanel<B>(id,autoFieldModel);
 	}
 	
@@ -155,8 +155,8 @@ public class SearchPanel<B extends Serializable> extends Panel implements ILoada
 		
 	}
 	
-	protected IAutoFieldModel<B> newAutoFieldModel(IQuery<B> query, BeanProxy<B> beanProxy) {
-		return new AutoFieldModel<B>(query, beanProxy);
+	protected IAutoFieldCreator<B> newAutoFieldModel(IQuery<B> query, BeanProxy<B> beanProxy) {
+		return new AutoFieldCreator<B>(query, beanProxy);
 	}
 	
 	@SuppressWarnings("unchecked")

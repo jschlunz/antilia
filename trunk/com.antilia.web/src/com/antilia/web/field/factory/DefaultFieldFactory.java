@@ -18,10 +18,10 @@ import com.antilia.web.field.IFieldModel;
 @SuppressWarnings("unchecked")
 public class DefaultFieldFactory implements IFieldFactory {
 
-	@SuppressWarnings("unchecked")
 	private static List<IFieldFactory> factories = new ArrayList<IFieldFactory>();
 	
 	static {
+		factories.add(TextAreaFieldFactory.getInstance());
 		factories.add(EnumDropDownFieldFactory.getInstance());
 		factories.add(SelectionFieldFieldFactory.getInstance());
 		factories.add(DateFieldFactory.getInstance());
@@ -49,7 +49,6 @@ public class DefaultFieldFactory implements IFieldFactory {
 		return null;
 	}
 	
-	@SuppressWarnings("unchecked")
 	public static DefaultFieldFactory getInstance() {
 		if(instance == null)
 			instance = new DefaultFieldFactory();
