@@ -17,6 +17,7 @@ import org.hibernate.context.CurrentSessionContext;
 import org.hibernate.dialect.Dialect;
 import org.hibernate.transaction.TransactionFactory;
 
+import com.antilia.common.util.StringUtils;
 import com.antilia.hibernate.util.EntityUtils;
 
 
@@ -101,7 +102,9 @@ public  class  PersistenceUnit implements IPersistenceUnit {
 			configuration.addAnnotatedClass(clazz);
 		
 		for(String property: properties.keySet()) {
-			configuration.setProperty(property, properties.get(property));
+			String  value = properties.get(property);
+			if(!StringUtils.isEmpty(value)) 
+				configuration.setProperty(property, value);
 		}		
 		return configuration;
 	}
