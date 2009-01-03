@@ -23,7 +23,11 @@ public interface IFieldModel<B extends Serializable> {
 	
 	int getLength();
 	
+	void setLength(int length);
+	
 	boolean isRequiered();
+	
+	void setRequiered(boolean requiered);
 	
 	Operator getSelectedOperator();
 	void setSelectedOperator(Operator operator);

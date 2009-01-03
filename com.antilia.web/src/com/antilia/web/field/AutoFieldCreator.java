@@ -26,6 +26,8 @@ public class AutoFieldCreator<B extends Serializable> extends Model<BeanProxy<B>
 		
 	private IQuery<B> filterQuery;
 	
+	private IAutoFieldConfigurator<B> autoFieldConfigurator = new HibernateJpaAutoFieldConfigurator<B>();
+	
 	/**
 	 * @param object
 	 */
@@ -76,9 +78,9 @@ public class AutoFieldCreator<B extends Serializable> extends Model<BeanProxy<B>
 		models.add(model);		
 		return model;
 	}
-	
-	private void configureFieldModel(IFieldModel<B> model) {
 		
+	private void configureFieldModel(IFieldModel<B> model) {
+		getAutoFieldConfigurator().configureFieldModel(model);
 	}
 	
 	public B getBean() {
@@ -102,6 +104,15 @@ public class AutoFieldCreator<B extends Serializable> extends Model<BeanProxy<B>
 	 */
 	public void setFilterQuery(IQuery<B> filterQuery) {
 		this.filterQuery = filterQuery;
+	}
+
+	public IAutoFieldConfigurator<B> getAutoFieldConfigurator() {
+		return autoFieldConfigurator;
+	}
+
+	public void setAutoFieldConfigurator(
+			IAutoFieldConfigurator<B> autoFieldConfigurator) {
+		this.autoFieldConfigurator = autoFieldConfigurator;
 	}
 	
 }
