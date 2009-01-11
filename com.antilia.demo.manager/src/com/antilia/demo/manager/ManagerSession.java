@@ -42,7 +42,7 @@ public class ManagerSession extends AntiliaSession {
 	}
 
 	public boolean authenticated(String userName, String passWord) {
-		if(userName.endsWith("reiern70") && passWord.equals("reiern70")) {
+		if(!StringUtils.isEmpty(userName) && passWord.equals(userName)) {
 			this.userName = userName;
 			this.passWord = passWord;
 			return true;

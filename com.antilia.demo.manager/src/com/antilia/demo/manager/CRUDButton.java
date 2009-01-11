@@ -4,9 +4,15 @@
  */
 package com.antilia.demo.manager;
 
+import java.io.Serializable;
+
+import org.apache.wicket.Component;
 import org.apache.wicket.ResourceReference;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 
+import com.antilia.common.util.ClassUtils;
+import com.antilia.demo.manager.Index;
+import com.antilia.demo.manager.crud.ManagerCRUD;
 import com.antilia.web.button.AbstractLink;
 import com.antilia.web.dialog.ModalContainer;
 import com.antilia.web.resources.DefaultStyle;
@@ -17,7 +23,7 @@ import com.antilia.web.resources.DefaultStyle;
  * @author Ernesto Reinaldo Barreiro (reiern70@gmail.com)
  *
  */
-public class CRUDButton extends AbstractLink {
+public class CRUDButton<T extends Serializable> extends AbstractLink {
 
 	private static final long serialVersionUID = 1L;
 
@@ -25,16 +31,30 @@ public class CRUDButton extends AbstractLink {
 	
 	private Index page;
 	
-	private ModalContainer modalContainer;
+	private Class<T> beanClass;
+	
+	private Class<?> crudClass;
+	
+	private String contentId;
+	
+	public CRUDButton(String label, Index page, Class<?> crudClass, Class<T> beanClass, String contentId) {
+		super(crudClass.getSimpleName());
+		this.label = label;
+		this.page = page;
+		this.crudClass = crudClass;		
+		this.beanClass = beanClass;
+		this.contentId = contentId;
+	}
 	
 	/**
 	 * @param id
 	 */
-	public CRUDButton(String id, String label, Index page, ModalContainer modalContainer) {
-		super(id);
+	public CRUDButton(String label, Index page, Class<T> beanClass, String contentId) {
+		super(beanClass.getSimpleName());
 		this.label = label;
 		this.page = page;
-		this.modalContainer = modalContainer;
+		this.beanClass = beanClass;
+		this.contentId = contentId;
 	}
 
 	/* (non-Javadoc)
@@ -59,6 +79,21 @@ public class CRUDButton extends AbstractLink {
 	@Override
 	protected void onClick(AjaxRequestTarget target) {
 		if(target != null) {
+			ModalContainer modalContainer = new ModalContainer(contentId) {
+				
+				private static final long serialVersionUID = 1L;
+
+				@Override
+				protected Component createBody(String id) {
+					try {
+						if(CRUDButton.this.crudClass != null)
+							return (Component)ClassUtils.createInstance(CRUDButton.this.crudClass, id);
+					} catch (Exception e) {
+						// fall-back to default
+					}
+					return new ManagerCRUD<T>(id, beanClass);
+				}
+			}; 
 			this.page.getBody().addOrReplace(modalContainer);
 			target.addComponent(this.page.getBody());
 		}
