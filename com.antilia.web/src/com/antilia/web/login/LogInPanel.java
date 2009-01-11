@@ -3,6 +3,7 @@
  */
 package com.antilia.web.login;
 
+import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.Button;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.PasswordTextField;
@@ -11,6 +12,7 @@ import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.PropertyModel;
+import org.apache.wicket.model.ResourceModel;
 
 /**
  * @author EReinaldoB
@@ -51,6 +53,9 @@ public abstract class LogInPanel extends Panel {
 		
 		Button submit = new Button("submit");
 		sigInForm.add(submit);
+		Label label = new Label("label", new ResourceModel("SignIn", "SignIn"));
+		submit.add(label);
+		
 		sigInForm.add(new FeedbackPanel("feedBack"));
 		add(sigInForm);
 		
