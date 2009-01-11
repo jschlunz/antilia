@@ -14,6 +14,9 @@ public abstract class LogInRoundPanel extends RoundPane {
 
 	private static final long serialVersionUID = 1L;
 
+	public LogInRoundPanel(String id, RoundPaneStyle boxStyle) {
+		this(id, "SignIn", boxStyle);
+	}
 	/**
 	 * @param id
 	 * @param title
