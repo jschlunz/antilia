@@ -11,6 +11,7 @@ import org.apache.wicket.markup.html.image.Image;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.model.PropertyModel;
+import org.apache.wicket.model.ResourceModel;
 
 import com.antilia.web.menu.Menu;
 
@@ -86,7 +87,7 @@ public class RoundPaneHeader extends Panel {
 		
 		add(titleColumn);
 		
-		Label ltitle = new Label("title", new PropertyModel(getRoundBox(), "title")) {
+		Label ltitle = new Label("title", new ResourceModel(getRoundBox().getTitle(), getRoundBox().getTitle())) {
 			private static final long serialVersionUID = 1L;
 
 			@Override
