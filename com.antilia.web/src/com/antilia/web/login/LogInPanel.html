@@ -10,12 +10,11 @@
 	                <td><b><wicket:message key="logIn.password">Password:</wicket:message></b></td>
 	                <td><input wicket:id="password" type="password" size="15"/></td>
 	            </tr>
-	        </table>
-	        <table align="center" width="100%" cellpadding="1" cellspacing="2">
-                <tr>
-                    <td><input type="submit"/></td>
-                </tr>
-            </table>	
+	        </table>	        
+	        <div style="margin-top: 5px; text-align: center;">
+                <button wicket:id="submit" style="border: 1px ridge gray; background-color: #9eb7e8;">SignIn</button>
+            </div>	
+            <span wicket:id="feedBack"></span>
         </form>
 	</div>
 </wicket:panel>
