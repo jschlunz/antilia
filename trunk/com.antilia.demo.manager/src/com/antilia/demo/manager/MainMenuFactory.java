@@ -4,9 +4,9 @@
  */
 package com.antilia.demo.manager;
 
-import com.antilia.demo.manager.crud.AddressModalContainer;
-import com.antilia.demo.manager.crud.CityModalContainer;
-import com.antilia.demo.manager.crud.CountryModalContainer;
+import com.antilia.demo.manager.entities.Address;
+import com.antilia.demo.manager.entities.City;
+import com.antilia.demo.manager.entities.Country;
 import com.antilia.web.toolbar.IToolbar;
 import com.antilia.web.toolbar.IToolbarItemsFactory;
 import com.antilia.web.toolbar.SubToolbar;
@@ -47,8 +47,8 @@ public class MainMenuFactory implements IToolbarItemsFactory {
 			};
 			toolbar.addItem(subToolbar);
 			
-			subToolbar.addItem(new CRUDButton("city", "Cities", this.page, new CityModalContainer(this.contentId)));
-			subToolbar.addItem(new CRUDButton("county", "Countries", this.page, new CountryModalContainer(this.contentId)));
+			subToolbar.addItem(new CRUDButton<City>("Cities", this.page, City.class, this.contentId));
+			subToolbar.addItem(new CRUDButton<Country>("Countries", this.page, Country.class, this.contentId));
 			
 			subToolbar = new SubToolbar("other", toolbar) {
 				private static final long serialVersionUID = 1L;
@@ -59,7 +59,7 @@ public class MainMenuFactory implements IToolbarItemsFactory {
 				}
 			};
 			toolbar.addItem(subToolbar);
-			subToolbar.addItem(new CRUDButton("Addresses", "Addresses", this.page, new AddressModalContainer(this.contentId)));
+			subToolbar.addItem(new CRUDButton<Address>("Addresses", this.page, Address.class,this.contentId));
 	}
 
 }

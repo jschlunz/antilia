@@ -16,7 +16,7 @@ public class LoginPage extends FullPage implements IContainer {
 	public LoginPage() {		
 		super();			
 		
-		content = new LogInRoundPanel("content", "Log In", new BlueStyle()) {
+		content = new LogInRoundPanel("content",  new BlueStyle()) {
 			
 			private static final long serialVersionUID = 1L;
 
