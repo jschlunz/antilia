@@ -30,7 +30,9 @@ public class LoginPage extends FullPage implements IContainer {
 			protected Component newBeforeFields(String id) {
 				return new LanguagePanel(id);
 			}			
-		};				
+		};	
+		content.setOutputMarkupId(true);
+		content.setRenderBodyOnly(false);
 	}
 
 	@Override
