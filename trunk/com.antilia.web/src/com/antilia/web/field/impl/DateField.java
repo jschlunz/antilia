@@ -11,6 +11,7 @@ import org.apache.wicket.extensions.yui.calendar.DatePicker;
 import org.apache.wicket.markup.html.basic.Label;
 
 import com.antilia.web.field.IFieldModel;
+import com.antilia.web.field.factory.FieldMode;
 
 
 /**
@@ -30,8 +31,8 @@ public class DateField<B extends Serializable> extends BaseFormField<B> {
 	 * @param beanClass
 	 * @param propertyPath
 	 */
-	public DateField(String id, IFieldModel<B> model) {
-		super(id, model);
+	public DateField(String id, IFieldModel<B> model, FieldMode mode) {
+		super(id, model, mode);
 		label = new Label("label", getLabelModel());
 		add(label);
 				

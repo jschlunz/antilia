@@ -21,6 +21,7 @@ import com.antilia.web.field.BeanForm;
 import com.antilia.web.field.BeanProxy;
 import com.antilia.web.field.IAutoFieldCreator;
 import com.antilia.web.field.IFieldModel;
+import com.antilia.web.field.factory.FieldMode;
 import com.antilia.web.menu.Menu;
 
 /**
@@ -119,7 +120,7 @@ public class EditPanel<B extends Serializable> extends Panel implements ICRUDMod
 	}
 	
 	protected AutoFieldPanel<B> newAutoFieldPanel(String id, IAutoFieldCreator<B> autoFieldModel) {
-		return new AutoFieldPanel<B>(id,autoFieldModel, 1);
+		return new AutoFieldPanel<B>(id,autoFieldModel, FieldMode.EDIT, 1);
 	}
 	
 	protected BeanForm<B> newForm(String id, BeanProxy<B> beanProxy) {

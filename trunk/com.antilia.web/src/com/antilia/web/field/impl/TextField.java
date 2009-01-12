@@ -6,9 +6,12 @@ package com.antilia.web.field.impl;
 
 import java.io.Serializable;
 
+import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.markup.html.basic.Label;
+import org.apache.wicket.model.Model;
 
 import com.antilia.web.field.IFieldModel;
+import com.antilia.web.field.factory.FieldMode;
 
 
 /**
@@ -28,8 +31,8 @@ public class TextField<B extends Serializable> extends BaseFormField<B> {
 	 * @param beanClass
 	 * @param propertyPath
 	 */
-	public TextField(String id, IFieldModel<B> model) {
-		super(id, model);
+	public TextField(String id, IFieldModel<B> model, FieldMode mode) {
+		super(id, model, mode);
 		label = new Label("label", getLabelModel());
 		add(label);
 				
@@ -44,6 +47,10 @@ public class TextField<B extends Serializable> extends BaseFormField<B> {
 				"field", 
 				getBeanProxy().getPropertyValue(getPropertyPath()).getModel());
 			add(textField);
+			if(getMode() == FieldMode.EDIT && getFieldModel().isRequiered()) {
+				textField.setRequired(true);
+				textField.add(new AttributeModifier("class",new Model<String>("requiredText")));
+			}
 		}		
 		super.onBeforeRender();
 	}

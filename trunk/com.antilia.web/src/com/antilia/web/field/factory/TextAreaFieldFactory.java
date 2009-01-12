@@ -25,8 +25,8 @@ public class TextAreaFieldFactory<B extends Serializable> implements IFieldFacto
 	/* (non-Javadoc)
 	 * @see com.antilia.web.field.factory.IFieldFactory#canHandleField(com.antilia.web.field.IFieldModel)
 	 */
-	public boolean canHandleField(IFieldModel<B> model) {
-		if(String.class.isAssignableFrom(model.getFieldClass()) && model.getLength() > 80)
+	public boolean canHandleField(IFieldModel<B> model, FieldMode mode) {
+		if(String.class.isAssignableFrom(model.getFieldClass()) && model.getLength() > 80 && mode.equals(FieldMode.EDIT))
 			return true;
 		return false;
 	}
@@ -34,8 +34,8 @@ public class TextAreaFieldFactory<B extends Serializable> implements IFieldFacto
 	/* (non-Javadoc)
 	 * @see com.antilia.web.field.factory.IFieldFactory#newField(java.lang.String, com.antilia.web.field.IFieldModel)
 	 */
-	public Component newField(String id, IFieldModel<B> fieldModel) {
-		return new TextAreaField<B>(id, fieldModel);
+	public Component newField(String id, IFieldModel<B> fieldModel, FieldMode mode) {
+		return new TextAreaField<B>(id, fieldModel, mode);
 	}
 
 	@SuppressWarnings("unchecked")

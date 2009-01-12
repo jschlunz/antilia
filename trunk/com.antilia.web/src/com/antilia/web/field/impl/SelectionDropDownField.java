@@ -10,6 +10,7 @@ import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.DropDownChoice;
 
 import com.antilia.web.field.IFieldModel;
+import com.antilia.web.field.factory.FieldMode;
 
 
 /**
@@ -27,8 +28,8 @@ public class SelectionDropDownField<B extends Serializable> extends BaseFormFiel
 	 * @param beanClass
 	 * @param propertyPath
 	 */
-	public SelectionDropDownField(String id, IFieldModel<B> model) {
-		super(id, model);
+	public SelectionDropDownField(String id, IFieldModel<B> model, FieldMode mode) {
+		super(id, model, mode);
 		label = new Label("label", getLabelModel());
 		add(label);
 				
