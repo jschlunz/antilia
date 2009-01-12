@@ -12,7 +12,7 @@ import org.apache.wicket.markup.html.form.Form;
  * 
  * @author Ernesto Reinaldo Barreiro (reiern70@gmail.com)
  */
-public class BeanForm<B extends Serializable> extends Form {
+public class BeanForm<B extends Serializable> extends Form<B> {
 
 	private static final long serialVersionUID = 1L;
 
@@ -26,7 +26,6 @@ public class BeanForm<B extends Serializable> extends Form {
 		this.beanProxy = beanProxy;
 	}
 	
-	@SuppressWarnings("unchecked")
 	public BeanProxy<B> getBeanProxy() {
 		return beanProxy;
 	}
