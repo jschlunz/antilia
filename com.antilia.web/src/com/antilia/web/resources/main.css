@@ -73,7 +73,7 @@ input {
 }
 
 textarea.requiredText, input.requiredText {
-    background-color: #feff94;
+    background-color: #fffdd7;
 }
 
 textarea.Missing, input.Missing {
