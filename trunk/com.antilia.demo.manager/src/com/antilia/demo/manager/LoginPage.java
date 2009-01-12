@@ -1,5 +1,6 @@
 package com.antilia.demo.manager;
 
+import org.apache.wicket.Component;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 
 import com.antilia.web.layout.FullPage;
@@ -24,6 +25,11 @@ public class LoginPage extends FullPage implements IContainer {
 			protected boolean signIn(String userName, String passWord) {
 				return ManagerSession.getSession().authenticated(userName, passWord);
 			}
+			
+			@Override
+			protected Component newBeforeFields(String id) {
+				return new LanguagePanel(id);
+			}			
 		};				
 	}
 

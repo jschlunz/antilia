@@ -22,12 +22,14 @@ public class ManagerSession extends AntiliaSession {
 	
 	private static final long serialVersionUID = 1L;
 
+	private Language language;
+	
 	/**
 	 * @param request
 	 */
 	public ManagerSession(Request request) {
 		super(request);
-		setLocale(new Locale("es", "ES"));
+		setLanguage(Language.SPANISH);		
 	}
 	
 	public static ManagerSession getSession() {
@@ -64,5 +66,16 @@ public class ManagerSession extends AntiliaSession {
 
 	public void setPassWord(String passWord) {
 		this.passWord = passWord;
+	}
+
+	public Language getLanguage() {
+		return language;
+	}
+
+	public void setLanguage(Language language) {
+		this.language = language;
+		if(language != null) {
+			setLocale(language.getLocale());
+		}
 	}	
 }
