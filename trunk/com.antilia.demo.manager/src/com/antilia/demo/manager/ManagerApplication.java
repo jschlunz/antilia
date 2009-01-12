@@ -14,7 +14,6 @@ import com.antilia.demo.manager.test.PostgrePersistenceUnit;
 import com.antilia.hibernate.cfg.IPersistenceUnit;
 import com.antilia.hibernate.context.RequestContext;
 import com.antilia.web.AntiliaWebApplication;
-import com.antilia.web.layout.FullPage;
 import com.antilia.web.login.DisableAllAuthorizationStrategy;
 
 /**
