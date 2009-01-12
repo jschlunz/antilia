@@ -33,7 +33,7 @@ public class LageSelectionFieldFactory<B extends Serializable> implements IField
 	/* (non-Javadoc)
 	 * @see com.antilia.web.field.factory.IFieldFactory#canHandleField(com.antilia.web.field.IFieldModel)
 	 */
-	public boolean canHandleField(IFieldModel<B> model) {		
+	public boolean canHandleField(IFieldModel<B> model, FieldMode mode) {		
 		try {
 			if(isPreoperlyAnnotated(model)) {
 				if(AnnotationUtils.isFieldAnnotationPresent(model.getBeanClass(), model.getPropertyPath(), SelectionType.class)) {
@@ -65,8 +65,8 @@ public class LageSelectionFieldFactory<B extends Serializable> implements IField
 	/* (non-Javadoc)
 	 * @see com.antilia.web.field.factory.IFieldFactory#newField(java.lang.String, com.antilia.web.field.IFieldModel)
 	 */
-	public Component newField(String id, IFieldModel<B> fieldModel) {
-		return new LargeSelectionField<B>(id, fieldModel);
+	public Component newField(String id, IFieldModel<B> fieldModel, FieldMode mode) {
+		return new LargeSelectionField<B>(id, fieldModel, mode);
 	}
 
 	@SuppressWarnings("unchecked")

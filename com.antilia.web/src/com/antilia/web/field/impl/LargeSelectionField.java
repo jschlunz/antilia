@@ -7,9 +7,11 @@ package com.antilia.web.field.impl;
 import java.io.Serializable;
 
 import org.apache.wicket.markup.html.basic.Label;
+import org.apache.wicket.model.Model;
 
 import com.antilia.common.util.AnnotationUtils;
 import com.antilia.web.field.IFieldModel;
+import com.antilia.web.field.factory.FieldMode;
 
 /**
  * 
@@ -27,13 +29,12 @@ public class LargeSelectionField<B extends Serializable> extends BaseFormField<B
 	 * @param id
 	 * @param model
 	 */
-	public LargeSelectionField(String id, IFieldModel<B> model) {
-		super(id, model);
+	public LargeSelectionField(String id, IFieldModel<B> model, FieldMode mode) {
+		super(id, model, mode);
 		
 		label = new Label("label", getLabelModel());
 		add(label);
-		
-		
+						
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -56,7 +57,12 @@ public class LargeSelectionField<B extends Serializable> extends BaseFormField<B
 		} catch (Exception e) {
 			add(new Label("selectionPanel", e.getMessage()));
 		}
-		add(new DropSelectionButton("dropSelection",getBeanProxy(), getFieldModel()));
+		if(getMode() == FieldMode.EDIT && getFieldModel().isRequiered()) {
+			// if we are in EDIT mode and field is required then do not allow to get rid of selection
+			// so that user is forced to select one.
+			add(new Label("dropSelection",new Model<String>("")));
+		} else
+			add(new DropSelectionButton("dropSelection",getBeanProxy(), getFieldModel()));
 	}
 
 }

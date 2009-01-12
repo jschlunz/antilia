@@ -36,14 +36,14 @@ public class DefaultFieldFactory implements IFieldFactory {
 	
 	}
 
-	public boolean canHandleField(IFieldModel model) {
+	public boolean canHandleField(IFieldModel model, FieldMode mode) {
 		return false;
 	}
 
-	public Component newField(String id, IFieldModel fieldModel) {
+	public Component newField(String id, IFieldModel fieldModel, FieldMode mode) {
 		for(IFieldFactory fieldFactory: factories) {
-			if(fieldFactory.canHandleField(fieldModel)) {
-				return fieldFactory.newField(id, fieldModel);
+			if(fieldFactory.canHandleField(fieldModel, mode)) {
+				return fieldFactory.newField(id, fieldModel, mode);
 			}
 		}
 		return null;

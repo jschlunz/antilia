@@ -26,6 +26,7 @@ import com.antilia.web.field.AutoFieldPanel;
 import com.antilia.web.field.BeanForm;
 import com.antilia.web.field.BeanProxy;
 import com.antilia.web.field.IAutoFieldCreator;
+import com.antilia.web.field.factory.FieldMode;
 import com.antilia.web.menu.Menu;
 
 /**
@@ -131,7 +132,7 @@ public class SearchPanel<B extends Serializable> extends Panel implements ILoada
 	}
 	
 	protected AutoFieldPanel<B> newAutoFieldPanel(String id, IAutoFieldCreator<B> autoFieldModel) {
-		return new AutoFieldPanel<B>(id,autoFieldModel);
+		return new AutoFieldPanel<B>(id,autoFieldModel, FieldMode.SEARCH);
 	}
 	
 	protected BeanForm<B> newForm(String id, BeanProxy<B> beanProxy) {

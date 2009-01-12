@@ -72,6 +72,19 @@ input {
     margin-top: 1px;    
 }
 
+textarea.requiredText, input.requiredText {
+    background-color: #feff94;
+}
+
+textarea.Missing, input.Missing {
+    background-color: red;
+}
+
+span.largeSelection {
+    margin: 1px;
+    font-weight: bold;
+}
+
 div.vertical-menu {	
 	vertical-align: top;
 	width: 100%;

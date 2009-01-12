@@ -16,7 +16,7 @@ import com.antilia.web.field.IFieldModel;
  */
 public interface IFieldFactory<B extends Serializable> {
 
-	boolean canHandleField(IFieldModel<B> model);
+	boolean canHandleField(IFieldModel<B> model, FieldMode mode);
 	
-	Component newField(String id, IFieldModel<B> fieldModel);
+	Component newField(String id, IFieldModel<B> fieldModel, FieldMode mode);
 }

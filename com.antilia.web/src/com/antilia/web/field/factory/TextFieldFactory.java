@@ -25,15 +25,15 @@ public class TextFieldFactory<B extends Serializable> implements IFieldFactory<B
 	/* (non-Javadoc)
 	 * @see com.antilia.web.field.factory.IFieldFactory#canHandleField(com.antilia.web.field.IFieldModel)
 	 */
-	public boolean canHandleField(IFieldModel<B> model) {
+	public boolean canHandleField(IFieldModel<B> model, FieldMode mode) {
 		return true;
 	}
 
 	/* (non-Javadoc)
 	 * @see com.antilia.web.field.factory.IFieldFactory#newField(java.lang.String, com.antilia.web.field.IFieldModel)
 	 */
-	public Component newField(String id, IFieldModel<B> fieldModel) {
-		return new TextField<B>(id, fieldModel);
+	public Component newField(String id, IFieldModel<B> fieldModel, FieldMode mode) {
+		return new TextField<B>(id, fieldModel, mode);
 	}
 
 	@SuppressWarnings("unchecked")

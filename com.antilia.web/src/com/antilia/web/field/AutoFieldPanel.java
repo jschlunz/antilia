@@ -21,6 +21,7 @@ import org.apache.wicket.model.StringResourceModel;
 
 import com.antilia.common.util.ResourceUtils;
 import com.antilia.web.field.factory.DefaultFieldFactory;
+import com.antilia.web.field.factory.FieldMode;
 import com.antilia.web.field.impl.BaseFormField;
 import com.antilia.web.field.impl.TextField;
 
@@ -35,6 +36,8 @@ public class AutoFieldPanel<B extends Serializable> extends Panel implements IFi
 	private int columns = 3;
 	
 	private IAutoFieldCreator<B> autoFieldModel;
+	
+	private FieldMode mode;
 	
 	private class Rows extends RefreshingView<B> {
  		
@@ -91,10 +94,10 @@ public class AutoFieldPanel<B extends Serializable> extends Panel implements IFi
 	/**
 	 * @param id
 	 */
-	public AutoFieldPanel(String id, IAutoFieldCreator<B> autoFieldModel, int columns) {
+	public AutoFieldPanel(String id, IAutoFieldCreator<B> autoFieldModel, FieldMode mode, int columns) {
 		super(id);		
 		this.columns = columns;
-		
+		this.mode = mode;
 		setOutputMarkupId(true);
 		
 		if(autoFieldModel == null)
@@ -107,8 +110,8 @@ public class AutoFieldPanel<B extends Serializable> extends Panel implements IFi
 	/**
 	 * @param id
 	 */
-	public AutoFieldPanel(String id, IAutoFieldCreator<B> autoFieldModel) {
-		this(id, autoFieldModel, 3);
+	public AutoFieldPanel(String id, IAutoFieldCreator<B> autoFieldModel, FieldMode mode) {
+		this(id, autoFieldModel, mode, 3);
 	}
 	
 	/**
@@ -130,13 +133,13 @@ public class AutoFieldPanel<B extends Serializable> extends Panel implements IFi
 			@SuppressWarnings("unchecked")
 			@Override
 			protected Component newField(String id) {
-				Component field = DefaultFieldFactory.getInstance().newField(id, fieldModel);
+				Component field = DefaultFieldFactory.getInstance().newField(id, fieldModel, getMode());
 				if(field instanceof BaseFormField) {
 					((BaseFormField)field).getLabel().setVisible(false);
 				}
 				if(field != null)
 					return field;
-				TextField<B> textField = new TextField<B>(id, fieldModel);
+				TextField<B> textField = new TextField<B>(id, fieldModel, getMode());
 				textField.getLabel().setVisible(false);
 				return textField;
 			}
@@ -170,5 +173,9 @@ public class AutoFieldPanel<B extends Serializable> extends Panel implements IFi
 
 	public void setColumns(int columns) {
 		this.columns = columns;
+	}
+
+	public FieldMode getMode() {
+		return mode;
 	}
 }

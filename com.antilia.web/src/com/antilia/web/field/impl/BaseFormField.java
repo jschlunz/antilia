@@ -16,6 +16,7 @@ import com.antilia.hibernate.query.Operator;
 import com.antilia.web.field.BeanForm;
 import com.antilia.web.field.BeanProxy;
 import com.antilia.web.field.IFieldModel;
+import com.antilia.web.field.factory.FieldMode;
 
 /**
  * @author Ernesto Reinaldo Barreiro (reiern70@gmail.com)
@@ -35,12 +36,15 @@ public abstract class BaseFormField<B extends Serializable> extends Panel implem
 	
 	protected Label label;
 	
+	private FieldMode mode;
+	
 	/**
 	 * @param id
 	 */
-	public BaseFormField(String id, IFieldModel<B> model) {
+	public BaseFormField(String id, IFieldModel<B> model,FieldMode mode) {
 		super(id);	
 		this.fieldModel = model;
+		this.mode = mode;
 		this.propertyPath = model.getPropertyPath();
 		this.selectedOperator = model.getSelectedOperator();
 		this.operators = model.getOperators();		
@@ -104,5 +108,13 @@ public abstract class BaseFormField<B extends Serializable> extends Panel implem
 
 	public void setLabel(Label label) {
 		this.label = label;
+	}
+
+	public FieldMode getMode() {
+		return mode;
+	}
+
+	public void setMode(FieldMode mode) {
+		this.mode = mode;
 	}
 }
