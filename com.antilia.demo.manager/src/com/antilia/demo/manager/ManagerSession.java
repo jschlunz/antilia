@@ -1,7 +1,5 @@
 package com.antilia.demo.manager;
 
-import java.util.Locale;
-
 import org.apache.wicket.Request;
 import org.apache.wicket.Session;
 
