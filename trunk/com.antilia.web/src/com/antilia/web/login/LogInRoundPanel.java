@@ -3,6 +3,9 @@
  */
 package com.antilia.web.login;
 
+import org.apache.wicket.Component;
+import org.apache.wicket.markup.html.panel.EmptyPanel;
+
 import com.antilia.web.roundpane.RoundPane;
 import com.antilia.web.roundpane.RoundPaneStyle;
 
@@ -24,7 +27,14 @@ public abstract class LogInRoundPanel extends RoundPane {
 	 */
 	public LogInRoundPanel(String id, String title, RoundPaneStyle boxStyle) {
 		super(id, title, boxStyle);
-		addToBody(new LogInPanel("logIn") {
+		addToBody(newLogInPanel("logIn"));
+		setWidth(300);
+		setHeight(200);
+		setCentered(true);
+	}
+	
+	protected LogInPanel newLogInPanel(String id) {
+		return new LogInPanel(id) {
 			
 			private static final long serialVersionUID = 1L;
 
@@ -32,13 +42,19 @@ public abstract class LogInRoundPanel extends RoundPane {
 			protected boolean signIn(String userName, String passWord) {
 				return LogInRoundPanel.this.signIn(userName, passWord);
 			}
-		});
-		setWidth(300);
-		setHeight(200);
-		setTop(100);
-		setCentered(true);
-		setLeft(200);
+			
+			@Override
+			protected Component newBeforeFields(String id) {
+				return LogInRoundPanel.this.newBeforeFields(id);
+			}
+		};
 	}
 
 	protected abstract boolean signIn(String userName, String passWord);
+	
+	
+	protected Component newBeforeFields(String id) {
+		return new EmptyPanel(id);
+	}
+	
 }

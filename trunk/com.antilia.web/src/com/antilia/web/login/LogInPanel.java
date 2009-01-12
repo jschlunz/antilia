@@ -3,12 +3,14 @@
  */
 package com.antilia.web.login;
 
+import org.apache.wicket.Component;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.Button;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.PasswordTextField;
 import org.apache.wicket.markup.html.form.StatelessForm;
 import org.apache.wicket.markup.html.form.TextField;
+import org.apache.wicket.markup.html.panel.EmptyPanel;
 import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.PropertyModel;
@@ -46,6 +48,8 @@ public abstract class LogInPanel extends Panel {
 				}
 			}			
 		};
+		
+		sigInForm.add(newBeforeFields("before"));
 		TextField<String> userName = new TextField<String>("userName", new PropertyModel<String>(this,"userName"));
 		userName.setRequired(true);
 		sigInForm.add(userName);
@@ -61,6 +65,15 @@ public abstract class LogInPanel extends Panel {
 		
 	}
 	
+	/**
+	 * Override it to add something before empty panel.
+	 * 
+	 * @param id
+	 * @return
+	 */
+	protected Component newBeforeFields(String id) {
+		return new EmptyPanel(id);
+	}
 	
 	protected abstract boolean signIn(String userName, String passWord);
 	

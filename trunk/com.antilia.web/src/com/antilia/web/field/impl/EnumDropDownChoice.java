@@ -18,14 +18,14 @@ import com.antilia.common.util.ResourceUtils;
  *
  */
 @SuppressWarnings("unchecked")
-public class EnumDropDownChoice extends DropDownChoice<Enum> {
+public class EnumDropDownChoice<T extends Enum> extends DropDownChoice<T> {
 
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @param id
 	 */
-	public EnumDropDownChoice(String id, Class<Enum> enumClass ,IModel model) {
+	public EnumDropDownChoice(String id, Class<T> enumClass ,IModel<T> model) {
 		super(id);		
 		setModel(model);
 		setNullValid(true);
@@ -40,7 +40,7 @@ public class EnumDropDownChoice extends DropDownChoice<Enum> {
 				return super.getDisplayValue(object);
 			}
 		});		
-		List<Enum> choises = Arrays.asList(enumClass.getEnumConstants());
+		List<T> choises = Arrays.asList(enumClass.getEnumConstants());
 		setChoices(choises);
 	}
 }
