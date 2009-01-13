@@ -16,6 +16,7 @@
 			Antilia.Drag.init(this.panelResize, function() {} , function() { }, this.onResize);
 		}
 		if(this.center) {
+			this.panel.style.position = 'absolute';
 			var width = parseInt(this.panel.style.width, 10);
 			var height = parseInt(this.panel.style.height, 10);
 			YAHOO.util.Dom.setStyle(this.id, "top", ((YAHOO.util.Dom.getViewportHeight()/2)-height)+ "px"); 
