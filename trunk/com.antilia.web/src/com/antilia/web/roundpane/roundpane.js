@@ -28,7 +28,7 @@
         			{         				 
          				duration: 1,
          				from: 0,
-         				to: 0.8
+         				to: 0.9
         			});
 		}
 	}
