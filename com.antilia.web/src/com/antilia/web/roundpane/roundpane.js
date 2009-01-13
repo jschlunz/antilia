@@ -17,10 +17,19 @@
 		}
 		if(this.center) {
 			this.panel.style.position = 'absolute';
+			this.panel.style.display = 'none';
 			var width = parseInt(this.panel.style.width, 10);
-			var height = parseInt(this.panel.style.height, 10);
-			YAHOO.util.Dom.setStyle(this.id, "top", ((YAHOO.util.Dom.getViewportHeight()/2)-height)+ "px"); 
+			var height = parseInt(this.panel.style.height, 10);			
+            YAHOO.util.Dom.setStyle(this.id, "top", ((YAHOO.util.Dom.getViewportHeight()/2)-height)+ "px"); 
             YAHOO.util.Dom.setStyle(this.id, "left", ((YAHOO.util.Dom.getViewportWidth()/2)-width) + "px");
+            
+            new Effect.toggle(this.panel, 
+        			'appear',
+        			{         				 
+         				duration: 1,
+         				from: 0,
+         				to: 0.8
+        			});
 		}
 	}
 	
