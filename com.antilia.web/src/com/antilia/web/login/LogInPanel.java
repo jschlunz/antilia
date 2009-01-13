@@ -44,7 +44,7 @@ public abstract class LogInPanel extends Panel {
 						setResponsePage(getApplication().getHomePage());
 					}
 				} else {
-						error("Unknown username/ password");
+						error(getString("logIn.loginError"));
 				}
 			}			
 		};

@@ -212,3 +212,13 @@ span.ajax-indicator {
      height: 100%;
      z-index: 0;            
 }
+
+li.feedbackPanelERROR {
+    list-style: square;
+    margin: 2px;
+}
+
+span.feedbackPanelERROR {
+    color: red;
+    
+}
