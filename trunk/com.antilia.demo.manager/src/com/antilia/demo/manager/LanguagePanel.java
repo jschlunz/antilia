@@ -42,6 +42,8 @@ public class LanguagePanel extends Panel {
 			}
 			
 		});
+		language.setRequired(true);
+		language.setNullValid(false);
 		language.add(new OnChangeAjaxBehavior() {
 			private static final long serialVersionUID = 1L;
 
