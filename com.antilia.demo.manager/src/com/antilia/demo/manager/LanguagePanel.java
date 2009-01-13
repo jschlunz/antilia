@@ -48,7 +48,7 @@ public class LanguagePanel extends Panel {
 			@Override
 			protected void onUpdate(AjaxRequestTarget target) {
 				if(target != null) {
-					target.addComponent(getPanel());
+					target.addComponent(getPanel().getRoundpane());
 				}
 			}
 		});
