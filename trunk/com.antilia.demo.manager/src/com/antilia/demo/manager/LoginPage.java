@@ -31,8 +31,6 @@ public class LoginPage extends FullPage implements IContainer {
 				return new LanguagePanel(id);
 			}			
 		};	
-		content.setOutputMarkupId(true);
-		content.setRenderBodyOnly(false);
 	}
 
 	@Override
