@@ -163,10 +163,6 @@ public class AutoFieldPanel<B extends Serializable> extends Panel implements IFi
 		return autoFieldModel;
 	}
 
-	public void setAutoFieldModel(IAutoFieldCreator<B> autoFieldModel) {
-		this.autoFieldModel = autoFieldModel;
-	}
-
 	public int getColumns() {
 		return columns;
 	}
