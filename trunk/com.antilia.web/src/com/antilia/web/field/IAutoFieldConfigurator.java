@@ -10,7 +10,7 @@ import java.io.Serializable;
  * @author EReinaldoB
  *
  */
-public interface IAutoFieldConfigurator<B extends Serializable> {
+public interface IAutoFieldConfigurator<B extends Serializable> extends Serializable {
 	
   void configureFieldModel(IFieldModel<B> model);
 
