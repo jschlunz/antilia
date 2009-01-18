@@ -8,15 +8,17 @@ import java.io.Serializable;
 
 import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.markup.html.basic.Label;
+import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 
 import com.antilia.web.field.IFieldModel;
+import com.antilia.web.field.PropertyValue;
 import com.antilia.web.field.factory.FieldMode;
 
 
 /**
+ * 
  * @author Ernesto Reinaldo Barreiro (reiern70@gmail.com)
- *
  */
 public class TextAreaField<B extends Serializable> extends BaseFormField<B> {
 
@@ -38,13 +40,13 @@ public class TextAreaField<B extends Serializable> extends BaseFormField<B> {
 	}
 	
 
-	@SuppressWarnings("unchecked")
 	@Override
 	protected void onBeforeRender() {
 		if(textArea == null) {
+			PropertyValue<B> propertyValue = getBeanProxy().getPropertyValue(getPropertyPath());
+			IModel<B> model = propertyValue.getModel();			
 			textArea = new org.apache.wicket.markup.html.form.TextArea<B>(
-				"field", 
-				getBeanProxy().getPropertyValue(getPropertyPath()).getModel());
+				"field", model);
 			add(textArea);
 			if(getMode() == FieldMode.EDIT && getFieldModel().isRequiered()) {
 				textArea.setRequired(true);

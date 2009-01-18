@@ -20,24 +20,24 @@ public class PropertyValue<B extends Serializable> implements Serializable {
 
 	private String propertyName;
 	
-	private PropertyModel model;
+	private PropertyModel<B> model;
 	
 	public PropertyValue(String propertyName, B bean) {		
 		this.propertyName = propertyName;
-		model = new PropertyModel(bean, propertyName);
+		model = new PropertyModel<B>(bean, propertyName);
 	}
 
 	/**
 	 * @return the model
 	 */
-	public PropertyModel getModel() {
+	public PropertyModel<B> getModel() {
 		return model;
 	}
 
 	/**
 	 * @param model the model to set
 	 */
-	public void setModel(PropertyModel model) {
+	public void setModel(PropertyModel<B> model) {
 		this.model = model;
 	}
 

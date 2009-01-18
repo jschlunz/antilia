@@ -25,7 +25,7 @@ public class BeanProxy<B extends Serializable> implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
-	Map<String, PropertyValue<?>> propertyValues = new HashMap<String, PropertyValue<?>>();
+	Map<String, PropertyValue<? extends Serializable>> propertyValues = new HashMap<String, PropertyValue<? extends Serializable>>();
 	
 	private Class<? extends B> beanClass;
 	
@@ -52,8 +52,9 @@ public class BeanProxy<B extends Serializable> implements Serializable {
 		propertyValues.put(propertyName, value);
 	}
 
-	public PropertyValue<?> getPropertyValue(String propertyName) {
-		return propertyValues.get(propertyName);
+	@SuppressWarnings("unchecked")
+	public <T extends Serializable> PropertyValue<T> getPropertyValue(String propertyName) {
+		return (PropertyValue<T>)propertyValues.get(propertyName);
 	}
 	
 	/**

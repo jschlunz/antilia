@@ -16,6 +16,8 @@ import com.antilia.common.util.AnnotationUtils;
  */
 public class HibernateJpaAutoFieldConfigurator<B extends Serializable> implements IAutoFieldConfigurator<B> {
 
+	private static final long serialVersionUID = 1L;
+
 	@Override
 	public void configureFieldModel(IFieldModel<B> model) {
 		try {
