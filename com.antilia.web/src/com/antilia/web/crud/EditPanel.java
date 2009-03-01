@@ -10,6 +10,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import org.apache.commons.beanutils.BeanUtils;
+import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.markup.html.panel.Panel;
 
 import com.antilia.hibernate.query.IQuery;
@@ -41,6 +42,8 @@ public class EditPanel<B extends Serializable> extends Panel implements ICRUDMod
 	
 	private CrudStyler<B> styler;
 	
+	private FeedbackPanel feedBack;
+	
 	/**
 	 * 
 	 * @param id
@@ -51,7 +54,9 @@ public class EditPanel<B extends Serializable> extends Panel implements ICRUDMod
 		super(id);		
 		this.beanClass = styler.getBeanClass();
 		this.styler = styler;
-		setOutputMarkupId(true);		
+		setOutputMarkupId(true);	
+		
+		
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -71,6 +76,9 @@ public class EditPanel<B extends Serializable> extends Panel implements ICRUDMod
 			}
 			pageableProvider = new InMemoryPageableProvider<B>(beans, beanClass);
 		}		
+		
+		feedBack = new FeedbackPanel("feedBack");
+		addOrReplace(feedBack);
 		
 		this.beanProxy = new BeanProxy<B>(pageableProvider.current());
 		
@@ -113,6 +121,14 @@ public class EditPanel<B extends Serializable> extends Panel implements ICRUDMod
 	
 	protected void configureFieldModel(String propertyPath, IFieldModel<B> fieldModel) {
 		
+	}
+	
+	public FeedbackPanel getFeedBack() {
+		return feedBack;
+	}
+
+	public void setFeedBack(FeedbackPanel feedBack) {
+		this.feedBack = feedBack;
 	}
 
 	protected void populateTopMenu(Menu topMenu) {

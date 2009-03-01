@@ -4,7 +4,7 @@
 package com.antilia.web;
 
 /**
- * @author EReinaldoB
+ * @author Ernesto Reinaldo Barreiro (reiern70@gmail.com)
  *
  */
 public interface IAuthenticableSession {
