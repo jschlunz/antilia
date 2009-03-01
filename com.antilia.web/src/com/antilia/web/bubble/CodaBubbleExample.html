@@ -1,0 +1,186 @@
+<!-- saved from url=(0051)http://jqueryfordesigners.com/demo/coda-bubble.html -->
+<HTML lang=en xml:lang="en" xmlns="http://www.w3.org/1999/xhtml"><HEAD><TITLE>Coda Bubble Example</TITLE>
+<META http-equiv=Content-type content="text/html; charset=utf-8">
+<STYLE type=text/css media=screen>* {
+	PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px
+}
+BODY {
+	PADDING-RIGHT: 10px; PADDING-LEFT: 10px; PADDING-BOTTOM: 10px; PADDING-TOP: 10px
+}
+H1 {
+	MARGIN: 14px 0px; FONT-FAMILY: 'Trebuchet MS', Helvetica
+}
+P {
+	MARGIN: 14px 0px; FONT-FAMILY: 'Trebuchet MS', Helvetica
+}
+.bubbleInfo {
+	LEFT: 100px; WIDTH: 500px; POSITION: relative; TOP: 150px
+}
+.trigger {
+	POSITION: absolute
+}
+.popup {
+	DISPLAY: none; Z-INDEX: 50; POSITION: absolute; BORDER-COLLAPSE: collapse
+}
+.popup TD.corner {
+	WIDTH: 19px; HEIGHT: 15px
+}
+.popup TD#topleft {
+	BACKGROUND-IMAGE: url(bubble-1.gif)
+}
+.popup TD.top {
+	BACKGROUND-IMAGE: url(bubble-2.gif)
+}
+.popup TD#topright {
+	BACKGROUND-IMAGE: url(bubble-3.gif)
+}
+.popup TD.left {
+	BACKGROUND-IMAGE: url(bubble-4.gif)
+}
+.popup TD.right {
+	BACKGROUND-IMAGE: url(bubble-5.gif)
+}
+.popup TD#bottomleft {
+	BACKGROUND-IMAGE: url(bubble-6.gif)
+}
+.popup TD.bottom {
+	BACKGROUND-IMAGE: url(bubble-7.gif); TEXT-ALIGN: center
+}
+.popup TD.bottom IMG {
+	DISPLAY: block; MARGIN: 0px auto
+}
+.popup TD#bottomright {
+	BACKGROUND-IMAGE: url(bubble-8.gif)
+}
+.popup TABLE.popup-contents {
+	FONT-SIZE: 12px; COLOR: #666; LINE-HEIGHT: 1.2em; FONT-FAMILY: "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", sans-serif; BACKGROUND-COLOR: #fff
+}
+TABLE.popup-contents TH {
+	TEXT-TRANSFORM: lowercase; TEXT-ALIGN: right
+}
+TABLE.popup-contents TD {
+	TEXT-ALIGN: left
+}
+TR#release-notes TH {
+	BACKGROUND: url(http://jqueryfordesigners.com/demo/images/coda/starburst.gif) no-repeat right top; TEXT-INDENT: -9999px; HEIGHT: 17px; TEXT-ALIGN: left
+}
+TR#release-notes TD A {
+	COLOR: #333
+}
+</STYLE>
+
+<SCRIPT src="jquery.js" 
+type=text/javascript></SCRIPT>
+
+<SCRIPT type=text/javascript>
+    <!--
+
+    $(function () {
+        $('.bubbleInfo').each(function () {
+            var distance = 10;
+            var time = 250;
+            var hideDelay = 500;
+
+            var hideDelayTimer = null;
+
+            var beingShown = false;
+            var shown = false;
+            var trigger = $('.trigger', this);
+            var info = $('.popup', this).css('opacity', 0);
+
+
+            $([trigger.get(0), info.get(0)]).mouseover(function () {
+                if (hideDelayTimer) clearTimeout(hideDelayTimer);
+                if (beingShown || shown) {
+                    // don't trigger the animation again
+                    return;
+                } else {
+                    // reset position of info box
+                    beingShown = true;
+
+                    info.css({
+                        top: -90,
+                        left: -33,
+                        display: 'block'
+                    }).animate({
+                        top: '-=' + distance + 'px',
+                        opacity: 1
+                    }, time, 'swing', function() {
+                        beingShown = false;
+                        shown = true;
+                    });
+                }
+
+                return false;
+            }).mouseout(function () {
+                if (hideDelayTimer) clearTimeout(hideDelayTimer);
+                hideDelayTimer = setTimeout(function () {
+                    hideDelayTimer = null;
+                    info.animate({
+                        top: '-=' + distance + 'px',
+                        opacity: 0
+                    }, time, 'swing', function () {
+                        shown = false;
+                        info.css('display', 'none');
+                    });
+
+                }, hideDelay);
+
+                return false;
+            });
+        });
+    });
+    
+    //-->
+    </SCRIPT>
+
+<META content="MSHTML 6.00.6000.16705" name=GENERATOR></HEAD>
+<BODY id=page>
+<H1>Coda Bubble Example</H1>
+<P>This shows a demonstration of the 'puff' popup bubble effect as seen over the 
+download link on the <A href="http://www.panic.com/coda/">Coda web site</A>.</P>
+<P>Roll the mouse over and out from the download image to see the popup fade in 
+and out of view, while gently gliding upwards.</P>
+<P><A href="http://jqueryfordesigners.com/coda-popup-bubbles">Read the article, 
+and see the screencast this demonstration relates to</A></P>
+<P><SMALL>Note that the transparency doesn't work in IE - this is the same on 
+the Coda web site where the images were sourced.</SMALL></P>
+<DIV class=bubbleInfo>
+<DIV><IMG class=trigger id=download src="nav-download.png"> </DIV>
+<TABLE class=popup id=dpop>
+  <TBODY>
+  <TR>
+    <TD class=corner id=topleft></TD>
+    <TD class=top></TD>
+    <TD class=corner id=topright></TD></TR>
+  <TR>
+    <TD class=left></TD>
+    <TD>
+      <TABLE class=popup-contents>
+        <TBODY>
+        <TR>
+          <TH>File:</TH>
+          <TD>coda 1.1.zip</TD></TR>
+        <TR>
+          <TH>Date:</TH>
+          <TD>11/30/07</TD></TR>
+        <TR>
+          <TH>Size:</TH>
+          <TD>17 MB</TD></TR>
+        <TR>
+          <TH>Req:</TH>
+          <TD>Mac OS X 10.4+</TD></TR>
+	    <TR>
+          <TH>Req:</TH>
+          <TD>Mac OS X 10.4+  cccccccccccccccccccccccccccccccccccccccccccccccccccc</TD></TR>
+        <TR id=release-notes>
+          <TH>Read the release notes:</TH>
+          <TD><A title="Read the release notes" 
+            href="http://jqueryfordesigners.com/demo/releasenotes.html">release 
+            notes</A></TD></TR></TBODY></TABLE></TD>
+    <TD class=right></TD></TR>
+  <TR>
+    <TD class=corner id=bottomleft></TD>
+    <TD class=bottom><IMG height=29 alt="popup tail" 
+      src="bubble-tail2.gif" width=30></TD>
+    <TD class=corner id=bottomright></TD></TR></TBODY></TABLE></DIV></BODY></HTML>

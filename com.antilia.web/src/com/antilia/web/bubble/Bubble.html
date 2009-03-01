@@ -1,0 +1,35 @@
+<html xmlns:wicket>
+<head>
+     <link rel="stylesheet" type="text/css" href="./bubblepng.css"/>
+</head>
+<body>
+<wicket:panel>
+        <div id="bubble"  class="bubbleInfo" style="display: none;">
+			<table class="popup" id="dpop">
+				  <tbody>
+					  <tr>
+					    <td class="corner" id="topleft"></td>
+					    <td class="top"></td>
+					    <td class="corner" id="topright"></td>
+					    </tr>
+					  <tr>
+					    <td class="left"></td>
+					    <td>
+					        Some data                 
+					      </td>
+					    <td class="right"></td></tr>
+					  <tr>
+					    <td class="corner" id="bottomleft"></td>
+					    <td class="bottom"><img height="29" src="bubble-tail2.png" width="30"/></td>
+					    <td class="corner" id="bottomright"></td>
+					</tr>
+				   </tbody>
+		    </table>
+    </div>
+	<p onmouseover="document.getElementById('bubble').style.display='block';" onmouseout="document.getElementById('bubble').style.display='none';">
+	    Show/Hide
+    </p>
+</wicket:panel>
+</body>
+</html>
+  

@@ -1,0 +1,61 @@
+* {
+    PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px
+}
+
+.bubbleInfo {
+    LEFT: 100px; WIDTH: 500px; POSITION: relative; TOP: 150px
+}
+.trigger {
+    POSITION: absolute
+}
+.popup {
+    display: block;
+    z-index: 50; 
+    position: absolute; 
+    border-collapse: collapse;
+}
+.popup td.corner {
+    WIDTH: 19px; HEIGHT: 15px
+}
+.popup TD#topleft {
+    BACKGROUND-IMAGE: url(bubble-1.png)
+}
+.popup TD.top {
+    BACKGROUND-IMAGE: url(bubble-2.png)
+}
+.popup TD#topright {
+    BACKGROUND-IMAGE: url(bubble-3.png)
+}
+.popup TD.left {
+    BACKGROUND-IMAGE: url(bubble-4.png)
+}
+.popup TD.right {
+    BACKGROUND-IMAGE: url(bubble-5.png)
+}
+.popup TD#bottomleft {
+    BACKGROUND-IMAGE: url(bubble-6.png)
+}
+.popup TD.bottom {
+    BACKGROUND-IMAGE: url(bubble-7.png); TEXT-ALIGN: center
+}
+.popup TD.bottom IMG {
+    DISPLAY: block; MARGIN: 0px auto
+}
+.popup TD#bottomright {
+    BACKGROUND-IMAGE: url(bubble-8.png)
+}
+.popup TABLE.popup-contents {
+    FONT-SIZE: 12px; COLOR: #666; LINE-HEIGHT: 1.2em; FONT-FAMILY: "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", sans-serif; BACKGROUND-COLOR: #fff
+}
+TABLE.popup-contents TH {
+    TEXT-TRANSFORM: lowercase; TEXT-ALIGN: right
+}
+TABLE.popup-contents TD {
+    TEXT-ALIGN: left
+}
+TR#release-notes TH {
+    BACKGROUND: url(http://jqueryfordesigners.com/demo/images/coda/starburst.png) no-repeat right top; TEXT-INDENT: -9999px; HEIGHT: 17px; TEXT-ALIGN: left
+}
+TR#release-notes TD A {
+    COLOR: #333
+}
