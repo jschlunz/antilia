@@ -1,0 +1,12 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Demo Plug-in
+Bundle-SymbolicName: com.antilia.wstarter.demo
+Bundle-Version: 1.0.0
+Bundle-Activator: com.antilia.wstarter.demo.Activator
+Bundle-Vendor: ANTILIA
+Eclipse-RegisterBuddy: com.antilia.wstarter
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Import-Package: org.osgi.framework;version="1.3.0"
+Bundle-ActivationPolicy: lazy
+Require-Bundle: com.antilia.wstarter;bundle-version="1.0.0"
