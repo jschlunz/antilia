@@ -36,7 +36,7 @@ public class Order<B extends Serializable> implements IOrder<B> {
 	 * @param propertyPath
 	 * @return
 	 */
-	public static <T extends Serializable> Order<T> asc(String propertyPath) {
+	public static <T extends Serializable> IOrder<T> asc(String propertyPath) {
 		return new Order<T>(propertyPath, OrderType.ASCENDING);
 	}
 	
@@ -46,7 +46,7 @@ public class Order<B extends Serializable> implements IOrder<B> {
 	 * @param propertyPath
 	 * @return
 	 */
-	public static <T extends Serializable> Order<T> des(String propertyPath) {
+	public static <T extends Serializable> IOrder<T> des(String propertyPath) {
 		return new Order<T>(propertyPath, OrderType.DESCENDING);
 	}
 	
