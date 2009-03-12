@@ -1,6 +1,6 @@
 /**
  * This software is provided as IS by Antilia-Soft SL.
- * Copyright 2006-2007.
+ * Copyright 2008.
  */
 package com.antilia.wstarter.demo;
 
