@@ -22,14 +22,12 @@ public class GuiceBinderServiceTracker extends ServiceTracker {
 		super(context, IGuiceModuleBinderService.class.getName(), null);
 	}
 
-	@SuppressWarnings("static-access")
 	public Object addingService(ServiceReference reference) {
 		IGuiceModuleBinderService moduleBinderService = (IGuiceModuleBinderService)context.getService(reference);
 		moduleBinderService.registerModules(modules);
 		return moduleBinderService;
 	}		
 	
-	@SuppressWarnings("static-access")
 	public void removedService(ServiceReference reference, Object service) {
 		// listener = (IGuiceModuleBinderService)service;
 		// do nothing for the moment!
