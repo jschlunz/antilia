@@ -72,18 +72,15 @@ public class XulSubMenu extends Panel implements IMenuItem, IMenuItemHolder {
 		}
 	}
 	
-	@Override
 	public IMenuItemHolder addMenuItem(IMenuItem menuItem) {
 		menuItems.add(menuItem);
 		return this;
 	}
 
-	@Override
 	public String newItemId() {
 		return items.newChildId();
 	}	
 	
-	@Override
 	public int getOrder() {
 		return 0;
 	}

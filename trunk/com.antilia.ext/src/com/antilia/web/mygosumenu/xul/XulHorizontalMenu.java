@@ -67,13 +67,11 @@ public class XulHorizontalMenu extends Panel implements IMenuItemHolder {
 	}
 
 
-	@Override
 	public IMenuItemHolder addMenuItem(IMenuItem menuItem) {
 		menuItems.add(menuItem);
 		return this;
 	}
 
-	@Override
 	public String newItemId() {
 		return items.newChildId();
 	}	
