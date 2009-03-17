@@ -23,7 +23,6 @@ public class ConjunctionFilter extends JunctionFilter {
 		super(LogicalOperator.AND);
 	}
 
-	@Override
 	public Criterion transform(IFilter source) {
 		Conjunction conjunction =  Restrictions.conjunction();
 		for(IRestrictionFilter filter: getFilters()) {

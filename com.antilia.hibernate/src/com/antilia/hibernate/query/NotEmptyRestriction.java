@@ -33,12 +33,10 @@ public class NotEmptyRestriction extends FilterToCriterionTransfomer  implements
 		return propertyName;
 	}
 
-	@Override
 	public IFilterTransformer<Criterion> getTransformer() {
 		return this;
 	}
 	
-	@Override
 	public Criterion transform(IFilter source) {
 		return org.hibernate.criterion.Restrictions.isNotEmpty(getPropertyName());
 	}

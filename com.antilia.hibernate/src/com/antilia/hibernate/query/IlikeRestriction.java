@@ -39,12 +39,10 @@ public class IlikeRestriction extends FilterToCriterionTransfomer implements IRe
 		return propertyName + " ilike " + value;
 	}
 	
-	@Override
 	public IFilterTransformer<Criterion> getTransformer() {
 		return this;
 	}
 	
-	@Override
 	public Criterion transform(IFilter source) {
 		if(matchMode != null)
 			return Restrictions.ilike(propertyName, value.toString(), matchMode.toMatchMode());

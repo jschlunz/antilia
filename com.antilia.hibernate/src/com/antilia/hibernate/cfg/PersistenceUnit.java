@@ -116,7 +116,6 @@ public  class  PersistenceUnit implements IPersistenceUnit {
 		return this;
 	}
 	
-	@Override
 	public Iterable<Class<?>> getEntityClasses() {
 		return entities;
 	}

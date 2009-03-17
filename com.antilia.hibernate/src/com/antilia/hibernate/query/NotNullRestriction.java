@@ -24,12 +24,10 @@ public class NotNullRestriction extends FilterToCriterionTransfomer  implements 
 		return propertyName;
 	}
 	
-	@Override
 	public IFilterTransformer<Criterion> getTransformer() {
 		return this;
 	}
 	
-	@Override
 	public Criterion transform(IFilter source) {
 		return Restrictions.isNotNull(getPropertyName());
 	}

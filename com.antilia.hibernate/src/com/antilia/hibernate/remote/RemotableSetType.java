@@ -51,7 +51,6 @@ public class RemotableSetType implements UserCollectionType {
         }
     }
     
-    @Override
     public Object instantiate(int anticipatedSize) {
     	return new HashSet<Object>(anticipatedSize);
     }

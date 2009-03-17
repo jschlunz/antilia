@@ -23,7 +23,6 @@ import com.antilia.hibernate.query.IOrder.OrderType;
  */
 public class QueryToCriteriaTransformer<E extends Serializable> implements IQueryTransformer<E, Criteria> {
 
-	@Override
 	public Criteria transform(IQuery<E> source, boolean includeOrdering) {
 		Criteria criteria = RequestContext.get().getSession().createCriteria(source.getEntityClass());
 		if(source.getMaxResults() > 0) {

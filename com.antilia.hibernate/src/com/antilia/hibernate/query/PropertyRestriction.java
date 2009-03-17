@@ -61,12 +61,10 @@ public class PropertyRestriction extends FilterToCriterionTransfomer  implements
 		return op;
 	}
 	
-	@Override
 	public IFilterTransformer<Criterion> getTransformer() {
 		return this;
 	}
 
-	@Override
 	public Criterion transform(IFilter source) {
 		return new PropertyExpressionWrapper(propertyName, otherPropertyName, op.getValue());
 	}
