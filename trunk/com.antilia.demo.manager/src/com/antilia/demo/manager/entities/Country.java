@@ -104,7 +104,6 @@ public class Country implements java.io.Serializable, Comparable<Country> {
 		this.cities = cities;
 	}
 
-	@Override
 	public int compareTo(Country o) {
 		return getName().compareTo(o.getName());
 	}

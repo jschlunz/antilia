@@ -75,7 +75,6 @@ public class City implements java.io.Serializable, Comparable<City>{
 		this.name = name;
 	}
 	
-	@Override
 	public int compareTo(City o) {
 		int country = getCountry().compareTo(o.getCountry());
 		if(country == 0)
