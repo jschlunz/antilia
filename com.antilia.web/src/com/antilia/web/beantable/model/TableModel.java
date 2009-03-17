@@ -111,17 +111,14 @@ public class TableModel<E extends Serializable> extends Model implements ITableM
 		return models.iterator();
 	}
 	
-	@Override
 	public IColumnModel<E> getColumnModel(int index) {
 		return models.get(index);
 	}
 	
-	@Override
 	public Iterator<IColumnModel<E>> getHiddenModels() {
 		return hiddenModels.iterator();
 	}
 	
-	@Override
 	public boolean hideColumn(int i) {
 		if(i>=0 && i < models.size()) {
 			IColumnModel<E> model = models.remove(i);
@@ -146,7 +143,6 @@ public class TableModel<E extends Serializable> extends Model implements ITableM
 		return false;
 	}
 	
-	@Override
 	public boolean moveColumnBefore(int toMove, int before) {		
 		if(toMove==before || toMove==before-1 ) {
 			return false;		
@@ -164,7 +160,6 @@ public class TableModel<E extends Serializable> extends Model implements ITableM
 		return false;
 	}
 
-	@Override
 	public void setColumnModels(List<IColumnModel<E>> models) {
 		this.models = models;
 	}

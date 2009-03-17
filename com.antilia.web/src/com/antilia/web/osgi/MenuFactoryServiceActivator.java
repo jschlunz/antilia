@@ -27,7 +27,6 @@ public class MenuFactoryServiceActivator implements IServiceActivator {
 	/* (non-Javadoc)
 	 * @see com.antilia.common.osgi.IServiceActivator#isMandatory()
 	 */
-	@Override
 	public boolean isMandatory() throws Exception {
 		return false;
 	}
@@ -35,7 +34,6 @@ public class MenuFactoryServiceActivator implements IServiceActivator {
 	/* (non-Javadoc)
 	 * @see com.antilia.common.osgi.IServiceActivator#start(org.osgi.framework.BundleContext)
 	 */
-	@Override
 	public void start(BundleContext context) throws Exception {
 		context.registerService(IMenuFactoryService.class.getName(), MenuFactoryService.getInstance(), null);
 	}
@@ -43,7 +41,6 @@ public class MenuFactoryServiceActivator implements IServiceActivator {
 	/* (non-Javadoc)
 	 * @see com.antilia.common.osgi.IServiceActivator#stop(org.osgi.framework.BundleContext)
 	 */
-	@Override
 	public void stop(BundleContext context) throws Exception {
 		ServiceReference reference = context.getServiceReference(IMenuFactoryService.class.getName());
 		if(reference != null)

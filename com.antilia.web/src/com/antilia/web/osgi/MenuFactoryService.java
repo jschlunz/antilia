@@ -25,7 +25,6 @@ public class MenuFactoryService extends Aggregator<IMenuFactoryPopulator> implem
 	private  MenuFactoryService() {
 	}
 
-	@Override
 	public MenuFactoryService populateFactory(String factoryId, MenuItemsFactory factory) {		
 		if(factoryId.equals(factory.getId())) {
 			for(IMenuFactoryPopulator item : elements()) {

@@ -87,7 +87,6 @@ public class DefaultHeaderCell<E extends Serializable> extends Panel {
 				return getTable().getMarkupId()+"_dragger_"+ getTable().getRendringCount() + "_" +getColumn();
 			}
 			
-			@Override
 			public void onDrop(String sourceId, String targetId, AjaxRequestTarget target) {				
 				if(StringUtils.isEmpty(targetId)) 
 					return;				
@@ -201,7 +200,6 @@ public class DefaultHeaderCell<E extends Serializable> extends Panel {
 						
 						private static final long serialVersionUID = 1L;
 
-						@Override
 						public CharSequence decorateOnFailureScript(CharSequence script) {
 							IDialogScope dialogScope = getDialogScope();
 							if(dialogScope != null) {
@@ -210,7 +208,6 @@ public class DefaultHeaderCell<E extends Serializable> extends Panel {
 							return script;
 						}
 						
-						@Override
 						public CharSequence decorateOnSuccessScript(CharSequence script) {
 							IDialogScope dialogScope = getDialogScope();
 							if(dialogScope != null) {
@@ -219,7 +216,6 @@ public class DefaultHeaderCell<E extends Serializable> extends Panel {
 							return script;
 						}
 						
-						@Override
 						public CharSequence decorateScript(CharSequence script) {
 							IDialogScope dialogScope = getDialogScope();
 							if(dialogScope != null) {

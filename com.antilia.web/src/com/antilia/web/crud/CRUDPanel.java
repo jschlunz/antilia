@@ -253,7 +253,6 @@ public class CRUDPanel<B extends Serializable> extends Panel implements ICRUDMod
 		this.parentCrud = parentCrud;
 	}
 	
-	@Override
 	public CRUDMode getCrudMode() {
 		if(currentPanel != null && currentPanel instanceof ICRUDModeReporter)
 			return ((ICRUDModeReporter)currentPanel).getCrudMode();

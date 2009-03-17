@@ -27,12 +27,10 @@ public class MenuFactoryServiceTracker extends Aggregator<IMenuFactoryPopulator>
 	public MenuFactoryServiceTracker() {
 	}
 
-	@Override
 	public boolean isMandatory() throws Exception {
 		return false;
 	}
 	
-	@Override
 	public void start(BundleContext context) throws Exception {
 		tracker = new TypedServiceTracker<IMenuFactoryService>(context, IMenuFactoryService.class) {
 			
@@ -54,7 +52,6 @@ public class MenuFactoryServiceTracker extends Aggregator<IMenuFactoryPopulator>
 		tracker.open();
 	}
 	
-	@Override
 	public void stop(BundleContext context) throws Exception {
 		tracker.close();
 		tracker = null;

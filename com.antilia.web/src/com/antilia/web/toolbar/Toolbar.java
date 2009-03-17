@@ -114,13 +114,11 @@ public class Toolbar extends Panel implements IToolbar {
 		return this;
 	}
 	
-	@Override
 	public IToolbar removeItem(IToolbarItem item) {
 		items.add(item);
 		return this;
 	}
 	
-	@Override
 	public boolean isOnTop() {
 		return true;
 	}

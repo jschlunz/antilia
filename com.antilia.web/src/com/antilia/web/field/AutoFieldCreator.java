@@ -59,7 +59,6 @@ public class AutoFieldCreator<B extends Serializable> extends Model<BeanProxy<B>
 		return models;
 	}
 	
-	@Override
 	public void addFieldModel(IFieldModel<B> fieldModel) {
 		models.add(fieldModel);
 	}

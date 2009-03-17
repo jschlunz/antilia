@@ -159,7 +159,6 @@ public abstract class AbstractButton extends Panel implements IMenuItem, IToolba
 			
 			private static final long serialVersionUID = 1L;
 
-			@Override
 			public CharSequence decorateOnFailureScript(CharSequence script) {
 				IDialogScope dialogScope = getDialogScope();
 				if(dialogScope != null) {
@@ -168,7 +167,6 @@ public abstract class AbstractButton extends Panel implements IMenuItem, IToolba
 				return script;
 			}
 			
-			@Override
 			public CharSequence decorateOnSuccessScript(CharSequence script) {
 				IDialogScope dialogScope = getDialogScope();
 				if(dialogScope != null) {
@@ -177,7 +175,6 @@ public abstract class AbstractButton extends Panel implements IMenuItem, IToolba
 				return script;
 			}
 			
-			@Override
 			public CharSequence decorateScript(CharSequence script) {
 				IDialogScope dialogScope = getDialogScope();
 				if(dialogScope != null) {

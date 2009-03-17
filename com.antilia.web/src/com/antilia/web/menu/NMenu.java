@@ -116,7 +116,6 @@ public  class NMenu extends Panel implements IMenuItem, IMenuItemHolder {
 		this.menuStyle = menuStyle;
 	}
 	
-	@Override
 	public String newItemId() {
 		return toolBar.newChildId();
 	}

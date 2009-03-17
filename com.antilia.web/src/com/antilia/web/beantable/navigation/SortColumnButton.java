@@ -105,7 +105,6 @@ public class SortColumnButton<E extends Serializable> extends Panel implements I
 			
 			private static final long serialVersionUID = 1L;
 
-			@Override
 			public CharSequence decorateOnFailureScript(CharSequence script) {
 				IDialogScope dialogScope = getDialogScope();
 				if(dialogScope != null) {
@@ -114,7 +113,6 @@ public class SortColumnButton<E extends Serializable> extends Panel implements I
 				return script;
 			}
 			
-			@Override
 			public CharSequence decorateOnSuccessScript(CharSequence script) {
 				IDialogScope dialogScope = getDialogScope();
 				if(dialogScope != null) {
@@ -123,7 +121,6 @@ public class SortColumnButton<E extends Serializable> extends Panel implements I
 				return script;
 			}
 			
-			@Override
 			public CharSequence decorateScript(CharSequence script) {
 				IDialogScope dialogScope = getDialogScope();
 				if(dialogScope != null) {

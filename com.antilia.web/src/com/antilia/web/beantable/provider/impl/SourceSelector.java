@@ -194,7 +194,6 @@ public class SourceSelector<E extends Serializable> implements IProviderSelector
 	}
 	
 
-	@Override
 	public void onClear() {
 		pageSelected = false;
 		selected.clear();

@@ -85,7 +85,6 @@ public class InPlaceSelectionCRUDPanel<B extends Serializable> extends Selection
 					
 					private static final long serialVersionUID = 1L;
 
-					@Override
 					public void populateMenuItems(String menuId, IMenuItemHolder itemHolder) {
 						itemHolder.addMenuItem(new InPlaceBackToParentButton<B>("home", getParentCrud() ));
 					}

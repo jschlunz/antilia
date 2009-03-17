@@ -18,7 +18,6 @@ public class HibernateJpaAutoFieldConfigurator<B extends Serializable> implement
 
 	private static final long serialVersionUID = 1L;
 
-	@Override
 	public void configureFieldModel(IFieldModel<B> model) {
 		try {
 			Column column = AnnotationUtils.findFieldAnnotation(model.getBeanClass(), model.getPropertyPath(), Column.class);

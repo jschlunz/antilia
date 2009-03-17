@@ -434,7 +434,6 @@ public abstract class ModalContainer extends Panel implements IDialogScope, IMen
 		this.parent = parent;
 	}
 	
-	@Override
 	public void addDialog(IDialogScope dialog) {
 		dialogs.add(dialog);
 	}

@@ -143,7 +143,6 @@ public class CreatePanel<B extends Serializable> extends Panel implements ICRUDM
 		return messages;
 	}
 	
-	@Override
 	public CRUDMode getCrudMode() {
 		return CRUDMode.CREATE;
 	}
