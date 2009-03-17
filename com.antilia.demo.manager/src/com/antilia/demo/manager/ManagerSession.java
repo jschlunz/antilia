@@ -34,7 +34,6 @@ public class ManagerSession extends AntiliaSession {
 		return (ManagerSession)Session.get();
 	}
 
-	@Override
 	public boolean isAuthenticated() {
 		if(!StringUtils.isEmpty(userName))
 			return true;

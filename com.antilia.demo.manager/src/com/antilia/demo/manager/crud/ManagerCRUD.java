@@ -55,7 +55,6 @@ public class ManagerCRUD<B extends Serializable> extends TitledCRUDPanel<B> {
 					
 					private static final long serialVersionUID = 1L;
 
-					@Override
 					public void populateMenuItems(String menuId, IMenuItemHolder itemHolder) {
 						itemHolder.addMenuItem(new HomeLink("home"));
 					}

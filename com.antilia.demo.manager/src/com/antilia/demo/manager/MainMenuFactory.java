@@ -35,7 +35,6 @@ public class MainMenuFactory implements IToolbarItemsFactory {
 	/* (non-Javadoc)
 	 * @see com.antilia.web.toolbar.IToolbarItemsFactory#populateMenuItems(java.lang.String, com.antilia.web.toolbar.IToolbar)
 	 */
-	@Override
 	public void populateMenuItems(String menuId, IToolbar toolbar) {
 			SubToolbar subToolbar = new SubToolbar("cities", toolbar) {
 				private static final long serialVersionUID = 1L;
