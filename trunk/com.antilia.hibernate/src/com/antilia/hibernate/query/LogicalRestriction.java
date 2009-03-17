@@ -55,12 +55,10 @@ class LogicalRestriction extends FilterToCriterionTransfomer implements IRestric
 		return op;
 	}
 	
-	@Override
 	public IFilterTransformer<Criterion> getTransformer() {
 		return this;
 	}
 	
-	@Override
 	public Criterion transform(IFilter source) {
 		if(getOp().equals(LogicalOperator.OR)) {
 			return Restrictions.or(lhs.getTransformer().transform(lhs), rhs.getTransformer().transform(rhs));

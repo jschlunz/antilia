@@ -75,7 +75,6 @@ public class Parameter<T> implements IParameter<T> {
 	/* (non-Javadoc)
 	 * @see com.antilia.hibernate.query.IParamter1#getValue()
 	 */
-	@Override
 	public T getValue() {
 		return value;
 	}
@@ -86,7 +85,6 @@ public class Parameter<T> implements IParameter<T> {
 	/* (non-Javadoc)
 	 * @see com.antilia.hibernate.query.IParamter1#isMandatory()
 	 */
-	@Override
 	public boolean isMandatory() {
 		return mandatory;
 	}

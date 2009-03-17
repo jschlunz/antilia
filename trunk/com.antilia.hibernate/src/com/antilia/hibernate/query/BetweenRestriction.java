@@ -49,12 +49,10 @@ public class BetweenRestriction extends FilterToCriterionTransfomer implements I
 		return hi;
 	}
 	
-	@Override
 	public IFilterTransformer<Criterion> getTransformer() {
 		return this;
 	}
 	
-	@Override
 	public Criterion transform(IFilter source) {
 		return Restrictions.between(propertyName, lo, hi);
 	}

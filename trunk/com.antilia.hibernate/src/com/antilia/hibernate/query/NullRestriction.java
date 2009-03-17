@@ -31,12 +31,10 @@ public class NullRestriction extends FilterToCriterionTransfomer implements IRes
 		return propertyName;
 	}
 	
-	@Override
 	public IFilterTransformer<Criterion> getTransformer() {
 		return this;
 	}
 	
-	@Override
 	public Criterion transform(IFilter source) {
 		return Restrictions.isNull(getPropertyName());
 	}

@@ -25,7 +25,6 @@ public class PersistenceSet implements IPersistenceSet {
 	/* (non-Javadoc)
 	 * @see com.antilia.hibernate.cfg.IEntitiesSet#addEntityClass(java.lang.Class)
 	 */
-	@Override
 	public IPersistenceSet addEntityClass(Class<?> entityClass) {
 		if(EntityUtils.isEntity(entityClass)) {
 			entities.add(entityClass);
@@ -41,7 +40,6 @@ public class PersistenceSet implements IPersistenceSet {
 	/* (non-Javadoc)
 	 * @see com.antilia.hibernate.cfg.IEntitiesSet#getEntityClasses()
 	 */
-	@Override
 	public Iterable<Class<?>> getEntityClasses() {
 		return entities;
 	}
@@ -49,7 +47,6 @@ public class PersistenceSet implements IPersistenceSet {
 	/* (non-Javadoc)
 	 * @see com.antilia.hibernate.cfg.IEntitiesSet#removeEntity(java.lang.Class)
 	 */
-	@Override
 	public IPersistenceSet removeEntity(Class<?> entityClass) {
 		entities.remove(entityClass);
 		return  this;

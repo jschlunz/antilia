@@ -32,12 +32,10 @@ public class NotRestriction extends FilterToCriterionTransfomer implements IRest
 		return filter;
 	}
 	
-	@Override
 	public IFilterTransformer<Criterion> getTransformer() {
 		return this;
 	}
 
-	@Override
 	public Criterion transform(IFilter source) {
 		// TODO: ugly, fix this...
 		return Restrictions.not(getFilter().getTransformer().transform(getFilter()));

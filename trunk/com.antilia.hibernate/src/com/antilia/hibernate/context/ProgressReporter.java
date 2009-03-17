@@ -32,8 +32,7 @@ public class ProgressReporter implements IProgressReporter {
 	
 	/* (non-Javadoc)
 	 * @see fcc.ima.wicket.crud.imadbs.IProgresReporter#getMessage()
-	 */
-	@Override
+	 */	
 	public String getMessage() {
 		return message;
 	}
@@ -41,7 +40,6 @@ public class ProgressReporter implements IProgressReporter {
 	/* (non-Javadoc)
 	 * @see fcc.ima.wicket.crud.imadbs.IProgresReporter#getProgress()
 	 */
-	@Override
 	public float getProgress() {
 		return (int)(((float)current/(float)total)*100);
 	}
@@ -49,7 +47,6 @@ public class ProgressReporter implements IProgressReporter {
 	/* (non-Javadoc)
 	 * @see fcc.ima.wicket.crud.imadbs.IProgresReporter#setCurrentTaks(int)
 	 */
-	@Override
 	public void setCurrentTask(long current) {
 		this.current = current;
 	}
@@ -57,7 +54,6 @@ public class ProgressReporter implements IProgressReporter {
 	/* (non-Javadoc)
 	 * @see fcc.ima.wicket.crud.imadbs.IProgresReporter#setMessage(java.lang.String)
 	 */
-	@Override
 	public void setMessage(String message) {
 		this.message = message;
 	}
@@ -65,17 +61,14 @@ public class ProgressReporter implements IProgressReporter {
 	/* (non-Javadoc)
 	 * @see fcc.ima.wicket.crud.imadbs.IProgresReporter#setTotalTasks(int)
 	 */
-	@Override
 	public void setTotalTasks(long total) {
 		this.total = total;
 	}
 	
-	@Override
 	public void cancelJob() {
 		this.canceled = true;
 	}
 	
-	@Override
 	public boolean isCanceled() {
 		return this.canceled;
 	}

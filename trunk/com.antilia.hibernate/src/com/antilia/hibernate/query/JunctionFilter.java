@@ -43,7 +43,6 @@ public abstract class JunctionFilter extends FilterToCriterionTransfomer impleme
 		return op;
 	}
 	
-	@Override
 	public IFilterTransformer<Criterion> getTransformer() {
 		return this;
 	}

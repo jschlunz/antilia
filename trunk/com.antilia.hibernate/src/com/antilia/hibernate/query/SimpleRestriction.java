@@ -68,12 +68,10 @@ public class SimpleRestriction extends FilterToCriterionTransfomer  implements I
 		return ignoreCase;
 	}
 
-	@Override
 	public IFilterTransformer<Criterion> getTransformer() {
 		return this;
 	}
 	
-	@Override
 	public Criterion transform(IFilter source) {
 		return new SimpleExpressionWrapper(propertyName, value, op.getValue());
 	}

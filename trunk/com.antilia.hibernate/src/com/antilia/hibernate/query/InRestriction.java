@@ -40,12 +40,10 @@ public class InRestriction extends FilterToCriterionTransfomer implements IRestr
 		return values;
 	}
 	
-	@Override
 	public IFilterTransformer<Criterion> getTransformer() {
 		return this;
 	}
 	
-	@Override
 	public Criterion transform(IFilter source) {
 		return Restrictions.in(getPropertyName(), getValues());
 	}

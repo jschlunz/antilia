@@ -31,12 +31,10 @@ public class IdentifierEqRestriction extends FilterToCriterionTransfomer  implem
 		return value;
 	}
 	
-	@Override
 	public IFilterTransformer<Criterion> getTransformer() {
 		return this;
 	}
 	
-	@Override
 	public Criterion transform(IFilter source) {
 		return Restrictions.idEq(value);
 	}

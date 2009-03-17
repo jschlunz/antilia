@@ -34,12 +34,10 @@ public class EmptyRestriction extends FilterToCriterionTransfomer implements IRe
 		return propertyName;
 	}
 
-	@Override
 	public IFilterTransformer<Criterion> getTransformer() {
 		return this;
 	}
 	
-	@Override
 	public Criterion transform(IFilter source) {
 		return Restrictions.isEmpty(propertyName);
 	}
