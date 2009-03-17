@@ -44,7 +44,6 @@ public class FirstHeaderCell<E extends Serializable> extends Panel {
 			
 			private static final long serialVersionUID = 1L;
 
-			@Override
 			public void onDrop(String sourceId, String targetId, AjaxRequestTarget target) {				
 				if(StringUtils.isEmpty(targetId)) 
 					return;

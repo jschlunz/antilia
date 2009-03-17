@@ -169,7 +169,6 @@ public class EditPanel<B extends Serializable> extends Panel implements ICRUDMod
 		this.pageableProvider = null;
 	}
 	
-	@Override
 	public CRUDMode getCrudMode() {
 		return CRUDMode.EDIT;
 	}

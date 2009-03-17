@@ -36,7 +36,6 @@ public class CloseDialogAction extends AbstractAction {
 	/* (non-Javadoc)
 	 * @see com.antilia.web.button.IAjaxAction#onSubmit(org.apache.wicket.ajax.AjaxRequestTarget, org.apache.wicket.markup.html.form.Form)
 	 */
-	@Override
 	public void onSubmit(AjaxRequestTarget target, Form<?> form) {
 		dialog.setVisible(false);
 		target.addComponent(dialog);
@@ -53,7 +52,6 @@ public class CloseDialogAction extends AbstractAction {
 		}
 	}
 
-	@Override
 	public void onSubmit() {
 		// do nothing a dialogs onli works with AJAX..
 	}
@@ -65,7 +63,6 @@ public class CloseDialogAction extends AbstractAction {
 		return dialog;
 	}
 	
-	@Override
 	public IAjaxCallDecorator getAjaxCallDecorator() {
 		return new IAjaxCallDecorator() 
 		{

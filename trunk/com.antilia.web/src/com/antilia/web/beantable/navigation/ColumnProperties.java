@@ -63,7 +63,6 @@ public abstract class ColumnProperties<E extends Serializable> extends DropDownB
 			private static final long serialVersionUID = 1L;
 
 			@SuppressWarnings("unchecked")
-			@Override
 			public void populateMenuItems(String menuId,
 					IMenuItemHolder itemHolder) {
 				if(getColumnModel() != null) {

@@ -161,7 +161,6 @@ public class SearchPanel<B extends Serializable> extends Panel implements ILoada
 	}
 	
 	@SuppressWarnings("unchecked")
-	@Override
 	public void reload() {
 		getBeanProxy().updateFilterQuery(getFilterQuery());
 		if(this.pageableProvider instanceof ILoadable) {
@@ -197,7 +196,6 @@ public class SearchPanel<B extends Serializable> extends Panel implements ILoada
 		return pageableProvider;
 	}
 	
-	@Override
 	public CRUDMode getCrudMode() {
 		return CRUDMode.SEARCH;
 	}

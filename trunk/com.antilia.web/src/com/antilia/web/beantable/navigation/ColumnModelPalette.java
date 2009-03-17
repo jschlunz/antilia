@@ -32,13 +32,11 @@ public class ColumnModelPalette<E extends Serializable> extends AntiliaBasePalet
 		private static final long serialVersionUID = 1L;
 
 		@SuppressWarnings("unchecked")
-		@Override
 		public Object getDisplayValue(IColumnModel<E> object) {
 			return ((IColumnModel<E>)object).getPropertyPath();
 		}
 		
 		@SuppressWarnings("unchecked")
-		@Override
 		public String getIdValue(IColumnModel<E> object, int index) {
 			return ((IColumnModel<E>)object).getPropertyPath();
 		}		

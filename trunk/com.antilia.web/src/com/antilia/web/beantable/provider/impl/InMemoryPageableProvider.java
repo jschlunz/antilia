@@ -58,7 +58,6 @@ public class InMemoryPageableProvider<E extends Serializable> implements ILoadab
 		this.query  = new Query<E>(beanClass);
 	}
 	
-	@Override
 	public final  void load(Query<E> filter) {
 		Collection<E> collection = onLoad(filter);
 		if(collection != null) {
@@ -71,13 +70,11 @@ public class InMemoryPageableProvider<E extends Serializable> implements ILoadab
 		this.currentPage = 0;
 	}	
 	
-	@Override
 	public void reset() {
 		this.currentIndex = 0;
 		this.currentPage = 0;
 	}	
 	
-	@Override
 	public void clearcache() {
 		// do nothing
 	}
@@ -124,27 +121,22 @@ public class InMemoryPageableProvider<E extends Serializable> implements ILoadab
 		}	
 	}
 	
-	@Override
 	public void updateAll(Collection<E> element) {
 		
 	}
 
-	@Override
 	public void add(E element) {
 		collection.add(element);
 	}
 	
-	@Override
 	public void addAll(Collection<E> element) {
 		collection.addAll(element);
 	}
 	
-	@Override
 	public void remove(E element) {		
 		collection.remove(element);
 	}
 	
-	@Override
 	public void removeAll(Collection<E> element) {
 		collection.removeAll(element);
 	}
@@ -391,7 +383,6 @@ public class InMemoryPageableProvider<E extends Serializable> implements ILoadab
 		return currentIndex;
 	}
 	
-	@Override
 	public IPageableProvider<E> duplicate() {
 		ArrayList<E> newColection = new ArrayList<E>(this.collection);
 		return new InMemoryPageableProvider<E>(newColection, this.query.getEntityClass());

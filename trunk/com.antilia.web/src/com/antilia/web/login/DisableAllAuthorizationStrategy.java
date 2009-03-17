@@ -4,7 +4,6 @@
 package com.antilia.web.login;
 
 import org.apache.wicket.Component;
-import org.apache.wicket.ProtectedPage;
 import org.apache.wicket.RestartResponseAtInterceptPageException;
 import org.apache.wicket.authorization.Action;
 import org.apache.wicket.authorization.IAuthorizationStrategy;
@@ -30,7 +29,6 @@ public abstract class DisableAllAuthorizationStrategy implements
 	/* (non-Javadoc)
 	 * @see org.apache.wicket.authorization.IAuthorizationStrategy#isActionAuthorized(org.apache.wicket.Component, org.apache.wicket.authorization.Action)
 	 */
-	@Override
 	public boolean isActionAuthorized(Component component, Action action) {
 		return true;
 	}
@@ -38,7 +36,6 @@ public abstract class DisableAllAuthorizationStrategy implements
 	/* (non-Javadoc)
 	 * @see org.apache.wicket.authorization.IAuthorizationStrategy#isInstantiationAuthorized(java.lang.Class)
 	 */
-	@Override
 	public <T extends Component> boolean isInstantiationAuthorized(Class<T> componentClass) {
 		if(IProtectedPage.class.isAssignableFrom(componentClass)) {
 			if(WebSession.get() instanceof IAuthenticableSession) {
@@ -48,7 +45,6 @@ public abstract class DisableAllAuthorizationStrategy implements
 		return true;
 	}
 	
-	@Override
 	public void onUnauthorizedInstantiation(Component component) {
 		throw new RestartResponseAtInterceptPageException(getSignInPage());
 	}

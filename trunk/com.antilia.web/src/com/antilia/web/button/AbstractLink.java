@@ -98,7 +98,6 @@ public abstract class AbstractLink extends Panel implements IMenuItem, IToolbarI
 			
 			private static final long serialVersionUID = 1L;
 
-			@Override
 			public CharSequence decorateOnFailureScript(CharSequence script) {
 				IDialogScope dialogScope = getDialogScope();
 				if(dialogScope != null) {
@@ -107,7 +106,6 @@ public abstract class AbstractLink extends Panel implements IMenuItem, IToolbarI
 				return script;
 			}
 			
-			@Override
 			public CharSequence decorateOnSuccessScript(CharSequence script) {
 				IDialogScope dialogScope = getDialogScope();
 				if(dialogScope != null) {
@@ -116,7 +114,6 @@ public abstract class AbstractLink extends Panel implements IMenuItem, IToolbarI
 				return script;
 			}
 			
-			@Override
 			public CharSequence decorateScript(CharSequence script) {
 				IDialogScope dialogScope = getDialogScope();
 				if(dialogScope != null) {

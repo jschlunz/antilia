@@ -135,7 +135,6 @@ public abstract class   SubToolbar extends Panel implements IToolbarItem, IToolb
 		return this;
 	}
 	
-	@Override
 	public IToolbar removeItem(IToolbarItem item) {
 		items.add(item);
 		return this;
@@ -155,7 +154,6 @@ public abstract class   SubToolbar extends Panel implements IToolbarItem, IToolb
 		this.parentToolbar = parentToolbar;
 	}
 
-	@Override
 	public boolean isOnTop() {
 		return false;
 	}

@@ -23,7 +23,6 @@ public abstract class AbstractAction implements IAction {
 	/* (non-Javadoc)
 	 * @see com.antilia.web.button.IAJAXAction#getTrigger()
 	 */
-	@Override
 	public Component getTrigger() {
 		return trigger;
 	}

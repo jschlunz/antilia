@@ -67,7 +67,6 @@ public class GridPane extends Panel implements IGridPane {
 				GridCell target = new GridCell(id, dashboardPaneRowModel.getRow(), widgetModel.getCol(), widgetModel) {
 					private static final long serialVersionUID = 1L;
 
-					@Override
 					public void onDrop(String input, AjaxRequestTarget target) {
 						if(target != null) {
 							target.addComponent(dashBoardPane);
