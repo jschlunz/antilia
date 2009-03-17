@@ -42,7 +42,6 @@ public class MainButtonsFactory implements IMenuItemsFactory, IToolbarItemsFacto
 		itemHolder.addMenuItem(dropDownButton);
 	}
 	
-	@Override
 	public void populateMenuItems(String menuId, IToolbar toolbar) {
 		SubToolbar subToolbar = new SubToolbar("other", toolbar) {
 			
