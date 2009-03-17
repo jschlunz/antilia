@@ -40,7 +40,6 @@ public class Aggregator<B> implements IAggregator<B> {
 		return this;
 	}
 	
-	@Override
 	public int size() {
 		return elements.size();
 	}
