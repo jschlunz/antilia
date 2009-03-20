@@ -7,7 +7,9 @@ Bundle-Activator: com.antilia.wstarter.Activator
 Bundle-Vendor: ANTILIA
 Eclipse-BuddyPolicy: registered
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-Import-Package: org.osgi.framework;version="1.3.0",
+Import-Package: javax.servlet;version="2.4.0",
+ javax.servlet.http;version="2.4.0",
+ org.osgi.framework;version="1.3.0",
  org.osgi.service.http;version="1.2.0",
  org.osgi.util.tracker;version="1.3.3"
 Bundle-ActivationPolicy: lazy
@@ -200,4 +202,3 @@ Export-Package: com.antilia.wstarter,
  org.slf4j.helpers,
  org.slf4j.impl,
  org.slf4j.spi
-Require-Bundle: javax.servlet;bundle-version="2.4.0"
