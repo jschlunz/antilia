@@ -10,7 +10,7 @@ import com.antilia.web.roundpane.RoundPane;
 import com.antilia.web.roundpane.RoundPaneStyle;
 
 /**
- * @author EReinaldoB
+ * @author reiern70@gmail.com
  *
  */
 public abstract class LogInRoundPanel extends RoundPane {
