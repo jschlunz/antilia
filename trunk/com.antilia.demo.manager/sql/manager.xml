@@ -3,7 +3,7 @@
 <database name="manager">
   
   <table name="COUNTRY">
-    <column name="id"
+    <column name="ID"
             type="INTEGER"
             primaryKey="true"
             required="true"
@@ -20,4 +20,110 @@
     	<unique-column name="name"/>
     </unique>        
   </table>
+  
+  <table name="CITY">
+    <column name="ID"
+            type="INTEGER"
+            primaryKey="true"
+            required="true"
+            autoIncrement="true"/>
+    <column name="COUNTRY"
+            type="INTEGER"
+            required="true"/>        
+    <column name="name"
+            type="VARCHAR"
+            size="300"
+            required="true"/>    
+    <unique name="CITY_NAME_UNIQ">
+    	<unique-column name="COUNTRY"/>
+    	<unique-column name="name"/>	
+    </unique> 
+    <foreign-key foreignTable="COUNTRY">
+    	<reference foreign="ID" local="COUNTRY"/>
+    </foreign-key>   
+  </table>
+  
+  <table name="ADDRESS">
+    <column name="ID"
+            type="INTEGER"
+            primaryKey="true"
+            required="true"
+            autoIncrement="true"/>
+    <column name="CITY"
+            type="INTEGER"
+            required="true"/>        
+    <column name="address1"
+            type="VARCHAR"
+            size="300"
+            required="true"/>
+    <column name="address2"
+            type="VARCHAR"
+            size="300"
+            />
+    <column name="address3"
+            type="VARCHAR"
+            size="300"
+            />         
+    <foreign-key foreignTable="CITY">
+    	<reference foreign="ID" local="CITY"/>
+    </foreign-key>   
+  </table>
+  
+  <table name="CUSTOMER">
+    <column name="ID"
+            type="INTEGER"
+            primaryKey="true"
+            required="true"
+            autoIncrement="true"/>
+    <column name="ADDRESS"
+            type="INTEGER"
+            required="true"/>        
+    <column name="name"
+            type="VARCHAR"
+            size="500"
+            required="true"/>       
+	<unique name="CUSTOMER_NAME_UNIQ">
+    	<unique-column name="ADDRESS"/>
+    	<unique-column name="name"/>
+   	</unique>      
+    <foreign-key foreignTable="ADDRESS">
+    	<reference foreign="ID" local="ADDRESS"/>
+    </foreign-key>   
+  </table>
+  
+  <table name="EMPLOYEE">
+    <column name="ID"
+            type="INTEGER"
+            primaryKey="true"
+            required="true"
+            autoIncrement="true"/>
+    <column name="homeAddress"
+            type="INTEGER"
+            required="true"/>        
+    <column name="name"
+            type="VARCHAR"
+            size="100"
+            required="true"/>   
+    <column name="lastName1"
+            type="VARCHAR"
+            size="100"
+            required="true"/>
+    <column name="lastName2"
+            type="VARCHAR"
+            size="100"
+            />    
+    <column name="hired"
+            type="DATE"
+            size="100"
+            required="true"
+            />
+    <column name="fired"
+            type="DATE"
+            size="100"
+            />    
+    <foreign-key foreignTable="ADDRESS">
+    	<reference foreign="ID" local="homeAddress"/>
+    </foreign-key>   
+  </table>
+  
 </database>
