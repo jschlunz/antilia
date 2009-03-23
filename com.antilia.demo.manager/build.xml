@@ -1,0 +1,33 @@
+<project basedir="." default="database-setup">
+	
+	<path id="runtime-classpath">
+	  <fileset dir="lib">
+	    <include name="**/*.jar"/>
+	    <include name="**/*.zip"/>
+
+	  </fileset>
+	</path>
+
+
+	<target name="database-setup"
+	        description="Creates the database structure and inserts data into the database">
+	  <taskdef name="ddlToDatabase"
+	           classname="org.apache.ddlutils.task.DdlToDatabaseTask">
+	    <classpath refid="runtime-classpath"/>
+	  </taskdef>
+
+	  <ddlToDatabase>
+	    <database url="jdbc:derby://loclahost:1527/manager;create=true"
+	              driverClassName="org.apache.derby.jdbc.ClientDriver"
+	              username="reiern"
+	              password="reiern"/>
+	    <fileset dir="sql">
+	      <include name="manager.xml"/>
+	    </fileset>
+
+	    <createDatabase failonerror="true"/>	    
+	  	<writeSchemaToDatabase/> 
+	  </ddlToDatabase>
+	</target>
+
+</project>
