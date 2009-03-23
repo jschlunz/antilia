@@ -17,7 +17,7 @@
 	  </taskdef>
 
 	  <ddlToDatabase>
-	    <database url="jdbc:derby://loclahost:1527/manager;create=true"
+	    <database url="jdbc:derby://localhost:1527/manager;create=true;"
 	              driverClassName="org.apache.derby.jdbc.ClientDriver"
 	              username="reiern"
 	              password="reiern"/>
