@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<!DOCTYPE database SYSTEM "http://db.apache.org/torque/dtd/database.dtd">
+<database name="manager">
+  
+  <table name="COUNTRY">
+    <column name="id"
+            type="INTEGER"
+            primaryKey="true"
+            required="true"
+            autoIncrement="true"/>
+    <column name="name"
+            type="VARCHAR"
+            size="300"
+            required="true"/>
+    <column name="domain"
+            type="VARCHAR"
+            size="3"
+            required="true"/>
+    <unique name="COUNTRY_NAME_UNIQ">
+    	<unique-column name="name"/>
+    </unique>        
+  </table>
+</database>
