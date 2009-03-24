@@ -20,10 +20,22 @@ import javax.persistence.UniqueConstraint;
 @Table(name = "role", uniqueConstraints = @UniqueConstraint(columnNames = "name"))
 public class Role implements java.io.Serializable {
 
-	private long id;
+	private static final long serialVersionUID = 1L;
+	
+	@Id
+	@Column(name = "id", unique = true, nullable = false)
+	private Long id;
+	
+	@Column(name = "name", unique = true, nullable = false, length = 100)
 	private String name;
+	
+	@Column(name = "shortdescription", nullable = false, length = 300)	
 	private String shortdescription;
+	
+	@Column(name = "description", length = 2000)
 	private String description;
+	
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "role")
 	private Set<EmployeeRole> employeeRoles = new HashSet<EmployeeRole>(0);
 
 	public Role() {
@@ -44,17 +56,16 @@ public class Role implements java.io.Serializable {
 		this.employeeRoles = employeeRoles;
 	}
 
-	@Id
-	@Column(name = "id", unique = true, nullable = false)
-	public long getId() {
+	
+	public Long getId() {
 		return this.id;
 	}
 
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
-	@Column(name = "name", unique = true, nullable = false, length = 100)
+	
 	public String getName() {
 		return this.name;
 	}
@@ -63,7 +74,7 @@ public class Role implements java.io.Serializable {
 		this.name = name;
 	}
 
-	@Column(name = "shortdescription", nullable = false, length = 300)
+	
 	public String getShortdescription() {
 		return this.shortdescription;
 	}
@@ -72,7 +83,7 @@ public class Role implements java.io.Serializable {
 		this.shortdescription = shortdescription;
 	}
 
-	@Column(name = "description", length = 2000)
+	
 	public String getDescription() {
 		return this.description;
 	}
@@ -81,7 +92,7 @@ public class Role implements java.io.Serializable {
 		this.description = description;
 	}
 
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "role")
+	
 	public Set<EmployeeRole> getEmployeeRoles() {
 		return this.employeeRoles;
 	}

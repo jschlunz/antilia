@@ -25,15 +25,38 @@ import javax.persistence.TemporalType;
 @Table(name = "task")
 public class Task implements java.io.Serializable {
 
-	private long id;
+	private static final long serialVersionUID = 1L;
+	
+	@Id
+	@Column(name = "id", unique = true, nullable = false)
+	private Long id;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "project", nullable = false)
 	private Task task;
+	
+	@Column(name = "name", nullable = false, length = 200)
 	private String name;
+	
+	@Column(name = "description", nullable = false, length = 400)
 	private String description;
+	
+	@Temporal(TemporalType.DATE)
+	@Column(name = "startdate", nullable = false, length = 13)
 	private Date startdate;
+	
+	@Temporal(TemporalType.DATE)
+	@Column(name = "enddate", length = 13)
 	private Date enddate;
+	
+	@Column(name = "estimatedhours", precision = 3, scale = 1)
 	private BigDecimal estimatedhours;
+	
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "task")
 	private Set<Asignment> asignments = new HashSet<Asignment>(0);
-	private Set<Task> tasks = new HashSet<Task>(0);
+	
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "task")
+	private Set<Task> tasks = new HashSet<Task>(0);	
 
 	public Task() {
 	}
@@ -61,18 +84,16 @@ public class Task implements java.io.Serializable {
 		this.tasks = tasks;
 	}
 
-	@Id
-	@Column(name = "id", unique = true, nullable = false)
-	public long getId() {
+	
+	public Long getId() {
 		return this.id;
 	}
 
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "project", nullable = false)
+	
 	public Task getTask() {
 		return this.task;
 	}
@@ -81,7 +102,7 @@ public class Task implements java.io.Serializable {
 		this.task = task;
 	}
 
-	@Column(name = "name", nullable = false, length = 200)
+	
 	public String getName() {
 		return this.name;
 	}
@@ -90,7 +111,7 @@ public class Task implements java.io.Serializable {
 		this.name = name;
 	}
 
-	@Column(name = "description", nullable = false, length = 400)
+	
 	public String getDescription() {
 		return this.description;
 	}
@@ -99,8 +120,7 @@ public class Task implements java.io.Serializable {
 		this.description = description;
 	}
 
-	@Temporal(TemporalType.DATE)
-	@Column(name = "startdate", nullable = false, length = 13)
+	
 	public Date getStartdate() {
 		return this.startdate;
 	}
@@ -109,8 +129,7 @@ public class Task implements java.io.Serializable {
 		this.startdate = startdate;
 	}
 
-	@Temporal(TemporalType.DATE)
-	@Column(name = "enddate", length = 13)
+	
 	public Date getEnddate() {
 		return this.enddate;
 	}
@@ -119,7 +138,7 @@ public class Task implements java.io.Serializable {
 		this.enddate = enddate;
 	}
 
-	@Column(name = "estimatedhours", precision = 3, scale = 1)
+	
 	public BigDecimal getEstimatedhours() {
 		return this.estimatedhours;
 	}
@@ -128,7 +147,7 @@ public class Task implements java.io.Serializable {
 		this.estimatedhours = estimatedhours;
 	}
 
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "task")
+	
 	public Set<Asignment> getAsignments() {
 		return this.asignments;
 	}
@@ -137,7 +156,7 @@ public class Task implements java.io.Serializable {
 		this.asignments = asignments;
 	}
 
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "task")
+	
 	public Set<Task> getTasks() {
 		return this.tasks;
 	}

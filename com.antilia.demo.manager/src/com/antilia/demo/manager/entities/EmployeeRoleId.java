@@ -11,6 +11,8 @@ import javax.persistence.Embeddable;
 @Embeddable
 public class EmployeeRoleId implements java.io.Serializable {
 
+	private static final long serialVersionUID = 1L;
+	
 	private long role;
 	private long employee;
 

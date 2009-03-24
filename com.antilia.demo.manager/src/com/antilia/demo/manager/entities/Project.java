@@ -3,6 +3,7 @@ package com.antilia.demo.manager.entities;
 // Generated Apr 23, 2008 5:11:37 PM by Hibernate Tools 3.2.1.GA
 
 import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -21,12 +22,29 @@ import javax.persistence.UniqueConstraint;
 @Table(name = "project", uniqueConstraints = @UniqueConstraint(columnNames = {
 		"name", "customer" }))
 public class Project implements java.io.Serializable {
-
-	private long id;
+	
+	private static final long serialVersionUID = 1L;
+	
+	@Id
+	@Column(name = "id", unique = true, nullable = false)
+	private Long id;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "customer", nullable = false)
 	private Customer customer;
+	
+	@Column(name = "name", nullable = false, length = 200)
 	private String name;
+	
+	@Column(name = "description", length = 500)
 	private String description;
+	
+	@Temporal(TemporalType.DATE)
+	@Column(name = "starttime", nullable = false, length = 13)
 	private Date starttime;
+	
+	@Temporal(TemporalType.DATE)
+	@Column(name = "endtime", length = 13)
 	private Date endtime;
 
 	public Project() {
@@ -49,18 +67,16 @@ public class Project implements java.io.Serializable {
 		this.endtime = endtime;
 	}
 
-	@Id
-	@Column(name = "id", unique = true, nullable = false)
-	public long getId() {
+	
+	public Long getId() {
 		return this.id;
 	}
 
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "customer", nullable = false)
+	
 	public Customer getCustomer() {
 		return this.customer;
 	}
@@ -69,7 +85,7 @@ public class Project implements java.io.Serializable {
 		this.customer = customer;
 	}
 
-	@Column(name = "name", nullable = false, length = 200)
+	
 	public String getName() {
 		return this.name;
 	}
@@ -78,7 +94,7 @@ public class Project implements java.io.Serializable {
 		this.name = name;
 	}
 
-	@Column(name = "description", length = 500)
+	
 	public String getDescription() {
 		return this.description;
 	}
@@ -87,8 +103,7 @@ public class Project implements java.io.Serializable {
 		this.description = description;
 	}
 
-	@Temporal(TemporalType.DATE)
-	@Column(name = "starttime", nullable = false, length = 13)
+	
 	public Date getStarttime() {
 		return this.starttime;
 	}
@@ -97,8 +112,7 @@ public class Project implements java.io.Serializable {
 		this.starttime = starttime;
 	}
 
-	@Temporal(TemporalType.DATE)
-	@Column(name = "endtime", length = 13)
+	
 	public Date getEndtime() {
 		return this.endtime;
 	}

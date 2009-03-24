@@ -127,7 +127,7 @@ ALTER TABLE TASK ADD CONSTRAINT TASK_FK_PROJECT FOREIGN KEY (PROJECT) REFERENCES
 CREATE TABLE ASIGNMENT (
   id INTEGER NOT NULL generated always as identity (start with 1, increment by 1),
   task INTEGER NOT NULL,
-  employee INTEGER NOT NULL,
+  employee INTEGER NOT NULL,  
   startDate DATE NOT NULL,
   endDate DATE,
   estimatedHours NUMERIC(3,2)

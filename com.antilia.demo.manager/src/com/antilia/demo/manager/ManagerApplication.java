@@ -10,7 +10,7 @@ import org.apache.wicket.RequestCycle;
 import org.apache.wicket.Response;
 import org.apache.wicket.Session;
 
-import com.antilia.demo.manager.test.PostgrePersistenceUnit;
+import com.antilia.demo.manager.test.DerbyPersistenceUnit;
 import com.antilia.hibernate.cfg.IPersistenceUnit;
 import com.antilia.hibernate.context.RequestContext;
 import com.antilia.web.AntiliaWebApplication;
@@ -68,7 +68,8 @@ public class ManagerApplication extends AntiliaWebApplication {
 	
 	@Override
 	public RequestCycle newRequestCycle(Request request, Response response) {
-		IPersistenceUnit persistenceUnit = PostgrePersistenceUnit.getInstance();		
+		//IPersistenceUnit persistenceUnit = PostgrePersistenceUnit.getInstance();
+		IPersistenceUnit persistenceUnit = DerbyPersistenceUnit.getInstance();
 		RequestContext requestContext = RequestContext.get();
 		requestContext.setPersistenceUnit(persistenceUnit);
 		requestContext.setUser("test");

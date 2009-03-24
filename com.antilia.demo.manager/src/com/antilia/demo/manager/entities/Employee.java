@@ -24,14 +24,40 @@ import javax.persistence.TemporalType;
 @Table(name = "employee")
 public class Employee implements java.io.Serializable {
 
-	private long id;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
+	@Id
+	@Column(name = "id", unique = true, nullable = false)
+	private Long id;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "homeaddress", nullable = false)
 	private Address address;
+	
+	@Column(name = "name", nullable = false, length = 100)
 	private String name;
+	
+	@Column(name = "lastname1", nullable = false, length = 100)
 	private String lastname1;
+	
+	@Column(name = "lastname2", length = 100)
 	private String lastname2;
+	
+	@Temporal(TemporalType.DATE)
+	@Column(name = "hired", nullable = false, length = 13)
 	private Date hired;
+	
+	@Temporal(TemporalType.DATE)
+	@Column(name = "fired", length = 13)
 	private Date fired;
+	
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "employee")
 	private Set<EmployeeRole> employeeRoles = new HashSet<EmployeeRole>(0);
+	
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "employee")
 	private Set<Asignment> asignments = new HashSet<Asignment>(0);
 
 	public Employee() {
@@ -60,18 +86,16 @@ public class Employee implements java.io.Serializable {
 		this.asignments = asignments;
 	}
 
-	@Id
-	@Column(name = "id", unique = true, nullable = false)
-	public long getId() {
+	
+	public Long getId() {
 		return this.id;
 	}
 
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "homeaddress", nullable = false)
+
 	public Address getAddress() {
 		return this.address;
 	}
@@ -80,7 +104,7 @@ public class Employee implements java.io.Serializable {
 		this.address = address;
 	}
 
-	@Column(name = "name", nullable = false, length = 100)
+	
 	public String getName() {
 		return this.name;
 	}
@@ -89,7 +113,7 @@ public class Employee implements java.io.Serializable {
 		this.name = name;
 	}
 
-	@Column(name = "lastname1", nullable = false, length = 100)
+	
 	public String getLastname1() {
 		return this.lastname1;
 	}
@@ -98,7 +122,7 @@ public class Employee implements java.io.Serializable {
 		this.lastname1 = lastname1;
 	}
 
-	@Column(name = "lastname2", length = 100)
+	
 	public String getLastname2() {
 		return this.lastname2;
 	}
@@ -107,8 +131,7 @@ public class Employee implements java.io.Serializable {
 		this.lastname2 = lastname2;
 	}
 
-	@Temporal(TemporalType.DATE)
-	@Column(name = "hired", nullable = false, length = 13)
+
 	public Date getHired() {
 		return this.hired;
 	}
@@ -117,8 +140,7 @@ public class Employee implements java.io.Serializable {
 		this.hired = hired;
 	}
 
-	@Temporal(TemporalType.DATE)
-	@Column(name = "fired", length = 13)
+	
 	public Date getFired() {
 		return this.fired;
 	}
@@ -127,7 +149,7 @@ public class Employee implements java.io.Serializable {
 		this.fired = fired;
 	}
 
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "employee")
+	
 	public Set<EmployeeRole> getEmployeeRoles() {
 		return this.employeeRoles;
 	}
@@ -136,7 +158,7 @@ public class Employee implements java.io.Serializable {
 		this.employeeRoles = employeeRoles;
 	}
 
-	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "employee")
+	
 	public Set<Asignment> getAsignments() {
 		return this.asignments;
 	}
