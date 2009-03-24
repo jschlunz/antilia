@@ -63,7 +63,12 @@
     <column name="address3"
             type="VARCHAR"
             size="300"
-            />         
+            />
+    <column name="zipcode"
+            type="VARCHAR"
+            size="40"
+            />        
+                     
     <foreign-key foreignTable="CITY">
     	<reference foreign="ID" local="CITY"/>
     </foreign-key>   
@@ -124,6 +129,194 @@
     <foreign-key foreignTable="ADDRESS">
     	<reference foreign="ID" local="homeAddress"/>
     </foreign-key>   
+  </table>
+  
+  <table name="ROLE">
+    <column name="ID"
+            type="INTEGER"
+            primaryKey="true"
+            required="true"
+            autoIncrement="true"/>
+    <column name="name"
+            type="VARCHAR"
+            size="100"
+            required="true"/>   
+    <column name="shortdescription"
+            type="VARCHAR"
+            size="300"
+            required="true"/>
+    <column name="description"
+            type="VARCHAR"
+            size="2000"
+            />             
+    <unique name="ROLE_NAME_UNIQ">
+    	<unique-column name="name"/>
+   	</unique>   
+  </table>
+  
+  <table name="EMPLOYEE_ROLE">
+    <column name="ROLE"
+            type="INTEGER"
+            primaryKey="true"
+            required="true"/>
+    <column name="EMPLOYEE"
+            type="INTEGER"
+            primaryKey="true"
+            required="true"/>	           
+    <column name="startDate"
+            type="DATE"
+            size="100"
+            required="true"/>   
+    <column name="endDate"
+            type="DATE"
+            size="100"
+            />
+             
+    <foreign-key name="EMPLOYEE_ROLE_FK_ROLE" foreignTable="ROLE">
+    	<reference foreign="ID" local="ROLE"/>
+    </foreign-key>
+    
+    <foreign-key name="EMPLOYEE_ROLE_FK_EMPLOYEE" foreignTable="EMPLOYEE">
+    	<reference foreign="ID" local="EMPLOYEE"/>
+    </foreign-key>   
+  </table>
+  
+  <table name="PROJECT">
+    <column name="ID"
+            type="INTEGER"
+            primaryKey="true"
+            required="true"
+            autoIncrement="true"
+            />
+    <column name="CUSTOMER"
+            type="INTEGER"
+            required="true"/>            	           
+	<column name="name"
+            type="VARCHAR"
+            required="true"
+            size="200"/>
+ 	<column name="description"
+            type="VARCHAR"
+            size="500"/>           
+    <column name="startDate"
+            type="DATE"
+            size="100"
+            required="true"/>   
+    <column name="endDate"
+            type="DATE"
+            size="100"
+            />    
+    <unique name="PROJECT_NAME_CUST_UNIQ">
+    	<unique-column name="CUSTOMER"/>
+    	<unique-column name="name"/>
+   	</unique>	         
+    <foreign-key name="PROJECT_FK_CUSTOMER" foreignTable="CUSTOMER">
+    	<reference foreign="ID" local="CUSTOMER"/>
+    </foreign-key>         
+  </table>
+  
+  <table name="CHARGERATE">
+    <column name="ID"
+            type="INTEGER"
+            primaryKey="true"
+            required="true"
+            autoIncrement="true"
+            />
+    <column name="CUSTOMER"
+            type="INTEGER"
+            required="true"/>
+    <column name="ROLE"
+            type="INTEGER"
+            required="true"/>            	           
+	<column name="chargePerHour"
+            type="NUMERIC"
+            required="false"
+            size="3,2"
+            default="0"/>               
+    <foreign-key name="CHARGERATE_FK_CUSTOMER" foreignTable="CUSTOMER">
+    	<reference foreign="ID" local="CUSTOMER"/>
+    </foreign-key>         
+    <foreign-key name="CHARGERATE_FK_ROLE" foreignTable="ROLE">
+    	<reference foreign="ID" local="ROLE"/>
+    </foreign-key>
+  </table>
+  
+  <table name="TASK">
+    <column name="ID"
+            type="INTEGER"
+            primaryKey="true"
+            required="true"
+            autoIncrement="true"
+            />
+    <column name="PROJECT"
+            type="INTEGER"
+            required="true"/>
+    <column name="name"
+            type="VARCHAR"
+            required="true"
+            size="200"/>
+	<column name="description"
+            type="VARCHAR"
+            required="true"
+            size="400"/>
+	<column name="startDate"
+            type="DATE"
+            size="100"
+            required="true"/>   
+	<column name="endDate"
+            type="DATE"
+            size="100"
+            />       
+    <column name="estimatedHours"
+            type="NUMERIC"
+            required="false"
+            size="3,2"
+            default="0"/>      	           
+    <foreign-key name="TASK_FK_PROJECT" foreignTable="PROJECT">
+    	<reference foreign="ID" local="PROJECT"/>
+    </foreign-key>         
+  </table>
+  
+  <table name="ASIGNMENT">
+    <column name="ID"
+            type="INTEGER"
+            primaryKey="true"
+            required="true"
+            autoIncrement="true"
+            />
+    <column name="TASK"
+            type="INTEGER"
+            required="true"/>
+    <column name="EMPLOYEE"
+            type="INTEGER"
+            required="true"/>
+    <column name="notes"
+            type="VARCHAR"
+            required="true"
+            size="200"/>
+	<column name="startDate"
+            type="DATE"
+            size="100"
+            required="true"/>   
+	<column name="endDate"
+            type="DATE"
+            size="100"
+            />       
+    <column name="estimatedHours"
+            type="NUMERIC"
+            required="false"
+            size="3,2"
+            default="0"/>  
+    <unique name="ASIGNMENT_TASK_EMP_UNIQ">
+    	<unique-column name="TASK"/>
+    	<unique-column name="EMPLOYEE"/>
+   	</unique>    	           
+    <foreign-key name="ASIGNMENT_FK_TASK" foreignTable="TASK">
+    	<reference foreign="ID" local="TASK"/>
+    </foreign-key>         
+    <foreign-key name="ASIGNMENT_FK_EMPLOYEE" foreignTable="EMPLOYEE">
+    	<reference foreign="ID" local="EMPLOYEE"/>
+    </foreign-key>
   </table>
   
 </database>

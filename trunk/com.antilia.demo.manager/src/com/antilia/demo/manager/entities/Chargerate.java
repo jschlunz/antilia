@@ -18,21 +18,22 @@ import javax.persistence.Table;
 @Table(name = "chargerate")
 public class Chargerate implements java.io.Serializable {
 
+	private static final long serialVersionUID = 1L;
 	private long id;
 	private Customer customer;
-	private long role;
+	private Role role;
 	private BigDecimal chargeperhour;
 
 	public Chargerate() {
 	}
 
-	public Chargerate(long id, Customer customer, long role) {
+	public Chargerate(long id, Customer customer, Role role) {
 		this.id = id;
 		this.customer = customer;
 		this.role = role;
 	}
 
-	public Chargerate(long id, Customer customer, long role,
+	public Chargerate(long id, Customer customer, Role role,
 			BigDecimal chargeperhour) {
 		this.id = id;
 		this.customer = customer;
@@ -60,12 +61,13 @@ public class Chargerate implements java.io.Serializable {
 		this.customer = customer;
 	}
 
-	@Column(name = "role", nullable = false)
-	public long getRole() {
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "role", nullable = false)
+	public Role getRole() {
 		return this.role;
 	}
 
-	public void setRole(long role) {
+	public void setRole(Role role) {
 		this.role = role;
 	}
 

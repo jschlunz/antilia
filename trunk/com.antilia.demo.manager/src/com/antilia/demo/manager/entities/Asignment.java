@@ -23,11 +23,32 @@ import javax.persistence.UniqueConstraint;
 		"task", "employee" }))
 public class Asignment implements java.io.Serializable {
 
+	private static final long serialVersionUID = 1L;
+	
+	@Id
+	@Column(name = "id", unique = true, nullable = false)
 	private long id;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "task", nullable = false)	
 	private Task task;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "employee", nullable = false)
 	private Employee employee;
+	
+	@Column(name = "notes", length=200)
+	private String notes;
+	
+	@Temporal(TemporalType.DATE)
+	@Column(name = "startdate", nullable = false, length = 13)
 	private Date startdate;
+	
+	@Temporal(TemporalType.DATE)
+	@Column(name = "enddate", length = 13)
 	private Date enddate;
+	
+	@Column(name = "estimatedhours", precision = 3)
 	private BigDecimal estimatedhours;
 
 	public Asignment() {
@@ -50,8 +71,7 @@ public class Asignment implements java.io.Serializable {
 		this.estimatedhours = estimatedhours;
 	}
 
-	@Id
-	@Column(name = "id", unique = true, nullable = false)
+	
 	public long getId() {
 		return this.id;
 	}
@@ -60,8 +80,7 @@ public class Asignment implements java.io.Serializable {
 		this.id = id;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "task", nullable = false)
+	
 	public Task getTask() {
 		return this.task;
 	}
@@ -70,8 +89,7 @@ public class Asignment implements java.io.Serializable {
 		this.task = task;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "employee", nullable = false)
+	
 	public Employee getEmployee() {
 		return this.employee;
 	}
@@ -80,8 +98,7 @@ public class Asignment implements java.io.Serializable {
 		this.employee = employee;
 	}
 
-	@Temporal(TemporalType.DATE)
-	@Column(name = "startdate", nullable = false, length = 13)
+	
 	public Date getStartdate() {
 		return this.startdate;
 	}
@@ -90,8 +107,7 @@ public class Asignment implements java.io.Serializable {
 		this.startdate = startdate;
 	}
 
-	@Temporal(TemporalType.DATE)
-	@Column(name = "enddate", length = 13)
+
 	public Date getEnddate() {
 		return this.enddate;
 	}
@@ -100,13 +116,22 @@ public class Asignment implements java.io.Serializable {
 		this.enddate = enddate;
 	}
 
-	@Column(name = "estimatedhours", precision = 3)
+	
 	public BigDecimal getEstimatedhours() {
 		return this.estimatedhours;
 	}
 
 	public void setEstimatedhours(BigDecimal estimatedhours) {
 		this.estimatedhours = estimatedhours;
+	}
+	
+	public String getNotes() {
+		return notes;
+	}
+
+	
+	public void setNotes(String notes) {
+		this.notes = notes;
 	}
 
 }

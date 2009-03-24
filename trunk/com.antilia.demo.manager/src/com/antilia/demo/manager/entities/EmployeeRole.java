@@ -22,10 +22,28 @@ import javax.persistence.TemporalType;
 @Table(name = "employee_role")
 public class EmployeeRole implements java.io.Serializable {
 
+	private static final long serialVersionUID = 1L;
+	
+	@EmbeddedId
+	@AttributeOverrides( {
+			@AttributeOverride(name = "role", column = @Column(name = "role", nullable = false)),
+			@AttributeOverride(name = "employee", column = @Column(name = "employee", nullable = false)) })
 	private EmployeeRoleId id;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "role", nullable = false, insertable = false, updatable = false)
 	private Role role;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "employee", nullable = false, insertable = false, updatable = false)
 	private Employee employee;
+	
+	@Temporal(TemporalType.DATE)
+	@Column(name = "startdate", nullable = false, length = 13)
 	private Date startdate;
+	
+	@Temporal(TemporalType.DATE)
+	@Column(name = "enddate", length = 13)
 	private Date enddate;
 
 	public EmployeeRole() {
@@ -48,10 +66,7 @@ public class EmployeeRole implements java.io.Serializable {
 		this.enddate = enddate;
 	}
 
-	@EmbeddedId
-	@AttributeOverrides( {
-			@AttributeOverride(name = "role", column = @Column(name = "role", nullable = false)),
-			@AttributeOverride(name = "employee", column = @Column(name = "employee", nullable = false)) })
+	
 	public EmployeeRoleId getId() {
 		return this.id;
 	}
@@ -60,8 +75,7 @@ public class EmployeeRole implements java.io.Serializable {
 		this.id = id;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "role", nullable = false, insertable = false, updatable = false)
+	
 	public Role getRole() {
 		return this.role;
 	}
@@ -70,8 +84,7 @@ public class EmployeeRole implements java.io.Serializable {
 		this.role = role;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "employee", nullable = false, insertable = false, updatable = false)
+	
 	public Employee getEmployee() {
 		return this.employee;
 	}
@@ -80,8 +93,7 @@ public class EmployeeRole implements java.io.Serializable {
 		this.employee = employee;
 	}
 
-	@Temporal(TemporalType.DATE)
-	@Column(name = "startdate", nullable = false, length = 13)
+	
 	public Date getStartdate() {
 		return this.startdate;
 	}
@@ -90,8 +102,7 @@ public class EmployeeRole implements java.io.Serializable {
 		this.startdate = startdate;
 	}
 
-	@Temporal(TemporalType.DATE)
-	@Column(name = "enddate", length = 13)
+	
 	public Date getEnddate() {
 		return this.enddate;
 	}
