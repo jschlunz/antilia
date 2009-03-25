@@ -8,7 +8,9 @@ import java.io.Serializable;
 
 import org.apache.wicket.Component;
 import org.apache.wicket.ResourceReference;
+import org.apache.wicket.Session;
 import org.apache.wicket.ajax.AjaxRequestTarget;
+import org.apache.wicket.feedback.FeedbackMessage;
 import org.apache.wicket.markup.html.form.Form;
 
 import com.antilia.common.util.ReflectionUtils;
@@ -18,6 +20,7 @@ import com.antilia.web.dialog.IDialogScope;
 import com.antilia.web.field.BeanProxy;
 import com.antilia.web.field.IFieldModel;
 import com.antilia.web.resources.DefaultStyle;
+import com.tombrus.javaParser.Token.Iterator;
 
 /**
  * 
@@ -73,6 +76,22 @@ public class InPlaceLargeSelectionButton<B extends Serializable> extends Abstrac
 			InPlaceSelectionCRUDPanel<B> inPlaceSelectionCRUDPanel = new InPlaceSelectionCRUDPanel<B>(IDialogScope.BODY_ID, crudPanel, beanClass ,  beanProxy, fieldModel);
 			dialogScope.replaceBody(inPlaceSelectionCRUDPanel);
 			target.addComponent((Component)dialogScope);
+		}
+	}
+	
+	@Override
+	protected void onError(AjaxRequestTarget target, Form<?> form) {
+		CRUDPanel<Serializable> crudPanel =findCRUDPanel();
+		java.util.Iterator<FeedbackMessage> feedBack = Session.get().getFeedbackMessages().iterator();
+		while(feedBack.hasNext()) {
+			FeedbackMessage feedbackMessage = feedBack.next();
+			System.out.println(feedbackMessage.getMessage());
+		}
+		if(crudPanel.getEditPanel() != null) {
+			if(target != null) {
+				crudPanel.getEditPanel().getFeedBack().setVisible(true);
+				target.addComponent(crudPanel.getEditPanel().getFeedBack());
+			}
 		}
 	}
 	
