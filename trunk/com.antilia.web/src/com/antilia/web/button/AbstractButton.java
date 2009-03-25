@@ -113,6 +113,11 @@ public abstract class AbstractButton extends Panel implements IMenuItem, IToolba
 					return AbstractButton.this.isEnabled();
 				}
 				
+				@Override
+				protected void onError(AjaxRequestTarget target, Form<?> form) {
+					AbstractButton.this.onError(target, form);
+				}
+				
 			};	
 		}
 		return new Button(id) {
@@ -139,6 +144,11 @@ public abstract class AbstractButton extends Panel implements IMenuItem, IToolba
 	 */
 	protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
 				
+	}
+	
+	protected void onError(AjaxRequestTarget target, Form<?> form)
+	{
+		
 	}
 	
 	/**

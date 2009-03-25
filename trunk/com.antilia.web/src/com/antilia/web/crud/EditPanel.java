@@ -54,14 +54,17 @@ public class EditPanel<B extends Serializable> extends Panel implements ICRUDMod
 		super(id);		
 		this.beanClass = styler.getBeanClass();
 		this.styler = styler;
-		setOutputMarkupId(true);	
-		
+		setOutputMarkupId(true);		
+		feedBack = new FeedbackPanel("feedBack");
+		feedBack.setOutputMarkupId(true);
+		add(feedBack);
 		
 	}
 	
 	@SuppressWarnings("unchecked")
 	@Override
 	protected void onBeforeRender() {
+		super.onBeforeRender();
 		if(pageableProvider == null) {
 			ArrayList< B> beans = new ArrayList<B>();
 			IProviderSelector<B> selector = getCRUDPanel().getSelected();		
@@ -75,10 +78,7 @@ public class EditPanel<B extends Serializable> extends Panel implements ICRUDMod
 				}
 			}
 			pageableProvider = new InMemoryPageableProvider<B>(beans, beanClass);
-		}		
-		
-		feedBack = new FeedbackPanel("feedBack");
-		addOrReplace(feedBack);
+		}				
 		
 		this.beanProxy = new BeanProxy<B>(pageableProvider.current());
 		
@@ -96,7 +96,7 @@ public class EditPanel<B extends Serializable> extends Panel implements ICRUDMod
 		AutoFieldPanel<B> autoFieldPanel = newAutoFieldPanel("autofield",autoFieldCreator);
 		
 		beanForm.addOrReplace(autoFieldPanel);
-		super.onBeforeRender();
+		
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -140,8 +140,10 @@ public class EditPanel<B extends Serializable> extends Panel implements ICRUDMod
 	}
 	
 	protected BeanForm<B> newForm(String id, BeanProxy<B> beanProxy) {
-		return new BeanForm<B>(id, beanProxy);
+		return new BeanForm<B>(id, beanProxy);			
 	}
+	
+	
 	
 	protected IAutoFieldCreator<B> newAutoFieldCreator(IQuery<B> query, BeanProxy<B> beanProxy) {
 		return new AutoFieldCreator<B>(query, beanProxy);
