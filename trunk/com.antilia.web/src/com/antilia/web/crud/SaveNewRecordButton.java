@@ -61,6 +61,16 @@ public class SaveNewRecordButton<E extends Serializable> extends AbstractButton 
 	}
 	
 	@Override
+	protected void onError(AjaxRequestTarget target, Form<?> form) {
+		CRUDPanel<E> crudPanel =findCRUDPanel();		
+		if(crudPanel.getCurrentPanel() instanceof IFeedBackAware) {
+			if(target != null) {			
+				target.addComponent((Component)((IFeedBackAware)crudPanel.getCurrentPanel()).getFeedback());
+			}
+		}
+	}
+	
+	@Override
 	protected String getLabelKey() {
 		return "SaveNewRecordButton.label";
 	}

@@ -61,6 +61,12 @@ public class InPlaceBackToParentButton<B extends Serializable> extends AbstractB
 	}
 	
 	@Override
+	protected String getTitleKey() {
+		return "InPlaceBackToParentButton.label";
+	}
+	
+	
+	@Override
 	protected ResourceReference getImage() {
 		return DefaultStyle.IMG_BACK;
 	}

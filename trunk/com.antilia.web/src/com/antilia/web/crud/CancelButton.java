@@ -47,6 +47,11 @@ public class CancelButton<E extends Serializable> extends AbstractLink {
 		return "CancelButton.label";
 	}
 	
+	@Override
+	protected String getTitleKey() {
+		return "CancelButton.label";
+	}
+	
 	
 	@Override
 	protected void onClick(AjaxRequestTarget target) {
