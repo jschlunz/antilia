@@ -13,7 +13,9 @@ import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.image.Image;
 import org.apache.wicket.markup.html.panel.Panel;
+import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
+import org.apache.wicket.model.ResourceModel;
 import org.wicketstuff.minis.veil.VeilResources;
 
 import com.antilia.common.util.StringUtils;
@@ -57,6 +59,10 @@ public abstract class AbstractLink extends Panel implements IMenuItem, IToolbarI
 				return AbstractLink.this.getLinkClass();
 			}
 		}));
+		IModel<String> title = getTitleModel();
+		if(title != null) {
+			link.add(new AttributeModifier("title", title));
+		}
 		add(link);
 		image = newImage("image");
 		link.add(image);
@@ -68,10 +74,27 @@ public abstract class AbstractLink extends Panel implements IMenuItem, IToolbarI
 	protected void onBeforeRender() {
 		super.onBeforeRender();
 		
-		if(text == null) {
+		if(text == null) {			
 			text = newLabel(LABEL_ID);
 			link.add(text);
 		}
+	}
+	
+	/**
+	 * Creates a new title model.
+	 * 
+	 * @return
+	 */
+	protected IModel<String> getTitleModel() {
+		String key = getTitleKey();
+		if(key != null)
+			return new ResourceModel(key, getLabel());
+		return null;
+	}
+	
+	
+	protected String getTitleKey() {
+		return null;
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -134,12 +157,33 @@ public abstract class AbstractLink extends Panel implements IMenuItem, IToolbarI
 		return dialogScope;
 	}
 	
+	
 	protected Label newLabel(String id) {
-		String text = getLabel();
-		Label label = new Label(id, text);
-		if(StringUtils.isEmpty(text))
-			label.setVisible(false);
-		return label;
+		IModel<String> model = getLabelModel();
+		if(model != null)
+			return new Label(id, model);
+		else {
+			String text = getLabel();
+			Label label = new Label(id, text);
+			if(StringUtils.isEmpty(text))
+				label.setVisible(false);
+			return label;
+		}
+	}
+	
+	/**
+	 * Override this method to get a different resource model.
+	 * @return
+	 */
+	protected IModel<String> getLabelModel() {
+		String key = getLabelKey();
+		if(key != null)
+			return new ResourceModel(key, getLabel());
+		return null;
+	}
+	
+	protected String getLabelKey() {
+		return null;
 	}
 	
 	protected abstract void onClick(AjaxRequestTarget target);

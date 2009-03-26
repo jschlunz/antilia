@@ -56,7 +56,7 @@ public class SaveNewRecordButton<E extends Serializable> extends AbstractButton 
 			}
 		} catch (Exception e) {
 			getPage().error(ExceptionUtils.getFeedBackMessage(e));
-			target.addComponent(findCreatePanel().getMessages());
+			target.addComponent(findCreatePanel().getFeedback());
 		}
 	}
 	

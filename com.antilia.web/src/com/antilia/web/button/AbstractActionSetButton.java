@@ -19,6 +19,8 @@ import com.antilia.common.osgi.IAggregator;
  */
 public abstract class AbstractActionSetButton extends AbstractButton implements IActionsGroup {
 
+	private static final long serialVersionUID = 1L;
+	
 	private IAggregator<IAction> actions = new Aggregator<IAction>();
 	
 	public AbstractActionSetButton(String id) {

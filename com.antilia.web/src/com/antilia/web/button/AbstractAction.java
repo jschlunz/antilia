@@ -14,6 +14,8 @@ import org.apache.wicket.Component;
  */
 public abstract class AbstractAction implements IAction {
 
+	private static final long serialVersionUID = 1L;
+	
 	private Component trigger;
 	
 	public AbstractAction(Component trigger) {

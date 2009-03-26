@@ -86,7 +86,7 @@ public abstract class AbstractButton extends Panel implements IMenuItem, IToolba
 	}
 	
 	/**
-	 * Override this method if you want to rpovide your own implementation of 
+	 * Override this method if you want to provide your own implementation of 
 	 * the a link (the inner button of the panel).
 	 * 
 	 * @param id
