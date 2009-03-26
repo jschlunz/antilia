@@ -9,6 +9,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -32,8 +33,8 @@ public class Address implements java.io.Serializable, Comparable<Address> {
 	@Exclude
 	@Id
 	@Column(name = "id", unique = true, nullable = false)
-	@GeneratedValue(generator="address_seq")
 	@SequenceGenerator(name="address_seq",sequenceName="address_seq", allocationSize=1)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
@@ -81,6 +82,10 @@ public class Address implements java.io.Serializable, Comparable<Address> {
 		this.employees = employees;
 	}
 
+	@Override
+	public String toString() {
+		return address1 + "," + this.city;
+	}
 	
 	public Long getId() {
 		return this.id;

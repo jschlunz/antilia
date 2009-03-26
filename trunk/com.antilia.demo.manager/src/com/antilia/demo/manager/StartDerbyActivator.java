@@ -11,7 +11,9 @@ import org.osgi.framework.BundleContext;
 import com.antilia.common.osgi.IServiceActivator;
 
 /**
- * @author Juan Carlos López Artigas
+ * Iservcie Activator used to start derby.
+ * 
+ * @author Ernesto Reinaldo Barreiro (reiern70@gmail.com)
  *
  */
 public class StartDerbyActivator implements IServiceActivator {
