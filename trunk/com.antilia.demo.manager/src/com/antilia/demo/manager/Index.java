@@ -1,3 +1,7 @@
+/**
+ * This software is provided as IS by Antilia-Soft SL.
+ * Copyright 2006-2007.
+ */
 package com.antilia.demo.manager;
 
 import org.apache.wicket.markup.html.WebMarkupContainer;
@@ -6,6 +10,11 @@ import com.antilia.web.layout.FullPage;
 import com.antilia.web.login.IProtectedPage;
 
 
+/**
+ * 
+ * @author Ernesto Reinaldo Barreiro (reiern70@gmail.com)
+ *
+ */
 public class Index extends FullPage implements IContainer, IProtectedPage {
 
 	private static final long serialVersionUID = 1L;	
