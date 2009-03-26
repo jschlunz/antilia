@@ -72,6 +72,12 @@ public class CRUDButton<T extends Serializable> extends AbstractLink {
 	protected String getLabel() {
 		return this.label;
 	}
+	
+	@Override
+	protected String getLabelKey() {
+		return this.label;
+	}
+	
 
 	/* (non-Javadoc)
 	 * @see com.antilia.web.button.AbstractLink#onClick(org.apache.wicket.ajax.AjaxRequestTarget)
