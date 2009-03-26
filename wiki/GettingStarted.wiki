@@ -42,8 +42,11 @@ In order to get the second application working, you will need to:
    # com.antilia.web.hibernate
    # com.antilia.demo.manager
    # com.antilia.export (optional)
- * Have a POSGRES server installed somewhere and run the creation script manager_postgre.sql for at com.antilia.demo.manager/sql folder. The application could be easily adapted to runs with other data-base engines but we haven't had the time for that yet.
- * If you open the Debugs dialog configuration  and you go to the section OSGi Framework, you will find the *manager34* launcher. You can use it to start the application. Then browse to http:localhost:8080/manager to see the application working.
+ * If you open the Debugs dialog configuration  and you go to the section OSGi Framework, you will find the *manager34* launcher. You can use it to start the application. 
+ * Start the application using previous launcher. The application will launch a jetty server. Then you can use the external ant launcher with name *buildDatabase* to launch and ANT script that will build the database.
+ * Then browse to http:localhost:8080/manager to see the application working and start entering data.
+
+*Note:* This is still work in progress.
   
     
   
