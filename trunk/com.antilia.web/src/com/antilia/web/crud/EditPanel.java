@@ -29,7 +29,7 @@ import com.antilia.web.menu.Menu;
  * 
  * @author Ernesto Reinaldo Barreiro (reiern70@gmail.com)
  */
-public class EditPanel<B extends Serializable> extends Panel implements ICRUDModeReporter {
+public class EditPanel<B extends Serializable> extends Panel implements ICRUDModeReporter, IFeedBackAware {
 
 	private static final long serialVersionUID = 1L;
 
@@ -42,7 +42,7 @@ public class EditPanel<B extends Serializable> extends Panel implements ICRUDMod
 	
 	private CrudStyler<B> styler;
 	
-	private FeedbackPanel feedBack;
+	private FeedbackPanel feedback;
 	
 	/**
 	 * 
@@ -55,9 +55,9 @@ public class EditPanel<B extends Serializable> extends Panel implements ICRUDMod
 		this.beanClass = styler.getBeanClass();
 		this.styler = styler;
 		setOutputMarkupId(true);		
-		feedBack = new FeedbackPanel("feedBack");
-		feedBack.setOutputMarkupId(true);
-		add(feedBack);
+		feedback = new FeedbackPanel("feedBack");
+		feedback.setOutputMarkupId(true);
+		add(feedback);
 		
 	}
 	
@@ -123,12 +123,12 @@ public class EditPanel<B extends Serializable> extends Panel implements ICRUDMod
 		
 	}
 	
-	public FeedbackPanel getFeedBack() {
-		return feedBack;
+	public FeedbackPanel getFeedback() {
+		return feedback;
 	}
 
-	public void setFeedBack(FeedbackPanel feedBack) {
-		this.feedBack = feedBack;
+	public void setFeedback(FeedbackPanel feedBack) {
+		this.feedback = feedBack;
 	}
 
 	protected void populateTopMenu(Menu topMenu) {

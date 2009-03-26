@@ -9,9 +9,8 @@ import java.io.Serializable;
 import org.apache.wicket.Component;
 import org.apache.wicket.ResourceReference;
 import org.apache.wicket.ajax.AjaxRequestTarget;
-import org.apache.wicket.markup.html.form.Form;
 
-import com.antilia.web.button.AbstractButton;
+import com.antilia.web.button.AbstractLink;
 import com.antilia.web.resources.DefaultStyle;
 
 
@@ -19,12 +18,12 @@ import com.antilia.web.resources.DefaultStyle;
  * 
  * @author Ernesto Reinaldo Barreiro (reiern70@gmail.com)
  */
-public class CancelButton<E extends Serializable> extends AbstractButton {
+public class CancelButton<E extends Serializable> extends AbstractLink {
 
 	private static final long serialVersionUID = 1L;
 
 	public CancelButton() {
-		super("cancel", true);
+		super("cancel");
 	}
 	
 	/* (non-Javadoc)
@@ -48,15 +47,16 @@ public class CancelButton<E extends Serializable> extends AbstractButton {
 		return "CancelButton.label";
 	}
 	
+	
 	@Override
-	protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
-			CRUDPanel<E> crudPanel = getCRUDPanel();
-			if(crudPanel != null) {	
-				crudPanel.getEditPanel().clearPageableProvider();
-				crudPanel.getSelected().clear();
-				crudPanel.setCurrentPanel(crudPanel.getSearchPanel());
-				target.addComponent((Component)crudPanel);
-			}		
+	protected void onClick(AjaxRequestTarget target) {
+		CRUDPanel<E> crudPanel = getCRUDPanel();
+		if(crudPanel != null) {	
+			crudPanel.getEditPanel().clearPageableProvider();
+			crudPanel.getSelected().clear();
+			crudPanel.setCurrentPanel(crudPanel.getSearchPanel());
+			target.addComponent((Component)crudPanel);
+		}
 	}
 
 	@SuppressWarnings("unchecked")

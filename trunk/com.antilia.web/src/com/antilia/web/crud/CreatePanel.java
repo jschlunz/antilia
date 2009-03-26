@@ -24,7 +24,7 @@ import com.antilia.web.menu.Menu;
  * 
  * @author Ernesto Reinaldo Barreiro (reiern70@gmail.com)
  */
-public class CreatePanel<B extends Serializable> extends Panel implements ICRUDModeReporter {
+public class CreatePanel<B extends Serializable> extends Panel implements ICRUDModeReporter, IFeedBackAware {
 
 	private static final long serialVersionUID = 1L;
 
@@ -34,7 +34,7 @@ public class CreatePanel<B extends Serializable> extends Panel implements ICRUDM
 	
 	private CrudStyler<B> styler;
 	
-	private FeedbackPanel messages;
+	private FeedbackPanel feedback;
 	
 	/**
 	 * 
@@ -48,9 +48,9 @@ public class CreatePanel<B extends Serializable> extends Panel implements ICRUDM
 		this.styler = styler;
 		
 		setOutputMarkupId(true);		
-		messages  = new FeedbackPanel("messages");
-		messages.setOutputMarkupId(true);
-		add(messages);
+		feedback  = new FeedbackPanel("messages");
+		feedback.setOutputMarkupId(true);
+		add(feedback);
 	}
 	
 	@Override
@@ -139,8 +139,8 @@ public class CreatePanel<B extends Serializable> extends Panel implements ICRUDM
 	/**
 	 * @return the messages
 	 */
-	public FeedbackPanel getMessages() {
-		return messages;
+	public FeedbackPanel getFeedback() {
+		return feedback;
 	}
 	
 	public CRUDMode getCrudMode() {
