@@ -39,6 +39,15 @@ public class HomeLink extends AbstractLink {
 		return "Back To Home";
 	}
 	
+	@Override
+	protected String getLabelKey() {
+		return "BackToHome";		
+	}
+	
+	@Override
+	protected String getTitleKey() {
+		return "BackToHome.title";
+	}	
 
 	/* (non-Javadoc)
 	 * @see com.antilia.web.button.AbstractLink#onClick(org.apache.wicket.ajax.AjaxRequestTarget)
