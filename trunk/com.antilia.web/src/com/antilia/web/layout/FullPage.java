@@ -1,8 +1,10 @@
 /**
- * 
+ * This software is provided as IS by Antilia-Soft SL.
+ * Copyright 2008-2009.
  */
 package com.antilia.web.layout;
 
+import org.apache.wicket.Component;
 import org.apache.wicket.IPageMap;
 import org.apache.wicket.PageParameters;
 import org.apache.wicket.ResourceReference;
@@ -13,12 +15,16 @@ import org.apache.wicket.model.IModel;
 import com.antilia.web.resources.DefaultStyle;
 
 /**
- * @author EReinaldoB
+ * A page that occupies the whole view port. 
+ * 
+ * @author Ernesto Reinaldo Barreiro (reiern70@gmail.com)
  *
  */
 public class FullPage extends WebPage {
 
 	public static ResourceReference FullPageCSS = new ResourceReference(FullPage.class, "FullPage.css");
+	
+	public static String HEADER_ID = "header";
 	
 	/**
 	 * 
@@ -79,7 +85,18 @@ public class FullPage extends WebPage {
 		add(HeaderContributor.forCss(DefaultStyle.CSS_MAIN));
 
 		
-		add(HeaderContributor.forCss(FullPageCSS));
+		add(HeaderContributor.forCss(getFullPageCSS()));
+		
+		add(newHeader(HEADER_ID));
 	}
 
+	protected ResourceReference getFullPageCSS() {
+		return FullPageCSS;
+	}
+	
+	protected Component newHeader(String id) {
+		DefaultFullPageHeader header = new DefaultFullPageHeader(id);
+		header.setRenderBodyOnly(true);
+		return header;
+	}
 }
