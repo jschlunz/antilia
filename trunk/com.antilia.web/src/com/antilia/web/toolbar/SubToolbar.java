@@ -81,6 +81,9 @@ public abstract class   SubToolbar extends Panel implements IToolbarItem, IToolb
 	
 	protected Image newImage(String id) {
 		return new Image(id, DefaultStyle.IMG_TOOLBAR_ARROW ) {
+			
+			private static final long serialVersionUID = 1L;
+
 			@Override
 			public boolean isVisible() {
 				return !SubToolbar.this.parentToolbar.isOnTop();
@@ -93,14 +96,17 @@ public abstract class   SubToolbar extends Panel implements IToolbarItem, IToolb
 	protected void onBeforeRender() {
 		super.onBeforeRender();
 		
-		RefreshingView items = new RefreshingView("items") {
+		RefreshingView<Integer> items = new RefreshingView<Integer>("items") {
+			
+			private static final long serialVersionUID = 1L;
+
 			@Override
-			protected Iterator getItemModels() {
-				List<IModel> list = new ArrayList<IModel>();
+			protected Iterator<IModel<Integer>> getItemModels() {
+				List<IModel<Integer>> list = new ArrayList<IModel<Integer>>();
 				int i = 0;
 				for(IToolbarItem item: SubToolbar.this.items) {			
 					if(item instanceof Component) {
-						list.add(new Model(new Integer(i)));
+						list.add(new Model<Integer>(new Integer(i)));
 						i++;
 					}
 				}
@@ -108,7 +114,7 @@ public abstract class   SubToolbar extends Panel implements IToolbarItem, IToolb
 			}
 			
 			@Override
-			protected void populateItem(Item item) {
+			protected void populateItem(Item<Integer> item) {
 				RepeatingView rowView = new RepeatingView("item");
 				item.add(rowView);
 				int index = (Integer)item.getModel().getObject();

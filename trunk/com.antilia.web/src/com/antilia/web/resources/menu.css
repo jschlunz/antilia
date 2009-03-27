@@ -113,6 +113,7 @@
 
 .ddmx .section {
     border: 1px solid #b8b4ae;
+    width: auto;
     position: absolute;
     visibility: hidden;
     z-index: -1;
@@ -120,6 +121,7 @@
 
 .ddmx .section td {
     background: url('./images/menu.png') repeat-x;
+    padding-right: 4px;
 }
 
 .ddmx .section td:hover {
