@@ -82,7 +82,7 @@ public class Toolbar extends Panel implements IToolbar {
 			}
 		}
 		
-		Label script = new Label("script", new Model()) {
+		Label script = new Label("script", new Model<String>()) {
 			private static final long serialVersionUID = 1L;
 
 			@Override
@@ -98,8 +98,7 @@ public class Toolbar extends Panel implements IToolbar {
 				sb.append(".delay.hide = 400;\n");
 				sb.append(toolbarId);
 				sb.append(".position.levelX.left = 2;\n");
-				sb.append(toolbarId);
-				sb.append(".init();\n");
+				sb.append("YAHOO.util.Event.onDOMReady(function(){"+toolbarId+".init();})");
 				replaceComponentTagBody(markupStream, openTag, sb.toString());
 			}
 		};
