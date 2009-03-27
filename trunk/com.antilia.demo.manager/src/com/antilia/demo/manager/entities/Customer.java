@@ -39,7 +39,7 @@ public class Customer implements java.io.Serializable {
 	@Column(name = "name", nullable = false, length = 500)
 	private String name;
 	
-	@Column(name = "status", length = 20)
+	@Column(name = "status", length = 20, nullable = false)
 	private String status;
 	
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "customer")
