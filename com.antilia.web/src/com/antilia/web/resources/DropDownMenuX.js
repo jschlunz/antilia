@@ -83,7 +83,8 @@ function DropDownMenuX(id) {
             widths.push(getMaxWidth(sections[i].childNodes));
         }
         for (var i = 0; i < sections.length; i++) {
-            sections[i].style.width = (widths[i]) + "px";
+            //sections[i].style.width = (widths[i]) + "px";
+        	sections[i].style.width = "auto";
         }
         if (self.browser.ie) {
             for (var i = 0; i < sections.length; i++) {
