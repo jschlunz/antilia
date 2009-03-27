@@ -125,7 +125,7 @@
 }
 
 .ddmx .section td:hover {
-     background: #ffffff;
+     background-color: #ffffff;
 }
 
 * html .ddmx td { position: relative; } /* ie 5.0 fix */
