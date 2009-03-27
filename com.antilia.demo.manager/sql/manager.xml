@@ -86,7 +86,11 @@
     <column name="name"
             type="VARCHAR"
             size="500"
-            required="true"/>       
+            required="true"/>
+    <column name="status"
+            type="VARCHAR"
+            size="20"
+            required="true"/>			                   
 	<unique name="CUSTOMER_NAME_UNIQ">
     	<unique-column name="ADDRESS"/>
     	<unique-column name="name"/>
