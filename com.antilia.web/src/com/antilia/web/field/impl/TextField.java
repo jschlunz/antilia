@@ -32,7 +32,7 @@ public class TextField<B extends Serializable> extends BaseFormField<B> {
 	 * @param propertyPath
 	 */
 	public TextField(String id, IFieldModel<B> model, FieldMode mode) {
-		super(id, model, mode);
+		super(id, model, mode);		
 		label = new Label("label", getLabelModel());
 		add(label);
 				
@@ -47,6 +47,7 @@ public class TextField<B extends Serializable> extends BaseFormField<B> {
 				"field", 
 				getBeanProxy().getPropertyValue(getPropertyPath()).getModel());
 			add(textField);
+			textField.setOutputMarkupId(true);
 			if(getMode() == FieldMode.EDIT && getFieldModel().isRequiered()) {
 				textField.setRequired(true);
 				textField.add(new AttributeModifier("class",new Model<String>("requiredText")));

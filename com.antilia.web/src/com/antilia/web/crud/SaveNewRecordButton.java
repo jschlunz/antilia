@@ -5,10 +5,13 @@
 package com.antilia.web.crud;
 
 import java.io.Serializable;
+import java.util.Iterator;
 
 import org.apache.wicket.Component;
 import org.apache.wicket.ResourceReference;
+import org.apache.wicket.Session;
 import org.apache.wicket.ajax.AjaxRequestTarget;
+import org.apache.wicket.feedback.FeedbackMessage;
 import org.apache.wicket.markup.html.form.Form;
 
 import com.antilia.web.button.AbstractButton;
@@ -68,6 +71,8 @@ public class SaveNewRecordButton<E extends Serializable> extends AbstractButton 
 				target.addComponent((Component)((IFeedBackAware)crudPanel.getCurrentPanel()).getFeedback());
 			}
 		}
+		String script = ExceptionUtils.getChangeStyleScript("error");
+		target.appendJavascript(script.toString());
 	}
 	
 	@Override
