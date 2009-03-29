@@ -76,6 +76,10 @@ textarea.requiredText, input.requiredText {
     background-color: #fffdd7;
 }
 
+textarea.error, input.error {
+    background-color: red;
+}
+
 textarea.Missing, input.Missing {
     background-color: red;
 }

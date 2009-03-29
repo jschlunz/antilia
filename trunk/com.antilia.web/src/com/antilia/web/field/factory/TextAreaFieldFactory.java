@@ -26,7 +26,7 @@ public class TextAreaFieldFactory<B extends Serializable> implements IFieldFacto
 	 * @see com.antilia.web.field.factory.IFieldFactory#canHandleField(com.antilia.web.field.IFieldModel)
 	 */
 	public boolean canHandleField(IFieldModel<B> model, FieldMode mode) {
-		if(String.class.isAssignableFrom(model.getFieldClass()) && model.getLength() >= 120 && mode.equals(FieldMode.EDIT))
+		if(String.class.isAssignableFrom(model.getFieldClass()) && model.getLength() >= 200 && mode.equals(FieldMode.EDIT))
 			return true;
 		return false;
 	}

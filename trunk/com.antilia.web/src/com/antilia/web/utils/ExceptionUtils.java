@@ -5,7 +5,10 @@
 package com.antilia.web.utils;
 
 import java.sql.SQLException;
+import java.util.Iterator;
 
+import org.apache.wicket.Session;
+import org.apache.wicket.feedback.FeedbackMessage;
 import org.hibernate.HibernateException;
 
 import com.antilia.hibernate.PersistenceException;
@@ -41,6 +44,27 @@ public class ExceptionUtils extends com.antilia.common.util.ExceptionUtils {
 			}
 		}				
 		return getExceptionMessage(e);
-	}	
+	}
+	
+	public static String getChangeStyleScript(String style) {
+		StringBuffer script = new StringBuffer();
+		Iterator<FeedbackMessage> messages = Session.get().getFeedbackMessages().iterator();
+		script.append(";Antilia.setStyle( new Array(");	
+		int count = 0;
+		while(messages.hasNext()) {
+			FeedbackMessage message = messages.next();
+			if(message.getReporter() != null) {
+				if(count>0) {
+					script.append(",");
+				}
+				script.append("'");
+				script.append(message.getReporter().getMarkupId());
+				script.append("'");				
+				count++;
+			}			
+		}
+		script.append("),'"+style+"');");
+		return script.toString();
+	}
 
 }

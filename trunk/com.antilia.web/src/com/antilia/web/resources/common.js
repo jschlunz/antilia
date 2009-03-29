@@ -153,4 +153,14 @@ Antilia.Drag = {
 	}
 };
 
+ 
+ Antilia.setStyle = function(fields, styleClass) { 	
+	 for(var i=0; i < fields.length; i++) {
+		 var id = fields[i];		 
+		 var ele = document.getElementById(id);		 
+		 if(ele) {
+			ele.className = styleClass;
+		 }
+	 }	 
+ };
 
