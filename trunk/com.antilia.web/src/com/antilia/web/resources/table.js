@@ -128,8 +128,9 @@ TColumn.prototype.initialize = function() {
     
     this.dd.onInvalidDrop = function(e) {         
         // Animating the move is more intesting 
-               var Dom = YAHOO.util.Dom;
+               var Dom = YAHOO.util.Dom;               
                Dom.setStyle(this.getEl(), "opacity", 1);
+               this.getEl().className = 'tabled';
                new YAHOO.util.Motion(  
                 this.getEl().id, {  
                               points: {  
@@ -138,8 +139,7 @@ TColumn.prototype.initialize = function() {
                           },  
                           0.3,  
                           YAHOO.util.Easing.easeOut  
-                      ).animate(); 
-       
+                      ).animate();                       
      }
      
     this.dd.onMouseDown  = function(e) {  
@@ -149,6 +149,7 @@ TColumn.prototype.initialize = function() {
     this.dd.startDrag = function(x, y) { 
         var Dom = YAHOO.util.Dom;
         //        
+        this.getEl().className = 'ondrag';
         Dom.setStyle(this.getEl(), "opacity", 0.5);
     }
     
@@ -162,7 +163,7 @@ TColumn.prototype.initialize = function() {
     this.dd.onDragOut =  function(e, id) { 
         var Dom = YAHOO.util.Dom;
         var el = YAHOO.util.Dom.get(id);
-        el.parentNode.className='';
+        el.parentNode.className='';        
         Dom.setStyle(el, "opacity", 1);                 
     }
 }

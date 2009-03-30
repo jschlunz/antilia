@@ -72,6 +72,10 @@ td.droptarget {
     background: url("images/drop-arrow-black.png") 0px 2px no-repeat transparent;
 }
 
+div.ondrag {    
+    border: 1px solid white;
+}
+
 .columns ul {
     list-style:  none;    
 }
