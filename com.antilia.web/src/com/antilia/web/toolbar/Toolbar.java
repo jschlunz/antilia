@@ -47,6 +47,13 @@ public class Toolbar extends Panel implements IToolbar {
 	 */
 	public Toolbar(String id, IToolbarItemsFactory... factories) {
 		super(id);
+		
+		add(HeaderContributor.forJavaScript(DefaultStyle.JS_YUI_DOM_EVENT));
+		add(HeaderContributor.forJavaScript(DefaultStyle.JS_YUI_DOM_MIN));
+		add(HeaderContributor.forJavaScript(DefaultStyle.JS_YUI_EVENT));
+		add(HeaderContributor.forJavaScript(DefaultStyle.JS_YUI_ANIMATION));
+		add(HeaderContributor.forJavaScript(DefaultStyle.JS_YUI_DRAG_DROP));
+		
 		add(HeaderContributor.forCss(DefaultStyle.CC_menu));
 		add(HeaderContributor.forJavaScript(DefaultStyle.JS_ie5));
 		add(HeaderContributor.forJavaScript(DefaultStyle.JS_DropDownMenuX));
