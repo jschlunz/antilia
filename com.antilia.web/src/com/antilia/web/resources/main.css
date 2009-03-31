@@ -136,7 +136,10 @@ div.nav-menu {
 	width: 100%;
 	white-space: nowrap;
 	height: 22px;
-	background: transparent url('images/menu.png') repeat-x;		
+	background: transparent url('images/menu.png') repeat-x;
+	padding: 0px;
+	margin: 0px;
+	padding-top: 2px;	
 }
 
 .nav-menu ul
