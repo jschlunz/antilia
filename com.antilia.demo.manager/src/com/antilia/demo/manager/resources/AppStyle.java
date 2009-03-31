@@ -19,7 +19,5 @@ public class AppStyle {
 	public static ResourceReference CSS_TABS = new ResourceReference(AppStyle.class, "tabs.css");
 	
 	public static ResourceReference IMG_TABLE = new ResourceReference(AppStyle.class, "table.gif");
-	
-	public static ResourceReference CSS_TABLE = new ResourceReference(AppStyle.class, "table.css");
 
 }
