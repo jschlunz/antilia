@@ -7,10 +7,9 @@ package com.antilia.demo.buttons;
 import org.apache.wicket.ResourceReference;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.markup.html.WebMarkupContainer;
-import org.apache.wicket.markup.html.form.Form;
 
 import com.antilia.demo.Index;
-import com.antilia.web.button.AbstractButton;
+import com.antilia.web.button.AbstractLink;
 import com.antilia.web.resources.DefaultStyle;
 
 
@@ -18,21 +17,22 @@ import com.antilia.web.resources.DefaultStyle;
  * 
  * @author Ernesto Reinaldo Barreiro (reiern70@gmail.com)
  */
-public abstract  class AppNavigationButton extends AbstractButton {
+public abstract  class AppNavigationButton extends AbstractLink {
 
 	private static final long serialVersionUID = 1L;
 
 	private Index page;
 	
 	public AppNavigationButton(String id, Index page) {
-		super(id, true);	
+		super(id);	
 		this.page = page;
 	}
 	
+	
 	@Override
-	protected void onSubmit(AjaxRequestTarget target, Form form) {
-		this.page.setBody(getBodyPanel("body"));
-		target.addComponent(this.page.getContents());
+	protected void onClick(AjaxRequestTarget target) {
+		this.page.setContent(getBodyPanel("content"));
+		target.addComponent(this.page.getBody());
 	}
 	
 	/* (non-Javadoc)

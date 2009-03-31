@@ -1,28 +1,9 @@
-<html>
-	<body>
-		<div class="main" style="padding: 0 0 0 0; margin: 0 0 0 0;">
-			<form wicket:id="form">
-			<table  style="margin: 0; padding: 0; width: 100%; height: 75px;" cellpadding="0" cellspacing="0">
-				<tr>
-					<td class="banner-left" nowrap="nowrap">
-						&nbsp;
-					</td>
-					<td class="banner-right" nowrap="nowrap">
-						&nbsp;
-					</td>
-				</tr>
-			</table>			
-			<div wicket:id="menu"></div>		
-			<div style="position: relative; width: 100%; height: 100%; vertical-align: top; overflow: auto;">
-				<div wicket:id="contents" style="width: 100%;  height: auto; overflow: visible;">
-					<div wicket:id="body" style="width: 100%;overflow: visible;">
-					    <div style="margin: 10px;"> 
-					        Welcome to Antilia demo application!
-					    </div>
-					</div>
-				</div>				
-			</div>			
-			</form>		
-		</div>
-	</body>	
+<html xmlns:wicket="org.apache.wicket">
+<body>
+    <wicket:extend>
+            <div wicket:id="body">
+                <div wicket:id="content"></div>        
+            </div>
+     </wicket:extend>
+</body>
 </html>

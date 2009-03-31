@@ -116,7 +116,7 @@
     width: auto;
     position: absolute;
     visibility: hidden;
-    z-index: -1;
+    z-index: 499;
 }
 
 .ddmx .section td {

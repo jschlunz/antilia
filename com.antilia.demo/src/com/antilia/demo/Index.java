@@ -4,89 +4,65 @@
  */
 package com.antilia.demo;
 
-import org.apache.wicket.behavior.HeaderContributor;
 import org.apache.wicket.markup.html.WebMarkupContainer;
-import org.apache.wicket.markup.html.WebPage;
-import org.apache.wicket.markup.html.form.Form;
 
-import com.antilia.demo.buttons.MainButtonsFactory;
-import com.antilia.demo.style.Style;
-import com.antilia.web.resources.DefaultStyle;
-import com.antilia.web.toolbar.Toolbar;
+import com.antilia.web.layout.FullPage;
+import com.antilia.web.login.IProtectedPage;
+
 
 /**
  * 
  * @author Ernesto Reinaldo Barreiro (reiern70@gmail.com)
+ *
  */
-public class Index extends WebPage {
+public class Index extends FullPage implements IContainer, IProtectedPage {
 
-	private static final long serialVersionUID = 1L;
-
+	private static final long serialVersionUID = 1L;	
+	
+	private WebMarkupContainer content;
+	
 	private WebMarkupContainer body;
-	private WebMarkupContainer contents;
-	/**
-	 * 
-	 */
-	public Index() {
-		Form form = new Form("form");
-		add(form);
-		add(HeaderContributor.forCss(DefaultStyle.CSS_MAIN));
-		add(HeaderContributor.forCss(Style.TEST_CSS));
-		add(HeaderContributor.forJavaScript(DefaultStyle.JS_COMMON));
-		add(HeaderContributor.forJavaScript(DefaultStyle.JS_TABLE));
-				
-		contents = new WebMarkupContainer("contents") {
-			private static final long serialVersionUID = 1L;
+	
+	public Index() {		
+		super();			
+		
+		body = new WebMarkupContainer("body");
+		body.setOutputMarkupId(true);
+		
+		add(body);
+		
+		content = new InitialPanel("content", this);				
+	}
 
-			@Override
-			protected void onBeforeRender() {
-				addOrReplace(body);
-				super.onBeforeRender();
-			}
-		};				
-		form.add(contents);
-		//form.add(Menu.createMenu("menu",  new MainButtonsFactory(this)));
+	@Override
+	protected void onBeforeRender() {
+		super.onBeforeRender();
 		
-		form.add(Toolbar.createToolbar("menu",  new MainButtonsFactory(this)));
-		
-		//form.add(new TestMenu("adxMenu"));
-		
-		body = createBody("body");
-		contents.setOutputMarkupId(true);
-		contents.setVisible(true);
+		body.addOrReplace(content);
+	
 	}
 	
-	protected WebMarkupContainer createBody(String id) {
-		return new WebMarkupContainer(id);
+	/**
+	 * @return the content
+	 */
+	public WebMarkupContainer getContent() {
+		return content;
 	}
+
+	/**
+	 * @param content the content to set
+	 */
+	public void setContent(WebMarkupContainer content) {
+		this.content = content;
+		body.addOrReplace(content);
+	}
+
 
 	/**
 	 * @return the body
 	 */
-	protected WebMarkupContainer getBody() {
+	public WebMarkupContainer getBody() {
 		return body;
 	}
-
-	/**
-	 * @param body the body to set
-	 */
-	public void setBody(WebMarkupContainer body) {
-		this.body = body;		
-	}
-
-	/**
-	 * @return the contents
-	 */
-	public WebMarkupContainer getContents() {
-		return contents;
-	}
-
-	/**
-	 * @param contents the contents to set
-	 */
-	protected void setContents(WebMarkupContainer contents) {
-		this.contents = contents;
-	}
-
-		
+	
 }
