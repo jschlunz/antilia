@@ -4,6 +4,7 @@ import org.apache.wicket.Component;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 
 import com.antilia.web.layout.FullPage;
+import com.antilia.web.layout.IContainer;
 import com.antilia.web.login.BlueStyle;
 import com.antilia.web.login.LogInRoundPanel;
 

@@ -1,4 +1,4 @@
-package com.antilia.demo.manager;
+package com.antilia.web.layout;
 
 import org.apache.wicket.markup.html.WebMarkupContainer;
 
