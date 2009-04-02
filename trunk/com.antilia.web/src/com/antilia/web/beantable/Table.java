@@ -199,8 +199,8 @@ public class Table<E extends Serializable> extends Panel implements IPageableCom
 				sb.append("," + (Table.this.getRendringCount()));
 				sb.append("," + Table.this.getDraggerUrlAsArray());
 				sb.append(");");
-				sb.append(tableId+".");
-				sb.append("removeOldDroppables();");				
+				//sb.append(tableId+".");
+				//sb.append("removeOldDroppables();");				
 				sb.append(tableId+".");
 				sb.append("createDraggables();");				
 				/*
