@@ -36,7 +36,7 @@ public class City implements java.io.Serializable, Comparable<City>{
 
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "country", nullable = false)
-	@SelectionType(type=SelectionMode.LARGE_ON_NEXT_PAGE)
+	@SelectionType(type=SelectionMode.LARGE_IN_MODAL_DIALOG)
 	private Country country;
 
 	@Column(name = "name", nullable = false, length = 300)
