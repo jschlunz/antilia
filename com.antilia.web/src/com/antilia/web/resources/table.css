@@ -81,11 +81,25 @@ td.tbodycol {
 }
 
 td.droptarget {    
-    background: url("images/drop-arrow-black.png") 0px 2px no-repeat transparent;
+    background: url("images/drop-arrow-black.png") 0px 3px no-repeat transparent;
 }
 
 div.ondrag {    
     border: 1px solid white;
+}
+
+div.headerTitle {
+	width: 98%; 
+	height: 100%; 
+	vertical-align: bottom; 
+	margin-top:  3px; 
+	margin-bottom: 2px;
+}
+span.defaultBodyCell {
+	width: 100%; 
+	overflow: hidden; 
+	margin-top: 0px;
+	margin-bottom: 0px;
 }
 
 .columns ul {

@@ -10,15 +10,13 @@ import org.apache.wicket.behavior.IBehavior;
 import org.apache.wicket.markup.MarkupStream;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 
-import com.antilia.web.effect.JavascriptHelper;
 import com.antilia.web.resources.DefaultStyle;
 
 
 /**
- * Target for drag/drop operations.
- * user can drop a Draggable item onto this component to perform ajax operation.
+ * 
+ * @author Ernesto Reinaldo Barreiro (reiern70@gmail.com)
  *
- * @see http://wiki.script.aculo.us/scriptaculous/show/Droppables.add
  */
 public abstract class YuiDraggableTarget extends WebMarkupContainer implements IDraggableDroppable
 {
@@ -89,14 +87,6 @@ public abstract class YuiDraggableTarget extends WebMarkupContainer implements I
 	
 	protected void renderOnDrag(MarkupStream markupStream) {
 		
-		dropOptions.put("onDrop", new JavascriptHelper.JavascriptFunction("function(draggable, droppable, event) { wicketAjaxGet('" + onDropBehavior.getCallbackUrl()
-				+ "&id=' + draggable.id); }"));
-		JavascriptHelper builder = new JavascriptHelper();
-		builder.addLine("Droppables.add('" + getMarkupId() + "', ");
-		builder.addOptions(dropOptions);
-		builder.addLine(");");
-
-		getResponse().write(builder.buildScript());
 	}
 	
 	
