@@ -318,7 +318,7 @@ public abstract class DefaultDialog extends Panel implements IDialogScope, IMenu
 				sb.append(DefaultDialog.this.getPanelSelectedClass());
 				sb.append("',");
 				sb.append(DefaultDialog.this.isCentered());
-				sb.append(");");				
+				sb.append(", false);");				
 				replaceComponentTagBody(markupStream, openTag, sb.toString());
 			}
 		};

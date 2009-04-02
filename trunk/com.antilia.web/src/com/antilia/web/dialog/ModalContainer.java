@@ -282,7 +282,7 @@ public abstract class ModalContainer extends Panel implements IDialogScope, IMen
 				sb.append(ModalContainer.this.getPanelSelectedClass());
 				sb.append("',");
 				sb.append(false);
-				sb.append(");");				
+				sb.append(",true);");				
 				replaceComponentTagBody(markupStream, openTag, sb.toString());
 			}
 		};

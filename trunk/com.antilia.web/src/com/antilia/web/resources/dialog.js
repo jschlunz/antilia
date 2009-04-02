@@ -1,5 +1,5 @@
 	//Class for draggable panel.	
-	function Panel(id, parentId, ie, minWidth, minHeight, modal, panelClass, onDragClass, selectedClass, centered) {
+	function Panel(id, parentId, ie, minWidth, minHeight, modal, panelClass, onDragClass, selectedClass, centered, isContainer) {
 		this.id = id;
 		this.parentId = parentId;
 		this.ie = ie;
@@ -18,13 +18,30 @@
 			this.minHeight = minHeight;
 		else
 			this.minHeight = 100;
+		
 		this.panel = document.getElementById(id);
 		
 		this.parentPanel = document.getElementById(parentId);
+		
 		this.height = parseInt(this.panel.style.height, 10);	
 		this.panelBody = document.getElementById(id+"Body");		
 		this.panelHeader = document.getElementById(id+"Header");
-		this.panelResize = document.getElementById(id+"Resize");	
+		this.panelResize = document.getElementById(id+"Resize");
+		
+		if(!isContainer) {
+			alert(this.panel.innserHTML);
+			if(this.parentPanel.panelBody != null) {		
+				var element = document.createElement("div");
+				alert(this.panel.innerHTML);
+				element.innserHTML(this.panel.innerHTML);								
+				this.parentPanel.panelBody.appendChild(element);
+			} else {
+				var element = document.createElement("div");
+				document.body.appendChild(element);
+				element.appendChild(this.panel);
+			}
+		}
+					
 		
 		if(this.panelHeader)
 			Antilia.Drag.init(this.panelHeader, this.onBeginDrag , this.onEndDrag, this.onDrag);
@@ -327,10 +344,10 @@
 	function Panels() {
 		this.panels = new Array();
 			
-		this.addPanel = function(id, parentId, ie, minWidth, minHeight, modal, panelClass, onDragClass, selectedClass, centered) {
+		this.addPanel = function(id, parentId, ie, minWidth, minHeight, modal, panelClass, onDragClass, selectedClass, centered, isContainer) {
 			var panel = this.getPanel(id)
 			if(panel == null) {
-				panel = new Panel(id, parentId, ie, minWidth, minHeight, modal, panelClass, onDragClass, selectedClass, centered);
+				panel = new Panel(id, parentId, ie, minWidth, minHeight, modal, panelClass, onDragClass, selectedClass, centered, isContainer);
 				this.panels[this.panels.length]= panel;
 				this.panels.id = id;
 				if(panel.parentPanel) {
@@ -346,12 +363,12 @@
 			}			
 		}
 		
-		this.addAndRemovePanel = function(id, parentId, ie, minWidth, minHeight, modal, panelClass, onDragClass, selectedClass, centered) {
+		this.addAndRemovePanel = function(id, parentId, ie, minWidth, minHeight, modal, panelClass, onDragClass, selectedClass, centered,isContainer) {
             var panel = this.getPanel(id)
            if(panel != null) {
                 this.deletePanel(id);
            }
-            panel = new Panel(id, parentId, ie, minWidth, minHeight, modal, panelClass, onDragClass, selectedClass, centered);
+            panel = new Panel(id, parentId, ie, minWidth, minHeight, modal, panelClass, onDragClass, selectedClass, centered,isContainer);
             this.panels[this.panels.length]= panel;
             this.panels.id = id;
             if(panel.parentPanel) {
