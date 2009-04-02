@@ -34,13 +34,17 @@ public class TablesPanel extends Panel {
 		TableModel<Person> tableModel = new TableModel<Person>(Person.class, "id", "name", "lastName1");
 		form.add(new Table<Person>("table",tableModel, createPersons()));
 		
-		form.add(new TestDialog("dialog"));
-		TestDialog dialog = new TestDialog("dialog2");
+		TestDialog dialog = new TestDialog("dialog");
+		
+		form.add(dialog);
+		
+		dialog = new TestDialog("dialog2");
 		dialog.setPosX(300);
 		dialog.setPosY(300);
 		dialog.setWidth(700);
 		dialog.setTitle("Second Dialog");
 		form.add(dialog);
+		
 	}
 	
 	public static List<Person> createPersons() {
