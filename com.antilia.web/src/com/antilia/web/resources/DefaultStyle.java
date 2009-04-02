@@ -30,11 +30,11 @@ public class DefaultStyle {
 	public static ResourceReference JS_CONTROL = new ResourceReference(DefaultStyle.class, "controls.js");
 	public static ResourceReference JS_SLIDER = new ResourceReference(DefaultStyle.class, "slider.js");
 	
-	public static ResourceReference JS_YUI_DOM_EVENT = new ResourceReference(DefaultStyle.class, "yui270/yahoo-dom-event.js");
-	public static ResourceReference JS_YUI_DOM_MIN = new ResourceReference(DefaultStyle.class, "yui270/dom-min.js");	
-	public static ResourceReference JS_YUI_EVENT = new ResourceReference(DefaultStyle.class, "yui270/event-min.js");
-	public static ResourceReference JS_YUI_ANIMATION = new ResourceReference(DefaultStyle.class, "yui270/animation-min.js");
-	public static ResourceReference JS_YUI_DRAG_DROP = new ResourceReference(DefaultStyle.class, "yui270/dragdrop-min.js");
+	public static ResourceReference JS_YUI_DOM_EVENT = new ResourceReference(DefaultStyle.class, "yui252/yahoo-dom-event.js");
+	public static ResourceReference JS_YUI_DOM_MIN = new ResourceReference(DefaultStyle.class, "yui252/dom-min.js");	
+	public static ResourceReference JS_YUI_EVENT = new ResourceReference(DefaultStyle.class, "yui252/event-min.js");
+	public static ResourceReference JS_YUI_ANIMATION = new ResourceReference(DefaultStyle.class, "yui252/animation-min.js");
+	public static ResourceReference JS_YUI_DRAG_DROP = new ResourceReference(DefaultStyle.class, "yui252/dragdrop-min.js");
 		
 	
 	

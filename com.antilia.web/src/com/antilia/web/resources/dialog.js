@@ -29,14 +29,20 @@
 		this.panelResize = document.getElementById(id+"Resize");
 		
 		if(!isContainer) {
-			alert(this.panel.innserHTML);
-			if(this.parentPanel.panelBody != null) {		
+			if(this.parentPanel) {		
 				var element = document.createElement("div");
-				alert(this.panel.innerHTML);
-				element.innserHTML(this.panel.innerHTML);								
-				this.parentPanel.panelBody.appendChild(element);
+				element.style.position = 'absolute';
+				element.style.top = '10px';
+				element.style.left = '10px';
+				element.style.zindex = '1000';
+				alert("Hi!");
+				//this.parentPanel.appendChild(element);
+				document.body.appendChild(element);
+				element.innerHTML = this.panel.innerHTML;
+				this.panel.innerHTML = '';
 			} else {
 				var element = document.createElement("div");
+				alert(this.panel.innerHTML);
 				document.body.appendChild(element);
 				element.appendChild(this.panel);
 			}
