@@ -27,14 +27,17 @@ public class UnusedColumnsPanel<E extends Serializable> extends Panel {
 	private static final long serialVersionUID = 1L;
 
 	private ColumnModelPalette<E> palette;
+	
+	private Form<?> form;
 	/**
 	 * @param id
 	 */
 	public UnusedColumnsPanel(String id, UnusedColumnsDialog<E> dialog ) {
 		super(id);
 		
-		
-		add(new OkButton("ok", dialog) {
+		form = new Form<Object>("form");
+		add(form);
+		form.add(new OkButton("ok", dialog) {
 			
 			private static final long serialVersionUID = 1L;
 
@@ -51,7 +54,7 @@ public class UnusedColumnsPanel<E extends Serializable> extends Panel {
 			}
 		});
 		
-		add(new CancelDialogButton("cancel", dialog));
+		form.add(new CancelDialogButton("cancel", dialog));
 	}
 	
 	@Override
@@ -60,7 +63,7 @@ public class UnusedColumnsPanel<E extends Serializable> extends Panel {
 		
 		palette = new ColumnModelPalette<E>("palette", findTable());
 		palette.setRenderBodyOnly(true);
-		addOrReplace(palette);
+		form.addOrReplace(palette);
 	}
 	
 	@SuppressWarnings("unchecked")
