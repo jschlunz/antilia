@@ -22,24 +22,20 @@
 		this.panel = document.getElementById(id);
 		
 		this.parentPanel = document.getElementById(parentId);
-		
-		this.height = parseInt(this.panel.style.height, 10);	
-		this.panelBody = document.getElementById(id+"Body");		
-		this.panelHeader = document.getElementById(id+"Header");
-		this.panelResize = document.getElementById(id+"Resize");
-		
+				
 		if(!isContainer) {
 			if(this.parentPanel) {		
 				var element = document.createElement("div");
+				element.id = this.id +"C";
 				element.style.position = 'absolute';
 				element.style.top = '10px';
 				element.style.left = '10px';
-				element.style.zindex = '1000';
+				element.style.zindex = 2;
 				alert("Hi!");
 				//this.parentPanel.appendChild(element);
 				document.body.appendChild(element);
-				element.innerHTML = this.panel.innerHTML;
-				this.panel.innerHTML = '';
+				element.innerHTML = this.panel.parentNode.innerHTML;
+				this.panel.parentNode.innerHTML = '';
 			} else {
 				var element = document.createElement("div");
 				alert(this.panel.innerHTML);
@@ -47,7 +43,14 @@
 				element.appendChild(this.panel);
 			}
 		}
-					
+		
+		this.panel = document.getElementById(id);
+		this.parentPanel = document.getElementById(parentId);
+		
+		this.height = parseInt(this.panel.style.height, 10);	
+		this.panelBody = document.getElementById(id+"Body");		
+		this.panelHeader = document.getElementById(id+"Header");
+		this.panelResize = document.getElementById(id+"Resize");
 		
 		if(this.panelHeader)
 			Antilia.Drag.init(this.panelHeader, this.onBeginDrag , this.onEndDrag, this.onDrag);
@@ -416,6 +419,11 @@
 		
 		// deletes a panel
 		this.deletePanel = function(id) {
+			var ele = document.getElementById(id+"C");
+			if(ele) {
+				alert(ele);
+				ele.innerHTML = '';
+			}
 			var newpanels = new Array();
 			if(this.panels != null && this.panels.length > 0) {
 				for(var i= 0; i <this.panels.length; i++) {
@@ -448,6 +456,9 @@
 		// bring forward (z-index) a panel
 		this.orderPanels = function(current) {
 			var currentPanel = this.getPanel(current);
+			if(currentPanel == null) {
+				return;
+			}
 			if(this.panels != null && this.panels.length > 0) {												
 				for(var i=this.panels.length-1; i>=0 ; i--) {
 					var panel = this.panels[i];
