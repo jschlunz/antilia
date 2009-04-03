@@ -7,9 +7,6 @@ package com.antilia.web.beantable;
 import java.io.Serializable;
 
 import org.apache.wicket.AttributeModifier;
-import org.apache.wicket.ajax.AjaxEventBehavior;
-import org.apache.wicket.ajax.AjaxRequestTarget;
-import org.apache.wicket.ajax.IAjaxCallDecorator;
 import org.apache.wicket.markup.repeater.Item;
 import org.apache.wicket.model.IComponentInheritedModel;
 import org.apache.wicket.model.Model;
@@ -39,7 +36,8 @@ public class RowItem<E extends Serializable> extends Item<E> {
 		add(new AttributeModifier("class", new Model<String>(clazz)));
 		add(new AttributeModifier("onmouseover",new Model<String>(tableId+".highlight("+index+");")));
 		add(new AttributeModifier("onmouseout",new Model<String>(tableId+".unhighlight("+index+");")));
-		add(new AjaxEventBehavior("onclick") {
+		/*
+		add(new AjaxEventBehavior("ondblclick") {
 
 			private static final long serialVersionUID = 1L;
 
@@ -69,6 +67,7 @@ public class RowItem<E extends Serializable> extends Item<E> {
 				};
 			}
 		});
+		*/
 	}
 	public Table<E> getTable() {
 		return table;
