@@ -30,8 +30,7 @@
 				element.style.position = 'absolute';
 				element.style.top = '10px';
 				element.style.left = '10px';
-				element.style.zindex = 2;
-				alert("Hi!");
+				element.style.zindex = 2;				
 				//this.parentPanel.appendChild(element);
 				document.body.appendChild(element);
 				element.innerHTML = this.panel.parentNode.innerHTML;
@@ -421,7 +420,6 @@
 		this.deletePanel = function(id) {
 			var ele = document.getElementById(id+"C");
 			if(ele) {
-				alert(ele);
 				ele.innerHTML = '';
 			}
 			var newpanels = new Array();

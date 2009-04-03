@@ -14,7 +14,6 @@ import org.apache.wicket.markup.html.panel.Panel;
 import com.antilia.web.beantable.Table;
 import com.antilia.web.beantable.model.IColumnModel;
 import com.antilia.web.dialog.util.CancelDialogButton;
-import com.antilia.web.dialog.util.OkDialogButton;
 
 /**
  * 
