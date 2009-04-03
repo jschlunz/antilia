@@ -116,7 +116,7 @@ public class DefaultHeaderSquare extends Panel  {
 		middlePanel.add(title);
 		Menu menu = Menu.createMenu("menu", 
 				new DialogHeaderMenuItemsFactory(DefaultHeaderSquare.this.getDialog()));		
-		menu.setMenuStyle("width: auto; background: transparent; right: 0px; position: relative; float: right;");
+		menu.setMenuStyle("width: auto; background: transparent; right: 0px; position: relative; float: right; margin-top: -3px;");
 		menu.setOutputMarkupId(false);
 		menu.setRenderBodyOnly(true);		
 		middlePanel.add(menu);
