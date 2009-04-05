@@ -31,12 +31,10 @@ public class ColumnModelPalette<E extends Serializable> extends AntiliaBasePalet
 		
 		private static final long serialVersionUID = 1L;
 
-		@SuppressWarnings("unchecked")
 		public Object getDisplayValue(IColumnModel<E> object) {
 			return ((IColumnModel<E>)object).getPropertyPath();
 		}
 		
-		@SuppressWarnings("unchecked")
 		public String getIdValue(IColumnModel<E> object, int index) {
 			return ((IColumnModel<E>)object).getPropertyPath();
 		}		
@@ -91,7 +89,6 @@ public class ColumnModelPalette<E extends Serializable> extends AntiliaBasePalet
 		//this.table = table;
 	}
 	
-	@SuppressWarnings("unchecked")
 	public List<IColumnModel<E>> getSelected() {
 		Iterator<IColumnModel<E>> it  = getSelectedChoices();
 		List<IColumnModel<E>> list = new ArrayList<IColumnModel<E>>();
@@ -102,7 +99,6 @@ public class ColumnModelPalette<E extends Serializable> extends AntiliaBasePalet
 	}
 	
 	
-	@SuppressWarnings("unchecked")
 	public List<IColumnModel<E>> getAvailable() {
 		Iterator<IColumnModel<E>> it  = getUnselectedChoices();
 		List<IColumnModel<E>> list = new ArrayList<IColumnModel<E>>();
