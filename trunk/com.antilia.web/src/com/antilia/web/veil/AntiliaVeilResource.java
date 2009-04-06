@@ -22,7 +22,78 @@ public class AntiliaVeilResource extends VeilResources {
 	private static final ResourceReference JS = new JavascriptResourceReference(AntiliaVeilResource.class, "antilia-veil.js");
 
 	private static final ResourceReference CSS = new ResourceReference(AntiliaVeilResource.class, "antilia-veil.css");
+	
+	public static final String DEFAULT_CSS_CLASS_NAME_MODAL = "antilia-modal";
 
+	public static class Modal {
+		/**
+		 * Generates javascript to show a veil over a tag
+		 * 
+		 * @param markupId
+		 *            markup id of tag that will be covered by veil
+		 * @param className
+		 *            css class name for veil
+		 * @return javascript
+		 */
+		public static String show(String markupId, String className)
+		{
+			return "Wicket.Veil.showModal('" + markupId + "', {className:'" + className + "'});";
+		}
+
+		/**
+		 * Generates javascript to show a veil over a tag
+		 * 
+		 * @param markupId
+		 *            markup id of tag that will be covered by veil
+		 * @return javascript
+		 */
+		public static String show(String markupId)
+		{
+			return show(markupId, DEFAULT_CSS_CLASS_NAME_MODAL);
+		}
+
+		/**
+		 * Generates javascript to toggle a veil over a tag
+		 * 
+		 * @param markupId
+		 *            markup id of tag that will be covered by veil
+		 * @param className
+		 *            css class name for veil
+		 * @return javascript
+		 */
+		public static String toggle(String markupId, String className)
+		{
+			return "Wicket.Veil.toggleModal('" + markupId + "', {className:'" + className + "'});";
+		}
+
+		/**
+		 * Generates javascript to toggle a veil over a tag
+		 * 
+		 * @param markupId
+		 *            markup id of tag that will be covered by veil
+		 * @return javascript
+		 */
+
+		public static String toggle(String markupId)
+		{
+			return toggle(markupId, DEFAULT_CSS_CLASS_NAME_MODAL);
+		}
+
+		/**
+		 * Generates javascript to hide a veil over a tag
+		 * 
+		 * @param markupId
+		 *            markup id of tag that will be covered by veil
+		 * @param className
+		 *            css class name for veil
+		 * @return javascript
+		 */
+		public static String hide(String markupId)
+		{
+			return "Wicket.Veil.toggleModal('" + markupId + "');";
+		}
+	}
+	
 	/**
 	 * 
 	 */

@@ -125,8 +125,8 @@ public abstract class AbstractLink extends Panel implements IMenuItem, IToolbarI
 				IDialogScope dialogScope = getDialogScope();
 				if(dialogScope != null) {
 					return script + ";" + VeilResources.Javascript.Generic.toggle(dialogScope.getDialogId()) + ";" ;
-				}
-				return script;
+				} 
+				return script + ";" + VeilResources.Javascript.Generic.toggle("AT_body") + ";" ;
 			}
 			
 			public CharSequence decorateOnSuccessScript(CharSequence script) {
@@ -134,15 +134,15 @@ public abstract class AbstractLink extends Panel implements IMenuItem, IToolbarI
 				if(dialogScope != null) {
 					return script + ";" + VeilResources.Javascript.Generic.toggle(dialogScope.getDialogId()) + ";" ;
 				}
-				return script;
+				return script + ";" + VeilResources.Javascript.Generic.toggle("AT_body") + ";" ;
 			}
 			
 			public CharSequence decorateScript(CharSequence script) {
 				IDialogScope dialogScope = getDialogScope();
 				if(dialogScope != null) {
 					return VeilResources.Javascript.Generic.show(dialogScope.getDialogId()) + ";" + script;
-				}
-				return script;
+				} 
+				return VeilResources.Javascript.Generic.toggle("AT_body") + ";" + script;									
 			}
 		};
 	}

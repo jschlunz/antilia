@@ -13,6 +13,7 @@ import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.model.IModel;
 
 import com.antilia.web.resources.DefaultStyle;
+import com.antilia.web.veil.AntiliaVeilResource;
 
 /**
  * A page that occupies the whole view port. 
@@ -76,6 +77,7 @@ public class FullPage extends WebPage {
 	}
 	
 	private void init() {
+		add(new AntiliaVeilResource());
 		add(HeaderContributor.forJavaScript(DefaultStyle.JS_YUI_DOM_EVENT));
 		add(HeaderContributor.forJavaScript(DefaultStyle.JS_YUI_DOM_MIN));
 		add(HeaderContributor.forJavaScript(DefaultStyle.JS_YUI_ANIMATION));
@@ -86,6 +88,7 @@ public class FullPage extends WebPage {
 
 		
 		add(HeaderContributor.forCss(getFullPageCSS()));
+		add(HeaderContributor.forCss(DefaultStyle.CSS_DIALOG));
 		
 		add(newHeader(HEADER_ID));
 	}

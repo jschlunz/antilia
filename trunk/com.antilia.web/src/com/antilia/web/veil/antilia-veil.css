@@ -7,6 +7,14 @@ div.wicket-veil {
     background-image: url('transparent1.gif');
 }
 
-div.wicket-veil-busy {
+div.wicket-veil-busy {	
     background: url('ajax-loader.gif') no-repeat;
+}
+
+
+div.antilia-modal {
+	background-color: white;
+	filter:alpha(opacity=50);
+	-moz-opacity:0.5;
+	opacity: 0.5;
 }
