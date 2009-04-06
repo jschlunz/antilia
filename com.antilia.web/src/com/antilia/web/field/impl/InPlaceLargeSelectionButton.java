@@ -18,6 +18,7 @@ import com.antilia.web.crud.IFeedBackAware;
 import com.antilia.web.dialog.IDialogScope;
 import com.antilia.web.field.BeanProxy;
 import com.antilia.web.field.IFieldModel;
+import com.antilia.web.layout.IScopedPanel;
 import com.antilia.web.resources.DefaultStyle;
 
 /**
@@ -68,7 +69,7 @@ public class InPlaceLargeSelectionButton<B extends Serializable> extends Abstrac
 	@Override
 	protected void onSubmit(AjaxRequestTarget target, Form form) {
 		CRUDPanel<Serializable> crudPanel =findCRUDPanel();
-		IDialogScope dialogScope = findDialogScope();		
+		IScopedPanel dialogScope = findScopedPanel();		
 		Class<B> beanClass = (Class<B>) ReflectionUtils.getPropertyClass(beanProxy.getBeanClass(), fieldModel.getPropertyPath());
 		if(target != null) {
 			InPlaceSelectionCRUDPanel<B> inPlaceSelectionCRUDPanel = new InPlaceSelectionCRUDPanel<B>(IDialogScope.BODY_ID, crudPanel, beanClass ,  beanProxy, fieldModel);
@@ -87,8 +88,8 @@ public class InPlaceLargeSelectionButton<B extends Serializable> extends Abstrac
 		}
 	}
 	
-	protected IDialogScope findDialogScope() {
-		return (IDialogScope)findParent(IDialogScope.class);
+	protected IScopedPanel findScopedPanel() {
+		return (IScopedPanel)findParent(IScopedPanel.class);
 	}
 	
 	@SuppressWarnings("unchecked")

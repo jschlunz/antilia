@@ -22,6 +22,8 @@ Antilia.fixEvent = function(e) {
 	return e;		
 }
 
+Antilia.loadingVisible = false;
+
 /**
  * Flexible dragging support.
  */
@@ -163,4 +165,5 @@ Antilia.Drag = {
 		 }
 	 }	 
  };
+ 
 

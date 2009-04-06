@@ -142,6 +142,7 @@ public abstract class DefaultDialog extends Panel implements IDialogScope, IMenu
 				setBrowserIExplorer6(true);
 			}
 		}
+		add(new AntiliaVeilResource());
 		
 		// add the CSS style of the dialog.	
 		add(HeaderContributor.forCss(getCSSStyle()));

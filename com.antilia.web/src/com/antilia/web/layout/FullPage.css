@@ -6,6 +6,11 @@ div.LOGO {
     height: 52px;
 }
 
+div.pageHeader {	
+	width: 100%; 
+	height: 75px;
+}
+
 .bigButton {
     border: 1px solid #ded4d4;
     background-color: gray;
@@ -14,7 +19,7 @@ div.LOGO {
 }
 
 td.banner-left {
-    background: url("banner_background.png");
+    background: url("banner_background_small_dblue.gif");
     height: 75px;
     padding: 0 0 0 0;
     width: 238px;

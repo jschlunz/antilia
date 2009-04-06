@@ -38,6 +38,7 @@ import com.antilia.web.button.IMenuItemHolder;
 import com.antilia.web.button.MenuItemsFactory;
 import com.antilia.web.osgi.MenuFactoryService;
 import com.antilia.web.resources.DefaultStyle;
+import com.antilia.web.resources.ResourceLocator;
 
 /**
  * 
@@ -72,6 +73,9 @@ public class Table<E extends Serializable> extends Panel implements IPageableCom
 	public static final String BEFORE_NAVIGATION_MENU = "BEFORE_NAVIGATION_MENU";
 	
 	public static final String FIRST_HEADER_MENU = "FIRST_HEADER_MENU";
+	
+	
+	private static final String TABLE_CSS_ID = "ANT_TABLE_CSS_ID";
 	
 	
 	/**
@@ -240,6 +244,10 @@ public class Table<E extends Serializable> extends Panel implements IPageableCom
 	}
 	
 	protected ResourceReference getTableCSS() {
+		ResourceReference global = ResourceLocator.getInstance().getResource(TABLE_CSS_ID);
+		if(global != null) {
+			return global;
+		}
 		return DefaultStyle.CSS_TABLE;
 	}
 	

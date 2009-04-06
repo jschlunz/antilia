@@ -10,6 +10,8 @@ import org.apache.wicket.markup.html.WebMarkupContainer;
  */
 public interface IContainer {
 
-	WebMarkupContainer getContent();
+	WebMarkupContainer getBody();
 	
+	WebMarkupContainer getContent();
+		
 }

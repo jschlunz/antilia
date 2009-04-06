@@ -59,11 +59,12 @@
 		this.addModalLayer();
 		this.addLoadingLayer();	
 		if(this.parentId) {	
-			this.parent = Antilia_dragPanels.getPanel(this.parentId);
-			if(this.parent) {
-				this.toggleModal();
-			}
+			this.parent = Antilia_dragPanels.getPanel(this.parentId);			
 		}							
+				
+		this.toggleModal();
+		
+				
 		if(this.centered) {			
 			if(this.parent) {
 				var pwidth = parseInt(this.parent.panel.style.width, 10);
@@ -113,41 +114,19 @@
         this.loading.style.left =   "100px"
     } 
 	
-	Panel.prototype.toggleModal = function() {
+	Panel.prototype.toggleModal = function() {		
 		if(this.modal == false)
-			return;
-		if(!this.overlayVisible) {			
-			this.overlayVisible = true;	
-			if(this.parent) {
-			/*
-			new Effect.toggle(this.parent.overlay, 
-			'appear',
-			{
- 				afterFinish: this.afterFold,
- 				beforeStart: this.beforeFold, 
- 				duration: 0.1,
- 				from: 0,
- 				to: 0.3
-			});
-			*/
-			this.parent.overlay.style.display = 'block'; 
-		}
+			return;		
+		if(this.parent) {
+			if(!this.overlayVisible) {			
+				this.overlayVisible = true;	
+				this.parent.overlay.style.display = 'block'; 
+			} else {
+				this.overlayVisible = false;
+				this.parent.overlay.style.display = 'none'; 
+			}			
 		} else {
-			this.overlayVisible = false;
-			if(this.parent) {
-			/*
-			new Effect.toggle(this.parent.overlay, 
-			'appear',
-			{
- 				afterFinish: this.afterFold,
- 				beforeStart: this.beforeFold, 
- 				duration: 0.1,
- 				from: 0.3,
- 				to: 0
-			});
-			*/
-			this.parent.overlay.style.display = 'none'; 
-		}
+			Wicket.Veil.toggleModal();
 		}		
 	}	
 	
@@ -162,7 +141,7 @@
                 beforeStart: this.beforeFold, 
                 duration: 0.1,
                 from: 0,
-                to: 0.3
+                to: 1
             });
         
         } else {            
@@ -174,7 +153,7 @@
                 afterFinish: this.afterFold,
                 beforeStart: this.beforeFold, 
                 duration: 0.1,
-                from: 0.3,
+                from: 1,
                 to: 0
             });        
         }       
@@ -366,7 +345,7 @@
 			} else {
 				panel.ie = ie;
 				panel.parentId = parentId;
-				panel.panel.zIndex=2;
+				panel.panel.zIndex=5002;
 			}			
 		}
 		
@@ -461,11 +440,11 @@
 					var panel = this.panels[i];
 					if(!panel.minimized) {
 						if(panel.id==current || panel.id == currentPanel.parentId || panel.parentId == current) {
-							panel.panel.style.zIndex = 2; 
+							panel.panel.style.zIndex = 5002; 
 							panel.panel.className=panel.selectedClass;									
 						} else {
 						    panel.panel.className=panel.panelClass;
-							panel.panel.style.zIndex = 1;							
+							panel.panel.style.zIndex = 5001;							
 						}
 					}						
 				}

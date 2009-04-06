@@ -173,8 +173,8 @@ public abstract class AbstractButton extends Panel implements IMenuItem, IToolba
 				IDialogScope dialogScope = getDialogScope();
 				if(dialogScope != null) {
 					return script + ";" + VeilResources.Javascript.Generic.toggle(dialogScope.getDialogId()) + ";" ;
-				}
-				return script;
+				} 
+				return script + ";" + VeilResources.Javascript.Generic.toggle("AT_body") + ";";
 			}
 			
 			public CharSequence decorateOnSuccessScript(CharSequence script) {
@@ -182,7 +182,7 @@ public abstract class AbstractButton extends Panel implements IMenuItem, IToolba
 				if(dialogScope != null) {
 					return script + ";" + VeilResources.Javascript.Generic.toggle(dialogScope.getDialogId()) + ";" ;
 				}
-				return script;
+				return script + ";" + VeilResources.Javascript.Generic.toggle("AT_body") + ";";
 			}
 			
 			public CharSequence decorateScript(CharSequence script) {
@@ -190,7 +190,7 @@ public abstract class AbstractButton extends Panel implements IMenuItem, IToolba
 				if(dialogScope != null) {
 					return VeilResources.Javascript.Generic.show(dialogScope.getDialogId()) + ";" + script;
 				}
-				return script;
+				return VeilResources.Javascript.Generic.show("AT_body") + ";" + script;
 			}
 		};
 	}

@@ -13,7 +13,7 @@ import org.apache.wicket.markup.html.form.Form;
 
 import com.antilia.web.button.AbstractButton;
 import com.antilia.web.crud.CRUDPanel;
-import com.antilia.web.dialog.IDialogScope;
+import com.antilia.web.layout.IScopedPanel;
 import com.antilia.web.resources.DefaultStyle;
 
 /**
@@ -39,15 +39,15 @@ public class InPlaceBackToParentButton<B extends Serializable> extends AbstractB
 
 	@Override
 	protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
-		IDialogScope dialogScope = findDialogScope();
+		IScopedPanel dialogScope = findScopedPanel();
 		dialogScope.replaceBody(parent);
 		if(target != null) {
 			target.addComponent((Component) dialogScope);
 		}
 	}	
 	
-	private IDialogScope  findDialogScope() {
-		return (IDialogScope)findParent(IDialogScope.class);
+	private IScopedPanel  findScopedPanel() {
+		return (IScopedPanel)findParent(IScopedPanel.class);
 	}
 	
 	@Override
