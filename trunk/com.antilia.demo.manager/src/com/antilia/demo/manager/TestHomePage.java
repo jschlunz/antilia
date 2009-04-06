@@ -7,7 +7,6 @@ package com.antilia.demo.manager;
 import com.antilia.demo.manager.entities.City;
 import com.antilia.web.crud.AutoCrudStyler;
 import com.antilia.web.crud.CRUDPanel;
-import com.antilia.web.crud.SearchPanel;
 import com.antilia.web.layout.FullPage;
 
 /**

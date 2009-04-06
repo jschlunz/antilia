@@ -6,6 +6,7 @@ package com.antilia.demo.manager.crud;
 
 import com.antilia.demo.manager.entities.Address;
 import com.antilia.web.crud.CrudStyler;
+import com.antilia.web.layout.BackToHomeCRUD;
 
 /**
  * 
@@ -13,7 +14,7 @@ import com.antilia.web.crud.CrudStyler;
  * @author Ernesto Reinaldo Barreiro (reiern70@gmail.com)
  *
  */
-public class AddressCRUDPanel extends ManagerCRUD<Address> {
+public class AddressCRUDPanel extends BackToHomeCRUD<Address> {
 
 	private static final long serialVersionUID = 1L;
 

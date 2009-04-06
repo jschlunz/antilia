@@ -7,6 +7,7 @@ package com.antilia.demo.manager.crud;
 import com.antilia.demo.manager.entities.City;
 import com.antilia.web.beantable.model.IColumnModel;
 import com.antilia.web.crud.CrudStyler;
+import com.antilia.web.layout.BackToHomeCRUD;
 
 /**
  * 
@@ -14,7 +15,7 @@ import com.antilia.web.crud.CrudStyler;
  * @author Ernesto Reinaldo Barreiro (reiern70@gmail.com)
  *
  */
-public class CityCRUDPanel extends ManagerCRUD<City> {
+public class CityCRUDPanel extends BackToHomeCRUD<City> {
 
 	private static final long serialVersionUID = 1L;
 
