@@ -39,7 +39,6 @@ public class DefaultStyle {
 	
 	
 	
-	
 	public static ResourceReference JS_DropDownMenuX = new ResourceReference(DefaultStyle.class, "DropDownMenuX.js");	
 	public static ResourceReference JS_ie5 = new ResourceReference(DefaultStyle.class, "ie5.js");
 	
