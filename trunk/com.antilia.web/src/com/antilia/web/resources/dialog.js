@@ -22,7 +22,8 @@
 		this.panel = document.getElementById(id);
 		
 		this.parentPanel = document.getElementById(parentId);
-				
+
+		/*
 		if(!isContainer) {
 			if(this.parentPanel) {		
 				var element = document.createElement("div");
@@ -31,17 +32,13 @@
 				element.style.top = '10px';
 				element.style.left = '10px';
 				element.style.zindex = 2;				
-				//this.parentPanel.appendChild(element);
 				document.body.appendChild(element);
 				element.innerHTML = this.panel.parentNode.innerHTML;
 				this.panel.parentNode.innerHTML = '';
 			} else {
-				var element = document.createElement("div");
-				alert(this.panel.innerHTML);
-				document.body.appendChild(element);
-				element.appendChild(this.panel);
 			}
 		}
+		*/
 		
 		this.panel = document.getElementById(id);
 		this.parentPanel = document.getElementById(parentId);
@@ -83,11 +80,13 @@
 				var height = parseInt(this.panel.style.height, 10);
 				YAHOO.util.Dom.setStyle(this.id, "top", (((pheight-height)/2)-cor)+ "px"); 
 	            YAHOO.util.Dom.setStyle(this.id, "left", (((pwidth-width)/2)) + "px");
-			} else {
+			} else {				
 				var width = parseInt(this.panel.style.width, 10);
 				var height = parseInt(this.panel.style.height, 10);
+				alert("width="+this.panel.style.width);
 				YAHOO.util.Dom.setStyle(this.id, "top", ((YAHOO.util.Dom.getViewportHeight()/2)-height)+ "px"); 
 	            YAHOO.util.Dom.setStyle(this.id, "left", ((YAHOO.util.Dom.getViewportWidth()/2)-width) + "px");
+	            alert("width="+width);
 			}
 		}
 	}
