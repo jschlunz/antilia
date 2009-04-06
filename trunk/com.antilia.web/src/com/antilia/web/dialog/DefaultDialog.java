@@ -187,15 +187,15 @@ public abstract class DefaultDialog extends Panel implements IDialogScope, IMenu
 				StringBuffer sb = new StringBuffer();
 				sb.append("left: ");
 				sb.append(DefaultDialog.this.getPosX());
-				sb.append("; top:");
+				sb.append("px; top:");
 				sb.append(DefaultDialog.this.getPosY());
-				sb.append(";");
+				sb.append("px;");
 				sb.append(" width:");
 				sb.append(DefaultDialog.this.getWidth());
-				sb.append(";");
+				sb.append("px;");
 				sb.append(" height:");
 				sb.append(DefaultDialog.this.getHeight());
-				sb.append(";");
+				sb.append("px;");
 				return sb.toString();
 			}
 		}));
