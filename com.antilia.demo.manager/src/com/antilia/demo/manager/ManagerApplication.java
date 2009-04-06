@@ -39,7 +39,7 @@ public class ManagerApplication extends AntiliaWebApplication {
 	 */
 	@Override
 	public Class<? extends Page> getHomePage() {
-		return Index.class;
+		return TestHomePage.class;
 		//return FullPage.class;
 		//return LoginPage.class;
 		//return SortableListPage.class;
