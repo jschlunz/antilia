@@ -44,6 +44,7 @@ public class LargeSelectionDialog<B extends Serializable> extends DefaultDialog 
 		setWidth(800);
 		setHeight(400);
 		setCentered(true);
+		setFoldable(false);
 	}
 	
 	/* (non-Javadoc)
