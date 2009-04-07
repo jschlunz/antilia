@@ -83,11 +83,9 @@
 	            YAHOO.util.Dom.setStyle(this.id, "left", (((pwidth-width)/2)) + "px");
 			} else {				
 				var width = parseInt(this.panel.style.width, 10);
-				var height = parseInt(this.panel.style.height, 10);
-				alert("width="+this.panel.style.width);
+				var height = parseInt(this.panel.style.height, 10);		
 				YAHOO.util.Dom.setStyle(this.id, "top", ((YAHOO.util.Dom.getViewportHeight()/2)-height)+ "px"); 
-	            YAHOO.util.Dom.setStyle(this.id, "left", ((YAHOO.util.Dom.getViewportWidth()/2)-width) + "px");
-	            alert("width="+width);
+	            YAHOO.util.Dom.setStyle(this.id, "left", ((YAHOO.util.Dom.getViewportWidth()/2)-width/2) + "px");
 			}
 		}
 	}

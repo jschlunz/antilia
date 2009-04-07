@@ -19,6 +19,7 @@ import org.apache.wicket.markup.repeater.RefreshingView;
 import org.apache.wicket.markup.repeater.RepeatingView;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
+import org.apache.wicket.model.ResourceModel;
 
 import com.antilia.web.resources.DefaultStyle;
 
@@ -73,8 +74,12 @@ public abstract class   SubToolbar extends Panel implements IToolbarItem, IToolb
 		add(link);						
 	}
 	
-	protected Label newLabel(String id) {
-			return new Label(id, getTitle());
+	protected Label newLabel(String id) {		
+		return new Label(id, getTitleModel());
+	}
+	
+	protected IModel<String> getTitleModel() {
+		return new ResourceModel(getTitle(), getTitle());
 	}
 	
 	protected abstract String getTitle();
