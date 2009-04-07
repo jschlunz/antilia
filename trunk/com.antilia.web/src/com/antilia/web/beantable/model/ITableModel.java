@@ -5,6 +5,7 @@
 package com.antilia.web.beantable.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -17,7 +18,7 @@ import com.antilia.web.beantable.provider.SelectionMode;
  * 
  * @author Ernesto Reinaldo Barreiro (reiern70@gmail.com)
  */
-public interface ITableModel<E extends Serializable> extends IModel {
+public interface ITableModel<E extends Serializable> extends IModel<ArrayList<IColumnModel<E>>> {
 	
 	Iterator<IColumnModel<E>> getColumnModels();
 	
@@ -43,5 +44,5 @@ public interface ITableModel<E extends Serializable> extends IModel {
 	
 	Class<E> getBeanClass();
 	
-	public IComponentInheritedModel newModel(E object);
+	public IComponentInheritedModel<E> newModel(E object);
 }

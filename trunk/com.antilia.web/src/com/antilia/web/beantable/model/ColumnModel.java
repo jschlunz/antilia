@@ -12,7 +12,7 @@ import org.apache.wicket.model.Model;
  * 
  * @author Ernesto Reinaldo Barreiro (reiern70@gmail.com)
  */
-public class ColumnModel<E extends Serializable> extends Model implements IColumnModel<E> {
+public class ColumnModel<E extends Serializable> extends Model<E> implements IColumnModel<E> {
 
 	private static final long serialVersionUID = 1L;
 
