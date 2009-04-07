@@ -12,7 +12,7 @@ import org.apache.wicket.model.IModel;
  * 
  * @author Ernesto Reinaldo Barreiro (reiern70@gmail.com)
  */
-public interface IColumnModel<E extends Serializable> extends IModel {
+public interface IColumnModel<E extends Serializable> extends IModel<E> {
 	/**
 	 * Gets the width (in pixels) of the column
 	 * @return

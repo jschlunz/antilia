@@ -293,7 +293,6 @@ public class Table<E extends Serializable> extends Panel implements IPageableCom
 					
 					private static final long serialVersionUID = 1L;
 	
-					@SuppressWarnings("unchecked")
 					@Override
 					public String getObject() {
 						String width = ((IColumnModel<E>)model).getWidth()+" px";

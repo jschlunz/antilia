@@ -20,7 +20,7 @@ import com.antilia.web.beantable.provider.SelectionMode;
  * 
  * @author Ernesto Reinaldo Barreiro (reiern70@gmail.com)
  */
-public class TableModel<E extends Serializable> extends Model implements ITableModel<E> {
+public class TableModel<E extends Serializable> extends Model<ArrayList<IColumnModel<E>>> implements ITableModel<E> {
 
 	private static final long serialVersionUID = 1L;
 
@@ -35,7 +35,6 @@ public class TableModel<E extends Serializable> extends Model implements ITableM
 	/**
 	 * @param object
 	 */
-	@SuppressWarnings("unchecked")
 	public TableModel() {
 		super(new ArrayList<IColumnModel<E>>());	
 		this.models = (List<IColumnModel<E>>) getObject();
@@ -87,8 +86,8 @@ public class TableModel<E extends Serializable> extends Model implements ITableM
 		addHiddenColumnModel(model);
  	}
 	
-	public IComponentInheritedModel newModel(E object) {
-		return new CompoundPropertyModel(object);
+	public IComponentInheritedModel<E> newModel(E object) {
+		return new CompoundPropertyModel<E>(object);
 	}
 	
 	protected void addColumnModel(IColumnModel<E> model) {

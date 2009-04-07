@@ -280,7 +280,7 @@ public class DefaultHeaderCell<E extends Serializable> extends Panel {
 	@SuppressWarnings("unchecked")
 	protected IModel getLabelModel() {
 		String key = ResourceUtils.getPropertyResourceKey(getBeanClass(), getColumnModel().getPropertyPath());
-		return new StringResourceModel(key, this, null, "Not found");
+		return new StringResourceModel(key, this, null, getColumnModel().getPropertyPath());
 	}
 	
 	@SuppressWarnings("unchecked")

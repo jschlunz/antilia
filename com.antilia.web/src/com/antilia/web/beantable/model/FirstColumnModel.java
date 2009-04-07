@@ -9,7 +9,7 @@ import org.apache.wicket.model.Model;
 /**
  * @author Ernesto Reinaldo Barreiro (reiern70@gmail.com)
  */
-public class FirstColumnModel extends Model {
+public class FirstColumnModel extends Model<Integer> {
 
 	private static final long serialVersionUID = 1L;
 
