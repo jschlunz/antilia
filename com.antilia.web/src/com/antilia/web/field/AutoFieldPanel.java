@@ -148,7 +148,7 @@ public class AutoFieldPanel<B extends Serializable> extends Panel implements IFi
 	
 	protected IModel<String> getLabelModel(final IFieldModel<B> fieldModel) {
 		String key = ResourceUtils.getPropertyResourceKey(fieldModel.getBeanClass(), fieldModel.getPropertyPath());
-		return new StringResourceModel(key, this, null) {
+		return new StringResourceModel(key, this, null, fieldModel.getPropertyPath()) {
 			
 			private static final long serialVersionUID = 1L;
 
