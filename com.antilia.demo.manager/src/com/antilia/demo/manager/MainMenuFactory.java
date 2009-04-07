@@ -38,7 +38,17 @@ public class MainMenuFactory implements IToolbarItemsFactory {
 	 * @see com.antilia.web.toolbar.IToolbarItemsFactory#populateMenuItems(java.lang.String, com.antilia.web.toolbar.IToolbar)
 	 */
 	public void populateMenuItems(String menuId, IToolbar toolbar) {
-			SubToolbar subToolbar = new SubToolbar("cities", toolbar) {
+			SubToolbar subToolbar = new SubToolbar("Entities", toolbar) {
+				private static final long serialVersionUID = 1L;
+
+				@Override
+				protected String getTitle() {
+					return "Entities";
+				}
+			};
+			toolbar.addItem(subToolbar);
+			
+			SubToolbar subToolbar2 = new SubToolbar("Addresses", subToolbar) {
 				private static final long serialVersionUID = 1L;
 
 				@Override
@@ -46,23 +56,25 @@ public class MainMenuFactory implements IToolbarItemsFactory {
 					return "Addresses";
 				}
 			};
-			toolbar.addItem(subToolbar);
 			
-			subToolbar.addItem(new CRUDButton<City>("Cities", this.page, City.class, this.contentId));
-			subToolbar.addItem(new CRUDButton<Country>("Countries", this.page, Country.class, this.contentId));
-			subToolbar.addItem(new CRUDButton<Address>("Addresses", this.page, Address.class,this.contentId));
+			subToolbar2.addItem(new CRUDButton<City>("Cities", this.page, City.class, this.contentId));
+			subToolbar2.addItem(new CRUDButton<Country>("Countries", this.page, Country.class, this.contentId));
+			subToolbar2.addItem(new CRUDButton<Address>("Addresses", this.page, Address.class,this.contentId));
 			
 			
-			subToolbar = new SubToolbar("other", toolbar) {
+			subToolbar.addItem(subToolbar2);
+			
+			subToolbar2 = new SubToolbar("other", subToolbar) {
 				private static final long serialVersionUID = 1L;
 
 				@Override
 				protected String getTitle() {
 					return "Other";
 				}
-			};
-			toolbar.addItem(subToolbar);
-			subToolbar.addItem(new CRUDButton<Employee>("Employees", this.page, Employee.class,this.contentId));
+			};			
+			subToolbar2.addItem(new CRUDButton<Employee>("Employees", this.page, Employee.class,this.contentId));			
+			subToolbar.addItem(subToolbar2);
+			
 	}
 
 }
