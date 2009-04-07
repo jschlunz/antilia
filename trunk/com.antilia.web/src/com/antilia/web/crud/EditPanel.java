@@ -63,8 +63,7 @@ public class EditPanel<B extends Serializable> extends Panel implements ICRUDMod
 	
 	@SuppressWarnings("unchecked")
 	@Override
-	protected void onBeforeRender() {
-		super.onBeforeRender();
+	protected void onBeforeRender() {		
 		if(pageableProvider == null) {
 			ArrayList< B> beans = new ArrayList<B>();
 			IProviderSelector<B> selector = getCRUDPanel().getSelected();		
@@ -97,6 +96,7 @@ public class EditPanel<B extends Serializable> extends Panel implements ICRUDMod
 		
 		beanForm.addOrReplace(autoFieldPanel);
 		
+		super.onBeforeRender();
 	}
 	
 	@SuppressWarnings("unchecked")
