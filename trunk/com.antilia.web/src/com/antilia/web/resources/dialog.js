@@ -324,7 +324,7 @@
 	       this.y = e.clientY;
 	}
 	
-	//prototypes for dragable panels.	
+	//prototypes for draggable panels.	
 	function Panels() {
 		this.panels = new Array();
 			
