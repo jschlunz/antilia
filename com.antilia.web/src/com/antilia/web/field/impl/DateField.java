@@ -41,6 +41,7 @@ public class DateField<B extends Serializable> extends BaseFormField<B> {
 	}
 	
 
+	@SuppressWarnings("unchecked")
 	@Override
 	protected void onBeforeRender() {
 		if(textField == null) {
@@ -49,6 +50,7 @@ public class DateField<B extends Serializable> extends BaseFormField<B> {
 				getBeanProxy().getPropertyValue(getPropertyPath()).getModel());
 			textField.add(new DatePicker());
 			add(textField);
+			textField.setLabel(getLabelModel());
 			if(getMode() == FieldMode.EDIT && getFieldModel().isRequiered()) {
 				textField.setRequired(true);
 				textField.add(new AttributeModifier("class",new Model<String>("requiredText")));

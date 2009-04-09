@@ -49,6 +49,7 @@ public class TextAreaField<B extends Serializable> extends BaseFormField<B> {
 			textArea = new org.apache.wicket.markup.html.form.TextArea<B>(
 				"field", model);
 			textArea.setOutputMarkupId(true);
+			textArea.setLabel(getLabelModel());
 			add(textArea);
 			if(getMode() == FieldMode.EDIT && getFieldModel().isRequiered()) {
 				textArea.setRequired(true);
