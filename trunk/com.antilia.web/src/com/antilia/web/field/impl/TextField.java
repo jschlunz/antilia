@@ -46,6 +46,7 @@ public class TextField<B extends Serializable> extends BaseFormField<B> {
 			textField = new org.apache.wicket.markup.html.form.TextField(
 				"field", 
 				getBeanProxy().getPropertyValue(getPropertyPath()).getModel());
+			textField.setLabel(getLabelModel());
 			add(textField);
 			textField.setOutputMarkupId(true);
 			if(getMode() == FieldMode.EDIT && getFieldModel().isRequiered()) {
