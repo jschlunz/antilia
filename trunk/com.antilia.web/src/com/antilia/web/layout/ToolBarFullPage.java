@@ -36,8 +36,7 @@ public abstract class ToolBarFullPage extends FullPage implements IContainer, IP
 			private static final long serialVersionUID = 1L;
 
 			@Override
-			protected Toolbar createToolbar(String id, ToolBarFullPage page,
-					String contentId) {
+			protected Toolbar createToolbar(String id, ToolBarFullPage page, String contentId) {
 				return ToolBarFullPage.this.createToolbar(id, page, contentId);
 			}
 			

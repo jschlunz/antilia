@@ -5,7 +5,9 @@ package com.antilia.web.layout;
 
 import java.io.Serializable;
 
+import org.apache.wicket.Component;
 import org.apache.wicket.markup.html.form.Form;
+import org.apache.wicket.markup.html.panel.EmptyPanel;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.IModel;
 
@@ -20,6 +22,8 @@ public abstract class TopMenuPanel<B extends Serializable> extends Panel impleme
 
 	private static final long serialVersionUID = 1L;
 
+	private static final String BODY_ID = "body";
+	
 	private Form<B> form;
 	
 	/**
@@ -40,8 +44,13 @@ public abstract class TopMenuPanel<B extends Serializable> extends Panel impleme
 	}
 	
 	private void initialize() {
+		setOutputMarkupId(true);
 		form = new Form<B>("form");		
 		form.add(Menu.createMenu("menu", this));
+		form.add(createBody(BODY_ID));
 	}
 
+	protected Component createBody(String id) {
+		return new EmptyPanel(id);
+	}
 }
