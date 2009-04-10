@@ -8,12 +8,9 @@ import java.io.Serializable;
 
 import com.antilia.web.beantable.model.IColumnModel;
 import com.antilia.web.button.IMenuItemHolder;
-import com.antilia.web.button.IMenuItemsFactory;
 import com.antilia.web.crud.CrudStyler;
 import com.antilia.web.crud.SearchPanel;
-import com.antilia.web.crud.SearchPanelButtonsFactory;
 import com.antilia.web.crud.TitledCRUDPanel;
-import com.antilia.web.menu.Menu;
 
 /**
  * 
@@ -48,17 +45,10 @@ public class BackToHomeCRUD<B extends Serializable> extends TitledCRUDPanel<B> {
 			
 			private static final long serialVersionUID = 1L;
 
+			
 			@Override
-			protected Menu newTopMenuMenu(String id) {
-				return Menu.createMenu(id, new IMenuItemsFactory() {
-					
-					private static final long serialVersionUID = 1L;
-
-					public void populateMenuItems(String menuId, IMenuItemHolder itemHolder) {
-						itemHolder.addMenuItem(new HomeLink("home"));
-					}
-					
-				},SearchPanelButtonsFactory.getInstance());
+			protected void addItemsTopMenuBeforeSearchButtons(String menuId,IMenuItemHolder itemHolder) {
+				itemHolder.addMenuItem(new HomeLink("home"));
 			}
 			
 			@Override

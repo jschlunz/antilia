@@ -6,7 +6,6 @@ package com.antilia.web.layout;
 
 import org.apache.wicket.Component;
 
-import com.antilia.web.dialog.ModalContainer;
 import com.antilia.web.toolbar.Toolbar;
 
 /**
@@ -15,7 +14,7 @@ import com.antilia.web.toolbar.Toolbar;
  * @author Ernesto Reinaldo Barreiro (reiern70@gmail.com)
  *
  */
-public abstract class InitialPanel extends ModalContainer {
+public abstract class InitialPanel extends ScopedPanel {
 
 	private static final long serialVersionUID = 1L;
 

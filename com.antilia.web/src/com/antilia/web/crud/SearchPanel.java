@@ -21,6 +21,8 @@ import com.antilia.web.beantable.provider.IPageableProvider;
 import com.antilia.web.beantable.provider.IProviderSelector;
 import com.antilia.web.beantable.provider.impl.DataProviderPageableProvider;
 import com.antilia.web.beantable.provider.impl.HibernateQueryDataProvider;
+import com.antilia.web.button.IMenuItemHolder;
+import com.antilia.web.button.IMenuItemsFactory;
 import com.antilia.web.field.AutoFieldCreator;
 import com.antilia.web.field.AutoFieldPanel;
 import com.antilia.web.field.BeanForm;
@@ -111,7 +113,45 @@ public class SearchPanel<B extends Serializable> extends Panel implements ILoada
 	}
 	
 	protected Menu newTopMenuMenu(String id) {
-		return Menu.createMenu(id, SearchPanelButtonsFactory.getInstance());
+		return Menu.createMenu(id, new IMenuItemsFactory() {
+			
+			private static final long serialVersionUID = 1L;
+
+			@Override
+			public void populateMenuItems(String menuId, IMenuItemHolder itemHolder) {
+				SearchPanel.this.addItemsTopMenuBeforeSearchButtons(menuId, itemHolder);
+			}
+			
+		},
+		SearchPanelButtonsFactory.getInstance(),
+		new IMenuItemsFactory() {
+			
+			private static final long serialVersionUID = 1L;
+
+			@Override
+			public void populateMenuItems(String menuId, IMenuItemHolder itemHolder) {
+				SearchPanel.this.addItemsTopMenuAfterSearchButtons(menuId, itemHolder);
+			}
+			
+		});
+	}
+	
+	/**
+	 * Override it to add items to top menu before the standard search buttons.
+	 * @param menuId
+	 * @param itemHolder
+	 */
+	protected void addItemsTopMenuBeforeSearchButtons(String menuId, IMenuItemHolder itemHolder) {
+		
+	}
+	
+	/**
+	 * Override it to add items to top menu before the standard search buttons.
+	 * @param menuId
+	 * @param itemHolder
+	 */
+	protected void addItemsTopMenuAfterSearchButtons(String menuId, IMenuItemHolder itemHolder) {
+		
 	}
 	
 	 public IProviderSelector<B> getSelected() {
