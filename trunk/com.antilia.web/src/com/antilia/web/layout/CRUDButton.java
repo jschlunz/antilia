@@ -32,26 +32,23 @@ public class CRUDButton<T extends Serializable> extends AbstractLink {
 	
 	private Class<?> crudClass;
 	
-	private String contentId;
-	
-	public CRUDButton(String label, IContainer page, Class<?> crudClass, Class<T> beanClass, String contentId) {
+
+	public CRUDButton(String label, IContainer page, Class<?> crudClass, Class<T> beanClass) {
 		super(crudClass.getSimpleName());
 		this.label = label;
 		this.page = page;
 		this.crudClass = crudClass;		
 		this.beanClass = beanClass;
-		this.contentId = contentId;
 	}
 	
 	/**
 	 * @param id
 	 */
-	public CRUDButton(String label, IContainer page, Class<T> beanClass, String contentId) {
+	public CRUDButton(String label, IContainer page, Class<T> beanClass) {
 		super(beanClass.getSimpleName());
 		this.label = label;
 		this.page = page;
 		this.beanClass = beanClass;
-		this.contentId = contentId;
 	}
 
 	/* (non-Javadoc)
@@ -82,7 +79,7 @@ public class CRUDButton<T extends Serializable> extends AbstractLink {
 	@Override
 	protected void onClick(AjaxRequestTarget target) {
 		if(target != null) {
-			ScopedPanel modalContainer = new ScopedPanel(contentId) {
+			ScopedPanel modalContainer = new ScopedPanel(IContainer.BODY_CONTENT_ID) {
 				
 				private static final long serialVersionUID = 1L;
 

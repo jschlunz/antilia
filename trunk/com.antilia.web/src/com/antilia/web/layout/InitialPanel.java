@@ -29,9 +29,9 @@ public abstract class InitialPanel extends ScopedPanel {
 	
 	@Override
 	protected Component createBody(String id) {
-		return 	createToolbar(id, page, getId());
+		return 	createToolbar(id, page);
 	}
 	
 	
-	protected abstract Toolbar createToolbar(String id, ToolBarFullPage page, String contentId);
+	protected abstract Toolbar createToolbar(String id, ToolBarFullPage page);
 }
