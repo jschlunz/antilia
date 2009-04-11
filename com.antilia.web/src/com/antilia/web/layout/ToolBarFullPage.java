@@ -6,7 +6,6 @@ package com.antilia.web.layout;
 
 import org.apache.wicket.markup.html.WebMarkupContainer;
 
-import com.antilia.web.login.IProtectedPage;
 import com.antilia.web.toolbar.Toolbar;
 
 
@@ -15,7 +14,7 @@ import com.antilia.web.toolbar.Toolbar;
  * @author Ernesto Reinaldo Barreiro (reiern70@gmail.com)
  *
  */
-public abstract class ToolBarFullPage extends FullPage implements IContainer, IProtectedPage {
+public abstract class ToolBarFullPage extends FullPage implements IContainer {
 
 	private static final long serialVersionUID = 1L;	
 	
@@ -26,24 +25,24 @@ public abstract class ToolBarFullPage extends FullPage implements IContainer, IP
 	public ToolBarFullPage() {		
 		super();			
 		
-		body = new WebMarkupContainer("body");
+		body = new WebMarkupContainer(IContainer.BODY_ID);
 		body.setOutputMarkupId(true);
 		
 		add(body);
 		
-		content = new InitialPanel("content", this) {
+		content = new InitialPanel(IContainer.BODY_CONTENT_ID, this) {
 			
 			private static final long serialVersionUID = 1L;
 
 			@Override
-			protected Toolbar createToolbar(String id, ToolBarFullPage page, String contentId) {
-				return ToolBarFullPage.this.createToolbar(id, page, contentId);
+			protected Toolbar createToolbar(String id, ToolBarFullPage page) {
+				return ToolBarFullPage.this.createToolbar(id, page);
 			}
 			
 		};				
 	}
 
-	protected abstract Toolbar createToolbar(String id, ToolBarFullPage page, String contentId);
+	protected abstract Toolbar createToolbar(String id, ToolBarFullPage page);
 	
 	@Override
 	protected void onBeforeRender() {
