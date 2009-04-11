@@ -24,8 +24,7 @@ public class Index extends ToolBarFullPage implements IProtectedPage {
 	}
 
 	@Override
-	protected Toolbar createToolbar(String id, ToolBarFullPage page,
-			String contentId) {
-		return Toolbar.createToolbar(id, new MainMenuFactory(this, contentId));
+	protected Toolbar createToolbar(String id, ToolBarFullPage page) {
+		return Toolbar.createToolbar(id, new MainMenuFactory(this));
 	}
 }
