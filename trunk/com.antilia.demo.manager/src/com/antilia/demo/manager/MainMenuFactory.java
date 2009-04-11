@@ -24,14 +24,12 @@ public class MainMenuFactory implements IToolbarItemsFactory {
 	private static final long serialVersionUID = 1L;
 
 	private Index page;
-	
-	private String contentId;
+		
 	/**
 	 * 
 	 */
-	public MainMenuFactory(Index page, String contentId) {
+	public MainMenuFactory(Index page) {
 		this.page = page;
-		this.contentId = contentId;
 	}
 
 	/* (non-Javadoc)
@@ -57,9 +55,9 @@ public class MainMenuFactory implements IToolbarItemsFactory {
 				}
 			};
 			
-			subToolbar2.addItem(new CRUDButton<City>("Cities", this.page, City.class, this.contentId));
-			subToolbar2.addItem(new CRUDButton<Country>("Countries", this.page, Country.class, this.contentId));
-			subToolbar2.addItem(new CRUDButton<Address>("Addresses", this.page, Address.class,this.contentId));
+			subToolbar2.addItem(new CRUDButton<City>("Cities", this.page, City.class));
+			subToolbar2.addItem(new CRUDButton<Country>("Countries", this.page, Country.class));
+			subToolbar2.addItem(new CRUDButton<Address>("Addresses", this.page, Address.class));
 			
 			
 			subToolbar.addItem(subToolbar2);
@@ -72,7 +70,7 @@ public class MainMenuFactory implements IToolbarItemsFactory {
 					return "Other";
 				}
 			};			
-			subToolbar2.addItem(new CRUDButton<Employee>("Employees", this.page, Employee.class,this.contentId));			
+			subToolbar2.addItem(new CRUDButton<Employee>("Employees", this.page, Employee.class));
 			subToolbar.addItem(subToolbar2);
 			
 	}
