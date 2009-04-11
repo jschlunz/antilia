@@ -4,11 +4,16 @@
  */
 package com.antilia.demo.manager;
 
+import java.io.Serializable;
+
+import com.antilia.demo.manager.components.tables.TablesPanel;
 import com.antilia.demo.manager.entities.Address;
 import com.antilia.demo.manager.entities.City;
 import com.antilia.demo.manager.entities.Country;
 import com.antilia.demo.manager.entities.Employee;
-import com.antilia.web.layout.CRUDButton;
+import com.antilia.web.layout.CRUDLink;
+import com.antilia.web.layout.TopMenuPanel;
+import com.antilia.web.layout.TopMenuPanelLink;
 import com.antilia.web.toolbar.IToolbar;
 import com.antilia.web.toolbar.IToolbarItemsFactory;
 import com.antilia.web.toolbar.SubToolbar;
@@ -55,9 +60,9 @@ public class MainMenuFactory implements IToolbarItemsFactory {
 				}
 			};
 			
-			subToolbar2.addItem(new CRUDButton<City>("Cities", this.page, City.class));
-			subToolbar2.addItem(new CRUDButton<Country>("Countries", this.page, Country.class));
-			subToolbar2.addItem(new CRUDButton<Address>("Addresses", this.page, Address.class));
+			subToolbar2.addItem(new CRUDLink<City>("Cities", this.page, City.class));
+			subToolbar2.addItem(new CRUDLink<Country>("Countries", this.page, Country.class));
+			subToolbar2.addItem(new CRUDLink<Address>("Addresses", this.page, Address.class));
 			
 			
 			subToolbar.addItem(subToolbar2);
@@ -70,9 +75,29 @@ public class MainMenuFactory implements IToolbarItemsFactory {
 					return "Other";
 				}
 			};			
-			subToolbar2.addItem(new CRUDButton<Employee>("Employees", this.page, Employee.class));
+			subToolbar2.addItem(new CRUDLink<Employee>("Employees", this.page, Employee.class));
 			subToolbar.addItem(subToolbar2);
 			
+			subToolbar = new SubToolbar("Components", toolbar) {
+				private static final long serialVersionUID = 1L;
+
+				@Override
+				protected String getTitle() {
+					return "Components";
+				}
+			};
+			
+			toolbar.addItem(subToolbar);
+			
+			subToolbar.addItem(new TopMenuPanelLink<Serializable>("Tables", this.page) {
+				
+				private static final long serialVersionUID = 1L;
+
+				@Override
+				protected TopMenuPanel<Serializable> createTopMenuPanel(String id) {					
+					return new TablesPanel(id);
+				}
+			});
 	}
 
 }

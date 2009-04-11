@@ -12,7 +12,7 @@ import org.apache.wicket.model.IModel;
  * @author Ernesto Reinaldo Barreiro (reirn70@gmail.com)
  *
  */
-public class ScopedPanel extends Panel implements IScopedPanel{
+public class ScopedPanel extends Panel implements IScopedPanel {
 
 	private static final long serialVersionUID = 1L;
 
