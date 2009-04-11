@@ -46,6 +46,7 @@ public abstract class TopMenuPanel<B extends Serializable> extends Panel impleme
 	private void initialize() {
 		setOutputMarkupId(true);
 		form = new Form<B>("form");		
+		add(form);
 		form.add(Menu.createMenu("menu", this));
 		form.add(createBody(BODY_ID));
 	}
