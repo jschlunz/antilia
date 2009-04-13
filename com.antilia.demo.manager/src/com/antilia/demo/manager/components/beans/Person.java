@@ -127,4 +127,20 @@ public class Person implements Serializable, Comparable<Person> {
 	public void setBirthDay(Date birthDay) {
 		this.birthDay = birthDay;
 	}
+	
+	public static List<Person> createPersons() {
+		ArrayList<Person> persons = new ArrayList<Person>();
+		for (int i=0; i < 104; i++) {
+			persons.add(createPerson(i));
+		}
+		return persons;
+	}
+	
+	private static Person createPerson(int i) {
+		Person person = new Person();
+		person.setId(new Long(i));
+		person.setName("Person "+i);
+		person.setLastName1("Lastname "+i);
+		return person;
+	}
 }

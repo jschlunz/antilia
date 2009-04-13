@@ -5,7 +5,10 @@
 package com.antilia.demo.manager.components.tables;
 
 import org.apache.wicket.markup.html.panel.Panel;
-import org.apache.wicket.model.IModel;
+
+import com.antilia.demo.manager.components.beans.Person;
+import com.antilia.web.beantable.Table;
+import com.antilia.web.beantable.model.TableModel;
 
 /**
  * @author Ernesto Reinaldo Barreiro (reiern70@gmail.com)
@@ -23,14 +26,8 @@ public class TablePanel extends Panel {
 	 */
 	public TablePanel(String id) {
 		super(id);
+		TableModel<Person> tableModel = new TableModel<Person>(Person.class, "id", "name", "lastName1");
+		add(new Table<Person>("table",tableModel, Person.createPersons()));
 	}
-
-	/**
-	 * @param id
-	 * @param model
-	 */
-	public TablePanel(String id, IModel<?> model) {
-		super(id, model);
-	}
-
+	
 }
