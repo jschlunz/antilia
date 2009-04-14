@@ -41,6 +41,18 @@ public class TableModel<E extends Serializable> extends Model<ArrayList<IColumnM
 		this.hiddenModels = new ArrayList<IColumnModel<E>>();
 	}
 	
+	public TableModel(Class<E> beanClass, String[] columnNames, String[] hiddenNames) {
+		this();
+		this.beanClass = beanClass;
+		init(beanClass, Arrays.asList(columnNames), Arrays.asList(hiddenNames));
+	}
+	
+	public TableModel(Class<E> beanClass, Iterable<String> columnNames, Iterable<String> hiddenNames) {
+		this();
+		this.beanClass = beanClass;
+		init(beanClass, columnNames, hiddenNames);
+	}
+	
 	public TableModel(Class<E> beanClass, List<String> columnNames, List<String> hiddenNames) {
 		this();
 		this.beanClass = beanClass;
