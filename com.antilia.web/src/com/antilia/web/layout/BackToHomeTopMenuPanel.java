@@ -33,7 +33,6 @@ public class BackToHomeTopMenuPanel<B extends Serializable> extends TopMenuPanel
 		super(id, model);
 	}
 	
-	@Override
 	public void populateMenuItems(String menuId, IMenuItemHolder itemHolder) {
 		itemHolder.addMenuItem(new HomeLink("home"));
 	}
