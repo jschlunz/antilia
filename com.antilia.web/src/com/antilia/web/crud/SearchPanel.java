@@ -117,7 +117,6 @@ public class SearchPanel<B extends Serializable> extends Panel implements ILoada
 			
 			private static final long serialVersionUID = 1L;
 
-			@Override
 			public void populateMenuItems(String menuId, IMenuItemHolder itemHolder) {
 				SearchPanel.this.addItemsTopMenuBeforeSearchButtons(menuId, itemHolder);
 			}
@@ -128,7 +127,6 @@ public class SearchPanel<B extends Serializable> extends Panel implements ILoada
 			
 			private static final long serialVersionUID = 1L;
 
-			@Override
 			public void populateMenuItems(String menuId, IMenuItemHolder itemHolder) {
 				SearchPanel.this.addItemsTopMenuAfterSearchButtons(menuId, itemHolder);
 			}
