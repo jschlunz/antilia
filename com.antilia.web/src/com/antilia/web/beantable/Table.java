@@ -139,8 +139,7 @@ public class Table<E extends Serializable> extends Panel implements IPageableCom
 	
 	@Override
 	protected void onBeforeRender() {	
-		super.onBeforeRender();		
-	
+		
 		rendringCount++;
 		
 		draggerURL.clear();
@@ -216,6 +215,8 @@ public class Table<E extends Serializable> extends Panel implements IPageableCom
 			}
 		};
 		addOrReplace(script);
+		
+		super.onBeforeRender();
 	}
 	
 	public void addDraggerUrl(String id) {
