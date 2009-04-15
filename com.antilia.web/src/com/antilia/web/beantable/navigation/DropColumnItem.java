@@ -17,6 +17,7 @@ import com.antilia.web.beantable.Table;
 import com.antilia.web.button.AbstractButton;
 import com.antilia.web.button.IMenuItem;
 import com.antilia.web.resources.DefaultStyle;
+import com.antilia.web.utils.RequestUtils;
 
 /**
  * 
@@ -59,7 +60,9 @@ public class DropColumnItem<E extends Serializable> extends Panel implements IMe
 	 * @see com.antilia.web.toolbar.AButton#getImage()
 	 */
 	protected ResourceReference getImage() {
-		return DefaultStyle.IMG_DELETE_COLS;
+		if(RequestUtils.isBrowserIeExplorer6())
+			return DefaultStyle.IMG_DELETE_COLS;
+		return DefaultStyle.IMG_DELETE_COLS_PNG;
 	}
 
 	/**

@@ -19,9 +19,7 @@ Table.prototype.createDraggables = function() {
     
     for(var j = 1; j < this.ncols; j++) {               
         var titleId = this.id + '_dragger_'  + this.rendringCount+ '_' + j;
-        //new Draggable(titleId, { revert: true, ghosting: true, zindex: 100});                
         var url = this.urls[j-1];
-        //alert(url);
        new TColumn(this.id, titleId, url);
     }
     
@@ -104,19 +102,18 @@ TColumn.prototype.initialize = function() {
     }
     
     this.dd.onInvalidDrop = function(e) {         
-        // Animating the move is more intesting 
-           var Dom = YAHOO.util.Dom;               
-           //Dom.setStyle(this.getEl(), "opacity", 1);     
-           Dom.setStyle(this.getEl(), "border", "1px solid transparent");     
-           new YAHOO.util.Motion(  
-            this.getEl().id, {  
-                          points: {  
-                              to: this.startPos 
-                          } 
-                      },  
-                      0.3,  
-                      YAHOO.util.Easing.easeOut  
-                  ).animate();                       
+           // Animating the move is more intesting 
+       var Dom = YAHOO.util.Dom;               
+       Dom.setStyle(this.getEl(), "border", "1px solid transparent");     
+       new YAHOO.util.Motion(  
+        this.getEl().id, {  
+                      points: {  
+                          to: this.startPos 
+                      } 
+                  },  
+                  0.3,  
+                  YAHOO.util.Easing.easeOut  
+              ).animate();                       
      }
      
     this.dd.onMouseDown  = function(e) {  
@@ -125,7 +122,7 @@ TColumn.prototype.initialize = function() {
      
     this.dd.startDrag = function(x, y) { 
         var Dom = YAHOO.util.Dom;
-        //Dom.setStyle(this.getEl(), "opacity", 0.5);
+        Dom.setStyle(this.getEl(), "opacity", 0.5);
         Dom.setStyle(this.getEl(), "border", "1px dashed white");
     }
     
@@ -133,7 +130,7 @@ TColumn.prototype.initialize = function() {
         var Dom = YAHOO.util.Dom;
         var el = YAHOO.util.Dom.get(id);
         el.parentNode.className='droptarget';
-        //Dom.setStyle(el, "opacity", 0.5);
+        Dom.setStyle(el, "opacity", 0.5);
         Dom.setStyle(el, "border", "1px dashed white");   
     }
     
@@ -141,7 +138,7 @@ TColumn.prototype.initialize = function() {
         var Dom = YAHOO.util.Dom;
         var el = YAHOO.util.Dom.get(id);
         el.parentNode.className='';        
-        //Dom.setStyle(el, "opacity", 1);                 
+        Dom.setStyle(el, "opacity", 1);                 
         Dom.setStyle(el, "border", "1px solid transparent");
     }
 }
