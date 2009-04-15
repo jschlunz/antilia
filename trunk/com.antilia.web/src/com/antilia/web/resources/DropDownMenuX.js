@@ -335,26 +335,28 @@ function DropDownMenuX(id) {
         //debug("hideSection("+id+", "+cnt+") , visible = " + this.visible);
         var el = new Element(id);
         var parent = document.getElementById(el.getParent().id);
-        if (/item\d-active/.test(parent.className)) {
-            parent.className = parent.className.replace(/(item\d)-active/, "$1");
-        }
-        document.getElementById(id).style.zIndex = this.zIndex.hidden;
-        document.getElementById(id).style.visibility = "hidden";
-        if (document.all) { document.getElementById(id).style.display = "none"; }
-        if (this.fixIeSelectBoxBug && this.browser.ie6) {
-            var iframe = document.getElementById(id+"-iframe");
-            iframe.style.display = "none";
-        }
-        if (this.visible.contains(id)) {
-            if (id == this.visible.getLast()) {
-                this.visible.pop();
-            } else {
-                //throw "DropDownMenuX.hideSection('"+id+"', "+cnt+") failed, trying to hide a section that is not the deepest visible section";
-                return;
-            }
-        } else {
-            //throw "DropDownMenuX.hideSection('"+id+"', "+cnt+") failed, cannot hide element that is not visible";
-            return;
+        if(parent) {
+	        if (/item\d-active/.test(parent.className)) {
+	            parent.className = parent.className.replace(/(item\d)-active/, "$1");
+	        }
+	        document.getElementById(id).style.zIndex = this.zIndex.hidden;
+	        document.getElementById(id).style.visibility = "hidden";
+	        if (document.all) { document.getElementById(id).style.display = "none"; }
+	        if (this.fixIeSelectBoxBug && this.browser.ie6) {
+	            var iframe = document.getElementById(id+"-iframe");
+	            iframe.style.display = "none";
+	        }
+	        if (this.visible.contains(id)) {
+	            if (id == this.visible.getLast()) {
+	                this.visible.pop();
+	            } else {
+	                //throw "DropDownMenuX.hideSection('"+id+"', "+cnt+") failed, trying to hide a section that is not the deepest visible section";
+	                return;
+	            }
+	        } else {
+	            //throw "DropDownMenuX.hideSection('"+id+"', "+cnt+") failed, cannot hide element that is not visible";
+	            return;
+	        }
         }
         this.sectionsHideCnt[this.sections.indexOf(id)]++;
     }
