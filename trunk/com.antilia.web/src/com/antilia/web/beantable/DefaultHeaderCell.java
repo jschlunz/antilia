@@ -16,6 +16,7 @@ import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.HiddenField;
 import org.apache.wicket.markup.html.panel.Panel;
+import org.apache.wicket.model.AbstractReadOnlyModel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.model.StringResourceModel;
@@ -32,6 +33,7 @@ import com.antilia.web.beantable.navigation.ColumnMenuItemsFactory;
 import com.antilia.web.dialog.IDialogScope;
 import com.antilia.web.dragdrop.YuiDraggableTarget;
 import com.antilia.web.menu.Menu;
+import com.antilia.web.utils.RequestUtils;
 
 /**
  * 
@@ -78,6 +80,8 @@ public class DefaultHeaderCell<E extends Serializable> extends Panel {
 			
 		}, Integer.class));
 		
+		
+	
 		YuiDraggableTarget draggableTarget =  new YuiDraggableTarget("dragger") {
 			
 			private static final long serialVersionUID = 1L;
@@ -148,7 +152,19 @@ public class DefaultHeaderCell<E extends Serializable> extends Panel {
 						
 		};
 		
-		draggableTarget .add(new AttributeModifier("id", new Model<String>() {
+		draggableTarget.add(new AttributeModifier("style", new AbstractReadOnlyModel<String>() {
+			
+			private static final long serialVersionUID = 1L;
+
+			@Override
+			public String getObject() {
+				if(RequestUtils.isBrowserIeExplorer6())
+					return "border: none;";
+				return "border: 1px solid transparent;";
+			}
+		}));
+
+		draggableTarget.add(new AttributeModifier("id", new Model<String>() {
 			private static final long serialVersionUID = 1L;
 
 			@Override
@@ -194,9 +210,8 @@ public class DefaultHeaderCell<E extends Serializable> extends Panel {
 					}
 				}
 				
-				protected IAjaxCallDecorator getAjaxCallDecorator()
-				{
-					return new IAjaxCallDecorator() {
+				protected IAjaxCallDecorator getAjaxCallDecorator() {
+					return  new IAjaxCallDecorator() {
 						
 						private static final long serialVersionUID = 1L;
 
@@ -204,8 +219,8 @@ public class DefaultHeaderCell<E extends Serializable> extends Panel {
 							IDialogScope dialogScope = getDialogScope();
 							if(dialogScope != null) {
 								return script + ";" + VeilResources.Javascript.Generic.toggle(dialogScope.getDialogId()) + ";" ;
-							}
-							return script;
+							} 
+							return script + ";" + VeilResources.Javascript.Generic.toggle("AT_body") + ";" ;
 						}
 						
 						public CharSequence decorateOnSuccessScript(CharSequence script) {
@@ -213,15 +228,15 @@ public class DefaultHeaderCell<E extends Serializable> extends Panel {
 							if(dialogScope != null) {
 								return script + ";" + VeilResources.Javascript.Generic.toggle(dialogScope.getDialogId()) + ";" ;
 							}
-							return script;
+							return script + ";" + VeilResources.Javascript.Generic.toggle("AT_body") + ";" ;
 						}
 						
 						public CharSequence decorateScript(CharSequence script) {
 							IDialogScope dialogScope = getDialogScope();
 							if(dialogScope != null) {
 								return VeilResources.Javascript.Generic.show(dialogScope.getDialogId()) + ";" + script;
-							}
-							return script;
+							} 
+							return VeilResources.Javascript.Generic.toggle("AT_body") + ";" + script;									
 						}
 					};
 				}

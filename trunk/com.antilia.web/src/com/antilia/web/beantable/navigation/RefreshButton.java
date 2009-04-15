@@ -14,6 +14,7 @@ import org.apache.wicket.markup.html.form.Form;
 import com.antilia.web.beantable.IPageableComponent;
 import com.antilia.web.button.AbstractButton;
 import com.antilia.web.resources.DefaultStyle;
+import com.antilia.web.utils.RequestUtils;
 
 
 /**
@@ -33,7 +34,9 @@ public class RefreshButton<E extends Serializable> extends AbstractButton {
 	 */
 	@Override
 	protected ResourceReference getImage() {
-		return DefaultStyle.IMG_REFRESH;
+		if(RequestUtils.isBrowserIeExplorer6())
+			return DefaultStyle.IMG_REFRESH;
+		return DefaultStyle.IMG_REFRESH_PNG;
 	}
 
 	/* (non-Javadoc)

@@ -11,6 +11,7 @@ import org.apache.wicket.ResourceReference;
 import com.antilia.web.dialog.DefaultDialog;
 import com.antilia.web.dialog.DialogButton;
 import com.antilia.web.resources.DefaultStyle;
+import com.antilia.web.utils.RequestUtils;
 
 /**
  * @author Ernesto Reinaldo Barreiro (reiern70@gmail.com)
@@ -42,7 +43,9 @@ public class UnusedColumnsButton<E extends Serializable> extends DialogButton {
 	 */
 	@Override
 	protected ResourceReference getImage() {
-		return DefaultStyle.IMG_ADD_COLS;
+		if(RequestUtils.isBrowserIeExplorer6())
+			return DefaultStyle.IMG_ADD_COLS;
+		return DefaultStyle.IMG_ADD_COLS_PNG;
 	}
 	
 	@Override
