@@ -52,7 +52,9 @@ public class DefaultStyle {
 	public static ResourceReference IMG_OK = new ResourceReference(ImgDummy.class, "ok.gif");
 	public static ResourceReference IMG_TRANSPARENT = new ResourceReference(ImgDummy.class, "transparent.gif");
 	public static ResourceReference IMG_FOLD = new ResourceReference(ImgDummy.class, "fold.gif");
-	public static ResourceReference IMG_REVERT_SELECTED = new ResourceReference(ImgDummy.class, "revert_small.png");
+	
+	public static ResourceReference IMG_REVERT_SELECTED = new ResourceReference(ImgDummy.class, "revert_small.gif");
+	public static ResourceReference IMG_REVERT_SELECTED_PNG = new ResourceReference(ImgDummy.class, "revert_small.png");
 	
 	public static ResourceReference IMG_VERTICAL_MENU  = new ResourceReference(ImgDummy.class, "vertical-menu.gif");
 	
@@ -68,45 +70,59 @@ public class DefaultStyle {
 	public static ResourceReference IMG_FIRST = new ResourceReference(ImgDummy.class, "mv_first.gif");
 	
 	
-	public static ResourceReference IMG_NEXT_ENABLED  = new ResourceReference(ImgDummy.class, "next_enabled.png");
-	public static ResourceReference IMG_PREVIOUS_ENABLED = new ResourceReference(ImgDummy.class, "previous_enabled.png");	
-	public static ResourceReference IMG_LAST_ENABLED  = new ResourceReference(ImgDummy.class, "last_enabled.png");
-	public static ResourceReference IMG_FIRST_ENABLED  = new ResourceReference(ImgDummy.class, "first_enabled.png");
+	public static ResourceReference IMG_NEXT_ENABLED  = new ResourceReference(ImgDummy.class, "next_enabled.gif");
+	public static ResourceReference IMG_NEXT_ENABLED_PNG  = new ResourceReference(ImgDummy.class, "next_enabled.png");
 	
-	public static ResourceReference IMG_UP_ENABLED  = new ResourceReference(ImgDummy.class, "up_enabled.png");
-	public static ResourceReference IMG_DOWN_ENABLED = new ResourceReference(ImgDummy.class, "down_enabled.png");
+	public static ResourceReference IMG_PREVIOUS_ENABLED = new ResourceReference(ImgDummy.class, "previous_enabled.gif");	
+	public static ResourceReference IMG_PREVIOUS_ENABLED_PNG = new ResourceReference(ImgDummy.class, "previous_enabled.png");
 	
-	public static ResourceReference IMG_NEXT_DISABLED = new ResourceReference(ImgDummy.class, "next_disabled.png");
-	public static ResourceReference IMG_PREVIOUS_DISABLED = new ResourceReference(ImgDummy.class, "previous_disabled.png");
-	public static ResourceReference IMG_LAST_DISABLED  = new ResourceReference(ImgDummy.class, "last_disabled.png");
-	public static ResourceReference IMG_FIRST_DISABLED  = new ResourceReference(ImgDummy.class, "first_disabled.png");
+	public static ResourceReference IMG_LAST_ENABLED  = new ResourceReference(ImgDummy.class, "last_enabled.gif");
+	public static ResourceReference IMG_LAST_ENABLED_PNG  = new ResourceReference(ImgDummy.class, "last_enabled.png");
 	
-	public static ResourceReference IMG_SORT_ASC = new ResourceReference(ImgDummy.class, "bullet_arrow_up.png");
-	public static ResourceReference IMG_SORT_DES = new ResourceReference(ImgDummy.class, "bullet_arrow_down.png");
+	public static ResourceReference IMG_FIRST_ENABLED  = new ResourceReference(ImgDummy.class, "first_enabled.gif");
+	public static ResourceReference IMG_FIRST_ENABLED_PNG  = new ResourceReference(ImgDummy.class, "first_enabled.png");
+	
+	public static ResourceReference IMG_UP_ENABLED  = new ResourceReference(ImgDummy.class, "up_enabled.gif");	
+	public static ResourceReference IMG_DOWN_ENABLED = new ResourceReference(ImgDummy.class, "down_enabled.gif");
+	
+	public static ResourceReference IMG_NEXT_DISABLED = new ResourceReference(ImgDummy.class, "next_disabled.gif");
+	public static ResourceReference IMG_NEXT_DISABLED_PNG = new ResourceReference(ImgDummy.class, "next_disabled.png");
+	
+	public static ResourceReference IMG_PREVIOUS_DISABLED = new ResourceReference(ImgDummy.class, "previous_disabled.gif");
+	public static ResourceReference IMG_PREVIOUS_DISABLED_PNG = new ResourceReference(ImgDummy.class, "previous_disabled.png");
+	
+	public static ResourceReference IMG_LAST_DISABLED  = new ResourceReference(ImgDummy.class, "last_disabled.gif");
+	public static ResourceReference IMG_LAST_DISABLED_PNG  = new ResourceReference(ImgDummy.class, "last_disabled.png");
+	
+	public static ResourceReference IMG_FIRST_DISABLED  = new ResourceReference(ImgDummy.class, "first_disabled.gif");
+	public static ResourceReference IMG_FIRST_DISABLED_PNG  = new ResourceReference(ImgDummy.class, "first_disabled.png");
+	
+	public static ResourceReference IMG_SORT_ASC = new ResourceReference(ImgDummy.class, "bullet_arrow_up.gif");
+	public static ResourceReference IMG_SORT_DES = new ResourceReference(ImgDummy.class, "bullet_arrow_down.gif");
 	
 	public static ResourceReference IMG_SORT_ASC_SMALL = new ResourceReference(ImgDummy.class, "bullet_arrow_up_small.gif");
 	public static ResourceReference IMG_SORT_DES_SMALL = new ResourceReference(ImgDummy.class, "bullet_arrow_down_small.gif");
 	
-	public static ResourceReference IMG_TRASH = new ResourceReference(ImgDummy.class, "basket_delete.png");
+	public static ResourceReference IMG_TRASH = new ResourceReference(ImgDummy.class, "basket_delete.gif");
 	
-	public static ResourceReference IMG_DELETE_COLS = new ResourceReference(ImgDummy.class, "table_delete.png");
-	public static ResourceReference IMG_ADD_COLS = new ResourceReference(ImgDummy.class, "table_add.png");
+	public static ResourceReference IMG_DELETE_COLS = new ResourceReference(ImgDummy.class, "table_delete.gif");
+	public static ResourceReference IMG_ADD_COLS = new ResourceReference(ImgDummy.class, "table_add.gif");
 	
 	
-	public static ResourceReference IMG_REFRESH = new ResourceReference(ImgDummy.class, "refresh_small.png");
-	public static ResourceReference IMG_DOWN = new ResourceReference(ImgDummy.class, "bullet_arrow_down.png");
+	public static ResourceReference IMG_REFRESH = new ResourceReference(ImgDummy.class, "refresh_small.gif");
+	public static ResourceReference IMG_DOWN = new ResourceReference(ImgDummy.class, "bullet_arrow_down.gif");
 	
 	
 	public static ResourceReference IMG_BACK = new ResourceReference(ImgDummy.class, "arrow_back.gif");
-	public static ResourceReference IMG_EDIT = new ResourceReference(ImgDummy.class, "form_edit.png");
-	public static ResourceReference IMG_NEW = new ResourceReference(ImgDummy.class, "form_add.png");	
-	public static ResourceReference IMG_DELETE = new ResourceReference(ImgDummy.class, "form_delete.png");
-	public static ResourceReference IMG_VIEW = new ResourceReference(ImgDummy.class, "form_view.png");
+	public static ResourceReference IMG_EDIT = new ResourceReference(ImgDummy.class, "form_edit.gif");
+	public static ResourceReference IMG_NEW = new ResourceReference(ImgDummy.class, "form_add.gif");	
+	public static ResourceReference IMG_DELETE = new ResourceReference(ImgDummy.class, "form_delete.gif");
+	public static ResourceReference IMG_VIEW = new ResourceReference(ImgDummy.class, "form_view.gif");
 	
-	public static ResourceReference IMG_REMOVE = new ResourceReference(ImgDummy.class, "delete.png");
+	public static ResourceReference IMG_REMOVE = new ResourceReference(ImgDummy.class, "delete.gif");
 	
 	
-	public static ResourceReference IMG_LOAD = new ResourceReference(ImgDummy.class, "load.png");
+	public static ResourceReference IMG_LOAD = new ResourceReference(ImgDummy.class, "load.gif");
 	
 	
 	public static ResourceReference IMG_CHECKBOX_CHECKED = new ResourceReference(ImgDummy.class, "checkboxChecked.gif");
@@ -115,14 +131,14 @@ public class DefaultStyle {
 	public static ResourceReference IMG_RESIZE = new ResourceReference(ImgDummy.class, "resize.gif");
 	public static ResourceReference IMG_SEPARATOR = new ResourceReference(ImgDummy.class, "separator.gif");
 	
-	public static ResourceReference IMG_SAVE_ENABLED = new ResourceReference(ImgDummy.class, "saveEnabled.png");
+	public static ResourceReference IMG_SAVE_ENABLED = new ResourceReference(ImgDummy.class, "saveEnabled.gif");
 	
 	public static ResourceReference IMG_SEARCH = new ResourceReference(ImgDummy.class, "search.gif");
 	
-	public static ResourceReference IMG_EXPORT_PDF = new ResourceReference(ImgDummy.class, "export_pdf.png");
-	public static ResourceReference IMG_EXPORT_EXCEL = new ResourceReference(ImgDummy.class, "export_excel.png");
-	public static ResourceReference IMG_EXPORT_XML = new ResourceReference(ImgDummy.class, "page_xml.png");
-	public static ResourceReference IMG_EXPORT_SQL = new ResourceReference(ImgDummy.class, "page_sql.png");
+	public static ResourceReference IMG_EXPORT_PDF = new ResourceReference(ImgDummy.class, "export_pdf.gif");
+	public static ResourceReference IMG_EXPORT_EXCEL = new ResourceReference(ImgDummy.class, "export_excel.gif");
+	public static ResourceReference IMG_EXPORT_XML = new ResourceReference(ImgDummy.class, "page_xml.gif");
+	public static ResourceReference IMG_EXPORT_SQL = new ResourceReference(ImgDummy.class, "page_sql.gif");
 	
 	public static ResourceReference IMG_MINIMIZED = new ResourceReference(ImgDummy.class, "minimized.gif");
 }

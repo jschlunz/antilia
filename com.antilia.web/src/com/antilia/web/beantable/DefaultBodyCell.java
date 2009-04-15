@@ -45,7 +45,7 @@ public class DefaultBodyCell<E extends Serializable> extends Panel {
 			}
 		
 		};
-		label.setRenderBodyOnly(false);		
+		label.setRenderBodyOnly(true);		
 		/*ChangeColorPanel label = new ChangeColorPanel("cell");*/
 		add(label);
 	}

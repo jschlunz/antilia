@@ -37,7 +37,7 @@ public abstract class AbstractButton extends Panel implements IMenuItem, IToolba
 	private Button link;
 		
 	private boolean ajaxButton = false;
-	
+
 	private int order = NO_ORDER;
 	
 	private IDialogScope dialogScope;

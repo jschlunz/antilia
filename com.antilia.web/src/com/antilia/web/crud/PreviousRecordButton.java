@@ -13,6 +13,7 @@ import org.apache.wicket.markup.html.form.Form;
 
 import com.antilia.web.button.AbstractButton;
 import com.antilia.web.resources.DefaultStyle;
+import com.antilia.web.utils.RequestUtils;
 
 
 /**
@@ -32,12 +33,16 @@ public class PreviousRecordButton<E extends Serializable> extends AbstractButton
 	 */
 	@Override
 	protected ResourceReference getImage() {
-		return DefaultStyle.IMG_PREVIOUS_ENABLED;
+		if(RequestUtils.isBrowserIeExplorer6())
+			return DefaultStyle.IMG_PREVIOUS_ENABLED;
+		return DefaultStyle.IMG_PREVIOUS_ENABLED_PNG;
 	}
 	
 	@Override
 	protected ResourceReference getDisabledImage() {
-		return DefaultStyle.IMG_PREVIOUS_DISABLED;
+		if(RequestUtils.isBrowserIeExplorer6())
+			return DefaultStyle.IMG_PREVIOUS_DISABLED;
+		return DefaultStyle.IMG_PREVIOUS_DISABLED_PNG;
 	}
 	
 	
