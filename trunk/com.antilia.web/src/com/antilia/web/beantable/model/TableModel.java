@@ -160,8 +160,11 @@ public class TableModel<E extends Serializable> extends Model<ArrayList<IColumnM
 		}
 		if(toMove>=0 && toMove< models.size())	{
 			if(before>=0 && before< models.size())	{
+				int pos = before;
+				if(toMove < before) 
+					pos = before -1;
 				IColumnModel<E> tempi = models.remove(toMove);			
-				models.add(before>0?before-1:0, tempi);
+				models.add(before>0?pos:0, tempi);
 			} else {
 				IColumnModel<E> tempi = models.remove(toMove);			
 				models.add(tempi);			
