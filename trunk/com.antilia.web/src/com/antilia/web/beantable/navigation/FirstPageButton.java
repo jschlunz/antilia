@@ -14,6 +14,7 @@ import org.apache.wicket.markup.html.form.Form;
 import com.antilia.web.beantable.IPageableComponent;
 import com.antilia.web.button.AbstractButton;
 import com.antilia.web.resources.DefaultStyle;
+import com.antilia.web.utils.RequestUtils;
 
 
 /**
@@ -33,12 +34,16 @@ public class FirstPageButton<E extends Serializable> extends AbstractButton {
 	 */
 	@Override
 	protected ResourceReference getImage() {
-		return DefaultStyle.IMG_FIRST_ENABLED;
+		if(RequestUtils.isBrowserIeExplorer6())
+			return DefaultStyle.IMG_FIRST_ENABLED;
+		return DefaultStyle.IMG_FIRST_ENABLED_PNG;
 	}
 	
 	@Override
 	protected ResourceReference getDisabledImage() {
-		return DefaultStyle.IMG_FIRST_DISABLED;
+		if(RequestUtils.isBrowserIeExplorer6())
+			return DefaultStyle.IMG_FIRST_DISABLED;
+		return DefaultStyle.IMG_FIRST_DISABLED_PNG;
 	}
 
 	@Override
