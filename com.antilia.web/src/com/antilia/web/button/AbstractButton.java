@@ -171,10 +171,11 @@ public abstract class AbstractButton extends Panel implements IMenuItem, IToolba
 
 			public CharSequence decorateOnFailureScript(CharSequence script) {
 				IDialogScope dialogScope = getDialogScope();
+				String errorMessage = ";alert('"+AbstractButton.this.getString("ServerDown", null, "Server Down!")+"');";
 				if(dialogScope != null) {
-					return script + ";" + VeilResources.Javascript.Generic.toggle(dialogScope.getDialogId()) + ";" ;
+					return script + ";" + VeilResources.Javascript.Generic.toggle(dialogScope.getDialogId()) + errorMessage ;
 				} 
-				return script + ";" + VeilResources.Javascript.Generic.toggle("AT_body") + ";";
+				return script + ";" + VeilResources.Javascript.Generic.toggle("AT_body") + errorMessage;
 			}
 			
 			public CharSequence decorateOnSuccessScript(CharSequence script) {
