@@ -41,6 +41,10 @@
 		*/
 		
 		this.panel = document.getElementById(id);
+		
+		if(this.ie == true) {
+			this.panel.innerHTML =  '<iframe id="'+id+'-iframe" src="javascript:false;" scrolling="no" frameborder="0" style="position: absolute; top: 0px; left: 0px; z-index: -1; width: 100px; height: 100px; display: block; filter:alpha(opacity=0);"></iframe>' + this.panel.innerHTML;
+		}
 		this.parentPanel = document.getElementById(parentId);
 		
 		this.height = parseInt(this.panel.style.height, 10);	
