@@ -83,7 +83,9 @@ public class DefaultStyle {
 	public static ResourceReference IMG_FIRST_ENABLED_PNG  = new ResourceReference(ImgDummy.class, "first_enabled.png");
 	
 	public static ResourceReference IMG_UP_ENABLED  = new ResourceReference(ImgDummy.class, "up_enabled.gif");	
+	public static ResourceReference IMG_UP_ENABLED_PNG  = new ResourceReference(ImgDummy.class, "up_enabled.png");
 	public static ResourceReference IMG_DOWN_ENABLED = new ResourceReference(ImgDummy.class, "down_enabled.gif");
+	public static ResourceReference IMG_DOWN_ENABLED_PNG = new ResourceReference(ImgDummy.class, "down_enabled.png");
 	
 	public static ResourceReference IMG_NEXT_DISABLED = new ResourceReference(ImgDummy.class, "next_disabled.gif");
 	public static ResourceReference IMG_NEXT_DISABLED_PNG = new ResourceReference(ImgDummy.class, "next_disabled.png");
