@@ -22,6 +22,7 @@ import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.markup.repeater.Item;
 import org.apache.wicket.markup.repeater.RefreshingView;
 import org.apache.wicket.markup.repeater.RepeatingView;
+import org.apache.wicket.model.AbstractReadOnlyModel;
 import org.apache.wicket.model.IComponentInheritedModel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
@@ -39,6 +40,7 @@ import com.antilia.web.button.MenuItemsFactory;
 import com.antilia.web.osgi.MenuFactoryService;
 import com.antilia.web.resources.DefaultStyle;
 import com.antilia.web.resources.ResourceLocator;
+import com.antilia.web.utils.RequestUtils;
 
 /**
  * 
@@ -55,6 +57,8 @@ public class Table<E extends Serializable> extends Panel implements IPageableCom
 	private ITableModel<E> tableModel;
 			
 	private FirstColumnModel firstColumnModel;
+	
+	private boolean ie6;
 	
 	private MenuItemsFactory beforeNavigationMenuItemsFactory = new MenuItemsFactory(BEFORE_NAVIGATION_MENU);
 	
@@ -106,7 +110,7 @@ public class Table<E extends Serializable> extends Panel implements IPageableCom
 		this.sourceSelector = new SourceSelector<E>(this.pageableProvider ,tableModel.getSelectionModel());
 		this.tableModel = tableModel;
 		this.firstColumnModel = new FirstColumnModel(65);
-		
+		this.ie6 = RequestUtils.isBrowserIeExplorer6();
 		add(HeaderContributor.forJavaScript(DefaultStyle.JS_PROTOTYPE));
 		add(HeaderContributor.forJavaScript(DefaultStyle.JS_EFFECT));
 		add(HeaderContributor.forJavaScript(DefaultStyle.JS_DRAGDROP));
@@ -153,7 +157,7 @@ public class Table<E extends Serializable> extends Panel implements IPageableCom
 	
 		WebMarkupContainer lastHeader = new WebMarkupContainer("lastHeader");
 		lastHeader.setOutputMarkupId(true); 
-		lastHeader.add(new AttributeModifier("id",  new Model<String>() {
+		lastHeader.add(new AttributeModifier("id",  new AbstractReadOnlyModel<String>() {
 			private static final long serialVersionUID = 1L;
 
 			@Override
@@ -161,6 +165,19 @@ public class Table<E extends Serializable> extends Panel implements IPageableCom
 				return  Table.this.getMarkupId() + "_dropLas";
 			}
 		}));
+		
+		lastHeader.add(new AttributeModifier("style",  new Model<String>() {
+			private static final long serialVersionUID = 1L;
+
+			@Override
+			public String getObject() {
+				if(Table.this.ie6)
+					return  "min-width: 30px; height: 22px;";					
+				return  "min-width: 30px; height: 22px; border: 1px solid transparent;";
+			}
+		}));
+		
+		
 		
 		addOrReplace(lastHeader);
 		
@@ -201,6 +218,7 @@ public class Table<E extends Serializable> extends Panel implements IPageableCom
 				sb.append("," + (Table.this.getTableModel().getColumns()+1));
 				sb.append("," + (Table.this.getRendringCount()));
 				sb.append("," + Table.this.getDraggerUrlAsArray());
+				sb.append("," + Table.this.isIe6());
 				sb.append(");");
 				sb.append(tableId+".");
 				sb.append("createDraggables();");								
@@ -514,6 +532,20 @@ public class Table<E extends Serializable> extends Panel implements IPageableCom
 
 	public void setFirstColumnUrl(String firstColumnUrl) {
 		this.firstColumnUrl = firstColumnUrl;
+	}
+
+	/**
+	 * @return the ie6
+	 */
+	public boolean isIe6() {
+		return ie6;
+	}
+
+	/**
+	 * @param ie6 the ie6 to set
+	 */
+	public void setIe6(boolean ie6) {
+		this.ie6 = ie6;
 	}
 	
 	

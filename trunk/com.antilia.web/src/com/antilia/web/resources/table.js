@@ -1,5 +1,5 @@
 
-function Table(id, url, rows, ncols, rendringCount, urls) {
+function Table(id, url, rows, ncols, rendringCount, urls, ie6) {
 	this.id = id;
 	// rows is an array of Rows	
 	this.rows = rows;
@@ -7,6 +7,7 @@ function Table(id, url, rows, ncols, rendringCount, urls) {
 	this.ncols = ncols;	
 	this.rendringCount = rendringCount;
 	this.urls = urls;
+	this.ie6 = ie6;
 	this.columns = new Array();    
     for(var i = 0; i < this.ncols; i++) {               
         this.addColumn(i);
@@ -20,7 +21,7 @@ Table.prototype.createDraggables = function() {
     for(var j = 1; j < this.ncols; j++) {               
         var titleId = this.id + '_dragger_'  + this.rendringCount+ '_' + j;
         var url = this.urls[j-1];
-       new TColumn(this.id, titleId, url);
+       new TColumn(this.id, titleId, url,this.ie6);
     }
     
     var lastHeader  = this.id + '_' + 'dropLas';
@@ -84,10 +85,11 @@ Column.prototype.onEndDrag = function (obj) {
     wicketAjaxGet(url);      
 }
 
-function TColumn(tableId, id, url) {
+function TColumn(tableId, id, url, ie6) {
     this.tableId = tableId;
     this.id = id;
     this.url = url;
+    this.ie6 = ie6;
     this.initialize();
 }
 
@@ -96,6 +98,7 @@ TColumn.prototype.initialize = function() {
     this.dd = new YAHOO.util.DD(this.id, this.tableId);    
     this.startPos = YAHOO.util.Dom.getXY(el);
     this.dd.url = this.url;
+    el.ie6 = this.ie6;
       
     this.dd.onDragDrop = function(e, id) { 
         wicketAjaxGet(this.url+ '&sourceId=' + this.getEl().id + '&targetId=' + id);
@@ -104,7 +107,12 @@ TColumn.prototype.initialize = function() {
     this.dd.onInvalidDrop = function(e) {         
            // Animating the move is more intesting 
        var Dom = YAHOO.util.Dom;               
-       Dom.setStyle(this.getEl(), "border", "1px solid transparent");     
+       //Dom.setStyle(this.getEl(), "opacity", 1);     
+       if(this.getEl().ie6==true) {
+       		Dom.setStyle(this.getEl(), "border", "none");
+       } else {
+       		Dom.setStyle(this.getEl(), "border", "1px solid transparent");
+       }
        new YAHOO.util.Motion(  
         this.getEl().id, {  
                       points: {  
@@ -122,7 +130,7 @@ TColumn.prototype.initialize = function() {
      
     this.dd.startDrag = function(x, y) { 
         var Dom = YAHOO.util.Dom;
-        Dom.setStyle(this.getEl(), "opacity", 0.5);
+        //Dom.setStyle(this.getEl(), "opacity", 0.8);
         Dom.setStyle(this.getEl(), "border", "1px dashed white");
     }
     
@@ -130,16 +138,20 @@ TColumn.prototype.initialize = function() {
         var Dom = YAHOO.util.Dom;
         var el = YAHOO.util.Dom.get(id);
         el.parentNode.className='droptarget';
-        Dom.setStyle(el, "opacity", 0.5);
-        Dom.setStyle(el, "border", "1px dashed white");   
+        //Dom.setStyle(el, "opacity", 0.8);
+        Dom.setStyle(el, "border", "1px dashed gray");   
     }
     
     this.dd.onDragOut =  function(e, id) { 
         var Dom = YAHOO.util.Dom;
         var el = YAHOO.util.Dom.get(id);
         el.parentNode.className='';        
-        Dom.setStyle(el, "opacity", 1);                 
-        Dom.setStyle(el, "border", "1px solid transparent");
+        //Dom.setStyle(el, "opacity", 1);          
+        if(this.getEl().ie6==true) {
+        	Dom.setStyle(el, "border", "none");
+        } else {
+        	Dom.setStyle(el, "border", "1px solid transparent");
+        }
     }
 }
  
