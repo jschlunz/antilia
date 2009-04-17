@@ -11,6 +11,7 @@ import org.apache.wicket.behavior.AttributeAppender;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.Model;
+import org.wicketstuff.minis.veil.VeilResources;
 
 import com.antilia.web.button.AbstractButton;
 import com.antilia.web.button.IMenuItem;
@@ -30,6 +31,8 @@ public abstract class DialogButton extends Panel implements IMenuItem, IToolbarI
 	private int order = AbstractButton.NO_ORDER;
 	
 	private AbstractButton button;
+	
+	private IDialogScope dialogScope;
 	
 	/**
 	 * If the dialog should be opened at mouse position!
@@ -110,6 +113,7 @@ public abstract class DialogButton extends Panel implements IMenuItem, IToolbarI
 
 	
 	protected IAjaxCallDecorator getAjaxCallDecorator() {
+		/*
 		return new IAjaxCallDecorator() 
 		{
 			private static final long serialVersionUID = 1L;
@@ -129,7 +133,50 @@ public abstract class DialogButton extends Panel implements IMenuItem, IToolbarI
 			}
 			
 		};
+		*/
+		return new IAjaxCallDecorator() {
+			
+			private static final long serialVersionUID = 1L;
+
+			public CharSequence decorateOnFailureScript(CharSequence script) {
+				IDialogScope dialogScope = getDialogScope();
+				String errorMessage = ";alert('"+DialogButton.this.getString("ServerDown", null, "Server Down!")+"');";
+				if(dialogScope != null) {
+					return script + ";" + VeilResources.Javascript.Generic.toggle(dialogScope.getDialogId()) + errorMessage ;
+				} 
+				return script + ";" + VeilResources.Javascript.Generic.toggle("AT_body") + errorMessage;
+			}
+			
+			public CharSequence decorateOnSuccessScript(CharSequence script) {
+				IDialogScope dialogScope = getDialogScope();
+				if(dialogScope != null) {
+					return script + ";" + VeilResources.Javascript.Generic.toggle(dialogScope.getDialogId()) + ";" 
+					+ "Antilia_dragPanels.showPanel('"+dialog.getDialogId()+"','"+button.getMarkupId()+"');"; 
+				}
+				return script + ";" + VeilResources.Javascript.Generic.toggle("AT_body") + ";" 
+				+ "Antilia_dragPanels.showPanel('"+dialog.getDialogId()+"','"+button.getMarkupId()+"');";
+			}
+			
+			public CharSequence decorateScript(CharSequence script) {
+				IDialogScope dialogScope = getDialogScope();
+				if(dialogScope != null) {
+					return VeilResources.Javascript.Generic.show(dialogScope.getDialogId()) + ";" + script;
+				}
+				return VeilResources.Javascript.Generic.show("AT_body") + ";" + script;
+			}
+		};
 	}
+	
+	public IDialogScope getDialogScope() {
+		if(dialogScope == null)
+			dialogScope = findParentDialog();
+		return dialogScope;
+	}
+	
+	private IDialogScope findParentDialog() {
+		return (IDialogScope)findParent(IDialogScope.class);
+	}
+	
 	
 	protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
 		if(showDialog(target, form)) {
