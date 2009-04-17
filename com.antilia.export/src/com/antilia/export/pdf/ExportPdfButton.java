@@ -15,6 +15,7 @@ import com.antilia.web.dialog.DefaultDialog;
 import com.antilia.web.export.AbstractExportDialogButton;
 import com.antilia.web.export.AbstractExportTask;
 import com.antilia.web.resources.DefaultStyle;
+import com.antilia.web.utils.RequestUtils;
 
 /**
  * 
@@ -41,7 +42,9 @@ public class ExportPdfButton<B extends Serializable> extends AbstractExportDialo
 	 */
 	@Override
 	protected ResourceReference getImage() {
-		return DefaultStyle.IMG_EXPORT_PDF;
+		if(RequestUtils.isBrowserIeExplorer6())
+			return DefaultStyle.IMG_EXPORT_PDF;
+		return DefaultStyle.IMG_EXPORT_PDF_PNG;
 	}
 
 	/* (non-Javadoc)
