@@ -42,9 +42,12 @@
 		
 		this.panel = document.getElementById(id);
 		
-		if(this.ie == true) {
-			this.panel.innerHTML =  '<iframe id="'+id+'-iframe" src="javascript:false;" scrolling="no" frameborder="0" style="position: absolute; top: 0px; left: 0px; z-index: -1; width: 100px; height: 100px; display: block; filter:alpha(opacity=0);"></iframe>' + this.panel.innerHTML;
+		if(Antilia.Browser.ie6 == true) {
+			this.panel.innerHTML =  '<iframe id="'+id+'-iframe" src="" scrolling="no" frameborder="0" style="position: absolute; top: 0px; left: 0px; z-index: -1; width: 100px; height: 100px; display: block; filter:alpha(opacity=0);"></iframe>' + this.panel.innerHTML;
+			this.iframe = document.getElementById(id+'-iframe');
+			this.resizeIFrame(this.iframe, this.panel);
 		}
+		
 		this.parentPanel = document.getElementById(parentId);
 		
 		this.height = parseInt(this.panel.style.height, 10);	
@@ -94,6 +97,21 @@
 		}
 	}
 	
+	Panel.prototype.resizeIFrame = function(iframe, panel) { 
+		if(iframe) {
+			iframe.style.width = panel.offsetWidth;
+			iframe.style.height = panel.offsetHeight;
+			iframe.style.top = -parseInt(panel.currentStyle.borderTopWidth);
+			iframe.style.left = -parseInt(panel.currentStyle.borderLeftWidth);
+		}
+	}
+	
+	Panel.prototype.resizeIFrameHeight = function(iframe, height) { 
+		if(iframe) {
+			iframe.style.height = height + 'px';
+		}
+	}
+	
 	Panel.prototype.addModalLayer = function() {
 		this.overlay = $(document.createElement('div'));
 		this.overlay.id = this.id + 'modal_overlay';
@@ -122,15 +140,18 @@
 		if(this.parent) {
 			if(!this.overlayVisible) {			
 				this.overlayVisible = true;	
+				Antilia.disableSelects();
 				this.parent.overlay.style.display = 'block'; 
 			} else {
 				this.overlayVisible = false;
+				Antilia.enableSelects();
 				this.parent.overlay.style.display = 'none'; 
 			}			
 		} else {
 			Wicket.Veil.toggleModal();
 		}		
 	}	
+		
 	
 	Panel.prototype.toggleLoadingLayer = function() {        
         if(!this.loadingVisible) {            
@@ -166,9 +187,11 @@
 			this.folded = true;
 			this.panelBody.folded = true;	
 			this.panelBody.beforeFoldHeight = parseInt(this.panel.style.height, 10);
+			this.resizeIFrameHeight(this.iframe, 30);
 		} else {
 			this.folded = false;
 			this.panelBody.folded = false;
+			this.resizeIFrameHeight(this.iframe, parseInt(this.panel.style.height, 10));
 		}
 		new Effect.toggle(this.panelBody, 
 		'blind',
@@ -177,6 +200,7 @@
  				beforeStart: this.beforeFold, 
  				duration: 0.5
 			});
+		
 	}
 	
 	Panel.prototype.afterFold = function(body) {
@@ -208,17 +232,10 @@
 		    this.drag = true;
 		    var panel = Antilia_dragPanels.getPanel(element.parentNode.id);
             var Dom = YAHOO.util.Dom;
-            Dom.setStyle(panel.panel, "opacity", 0.6);
-             
-            /*   
-            new Effect.toggle(panel.panel, 
-                'appear',
-                {
-                    duration: 0,
-                    from: 1,
-                    to: 0.6
-                });
-                */
+            
+            if(Antilia.Browser.ie6 == false) {
+            	Dom.setStyle(panel.panel, "opacity", 0.6);                         
+            }
          }					
 		var x = parseInt(w.style.left, 10) + deltaX;
 		var y = parseInt(w.style.top, 10) + deltaY;
@@ -253,28 +270,23 @@
 		if(this.drag == true) {
 		    this.drag = false;
 		    var Dom = YAHOO.util.Dom;
-            Dom.setStyle(panel.panel, "opacity", 1);
-		    /*
-			new Effect.toggle(panel.panel, 
-	            'appear',
-	            {
-	                duration: 0,
-	                from: 0.6,
-	                to: 1
-	            });
-	          */
-	          
-            } 
+		    if(Antilia.Browser.ie6 == false) {
+		    	Dom.setStyle(panel.panel, "opacity", 1);
+		    }		      
+		} 
 		panel.panel.className=panel.panelClass;		
 	}
 	
 	Panel.prototype.onResize = function(element, deltaX, deltaY) {
+		var id = element.parentNode.parentNode.id;
 		var window = element.parentNode.parentNode;
-		var bodyId = element.parentNode.parentNode.id+"Body";
-		var frameId = element.parentNode.parentNode.id+"Frame";
+		var bodyId = id +"Body";
+		var frameId = id +"Frame";
+		var iframeId = id +"-iframe";
 		
+			
 		var panel = Antilia_dragPanels.getPanel(element.parentNode.parentNode.id);		
-		
+						
 		var res = [0, 0];
 		
 		if(panel.folded) {
@@ -284,6 +296,7 @@
 		
 		var body = document.getElementById(bodyId);
 		var frame = document.getElementById(frameId);
+		var iframe = document.getElementById(iframeId);
 							
 		var width = parseInt(window.style.width, 10) + deltaX;
 		var height = parseInt(window.style.height, 10) + deltaY;
@@ -310,6 +323,8 @@
 			
 		window.style.width = width + "px";
 		window.style.height = height + "px";
+		
+		panel.resizeIFrame(iframe, window);
 		
 		if(frame) {
 			frame.style.width = bodywidth + "px";

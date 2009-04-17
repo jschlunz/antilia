@@ -84,6 +84,7 @@ public class DefaultStyle {
 	
 	public static ResourceReference IMG_UP_ENABLED  = new ResourceReference(ImgDummy.class, "up_enabled.gif");	
 	public static ResourceReference IMG_UP_ENABLED_PNG  = new ResourceReference(ImgDummy.class, "up_enabled.png");
+	
 	public static ResourceReference IMG_DOWN_ENABLED = new ResourceReference(ImgDummy.class, "down_enabled.gif");
 	public static ResourceReference IMG_DOWN_ENABLED_PNG = new ResourceReference(ImgDummy.class, "down_enabled.png");
 	
@@ -143,7 +144,11 @@ public class DefaultStyle {
 	public static ResourceReference IMG_SEARCH = new ResourceReference(ImgDummy.class, "search.gif");
 	
 	public static ResourceReference IMG_EXPORT_PDF = new ResourceReference(ImgDummy.class, "export_pdf.gif");
+	public static ResourceReference IMG_EXPORT_PDF_PNG = new ResourceReference(ImgDummy.class, "export_pdf.png");
+	
 	public static ResourceReference IMG_EXPORT_EXCEL = new ResourceReference(ImgDummy.class, "export_excel.gif");
+	public static ResourceReference IMG_EXPORT_EXCEL_PNG = new ResourceReference(ImgDummy.class, "export_excel.png");
+	
 	public static ResourceReference IMG_EXPORT_XML = new ResourceReference(ImgDummy.class, "page_xml.gif");
 	public static ResourceReference IMG_EXPORT_SQL = new ResourceReference(ImgDummy.class, "page_sql.gif");
 	

@@ -3,10 +3,43 @@
  */
 if (typeof(Wicket) == "undefined")
 	Wicket = { };
-	
+
+if (typeof(Antilia) == "undefined")
+	Antilia = { };
+
+// Browser detection
+Antilia.Browser = {
+    "ie": navigator.appVersion.indexOf("MSIE") != -1,
+    "ie5": (navigator.appVersion.indexOf("MSIE 5.5") != -1 || navigator.appVersion.indexOf("MSIE 5.0") != -1),
+    "ie6": (navigator.appVersion.indexOf("MSIE 6.0") != -1)
+};
+
+if (!Antilia.Browser.ie) {
+	Antilia.Browser.ie5 = false;
+	Antilia.Browser.ie6 = false;
+}
+
+Antilia.disableSelects = function() {
+	var selects = document.getElementsByTagName("select");
+	if(selects.length > 0) {
+		for(var i = 0; i < selects.length; i++) {
+			selects[i].disabled = true;
+		}
+	}
+}	
+
+Antilia.enableSelects = function() {
+	var selects = document.getElementsByTagName("select");
+	if(selects.length > 0) {
+		for(var i = 0; i < selects.length; i++) {
+			selects[i].disabled = false;
+		}
+	}
+}
+
 Wicket.Veil = {
 
-	/**
+	/*
 		toggles a veil over the element with the specified id
 		options map must at least contain className key
 	*/
@@ -19,17 +52,20 @@ Wicket.Veil = {
 
 	toggleModal: function() {		
 		if (Wicket.Veil.hideModal()==false) {
-		  Wicket.Veil.showModal();
+			if(Antilia.Browser.ie6==true) {
+				Antilia.disableSelects();
+			}
+			Wicket.Veil.showModal();		  
 		}
 	},
 	
 
-	/**
+	/*
 		shows a veil over the element with the specified id
 		options map must at least contain className key
 	*/
-	showModal:function() {		
-		var target = document.getElementById("AT_body");		
+	showModal:function() {						
+		var target = document.getElementById("AT_body");
 		var veil=document.getElementById("AT_body_modal");	
 		veil.style.position="absolute";
 		veil.style.left=Wicket.Veil.left(target);
@@ -37,19 +73,31 @@ Wicket.Veil = {
 		veil.style.width=target.clientWidth + "px";
 		veil.style.height=target.clientHeight + "px";
 		veil.style.display="block";			
-		veil.style.zIndex="1";		
+		veil.style.zIndex="3";
+		/*
+		if(Antilia.Browser.ie6==true) {
+			var ifr =  document.getElementById("AT_body_m_iframe");		
+			ifr.style.position="absolute";
+			ifr.style.left=Wicket.Veil.left(target);
+			ifr.style.top=Wicket.Veil.top(target);		
+			ifr.style.width=target.clientWidth + "px";
+			ifr.style.height=target.clientHeight + "px";
+			ifr.style.display="block";			
+			ifr.style.zIndex="2";
+		} 
+		*/
 	},
 	
-	/**
-		hides veil currently shown over the element with the specified id
-		@return true if veil was hidden, false if there was none
-	 */
+
 	hideModal:function() {
 		var veil=document.getElementById("AT_body_modal");		
-		if (veil.style.display=="block") {
-			veil.style.display="none";
+		if (veil.style.display=="block") {			
+			veil.style.display="none";	
+			if(Antilia.Browser.ie6==true) {
+				Antilia.enableSelects();
+			}
 			return true;
-		} 		
+		}
 		return false;
 	},
 	
