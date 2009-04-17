@@ -113,27 +113,6 @@ public abstract class DialogButton extends Panel implements IMenuItem, IToolbarI
 
 	
 	protected IAjaxCallDecorator getAjaxCallDecorator() {
-		/*
-		return new IAjaxCallDecorator() 
-		{
-			private static final long serialVersionUID = 1L;
-
-			public CharSequence decorateOnFailureScript(CharSequence script) {
-				return script;
-			}
-
-			public CharSequence decorateOnSuccessScript(CharSequence script) {
-				if(showAtMousePosition)
-					return  script  + "Antilia_dragPanels.showPanel('"+dialog.getDialogId()+"','"+button.getMarkupId()+"');";
-				return  script ;
-			}
-
-			public CharSequence decorateScript(CharSequence script) {
-				return   script;
-			}
-			
-		};
-		*/
 		return new IAjaxCallDecorator() {
 			
 			private static final long serialVersionUID = 1L;
