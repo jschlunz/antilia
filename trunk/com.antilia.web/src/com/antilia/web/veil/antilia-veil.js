@@ -11,12 +11,14 @@ if (typeof(Antilia) == "undefined")
 Antilia.Browser = {
     "ie": navigator.appVersion.indexOf("MSIE") != -1,
     "ie5": (navigator.appVersion.indexOf("MSIE 5.5") != -1 || navigator.appVersion.indexOf("MSIE 5.0") != -1),
-    "ie6": (navigator.appVersion.indexOf("MSIE 6.0") != -1)
+    "ie6": (navigator.appVersion.indexOf("MSIE 6.0") != -1 && navigator.appVersion.indexOf("MSIE 7.0") == -1),
+    "ie7": (navigator.appVersion.indexOf("MSIE 7.0") != -1)
 };
 
-if (!Antilia.Browser.ie) {
+if (!Antilia.Browser.ie) {	
 	Antilia.Browser.ie5 = false;
 	Antilia.Browser.ie6 = false;
+	Antilia.Browser.ie7 = false;
 }
 
 Antilia.disableSelects = function() {
