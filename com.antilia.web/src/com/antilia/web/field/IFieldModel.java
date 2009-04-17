@@ -12,7 +12,7 @@ import com.antilia.hibernate.query.Operator;
  * @author Ernesto Reinaldo Barreiro (reiern70@gmail.com)
  *
  */
-public interface IFieldModel<B extends Serializable> {
+public interface IFieldModel<B extends Serializable> extends Serializable {
 	
 	String getPropertyPath();	
 	void setPropertyPath(String propertyPath);

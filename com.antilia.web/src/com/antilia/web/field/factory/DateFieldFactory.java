@@ -9,6 +9,7 @@ import java.util.Date;
 
 import org.apache.wicket.Component;
 
+import com.antilia.hibernate.query.Operator;
 import com.antilia.web.field.IFieldModel;
 import com.antilia.web.field.impl.DateField;
 /**
@@ -34,6 +35,8 @@ public class DateFieldFactory<B extends Serializable> implements IFieldFactory<B
 	 * @see com.antilia.web.field.factory.IFieldFactory#newField(java.lang.String, com.antilia.web.field.IFieldModel)
 	 */
 	public Component newField(String id, IFieldModel<B> fieldModel, FieldMode mode) {
+		fieldModel.setOperators(new Operator[]{Operator.EQUAL, Operator.LESS_THAN, Operator.LESS_EQUAL_THAN});
+		fieldModel.setSelectedOperator(Operator.EQUAL);
 		return new DateField<B>(id, fieldModel,mode);
 	}
 

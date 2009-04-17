@@ -20,6 +20,7 @@ import org.apache.wicket.model.Model;
 import org.apache.wicket.model.StringResourceModel;
 
 import com.antilia.common.util.ResourceUtils;
+import com.antilia.hibernate.query.Operator;
 import com.antilia.web.field.factory.DefaultFieldFactory;
 import com.antilia.web.field.factory.FieldMode;
 import com.antilia.web.field.impl.BaseFormField;
@@ -139,6 +140,8 @@ public class AutoFieldPanel<B extends Serializable> extends Panel implements IFi
 				}
 				if(field != null)
 					return field;
+				fieldModel.setOperators(new Operator[]{Operator.EQUAL, Operator.ILIKE});
+				fieldModel.setSelectedOperator(Operator.EQUAL);
 				TextField<B> textField = new TextField<B>(id, fieldModel, getMode());
 				textField.getLabel().setVisible(false);
 				return textField;

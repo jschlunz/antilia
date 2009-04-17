@@ -8,6 +8,7 @@ import java.io.Serializable;
 
 import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.markup.html.basic.Label;
+import org.apache.wicket.markup.html.panel.EmptyPanel;
 import org.apache.wicket.model.Model;
 
 import com.antilia.web.field.IFieldModel;
@@ -24,7 +25,7 @@ public class TextField<B extends Serializable> extends BaseFormField<B> {
 
 	@SuppressWarnings("unchecked")
 	private org.apache.wicket.markup.html.form.TextField textField;
-	
+
 	
 	/**
 	 * @param id
@@ -35,7 +36,11 @@ public class TextField<B extends Serializable> extends BaseFormField<B> {
 		super(id, model, mode);		
 		label = new Label("label", getLabelModel());
 		add(label);
-				
+		if(mode.equals(FieldMode.SEARCH) && model.getOperators().length > 0) {
+			add(new OperatorsPanel<B>("operator", model));
+		} else {
+			add(new EmptyPanel("operator"));
+		}
 	}
 	
 
