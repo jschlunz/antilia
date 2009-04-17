@@ -63,7 +63,8 @@ public class AntiliaBasePalette<T> extends Palette<T> {
 		WebMarkupContainer add =  (WebMarkupContainer)super.newAddComponent();
 		if(RequestUtils.isBrowserIeExplorer6())
 			add.addOrReplace(new Image("image", DefaultStyle.IMG_NEXT_ENABLED));
-		add.addOrReplace(new Image("image", DefaultStyle.IMG_NEXT_ENABLED_PNG));
+		else 
+			add.addOrReplace(new Image("image", DefaultStyle.IMG_NEXT_ENABLED_PNG));
 		return add;
 	}
 	
@@ -72,7 +73,8 @@ public class AntiliaBasePalette<T> extends Palette<T> {
 		WebMarkupContainer add =  (WebMarkupContainer)super.newRemoveComponent();
 		if(RequestUtils.isBrowserIeExplorer6())
 			add.addOrReplace(new Image("image", DefaultStyle.IMG_PREVIOUS_ENABLED));
-		add.addOrReplace(new Image("image", DefaultStyle.IMG_PREVIOUS_ENABLED_PNG));
+		else
+			add.addOrReplace(new Image("image", DefaultStyle.IMG_PREVIOUS_ENABLED_PNG));
 		return add;
 	}
 	
@@ -81,7 +83,8 @@ public class AntiliaBasePalette<T> extends Palette<T> {
 		WebMarkupContainer add =  (WebMarkupContainer)super.newDownComponent();
 		if(RequestUtils.isBrowserIeExplorer6())
 			add.addOrReplace(new Image("image", DefaultStyle.IMG_DOWN_ENABLED));
-		add.addOrReplace(new Image("image", DefaultStyle.IMG_DOWN_ENABLED_PNG));
+		else
+			add.addOrReplace(new Image("image", DefaultStyle.IMG_DOWN_ENABLED_PNG));
 		return add;
 	}
 
@@ -90,7 +93,8 @@ public class AntiliaBasePalette<T> extends Palette<T> {
 		WebMarkupContainer add =  (WebMarkupContainer)super.newUpComponent();
 		if(RequestUtils.isBrowserIeExplorer6())
 			add.addOrReplace(new Image("image", DefaultStyle.IMG_UP_ENABLED));
-		add.addOrReplace(new Image("image", DefaultStyle.IMG_UP_ENABLED_PNG));
+		else
+			add.addOrReplace(new Image("image", DefaultStyle.IMG_UP_ENABLED_PNG));
 		return add;
 	}
 }
