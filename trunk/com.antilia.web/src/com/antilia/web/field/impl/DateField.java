@@ -10,6 +10,7 @@ import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.extensions.markup.html.form.DateTextField;
 import org.apache.wicket.extensions.yui.calendar.DatePicker;
 import org.apache.wicket.markup.html.basic.Label;
+import org.apache.wicket.markup.html.panel.EmptyPanel;
 import org.apache.wicket.model.Model;
 
 import com.antilia.web.field.IFieldModel;
@@ -36,8 +37,12 @@ public class DateField<B extends Serializable> extends BaseFormField<B> {
 	public DateField(String id, IFieldModel<B> model, FieldMode mode) {
 		super(id, model, mode);
 		label = new Label("label", getLabelModel());
-		add(label);
-				
+		add(label);		
+		if(mode.equals(FieldMode.SEARCH) && model.getOperators().length > 0) {
+			add(new OperatorsPanel<B>("operator", model));
+		} else {
+			add(new EmptyPanel("operator"));
+		}		
 	}
 	
 
