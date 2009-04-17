@@ -68,6 +68,7 @@ public abstract class DefaultDialog extends Panel implements IDialogScope, IMenu
 	
 	private IDialogScope parent;
 	
+	private Panel header;
 	/**
 	 * If the dialog is re-sizable or not
 	 */
@@ -200,13 +201,7 @@ public abstract class DefaultDialog extends Panel implements IDialogScope, IMenu
 				return sb.toString();
 			}
 		}));
-				
-		Panel header = newDialogHeader("header");						
-		if(header != null)
-			innerPanel.add(header);
-		else {
-			innerPanel.add(new Label("header", ""));
-		}
+						
 		
 		WebMarkupContainer dialogBackground = new WebMarkupContainer("dialogBackground");
 		dialogBackground.add(new AttributeModifier("style", new Model<String>() {
@@ -327,9 +322,17 @@ public abstract class DefaultDialog extends Panel implements IDialogScope, IMenu
 	}
 	
 	@Override
-	protected void onBeforeRender() {
-		super.onBeforeRender();
+	protected void onBeforeRender() {		
 	
+		if(header == null) {
+			header = newDialogHeader("header");						
+			if(header != null)
+				innerPanel.add(header);
+			else {
+				innerPanel.add(new Label("header", ""));
+			}
+		}
+		
 		if(body == null) {
 			// call createBody to retrieve user defined body.
 			body = createBody("body");
@@ -340,6 +343,7 @@ public abstract class DefaultDialog extends Panel implements IDialogScope, IMenu
 			else 
 				dialogBody.add(new Label("body", ""));
 		}
+		super.onBeforeRender();
 	}
 	
 	protected void appendToScript(StringBuffer script) {

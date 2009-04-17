@@ -93,19 +93,9 @@ public class DefaultHeaderRounded extends Panel  {
 			}
 		}));
 		add(middlePanel);
+		
 		Label title = new Label("title", DefaultHeaderRounded.this.getDialog().getTitle());
-		/*
-		title.setOutputMarkupId(true);
-		title.add(new AttributeModifier("id", new Model() {
-
-			private static final long serialVersionUID = 1L;
-
-			@Override
-			public Object getObject() {
-				return DefaultHeader.this.dialog.getDialogId()+"Title";
-			}
-		}));
-		*/
+		
 		title.add(new AttributeModifier("style", new Model<String>() {
 			
 			private static final long serialVersionUID = 1L;

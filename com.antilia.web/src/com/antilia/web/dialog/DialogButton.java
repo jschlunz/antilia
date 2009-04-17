@@ -38,53 +38,55 @@ public abstract class DialogButton extends Panel implements IMenuItem, IToolbarI
 	
 	public DialogButton(String id) {
 		super(id);
-		button = new AbstractButton("button", true){			
-			private static final long serialVersionUID = 1L;
-
-			@Override
-			protected ResourceReference getImage() {
-				return DialogButton.this.getImage();
-			}
-			
-			@Override
-			protected String getLabel() {
-				return DialogButton.this.getLabel();
-			}
-			
-			@Override
-			protected String getLabelKey() {
-				return DialogButton.this.getLabelKey();
-			}
-			
-			@Override
-			protected String getTitleKey() {
-				return DialogButton.this.getTitleKey();
-			}
-			 
-			@Override
-			public boolean isEnabled() {
-				return !DialogButton.this.dialog.isVisible();
-			}
-			 
-			@Override
-			protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
-				DialogButton.this.onSubmit(target, form);
-			}
-			
-			@Override
-			protected IAjaxCallDecorator getAjaxCallDecorator() {
-				return DialogButton.this.getAjaxCallDecorator();
-			}			
-		};
 		
-		add(button);
 		
 		
 	}
 	
 	@Override
-	protected void onBeforeRender() {
-		super.onBeforeRender();	
+	protected void onBeforeRender() {			
+		if(button == null) {
+			button = new AbstractButton("button", true){			
+				private static final long serialVersionUID = 1L;
+
+				@Override
+				protected ResourceReference getImage() {
+					return DialogButton.this.getImage();
+				}
+				
+				@Override
+				protected String getLabel() {
+					return DialogButton.this.getLabel();
+				}
+				
+				@Override
+				protected String getLabelKey() {
+					return DialogButton.this.getLabelKey();
+				}
+				
+				@Override
+				protected String getTitleKey() {
+					return DialogButton.this.getTitleKey();
+				}
+				 
+				@Override
+				public boolean isEnabled() {
+					return !DialogButton.this.dialog.isVisible();
+				}
+				 
+				@Override
+				protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
+					DialogButton.this.onSubmit(target, form);
+				}
+				
+				@Override
+				protected IAjaxCallDecorator getAjaxCallDecorator() {
+					return DialogButton.this.getAjaxCallDecorator();
+				}			
+			};
+			
+			add(button);
+		}
 		if(dialog == null) {
 			dialog = newDialog("dialog"); 
 			dialog.setVisible(false);				
@@ -93,6 +95,7 @@ public abstract class DialogButton extends Panel implements IMenuItem, IToolbarI
 			dialog.setDialogButton(this);
 			add(dialog);
 		}
+		super.onBeforeRender();
 	}
 	
 	protected abstract String getLabelKey();

@@ -140,11 +140,15 @@
 		if(this.parent) {
 			if(!this.overlayVisible) {			
 				this.overlayVisible = true;	
-				Antilia.disableSelects();
+				if(Antilia.Browser.ie6==true) {
+					Antilia.disableSelects();
+				}
 				this.parent.overlay.style.display = 'block'; 
 			} else {
 				this.overlayVisible = false;
-				Antilia.enableSelects();
+				if(Antilia.Browser.ie6==true) {
+					Antilia.enableSelects();
+				}
 				this.parent.overlay.style.display = 'none'; 
 			}			
 		} else {
