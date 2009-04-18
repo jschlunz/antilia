@@ -5,8 +5,10 @@
 package com.antilia.web.crud;
 
 import java.io.Serializable;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.wicket.markup.html.panel.Panel;
 
@@ -28,6 +30,7 @@ import com.antilia.web.field.AutoFieldPanel;
 import com.antilia.web.field.BeanForm;
 import com.antilia.web.field.BeanProxy;
 import com.antilia.web.field.IAutoFieldCreator;
+import com.antilia.web.field.IFieldModel;
 import com.antilia.web.field.factory.FieldMode;
 import com.antilia.web.menu.Menu;
 
@@ -49,6 +52,8 @@ public class SearchPanel<B extends Serializable> extends Panel implements ILoada
 	
 	private CrudStyler<B> styler;
 	
+	private Map<String,IFieldModel<B>> models;
+	
 	public SearchPanel(String id, CrudStyler<B> styler) {
 		this(id,  null, null, styler);
 	}
@@ -63,6 +68,8 @@ public class SearchPanel<B extends Serializable> extends Panel implements ILoada
 		super(id);
 		
 		setOutputMarkupId(true);
+		
+		this.models = new HashMap<String,IFieldModel<B>>();
 		
 		if(filterQuery != null)			
 			this.filterQuery = filterQuery;
@@ -195,12 +202,12 @@ public class SearchPanel<B extends Serializable> extends Panel implements ILoada
 	}
 	
 	protected IAutoFieldCreator<B> newAutoFieldModel(IQuery<B> query, BeanProxy<B> beanProxy) {
-		return new AutoFieldCreator<B>(query, beanProxy);
+		return new AutoFieldCreator<B>(query, beanProxy, this.models);
 	}
 	
 	@SuppressWarnings("unchecked")
 	public void reload() {
-		getBeanProxy().updateFilterQuery(getFilterQuery());
+		getBeanProxy().updateFilterQuery(getFilterQuery(), this.models);
 		if(this.pageableProvider instanceof ILoadable) {
 			((ILoadable)this.pageableProvider).load(getFilterQuery());
 		}

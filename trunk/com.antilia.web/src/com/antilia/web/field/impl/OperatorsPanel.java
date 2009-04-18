@@ -8,6 +8,7 @@ import java.io.Serializable;
 import java.util.Arrays;
 
 import org.apache.wicket.markup.html.form.DropDownChoice;
+import org.apache.wicket.markup.html.form.IChoiceRenderer;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.Model;
 
@@ -43,6 +44,19 @@ public class OperatorsPanel<B extends Serializable> extends Panel {
 				OperatorsPanel.this.model.setSelectedOperator(object);
 			}
 		}, Arrays.asList(model.getOperators()));
+		operator.setChoiceRenderer(new IChoiceRenderer<Operator>() {
+			private static final long serialVersionUID = 1L;
+
+			@Override
+			public Object getDisplayValue(Operator object) {
+				return object.getValue();
+			}
+			
+			@Override
+			public String getIdValue(Operator object, int index) {
+				return Integer.toString(index);
+			}
+		});
 		operator.setRequired(false);
 		operator.setNullValid(true);
 		add(operator);

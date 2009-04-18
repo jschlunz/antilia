@@ -5,7 +5,7 @@
 package com.antilia.web.field;
 
 import java.io.Serializable;
-import java.util.List;
+import java.util.Map;
 
 import com.antilia.hibernate.query.IQuery;
 import com.antilia.hibernate.query.Operator;
@@ -16,7 +16,7 @@ import com.antilia.hibernate.query.Operator;
  */
 public interface IAutoFieldCreator<B extends Serializable> extends Serializable {
 
-	List<IFieldModel<B>> getFieldModels();
+	Map<String,IFieldModel<B>> getFieldModels();
 	
 	void addFieldModel(IFieldModel<B> fieldModel);
 	

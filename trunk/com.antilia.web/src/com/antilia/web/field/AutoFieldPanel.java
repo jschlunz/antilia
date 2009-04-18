@@ -58,7 +58,7 @@ public class AutoFieldPanel<B extends Serializable> extends Panel implements IFi
 			List<IModel> models = new ArrayList<IModel>();
 			int columns = autoFieldPanel.getColumns();
 			IAutoFieldCreator<B> model = autoFieldPanel.getAutoFieldModel();
-			List<IFieldModel<B>> fieldModels =  model.getFieldModels();
+			List<IFieldModel<B>> fieldModels =  new ArrayList<IFieldModel<B>>(model.getFieldModels().values());
 			int size = fieldModels.size();
 			// compute the number of rows... and create an Integer model for each row
 			int rows = (size/columns) ;
@@ -74,7 +74,7 @@ public class AutoFieldPanel<B extends Serializable> extends Panel implements IFi
 		protected void populateItem(Item<B> item) {
 			int columns = autoFieldPanel.getColumns(); 
 			IAutoFieldCreator<B> model = autoFieldPanel.getAutoFieldModel();
-			List<IFieldModel<B>> fieldModels =  model.getFieldModels();
+			List<IFieldModel<B>> fieldModels =  new ArrayList<IFieldModel<B>>(model.getFieldModels().values());
 			int size = fieldModels.size();
 			RepeatingView cols = new RepeatingView("cols");
 			cols.setRenderBodyOnly(true);
@@ -141,7 +141,8 @@ public class AutoFieldPanel<B extends Serializable> extends Panel implements IFi
 				if(field != null)
 					return field;
 				fieldModel.setOperators(new Operator[]{Operator.EQUAL, Operator.ILIKE});
-				fieldModel.setSelectedOperator(Operator.EQUAL);
+				if(fieldModel.getSelectedOperator()==null)
+					fieldModel.setSelectedOperator(Operator.EQUAL);
 				TextField<B> textField = new TextField<B>(id, fieldModel, getMode());
 				textField.getLabel().setVisible(false);
 				return textField;

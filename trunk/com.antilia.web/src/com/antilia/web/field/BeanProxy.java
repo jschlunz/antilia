@@ -13,6 +13,7 @@ import java.util.Map;
 import org.apache.wicket.util.lang.PropertyResolver;
 
 import com.antilia.hibernate.query.IQuery;
+import com.antilia.hibernate.query.Operator;
 import com.antilia.hibernate.query.Restrictions;
 
 /**
@@ -75,13 +76,23 @@ public class BeanProxy<B extends Serializable> implements Serializable {
 	 * 
 	 * @param query
 	 */
-	public void updateFilterQuery(IQuery<B> query) {
+	public void updateFilterQuery(IQuery<B> query, Map<String, IFieldModel<B>> models) {
 		query.clearFilters();
 		for(String propertyName: propertyValues.keySet()) {			
-			Object value = PropertyResolver.getValue(propertyName, getBean());
+			Object value = PropertyResolver.getValue(propertyName, getBean());			
+			IFieldModel<B> model = models.get(propertyName);
+			Operator operator = null;
+			if(model != null) {
+				operator = model.getSelectedOperator();
+			}
 			if(value != null) {
 				if(value instanceof String) {
-					query.addFilter(Restrictions.ilike(propertyName, value));		
+					if(operator.equals(Operator.EQUAL))
+						query.addFilter(Restrictions.eq(propertyName, value));
+					else if(operator.equals(Operator.LIKE) || operator.equals(Operator.ILIKE)) 	
+						query.addFilter(Restrictions.ilike(propertyName, value));		
+					else 
+						query.addFilter(Restrictions.eq(propertyName, value));
 				} else {
 					query.addFilter(Restrictions.eq(propertyName, value));
 				}

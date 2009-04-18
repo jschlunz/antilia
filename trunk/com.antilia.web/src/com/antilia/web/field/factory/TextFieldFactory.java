@@ -8,6 +8,7 @@ import java.io.Serializable;
 
 import org.apache.wicket.Component;
 
+import com.antilia.hibernate.query.Operator;
 import com.antilia.web.field.IFieldModel;
 import com.antilia.web.field.impl.TextField;
 /**
@@ -33,6 +34,9 @@ public class TextFieldFactory<B extends Serializable> implements IFieldFactory<B
 	 * @see com.antilia.web.field.factory.IFieldFactory#newField(java.lang.String, com.antilia.web.field.IFieldModel)
 	 */
 	public Component newField(String id, IFieldModel<B> fieldModel, FieldMode mode) {
+		fieldModel.setOperators(new Operator[]{Operator.EQUAL, Operator.ILIKE});
+		if(fieldModel.getSelectedOperator()==null)
+			fieldModel.setSelectedOperator(Operator.EQUAL);
 		return new TextField<B>(id, fieldModel, mode);
 	}
 

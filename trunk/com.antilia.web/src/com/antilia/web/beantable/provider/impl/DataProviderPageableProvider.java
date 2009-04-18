@@ -171,7 +171,7 @@ public class DataProviderPageableProvider<E extends Serializable> implements ILo
 			query.setFirstResult(start);
 			query.setMaxResults(pageSize);
 			if(dataProvider instanceof IQuerable) {
-				((IQuerable<E>)dataProvider).setQuery(query)	;			
+				((IQuerable<E>)dataProvider).setQuery(query);			
 			}
 			cachedEntities = new ArrayList<E>();
 			Iterator<E> it = (Iterator<E>)dataProvider.iterator(start, pageSize);
