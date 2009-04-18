@@ -36,7 +36,8 @@ public class DateFieldFactory<B extends Serializable> implements IFieldFactory<B
 	 */
 	public Component newField(String id, IFieldModel<B> fieldModel, FieldMode mode) {
 		fieldModel.setOperators(new Operator[]{Operator.EQUAL, Operator.LESS_THAN, Operator.LESS_EQUAL_THAN});
-		fieldModel.setSelectedOperator(Operator.EQUAL);
+		if(fieldModel.getSelectedOperator()==null)
+			fieldModel.setSelectedOperator(Operator.EQUAL);
 		return new DateField<B>(id, fieldModel,mode);
 	}
 

@@ -5,8 +5,8 @@
 package com.antilia.web.field;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.apache.wicket.model.Model;
 
@@ -22,7 +22,7 @@ public class AutoFieldCreator<B extends Serializable> extends Model<BeanProxy<B>
 
 	private static final long serialVersionUID = 1L;
 	
-	private List<IFieldModel<B>> models = new ArrayList<IFieldModel<B>>();
+	private Map<String, IFieldModel<B>> models; 
 		
 	private IQuery<B> filterQuery;
 	
@@ -35,14 +35,20 @@ public class AutoFieldCreator<B extends Serializable> extends Model<BeanProxy<B>
 	public AutoFieldCreator(B object) {
 		super(new BeanProxy<B>(object));
 		this.filterQuery = new Query<B>((Class<B>)object.getClass());
+		this.models = new HashMap<String,IFieldModel<B>>();
+	}
+	
+	public AutoFieldCreator(IQuery<B> filterQuery, BeanProxy<B> beanProxy) {
+		this(filterQuery, beanProxy, new HashMap<String,IFieldModel<B>>());
 	}
 	
 	/**
 	 * 
 	 */
-	public AutoFieldCreator(IQuery<B> filterQuery, BeanProxy<B> beanProxy) {
+	public AutoFieldCreator(IQuery<B> filterQuery, BeanProxy<B> beanProxy, Map<String,IFieldModel<B>> models) {
 		super();
 		this.filterQuery = filterQuery;		
+		this.models = models;
 		setObject(beanProxy);
 	}
 
@@ -55,18 +61,18 @@ public class AutoFieldCreator<B extends Serializable> extends Model<BeanProxy<B>
 	/* (non-Javadoc)
 	 * @see com.antilia.web.field.IAutoFieldModel#getFieldModels()
 	 */
-	public List<IFieldModel<B>> getFieldModels() {
+	public Map<String,IFieldModel<B>> getFieldModels() {
 		return models;
 	}
 	
 	public void addFieldModel(IFieldModel<B> fieldModel) {
-		models.add(fieldModel);
+		models.put(fieldModel.getPropertyPath(), fieldModel);
 	}
 	
 	public IFieldModel<B> newFieldModel(String propertyPath) {
 		FieldModel<B> model = new FieldModel<B>(getBeanProxy(), propertyPath);			
 		configureFieldModel(model);
-		models.add(model);
+		models.put(model.getPropertyPath(), model);
 		return model;
 	}
 	
@@ -74,7 +80,7 @@ public class AutoFieldCreator<B extends Serializable> extends Model<BeanProxy<B>
 		IFieldModel<B> model = newFieldModel(propertyPath);
 		model.setOperators(operators);
 		model.setSelectedOperator(selected);
-		models.add(model);		
+		models.put(model.getPropertyPath(),model);		
 		return model;
 	}
 		
