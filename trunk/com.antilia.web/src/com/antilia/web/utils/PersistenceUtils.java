@@ -33,7 +33,7 @@ public class PersistenceUtils {
 
 		// if it's a collection, call attach on each element
 		if (object instanceof Iterable)
-			for (Object element : (Iterable)object)
+			for (Object element : (Iterable<?>)object)
 				attachObject(element,attachedObjects);
 		
 		// don't attach objects that are already attached
@@ -58,7 +58,7 @@ public class PersistenceUtils {
 					if (value instanceof Proxy) {
 						InvocationHandler invocationHandler = Proxy.getInvocationHandler(value);
 						if (invocationHandler instanceof VirtualProxyHandler) {
-							value = ((VirtualProxyHandler)invocationHandler).getObject();
+							value = ((VirtualProxyHandler<?>)invocationHandler).getObject();
 							field.set(object,value);
 						}
 					}
