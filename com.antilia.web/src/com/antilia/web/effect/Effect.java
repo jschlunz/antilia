@@ -145,6 +145,8 @@ public interface Effect extends Serializable
 	 */
 	public abstract class AbstractEffect implements Effect
 	{
+		private static final long serialVersionUID = 1L;
+
 		private final Map<String, Object> options;
 
 		private final Map<String, Object> params;
