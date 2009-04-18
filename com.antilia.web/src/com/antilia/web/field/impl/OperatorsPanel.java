@@ -10,7 +10,6 @@ import java.util.Arrays;
 import org.apache.wicket.markup.html.form.DropDownChoice;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.Model;
-import org.apache.wicket.model.PropertyModel;
 
 import com.antilia.hibernate.query.Operator;
 import com.antilia.web.field.IFieldModel;
