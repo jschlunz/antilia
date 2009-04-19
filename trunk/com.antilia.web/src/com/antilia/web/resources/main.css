@@ -89,6 +89,13 @@ span.largeSelection {
     font-weight: bold;
 }
 
+select.operator {
+	vertical-align: middle;
+    padding: 0px;
+    margin: 0px;
+    height:  17px;
+}
+
 div.vertical-menu {	
 	vertical-align: top;
 	width: 100%;
