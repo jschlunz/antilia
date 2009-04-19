@@ -6,6 +6,7 @@ package com.antilia.web.field;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -87,10 +88,24 @@ public class BeanProxy<B extends Serializable> implements Serializable {
 			}
 			if(value != null) {
 				if(value instanceof String) {
-					if(operator.equals(Operator.EQUAL))
+					if(operator == null || operator.equals(Operator.EQUAL))
 						query.addFilter(Restrictions.eq(propertyName, ((String)value).trim()));
 					else if(operator.equals(Operator.LIKE) || operator.equals(Operator.ILIKE)) 	
 						query.addFilter(Restrictions.ilike(propertyName, value));		
+					else 
+						query.addFilter(Restrictions.eq(propertyName, value));
+				} else if(value instanceof Date) {
+					Date date = (Date) value;
+					if(operator == null || operator.equals(Operator.EQUAL))
+						query.addFilter(Restrictions.eq(propertyName, date));
+					else if(operator.equals(Operator.LESS_THAN)) 	
+						query.addFilter(Restrictions.lt(propertyName, date));
+					else if(operator.equals(Operator.LESS_EQUAL_THAN)) 	
+						query.addFilter(Restrictions.le(propertyName, date));
+					else if(operator.equals(Operator.GREATER_THAN)) 	
+						query.addFilter(Restrictions.gt(propertyName, date));
+					else if(operator.equals(Operator.GREATER_EQUAL_THAN)) 	
+						query.addFilter(Restrictions.ge(propertyName, date));
 					else 
 						query.addFilter(Restrictions.eq(propertyName, value));
 				} else {
