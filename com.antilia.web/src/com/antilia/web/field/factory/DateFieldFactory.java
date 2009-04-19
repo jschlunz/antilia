@@ -35,7 +35,12 @@ public class DateFieldFactory<B extends Serializable> implements IFieldFactory<B
 	 * @see com.antilia.web.field.factory.IFieldFactory#newField(java.lang.String, com.antilia.web.field.IFieldModel)
 	 */
 	public Component newField(String id, IFieldModel<B> fieldModel, FieldMode mode) {
-		fieldModel.setOperators(new Operator[]{Operator.EQUAL, Operator.LESS_THAN, Operator.LESS_EQUAL_THAN});
+		fieldModel.setOperators(new Operator[]{
+				Operator.EQUAL, 
+				Operator.LESS_THAN, 
+				Operator.LESS_EQUAL_THAN, 
+				Operator.GREATER_THAN, 
+				Operator.GREATER_EQUAL_THAN});
 		if(fieldModel.getSelectedOperator()==null)
 			fieldModel.setSelectedOperator(Operator.EQUAL);
 		return new DateField<B>(id, fieldModel,mode);
