@@ -88,7 +88,7 @@ public class BeanProxy<B extends Serializable> implements Serializable {
 			if(value != null) {
 				if(value instanceof String) {
 					if(operator.equals(Operator.EQUAL))
-						query.addFilter(Restrictions.eq(propertyName, value));
+						query.addFilter(Restrictions.eq(propertyName, ((String)value).trim()));
 					else if(operator.equals(Operator.LIKE) || operator.equals(Operator.ILIKE)) 	
 						query.addFilter(Restrictions.ilike(propertyName, value));		
 					else 
