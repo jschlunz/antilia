@@ -25,8 +25,7 @@ public class DateField<B extends Serializable> extends BaseFormField<B> {
 
 	private static final long serialVersionUID = 1L;
 
-	@SuppressWarnings("unchecked")
-	private org.apache.wicket.markup.html.form.TextField textField;
+	private DateTextField textField;
 	
 	
 	/**
@@ -53,7 +52,7 @@ public class DateField<B extends Serializable> extends BaseFormField<B> {
 			textField = new DateTextField(
 				"field", 
 				getBeanProxy().getPropertyValue(getPropertyPath()).getModel());
-			textField.add(new DatePicker());
+			textField.add(new AntiliaDatePicker());
 			add(textField);
 			textField.setLabel(getLabelModel());
 			if(getMode() == FieldMode.EDIT && getFieldModel().isRequiered()) {

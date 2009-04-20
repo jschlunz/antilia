@@ -44,11 +44,18 @@ public class DefaultStyle {
 	
 	public static ResourceReference CC_menu = new ResourceReference(DefaultStyle.class, "menu.css");
 	
+	public static ResourceReference CALENDAR_CSS = new ResourceReference(DefaultStyle.class, "calendar.css");
+	
 	public static ResourceReference IMG_CANCEL = new ResourceReference(ImgDummy.class, "cancel.gif");
+	
+	public static ResourceReference IMG_DATEPICKER = new ResourceReference(ImgDummy.class, "datePicker.gif");
 	
 	public static ResourceReference IMG_CLOSE = new ResourceReference(ImgDummy.class, "close_bule.gif");
 	
 	public static ResourceReference IMG_BOTTOM = new ResourceReference(ImgDummy.class, "bottom.gif");
+	
+	
+	
 	public static ResourceReference IMG_OK = new ResourceReference(ImgDummy.class, "ok.gif");
 	public static ResourceReference IMG_TRANSPARENT = new ResourceReference(ImgDummy.class, "transparent.gif");
 	public static ResourceReference IMG_FOLD = new ResourceReference(ImgDummy.class, "fold.gif");
