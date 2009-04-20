@@ -24,6 +24,7 @@ public class DefaultFieldFactory implements IFieldFactory {
 		factories.add(TextAreaFieldFactory.getInstance());
 		factories.add(EnumDropDownFieldFactory.getInstance());
 		factories.add(SelectionFieldFieldFactory.getInstance());
+		factories.add(DateTimeFieldFactory.getInstance());
 		factories.add(DateFieldFactory.getInstance());
 		factories.add(LageSelectionFieldFactory.getInstance());
 	}
