@@ -47,12 +47,10 @@ public class OperatorsPanel<B extends Serializable> extends Panel {
 		operator.setChoiceRenderer(new IChoiceRenderer<Operator>() {
 			private static final long serialVersionUID = 1L;
 
-			@Override
 			public Object getDisplayValue(Operator object) {
 				return object.getValue();
 			}
 			
-			@Override
 			public String getIdValue(Operator object, int index) {
 				return Integer.toString(index);
 			}
