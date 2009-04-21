@@ -48,6 +48,9 @@ public class DropColumnItem<E extends Serializable> extends Panel implements IMe
 		
 		add(drop);
 		Image image = new Image("dropImage", getImage());
+		if(RequestUtils.isBrowserIeExplorer()) {
+			image.add(new AttributeModifier("style", new Model<String>("margin-top: 3px;")));
+		}
 		drop.add(image);
 	}
 	
