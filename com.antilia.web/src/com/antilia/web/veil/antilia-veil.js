@@ -108,23 +108,23 @@ Wicket.Veil = {
 		options map must at least contain className key
 	*/
 	show:function(targetId, options) {
-		var target = document.getElementById(targetId);		
+		var target = document.getElementById(targetId);	
 		var veil=document.createElement("div");	
 		veil.innerHTML="&nbsp;";
 		veil.className=options.className;
 		veil.style.position="absolute";
-		veil.style.left=Wicket.Veil.left(target);
-		veil.style.top=Wicket.Veil.top(target);		
+		veil.style.left=Wicket.Veil.left(target)+"px";
+		veil.style.top=Wicket.Veil.top(target)+"px";				
 		veil.style.width=target.clientWidth + "px";
 		veil.style.height=target.clientHeight + "px";
 		veil.style.display="block";	
-		veil.style.zIndex="5000";
+		veil.style.zIndex="6000";
 		veil.id="wicket_veil_"+targetId;	
 		document.body.appendChild(veil);
 		var body =document.createElement("div");
 		body.innerHTML="&nbsp;";
         body.className='wicket-veil-busy';
-        body.style.zIndex="5001";
+        body.style.zIndex="6001";
         body.style.width=40 + 'px';
         body.style.height=40+ 'px';
         body.id="wicket_veil_re_"+targetId;
@@ -134,7 +134,7 @@ Wicket.Veil = {
         document.body.appendChild(body);	                  
 	},
 
-	/**
+	/*
 		hides veil currently shown over the element with the specified id
 		@return true if veil was hidden, false if there was none
 	*/
@@ -154,7 +154,7 @@ Wicket.Veil = {
 		return false;
 	},
 
-	/**
+	/*
 		finds left offset of the specified element in px
 	*/
 	left:function (e) { 
