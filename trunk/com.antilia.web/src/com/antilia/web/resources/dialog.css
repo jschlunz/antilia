@@ -152,9 +152,9 @@ td.droundtop {
 }
 
 .bussy_indicator {
-    position: absolute;
+    position: relative;
     top: 100px;
     left: 100px;
     background-image:  url('images/ajax-loader.gif');
-     background-repeat: no-repeat;
+	background-repeat: no-repeat;
 }

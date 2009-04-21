@@ -64,7 +64,6 @@
 		this.overlayVisible = false;
 		this.loadingVisible = false;
 		this.addModalLayer();
-		this.addLoadingLayer();	
 		if(this.parentId) {	
 			this.parent = Antilia_dragPanels.getPanel(this.parentId);			
 		}							
@@ -121,19 +120,7 @@
 		this.overlay.style.width = "1900px";
 		this.overlay.style.height = "1800px";
 	}
-	
-	Panel.prototype.addLoadingLayer = function() {
-        this.loading = $(document.createElement('div'));
-        this.loading.id = this.id + 'loading_overlay';
-        this.loading.className = 'bussy_indicator';
-        this.panelBody.appendChild(this.loading);
-        this.loading.style.display = 'none';
-        this.loading.style.width = "160px";
-        this.loading.style.height = "40px";
-        this.loading.style.top =   "100px";
-        this.loading.style.left =   "100px"
-    } 
-	
+		
 	Panel.prototype.toggleModal = function() {		
 		if(this.modal == false)
 			return;		
@@ -156,35 +143,6 @@
 		}		
 	}	
 		
-	
-	Panel.prototype.toggleLoadingLayer = function() {        
-        if(!this.loadingVisible) {            
-            this.loading.style.display='';      
-            this.loadingVisible = true;            
-            new Effect.toggle(this.overlay, 
-            'appear',
-            {
-                afterFinish: this.afterFold,
-                beforeStart: this.beforeFold, 
-                duration: 0.1,
-                from: 0,
-                to: 1
-            });
-        
-        } else {            
-            this.loading.style.display='none';
-            this.loadingVisible = false;            
-            new Effect.toggle(this.overlay, 
-            'appear',
-            {
-                afterFinish: this.afterFold,
-                beforeStart: this.beforeFold, 
-                duration: 0.1,
-                from: 1,
-                to: 0
-            });        
-        }       
-    }
     
 	Panel.prototype.toggleFold = function() {
 		if(!this.folded) {			
@@ -436,19 +394,6 @@
 			}
 			this.panels = newpanels;
 		}
-		
-		this.showLoading = function(id) {
-            if(this.panels != null && this.panels.length > 0) {
-                for(var i= 0; i <this.panels.length; i++) {
-                    var panel = this.panels[i];
-                    if(panel.id==id) {
-                        if(panel.id==id) {
-                            panel.toggleLoadingLayer();
-                        }               
-                    } 
-                }
-            }
-        }
         
 		// bring forward (z-index) a panel
 		this.orderPanels = function(current) {
