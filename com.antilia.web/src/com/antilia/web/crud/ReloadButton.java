@@ -9,6 +9,7 @@ import java.io.Serializable;
 import org.apache.wicket.Component;
 import org.apache.wicket.ResourceReference;
 import org.apache.wicket.ajax.AjaxRequestTarget;
+import org.apache.wicket.markup.html.form.Button;
 import org.apache.wicket.markup.html.form.Form;
 
 import com.antilia.web.button.AbstractButton;
@@ -27,6 +28,12 @@ public class ReloadButton<E extends Serializable> extends AbstractButton {
 		super("load", true);
 	}
 	
+	@Override
+	protected void onBeforeRender() {
+		Button button = getLink();		
+		button.getForm().setDefaultButton(button);
+		super.onBeforeRender();
+	}
 	/* (non-Javadoc)
 	 * @see com.antilia.web.toolbar.AButton#getImage()
 	 */
