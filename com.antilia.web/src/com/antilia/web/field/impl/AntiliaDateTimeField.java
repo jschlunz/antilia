@@ -98,6 +98,7 @@ public class AntiliaDateTimeField extends FormComponentPanel<Date>
 	 * @param id
 	 * @param model
 	 */
+	@SuppressWarnings("unchecked")
 	public AntiliaDateTimeField(String id, IModel<Date> model)
 	{
 		super(id, model);
@@ -124,7 +125,6 @@ public class AntiliaDateTimeField extends FormComponentPanel<Date>
 		{
 			private static final long serialVersionUID = 1L;
 
-			@SuppressWarnings("unchecked")
 			@Override
 			public IConverter getConverter(Class type)
 			{
@@ -167,7 +167,7 @@ public class AntiliaDateTimeField extends FormComponentPanel<Date>
 		return hours;
 	}
 
-	protected void configure(Map widgetProperties)
+	protected void configure(Map<String, Object> widgetProperties)
 	{
 
 	}
@@ -313,15 +313,7 @@ public class AntiliaDateTimeField extends FormComponentPanel<Date>
 		}
 	}
 
-	/**
-	 * @deprecated replaced by {@link #newDateTextField(String, PropertyModel)}
-	 */
-	// TODO remove after deprecation release
-	@Deprecated
-	protected final DateTextField newDateTextField(PropertyModel dateFieldModel)
-	{
-		throw new UnsupportedOperationException();
-	}
+	
 
 	/**
 	 * create a new {@link DateTextField} instance to be added to this panel.
@@ -330,7 +322,7 @@ public class AntiliaDateTimeField extends FormComponentPanel<Date>
 	 *            model that should be used by the {@link DateTextField}
 	 * @return a new date text field instance
 	 */
-	protected DateTextField newDateTextField(String id, PropertyModel dateFieldModel)
+	protected DateTextField newDateTextField(String id, PropertyModel<Date> dateFieldModel)
 	{
 		return new DateTextField(id, dateFieldModel, new StyleDateConverter(false));
 	}
@@ -435,7 +427,7 @@ public class AntiliaDateTimeField extends FormComponentPanel<Date>
 	 * @see AntiliaDateTimeField#getMaximumHours()
 	 * @author Gerolf Seitz
 	 */
-	private class HoursValidator extends NumberValidator
+	private class HoursValidator extends NumberValidator<Integer>
 	{
 		private static final long serialVersionUID = 1L;
 
@@ -443,7 +435,7 @@ public class AntiliaDateTimeField extends FormComponentPanel<Date>
 		 * @see org.apache.wicket.validation.validator.AbstractValidator#onValidate(org.apache.wicket.validation.IValidatable)
 		 */
 		@Override
-		protected void onValidate(IValidatable validatable)
+		protected void onValidate(IValidatable<Integer> validatable)
 		{
 			Number value = (Number)validatable.getValue();
 			if (value.longValue() < 0 || value.longValue() > getMaximumHours())
@@ -456,9 +448,9 @@ public class AntiliaDateTimeField extends FormComponentPanel<Date>
 		 * @see org.apache.wicket.validation.validator.AbstractValidator#variablesMap(org.apache.wicket.validation.IValidatable)
 		 */
 		@Override
-		protected Map variablesMap(IValidatable validatable)
+		protected Map<String, Object> variablesMap(IValidatable<Integer> validatable)
 		{
-			final Map map = super.variablesMap(validatable);
+			final Map<String, Object> map = super.variablesMap(validatable);
 			map.put("minimum", new Long(0));
 			map.put("maximum", new Long(getMaximumHours()));
 			return map;
