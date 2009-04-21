@@ -2,6 +2,9 @@ package com.antilia.demo.manager.entities;
 
 // Generated Apr 23, 2008 5:11:37 PM by Hibernate Tools 3.2.1.GA
 
+import java.sql.Time;
+import java.sql.Timestamp;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -42,6 +45,16 @@ public class City implements java.io.Serializable, Comparable<City>{
 	@Column(name = "name", nullable = false, length = 300)
 	private String name;
 	
+	private transient Timestamp test;
+	
+	public Timestamp getTest() {
+		return test;
+	}
+
+	public void setTest(Timestamp test) {
+		this.test = test;
+	}
+
 	public City() {
 	}
 	
