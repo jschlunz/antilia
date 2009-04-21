@@ -38,7 +38,7 @@ public abstract class WorkSpaceDialogButton extends DialogButton {
 
 	@Override
 	public DefaultDialog newDialog(String id) {
-		return new WorkSpaceDialog(id, WorkSpaceDialogButton.this) {
+		WorkSpaceDialog dialog = new WorkSpaceDialog(id, WorkSpaceDialogButton.this) {
 			
 			private static final long serialVersionUID = 1L;
 
@@ -52,8 +52,17 @@ public abstract class WorkSpaceDialogButton extends DialogButton {
 				return new ResourceModel(WorkSpaceDialogButton.this.getDialogTitleKey(), WorkSpaceDialogButton.this.getDialogTitleKey());
 			}
 		};
+		configureDialog(dialog);
+		return dialog;
 	}
 			
+	/**
+	 * 
+	 * @param defaultDialog
+	 */
+	protected void configureDialog(DefaultDialog defaultDialog) {
+		
+	}
 	
 	public String getDialogTitleKey() {
 		return WorkSpaceDialogButton.this.getClass().getSimpleName();
