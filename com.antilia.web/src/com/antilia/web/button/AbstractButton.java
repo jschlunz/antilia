@@ -78,7 +78,7 @@ public abstract class AbstractButton extends Panel implements IMenuItem, IToolba
 		IModel<String> title = getTitleModel();
 		if(title != null) {
 			link.add(new AttributeModifier("title", title));
-		}
+		} 
 		add(link);		
 		Image image = newImage("image");
 		link.add(image);
