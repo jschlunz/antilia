@@ -26,6 +26,8 @@ import com.antilia.web.effect.JavascriptHelper;
  */
 public abstract class SortableListView extends WebMarkupContainer
 {
+	private static final long serialVersionUID = 1L;
+	
 	private AbstractAjaxBehavior onUpdateBehavior = new SortableContainerBehavior();
 	private Map options = new HashMap();
 	private final List items;
