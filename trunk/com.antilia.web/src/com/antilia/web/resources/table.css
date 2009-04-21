@@ -114,6 +114,17 @@ span.defaultBodyCell {
 	padding: 0;		
 }
 
+img.dropColumn {
+	height: 16px; 
+	width: 16px; 
+	margin-top: 2px;
+}
+
+div.dropColumn {
+	height: 16px; 
+	width: 16px; 
+	vertical-align: middle;
+}
 
 .theaderrow .resCol{
 	width: 10px;

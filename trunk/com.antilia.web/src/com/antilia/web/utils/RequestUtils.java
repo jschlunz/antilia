@@ -13,6 +13,11 @@ import org.apache.wicket.protocol.http.request.WebClientInfo;
  */
 public class RequestUtils {
 	
+	public static Boolean isBrowserIeExplorer() {
+		ClientProperties properties = ((WebClientInfo)RequestCycle.get().getClientInfo()).getProperties();		
+		return properties.isBrowserInternetExplorer();
+	}
+	
 	public static Boolean isBrowserIeExplorer6() {
 		ClientProperties properties = ((WebClientInfo)RequestCycle.get().getClientInfo()).getProperties();
 		if(properties.isBrowserInternetExplorer()) {
