@@ -9,8 +9,8 @@ import org.apache.wicket.Component;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.ResourceModel;
 
-import com.antilia.web.dialog.DialogButton;
 import com.antilia.web.dialog.DialogStyle;
+import com.antilia.web.dialog.IDialogLink;
 
 /**
  * @author Ernesto Reinaldo Barreiro (reirn70@gmail.com)
@@ -25,7 +25,7 @@ public class WorkSpaceCrudDialog<T extends Serializable> extends WorkSpaceDialog
 	 * @param id
 	 * @param button
 	 */
-	public WorkSpaceCrudDialog(String id, DialogButton button, Class<T> beanClass) {
+	public WorkSpaceCrudDialog(String id, IDialogLink button, Class<T> beanClass) {
 		super(id, button);
 		this.beanClass = beanClass;
 		setWidth(600);
@@ -37,7 +37,7 @@ public class WorkSpaceCrudDialog<T extends Serializable> extends WorkSpaceDialog
 	 * @param button
 	 * @param dialogStyle
 	 */
-	public WorkSpaceCrudDialog(String id, DialogButton button, DialogStyle dialogStyle, Class<T> beanClass) {
+	public WorkSpaceCrudDialog(String id, IDialogLink button, DialogStyle dialogStyle, Class<T> beanClass) {
 		super(id, button, dialogStyle);
 		this.beanClass = beanClass;
 		setWidth(600);

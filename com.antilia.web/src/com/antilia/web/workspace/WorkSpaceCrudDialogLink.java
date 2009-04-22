@@ -11,7 +11,7 @@ import com.antilia.web.dialog.DefaultDialog;
  * @author Ernesto Reinaldo Barreiro (reirn70@gmail.com)
  *
  */
-public class WorkSpaceCrudDialgoButton<T extends Serializable> extends WorkSpaceDialogButton {
+public class WorkSpaceCrudDialogLink<T extends Serializable> extends WorkSpaceDialogLink {
 
 	private static final long serialVersionUID = 1L;
 
@@ -20,7 +20,7 @@ public class WorkSpaceCrudDialgoButton<T extends Serializable> extends WorkSpace
 	/**
 	 * @param id
 	 */
-	public WorkSpaceCrudDialgoButton(String id, Class<T> beanClass) {
+	public WorkSpaceCrudDialogLink(String id, Class<T> beanClass) {
 		super(id);
 		this.beanClass = beanClass;
 	}

@@ -8,19 +8,19 @@ import org.apache.wicket.ResourceReference;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.IAjaxCallDecorator;
 import org.apache.wicket.behavior.AttributeAppender;
-import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.Model;
 import org.wicketstuff.minis.veil.VeilResources;
 
 import com.antilia.web.button.AbstractButton;
+import com.antilia.web.button.AbstractLink;
 
 
 /**
  * 
  * @author Ernesto Reinaldo Barreiro (reiern70@gmail.com)
  */
-public abstract class DialogButton extends Panel implements IDialogLink {
+public abstract class DialogLink extends Panel implements IDialogLink {
 
 	private static final long serialVersionUID = 1L;
 
@@ -28,7 +28,7 @@ public abstract class DialogButton extends Panel implements IDialogLink {
 	
 	private int order = AbstractButton.NO_ORDER;
 	
-	private AbstractButton button;
+	private AbstractLink button;
 	
 	private IDialogScope dialogScope;
 	
@@ -37,7 +37,7 @@ public abstract class DialogButton extends Panel implements IDialogLink {
 	 */
 	private boolean showAtMousePosition = false;
 	
-	public DialogButton(String id) {
+	public DialogLink(String id) {
 		super(id);
 		
 		
@@ -47,42 +47,43 @@ public abstract class DialogButton extends Panel implements IDialogLink {
 	@Override
 	protected void onBeforeRender() {			
 		if(button == null) {
-			button = new AbstractButton("button", true){			
+			button = new AbstractLink("button"){			
 				private static final long serialVersionUID = 1L;
 
 				@Override
 				protected ResourceReference getImage() {
-					return DialogButton.this.getImage();
+					return DialogLink.this.getImage();
 				}
 				
 				@Override
 				protected String getLabel() {
-					return DialogButton.this.getLabel();
+					return DialogLink.this.getLabel();
 				}
 				
 				@Override
 				protected String getLabelKey() {
-					return DialogButton.this.getLabelKey();
+					return DialogLink.this.getLabelKey();
 				}
 				
 				@Override
 				protected String getTitleKey() {
-					return DialogButton.this.getTitleKey();
+					return DialogLink.this.getTitleKey();
 				}
 				 
 				@Override
 				public boolean isEnabled() {
-					return !DialogButton.this.dialog.isVisible();
-				}
-				 
-				@Override
-				protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
-					DialogButton.this.onSubmit(target, form);
+					return !DialogLink.this.dialog.isVisible();
 				}
 				
 				@Override
+				protected void onClick(AjaxRequestTarget target) {
+					DialogLink.this.onClick(target);
+				}
+				 
+				
+				@Override
 				protected IAjaxCallDecorator getAjaxCallDecorator() {
-					return DialogButton.this.getAjaxCallDecorator();
+					return DialogLink.this.getAjaxCallDecorator();
 				}			
 			};
 			
@@ -117,7 +118,7 @@ public abstract class DialogButton extends Panel implements IDialogLink {
 
 			public CharSequence decorateOnFailureScript(CharSequence script) {
 				IDialogScope dialogScope = getDialogScope();
-				String errorMessage = ";alert('"+DialogButton.this.getString("ServerDown", null, "Server Down!")+"');";
+				String errorMessage = ";alert('"+DialogLink.this.getString("ServerDown", null, "Server Down!")+"');";
 				if(dialogScope != null) {
 					return script + ";" + VeilResources.Javascript.Generic.toggle(dialogScope.getDialogId()) + errorMessage ;
 				} 
@@ -155,8 +156,8 @@ public abstract class DialogButton extends Panel implements IDialogLink {
 	}
 	
 	
-	protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
-		if(showDialog(target, form)) {
+	protected void onClick(AjaxRequestTarget target) {
+		if(showDialog(target)) {
 			dialog.setVisible(true);
 			target.addComponent(dialog);
 			target.addComponent(button);
@@ -172,7 +173,7 @@ public abstract class DialogButton extends Panel implements IDialogLink {
 	 * @param form
 	 * @return
 	 */
-	protected boolean showDialog(AjaxRequestTarget target, Form<?> form) {
+	protected boolean showDialog(AjaxRequestTarget target) {
 		return true;
 	}
 	
@@ -186,7 +187,7 @@ public abstract class DialogButton extends Panel implements IDialogLink {
 		this.order = order;
 	}
 
-	public AbstractButton getButton() {
+	public AbstractLink getButton() {
 		return button;
 	}
 
