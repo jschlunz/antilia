@@ -5,9 +5,10 @@ package com.antilia.web.wizard;
 
 import org.apache.wicket.extensions.wizard.IDefaultButtonProvider;
 import org.apache.wicket.extensions.wizard.IWizardModel;
-import org.apache.wicket.markup.html.form.Button;
 import org.apache.wicket.markup.html.form.IFormSubmittingComponent;
 import org.apache.wicket.markup.html.panel.Panel;
+
+import com.antilia.web.button.AbstractButton;
 
 /**
  * @author Ernesto Reinaldo Barreiro (reirn70@gmail.com)
@@ -23,11 +24,11 @@ public class AjaxWizardButtonBar extends Panel implements IDefaultButtonProvider
 	 */
 	public AjaxWizardButtonBar(String id, AjaxWizard wizard) {
 		super(id);		
-		add(new PreviousButton("previous", wizard));
-		add(new NextButton("next", wizard));
-		add(new LastButton("last", wizard));
-		add(new CancelButton("cancel", wizard));
-		add(new FinishButton("finish", wizard));
+		add(new AjaxPreviousButton("previous", wizard));
+		add(new AjaxNextButton("next", wizard));
+		add(new AjaxLastButton("last", wizard));
+		add(new AjaxCancelButton("cancel", wizard));
+		add(new AjaxFinishButton("finish", wizard));
 	}
 
 	/**
@@ -37,15 +38,15 @@ public class AjaxWizardButtonBar extends Panel implements IDefaultButtonProvider
 	{
 		if (model.isNextAvailable())
 		{
-			return (Button)get("next");
+			return ((AbstractButton)get("next")).getLink();
 		}
 		else if (model.isLastAvailable())
 		{
-			return (Button)get("last");
+			return ((AbstractButton)get("last")).getLink();
 		}
 		else if (model.isLastStep(model.getActiveStep()))
 		{
-			return (Button)get("finish");
+			return ((AbstractButton)get("finish")).getLink();
 		}
 		return null;
 	}

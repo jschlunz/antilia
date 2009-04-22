@@ -16,11 +16,14 @@
  */
 package com.antilia.web.wizard;
 
+import org.apache.wicket.ResourceReference;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.extensions.wizard.IWizardModel;
 import org.apache.wicket.extensions.wizard.IWizardStep;
 import org.apache.wicket.extensions.wizard.Wizard;
 import org.apache.wicket.markup.html.form.Form;
+
+import com.antilia.web.resources.DefaultStyle;
 
 /**
  * Models a cancel button in the wizard. When pressed, it calls {@link IWizardStep#applyState()} on
@@ -28,7 +31,7 @@ import org.apache.wicket.markup.html.form.Form;
  * 
  * @author Eelco Hillenius
  */
-public class FinishButton extends AjaxWizardButton
+public class AjaxFinishButton extends AjaxWizardButton
 {
 	private static final long serialVersionUID = 1L;
 
@@ -40,7 +43,7 @@ public class FinishButton extends AjaxWizardButton
 	 * @param wizard
 	 *            The wizard
 	 */
-	public FinishButton(String id, IAjaxWizard wizard)
+	public AjaxFinishButton(String id, IAjaxWizard wizard)
 	{
 		super(id, wizard, "org.apache.wicket.extensions.wizard.finish");
 	}
@@ -75,5 +78,12 @@ public class FinishButton extends AjaxWizardButton
 			error(getLocalizer().getString(
 				"org.apache.wicket.extensions.wizard.FinishButton.step.did.not.complete", this));
 		}
+	}
+	
+	@Override
+	protected ResourceReference getImage() {
+		if(isEnabled())
+			return DefaultStyle.IMG_OK;
+		return DefaultStyle.IMG_OK_DISABLED;
 	}
 }

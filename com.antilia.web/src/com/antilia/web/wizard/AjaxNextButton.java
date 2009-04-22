@@ -16,10 +16,13 @@
  */
 package com.antilia.web.wizard;
 
+import org.apache.wicket.ResourceReference;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.extensions.wizard.IWizardModel;
 import org.apache.wicket.extensions.wizard.IWizardStep;
 import org.apache.wicket.markup.html.form.Form;
+
+import com.antilia.web.resources.DefaultStyle;
 
 
 /**
@@ -29,7 +32,7 @@ import org.apache.wicket.markup.html.form.Form;
  * 
  * @author Eelco Hillenius
  */
-public class NextButton extends AjaxWizardButton
+public class AjaxNextButton extends AjaxWizardButton
 {
 	private static final long serialVersionUID = 1L;
 
@@ -39,7 +42,7 @@ public class NextButton extends AjaxWizardButton
 	 * @param id
 	 * @param wizard
 	 */
-	public NextButton(String id, IAjaxWizard wizard)
+	public AjaxNextButton(String id, IAjaxWizard wizard)
 	{
 		super(id, wizard, "org.apache.wicket.extensions.wizard.next");
 	}
@@ -82,7 +85,16 @@ public class NextButton extends AjaxWizardButton
 	@Override
 	protected final void onBeforeRender()
 	{
-		getForm().setDefaultButton(this);
+		getForm().setDefaultButton(getLink());
 		super.onBeforeRender();
+	}
+	
+	@Override
+	protected ResourceReference getImage() {
+		if(isEnabled()) {
+			return DefaultStyle.IMG_NEXT_ENABLED;
+		} else {
+			return DefaultStyle.IMG_NEXT_DISABLED;
+		}
 	}
 }

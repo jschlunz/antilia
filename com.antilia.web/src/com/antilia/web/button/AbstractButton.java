@@ -42,6 +42,7 @@ public abstract class AbstractButton extends Panel implements IMenuItem, IToolba
 	
 	private IDialogScope dialogScope;
 	
+	
 	/**
 	 * Constructor.
 	 * @param id
@@ -74,15 +75,23 @@ public abstract class AbstractButton extends Panel implements IMenuItem, IToolba
 		super(id);
 		setOutputMarkupId(true);
 		this.ajaxButton = ajaxButton;
-		link = newLink("link");		
-		IModel<String> title = getTitleModel();
-		if(title != null) {
-			link.add(new AttributeModifier("title", title));
-		} 
+		link = newLink("link");				 
 		add(link);		
-		Image image = newImage("image");
-		link.add(image);
-		link.add(newLabel(LABEL_ID));
+		
+	}
+	
+	@Override
+	protected void onBeforeRender() {
+		if(!hasBeenRendered()) {
+			IModel<String> title = getTitleModel();
+			if(title != null) {
+				link.add(new AttributeModifier("title", title));
+			}
+			Image image = newImage("image");
+			link.add(image);
+			link.add(newLabel(LABEL_ID));
+		}
+		super.onBeforeRender();
 	}
 	
 	/**
@@ -134,6 +143,10 @@ public abstract class AbstractButton extends Panel implements IMenuItem, IToolba
 				return AbstractButton.this.isEnabled();
 			}
 		};
+	}
+	
+	public Form<?> getForm() {
+		return getLink().getForm();
 	}
 	
 	/**
