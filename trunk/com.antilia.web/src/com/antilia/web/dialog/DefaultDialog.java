@@ -82,7 +82,7 @@ public abstract class DefaultDialog extends Panel implements IDialogScope, IMenu
 	/**
 	 * The button opening a dialog. It may be null;
 	 */
-	private DialogButton dialogButton;
+	private IDialogLink dialogButton;
 	
 	private WebMarkupContainer innerPanel;
 	
@@ -117,7 +117,7 @@ public abstract class DefaultDialog extends Panel implements IDialogScope, IMenu
 	 * @param id
 	 * @param button
 	 */
-	public DefaultDialog(String id, DialogButton button) {
+	public DefaultDialog(String id, IDialogLink button) {
 		this(id, button, new DefaultDialogStyle());
 	}
 	
@@ -127,7 +127,7 @@ public abstract class DefaultDialog extends Panel implements IDialogScope, IMenu
 	 * @param id
 	 * @param button
 	 */
-	public DefaultDialog(String id, DialogButton button, final DialogStyle dialogStyle) {
+	public DefaultDialog(String id, IDialogLink button, final DialogStyle dialogStyle) {
 		super(id);
 		this.dialogButton = button;
 		this.dialogStyle = dialogStyle;
@@ -519,11 +519,11 @@ public abstract class DefaultDialog extends Panel implements IDialogScope, IMenu
 		return dialogs.iterator();
 	}
 
-	public DialogButton getDialogButton() {
+	public IDialogLink getDialogButton() {
 		return dialogButton;
 	}
 
-	public void setDialogButton(DialogButton button) {
+	public void setDialogButton(IDialogLink button) {
 		this.dialogButton = button;
 	}
 

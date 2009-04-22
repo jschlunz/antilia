@@ -10,21 +10,21 @@ import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.ResourceModel;
 
 import com.antilia.web.dialog.DefaultDialog;
-import com.antilia.web.dialog.DialogButton;
+import com.antilia.web.dialog.DialogLink;
 import com.antilia.web.resources.DefaultStyle;
 
 /**
  * @author Ernesto Reinaldo Barreiro (reirn70@gmail.com)
  *
  */
-public abstract class WorkSpaceDialogButton extends DialogButton {
+public abstract class WorkSpaceDialogLink extends DialogLink {
 
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @param id
 	 */
-	public WorkSpaceDialogButton(String id) {
+	public WorkSpaceDialogLink(String id) {
 		super(id);
 	}
 
@@ -38,18 +38,18 @@ public abstract class WorkSpaceDialogButton extends DialogButton {
 
 	@Override
 	public DefaultDialog newDialog(String id) {
-		WorkSpaceDialog dialog = new WorkSpaceDialog(id, WorkSpaceDialogButton.this) {
+		WorkSpaceDialog dialog = new WorkSpaceDialog(id, WorkSpaceDialogLink.this) {
 			
 			private static final long serialVersionUID = 1L;
 
 			@Override
 			protected Component createBody(String id) {
-				return WorkSpaceDialogButton.this.createBody(id);
+				return WorkSpaceDialogLink.this.createBody(id);
 			}
 			
 			@Override
 			public IModel<String> getTitle() {
-				return new ResourceModel(WorkSpaceDialogButton.this.getDialogTitleKey(), WorkSpaceDialogButton.this.getDialogTitleKey());
+				return new ResourceModel(WorkSpaceDialogLink.this.getDialogTitleKey(), WorkSpaceDialogLink.this.getDialogTitleKey());
 			}
 		};
 		configureDialog(dialog);
@@ -65,12 +65,12 @@ public abstract class WorkSpaceDialogButton extends DialogButton {
 	}
 	
 	public String getDialogTitleKey() {
-		return WorkSpaceDialogButton.this.getClass().getSimpleName();
+		return WorkSpaceDialogLink.this.getClass().getSimpleName();
 	}
 	
 	@Override
 	protected String getLabel() {
-		return WorkSpaceDialogButton.this.getClass().getSimpleName();
+		return WorkSpaceDialogLink.this.getClass().getSimpleName();
 	}
 	
 
