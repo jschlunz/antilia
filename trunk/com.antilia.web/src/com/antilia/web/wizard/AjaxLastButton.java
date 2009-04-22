@@ -16,17 +16,20 @@
  */
 package com.antilia.web.wizard;
 
+import org.apache.wicket.ResourceReference;
 import org.apache.wicket.ajax.AjaxRequestTarget;
-import org.apache.wicket.extensions.wizard.Wizard;
+import org.apache.wicket.extensions.wizard.IWizardModel;
+import org.apache.wicket.extensions.wizard.IWizardStep;
 import org.apache.wicket.markup.html.form.Form;
 
 /**
- * Models a cancel button in the wizard. When pressed, it calls {@link Wizard#onCancel()} which
- * should do the real work.
+ * Models a 'last' button in the wizard. When pressed, it calls {@link IWizardStep#applyState()} on
+ * the active wizard step, and then moves to the last step in the model with
+ * {@link IWizardModel#last()}.
  * 
  * @author Eelco Hillenius
  */
-public class CancelButton extends AjaxWizardButton
+public class AjaxLastButton extends AjaxWizardButton
 {
 	private static final long serialVersionUID = 1L;
 
@@ -38,10 +41,9 @@ public class CancelButton extends AjaxWizardButton
 	 * @param wizard
 	 *            The wizard
 	 */
-	public CancelButton(String id, IAjaxWizard wizard)
+	public AjaxLastButton(String id, IAjaxWizard wizard)
 	{
-		super(id, wizard, "org.apache.wicket.extensions.wizard.cancel");
-		setDefaultFormProcessing(false);
+		super(id, wizard, "org.apache.wicket.extensions.wizard.last");
 	}
 
 	/**
@@ -50,7 +52,7 @@ public class CancelButton extends AjaxWizardButton
 	@Override
 	public final boolean isEnabled()
 	{
-		return true;
+		return getWizardModel().isLastAvailable();
 	}
 
 	/**
@@ -59,12 +61,18 @@ public class CancelButton extends AjaxWizardButton
 	@Override
 	public final boolean isVisible()
 	{
-		return getWizardModel().isCancelVisible();
+		return getWizardModel().isLastVisible();
 	}
-
 	
 	@Override
 	protected void onClick(AjaxRequestTarget target, Form<?> form) {
-		getWizardModel().cancel();	
+		IWizardModel wizardModel = getWizardModel();
+		wizardModel.getActiveStep().applyState();
+		wizardModel.last();
+	}
+	
+	@Override
+	protected ResourceReference getImage() {
+		return null;
 	}
 }

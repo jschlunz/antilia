@@ -57,6 +57,8 @@ public class DefaultStyle {
 	
 	
 	public static ResourceReference IMG_OK = new ResourceReference(ImgDummy.class, "ok.gif");
+	public static ResourceReference IMG_OK_DISABLED = new ResourceReference(ImgDummy.class, "ok_disabled.gif");
+	
 	public static ResourceReference IMG_TRANSPARENT = new ResourceReference(ImgDummy.class, "transparent.gif");
 	public static ResourceReference IMG_FOLD = new ResourceReference(ImgDummy.class, "fold.gif");
 	
