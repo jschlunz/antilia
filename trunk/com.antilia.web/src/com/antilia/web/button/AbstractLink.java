@@ -49,6 +49,8 @@ public abstract class AbstractLink extends Panel implements IMenuItem, IToolbarI
 	 */
 	public AbstractLink(String id) {
 		super(id);
+		setOutputMarkupId(true);
+		
 		link = newLink("link");
 		link.add(new AttributeModifier("class", true, new Model<String>() {
 			
