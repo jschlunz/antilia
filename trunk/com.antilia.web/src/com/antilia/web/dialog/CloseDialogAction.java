@@ -51,6 +51,22 @@ public class CloseDialogAction extends AbstractAction {
 			}		
 		}
 	}
+	
+	public void onClick(AjaxRequestTarget target) {
+		dialog.setVisible(false);
+		target.addComponent(dialog);
+		// hide all sub dialogs as well
+		for(Iterator<IDialogScope> it = dialog.getDialogs();it.hasNext();) {
+			IDialogScope subDialog = it.next();
+			if(subDialog.isVisible())
+				subDialog.setVisible(false);
+		}
+		if(target != null) {
+			if(dialog.getDialogButton() != null) {
+				target.addComponent(dialog.getDialogButton().getButton());
+			}		
+		}
+	}
 
 	public void onSubmit() {
 		// do nothing a dialogs onli works with AJAX..

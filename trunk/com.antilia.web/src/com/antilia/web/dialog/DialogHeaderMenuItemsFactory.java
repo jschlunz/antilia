@@ -23,6 +23,6 @@ public class DialogHeaderMenuItemsFactory implements IMenuItemsFactory {
 	
 	public void populateMenuItems(String menuId, IMenuItemHolder itemHolder) {
 		itemHolder.addMenuItem(new FoldButton(this.dialog));
-		itemHolder.addMenuItem(new CloseDialogButton(this.dialog));
+		itemHolder.addMenuItem(new CloseDialogLink(this.dialog));
 	}
 }
