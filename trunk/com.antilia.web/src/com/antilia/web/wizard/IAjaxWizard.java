@@ -14,4 +14,5 @@ public interface IAjaxWizard extends IWizard {
 
 	public FeedbackPanel getFeedbackPanel();
 	
+	public AjaxWizardButtonBar getAjaxWizardButtonBar();
 }

@@ -18,6 +18,8 @@ public class AjaxWizard extends Wizard implements IAjaxWizard {
 
 	private FeedbackPanel feedbackPanel;
 	
+	private AjaxWizardButtonBar ajaxWizardButtonBar;
+	
 	/**
 	 * @param id
 	 */
@@ -49,6 +51,7 @@ public class AjaxWizard extends Wizard implements IAjaxWizard {
 		feedbackPanel =  super.newFeedbackPanel(id);
 		return feedbackPanel;
 	}
+	
 	/**
 	 * @param id
 	 * @param wizardModel
@@ -62,7 +65,7 @@ public class AjaxWizard extends Wizard implements IAjaxWizard {
 	@Override
 	protected Component newButtonBar(String id)
 	{
-		return new AjaxWizardButtonBar(id, this);
+		return (ajaxWizardButtonBar = new AjaxWizardButtonBar(id, this));
 	}
 
 	/**
@@ -70,6 +73,13 @@ public class AjaxWizard extends Wizard implements IAjaxWizard {
 	 */
 	public FeedbackPanel getFeedbackPanel() {
 		return feedbackPanel;
+	}
+
+	/**
+	 * @return the ajaxWizardButtonBar
+	 */
+	public AjaxWizardButtonBar getAjaxWizardButtonBar() {
+		return ajaxWizardButtonBar;
 	}
 
 }
