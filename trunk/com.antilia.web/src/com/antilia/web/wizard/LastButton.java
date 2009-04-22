@@ -17,8 +17,8 @@
 package com.antilia.web.wizard;
 
 import org.apache.wicket.ajax.AjaxRequestTarget;
-import org.apache.wicket.extensions.wizard.IWizard;
 import org.apache.wicket.extensions.wizard.IWizardModel;
+import org.apache.wicket.extensions.wizard.IWizardStep;
 import org.apache.wicket.markup.html.form.Form;
 
 /**
@@ -40,7 +40,7 @@ public class LastButton extends AjaxWizardButton
 	 * @param wizard
 	 *            The wizard
 	 */
-	public LastButton(String id, IWizard wizard)
+	public LastButton(String id, IAjaxWizard wizard)
 	{
 		super(id, wizard, "org.apache.wicket.extensions.wizard.last");
 	}
