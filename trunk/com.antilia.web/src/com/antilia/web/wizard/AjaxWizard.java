@@ -4,9 +4,13 @@
 package com.antilia.web.wizard;
 
 import org.apache.wicket.Component;
+import org.apache.wicket.ResourceReference;
+import org.apache.wicket.behavior.HeaderContributor;
 import org.apache.wicket.extensions.wizard.IWizardModel;
 import org.apache.wicket.extensions.wizard.Wizard;
 import org.apache.wicket.markup.html.panel.FeedbackPanel;
+
+import com.antilia.web.resources.DefaultStyle;
 
 /**
  * @author Ernesto Reinaldo Barreiro (reirn70@gmail.com)
@@ -24,26 +28,32 @@ public class AjaxWizard extends Wizard implements IAjaxWizard {
 	 * @param id
 	 */
 	public AjaxWizard(String id) {
-		super(id);
+		super(id, false);
 		setOutputMarkupId(true);
+		add(HeaderContributor.forCss(getCssResource()));
 	}
 
-	/**
-	 * @param id
-	 * @param addDefaultCssStyle
-	 */
-	public AjaxWizard(String id, boolean addDefaultCssStyle) {
-		super(id, addDefaultCssStyle);
-		setOutputMarkupId(true);
-	}
 
 	/**
 	 * @param id
 	 * @param wizardModel
 	 */
 	public AjaxWizard(String id, IWizardModel wizardModel) {
-		super(id, wizardModel);
+		super(id, wizardModel, false);
 		setOutputMarkupId(true);
+		add(HeaderContributor.forCss(getCssResource()));
+	}
+
+
+	protected ResourceReference getCssResource() {
+		return DefaultStyle.CSS_AJAX_WIZARD;
+	}
+	
+	
+	@Override
+	protected Component newButtonBar(String id)
+	{
+		return (ajaxWizardButtonBar = new AjaxWizardButtonBar(id, this));
 	}
 
 	@Override
@@ -52,22 +62,7 @@ public class AjaxWizard extends Wizard implements IAjaxWizard {
 		return feedbackPanel;
 	}
 	
-	/**
-	 * @param id
-	 * @param wizardModel
-	 * @param addDefaultCssStyle
-	 */
-	public AjaxWizard(String id, IWizardModel wizardModel, boolean addDefaultCssStyle) {
-		super(id, wizardModel, addDefaultCssStyle);
-		setOutputMarkupId(true);
-	}
 	
-	@Override
-	protected Component newButtonBar(String id)
-	{
-		return (ajaxWizardButtonBar = new AjaxWizardButtonBar(id, this));
-	}
-
 	/**
 	 * @return the feedbackPanel
 	 */

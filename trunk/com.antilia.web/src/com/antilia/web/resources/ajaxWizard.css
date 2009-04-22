@@ -1,0 +1,65 @@
+.wicketExtensionsWizardInnerTable {
+	width: 100%;
+	border: none;
+	border-spacing: 0px; 	
+	empty-cells: hide;
+	border-collapse: collapse; 
+}
+.wicketExtensionsWizardOuterTable {
+	width: 100%;
+}
+
+.wicketExtensionsWizardHeaderRow {
+	height: 20px;
+	background: url('./images/menu.png') repeat-x;
+	
+}
+.wicketExtensionsWizardHeader {
+	border: 1px solid white;
+}
+
+.wicketExtensionsWizardFeedback {
+	border: 1px solid white;
+}
+.wicketExtensionsWizardView {
+	border: 1px solid white;	
+}
+.wicketExtensionsWizardViewInner {
+	margin: 10 10 10 10;
+}
+.wicketExtensionsWizardViewRow {
+	height: 140px;
+	height: 300px;
+}
+
+.wicketExtensionsWizardButtonBar {
+	text-align: right;
+	border: 1px solid white;
+}
+
+.wicketExtensionsWizardButtonBar input {
+	width: 80px;
+}
+.wicketExtensionsWizardHeaderTitle {
+	margin: 10 10 10 10;
+	font-weight: bold;
+}
+.wicketExtensionsWizardHeaderSummary {
+	margin: 10 5 5 5;
+	font-style: italic;
+	display: none;
+}
+
+div.wicket-aa {
+	font-family: "Lucida Grande","Lucida Sans Unicode",Tahoma,Verdana;
+	font-size: 12px;
+	background-color: white;
+	border-width: 1px;
+	border-color: #ccc;
+	border-style: solid;
+	padding: 2px;
+	margin: 1px 0 0 0;
+	text-align:left;	
+}
+div.wicket-aa ul { list-style:none; padding: 2px; margin:0; }
+div.wicket-aa ul li.selected { background-color: #FFFF00; padding: 2px; margin:0;}
