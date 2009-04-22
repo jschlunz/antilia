@@ -19,6 +19,8 @@ public class DefaultStyle {
 	public static ResourceReference CSS_DIALOG = new ResourceReference(DefaultStyle.class, "dialog.css");
 	public static ResourceReference CSS_PALETTE = new ResourceReference(DefaultStyle.class, "palette.css");
 	
+	public static ResourceReference CSS_AJAX_WIZARD = new ResourceReference(DefaultStyle.class, "ajaxWizard.css");
+	
 	public static ResourceReference JS_COMMON = new ResourceReference(DefaultStyle.class, "common.js");
 	public static ResourceReference JS_TABLE = new ResourceReference(DefaultStyle.class, "table.js");
 	public static ResourceReference JS_DIALOG = new ResourceReference(DefaultStyle.class, "dialog.js");
@@ -53,7 +55,6 @@ public class DefaultStyle {
 	public static ResourceReference IMG_CLOSE = new ResourceReference(ImgDummy.class, "close_bule.gif");
 	
 	public static ResourceReference IMG_BOTTOM = new ResourceReference(ImgDummy.class, "bottom.gif");
-	
 	
 	
 	public static ResourceReference IMG_OK = new ResourceReference(ImgDummy.class, "ok.gif");
