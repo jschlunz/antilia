@@ -14,7 +14,7 @@ input {
     z-index: 6000;
 }
 
-.smallbutton {
+.smallbutton, .spacedLink {
 	border: 0 solid transparent;
   	background-color: transparent;
   	cursor: pointer;
@@ -25,6 +25,10 @@ input {
   	color: black;
 }
 
+.spacedLink {
+	margin-left: 2px;
+	margin-right: 2px;
+}
 .smallbuttonOver {
     border: 0 solid transparent;
     background: transparent;
@@ -34,7 +38,7 @@ input {
     vertical-align: middle;
 }
 
-.smallbutton img {
+.smallbutton img, .spacedLink img {
  	background-color:transparent;
  	border: solid 0px black;
   	vertical-align: middle;
@@ -42,7 +46,7 @@ input {
   	margin-top: 1px;
 } 
 
-.smallbutton span {
+.smallbutton span, .spacedLink span {
 	background-color:transparent;
 	border: solid 0px black;
   	vertical-align: middle;
@@ -50,7 +54,7 @@ input {
 	margin-top: 1px;	
 }
 
-.smallbutton input {
+.smallbutton input, .spacedLink input {
     vertical-align: middle;
     padding: 0px;
     margin: 0px;

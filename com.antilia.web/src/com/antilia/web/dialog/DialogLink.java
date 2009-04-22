@@ -32,6 +32,8 @@ public abstract class DialogLink extends Panel implements IDialogLink {
 	
 	private IDialogScope dialogScope;
 	
+	private String linkClass = "smallbutton";
+	
 	/**
 	 * If the dialog should be opened at mouse position!
 	 */
@@ -54,7 +56,7 @@ public abstract class DialogLink extends Panel implements IDialogLink {
 				protected ResourceReference getImage() {
 					return DialogLink.this.getImage();
 				}
-				
+								
 				@Override
 				protected String getLabel() {
 					return DialogLink.this.getLabel();
@@ -86,6 +88,8 @@ public abstract class DialogLink extends Panel implements IDialogLink {
 					return DialogLink.this.getAjaxCallDecorator();
 				}			
 			};
+			
+			button.setLinkClass(getLinkClass());
 			
 			add(button);
 		}
@@ -203,5 +207,19 @@ public abstract class DialogLink extends Panel implements IDialogLink {
 	 */
 	public void setShowAtMousePosition(boolean showAtMousePoistion) {
 		this.showAtMousePosition = showAtMousePoistion;
+	}
+
+	/**
+	 * @return the linkClass
+	 */
+	public String getLinkClass() {
+		return linkClass;
+	}
+
+	/**
+	 * @param linkClass the linkClass to set
+	 */
+	public void setLinkClass(String linkClass) {
+		this.linkClass = linkClass;
 	}
 }

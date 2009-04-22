@@ -26,6 +26,7 @@ public abstract class WorkSpaceDialogLink extends DialogLink {
 	 */
 	public WorkSpaceDialogLink(String id) {
 		super(id);
+		setLinkClass("spacedLink");
 	}
 
 	/* (non-Javadoc)
