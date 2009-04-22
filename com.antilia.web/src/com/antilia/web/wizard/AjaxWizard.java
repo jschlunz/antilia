@@ -3,17 +3,21 @@
  */
 package com.antilia.web.wizard;
 
+import org.apache.wicket.Component;
 import org.apache.wicket.extensions.wizard.IWizardModel;
 import org.apache.wicket.extensions.wizard.Wizard;
+import org.apache.wicket.markup.html.panel.FeedbackPanel;
 
 /**
  * @author Ernesto Reinaldo Barreiro (reirn70@gmail.com)
  *
  */
-public class AjaxWizard extends Wizard {
+public class AjaxWizard extends Wizard implements IAjaxWizard {
 
 	private static final long serialVersionUID = 1L;
 
+	private FeedbackPanel feedbackPanel;
+	
 	/**
 	 * @param id
 	 */
@@ -40,6 +44,11 @@ public class AjaxWizard extends Wizard {
 		setOutputMarkupId(true);
 	}
 
+	@Override
+	protected FeedbackPanel newFeedbackPanel(String id) {
+		feedbackPanel =  super.newFeedbackPanel(id);
+		return feedbackPanel;
+	}
 	/**
 	 * @param id
 	 * @param wizardModel
@@ -48,6 +57,19 @@ public class AjaxWizard extends Wizard {
 	public AjaxWizard(String id, IWizardModel wizardModel, boolean addDefaultCssStyle) {
 		super(id, wizardModel, addDefaultCssStyle);
 		setOutputMarkupId(true);
+	}
+	
+	@Override
+	protected Component newButtonBar(String id)
+	{
+		return new AjaxWizardButtonBar(id, this);
+	}
+
+	/**
+	 * @return the feedbackPanel
+	 */
+	public FeedbackPanel getFeedbackPanel() {
+		return feedbackPanel;
 	}
 
 }

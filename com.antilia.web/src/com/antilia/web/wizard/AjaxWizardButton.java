@@ -19,13 +19,13 @@ public abstract class AjaxWizardButton extends AjaxButton {
     private static final long serialVersionUID = 1L;
     private final IWizard wizard;
 
-	public AjaxWizardButton(String id, IWizard wizard, final Form<?> form, String labelResourceKey){
+	public AjaxWizardButton(String id, IAjaxWizard wizard, final Form<?> form, String labelResourceKey){
 	    super(id, form);
 	    this.setLabel(new ResourceModel(labelResourceKey));
 	    this.wizard = wizard;
 	}
 
-	public AjaxWizardButton(String id, IWizard wizard, String labelResourceKey)
+	public AjaxWizardButton(String id, IAjaxWizard wizard, String labelResourceKey)
 	{
 	    this(id, wizard, null, labelResourceKey);
 	}
@@ -48,7 +48,13 @@ public abstract class AjaxWizardButton extends AjaxButton {
 		}
 	}
 	
-	
+	@Override
+	protected void onError(AjaxRequestTarget target, Form<?> form) {
+		if(target != null) {
+			AjaxWizard ajaxWizard = findParent(AjaxWizard.class);
+			target.addComponent(ajaxWizard);
+		}
+	}
 
 	protected abstract void onClick(AjaxRequestTarget target, Form<?> form);    
 } 

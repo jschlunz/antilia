@@ -17,7 +17,7 @@
 package com.antilia.web.wizard;
 
 import org.apache.wicket.ajax.AjaxRequestTarget;
-import org.apache.wicket.extensions.wizard.IWizard;
+import org.apache.wicket.extensions.wizard.Wizard;
 import org.apache.wicket.markup.html.form.Form;
 
 /**
@@ -38,7 +38,7 @@ public class CancelButton extends AjaxWizardButton
 	 * @param wizard
 	 *            The wizard
 	 */
-	public CancelButton(String id, IWizard wizard)
+	public CancelButton(String id, IAjaxWizard wizard)
 	{
 		super(id, wizard, "org.apache.wicket.extensions.wizard.cancel");
 		setDefaultFormProcessing(false);
