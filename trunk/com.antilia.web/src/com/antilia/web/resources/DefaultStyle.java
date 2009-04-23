@@ -21,6 +21,8 @@ public class DefaultStyle {
 	
 	public static ResourceReference CSS_AJAX_WIZARD = new ResourceReference(DefaultStyle.class, "ajaxWizard.css");
 	
+	public static ResourceReference CSS_AJAX_TABS = new ResourceReference(DefaultStyle.class, "tabs.css");
+	
 	public static ResourceReference JS_COMMON = new ResourceReference(DefaultStyle.class, "common.js");
 	public static ResourceReference JS_TABLE = new ResourceReference(DefaultStyle.class, "table.js");
 	public static ResourceReference JS_DIALOG = new ResourceReference(DefaultStyle.class, "dialog.js");
