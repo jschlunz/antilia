@@ -1,0 +1,149 @@
+/* TAB PANEL STYLES */
+
+div.tabpanel div.tab-row{
+  float:left;
+  width:100%;
+  background:#DAE0D2 url("images/tabs/bg.gif") repeat-x bottom;
+  line-height:normal;
+  }
+
+div.tabpanel div.tab-row ul {
+  margin:0;
+  padding:10px 10px 0;
+  list-style:none;
+  }
+  
+div.tabpanel div.tab-row li {
+  float:left;
+  background:url("images/tabs/left.gif") no-repeat left top;
+  margin:0;
+  padding:0 0 0 9px;
+  }
+  
+div.tabpanel div.tab-row a {
+  display:block;
+  background:url("images/tabs/right.gif") no-repeat right top;
+  padding:5px 15px 4px 6px;
+  text-decoration:none;
+  font-weight:bold;
+  white-space:nowrap;
+  color:#eee;
+  }
+  
+div.tab-panel {
+	clear: left;
+}
+  
+div.tabpanel div.tab-row a:hover {
+  color:#fff;
+  }
+  
+div.tabpanel div.tab-row li.selected {
+  background-image:url("images/tabs/left_on.gif");
+  }
+  
+div.tabpanel div.tab-row li.selected a {
+  background-image:url("images/tabs/right_on.gif");
+  color:#333;
+  padding-bottom:5px;
+  }
+ 
+/* VARIATION 1 TAB PANEL STYLES */
+div.tabpanel1 div.tab-row{
+  float:left;
+  width:100%;
+  background:#DAE0D2 url("images/tabs1/bg.gif") repeat-x bottom;
+  line-height:normal;
+  }
+
+div.tabpanel1 div.tab-row ul {
+  margin:0;
+  padding:10px 10px 0;
+  list-style:none;
+  }
+  
+div.tabpanel1 div.tab-row li {
+  float:left;
+  background:url("images/tabs1/left.gif") no-repeat left top;
+  margin:0;
+  padding:0 0 0 9px;
+  }
+  
+div.tabpanel1 div.tab-row a {
+  display:block;
+  background:url("images/tabs1/right.gif") no-repeat right top;
+  padding:5px 15px 4px 6px;
+  text-decoration:none;
+  font-weight:bold;
+  color:#765;
+  white-space:nowrap;
+  }
+  
+div.tabpanel1 div.tab-row a:hover {
+  color:#333;
+  }
+  
+div.tabpanel1 div.tab-row li.selected {
+  background-image:url("images/tabs1/left_on.gif");
+  }
+  
+div.tabpanel1 div.tab-row li.selected a {
+  background-image:url("images/tabs1/right_on.gif");
+  color:#333;
+  padding-bottom:5px;
+  }
+  
+/* TABBED PANEL VARIATION 2 */
+div.tabpanel2 div.tab-row {
+  float:left;
+  width:100%;
+  background:#369 url("images/menu.png") repeat-x bottom;
+  font-size:85%;
+  line-height:normal;
+  }
+div.tabpanel2 div.tab-row ul {
+  margin:0;
+  padding:10px 10px 0;
+  list-style:none;
+  }
+div.tabpanel2 div.tab-row li {
+  float:left;
+  background:url("images/tabs2/right.gif") no-repeat right top;
+  margin:0;
+  padding:0 5px 0 0;
+  }
+div.tabpanel2 div.tab-row a {
+  float:left;
+  display:block;
+  background:url("images/tabs2/left.gif") no-repeat left top;
+  padding:5px 7px 4px 20px;
+  text-decoration:none;
+  font-weight:bold;
+  color: white;
+  white-space:nowrap;
+  }
+  
+  div.tabpanel2 div.tab-row a span{
+  	color: white;
+  }
+  
+/* Commented Backslash Hack
+   hides rule from IE5-Mac \*/
+div.tabpanel2 div.tab-row a {float:none;}
+/* End IE5-Mac hack */
+div.tabpanel2 div.tab-row a:hover {
+  color:#fff;
+  }
+div.tabpanel2 div.tab-row li.selected {
+  background-image:url("images/tabs2/right_on.gif");
+  }
+div.tabpanel2 div.tab-row li.selected a {
+  background-image:url("images/tabs2/left_on.gif");
+  color:#333;
+  padding-bottom:5px;
+  }
+
+div.tabpanel2 div.tab-row li.selected a span{
+  	color: black;
+}
+  

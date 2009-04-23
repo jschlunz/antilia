@@ -20,6 +20,8 @@ import com.antilia.web.resources.DefaultStyle;
  */
 public abstract class ScriptaculousAjaxBehavior extends AbstractDefaultAjaxBehavior {
 
+	private static final long serialVersionUID = 1L;
+
 	public static ScriptaculousAjaxBehavior newJavascriptBindingBehavior() {
 		return new ScriptaculousAjaxBehavior() {
 
