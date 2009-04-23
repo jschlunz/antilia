@@ -76,6 +76,20 @@ td.droundtop {
 	font-family: Verdana, Arial, Helvetica, sans-serif;		
 }
 
+.panelRound  {
+	position:absolute;
+    border: none;
+    font-size:13px;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+}
+
+.panelSelected {
+	position:absolute;
+	border: 1px dashed  #3a6ac4;
+	font-size:13px;
+	font-family: Verdana, Arial, Helvetica, sans-serif;		
+}
+
 .modalContainerBody {
     position:absolute;
     border: none;
