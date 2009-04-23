@@ -132,10 +132,7 @@ public abstract class DefaultDialog extends Panel implements IDialogScope, IMenu
 		this.dialogButton = button;
 		this.dialogStyle = dialogStyle;
 		setOutputMarkupId(true);
-		if(!dialogStyle.isRoundedHeader()) {
-			panelClass = "panelSquare";
-			panelSelectedClass = "panelSquareSelected";
-		}
+		
 		ClientProperties properties = ((WebClientInfo)getRequestCycle().getClientInfo()).getProperties();
 		setBrowserIExplorer(properties.isBrowserInternetExplorer());
 		if(isBrowserIExplorer()) {
@@ -162,14 +159,7 @@ public abstract class DefaultDialog extends Panel implements IDialogScope, IMenu
 		innerPanel.setOutputMarkupId(true);
 		innerPanel.add(new AntiliaVeilResource());
 		
-		innerPanel.add(new AttributeModifier("class", new Model<String>() {
-			private static final long serialVersionUID = 1L;
-
-			@Override
-			public String getObject() {
-				return panelClass;
-			}
-		}));
+		
 				
 		add(innerPanel);
 		
@@ -323,7 +313,23 @@ public abstract class DefaultDialog extends Panel implements IDialogScope, IMenu
 	
 	@Override
 	protected void onBeforeRender() {		
-	
+		if(!dialogStyle.isRoundedHeader()) {
+			panelClass = "panelSquare";
+			panelSelectedClass = "panelSquareSelected";
+		} else {
+			panelClass = "panelRound";
+			panelSelectedClass = "panelRoundSelected";
+		}
+		
+		innerPanel.add(new AttributeModifier("class", new Model<String>() {
+			private static final long serialVersionUID = 1L;
+
+			@Override
+			public String getObject() {
+				return panelClass;
+			}
+		}));
+		
 		if(header == null) {
 			header = newDialogHeader("header");						
 			if(header != null)
