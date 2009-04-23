@@ -64,20 +64,6 @@ td.droundtop {
 
 .panelSquare {
     position:absolute;
-    border: 1px solid #ebf6fd;
-    font-size:13px;
-    font-family: Verdana, Arial, Helvetica, sans-serif;
-}
-
-.panelSelected {
-	position:absolute;
-	border: 1px dashed  #3a6ac4;
-	font-size:13px;
-	font-family: Verdana, Arial, Helvetica, sans-serif;		
-}
-
-.panelRound  {
-	position:absolute;
     border: none;
     font-size:13px;
     font-family: Verdana, Arial, Helvetica, sans-serif;
@@ -85,7 +71,7 @@ td.droundtop {
 
 .panelSelected {
 	position:absolute;
-	border: 1px dashed  #3a6ac4;
+	border: none;
 	font-size:13px;
 	font-family: Verdana, Arial, Helvetica, sans-serif;		
 }
