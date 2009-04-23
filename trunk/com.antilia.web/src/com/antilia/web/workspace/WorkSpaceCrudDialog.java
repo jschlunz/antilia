@@ -28,8 +28,10 @@ public class WorkSpaceCrudDialog<T extends Serializable> extends WorkSpaceDialog
 	public WorkSpaceCrudDialog(String id, IDialogLink button, Class<T> beanClass) {
 		super(id, button);
 		this.beanClass = beanClass;
-		setWidth(600);
+		setWidth(700);
 		setHeight(500);
+		setCentered(true);
+		getDialogStyle().setRoundedHeader(true);
 	}
 
 	/**
@@ -40,8 +42,10 @@ public class WorkSpaceCrudDialog<T extends Serializable> extends WorkSpaceDialog
 	public WorkSpaceCrudDialog(String id, IDialogLink button, DialogStyle dialogStyle, Class<T> beanClass) {
 		super(id, button, dialogStyle);
 		this.beanClass = beanClass;
-		setWidth(600);
-		setHeight(500);
+		setWidth(700);
+		setCentered(true);
+		setHeight(500);		
+		getDialogStyle().setRoundedHeader(true);
 	}
 
 	/* (non-Javadoc)
@@ -54,7 +58,8 @@ public class WorkSpaceCrudDialog<T extends Serializable> extends WorkSpaceDialog
 	
 	@Override
 	public IModel<String> getTitle() {
-		return new ResourceModel(beanClass.getSimpleName(), beanClass.getSimpleName());
+		String key = beanClass.getSimpleName()+".crudTitle";
+		return new ResourceModel(key, key);
 	}
 
 }

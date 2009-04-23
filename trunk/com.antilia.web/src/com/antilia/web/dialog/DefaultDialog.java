@@ -276,6 +276,12 @@ public abstract class DefaultDialog extends Panel implements IDialogScope, IMenu
 		
 		footer.add(resizeHandle);
 				
+				
+	}
+	
+	@Override
+	protected void onBeforeRender() {		
+		
 		Label script = new Label("script", new Model<String>()) {
 			private static final long serialVersionUID = 1L;
 
@@ -284,7 +290,7 @@ public abstract class DefaultDialog extends Panel implements IDialogScope, IMenu
 				boolean ie = DefaultDialog.this.isBrowserIExplorer();
 				String parentId =  DefaultDialog.this.getParentDialog()!=null?DefaultDialog.this.getParentDialog().getDialogId():"";
 				StringBuffer sb = new StringBuffer();
-				sb.append("Antilia_dragPanels.addPanel('");
+				sb.append("Antilia_dragPanels.addAndRemovePanel('");
 				sb.append(DefaultDialog.this.getDialogId());
 				sb.append("','");
 				sb.append(parentId);
@@ -308,17 +314,14 @@ public abstract class DefaultDialog extends Panel implements IDialogScope, IMenu
 				replaceComponentTagBody(markupStream, openTag, sb.toString());
 			}
 		};
-		add(script);		
-	}
-	
-	@Override
-	protected void onBeforeRender() {		
+		addOrReplace(script);
+		
 		if(!dialogStyle.isRoundedHeader()) {
 			panelClass = "panelSquare";
 			panelSelectedClass = "panelSquareSelected";
 		} else {
-			panelClass = "panelRound";
-			panelSelectedClass = "panelRoundSelected";
+			//panelClass = "panelRound";
+			//panelSelectedClass = "panelRoundSelected";
 		}
 		
 		innerPanel.add(new AttributeModifier("class", new Model<String>() {

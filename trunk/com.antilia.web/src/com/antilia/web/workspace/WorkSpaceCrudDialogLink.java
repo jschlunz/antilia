@@ -27,23 +27,25 @@ public class WorkSpaceCrudDialogLink<T extends Serializable> extends WorkSpaceDi
 
 	@Override
 	public DefaultDialog newDialog(String id) {
-		return new WorkSpaceCrudDialog<T>(id, this, beanClass);
+		DefaultDialog defaultDialog = new WorkSpaceCrudDialog<T>(id, this, beanClass);
+		configureDialog(defaultDialog);
+		return defaultDialog;
 	}
 	
 	@Override
 	protected String getLabel() {
-		return beanClass.getSimpleName();
+		return beanClass.getSimpleName() + ".crudDialog.label";
 	}
 	
 	
 	@Override
 	protected String getTitleKey() {
-		return beanClass.getSimpleName();
+		return beanClass.getSimpleName()+".crudDialog.title";
 	}
 	
 	
 	@Override
 	protected String getLabelKey() {
-		return beanClass.getSimpleName();
+		return beanClass.getSimpleName() + ".crudDialog.label";
 	}
 }
