@@ -17,8 +17,7 @@ import com.antilia.common.util.ResourceUtils;
  * @author Ernesto Reinaldo Barreiro (reiern70@gmail.com)
  *
  */
-@SuppressWarnings("unchecked")
-public class EnumDropDownChoice<T extends Enum> extends DropDownChoice<T> {
+public class EnumDropDownChoice<T extends Enum<?>> extends DropDownChoice<T> {
 
 	private static final long serialVersionUID = 1L;
 
@@ -29,14 +28,14 @@ public class EnumDropDownChoice<T extends Enum> extends DropDownChoice<T> {
 		super(id);		
 		setModel(model);
 		setNullValid(true);
-		setChoiceRenderer(new ChoiceRenderer() {
+		setChoiceRenderer(new ChoiceRenderer<T>() {
 			
 			private static final long serialVersionUID = 1L;
 
 			@Override
-			public Object getDisplayValue(Object object) {
+			public Object getDisplayValue(T object) {
 				if(object instanceof Enum)
-					return ResourceUtils.getStringResource((Enum)object, getLocale());
+					return ResourceUtils.getStringResource(object, getLocale());
 				return super.getDisplayValue(object);
 			}
 		});		
