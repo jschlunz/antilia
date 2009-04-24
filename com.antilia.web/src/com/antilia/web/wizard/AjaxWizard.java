@@ -59,6 +59,7 @@ public class AjaxWizard extends Wizard implements IAjaxWizard {
 	@Override
 	protected FeedbackPanel newFeedbackPanel(String id) {
 		feedbackPanel =  super.newFeedbackPanel(id);
+		feedbackPanel.setOutputMarkupId(true);
 		return feedbackPanel;
 	}
 	
