@@ -7,6 +7,7 @@ package com.antilia.demo.manager;
 import java.io.Serializable;
 
 import com.antilia.demo.manager.components.tables.TablesPanel;
+import com.antilia.demo.manager.components.workspace.WorkSpacePanel;
 import com.antilia.demo.manager.entities.Address;
 import com.antilia.demo.manager.entities.City;
 import com.antilia.demo.manager.entities.Country;
@@ -96,6 +97,16 @@ public class MainMenuFactory implements IToolbarItemsFactory {
 				@Override
 				protected TopMenuPanel<Serializable> createTopMenuPanel(String id) {					
 					return new TablesPanel(id);
+				}
+			});
+			
+			subToolbar.addItem(new TopMenuPanelLink<Serializable>("Workspace", this.page) {
+				
+				private static final long serialVersionUID = 1L;
+
+				@Override
+				protected TopMenuPanel<Serializable> createTopMenuPanel(String id) {					
+					return new WorkSpacePanel(id);
 				}
 			});
 	}
