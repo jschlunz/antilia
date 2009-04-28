@@ -11,5 +11,37 @@
          		</div>         		
             </div>     
         </div>
+        <script type="text/javascript">
+        	window.history.forward(1); 	
+	        function checkKeyCode(e)
+        	{
+        		var key, node;
+        		if (e)
+        		{
+        			key = e.which;
+        			node = e.target;
+        		}
+        		else
+        		{
+        			key = event.keyCode;
+        			node = event.srcElement;
+        		}        		
+            	if( key == 116)
+        		{            		
+        			if (e)
+        			{
+        				return false;        				
+        			}
+        			else
+        			{		
+        				event.keyCode=0;
+        				event.returnValue = false;
+        			}
+        			return false;
+        		}
+        		return true;
+        	}
+        	document.onkeydown = checkKeyCode;
+		</script>
     </body>
 </html>
