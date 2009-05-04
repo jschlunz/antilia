@@ -16,4 +16,6 @@ public interface IDialogLink extends IMenuItem, IToolbarItem {
 
 	Component getButton();
 	
+	void setDialog(DefaultDialog dialog);
+	
 }

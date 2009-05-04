@@ -69,15 +69,27 @@ public abstract class DefaultDialog extends Panel implements IDialogScope, IMenu
 	private IDialogScope parent;
 	
 	private Panel header;
+	
 	/**
 	 * If the dialog is re-sizable or not
 	 */
 	private boolean resizable = true;
 	
 	/**
+	 * If the dialog is draggable or not
+	 */
+	private boolean draggable = true;
+	
+	
+	/**
 	 * Flag that determines if the dialog is foldable.
 	 */
 	private boolean foldable = true;
+	
+	/**
+	 * Flag that sets if the dialog has a close button.
+	 */
+	private boolean closeable = true;
 	
 	/**
 	 * The button opening a dialog. It may be null;
@@ -155,132 +167,136 @@ public abstract class DefaultDialog extends Panel implements IDialogScope, IMenu
 		add(HeaderContributor.forJavaScript(DefaultStyle.JS_COMMON));
 		add(HeaderContributor.forJavaScript(DefaultStyle.JS_DIALOG));			
 		
-		innerPanel = new WebMarkupContainer("dialog");
-		innerPanel.setOutputMarkupId(true);
-		innerPanel.add(new AntiliaVeilResource());
 		
-		
-				
-		add(innerPanel);
-		
-		innerPanel.add(new AttributeModifier("onmousedown", new Model<String>() {
-			private static final long serialVersionUID = 1L;
-
-			@Override
-			public String getObject() {
-				return "Antilia_dragPanels.orderPanels('"+DefaultDialog.this.getDialogId()+"');";
-			}
-		}));					
-		innerPanel.add(new AttributeModifier("style", new Model<String>() {
-			private static final long serialVersionUID = 1L;
-
-			@Override
-			public String getObject() {
-				StringBuffer sb = new StringBuffer();
-				sb.append("left: ");
-				sb.append(DefaultDialog.this.getPosX());
-				sb.append("px; top:");
-				sb.append(DefaultDialog.this.getPosY());
-				sb.append("px;");
-				sb.append(" width:");
-				sb.append(DefaultDialog.this.getWidth());
-				sb.append("px;");
-				sb.append(" height:");
-				sb.append(DefaultDialog.this.getHeight());
-				sb.append("px;");
-				return sb.toString();
-			}
-		}));
-						
-		
-		WebMarkupContainer dialogBackground = new WebMarkupContainer("dialogBackground");
-		dialogBackground.add(new AttributeModifier("style", new Model<String>() {
-			private static final long serialVersionUID = 1L;
-
-			@Override
-			public String getObject() {
-				return "background-color: " + dialogStyle.getBackgroundColor();
-			}
-		}));	
-		
-		innerPanel.add(dialogBackground);
-		
-		dialogBody = new WebMarkupContainer("dialogBody");
-		dialogBody.add(new AttributeModifier("id", new Model<String>() {
-
-			private static final long serialVersionUID = 1L;
-
-			@Override
-			public String getObject() {
-				return DefaultDialog.this.getDialogId()+"Body";
-			}
-		}));		
-		dialogBody.add(new AttributeModifier("style", new Model<String>() {
-			private static final long serialVersionUID = 1L;
-
-			@Override
-			public String getObject() {
-				StringBuffer sb = new StringBuffer();
-				sb.append("position: relative; left: 0px;");
-				sb.append("; top: 0px;");
-				sb.append(" width:");
-				int width = DefaultDialog.this.getWidth();
-				sb.append(width-4);
-				sb.append("px;");
-				sb.append(" height:");
-				sb.append(DefaultDialog.this.getHeight()-28);
-				sb.append("px;");
-				sb.append("overflow: auto;");
-				if(dialogStyle.getBodyColor() != null) {
-					sb.append("background-color: ");				
-					sb.append(dialogStyle.getBodyColor());
-				}
-				return sb.toString();
-			}
-		}));
-		dialogBackground.add(dialogBody);
-				
-		
-		
-		
-		WebMarkupContainer footer = new WebMarkupContainer("footer") ;
-		footer.add(new AttributeModifier("style", new Model<String>() {
-			
-			private static final long serialVersionUID = 1L;
-
-			@Override
-			public String getObject() {
-				return "background-color: " + dialogStyle.getBackgroundColor();
-			}
-		}));
-		
-		innerPanel.add(footer);
-			
-		WebMarkupContainer resizeHandle = new WebMarkupContainer("resizeHandle") {
-			private static final long serialVersionUID = 1L;
-
-			@Override
-			public boolean isVisible() {
-				return DefaultDialog.this.isResizable();
-			}
-		};
-		resizeHandle.add(new AttributeModifier("id", new Model<String>() {
-
-			private static final long serialVersionUID = 1L;
-
-			@Override
-			public String getObject() {
-				return DefaultDialog.this.getDialogId()+"Resize";
-			}
-		}));
-		
-		footer.add(resizeHandle);
 				
 				
 	}
 	
 	@Override
 	protected void onBeforeRender() {		
+		
+		if(innerPanel == null) {
+			innerPanel = new WebMarkupContainer("dialog");
+			innerPanel.setOutputMarkupId(true);
+			innerPanel.add(new AntiliaVeilResource());
+			
+			
+					
+			add(innerPanel);
+			
+			innerPanel.add(new AttributeModifier("onmousedown", new Model<String>() {
+				private static final long serialVersionUID = 1L;
+
+				@Override
+				public String getObject() {
+					return "Antilia_dragPanels.orderPanels('"+DefaultDialog.this.getDialogId()+"');";
+				}
+			}));					
+			innerPanel.add(new AttributeModifier("style", new Model<String>() {
+				private static final long serialVersionUID = 1L;
+
+				@Override
+				public String getObject() {
+					StringBuffer sb = new StringBuffer();
+					sb.append("left: ");
+					sb.append(DefaultDialog.this.getPosX());
+					sb.append("px; top:");
+					sb.append(DefaultDialog.this.getPosY());
+					sb.append("px;");
+					sb.append(" width:");
+					sb.append(DefaultDialog.this.getWidth());
+					sb.append("px;");
+					sb.append(" height:");
+					sb.append(DefaultDialog.this.getHeight());
+					sb.append("px;");
+					return sb.toString();
+				}
+			}));
+							
+			
+			WebMarkupContainer dialogBackground = new WebMarkupContainer("dialogBackground");
+			dialogBackground.add(new AttributeModifier("style", new Model<String>() {
+				private static final long serialVersionUID = 1L;
+
+				@Override
+				public String getObject() {
+					return "background-color: " + dialogStyle.getBackgroundColor();
+				}
+			}));	
+			
+			innerPanel.add(dialogBackground);
+			
+			dialogBody = new WebMarkupContainer("dialogBody");
+			dialogBody.add(new AttributeModifier("id", new Model<String>() {
+
+				private static final long serialVersionUID = 1L;
+
+				@Override
+				public String getObject() {
+					return DefaultDialog.this.getDialogId()+"Body";
+				}
+			}));		
+			dialogBody.add(new AttributeModifier("style", new Model<String>() {
+				private static final long serialVersionUID = 1L;
+
+				@Override
+				public String getObject() {
+					StringBuffer sb = new StringBuffer();
+					sb.append("position: relative; left: 0px;");
+					sb.append("; top: 0px;");
+					sb.append(" width:");
+					int width = DefaultDialog.this.getWidth();
+					sb.append(width-4);
+					sb.append("px;");
+					sb.append(" height:");
+					sb.append(DefaultDialog.this.getHeight()-28);
+					sb.append("px;");
+					sb.append("overflow: auto;");
+					if(dialogStyle.getBodyColor() != null) {
+						sb.append("background-color: ");				
+						sb.append(dialogStyle.getBodyColor());
+					}
+					return sb.toString();
+				}
+			}));
+			dialogBackground.add(dialogBody);
+					
+			
+			
+			
+			WebMarkupContainer footer = new WebMarkupContainer("footer") ;
+			footer.add(new AttributeModifier("style", new Model<String>() {
+				
+				private static final long serialVersionUID = 1L;
+
+				@Override
+				public String getObject() {
+					return "background-color: " + dialogStyle.getBackgroundColor();
+				}
+			}));
+			
+			innerPanel.add(footer);
+				
+			WebMarkupContainer resizeHandle = new WebMarkupContainer("resizeHandle") {
+				private static final long serialVersionUID = 1L;
+
+				@Override
+				public boolean isVisible() {
+					return DefaultDialog.this.isResizable();
+				}
+			};
+			resizeHandle.add(new AttributeModifier("id", new Model<String>() {
+
+				private static final long serialVersionUID = 1L;
+
+				@Override
+				public String getObject() {
+					return DefaultDialog.this.getDialogId()+"Resize";
+				}
+			}));
+			
+			footer.add(resizeHandle);
+		}
 		
 		Label script = new Label("script", new Model<String>()) {
 			private static final long serialVersionUID = 1L;
@@ -310,7 +326,9 @@ public abstract class DefaultDialog extends Panel implements IDialogScope, IMenu
 				sb.append(DefaultDialog.this.getPanelSelectedClass());
 				sb.append("',");
 				sb.append(DefaultDialog.this.isCentered());
-				sb.append(", false);");				
+				sb.append(", false,");
+				sb.append(DefaultDialog.this.isDraggable());
+				sb.append(");");
 				replaceComponentTagBody(markupStream, openTag, sb.toString());
 			}
 		};
@@ -653,6 +671,34 @@ public abstract class DefaultDialog extends Panel implements IDialogScope, IMenu
 
 	public void setCentered(boolean centered) {
 		this.centered = centered;
+	}
+
+	/**
+	 * @return the draggable
+	 */
+	public boolean isDraggable() {
+		return draggable;
+	}
+
+	/**
+	 * @param draggable the draggable to set
+	 */
+	public void setDraggable(boolean draggable) {
+		this.draggable = draggable;
+	}
+
+	/**
+	 * @return the closeable
+	 */
+	public boolean isCloseable() {
+		return closeable;
+	}
+
+	/**
+	 * @param closeable the closeable to set
+	 */
+	public void setCloseable(boolean closeable) {
+		this.closeable = closeable;
 	}
  
 }

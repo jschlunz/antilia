@@ -72,7 +72,7 @@ public abstract class DialogButton extends Panel implements IDialogLink {
 				 
 				@Override
 				public boolean isEnabled() {
-					return !DialogButton.this.dialog.isVisible();
+					return DialogButton.this.dialog != null && !DialogButton.this.dialog.isVisible();
 				}
 				 
 				@Override
@@ -202,5 +202,19 @@ public abstract class DialogButton extends Panel implements IDialogLink {
 	 */
 	public void setShowAtMousePosition(boolean showAtMousePoistion) {
 		this.showAtMousePosition = showAtMousePoistion;
+	}
+
+	/**
+	 * @return the dialog
+	 */
+	public DefaultDialog getDialog() {
+		return dialog;
+	}
+
+	/**
+	 * @param dialog the dialog to set
+	 */
+	public void setDialog(DefaultDialog dialog) {
+		this.dialog = dialog;
 	}
 }
