@@ -222,4 +222,18 @@ public abstract class DialogLink extends Panel implements IDialogLink {
 	public void setLinkClass(String linkClass) {
 		this.linkClass = linkClass;
 	}
+
+	/**
+	 * @return the dialog
+	 */
+	public DefaultDialog getDialog() {
+		return dialog;
+	}
+
+	/**
+	 * @param dialog the dialog to set
+	 */
+	public void setDialog(DefaultDialog dialog) {
+		this.dialog = dialog;
+	}
 }

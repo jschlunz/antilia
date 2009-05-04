@@ -1,10 +1,10 @@
 	//Class for draggable panel.	
-	function Panel(id, parentId, ie, minWidth, minHeight, modal, panelClass, onDragClass, selectedClass, centered, isContainer) {
+	function Panel(id, parentId, ie, minWidth, minHeight, modal, panelClass, onDragClass, selectedClass, centered, isContainer,draggable) {
 		this.id = id;
 		this.parentId = parentId;
 		this.ie = ie;
 		this.centered = centered;
-			
+		this.draggable = draggable;	
 		this.modal = modal;
 		this.panelClass = panelClass;
 		this.onDragClass =  onDragClass;
@@ -55,7 +55,7 @@
 		this.panelHeader = document.getElementById(id+"Header");
 		this.panelResize = document.getElementById(id+"Resize");
 		
-		if(this.panelHeader)
+		if(this.panelHeader && draggable== true)
 			Antilia.Drag.init(this.panelHeader, this.onBeginDrag , this.onEndDrag, this.onDrag);
 		if(this.panelResize) {	
 			Antilia.Drag.init(this.panelResize, function() {} , function() { }, this.onResize);
@@ -81,17 +81,29 @@
 				}					
 				if(pheight == 100 || isNaN(pheight)) {
 					pheight = YAHOO.util.Dom.getViewportHeight();
-					cor = 75;
+					cor = 0;
 				}				
 				var width = parseInt(this.panel.style.width, 10);
 				var height = parseInt(this.panel.style.height, 10);
 				YAHOO.util.Dom.setStyle(this.id, "top", (((pheight-height)/2)-cor)+ "px"); 
 	            YAHOO.util.Dom.setStyle(this.id, "left", (((pwidth-width)/2)) + "px");
-			} else {				
-				var width = parseInt(this.panel.style.width, 10);
-				var height = parseInt(this.panel.style.height, 10);		
-				YAHOO.util.Dom.setStyle(this.id, "top", ((YAHOO.util.Dom.getViewportHeight()/2)-height)+ "px"); 
-	            YAHOO.util.Dom.setStyle(this.id, "left", ((YAHOO.util.Dom.getViewportWidth()/2)-width/2) + "px");
+			} else {		
+				var fbody = document.getElementById('frameBody');
+				if(fbody) {
+					var width = parseInt(this.panel.style.width, 10);
+					var height = parseInt(this.panel.style.height, 10);		
+					
+					var fwidth = YAHOO.util.Dom.getViewportWidth();
+					var fheight = parseInt(fbody.style.height, 10);
+					
+					YAHOO.util.Dom.setStyle(this.id, "top", ((fheight/2)-height/2)+ "px"); 
+					YAHOO.util.Dom.setStyle(this.id, "left", ((fwidth/2)-width/2) + "px");
+				} else {
+					var width = parseInt(this.panel.style.width, 10);
+					var height = parseInt(this.panel.style.height, 10);		
+					YAHOO.util.Dom.setStyle(this.id, "top", ((YAHOO.util.Dom.getViewportHeight()/2)-height/2)+ "px"); 
+					YAHOO.util.Dom.setStyle(this.id, "left", ((YAHOO.util.Dom.getViewportWidth()/2)-width/2) + "px");
+				}
 			}
 		}
 	}
@@ -309,10 +321,10 @@
 	function Panels() {
 		this.panels = new Array();
 			
-		this.addPanel = function(id, parentId, ie, minWidth, minHeight, modal, panelClass, onDragClass, selectedClass, centered, isContainer) {
+		this.addPanel = function(id, parentId, ie, minWidth, minHeight, modal, panelClass, onDragClass, selectedClass, centered, isContainer, draggable) {
 			var panel = this.getPanel(id)
 			if(panel == null) {
-				panel = new Panel(id, parentId, ie, minWidth, minHeight, modal, panelClass, onDragClass, selectedClass, centered, isContainer);
+				panel = new Panel(id, parentId, ie, minWidth, minHeight, modal, panelClass, onDragClass, selectedClass, centered, isContainer, draggable);
 				this.panels[this.panels.length]= panel;
 				this.panels.id = id;
 				if(panel.parentPanel) {
@@ -328,12 +340,12 @@
 			}			
 		}
 		
-		this.addAndRemovePanel = function(id, parentId, ie, minWidth, minHeight, modal, panelClass, onDragClass, selectedClass, centered,isContainer) {
+		this.addAndRemovePanel = function(id, parentId, ie, minWidth, minHeight, modal, panelClass, onDragClass, selectedClass, centered,isContainer, draggable) {
             var panel = this.getPanel(id)
            if(panel != null) {
                 this.deletePanel(id);
            }
-            panel = new Panel(id, parentId, ie, minWidth, minHeight, modal, panelClass, onDragClass, selectedClass, centered,isContainer);
+            panel = new Panel(id, parentId, ie, minWidth, minHeight, modal, panelClass, onDragClass, selectedClass, centered,isContainer, draggable);
             this.panels[this.panels.length]= panel;
             this.panels.id = id;
             if(panel.parentPanel) {

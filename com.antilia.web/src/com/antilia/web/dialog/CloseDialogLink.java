@@ -63,6 +63,12 @@ public class CloseDialogLink extends AbstractLink {
 		new CloseDialogAction(this, dialog).onClick(target);
 	}
 
+	
+	@Override
+	public boolean isVisible() {
+		return dialog.isCloseable();
+	}
+	
 
 	@Override
 	protected IAjaxCallDecorator getAjaxCallDecorator() {

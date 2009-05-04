@@ -62,7 +62,7 @@ public class CloseDialogAction extends AbstractAction {
 				subDialog.setVisible(false);
 		}
 		if(target != null) {
-			if(dialog.getDialogButton() != null) {
+			if(dialog.getDialogButton() != null) {				
 				target.addComponent(dialog.getDialogButton().getButton());
 			}		
 		}
