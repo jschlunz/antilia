@@ -173,15 +173,15 @@ div.tabpanel5 > div.tab-row a {
   display:block;
   background:url("images/ok_disabled.gif") no-repeat right 2px;
   padding:5px 20px 4px 6px;
-  text-decoration:none;
-  font-weight:bold;
-  color:#765;
+  text-decoration: none;
+  font-weight: bold;
+  color: #776655;
   white-space:nowrap;
   }
   
 div.tabpanel5 > div.tab-row a:hover {
   color:#333;
-  }
+}
   
 div.tabpanel5 > div.tab-row li.selected {
   background-image:url("images/tabs5/left_on.gif");
@@ -189,6 +189,6 @@ div.tabpanel5 > div.tab-row li.selected {
   
 div.tabpanel5 > div.tab-row li.selected a {
   background-image: url("images/ok.gif");
-  color:#333;
+  color: #333333;
   padding-bottom:5px;
   } 
