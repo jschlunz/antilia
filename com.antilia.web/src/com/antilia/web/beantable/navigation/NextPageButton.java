@@ -74,6 +74,11 @@ public class NextPageButton<E extends Serializable> extends AbstractButton {
 		target.addComponent((Component)component);
 	}
 	
+	@Override
+	protected void onError(AjaxRequestTarget target, Form<?> form) {
+		//TODO: find a nice way to report erros on table navigation!
+		System.out.println("Error!");
+	}
 	
 	@Override
 	public void onSubmit() {
