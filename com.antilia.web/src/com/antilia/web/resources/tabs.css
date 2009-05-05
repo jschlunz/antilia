@@ -147,4 +147,48 @@ div.tabpanel2 > div.tab-row li.selected a {
 div.tabpanel2 > div.tab-row li.selected a span{
   	color: black;
 }
+ 
+/* VARIATION 5 TAB PANEL STYLES */
+div.tabpanel5 > div.tab-row{
+  float:left;
+  width:100%;
+  background:#DAE0D2 url("images/menu.png") repeat-x bottom;
+  line-height:normal;
+  }
+
+div.tabpanel5 > div.tab-row ul {
+  margin:0;
+  padding:10px 10px 0;
+  list-style:none;
+  }
   
+div.tabpanel5 > div.tab-row li {
+  float:left;
+  background:url("images/tabs5/left.gif") no-repeat left top;
+  margin:0;
+  padding:0 4px 0 9px;
+  }
+  
+div.tabpanel5 > div.tab-row a {
+  display:block;
+  background:url("images/ok_disabled.gif") no-repeat right 2px;
+  padding:5px 20px 4px 6px;
+  text-decoration:none;
+  font-weight:bold;
+  color:#765;
+  white-space:nowrap;
+  }
+  
+div.tabpanel5 > div.tab-row a:hover {
+  color:#333;
+  }
+  
+div.tabpanel5 > div.tab-row li.selected {
+  background-image:url("images/tabs5/left_on.gif");
+  }
+  
+div.tabpanel5 > div.tab-row li.selected a {
+  background-image: url("images/ok.gif");
+  color:#333;
+  padding-bottom:5px;
+  } 
