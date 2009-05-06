@@ -11,7 +11,9 @@ For the time being we just describe how to get the couple of demo application we
 
 We provide two demo applications:
 
-== Antilia's components demo ==
+== Antilia's components demo == 
+
+NOTE: right now this demo is broken. It will be blended with manager demo.
 
 This applications is a small show-case of some of the the widgets we have built.
 
