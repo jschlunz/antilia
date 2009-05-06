@@ -38,4 +38,8 @@ public class IdentifierEqRestriction extends FilterToCriterionTransfomer  implem
 	public Criterion transform(IFilter source) {
 		return Restrictions.idEq(value);
 	}
+	
+	public String getPropertyName() {
+		return null;
+	}
 }

@@ -49,4 +49,22 @@ public class IlikeRestriction extends FilterToCriterionTransfomer implements IRe
 		
 		return Restrictions.ilike(propertyName, value);
 	}
+	
+	public String getPropertyName() {
+		return propertyName;
+	}
+
+	/**
+	 * @return the value
+	 */
+	public Object getValue() {
+		return value;
+	}
+
+	/**
+	 * @return the matchMode
+	 */
+	public MatchMode getMatchMode() {
+		return matchMode;
+	}
 }

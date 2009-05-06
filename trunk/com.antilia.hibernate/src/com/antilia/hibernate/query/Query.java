@@ -8,6 +8,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.antilia.common.util.StringUtils;
+
 /**
  * @author Ernesto Reinaldo Barreiro (reiern70@gmail.com)
  *
@@ -67,7 +69,34 @@ public class Query<B extends Serializable> implements IQuery<B> {
 	public Iterable<IFilter> getFilters() {
 		return filters;
 	}
+	
+	public IFilter findFilter(String propertyName) {
+		if(StringUtils.isEmpty(propertyName)) {
+			return null;
+		}
+		for(IFilter filter: filters) {
+			if(filter.getPropertyName() != null && filter.getPropertyName().equals(propertyName)){
+				return filter;
+			}
+		}
+		return null;
+	}
 
+	public IQuery<B> removeFilter(String propertyName) {
+		if(StringUtils.isEmpty(propertyName)) {
+			return this;
+		}
+		List<IFilter> nfilters = new ArrayList<IFilter>();
+		for(IFilter filter: filters) {
+			if(filter.getPropertyName() != null && filter.getPropertyName().equals(propertyName)){				
+				continue;
+			}
+			nfilters.add(filter);
+		}
+		this.filters = nfilters;
+		return this;
+	}
+	
 	public Iterable<IOrder<B>> getOrders() {
 		return orders;
 	}

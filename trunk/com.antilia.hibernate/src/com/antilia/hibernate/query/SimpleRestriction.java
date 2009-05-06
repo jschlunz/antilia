@@ -75,4 +75,8 @@ public class SimpleRestriction extends FilterToCriterionTransfomer  implements I
 	public Criterion transform(IFilter source) {
 		return new SimpleExpressionWrapper(propertyName, value, op.getValue());
 	}
+	
+	public String getPropertyName() {
+		return propertyName;
+	}
 }

@@ -31,4 +31,8 @@ class DisjunctionFilter extends JunctionFilter {
 		}
 		return conjunction;
 	}
+	
+	public String getPropertyName() {
+		return null;
+	}
 }

@@ -68,4 +68,7 @@ class LogicalRestriction extends FilterToCriterionTransfomer implements IRestric
 		return null;		
 	}
 
+	public String getPropertyName() {
+		return null;
+	}
 }

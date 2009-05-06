@@ -19,7 +19,11 @@ public interface IQuery<B extends Serializable> extends Serializable  {
 
 	IQuery<B> addFilter(IFilter filter);
 	
+	IQuery<B> removeFilter(String propertyName);
+		
 	Iterable<IFilter> getFilters(); 
+	
+	IFilter findFilter(String propertyName);
 	
 	public void clearFilters();
 	

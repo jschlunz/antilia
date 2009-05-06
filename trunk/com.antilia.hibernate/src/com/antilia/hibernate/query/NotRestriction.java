@@ -40,4 +40,11 @@ public class NotRestriction extends FilterToCriterionTransfomer implements IRest
 		// TODO: ugly, fix this...
 		return Restrictions.not(getFilter().getTransformer().transform(getFilter()));
 	}
+	
+	public String getPropertyName() {
+		if(this.filter != null) {
+			return this.filter.getPropertyName();
+		}
+		return null;
+	}
 }
