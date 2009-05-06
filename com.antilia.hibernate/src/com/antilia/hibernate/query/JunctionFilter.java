@@ -46,4 +46,8 @@ public abstract class JunctionFilter extends FilterToCriterionTransfomer impleme
 	public IFilterTransformer<Criterion> getTransformer() {
 		return this;
 	}
+	
+	public String getPropertyName() {
+		return null;
+	}
 }

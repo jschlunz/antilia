@@ -16,6 +16,8 @@ import com.antilia.hibernate.query.transform.IFilterTransformer;
  */
 public interface IFilter extends Serializable {
 	
+	String getPropertyName();
+	
 	//TODO: clean up any references to Hibernate... So that queries are independent from Hibernate..
 	IFilterTransformer<Criterion> getTransformer();
 
