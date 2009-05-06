@@ -6,13 +6,11 @@ package com.antilia.web.beantable.navigation;
 
 import java.io.Serializable;
 
-import org.apache.wicket.Component;
 import org.apache.wicket.ResourceReference;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.markup.html.form.Form;
 
 import com.antilia.web.beantable.IPageableComponent;
-import com.antilia.web.button.AbstractButton;
 import com.antilia.web.resources.DefaultStyle;
 import com.antilia.web.utils.RequestUtils;
 
@@ -21,12 +19,12 @@ import com.antilia.web.utils.RequestUtils;
  * 
  * @author Ernesto Reinaldo Barreiro (reiern70@gmail.com)
  */
-public class NextPageButton<E extends Serializable> extends AbstractButton {
+public class NextPageButton<E extends Serializable> extends PageableButton<E> {
 
 	private static final long serialVersionUID = 1L;
 
 	public NextPageButton() {
-		super("next", true);
+		super("next");
 	}
 	
 	/* (non-Javadoc)
@@ -71,22 +69,7 @@ public class NextPageButton<E extends Serializable> extends AbstractButton {
 	protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
 		IPageableComponent<E> component = findPageableComponent();
 		component.getPageableProvider().nextPage();
-		target.addComponent((Component)component);
+		target.addComponent(component.getUpdatableComponent());
 	}
 	
-	@Override
-	protected void onError(AjaxRequestTarget target, Form<?> form) {
-		//TODO: find a nice way to report erros on table navigation!
-		System.out.println("Error!");
-	}
-	
-	@Override
-	public void onSubmit() {
-		
-	}
-
-	@SuppressWarnings("unchecked")
-	private IPageableComponent<E> findPageableComponent() {
-		return (IPageableComponent<E>)findParent(IPageableComponent.class);
-	}
 }
