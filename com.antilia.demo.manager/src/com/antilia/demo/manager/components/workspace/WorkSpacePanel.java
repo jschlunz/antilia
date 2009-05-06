@@ -48,7 +48,7 @@ public class WorkSpacePanel extends BackToHomeTopMenuPanel<Serializable> {
 
 			@Override
 			protected void configureDialog(DefaultDialog defaultDialog) {
-				defaultDialog.getDialogStyle().setBackgroundColor("#b54e25");
+				defaultDialog.getDialogStyle().setBackgroundColor("#a6b8cb");
 			}
 		});
 		itemHolder.addMenuItem(new WorkSpaceCrudDialogLink<Country>("country", Country.class) {
