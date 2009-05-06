@@ -32,6 +32,12 @@ public abstract class DialogLink extends Panel implements IDialogLink {
 	
 	private IDialogScope dialogScope;
 	
+	/**
+	 * Flag to set if a new dialog should be created any time the user clicks 
+	 * on the link. By default no caching is done!
+	 */
+	private boolean cacheDialog = false;
+	
 	private String linkClass = "smallbutton";
 	
 	/**
@@ -93,13 +99,13 @@ public abstract class DialogLink extends Panel implements IDialogLink {
 			
 			add(button);
 		}
-		if(dialog == null) {
+		if(dialog == null || !cacheDialog) {
 			dialog = newDialog("dialog"); 
 			dialog.setVisible(false);				
 			dialog.setOutputMarkupPlaceholderTag(true);
 			dialog.add(new AttributeAppender("style", new Model<String>("position: relavive; z-index: 2;"), ";"));
 			dialog.setDialogButton(this);
-			add(dialog);
+			addOrReplace(dialog);
 		}
 		super.onBeforeRender();
 	}
@@ -235,5 +241,19 @@ public abstract class DialogLink extends Panel implements IDialogLink {
 	 */
 	public void setDialog(DefaultDialog dialog) {
 		this.dialog = dialog;
+	}
+
+	/**
+	 * @return the cacheDialog
+	 */
+	public boolean isCacheDialog() {
+		return cacheDialog;
+	}
+
+	/**
+	 * @param cacheDialog the cacheDialog to set
+	 */
+	public void setCacheDialog(boolean cacheDialog) {
+		this.cacheDialog = cacheDialog;
 	}
 }
