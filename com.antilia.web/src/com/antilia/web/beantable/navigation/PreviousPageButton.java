@@ -6,13 +6,11 @@ package com.antilia.web.beantable.navigation;
 
 import java.io.Serializable;
 
-import org.apache.wicket.Component;
 import org.apache.wicket.ResourceReference;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.markup.html.form.Form;
 
 import com.antilia.web.beantable.IPageableComponent;
-import com.antilia.web.button.AbstractButton;
 import com.antilia.web.resources.DefaultStyle;
 import com.antilia.web.utils.RequestUtils;
 
@@ -21,12 +19,12 @@ import com.antilia.web.utils.RequestUtils;
  * 
  * @author Ernesto Reinaldo Barreiro (reiern70@gmail.com)
  */
-public class PreviousPageButton<E extends Serializable> extends AbstractButton {
+public class PreviousPageButton<E extends Serializable> extends PageableButton<E> {
 
 	private static final long serialVersionUID = 1L;
 
 	public PreviousPageButton() {
-		super("previous", true);
+		super("previous");
 	}
 	
 	/* (non-Javadoc)
@@ -69,13 +67,7 @@ public class PreviousPageButton<E extends Serializable> extends AbstractButton {
 	protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
 		IPageableComponent<E> component = findPageableComponent();
 		component.getPageableProvider().previousPage();
-		target.addComponent((Component)component);
-	}
-
-
-	@SuppressWarnings("unchecked")
-	private IPageableComponent<E> findPageableComponent() {
-		return (IPageableComponent<E>)findParent(IPageableComponent.class);
+		target.addComponent(component.getUpdatableComponent());
 	}
 
 }

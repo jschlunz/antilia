@@ -6,13 +6,11 @@ package com.antilia.web.beantable.navigation;
 
 import java.io.Serializable;
 
-import org.apache.wicket.Component;
 import org.apache.wicket.ResourceReference;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.markup.html.form.Form;
 
 import com.antilia.web.beantable.IPageableComponent;
-import com.antilia.web.button.AbstractButton;
 import com.antilia.web.resources.DefaultStyle;
 import com.antilia.web.utils.RequestUtils;
 
@@ -21,12 +19,12 @@ import com.antilia.web.utils.RequestUtils;
  * 
  * @author Ernesto Reinaldo Barreiro (reiern70@gmail.com)
  */
-public class LastPageButton<E extends Serializable> extends AbstractButton {
+public class LastPageButton<E extends Serializable> extends PageableButton<E> {
 
 	private static final long serialVersionUID = 1L;
 
 	public LastPageButton() {
-		super("last", true);
+		super("last");
 	}
 	
 	/* (non-Javadoc)
@@ -63,18 +61,13 @@ public class LastPageButton<E extends Serializable> extends AbstractButton {
 	protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
 		IPageableComponent<E> component = findPageableComponent();
 		component.getPageableProvider().lastPage();
-		target.addComponent((Component)component);
+		target.addComponent(component.getUpdatableComponent());
 	}
 	
 	@Override
 	public boolean isEnabled() {
 		IPageableComponent<E> component = findPageableComponent();
 		return component.getPageableProvider().hasNextPage();
-	}
-
-	@SuppressWarnings("unchecked")	
-	private IPageableComponent<E> findPageableComponent() {
-		return (IPageableComponent<E>)findParent(IPageableComponent.class);
 	}
 
 }
