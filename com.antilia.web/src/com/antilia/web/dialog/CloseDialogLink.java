@@ -60,7 +60,7 @@ public class CloseDialogLink extends AbstractLink {
 	
 	@Override
 	protected void onClick(AjaxRequestTarget target) {
-		new CloseDialogAction(this, dialog).onClick(target);
+		new CloseDialogAction(this, dialog).onClick(target, "close");
 	}
 
 	

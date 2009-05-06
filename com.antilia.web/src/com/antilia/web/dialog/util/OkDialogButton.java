@@ -53,7 +53,7 @@ public abstract class OkDialogButton extends AbstractButton {
 	
 	@Override
 	protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
-			new CloseDialogAction(this, dialog).onSubmit(target, form);
+			new CloseDialogAction(this, dialog).onSubmit(target, form, "OK");
 			onOk(target, form);
 	}
 

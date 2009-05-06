@@ -36,8 +36,9 @@ public class CloseDialogAction extends AbstractAction {
 	/* (non-Javadoc)
 	 * @see com.antilia.web.button.IAjaxAction#onSubmit(org.apache.wicket.ajax.AjaxRequestTarget, org.apache.wicket.markup.html.form.Form)
 	 */
-	public void onSubmit(AjaxRequestTarget target, Form<?> form) {
+	public void onSubmit(AjaxRequestTarget target, Form<?> form, String actionKey) {
 		dialog.setVisible(false);
+		dialog.onClose(target, actionKey);
 		target.addComponent(dialog);
 		// hide all sub dialogs as well
 		for(Iterator<IDialogScope> it = dialog.getDialogs();it.hasNext();) {
@@ -52,8 +53,9 @@ public class CloseDialogAction extends AbstractAction {
 		}
 	}
 	
-	public void onClick(AjaxRequestTarget target) {
+	public void onClick(AjaxRequestTarget target, String actionKey) {
 		dialog.setVisible(false);
+		dialog.onClose(target, actionKey);
 		target.addComponent(dialog);
 		// hide all sub dialogs as well
 		for(Iterator<IDialogScope> it = dialog.getDialogs();it.hasNext();) {

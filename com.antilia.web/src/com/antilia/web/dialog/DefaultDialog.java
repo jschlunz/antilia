@@ -11,6 +11,7 @@ import java.util.List;
 import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.Component;
 import org.apache.wicket.ResourceReference;
+import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.behavior.HeaderContributor;
 import org.apache.wicket.markup.ComponentTag;
 import org.apache.wicket.markup.MarkupStream;
@@ -298,6 +299,7 @@ public abstract class DefaultDialog extends Panel implements IDialogScope, IMenu
 			footer.add(resizeHandle);
 		}
 		
+		
 		Label script = new Label("script", new Model<String>()) {
 			private static final long serialVersionUID = 1L;
 
@@ -373,9 +375,16 @@ public abstract class DefaultDialog extends Panel implements IDialogScope, IMenu
 		super.onBeforeRender();
 	}
 	
-	protected void appendToScript(StringBuffer script) {
+	
+	/**
+	 * This method is called when the dialog is closed.
+	 * 
+	 * @param requestTarget
+	 * @param actionKey
+	 */
+	protected void onClose(AjaxRequestTarget requestTarget, String actionKey) {
 		
-	}
+	}	
 	
 	protected ResourceReference getCSSStyle() {
 		return DefaultStyle.CSS_DIALOG;

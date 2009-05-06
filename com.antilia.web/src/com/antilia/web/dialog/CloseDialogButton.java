@@ -76,7 +76,7 @@ public class CloseDialogButton extends AbstractButton {
 			}		
 		}
 		*/
-		new CloseDialogAction(this, dialog).onSubmit(target, form);
+		new CloseDialogAction(this, dialog).onSubmit(target, form, "close");
 	}
 
 
