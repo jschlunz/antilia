@@ -387,7 +387,9 @@ public class DataProviderPageableProvider<E extends Serializable> implements ILo
 	 * @see com.antilia.common.sources.IDetachable#detach()
 	 */
 	public void detach() {
-		
+		if(dataProvider != null) {
+			dataProvider.detach();
+		}
 	}
 
 	public void addNavigationListener(IPageableProviderNavigationListener listener) {
