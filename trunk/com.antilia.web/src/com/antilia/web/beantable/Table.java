@@ -14,6 +14,7 @@ import org.apache.wicket.Component;
 import org.apache.wicket.ResourceReference;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.behavior.HeaderContributor;
+import org.apache.wicket.feedback.IFeedback;
 import org.apache.wicket.markup.ComponentTag;
 import org.apache.wicket.markup.MarkupStream;
 import org.apache.wicket.markup.html.WebMarkupContainer;
@@ -55,6 +56,11 @@ public class Table<E extends Serializable> extends Panel implements IPageableCom
 	private IProviderSelector<E> sourceSelector;
 	
 	private ITableModel<E> tableModel;
+	
+	/**
+	 * Component used to display navigation errors
+	 */
+	private IFeedback feedback;	
 			
 	private FirstColumnModel firstColumnModel;
 	
@@ -546,6 +552,20 @@ public class Table<E extends Serializable> extends Panel implements IPageableCom
 	 */
 	public void setIe6(boolean ie6) {
 		this.ie6 = ie6;
+	}
+
+	/**
+	 * @return the feedback
+	 */
+	public IFeedback getFeedback() {
+		return feedback;
+	}
+
+	/**
+	 * @param feedback the feedback to set
+	 */
+	public void setFeedback(IFeedback feedback) {
+		this.feedback = feedback;
 	}
 	
 	
