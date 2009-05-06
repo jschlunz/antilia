@@ -103,10 +103,10 @@ public class Table<E extends Serializable> extends Panel implements IPageableCom
 	 * 
 	 * @param id
 	 */
-	public Table(String id, ITableModel<E> tableModel, IPageableProvider<E> pageableSource)  {
-		super(id);
-		setOutputMarkupId(true);
-		this.pageableProvider = pageableSource;
+	public Table(String id, ITableModel<E> tableModel, IPageableProvider<E> pageablePrivider)  {
+		super(id, new Model<IPageableProvider<E>>(pageablePrivider));	
+		setOutputMarkupId(true);		
+		this.pageableProvider = pageablePrivider;
 		this.sourceSelector = new SourceSelector<E>(this.pageableProvider ,tableModel.getSelectionModel());
 		this.tableModel = tableModel;
 		this.firstColumnModel = new FirstColumnModel(65);
