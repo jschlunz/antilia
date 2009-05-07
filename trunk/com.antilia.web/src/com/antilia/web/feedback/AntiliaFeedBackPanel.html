@@ -1,0 +1,27 @@
+<html xmlns:wicket>
+<head>
+	<link rel="stylesheet" type="text/css" href="./feedBack.css"/>
+</head>
+<body>
+<wicket:panel>
+  	<div wicket:id="feedBackContainer" class="feedBackContainer">
+  		<div class="closeButton">
+  			<a wicket:id="closeDialog" href=""><img wicket:id="icon" src="../resources/images/close_bule.gif"/></a>
+  		</div>
+  		<div class="feedBackMessages">
+	  		<table cellpadding="2" cellspacing="2">
+	  			<tr wicket:id="messages" class="">
+	  				<td class="feedBackIcon">
+	  					<img wicket:id="errorIcon" src="../resources/images/close_bule.gif" border="none"/>
+	  				</td>
+	  				<td class="feedBackMessage">
+	  					<span wicket:id="errorMessage" class="feedBackMessage"></span>
+	  				</td>
+	  			</tr>
+	  		</table>
+  		</div>
+  	</div>
+</wicket:panel>
+</body>
+</html>
+  
