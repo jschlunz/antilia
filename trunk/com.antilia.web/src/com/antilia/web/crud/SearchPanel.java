@@ -10,6 +10,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.markup.html.panel.Panel;
 
 import com.antilia.hibernate.query.IQuery;
@@ -54,6 +55,8 @@ public class SearchPanel<B extends Serializable> extends Panel implements ILoada
 	
 	private Map<String,IFieldModel<B>> models;
 	
+	private FeedbackPanel feedback;
+
 	public SearchPanel(String id, CrudStyler<B> styler) {
 		this(id,  null, null, styler);
 	}
@@ -243,5 +246,13 @@ public class SearchPanel<B extends Serializable> extends Panel implements ILoada
 	
 	public CRUDMode getCrudMode() {
 		return CRUDMode.SEARCH;
+	}
+	
+	public FeedbackPanel getFeedback() {
+		return feedback;
+	}
+
+	public void setFeedback(FeedbackPanel feedback) {
+		this.feedback = feedback;
 	}
 }
