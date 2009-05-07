@@ -21,6 +21,24 @@ public class EnumDropDownChoice<T extends Enum<?>> extends DropDownChoice<T> {
 
 	private static final long serialVersionUID = 1L;
 
+	public EnumDropDownChoice(String id, Class<T> enumClass) {
+		super(id);
+		List<T> choices = Arrays.asList(enumClass.getEnumConstants());
+		setNullValid(true);
+		setChoiceRenderer(new ChoiceRenderer<T>() {
+			
+			private static final long serialVersionUID = 1L;
+
+			@Override
+			public Object getDisplayValue(T object) {
+				if(object instanceof Enum)
+					return ResourceUtils.getStringResource(object, getLocale());
+				return super.getDisplayValue(object);
+			}
+		});		
+		setChoices(choices);
+	}
+	
 	/**
 	 * 
 	 * @param id
@@ -53,5 +71,5 @@ public class EnumDropDownChoice<T extends Enum<?>> extends DropDownChoice<T> {
 			}
 		});		
 		setChoices(choices);
-	}
+	}	
 }
