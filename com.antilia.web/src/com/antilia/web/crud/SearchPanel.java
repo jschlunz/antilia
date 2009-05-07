@@ -120,6 +120,12 @@ public class SearchPanel<B extends Serializable> extends Panel implements ILoada
 		
 		table  = newTable("table",tableModel, this.pageableProvider);
 		beanForm.add(table);
+		
+		feedback =  new FeedbackPanel("messages");		
+		add(feedback);
+		
+		table.setFeedback(feedback);
+		
 	}
 	
 	protected Menu newTopMenuMenu(String id) {
