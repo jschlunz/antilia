@@ -28,7 +28,7 @@ public class QueryUtils {
 					if(rValue != null) {
 						Object value = EntityUtils.getPropertyValue(bean, propertyName);
 						String strVale = value.toString();
-						if(!strVale.contains(rValue.toString())) {
+						if(!strVale.startsWith(rValue.toString())) {
 							return null;
 						}
 					}
