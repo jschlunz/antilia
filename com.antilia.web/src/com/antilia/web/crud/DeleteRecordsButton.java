@@ -34,8 +34,14 @@ public class DeleteRecordsButton<E extends Serializable> extends OkDialogButton 
 			crudPanel.getSearchPanel().getPageableProvider().removeAll(crudPanel.getSelected().getSelected());
 			crudPanel.getSearchPanel().getPageableProvider().reset();
 			crudPanel.getSelected().clear();			
-			target.addComponent((Component)crudPanel);
+			target.addComponent((Component)crudPanel);			
 		}
+	}
+	
+	@Override
+	protected void onError(AjaxRequestTarget target, Form<?> form) {
+		CRUDPanel<E> crudPanel = getCRUDPanel();
+		target.addComponent(crudPanel.getSearchPanel().getFeedback());
 	}
 	
 	@SuppressWarnings("unchecked")
