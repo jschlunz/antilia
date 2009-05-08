@@ -6,8 +6,10 @@ package com.antilia.web.field.impl;
 
 import java.io.Serializable;
 
+import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.DropDownChoice;
+import org.apache.wicket.model.Model;
 
 import com.antilia.web.field.IFieldModel;
 import com.antilia.web.field.factory.FieldMode;
@@ -43,6 +45,12 @@ public class SelectionDropDownField<B extends Serializable> extends BaseFormFiel
 			Class<B> beansClass = (Class<B>)getFieldModel().getFieldClass();
 			textField = new EntityDownChoice("field", beansClass, getBeanProxy().getPropertyValue(getPropertyPath()).getModel());
 			add(textField);
+			textField.setOutputMarkupId(true);
+			textField.setLabel(getLabelModel());
+			if(getMode() == FieldMode.EDIT && getFieldModel().isRequiered()) {
+				textField.setRequired(true);				
+				textField.add(new AttributeModifier("class",new Model<String>("requiredText")));
+			}
 		}		
 		super.onBeforeRender();
 	}
