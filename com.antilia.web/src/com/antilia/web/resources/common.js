@@ -155,8 +155,32 @@ Antilia.Drag = {
 	}
 };
 
+Antilia.getElementsByClass = function getElementsByClass(node,searchClass,tag) {
+    var classElements = new Array();
+    var els = node.getElementsByTagName(tag); // use "*" for all elements
+    var elsLen = els.length;
+    for (i = 0, j = 0; i < elsLen; i++) {
+         if (els[i].className == searchClass) {
+             classElements[j] = els[i];
+             j++;
+         }
+    }
+    return classElements;
+}
  
- Antilia.setStyle = function(fields, styleClass) { 	
+Antilia.replaceStyle = function(nodeid,searchClass,tag, styleClass) { 	
+	var node = document.getElementById(nodeid);
+	var eles = Antilia.getElementsByClass(node,searchClass,tag);	
+	
+	for(var i=0; i < eles.length; i++) {
+		 var ele = eles[i];		 
+		 if(ele) {
+			ele.className = styleClass;
+		 }
+	 }	 
+};
+
+Antilia.setStyle = function(fields, styleClass) { 	
 	 for(var i=0; i < fields.length; i++) {
 		 var id = fields[i];		 
 		 var ele = document.getElementById(id);		 

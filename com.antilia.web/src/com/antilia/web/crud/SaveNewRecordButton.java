@@ -68,7 +68,8 @@ public class SaveNewRecordButton<E extends Serializable> extends AbstractButton 
 				target.addComponent((Component)((IFeedBackAware)crudPanel.getCurrentPanel()).getFeedback());
 			}
 		}
-		String script = ExceptionUtils.getChangeStyleScript("error");
+		String script = ExceptionUtils.getChangetextFieldsStyleScript(crudPanel.getCurrentPanel(), "error", "requiredText") 
+		+ ExceptionUtils.getChangeStyleScript("error");
 		target.appendJavascript(script.toString());
 	}
 	
