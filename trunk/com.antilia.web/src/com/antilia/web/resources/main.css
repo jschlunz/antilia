@@ -8,6 +8,10 @@ input {
     border: 1px solid gray;
 }
 
+textarea, select {
+	border: 1px solid gray;
+}
+
 .antilia-ajax-indicator {
     position: fixed;
     top: 10px;
