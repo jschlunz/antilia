@@ -7,6 +7,7 @@ package com.antilia.web.utils;
 import java.sql.SQLException;
 import java.util.Iterator;
 
+import org.apache.wicket.Component;
 import org.apache.wicket.Session;
 import org.apache.wicket.feedback.FeedbackMessage;
 import org.hibernate.HibernateException;
@@ -44,6 +45,27 @@ public class ExceptionUtils extends com.antilia.common.util.ExceptionUtils {
 			}
 		}				
 		return getExceptionMessage(e);
+	}
+	
+	public static String getChangeStyleScript(Component root, String oldStyle, String newStyle, String... tags) {
+		StringBuffer script = new StringBuffer();
+		String rootid = root.getMarkupId();
+		for(String tag: tags) {
+			script.append(";Antilia.replaceStyle('");
+			script.append(rootid);
+			script.append("','");
+			script.append(oldStyle);
+			script.append("','");
+			script.append(tag);
+			script.append("','");
+			script.append(newStyle);
+			script.append("');");
+		}
+		return script.toString();
+	}
+	
+	public static String getChangetextFieldsStyleScript(Component root, String oldStyle, String newStyle) {
+		return getChangeStyleScript(root, oldStyle, newStyle, "input", "textarea", "select");
 	}
 	
 	public static String getChangeStyleScript(String style) {

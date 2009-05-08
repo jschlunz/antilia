@@ -77,12 +77,12 @@ input {
     margin-top: 1px;    
 }
 
-textarea.requiredText, input.requiredText {
+textarea.requiredText, input.requiredText, select.requiredText {
     background-color: #fffdd7;
 }
 
-textarea.error, input.error {
-    background-color: red;
+textarea.error, input.error, select.error {
+    background-color: #FF8F8F;
 }
 
 textarea.Missing, input.Missing {

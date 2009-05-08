@@ -66,7 +66,10 @@ public class UpdateRecordButton<E extends Serializable> extends AbstractButton {
 		if(feedBackAware != null) {
 			target.addComponent((Component)(feedBackAware.getFeedback()));
 		}
-		String script = ExceptionUtils.getChangeStyleScript("error");
+		String script = 
+			ExceptionUtils.getChangetextFieldsStyleScript((Component)feedBackAware, "error", "requiredText") 
+			+ ExceptionUtils.getChangeStyleScript("error");
+			ExceptionUtils.getChangeStyleScript("error");
 		target.appendJavascript(script.toString());
 	}
 	
