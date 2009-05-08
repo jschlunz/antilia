@@ -7,10 +7,10 @@ package com.antilia.web.crud;
 import java.io.Serializable;
 import java.util.List;
 
-import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.markup.html.panel.Panel;
 
 import com.antilia.hibernate.query.IQuery;
+import com.antilia.web.feedback.AntiliaFeedBackPanel;
 import com.antilia.web.field.AutoFieldCreator;
 import com.antilia.web.field.AutoFieldPanel;
 import com.antilia.web.field.BeanForm;
@@ -34,7 +34,7 @@ public class CreatePanel<B extends Serializable> extends Panel implements ICRUDM
 	
 	private CrudStyler<B> styler;
 	
-	private FeedbackPanel feedback;
+	private AntiliaFeedBackPanel feedback;
 	
 	/**
 	 * 
@@ -48,7 +48,7 @@ public class CreatePanel<B extends Serializable> extends Panel implements ICRUDM
 		this.styler = styler;
 		
 		setOutputMarkupId(true);		
-		feedback  = new FeedbackPanel("messages");
+		feedback  = new AntiliaFeedBackPanel("messages");
 		feedback.setOutputMarkupId(true);
 		add(feedback);
 	}
@@ -69,7 +69,7 @@ public class CreatePanel<B extends Serializable> extends Panel implements ICRUDM
 		BeanForm<B> beanForm = newForm("form", this.beanProxy);
 		addOrReplace(beanForm);				
 				
-		 Menu menu = Menu.createMenu("topMenu", CreatePanelPanelButtonsFactory.getInstance());
+		Menu menu = Menu.createMenu("topMenu", CreatePanelPanelButtonsFactory.getInstance());
 		 
 		beanForm.addOrReplace(menu);
 		 
@@ -139,7 +139,7 @@ public class CreatePanel<B extends Serializable> extends Panel implements ICRUDM
 	/**
 	 * @return the messages
 	 */
-	public FeedbackPanel getFeedback() {
+	public AntiliaFeedBackPanel getFeedback() {
 		return feedback;
 	}
 	

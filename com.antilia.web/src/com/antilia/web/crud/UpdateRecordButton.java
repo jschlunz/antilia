@@ -6,12 +6,14 @@ package com.antilia.web.crud;
 
 import java.io.Serializable;
 
+import org.apache.wicket.Component;
 import org.apache.wicket.ResourceReference;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.markup.html.form.Form;
 
 import com.antilia.web.button.AbstractButton;
 import com.antilia.web.resources.DefaultStyle;
+import com.antilia.web.utils.ExceptionUtils;
 
 
 /**
@@ -56,6 +58,16 @@ public class UpdateRecordButton<E extends Serializable> extends AbstractButton {
 			crud.setCurrentPanel(crud.getSearchPanel());
 		}
 		target.addComponent(crud);
+	}
+	
+	@Override
+	protected void onError(AjaxRequestTarget target, Form<?> form) {
+		IFeedBackAware feedBackAware = findParent(IFeedBackAware.class);
+		if(feedBackAware != null) {
+			target.addComponent((Component)(feedBackAware.getFeedback()));
+		}
+		String script = ExceptionUtils.getChangeStyleScript("error");
+		target.appendJavascript(script.toString());
 	}
 	
 	@Override

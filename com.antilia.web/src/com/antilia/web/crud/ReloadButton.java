@@ -57,12 +57,22 @@ public class ReloadButton<E extends Serializable> extends AbstractButton {
 	
 	@Override
 	protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
-			ILoadablePanel<E> loadablePanel = getLoadablePanel();
-			if(loadablePanel != null) {				
-				loadablePanel.reload();
-				target.addComponent((Component)loadablePanel);
-			}		
+		ILoadablePanel<E> loadablePanel = getLoadablePanel();
+		if(loadablePanel != null) {				
+			loadablePanel.reload();
+			target.addComponent((Component)loadablePanel);
+		}		
 	}
+	
+	@Override
+	protected void onError(AjaxRequestTarget target, Form<?> form) {
+		ILoadablePanel<E> loadablePanel = getLoadablePanel();
+		if(loadablePanel != null) {				
+			target.addComponent((Component)(loadablePanel.getFeedback()));
+		}
+	}
+	
+	
 
 	@SuppressWarnings("unchecked")
 	public ILoadablePanel<E> getLoadablePanel() {
