@@ -79,7 +79,7 @@ public class AntiliaFeedBackPanel extends Panel implements IFeedback {
 				}
 			};
 			
-			Image errorIcon = new Image("errorIcon", DefaultStyle.IMG_CANCEL);		
+			Image errorIcon = new Image("errorIcon", DefaultStyle.IMG_ERROR_WARNING);		
 			listItem.add(errorIcon);
 						
 			final Component label = newMessageDisplayComponent("errorMessage", message);

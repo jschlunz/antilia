@@ -10,7 +10,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.markup.html.panel.Panel;
 
 import com.antilia.hibernate.query.IQuery;
@@ -26,6 +25,7 @@ import com.antilia.web.beantable.provider.impl.DataProviderPageableProvider;
 import com.antilia.web.beantable.provider.impl.HibernateQueryDataProvider;
 import com.antilia.web.button.IMenuItemHolder;
 import com.antilia.web.button.IMenuItemsFactory;
+import com.antilia.web.feedback.AntiliaFeedBackPanel;
 import com.antilia.web.field.AutoFieldCreator;
 import com.antilia.web.field.AutoFieldPanel;
 import com.antilia.web.field.BeanForm;
@@ -55,7 +55,7 @@ public class SearchPanel<B extends Serializable> extends Panel implements ILoada
 	
 	private Map<String,IFieldModel<B>> models;
 	
-	private FeedbackPanel feedback;
+	private AntiliaFeedBackPanel feedback;
 
 	public SearchPanel(String id, CrudStyler<B> styler) {
 		this(id,  null, null, styler);
@@ -121,7 +121,7 @@ public class SearchPanel<B extends Serializable> extends Panel implements ILoada
 		table  = newTable("table",tableModel, this.pageableProvider);
 		beanForm.add(table);
 		
-		feedback =  new FeedbackPanel("messages");		
+		feedback =  new AntiliaFeedBackPanel("messages");		
 		add(feedback);
 		
 		table.setFeedback(feedback);
@@ -254,11 +254,11 @@ public class SearchPanel<B extends Serializable> extends Panel implements ILoada
 		return CRUDMode.SEARCH;
 	}
 	
-	public FeedbackPanel getFeedback() {
+	public AntiliaFeedBackPanel getFeedback() {
 		return feedback;
 	}
 
-	public void setFeedback(FeedbackPanel feedback) {
+	public void setFeedback(AntiliaFeedBackPanel feedback) {
 		this.feedback = feedback;
 	}
 }

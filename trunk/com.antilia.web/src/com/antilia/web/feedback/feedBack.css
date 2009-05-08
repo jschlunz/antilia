@@ -9,6 +9,10 @@ div.feedBackContainer {
 	padding: 2px;
 }
 
-div.feedBackMessages {	
-	padding: 5px;
+div.feedBackMessages {
+	padding: 10px 10px 10px 10px;
+}
+
+div.floatedFeedbacks {
+	position: absolute; bottom: 25px; right: 15px; left: 15px;
 }

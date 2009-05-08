@@ -10,12 +10,12 @@ import java.util.Iterator;
 import java.util.List;
 
 import org.apache.commons.beanutils.BeanUtils;
-import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.markup.html.panel.Panel;
 
 import com.antilia.hibernate.query.IQuery;
 import com.antilia.web.beantable.provider.IProviderSelector;
 import com.antilia.web.beantable.provider.impl.InMemoryPageableProvider;
+import com.antilia.web.feedback.AntiliaFeedBackPanel;
 import com.antilia.web.field.AutoFieldCreator;
 import com.antilia.web.field.AutoFieldPanel;
 import com.antilia.web.field.BeanForm;
@@ -42,7 +42,7 @@ public class EditPanel<B extends Serializable> extends Panel implements ICRUDMod
 	
 	private CrudStyler<B> styler;
 	
-	private FeedbackPanel feedback;
+	private AntiliaFeedBackPanel feedback;
 	
 	/**
 	 * 
@@ -55,7 +55,7 @@ public class EditPanel<B extends Serializable> extends Panel implements ICRUDMod
 		this.beanClass = styler.getBeanClass();
 		this.styler = styler;
 		setOutputMarkupId(true);		
-		feedback = new FeedbackPanel("feedBack");
+		feedback = new AntiliaFeedBackPanel("feedBack");
 		feedback.setOutputMarkupId(true);
 		add(feedback);
 		
@@ -88,7 +88,7 @@ public class EditPanel<B extends Serializable> extends Panel implements ICRUDMod
 		addOrReplace(beanForm);
 				
 				
-		 Menu menu = Menu.createMenu("topMenu", EditPanelButtonsFactory.getInstance());
+		Menu menu = Menu.createMenu("topMenu", EditPanelButtonsFactory.getInstance());
 		 
 		beanForm.addOrReplace(menu);
 		 
@@ -123,11 +123,11 @@ public class EditPanel<B extends Serializable> extends Panel implements ICRUDMod
 		
 	}
 	
-	public FeedbackPanel getFeedback() {
+	public AntiliaFeedBackPanel getFeedback() {
 		return feedback;
 	}
 
-	public void setFeedback(FeedbackPanel feedBack) {
+	public void setFeedback(AntiliaFeedBackPanel feedBack) {
 		this.feedback = feedBack;
 	}
 

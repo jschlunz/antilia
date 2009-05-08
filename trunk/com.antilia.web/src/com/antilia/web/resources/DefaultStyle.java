@@ -165,4 +165,9 @@ public class DefaultStyle {
 	public static ResourceReference IMG_EXPORT_SQL = new ResourceReference(ImgDummy.class, "page_sql.gif");
 	
 	public static ResourceReference IMG_MINIMIZED = new ResourceReference(ImgDummy.class, "minimized.gif");
+
+	public static ResourceReference IMG_ERROR_BUG = new ResourceReference(ImgDummy.class, "bug.png");
+	
+	public static ResourceReference IMG_ERROR_WARNING = new ResourceReference(ImgDummy.class, "warning.png");
+	
 }
