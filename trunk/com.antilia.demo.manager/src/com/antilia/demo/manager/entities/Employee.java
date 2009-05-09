@@ -5,6 +5,7 @@ package com.antilia.demo.manager.entities;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -158,6 +159,44 @@ public class Employee implements java.io.Serializable {
 	
 	public Set<EmployeeRole> getEmployeeRoles() {
 		return this.employeeRoles;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((hired == null) ? 0 : hired.hashCode());
+		result = prime * result
+				+ ((lastname2 == null) ? 0 : lastname2.hashCode());
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Employee other = (Employee) obj;
+		if (hired == null) {
+			if (other.hired != null)
+				return false;
+		} else if (!hired.equals(other.hired))
+			return false;
+		if (lastname2 == null) {
+			if (other.lastname2 != null)
+				return false;
+		} else if (!lastname2.equals(other.lastname2))
+			return false;
+		if (name == null) {
+			if (other.name != null)
+				return false;
+		} else if (!name.equals(other.name))
+			return false;
+		return true;
 	}
 
 	public void setEmployeeRoles(Set<EmployeeRole> employeeRoles) {

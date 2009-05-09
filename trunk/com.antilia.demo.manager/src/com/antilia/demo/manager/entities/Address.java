@@ -119,6 +119,38 @@ public class Address implements java.io.Serializable, Comparable<Address> {
 		this.address2 = address2;
 	}
 
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result
+				+ ((address1 == null) ? 0 : address1.hashCode());
+		result = prime * result + ((city == null) ? 0 : city.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Address other = (Address) obj;
+		if (address1 == null) {
+			if (other.address1 != null)
+				return false;
+		} else if (!address1.equals(other.address1))
+			return false;
+		if (city == null) {
+			if (other.city != null)
+				return false;
+		} else if (!city.equals(other.city))
+			return false;
+		return true;
+	}
+
 	public String getAddress3() {
 		return this.address3;
 	}
