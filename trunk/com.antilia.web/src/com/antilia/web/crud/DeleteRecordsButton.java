@@ -12,6 +12,7 @@ import org.apache.wicket.markup.html.form.Form;
 
 import com.antilia.web.dialog.DefaultDialog;
 import com.antilia.web.dialog.util.OkDialogButton;
+import com.antilia.web.utils.ExceptionUtils;
 
 /**
  * 
@@ -30,11 +31,16 @@ public class DeleteRecordsButton<E extends Serializable> extends OkDialogButton 
 	@Override
 	protected void onOk(AjaxRequestTarget target, Form<?> form) {
 		CRUDPanel<E> crudPanel = getCRUDPanel();
-		if(crudPanel != null && crudPanel.getSelected().getSelected().size() > 0) {			
-			crudPanel.getSearchPanel().getPageableProvider().removeAll(crudPanel.getSelected().getSelected());
-			crudPanel.getSearchPanel().getPageableProvider().reset();
-			crudPanel.getSelected().clear();			
-			target.addComponent((Component)crudPanel);			
+		if(crudPanel != null && crudPanel.getSelected().getSelected().size() > 0) {		
+			try {
+				crudPanel.getSearchPanel().getPageableProvider().removeAll(crudPanel.getSelected().getSelected());
+				crudPanel.getSearchPanel().getPageableProvider().reset();
+				crudPanel.getSelected().clear();			
+				target.addComponent((Component)crudPanel);			
+			} catch (Exception e) {
+				getPage().error(ExceptionUtils.getFeedBackMessage(e));
+				target.addComponent(crudPanel.getSearchPanel().getFeedback());	
+			}
 		}
 	}
 	
