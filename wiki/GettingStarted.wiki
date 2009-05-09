@@ -3,7 +3,7 @@
 
 = Introduction =
 
-This page describes how to get started using Antilia Wicket components and building your own Antila powered OSGi-wicket applications.
+This page describes how to get started using Antilia's Wicket components and building your own Antila powered OSGi-wicket applications.
 
 = Details =
 
