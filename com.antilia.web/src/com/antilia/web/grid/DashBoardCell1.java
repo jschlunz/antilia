@@ -44,7 +44,7 @@ public abstract  class DashBoardCell1 extends WebMarkupContainer implements IFor
 	
 	private IGridWidget widget;
 	
-	private Form form;
+	private Form<?> form;
 	
 	private GridPane dashBoardPane;
 	
@@ -168,7 +168,6 @@ public abstract  class DashBoardCell1 extends WebMarkupContainer implements IFor
 			this.dashBoardPane = dashBoardPane;
 		}
 		
-		@SuppressWarnings("unchecked")
 		@Override
 		protected void respond(AjaxRequestTarget target) {
 			String input = getRequest().getParameter("id");

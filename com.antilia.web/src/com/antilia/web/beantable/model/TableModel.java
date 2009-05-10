@@ -110,7 +110,7 @@ public class TableModel<E extends Serializable> extends Model<ArrayList<IColumnM
 		hiddenModels.add(model);
 	}
 	
-	public SelectionMode getSelectionModel() {
+	public SelectionMode getSelectionMode() {
 		return selectionModel;
 	}
 

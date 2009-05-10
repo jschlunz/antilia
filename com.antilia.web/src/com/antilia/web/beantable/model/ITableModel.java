@@ -40,7 +40,7 @@ public interface ITableModel<E extends Serializable> extends IModel<ArrayList<IC
 	
 	void setSelectionModel(SelectionMode selectionModel);
 	
-	SelectionMode getSelectionModel();
+	SelectionMode getSelectionMode();
 	
 	Class<E> getBeanClass();
 	

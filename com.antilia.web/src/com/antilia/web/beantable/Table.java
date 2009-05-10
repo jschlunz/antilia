@@ -33,6 +33,7 @@ import com.antilia.web.beantable.model.IColumnModel;
 import com.antilia.web.beantable.model.ITableModel;
 import com.antilia.web.beantable.provider.IPageableProvider;
 import com.antilia.web.beantable.provider.IProviderSelector;
+import com.antilia.web.beantable.provider.SelectionMode;
 import com.antilia.web.beantable.provider.impl.InMemoryPageableProvider;
 import com.antilia.web.beantable.provider.impl.SourceSelector;
 import com.antilia.web.button.AjaxRefreshableMenuItem;
@@ -55,7 +56,7 @@ public class Table<E extends Serializable> extends Panel implements IPageableCom
 	
 	private IProviderSelector<E> sourceSelector;
 	
-	private ITableModel<E> tableModel;
+	private ITableModel<E> tableModel;	
 	
 	/**
 	 * Component used to display navigation errors
@@ -113,7 +114,7 @@ public class Table<E extends Serializable> extends Panel implements IPageableCom
 		super(id, new Model<IPageableProvider<E>>(pageablePrivider));	
 		setOutputMarkupId(true);		
 		this.pageableProvider = pageablePrivider;
-		this.sourceSelector = new SourceSelector<E>(this.pageableProvider ,tableModel.getSelectionModel());
+		this.sourceSelector = new SourceSelector<E>(this.pageableProvider ,tableModel.getSelectionMode());
 		this.tableModel = tableModel;
 		this.firstColumnModel = new FirstColumnModel(65);
 		this.ie6 = RequestUtils.isBrowserIeExplorer6();
@@ -134,18 +135,24 @@ public class Table<E extends Serializable> extends Panel implements IPageableCom
 		
 		addMenuItemsAfterNavidation(getAfterNavigationMenuItemsFactory());
 		
-		getFirstHeaderMenuItemsFactory().addItem(
-				AjaxRefreshableMenuItem.createRefreshableMenuItem(
-						ToggleSelectAllButton.ID, 
-						new ToggleSelectAllButton<E>(
-								AjaxRefreshableMenuItem.getItemId(), this)));
-		getFirstHeaderMenuItemsFactory().addItem(				
-						new RevertSelectionButton<E>(RevertSelectionButton.ID, this));		
-		addFirstHeaderMenuItems(getFirstHeaderMenuItemsFactory());
+		configureFirstHeaderMenuItemsFactory(tableModel);
 		
 		addMenuItemsBeforeNavigation(getBeforeNavigationMenuItemsFactory());
 		
 	}
+	
+	protected void configureFirstHeaderMenuItemsFactory(ITableModel<E> tableModel) {
+		if(tableModel.getSelectionMode().equals(SelectionMode.MULTIPLE)) {
+			getFirstHeaderMenuItemsFactory().addItem(
+				AjaxRefreshableMenuItem.createRefreshableMenuItem(
+						ToggleSelectAllButton.ID, 
+						new ToggleSelectAllButton<E>(
+								AjaxRefreshableMenuItem.getItemId(), this)));
+			getFirstHeaderMenuItemsFactory().addItem(				
+						new RevertSelectionButton<E>(RevertSelectionButton.ID, this));		
+		} 
+		addFirstHeaderMenuItems(getFirstHeaderMenuItemsFactory());
+	}	
 	
 	@Override
 	protected void onBeforeRender() {	
@@ -364,6 +371,11 @@ public class Table<E extends Serializable> extends Panel implements IPageableCom
 		return rowCheckboxes.iterator();
 	}
 	
+	/**
+	 * Called when a row is clicked.
+	 * @param target
+	 * @param row
+	 */
 	protected void onRowClickedEvent(AjaxRequestTarget target, int row) {
 		
 	}
