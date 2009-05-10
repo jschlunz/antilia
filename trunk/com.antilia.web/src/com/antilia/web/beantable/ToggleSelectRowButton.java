@@ -6,6 +6,7 @@ import org.apache.wicket.ResourceReference;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 
 import com.antilia.web.beantable.provider.IProviderSelector;
+import com.antilia.web.beantable.provider.SelectionMode;
 import com.antilia.web.button.AbstractLink;
 import com.antilia.web.resources.DefaultStyle;
 
@@ -28,10 +29,18 @@ public class ToggleSelectRowButton<E extends Serializable> extends AbstractLink 
 	protected ResourceReference getImage() {
 		IProviderSelector<E> source = getTable().getSourceSelector();
 		boolean selected = source.isSelected(getIndex());
-		if(selected)
-			return DefaultStyle.IMG_CHECKBOX_CHECKED;
-		else 
-			return DefaultStyle.IMG_CHECKBOX_UNCHECKED;
+		if(this.table.getTableModel().getSelectionMode().equals(SelectionMode.MULTIPLE)) {		
+			if(selected)
+				return DefaultStyle.IMG_CHECKBOX_CHECKED;
+			else 
+				return DefaultStyle.IMG_CHECKBOX_UNCHECKED;
+		} else if(this.table.getTableModel().getSelectionMode().equals(SelectionMode.SINGLE)) {
+			if(selected)
+				return DefaultStyle.IMG_RADIO_CHECKED;
+			else 
+				return DefaultStyle.IMG_RADIO_UNCHECKED;
+		}
+		return null;
 	}
 
 	@Override

@@ -148,6 +148,10 @@ public class DefaultStyle {
 	public static ResourceReference IMG_CHECKBOX_CHECKED = new ResourceReference(ImgDummy.class, "checkboxChecked.gif");
 	public static ResourceReference IMG_CHECKBOX_UNCHECKED = new ResourceReference(ImgDummy.class, "checkboxUnchecked.gif");
 	
+	public static ResourceReference IMG_RADIO_CHECKED = new ResourceReference(ImgDummy.class, "radioButtonChecked.png");
+	public static ResourceReference IMG_RADIO_UNCHECKED = new ResourceReference(ImgDummy.class, "radioButton.png");
+	
+	
 	public static ResourceReference IMG_RESIZE = new ResourceReference(ImgDummy.class, "resize.gif");
 	public static ResourceReference IMG_SEPARATOR = new ResourceReference(ImgDummy.class, "separator.gif");
 	

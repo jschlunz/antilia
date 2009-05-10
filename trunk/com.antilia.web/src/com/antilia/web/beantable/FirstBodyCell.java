@@ -7,8 +7,10 @@ package com.antilia.web.beantable;
 import java.io.Serializable;
 
 import org.apache.wicket.markup.html.WebMarkupContainer;
+import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.panel.Panel;
 
+import com.antilia.web.beantable.provider.SelectionMode;
 import com.antilia.web.button.IMenuItemHolder;
 import com.antilia.web.button.IMenuItemsFactory;
 import com.antilia.web.menu.Menu;
@@ -35,6 +37,7 @@ public class FirstBodyCell<E extends Serializable> extends Panel {
 		this.table = table;
 		this.row = row;			
 		imagePanel = new WebMarkupContainer("imagePanel");
+		imagePanel.setOutputMarkupId(true);
 		/*
 		Image image = new Image("checkboxImage") {
 			private static final long serialVersionUID = 1L;
@@ -45,12 +48,15 @@ public class FirstBodyCell<E extends Serializable> extends Panel {
 			}
 		};
 		*/
-		ToggleSelectRowButton<E> selectRowButton = new ToggleSelectRowButton<E>("checkboxImage", table, row);
-		imagePanel.setOutputMarkupId(true);
-		//if(item != null)
-		//	item.setImagePanel(imagePanel);
-		//imagePanel.add(image);
-		imagePanel.add(selectRowButton);
+		SelectionMode mode = table.getTableModel().getSelectionMode();
+		if(mode.equals(SelectionMode.MULTIPLE) || mode.equals(SelectionMode.SINGLE)) {
+			ToggleSelectRowButton<E> selectRowButton = new ToggleSelectRowButton<E>("checkboxImage", table, row);
+			imagePanel.add(selectRowButton);
+		} else {
+			Label label = new Label("checkboxImage", "");
+			imagePanel.add(label);
+		}
+		
 		table.addRowCheckBox(imagePanel);
 		add(imagePanel);
 		
