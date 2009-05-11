@@ -38,7 +38,7 @@ public interface ITableModel<E extends Serializable> extends IModel<ArrayList<IC
 	
 	int getColumns();
 	
-	void setSelectionModel(SelectionMode selectionModel);
+	void setSelectionMode(SelectionMode selectionModel);
 	
 	SelectionMode getSelectionMode();
 	
