@@ -320,7 +320,7 @@ public class Table<E extends Serializable> extends Panel implements IPageableCom
 	
 					@Override
 					public String getObject() {
-						String width = ((IColumnModel<E>)model).getWidth()+" px";
+						String width = ((IColumnModel<E>)model).getWidth()+"px";
 						return width;
 					}
 					

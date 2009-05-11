@@ -37,7 +37,11 @@ public interface IColumnModel<E extends Serializable> extends IModel<E> {
 	 * @param sortable the sortable to set
 	 */
 	public void setSortable(boolean sortable);
-		
+	
+	/**
+	 * 
+	 * @return The property path
+	 */		
 	String getPropertyPath();
 	
 	ITableModel<E> getTableModel();

@@ -76,26 +76,26 @@ public class TableModel<E extends Serializable> extends Model<ArrayList<IColumnM
 		this.models = new ArrayList<IColumnModel<E>>();
 		if(expresions != null) {
 			for(String expresion:expresions) {	
-				createColumnModel(expresion);
+				addColumnModel(createColumnModel(expresion));
 			}
 		}		
 		
 		if(hidden != null) {
 			for(String expresion: hidden) {	
-				createHiddenColumnModel(expresion);
+				addHiddenColumnModel(createHiddenColumnModel(expresion));
 			}
 		}
 	}
 	
 		
-	protected  void createColumnModel(String expresion) {
+	protected  IColumnModel<E> createColumnModel(String expresion) {
 		IColumnModel<E> model = new ColumnModel<E>(this, ColumnModel.DEFAULT_WIDTH, 1, expresion);
-		addColumnModel(model);
+		return model;
  	}
 
-	protected  void createHiddenColumnModel(String expresion) {
+	protected  IColumnModel<E> createHiddenColumnModel(String expresion) {
 		IColumnModel<E> model = new ColumnModel<E>(this, ColumnModel.DEFAULT_WIDTH, 1, expresion);
-		addHiddenColumnModel(model);
+		return model;
  	}
 	
 	public IComponentInheritedModel<E> newModel(E object) {

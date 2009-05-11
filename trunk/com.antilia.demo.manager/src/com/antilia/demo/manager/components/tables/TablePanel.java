@@ -8,6 +8,7 @@ import org.apache.wicket.markup.html.panel.Panel;
 
 import com.antilia.demo.manager.components.beans.Person;
 import com.antilia.web.beantable.Table;
+import com.antilia.web.beantable.model.IColumnModel;
 import com.antilia.web.beantable.model.TableModel;
 import com.antilia.web.beantable.provider.SelectionMode;
 
@@ -27,7 +28,19 @@ public class TablePanel extends Panel {
 	 */
 	public TablePanel(String id) {
 		super(id);
-		TableModel<Person> tableModel = new TableModel<Person>(Person.class, "id", "name", "lastName1");
+		TableModel<Person> tableModel = new TableModel<Person>(Person.class, "id", "name", "lastName1") {
+			
+			private static final long serialVersionUID = 1L;
+
+			@Override
+			protected IColumnModel<Person> createColumnModel(String expresion) {
+				IColumnModel<Person> columnModel =  super.createColumnModel(expresion);
+				if(expresion.equals("id")) {
+					columnModel.setWidth(80);
+				}
+				return columnModel;
+			}
+		};
 		add(new Table<Person>("table",tableModel, Person.createPersons()));
 		
 		TableModel<Person> tableModel1 = new TableModel<Person>(Person.class, "id", "name", "lastName1");
