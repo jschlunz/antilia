@@ -30,7 +30,7 @@ public class TableModel<E extends Serializable> extends Model<ArrayList<IColumnM
 	
 	private List<IColumnModel<E>> hiddenModels;
 		
-	private SelectionMode selectionModel = SelectionMode.MULTIPLE;
+	private SelectionMode selectionMode = SelectionMode.MULTIPLE;
 	
 	/**
 	 * @param object
@@ -111,11 +111,11 @@ public class TableModel<E extends Serializable> extends Model<ArrayList<IColumnM
 	}
 	
 	public SelectionMode getSelectionMode() {
-		return selectionModel;
+		return selectionMode;
 	}
 
-	public void setSelectionModel(SelectionMode selectionModel) {
-		this.selectionModel = selectionModel;
+	public void setSelectionMode(SelectionMode selectionMode) {
+		this.selectionMode = selectionMode;
 	}
 
 	public Iterator<IColumnModel<E>> getColumnModels() {
