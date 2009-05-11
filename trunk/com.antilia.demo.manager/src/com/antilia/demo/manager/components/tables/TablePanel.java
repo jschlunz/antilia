@@ -31,11 +31,11 @@ public class TablePanel extends Panel {
 		add(new Table<Person>("table",tableModel, Person.createPersons()));
 		
 		TableModel<Person> tableModel1 = new TableModel<Person>(Person.class, "id", "name", "lastName1");
-		tableModel1.setSelectionModel(SelectionMode.SINGLE);
+		tableModel1.setSelectionMode(SelectionMode.SINGLE);
 		add(new Table<Person>("table1",tableModel1, Person.createPersons()));
 		
 		TableModel<Person> tableModel2 = new TableModel<Person>(Person.class, "id", "name", "lastName1");
-		tableModel2.setSelectionModel(SelectionMode.NONE);
+		tableModel2.setSelectionMode(SelectionMode.NONE);
 		add(new Table<Person>("table2",tableModel2, Person.createPersons()));
 	}
 	
