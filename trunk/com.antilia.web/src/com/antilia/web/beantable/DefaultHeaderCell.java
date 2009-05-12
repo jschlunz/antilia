@@ -55,7 +55,7 @@ public class DefaultHeaderCell<E extends Serializable> extends Panel {
 	 * @param id
 	 * @param model
 	 */
-	public DefaultHeaderCell(String id, int column, Table<E> table, IColumnModel<E> columnModel, Class<E> beanClass) {
+	public DefaultHeaderCell(String id, int column, Table<E> table, final IColumnModel<E> columnModel, Class<E> beanClass) {
 		super(id, columnModel);
 		this.table = table;
 		this.column = column;
@@ -288,8 +288,21 @@ public class DefaultHeaderCell<E extends Serializable> extends Panel {
 				return DefaultHeaderCell.this.getTable().getMarkupId()+"_c_"+DefaultHeaderCell.this.getColumn();
 			}
 		}));	
+		dragTd.add(new AttributeModifier("class", new AbstractReadOnlyModel<String>() {
+			
+			private static final long serialVersionUID = 1L;
+
+			@Override
+			public String getObject() {
+				if(columnModel.isResizable() )
+					return "resCol";
+				return "noResCol";
+			}
+		}));
+		
 		//dragTd.add(new Image("dragImage",  DefaultStyle.IMG_RESIZE));
 		add(dragTd);
+		
 	}
 	
 	@SuppressWarnings("unchecked")
