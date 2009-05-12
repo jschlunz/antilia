@@ -134,3 +134,11 @@ div.dropColumn {
 	cursor: w-resize;
 	background: url("images/ColumnResize.gif") 0px 3px no-repeat;
 }
+
+.theaderrow .noResCol{
+	width: 10px;
+	white-space: nowrap; 
+	padding:0;
+	margin: 0px;
+	cursor: w-resize;
+}
