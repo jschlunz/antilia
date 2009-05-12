@@ -37,11 +37,18 @@ public class TablePanel extends Panel {
 				IColumnModel<Person> columnModel =  super.createColumnModel(expresion);
 				if(expresion.equals("id")) {
 					columnModel.setWidth(80);
+					columnModel.setSortable(false);
+					columnModel.setResizable(false);
+				} else {
+					columnModel.setSortable(false);
+					columnModel.setResizable(false);
 				}
 				return columnModel;
 			}
 		};
-		add(new Table<Person>("table",tableModel, Person.createPersons()));
+		Table<Person> table = new Table<Person>("table",tableModel, Person.createPersons());
+		table.setFirstColumnResizable(false);
+		add(table);
 		
 		TableModel<Person> tableModel1 = new TableModel<Person>(Person.class, "id", "name", "lastName1");
 		tableModel1.setSelectionMode(SelectionMode.SINGLE);

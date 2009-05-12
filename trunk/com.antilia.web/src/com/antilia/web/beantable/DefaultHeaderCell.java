@@ -285,6 +285,8 @@ public class DefaultHeaderCell<E extends Serializable> extends Panel {
 
 			@Override
 			public String getObject() {
+				if(!DefaultHeaderCell.this.getTable().isColumnsResizable())
+					return DefaultHeaderCell.this.getTable().getMarkupId()+"_cND_"+DefaultHeaderCell.this.getColumn();
 				if(columnModel.isResizable() )
 					return DefaultHeaderCell.this.getTable().getMarkupId()+"_c_"+DefaultHeaderCell.this.getColumn();
 				// this naming does the trick of making the column non re-sizable
@@ -297,8 +299,10 @@ public class DefaultHeaderCell<E extends Serializable> extends Panel {
 
 			@Override
 			public String getObject() {
+				if(!DefaultHeaderCell.this.getTable().isColumnsResizable())
+					return "noResCol";
 				if(columnModel.isResizable() )
-					return "resCol";
+					return "resCol";				
 				return "noResCol";
 			}
 		}));

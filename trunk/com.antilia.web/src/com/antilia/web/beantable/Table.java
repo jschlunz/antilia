@@ -88,6 +88,15 @@ public class Table<E extends Serializable> extends Panel implements IPageableCom
 	
 	private static final String TABLE_CSS_ID = "ANT_TABLE_CSS_ID";
 	
+	/**
+	 * Flag to set first column re-sizable or not.
+	 */
+	private boolean firstColumnResizable = true;
+	
+	/**
+	 * Flag to set all columns re-sizable or not.
+	 */
+	private boolean columnsResizable = true;
 	
 	/**
 	 * This variable is needed t fix a problem with drag and drop not working for IE
@@ -578,6 +587,22 @@ public class Table<E extends Serializable> extends Panel implements IPageableCom
 	 */
 	public void setFeedback(IFeedback feedback) {
 		this.feedback = feedback;
+	}
+
+	public boolean isFirstColumnResizable() {
+		return firstColumnResizable;
+	}
+
+	public void setFirstColumnResizable(boolean firstColumnResizable) {
+		this.firstColumnResizable = firstColumnResizable;
+	}
+
+	public boolean isColumnsResizable() {
+		return columnsResizable;
+	}
+
+	public void setColumnsResizable(boolean columnsResizable) {
+		this.columnsResizable = columnsResizable;
 	}
 	
 	
