@@ -8,8 +8,10 @@ import org.apache.wicket.ResourceReference;
 import org.apache.wicket.behavior.HeaderContributor;
 import org.apache.wicket.extensions.wizard.IWizardModel;
 import org.apache.wicket.extensions.wizard.Wizard;
+import org.apache.wicket.feedback.ContainerFeedbackMessageFilter;
 import org.apache.wicket.markup.html.panel.FeedbackPanel;
 
+import com.antilia.web.feedback.AntiliaFeedBackPanel;
 import com.antilia.web.resources.DefaultStyle;
 
 /**
@@ -56,13 +58,20 @@ public class AjaxWizard extends Wizard implements IAjaxWizard {
 		return (ajaxWizardButtonBar = new AjaxWizardButtonBar(id, this));
 	}
 
-	@Override
-	protected FeedbackPanel newFeedbackPanel(String id) {
-		feedbackPanel =  super.newFeedbackPanel(id);
-		feedbackPanel.setOutputMarkupId(true);
-		return feedbackPanel;
+	
+	protected AntiliaFeedBackPanel newAntiliaFeedBackPanel(String id) {
+		return new AntiliaFeedBackPanel(id, new ContainerFeedbackMessageFilter(this));
 	}
 	
+	
+	protected void init(IWizardModel wizardModel)
+	{
+		super.init(wizardModel);
+		
+		if (wizardModel == null)
+			getForm().addOrReplace(newFeedbackPanel(FEEDBACK_ID));
+		
+	}
 	
 	/**
 	 * @return the feedbackPanel
