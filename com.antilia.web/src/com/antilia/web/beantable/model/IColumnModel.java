@@ -37,6 +37,17 @@ public interface IColumnModel<E extends Serializable> extends IModel<E> {
 	 * @param sortable the sortable to set
 	 */
 	public void setSortable(boolean sortable);
+		
+	
+	/**
+	 * @return Whether the column is re-sizable or not;	 
+	 */
+	public boolean isResizable();
+
+	/**
+	 * @param resizable the resizable to set
+	 */
+	public void setResizable(boolean resizable);
 	
 	/**
 	 * 
