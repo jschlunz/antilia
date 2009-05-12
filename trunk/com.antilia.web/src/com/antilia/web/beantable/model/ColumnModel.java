@@ -28,6 +28,11 @@ public class ColumnModel<E extends Serializable> extends Model<E> implements ICo
 	 * This property says if a column is sortable;
 	 */
 	private boolean sortable = true;
+	
+	/**
+	 * Whether the column is re-sizable or not;
+	 */
+	private boolean resizable = true;
 			
 	/**
 	 * 
@@ -89,6 +94,20 @@ public class ColumnModel<E extends Serializable> extends Model<E> implements ICo
 	 */
 	public void setSortable(boolean sortable) {
 		this.sortable = sortable;
+	}
+
+	/**
+	 * @return the resizable
+	 */
+	public boolean isResizable() {
+		return resizable;
+	}
+
+	/**
+	 * @param resizable the resizable to set
+	 */
+	public void setResizable(boolean resizable) {
+		this.resizable = resizable;
 	}
 
 }
