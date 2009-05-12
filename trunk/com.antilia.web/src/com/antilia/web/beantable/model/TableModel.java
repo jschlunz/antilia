@@ -14,6 +14,7 @@ import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.model.IComponentInheritedModel;
 import org.apache.wicket.model.Model;
 
+import com.antilia.common.util.AnnotationUtils;
 import com.antilia.web.beantable.provider.SelectionMode;
 
 /**
@@ -76,25 +77,40 @@ public class TableModel<E extends Serializable> extends Model<ArrayList<IColumnM
 		this.models = new ArrayList<IColumnModel<E>>();
 		if(expresions != null) {
 			for(String expresion:expresions) {	
-				addColumnModel(createColumnModel(expresion));
+				IColumnModel<E> columnModel = createColumnModel(expresion);
+				configureColumnModel(columnModel);
+				addColumnModel(columnModel);
 			}
 		}		
 		
 		if(hidden != null) {
 			for(String expresion: hidden) {	
-				addHiddenColumnModel(createHiddenColumnModel(expresion));
+				IColumnModel<E> columnModel = createHiddenColumnModel(expresion);
+				configureColumnModel(columnModel);
+				addHiddenColumnModel(columnModel);
 			}
+		}
+	}
+		
+	protected void configureColumnModel(IColumnModel<E> columnModel) {		
+		try {
+			TableColumn tableColumn = AnnotationUtils.findFieldAnnotation(this.beanClass, columnModel.getPropertyPath(), TableColumn.class);
+			if(tableColumn != null) {
+				columnModel.setWidth(tableColumn.width());
+				columnModel.setSortable(tableColumn.sortable());
+			}
+		} catch (NoSuchFieldException e) {			
 		}
 	}
 	
 		
 	protected  IColumnModel<E> createColumnModel(String expresion) {
-		IColumnModel<E> model = new ColumnModel<E>(this, ColumnModel.DEFAULT_WIDTH, 1, expresion);
+		IColumnModel<E> model = new ColumnModel<E>(this, ColumnModel.DEFAULT_WIDTH, expresion);
 		return model;
  	}
 
 	protected  IColumnModel<E> createHiddenColumnModel(String expresion) {
-		IColumnModel<E> model = new ColumnModel<E>(this, ColumnModel.DEFAULT_WIDTH, 1, expresion);
+		IColumnModel<E> model = new ColumnModel<E>(this, ColumnModel.DEFAULT_WIDTH, expresion);
 		return model;
  	}
 	
