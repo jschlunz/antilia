@@ -98,6 +98,7 @@ public class TableModel<E extends Serializable> extends Model<ArrayList<IColumnM
 			if(tableColumn != null) {
 				columnModel.setWidth(tableColumn.width());
 				columnModel.setSortable(tableColumn.sortable());
+				columnModel.setResizable(tableColumn.resizable());
 			}
 		} catch (NoSuchFieldException e) {			
 		}
