@@ -285,7 +285,10 @@ public class DefaultHeaderCell<E extends Serializable> extends Panel {
 
 			@Override
 			public String getObject() {
-				return DefaultHeaderCell.this.getTable().getMarkupId()+"_c_"+DefaultHeaderCell.this.getColumn();
+				if(columnModel.isResizable() )
+					return DefaultHeaderCell.this.getTable().getMarkupId()+"_c_"+DefaultHeaderCell.this.getColumn();
+				// this naming does the trick of making the column non re-sizable
+				return DefaultHeaderCell.this.getTable().getMarkupId()+"_cND_"+DefaultHeaderCell.this.getColumn();
 			}
 		}));	
 		dragTd.add(new AttributeModifier("class", new AbstractReadOnlyModel<String>() {
