@@ -33,13 +33,13 @@ public class ColumnModel<E extends Serializable> extends Model<E> implements ICo
 	 * 
 	 */
 	public ColumnModel(ITableModel<E> tableModel, final String propertyPath) {
-		this(tableModel, DEFAULT_WIDTH,1, propertyPath);
+		this(tableModel, DEFAULT_WIDTH, propertyPath);
 	}
 	
 	/**
 	 * 
 	 */
-	public ColumnModel(ITableModel<E> tableModel, int width, int colSpan, final String propertyPath) {
+	public ColumnModel(ITableModel<E> tableModel, int width,  final String propertyPath) {
 		super();
 		this.tableModel = tableModel;
 		this.width = width;
