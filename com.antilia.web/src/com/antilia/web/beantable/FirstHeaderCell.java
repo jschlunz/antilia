@@ -12,6 +12,7 @@ import org.apache.wicket.markup.MarkupStream;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.form.HiddenField;
 import org.apache.wicket.markup.html.panel.Panel;
+import org.apache.wicket.model.AbstractReadOnlyModel;
 import org.apache.wicket.model.Model;
 
 import com.antilia.common.util.StringUtils;
@@ -98,10 +99,23 @@ public class FirstHeaderCell<E extends Serializable> extends Panel {
 
 			@Override
 			public String getObject() {
-				return FirstHeaderCell.this.getTable().getMarkupId()+"_c_"+FirstHeaderCell.this.getColumn();
+				if(FirstHeaderCell.this.getTable().isFirstColumnResizable())
+					return FirstHeaderCell.this.getTable().getMarkupId()+"_c_"+FirstHeaderCell.this.getColumn();
+				return FirstHeaderCell.this.getTable().getMarkupId()+"_cND_"+FirstHeaderCell.this.getColumn();
 			}
 		}));
 		//dragTd.add(new Image("dragImage",  DefaultStyle.IMG_RESIZE));
+		dragTd.add(new AttributeModifier("class", new AbstractReadOnlyModel<String>() {
+			
+			private static final long serialVersionUID = 1L;
+
+			@Override
+			public String getObject() {
+				if(FirstHeaderCell.this.getTable().isFirstColumnResizable())
+					return "resCol";
+				return "noResCol";
+			}
+		}));
 		add(dragTd);
 	}
 	public Table<E> getTable() {
