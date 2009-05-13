@@ -66,6 +66,14 @@ public class AjaxNextButton extends AjaxWizardButton
 		// let the step apply any state
 		step.applyState();
 
+		if(step instanceof IValidatableStep) {
+			IValidatableStep validatableStep = (IValidatableStep)step;
+			if(!validatableStep.isValid()) {
+				AjaxWizard ajaxWizard = findParent(AjaxWizard.class);
+				target.addComponent(ajaxWizard);
+				return;
+			}
+		}
 		// if the step completed after applying the state, move the
 		// model onward
 		if (step.isComplete())
