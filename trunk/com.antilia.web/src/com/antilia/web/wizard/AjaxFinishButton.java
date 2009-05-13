@@ -29,7 +29,7 @@ import com.antilia.web.resources.DefaultStyle;
  * Models a cancel button in the wizard. When pressed, it calls {@link IWizardStep#applyState()} on
  * the active wizard step, and then {@link Wizard#onFinish()} on the wizard.
  * 
- * @author Eelco Hillenius
+ * @author Ernesto Reinaldo Barreiro.
  */
 public class AjaxFinishButton extends AjaxWizardButton
 {
@@ -67,7 +67,16 @@ public class AjaxFinishButton extends AjaxWizardButton
 
 		// let the step apply any state
 		step.applyState();
-
+		
+		if(step instanceof IValidatableStep) {
+			IValidatableStep validatableStep = (IValidatableStep)step;
+			if(!validatableStep.isValid()) {
+				AjaxWizard ajaxWizard = findParent(AjaxWizard.class);
+				target.addComponent(ajaxWizard);
+				return;
+			}
+		}
+		
 		// if the step completed after applying the state, notify the wizard
 		if (step.isComplete())
 		{
