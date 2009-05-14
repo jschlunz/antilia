@@ -6,6 +6,7 @@ package com.antilia.web.beantable;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
@@ -110,7 +111,7 @@ public class Table<E extends Serializable> extends Panel implements IPageableCom
 	 * @param tableModel
 	 * @param elements
 	 */
-	public Table(String id, ITableModel<E> tableModel, List<E> elements) {
+	public Table(String id, ITableModel<E> tableModel, Collection<E> elements) {
 		this(id, tableModel, new InMemoryPageableProvider<E>(elements, tableModel.getBeanClass()));
 	}
 	
