@@ -50,8 +50,8 @@ public class ToggleSelectRowButton<E extends Serializable> extends AbstractLink 
 
 	@Override
 	protected void onClick(AjaxRequestTarget target) {
-		getTable().getSourceSelector().toggleSelected(getIndex());
-		getTable().onRowClickedEvent(target, getIndex());
+		E bean = getTable().getSourceSelector().toggleSelected(getIndex());		
+		getTable().onRowClickedEvent(target, getIndex(), bean, getTable().getSourceSelector().isSelected(getIndex()));
 		if(target != null) {
 			target.addComponent(this.getParent());
 		}

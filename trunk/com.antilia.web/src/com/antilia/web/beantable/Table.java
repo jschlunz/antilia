@@ -386,7 +386,7 @@ public class Table<E extends Serializable> extends Panel implements IPageableCom
 	 * @param target
 	 * @param row
 	 */
-	protected void onRowClickedEvent(AjaxRequestTarget target, int row) {
+	protected void onRowClickedEvent(AjaxRequestTarget target, int row, E bean, boolean selected) {
 		
 	}
 	

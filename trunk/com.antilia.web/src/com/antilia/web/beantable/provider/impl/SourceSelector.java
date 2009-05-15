@@ -54,17 +54,20 @@ public class SourceSelector<E extends Serializable> implements IProviderSelector
 		selected.add(bean);
 	}
 
-	public void addToSelected(int indexInCurrentPage) {
+	public E addToSelected(int indexInCurrentPage) {
 		if(getSelectionMode().equals(SelectionMode.NONE))
-			return;
+			return null;
 		Iterator<E> pageIterator = getPageableSource().getCurrentPage();
 		int count = 0;
 		while(pageIterator.hasNext()) {
 			E bean = pageIterator.next();
-			if(indexInCurrentPage == count) 
+			if(indexInCurrentPage == count) {
 				addToSelected(bean);
+				return bean;
+			}
 			count++;
 		}
+		return null;
 	}
 	
 	public boolean clear() {
@@ -99,24 +102,27 @@ public class SourceSelector<E extends Serializable> implements IProviderSelector
 		selected.remove(bean);
 	}
 
-	public void removeFromSelected(int indexInCurrentPage) {
+	public E removeFromSelected(int indexInCurrentPage) {
 		Iterator<E> pageIterator = getPageableSource().getCurrentPage();
 		int count = 0;
 		while(pageIterator.hasNext()) {
 			E bean = pageIterator.next();
-			if(indexInCurrentPage == count) 
+			if(indexInCurrentPage == count) {
 				removeFromSelected(bean);
+				return bean;
+			}
 			count++;
 		}
+		return null;
 	}
 
-	public void toggleSelected(int indexInCurrentPage) {
+	public E toggleSelected(int indexInCurrentPage) {
 		if(getSelectionMode().equals(SelectionMode.NONE))
-			return;
+			return null;
 		if(isSelected(indexInCurrentPage)) {
-			removeFromSelected(indexInCurrentPage);
+			return removeFromSelected(indexInCurrentPage);
 		} else {
-			addToSelected(indexInCurrentPage);
+			return addToSelected(indexInCurrentPage);
 		}
 	}
 

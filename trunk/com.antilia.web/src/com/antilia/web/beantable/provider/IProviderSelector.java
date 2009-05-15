@@ -15,15 +15,15 @@ public interface IProviderSelector<E extends Serializable> extends  Serializable
 
 	void addToSelected(E bean);
 	
-	void addToSelected(int indexInCurrentPage);
+	E addToSelected(int indexInCurrentPage);
 	
-	void toggleSelected(int indexInCurrentPage);
+	E toggleSelected(int indexInCurrentPage);
 	
 	void toggleSelected(E bean);
 	
 	void removeFromSelected(E bean);
 	
-	void removeFromSelected(int indexInCurrentPage);
+	E removeFromSelected(int indexInCurrentPage);
 	
 	void togglePageSelection();
 		
