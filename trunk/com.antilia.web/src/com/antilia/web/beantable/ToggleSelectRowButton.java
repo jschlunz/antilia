@@ -1,9 +1,11 @@
 package com.antilia.web.beantable;
 
 import java.io.Serializable;
+import java.util.Iterator;
 
 import org.apache.wicket.ResourceReference;
 import org.apache.wicket.ajax.AjaxRequestTarget;
+import org.apache.wicket.markup.html.WebMarkupContainer;
 
 import com.antilia.web.beantable.provider.IProviderSelector;
 import com.antilia.web.beantable.provider.SelectionMode;
@@ -52,8 +54,17 @@ public class ToggleSelectRowButton<E extends Serializable> extends AbstractLink 
 	protected void onClick(AjaxRequestTarget target) {
 		E bean = getTable().getSourceSelector().toggleSelected(getIndex());		
 		getTable().onRowClickedEvent(target, getIndex(), bean, getTable().getSourceSelector().isSelected(getIndex()));
-		if(target != null) {
-			target.addComponent(this.getParent());
+		if(this.table.getTableModel().getSelectionMode().equals(SelectionMode.MULTIPLE)) {
+			if(target != null) {
+				target.addComponent(this.getParent());
+			}
+		} else if(this.table.getTableModel().getSelectionMode().equals(SelectionMode.SINGLE)) {
+			if(target != null) {
+				Iterator<WebMarkupContainer> it = getTable().getRowCheckBoxes();
+				while(it.hasNext()) {
+					target.addComponent(it.next());
+				}
+			}
 		}
 	}
 
