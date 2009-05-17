@@ -112,8 +112,8 @@ public class FirstHeaderCell<E extends Serializable> extends Panel {
 			@Override
 			public String getObject() {
 				if(FirstHeaderCell.this.getTable().isFirstColumnResizable())
-					return "resCol";
-				return "noResCol";
+					return "fresCol";
+				return "fnoResCol";
 			}
 		}));
 		add(dragTd);

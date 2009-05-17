@@ -143,3 +143,21 @@ div.dropColumn {
 	cursor: default;
 	background: url("images/ColumnDivide.gif") 0px 3px no-repeat;
 }
+
+.theaderrow .fresCol{
+	width: 10px;
+	white-space: nowrap; 
+	padding:0;
+	margin: 0px;
+	cursor: w-resize;
+	background: url("images/ColumnResize.gif") 0px 1px no-repeat;
+}
+
+.theaderrow .fnoResCol{
+	width: 10px;
+	white-space: nowrap; 
+	padding:0;
+	margin: 0px;
+	cursor: default;
+	background: url("images/ColumnDivide.gif") 0px 1px no-repeat;
+}
