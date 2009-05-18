@@ -33,7 +33,7 @@ public class SearchDialogPanel<T extends Serializable> extends Panel {
 
 			@Override
 			protected Menu newTopMenuMenu(String id) {
-				return Menu.createMenu(id, new IMenuItemsFactory() {
+				return Menu.createMenu(id, null, new IMenuItemsFactory() {
 					private static final long serialVersionUID = 1L;
 
 					public void populateMenuItems(String menuId, IMenuItemHolder itemHolder) {

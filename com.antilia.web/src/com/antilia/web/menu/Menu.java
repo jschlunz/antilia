@@ -33,7 +33,7 @@ public  class Menu extends Panel implements IMenuItem, IMenuItemHolder {
 
 	private int order = AbstractButton.NO_ORDER;
 	
-	RepeatingView toolBar;
+	private RepeatingView toolBar;
 	
 	private String horizontalStyleClass = "nav-menu";
 	
@@ -43,6 +43,8 @@ public  class Menu extends Panel implements IMenuItem, IMenuItemHolder {
 	
 	private IMenuItemsFactory[] factories;
 	
+	private IMenuItemsAuthorizer authorizer;
+	
 	public static enum Type {
 		HORIZONTAL,
 		VERTICAL,
@@ -50,14 +52,16 @@ public  class Menu extends Panel implements IMenuItem, IMenuItemHolder {
 	
 	private Type type;
 	
-	private  Menu(String id, String title, IMenuItemsFactory... factories) {
-		this(id,Type.HORIZONTAL, title, factories);
+	private  Menu(String id, String title, IMenuItemsAuthorizer authorizer, IMenuItemsFactory... factories) {
+		this(id,Type.HORIZONTAL, title, authorizer, factories);
 	}
 	/**
 	 * @param id
 	 */
-	private Menu(String id, Type type, String title, IMenuItemsFactory... factories) {
+	private Menu(String id, Type type, String title, IMenuItemsAuthorizer authorizer, IMenuItemsFactory... factories) {
 		super(id);
+	
+		this.authorizer = authorizer;
 		
 		add(HeaderContributor.forCss(DefaultStyle.CSS_MAIN));	
 		add(HeaderContributor.forJavaScript(DefaultStyle.JS_COMMON));
@@ -131,7 +135,12 @@ public  class Menu extends Panel implements IMenuItem, IMenuItemHolder {
 	
 	public IMenuItemHolder addMenuItem(IMenuItem menuItem) {
 		if(menuItem instanceof Component) {
-			toolBar.add((Component)menuItem);
+			if(authorizer != null) {
+				if(authorizer.isMenuItemAuthorized(menuItem))
+					toolBar.add((Component)menuItem);
+			} else {
+				toolBar.add((Component)menuItem);
+			}
 		}
 		return this;
 	}
@@ -141,21 +150,23 @@ public  class Menu extends Panel implements IMenuItem, IMenuItemHolder {
 			return;
 		}
 		for(IMenuItemsFactory factory: factories) {
-			if(factory != null)
+			if(factory != null) {
 				factory.populateMenuItems(menuId, this);
+			}	
+			
 		}
 	}
 		
-	public static final Menu createMenu(String menuId, final IMenuItemsFactory... factories) {		
-		return new Menu(menuId, "", factories);
+	public static final Menu createMenu(String menuId, IMenuItemsAuthorizer authorizer, final IMenuItemsFactory... factories) {		
+		return new Menu(menuId, "", authorizer, factories);
 	}
 
-	public static final Menu createVerticalMenu(String menuId, String title, final IMenuItemsFactory... factories) {		
-		return new Menu(menuId, Type.VERTICAL, title, factories);
+	public static final Menu createVerticalMenu(String menuId, String title, IMenuItemsAuthorizer authorizer, final IMenuItemsFactory... factories) {		
+		return new Menu(menuId, Type.VERTICAL, title, authorizer, factories);
 	}
 	
-	public static final Menu createVerticalMenu(String menuId, String title, final IMenuItem[] items) {	
-		return new Menu(menuId, Type.VERTICAL, title, new MenuItemsFactory(items)) ;
+	public static final Menu createVerticalMenu(String menuId, String title,IMenuItemsAuthorizer authorizer,  final IMenuItem[] items) {	
+		return new Menu(menuId, Type.VERTICAL, title, authorizer, new MenuItemsFactory(items)) ;
 	}
 
 	/**

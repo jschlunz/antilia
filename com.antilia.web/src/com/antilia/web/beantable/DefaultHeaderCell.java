@@ -247,7 +247,7 @@ public class DefaultHeaderCell<E extends Serializable> extends Panel {
 		
 		add(draggableTarget);
 		
-		Menu menu = Menu.createMenu("menu",new ColumnMenuItemsFactory<E>() {
+		Menu menu = Menu.createMenu("menu", null,new ColumnMenuItemsFactory<E>() {
 			
 			private static final long serialVersionUID = 1L;
 

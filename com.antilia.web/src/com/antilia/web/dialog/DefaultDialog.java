@@ -393,9 +393,9 @@ public abstract class DefaultDialog extends Panel implements IDialogScope, IMenu
 	protected Menu newTopMenu(String id) {
 		Menu menu = null;
 		if(getTopMenuItemFactory() != null)
-			 menu = Menu.createMenu(id, getTopMenuItemFactory());
+			 menu = Menu.createMenu(id, null,getTopMenuItemFactory());
 		else 
-			menu = Menu.createMenu(id, this);		
+			menu = Menu.createMenu(id, null, this);		
 		return menu;
 	}
 	

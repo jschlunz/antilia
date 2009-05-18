@@ -90,7 +90,7 @@ public class FirstHeaderCell<E extends Serializable> extends Panel {
 			
 		}, Integer.class));
 		MenuItemsFactory factory = getTable().getFirstHeaderMenuItemsFactory();		
-		Menu menu = Menu.createMenu("headerMenu", factory);
+		Menu menu = Menu.createMenu("headerMenu", null,factory);
 		menu.setHorizontalStyleClass("trans-menu");
 		add(menu);
 		WebMarkupContainer dragTd = new WebMarkupContainer("dragTd");

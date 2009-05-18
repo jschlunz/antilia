@@ -275,9 +275,9 @@ public class RoundPane extends Panel implements IMenuItemsFactory {
 	protected Menu newTopMenu(String id) {
 		Menu menu = null;
 		if(getTopMenuItemFactory() != null)
-			 menu = Menu.createMenu(id, getTopMenuItemFactory());
+			 menu = Menu.createMenu(id, null, getTopMenuItemFactory());
 		else 
-			menu = Menu.createMenu(id, this);		
+			menu = Menu.createMenu(id, null, this);		
 		return menu;
 	}
 	

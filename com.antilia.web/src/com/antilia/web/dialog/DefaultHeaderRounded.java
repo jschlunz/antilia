@@ -107,6 +107,7 @@ public class DefaultHeaderRounded extends Panel  {
 		}));		
 		middlePanel.add(title);
 		Menu menu = Menu.createMenu("menu", 
+				null,
 				new DialogHeaderMenuItemsFactory(DefaultHeaderRounded.this.getDialog()));		
 		menu.setMenuStyle("width: auto; background: transparent; right: 0px; position: relative; float: right; padding-top: 1px;");
 		menu.setOutputMarkupId(false);

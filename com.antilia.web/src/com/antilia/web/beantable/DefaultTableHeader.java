@@ -30,6 +30,7 @@ public class DefaultTableHeader<E extends Serializable> extends Panel {
 	
 	protected Menu newTableMenu(String id, Table<E> table) {
 		Menu menu =  Menu.createMenu(id, 
+				table.getTopMenuAuthorizer(),
 				table.getBeforeNavigationMenuItemsFactory(), 
 				NavigationItemsFactory.getInstance(),
 				table.getAfterNavigationMenuItemsFactory());

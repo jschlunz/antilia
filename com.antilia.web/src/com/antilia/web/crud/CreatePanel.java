@@ -69,7 +69,8 @@ public class CreatePanel<B extends Serializable> extends Panel implements ICRUDM
 		BeanForm<B> beanForm = newForm("form", this.beanProxy);
 		addOrReplace(beanForm);				
 				
-		Menu menu = Menu.createMenu("topMenu", CreatePanelPanelButtonsFactory.getInstance());
+		Menu menu = Menu.createMenu("topMenu", 
+				null,CreatePanelPanelButtonsFactory.getInstance());
 		 
 		beanForm.addOrReplace(menu);
 		 
