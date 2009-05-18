@@ -62,6 +62,9 @@ public class LastPageButton<E extends Serializable> extends PageableButton<E> {
 	protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
 		IPageableComponent<E> component = findPageableComponent();
 		component.getPageableProvider().lastPage();
+		if(!component.isKeepSelectionOnNavigation() && component.getSourceSelector() != null) {
+			component.getSourceSelector().clear();
+		}
 		target.addComponent(component.getUpdatableComponent());
 		if(component instanceof IPageableNavigationListener) {
 			IPageableNavigationListener listener = (IPageableNavigationListener)component;
