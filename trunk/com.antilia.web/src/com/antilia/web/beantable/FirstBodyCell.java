@@ -60,7 +60,7 @@ public class FirstBodyCell<E extends Serializable> extends Panel {
 		table.addRowCheckBox(imagePanel);
 		add(imagePanel);
 		
-		Menu menu = Menu.createMenu("menu", new IMenuItemsFactory() {
+		Menu menu = Menu.createMenu("menu", null,new IMenuItemsFactory() {
 			
 			private static final long serialVersionUID = 1L;
 

@@ -40,6 +40,7 @@ import com.antilia.web.beantable.provider.impl.SourceSelector;
 import com.antilia.web.button.AjaxRefreshableMenuItem;
 import com.antilia.web.button.IMenuItemHolder;
 import com.antilia.web.button.MenuItemsFactory;
+import com.antilia.web.menu.IMenuItemsAuthorizer;
 import com.antilia.web.osgi.MenuFactoryService;
 import com.antilia.web.resources.DefaultStyle;
 import com.antilia.web.resources.ResourceLocator;
@@ -104,6 +105,8 @@ public class Table<E extends Serializable> extends Panel implements IPageableCom
 	 * This variable is needed t fix a problem with drag and drop not working for IE
 	 */
 	private int rendringCount = 0;
+	
+	private IMenuItemsAuthorizer topMenuAuthorizer;
 	
 	/**
 	 * Constructor accepting a List.
@@ -678,5 +681,19 @@ public class Table<E extends Serializable> extends Panel implements IPageableCom
 	 */
 	public final void previousPage(AjaxRequestTarget target) {
 		
+	}
+
+	/**
+	 * @return the topMenuAuthorizer
+	 */
+	public IMenuItemsAuthorizer getTopMenuAuthorizer() {
+		return topMenuAuthorizer;
+	}
+
+	/**
+	 * @param topMenuAuthorizer the topMenuAuthorizer to set
+	 */
+	public void setTopMenuAuthorizer(IMenuItemsAuthorizer topMenuAuthorizer) {
+		this.topMenuAuthorizer = topMenuAuthorizer;
 	}
 }

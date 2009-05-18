@@ -88,7 +88,7 @@ public class EditPanel<B extends Serializable> extends Panel implements ICRUDMod
 		addOrReplace(beanForm);
 				
 				
-		Menu menu = Menu.createMenu("topMenu", EditPanelButtonsFactory.getInstance());
+		Menu menu = Menu.createMenu("topMenu", null, EditPanelButtonsFactory.getInstance());
 		 
 		beanForm.addOrReplace(menu);
 		 
