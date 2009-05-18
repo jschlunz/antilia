@@ -49,7 +49,7 @@ import com.antilia.web.utils.RequestUtils;
  * 
  * @author Ernesto Reinaldo Barreiro (reiern70@gmail.com)
  */
-public class Table<E extends Serializable> extends Panel implements IPageableComponent<E> {
+public class Table<E extends Serializable> extends Panel implements IPageableComponent<E>, IPageableNavigationListener {
 
 	private static final long serialVersionUID = 1L;
 
@@ -86,6 +86,7 @@ public class Table<E extends Serializable> extends Panel implements IPageableCom
 	
 	public static final String FIRST_HEADER_MENU = "FIRST_HEADER_MENU";
 	
+	private List<IPageableNavigationListener> navigationListeners = new ArrayList<IPageableNavigationListener>();
 	
 	private static final String TABLE_CSS_ID = "ANT_TABLE_CSS_ID";
 	
@@ -606,5 +607,76 @@ public class Table<E extends Serializable> extends Panel implements IPageableCom
 		this.columnsResizable = columnsResizable;
 	}
 	
+	public void addNavigationListener(IPageableNavigationListener listener) {
+		navigationListeners.add(listener);
+	}
 	
+	public void removeNavigationListener(IPageableNavigationListener listener) {
+		navigationListeners.remove(listener);
+	}
+
+	public final void onFirstPage(AjaxRequestTarget target) {
+		firstPage(target);
+		for(IPageableNavigationListener listener: navigationListeners) {
+			listener.onFirstPage(target);
+		}
+	}
+	
+	/**
+	 * Override this method to do something when first page button is clicked.
+	 * 
+	 * @param target
+	 */
+	public final void firstPage(AjaxRequestTarget target) {
+		
+	}
+
+
+	public void onLastPage(AjaxRequestTarget target) {
+		lastPage(target);
+		for(IPageableNavigationListener listener: navigationListeners) {
+			listener.onLastPage(target);
+		}
+	}
+	
+	/**
+	 * Override this method to do something when last page button is clicked.
+	 * 
+	 * @param target
+	 */
+	public final void lastPage(AjaxRequestTarget target) {
+		
+	}
+
+	public void onNextPage(AjaxRequestTarget target) {
+		nextPage(target);
+		for(IPageableNavigationListener listener: navigationListeners) {
+			listener.onNextPage(target);
+		}
+	}
+	
+	/**
+	 * Override this method to do something when next page button is clicked.
+	 * 
+	 * @param target
+	 */
+	public final void nextPage(AjaxRequestTarget target) {
+		
+	}
+
+	public void onPreviousPage(AjaxRequestTarget target) {
+		previousPage(target);
+		for(IPageableNavigationListener listener: navigationListeners) {
+			listener.onPreviousPage(target);
+		}
+	}
+	
+	/**
+	 * Override this method to do something when previous page button is clicked.
+	 * 
+	 * @param target
+	 */
+	public final void previousPage(AjaxRequestTarget target) {
+		
+	}
 }
