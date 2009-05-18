@@ -69,6 +69,9 @@ public class FirstPageButton<E extends Serializable> extends PageableButton<E> {
 	protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
 		IPageableComponent<E> component = findPageableComponent();
 		component.getPageableProvider().firstPage();
+		if(!component.isKeepSelectionOnNavigation() && component.getSourceSelector() != null) {
+			component.getSourceSelector().clear();
+		}
 		if(component instanceof IPageableNavigationListener) {
 			IPageableNavigationListener listener = (IPageableNavigationListener)component;
 			listener.onFirstPage(target);

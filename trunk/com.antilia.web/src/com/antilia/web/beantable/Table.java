@@ -106,7 +106,15 @@ public class Table<E extends Serializable> extends Panel implements IPageableCom
 	 */
 	private int rendringCount = 0;
 	
+	/**
+	 * Authorizer for top menu.
+	 */
 	private IMenuItemsAuthorizer topMenuAuthorizer;
+	
+	/**
+	 * True to keep selection when navigating (the default). False to clear it.
+	 */
+	private boolean keepSelectionOnNavigation = true;
 	
 	/**
 	 * Constructor accepting a List.
@@ -630,7 +638,7 @@ public class Table<E extends Serializable> extends Panel implements IPageableCom
 	 * 
 	 * @param target
 	 */
-	public final void firstPage(AjaxRequestTarget target) {
+	public void firstPage(AjaxRequestTarget target) {
 		
 	}
 
@@ -647,7 +655,7 @@ public class Table<E extends Serializable> extends Panel implements IPageableCom
 	 * 
 	 * @param target
 	 */
-	public final void lastPage(AjaxRequestTarget target) {
+	public void lastPage(AjaxRequestTarget target) {
 		
 	}
 
@@ -663,7 +671,7 @@ public class Table<E extends Serializable> extends Panel implements IPageableCom
 	 * 
 	 * @param target
 	 */
-	public final void nextPage(AjaxRequestTarget target) {
+	public void nextPage(AjaxRequestTarget target) {
 		
 	}
 
@@ -679,7 +687,7 @@ public class Table<E extends Serializable> extends Panel implements IPageableCom
 	 * 
 	 * @param target
 	 */
-	public final void previousPage(AjaxRequestTarget target) {
+	public void previousPage(AjaxRequestTarget target) {
 		
 	}
 
@@ -695,5 +703,19 @@ public class Table<E extends Serializable> extends Panel implements IPageableCom
 	 */
 	public void setTopMenuAuthorizer(IMenuItemsAuthorizer topMenuAuthorizer) {
 		this.topMenuAuthorizer = topMenuAuthorizer;
+	}
+
+	/**
+	 * @return the keepSelectionOnNavigation
+	 */
+	public boolean isKeepSelectionOnNavigation() {
+		return keepSelectionOnNavigation;
+	}
+
+	/**
+	 * @param keepSelectionOnNavigation the keepSelectionOnNavigation to set
+	 */
+	public void setKeepSelectionOnNavigation(boolean keepSelectionOnNavigation) {
+		this.keepSelectionOnNavigation = keepSelectionOnNavigation;
 	}
 }

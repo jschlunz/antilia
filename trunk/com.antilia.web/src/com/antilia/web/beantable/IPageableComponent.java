@@ -10,6 +10,7 @@ import org.apache.wicket.Component;
 import org.apache.wicket.feedback.IFeedback;
 
 import com.antilia.web.beantable.provider.IPageableProvider;
+import com.antilia.web.beantable.provider.IProviderSelector;
 
 /**
  * 
@@ -34,5 +35,19 @@ public interface IPageableComponent<E extends Serializable> {
 	 * @return
 	 */
 	IFeedback getFeedback();
+	
+	
+	/**
+	 * 
+	 * @return
+	 */
+	boolean isKeepSelectionOnNavigation();
+	
+	
+	/**
+	 * 
+	 * @return
+	 */
+	IProviderSelector<E> getSourceSelector();
 	
 }
