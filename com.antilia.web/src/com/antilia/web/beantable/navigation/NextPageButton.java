@@ -11,6 +11,7 @@ import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.markup.html.form.Form;
 
 import com.antilia.web.beantable.IPageableComponent;
+import com.antilia.web.beantable.IPageableNavigationListener;
 import com.antilia.web.resources.DefaultStyle;
 import com.antilia.web.utils.RequestUtils;
 
@@ -70,6 +71,10 @@ public class NextPageButton<E extends Serializable> extends PageableButton<E> {
 		IPageableComponent<E> component = findPageableComponent();
 		component.getPageableProvider().nextPage();
 		target.addComponent(component.getUpdatableComponent());
+		if(component instanceof IPageableNavigationListener) {
+			IPageableNavigationListener listener = (IPageableNavigationListener)component;
+			listener.onNextPage(target);
+		}
 	}
 	
 }
