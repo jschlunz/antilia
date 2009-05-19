@@ -40,7 +40,7 @@ public class CloseDropDownButton extends ScriptButton {
 	 * @see com.antilia.web.button.ScriptButton#getJavaScript()
 	 */
 	@Override
-	protected String getJavaScript() {
+	protected String onClickScript() {
 		return "this.parentNode.parentNode.parentNode.parentNode.style.display='none';";
 	}
 

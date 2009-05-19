@@ -48,7 +48,7 @@ public abstract class DropDownButton extends Panel implements IMenuItem {
 			}
 			
 			@Override
-			protected String getJavaScript() {
+			protected String onClickScript() {
 				return "document.getElementById('"+menu.getMarkupId()+"').style.display = 'block';"; 
 			}
 		};

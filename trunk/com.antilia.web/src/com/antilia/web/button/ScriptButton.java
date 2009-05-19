@@ -67,7 +67,8 @@ public abstract class ScriptButton extends Panel implements IMenuItem {
 			private static final long serialVersionUID = 1L;
 			@Override
 			protected void onComponentTag(ComponentTag tag) {
-				tag.addBehavior(new SimpleAttributeModifier("onclick", ScriptButton.this.getJavaScript().replace('\n' , ' ' )));
+				tag.addBehavior(new SimpleAttributeModifier("onclick", ScriptButton.this.onClickScript().replace('\n' , ' ' )));
+				tag.addBehavior(new SimpleAttributeModifier("onmousedown", ScriptButton.this.onMouseDownScript().replace('\n' , ' ' )));
 				super.onComponentTag(tag);				
 			}
 		};
@@ -84,7 +85,11 @@ public abstract class ScriptButton extends Panel implements IMenuItem {
 	protected abstract String getTitleKey();
 	
 	
-	protected abstract String getJavaScript();
+	protected abstract String onClickScript();
+	
+	protected String onMouseDownScript() {
+		return "return true;";
+	}
 	
 	/**
 	 * Overide this method to add your own AjaxCallDecorator.
