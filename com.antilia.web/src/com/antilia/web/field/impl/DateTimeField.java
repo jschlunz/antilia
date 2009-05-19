@@ -46,11 +46,12 @@ public class DateTimeField<B extends Serializable> extends BaseFormField<B> {
 	}
 	
 
+	@SuppressWarnings("unchecked")
 	@Override
 	protected void onBeforeRender() {
 		if(textField == null) {
 			PropertyValue<Date> propertyValue = getBeanProxy().getPropertyValue(getPropertyPath());
-			IModel<Date> model = propertyValue.getModel();
+			IModel<Date> model = (IModel<Date>)propertyValue.getModel();
 			textField = new AntiliaDateTimeField("field", model);			
 			add(textField);
 			textField.setLabel(getLabelModel());
