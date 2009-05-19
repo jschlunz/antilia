@@ -52,7 +52,7 @@ public class FoldButton extends ScriptButton {
 	}
 
 	@Override
-	protected String getJavaScript() {
-		return "Antilia_dragPanels.foldPanel('"+dialog.getDialogId()+"');";
+	protected String onClickScript() {
+		return "Antilia_dragPanels.foldPanel('"+dialog.getDialogId()+"'); return false;";
 	}
 }
