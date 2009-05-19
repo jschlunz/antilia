@@ -41,11 +41,12 @@ public class TextAreaField<B extends Serializable> extends BaseFormField<B> {
 	}
 	
 
+	@SuppressWarnings("unchecked")
 	@Override
 	protected void onBeforeRender() {
 		if(textArea == null) {
 			PropertyValue<B> propertyValue = getBeanProxy().getPropertyValue(getPropertyPath());
-			IModel<B> model = propertyValue.getModel();			
+			IModel<B> model = (IModel<B>)propertyValue.getModel();			
 			textArea = new org.apache.wicket.markup.html.form.TextArea<B>(
 				"field", model);
 			textArea.setOutputMarkupId(true);

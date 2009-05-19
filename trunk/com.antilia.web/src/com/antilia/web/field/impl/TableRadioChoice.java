@@ -409,7 +409,6 @@ public class TableRadioChoice<T> extends AbstractSingleSelectChoice<T> implement
 	/**
 	 * @see org.apache.wicket.Component#onComponentTagBody(MarkupStream, ComponentTag)
 	 */
-	@SuppressWarnings("unchecked")
 	@Override
 	protected final void onComponentTagBody(final MarkupStream markupStream,
 		final ComponentTag openTag)
@@ -439,7 +438,7 @@ public class TableRadioChoice<T> extends AbstractSingleSelectChoice<T> implement
 
 			if (objectClass != null && objectClass != String.class)
 			{
-				final IConverter<Object> converter = (IConverter<Object>)getConverter(objectClass);
+				final IConverter converter = (IConverter)getConverter(objectClass);
 
 				if (!converter.getClass().isAssignableFrom(objectClass))
 				{

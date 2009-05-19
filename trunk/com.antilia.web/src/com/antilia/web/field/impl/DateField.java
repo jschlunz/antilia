@@ -5,11 +5,13 @@
 package com.antilia.web.field.impl;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.extensions.markup.html.form.DateTextField;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.panel.EmptyPanel;
+import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 
 import com.antilia.web.field.IFieldModel;
@@ -48,9 +50,9 @@ public class DateField<B extends Serializable> extends BaseFormField<B> {
 	@Override
 	protected void onBeforeRender() {
 		if(textField == null) {
+			IModel<Date> model = (IModel<Date>)(getBeanProxy().getPropertyValue(getPropertyPath()).getModel());
 			textField = new DateTextField(
-				"field", 
-				getBeanProxy().getPropertyValue(getPropertyPath()).getModel());
+				"field", model);
 			textField.add(new AntiliaDatePicker());
 			add(textField);
 			textField.setLabel(getLabelModel());

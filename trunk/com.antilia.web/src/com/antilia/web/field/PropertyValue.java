@@ -20,7 +20,7 @@ public class PropertyValue<B extends Serializable> implements Serializable {
 
 	private String propertyName;
 	
-	private PropertyModel<B> model;
+	private PropertyModel<?> model;
 	
 	public PropertyValue(String propertyName, B bean) {		
 		this.propertyName = propertyName;
@@ -30,7 +30,7 @@ public class PropertyValue<B extends Serializable> implements Serializable {
 	/**
 	 * @return the model
 	 */
-	public PropertyModel<B> getModel() {
+	public PropertyModel<?> getModel() {
 		return model;
 	}
 
