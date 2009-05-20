@@ -8,7 +8,8 @@ import org.apache.wicket.Component;
 import org.apache.wicket.IPageMap;
 import org.apache.wicket.PageParameters;
 import org.apache.wicket.ResourceReference;
-import org.apache.wicket.behavior.HeaderContributor;
+import org.apache.wicket.markup.html.CSSPackageResource;
+import org.apache.wicket.markup.html.JavascriptPackageResource;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.model.IModel;
 
@@ -78,17 +79,17 @@ public class FullPage extends WebPage {
 	
 	private void init() {
 		add(new AntiliaVeilResource());
-		add(HeaderContributor.forJavaScript(DefaultStyle.JS_YUI_DOM_EVENT));
-		add(HeaderContributor.forJavaScript(DefaultStyle.JS_YUI_DOM_MIN));
-		add(HeaderContributor.forJavaScript(DefaultStyle.JS_YUI_ANIMATION));
+		add(JavascriptPackageResource.getHeaderContribution(DefaultStyle.JS_YUI_DOM_EVENT));
+		add(JavascriptPackageResource.getHeaderContribution(DefaultStyle.JS_YUI_DOM_MIN));
+		add(JavascriptPackageResource.getHeaderContribution(DefaultStyle.JS_YUI_ANIMATION));
 		
-		add(HeaderContributor.forJavaScript(DefaultStyle.JS_COMMON));
-		add(HeaderContributor.forJavaScript(DefaultStyle.JS_TABLE));		
-		add(HeaderContributor.forCss(DefaultStyle.CSS_MAIN));
+		add(JavascriptPackageResource.getHeaderContribution(DefaultStyle.JS_COMMON));
+		add(JavascriptPackageResource.getHeaderContribution(DefaultStyle.JS_TABLE));		
+		add(CSSPackageResource.getHeaderContribution(DefaultStyle.CSS_MAIN));
 
 		
-		add(HeaderContributor.forCss(getFullPageCSS()));
-		add(HeaderContributor.forCss(DefaultStyle.CSS_DIALOG));
+		add(CSSPackageResource.getHeaderContribution(getFullPageCSS()));
+		add(CSSPackageResource.getHeaderContribution(DefaultStyle.CSS_DIALOG));
 		
 		add(newHeader(HEADER_ID));
 	}
