@@ -6,6 +6,8 @@ package com.antilia.web.beantable.provider;
 import java.io.Serializable;
 
 /**
+ * A data provider that besides been query aware can save or update elements.
+ * 
  * @author Ernesto Reinaldo Barreiro (reirn70@gmail.com)
  *
  */
