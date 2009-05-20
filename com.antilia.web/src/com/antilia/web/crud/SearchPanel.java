@@ -22,7 +22,7 @@ import com.antilia.web.beantable.provider.ILoadable;
 import com.antilia.web.beantable.provider.IPageableProvider;
 import com.antilia.web.beantable.provider.IProviderSelector;
 import com.antilia.web.beantable.provider.impl.DataProviderPageableProvider;
-import com.antilia.web.beantable.provider.impl.HibernateQueryDataProvider;
+import com.antilia.web.beantable.provider.impl.HibernateQuerableUpdatebleDataProvider;
 import com.antilia.web.button.IMenuItemHolder;
 import com.antilia.web.button.IMenuItemsFactory;
 import com.antilia.web.feedback.AntiliaFeedBackPanel;
@@ -84,7 +84,7 @@ public class SearchPanel<B extends Serializable> extends Panel implements ILoada
 		if(pageableProvider != null) 
 			this.pageableProvider =  pageableProvider;
 		else {
-			this.pageableProvider = new DataProviderPageableProvider<B>(new HibernateQueryDataProvider<B>(this.filterQuery), this.filterQuery);
+			this.pageableProvider = new DataProviderPageableProvider<B>(new HibernateQuerableUpdatebleDataProvider<B>(this.filterQuery), this.filterQuery);
 		}
 		
 		this.styler = styler;
