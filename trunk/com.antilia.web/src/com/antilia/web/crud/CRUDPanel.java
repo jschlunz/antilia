@@ -10,8 +10,14 @@ import org.apache.wicket.Component;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.panel.Panel;
 
+import com.antilia.hibernate.dao.HibernateQuerableUpdatableDao;
+import com.antilia.hibernate.dao.IQuerableUpdatableDao;
+import com.antilia.hibernate.query.IQuery;
 import com.antilia.web.beantable.model.IColumnModel;
 import com.antilia.web.beantable.provider.IProviderSelector;
+import com.antilia.web.beantable.provider.IQuerableDataProvider;
+import com.antilia.web.beantable.provider.IQuerableUpdatebleDataProvider;
+import com.antilia.web.beantable.provider.impl.HibernateQuerableUpdatebleDataProvider;
 
 /**
  * Panel that automates the creation of CRUD pages.
@@ -146,7 +152,32 @@ public class CRUDPanel<B extends Serializable> extends Panel implements ICRUDMod
 			protected void configureColumnModel(IColumnModel<B> model) {
 				CRUDPanel.this.configureColumnModel(model);
 			}
+			
+			@Override
+			protected IQuerableDataProvider<B> createPageableProvider( IQuery<B> filterQuery) {
+				return CRUDPanel.this.createPageableProvider(filterQuery);
+			}
+			
 		};
+	}
+	
+	
+	/**
+	 * Give the chance to sub-classes to return 
+	 * 
+	 * @param filterQuery
+	 * @return
+	 */
+	protected IQuerableUpdatebleDataProvider<B> createPageableProvider(IQuery<B> filterQuery) {
+		return new HibernateQuerableUpdatebleDataProvider<B>(filterQuery, createQuerableUpdatableDao());
+	}
+	
+	/**
+	 * 
+	 * @return
+	 */
+	protected IQuerableUpdatableDao<B> createQuerableUpdatableDao() {
+		return new HibernateQuerableUpdatableDao<B>();
 	}
 	
 	/**

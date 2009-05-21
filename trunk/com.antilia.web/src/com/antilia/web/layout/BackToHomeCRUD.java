@@ -6,7 +6,9 @@ package com.antilia.web.layout;
 
 import java.io.Serializable;
 
+import com.antilia.hibernate.query.IQuery;
 import com.antilia.web.beantable.model.IColumnModel;
+import com.antilia.web.beantable.provider.IQuerableDataProvider;
 import com.antilia.web.button.IMenuItemHolder;
 import com.antilia.web.crud.CrudStyler;
 import com.antilia.web.crud.SearchPanel;
@@ -54,6 +56,11 @@ public class BackToHomeCRUD<B extends Serializable> extends TitledCRUDPanel<B> {
 			@Override
 			protected void configureColumnModel(IColumnModel<B> model) {
 				BackToHomeCRUD.this.configureColumnModel(model);
+			}
+			
+			@Override
+			protected IQuerableDataProvider<B> createPageableProvider( IQuery<B> filterQuery) {
+				return BackToHomeCRUD.this.createPageableProvider(filterQuery);
 			}
 		};
 	}

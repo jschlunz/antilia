@@ -12,6 +12,7 @@ import java.util.List;
 
 import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.model.IComponentInheritedModel;
+import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 
 import com.antilia.common.util.AnnotationUtils;
@@ -115,7 +116,7 @@ public class TableModel<E extends Serializable> extends Model<ArrayList<IColumnM
 		return model;
  	}
 	
-	public IComponentInheritedModel<E> newModel(E object) {
+	public IComponentInheritedModel<E> newModel(IModel<E> object) {
 		return new CompoundPropertyModel<E>(object);
 	}
 	
