@@ -2,7 +2,7 @@ package com.antilia.web.progress;
 
 import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.ResourceReference;
-import org.apache.wicket.behavior.HeaderContributor;
+import org.apache.wicket.markup.html.CSSPackageResource;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.panel.Panel;
@@ -35,7 +35,7 @@ public class HtmlProgressBar extends Panel {
 		ClientProperties properties = ((WebClientInfo)getRequestCycle().getClientInfo()).getProperties();
 		setBrowserIExplorer(properties.isBrowserInternetExplorer());
 		
-		add(HeaderContributor.forCss(newProgressCss()));		
+		add(CSSPackageResource.getHeaderContribution(newProgressCss()));		
 		progressBar = new WebMarkupContainer("pBar");
 		
 		progressBar.add(new AttributeModifier("style", new Model<String>() {
