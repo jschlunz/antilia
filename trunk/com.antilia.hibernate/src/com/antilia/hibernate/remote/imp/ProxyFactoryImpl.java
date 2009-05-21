@@ -11,23 +11,24 @@ import org.hibernate.proxy.ProxyFactory;
 import org.hibernate.type.AbstractComponentType;
 
 /**
- * Custom loader factory
- * @author Juozas
+ * 
+ * @author Ernesto Reinaldo Barreiro (reirn70@gmail.com)
  *
  */
 public class ProxyFactoryImpl implements ProxyFactory {
 
-    protected static final Class[] NO_CLASSES = new Class[0];
+    protected static final Class<?>[] NO_CLASSES = new Class[0];
 
-    private Class persistentClass;
+    private Class <?>persistentClass;
     private String entityName;
-    private Class[] interfaces;
+    private Class<?>[] interfaces;
     private Method getIdentifierMethod;
     private Method setIdentifierMethod;
     private AbstractComponentType componentIdType;
-    private Class factory;
+    private Class<?> factory;
 
-    public void postInstantiate(final String entityName, final Class persistentClass, final Set interfaces, 
+    @SuppressWarnings("unchecked")
+	public void postInstantiate(final String entityName, final Class persistentClass, final Set interfaces, 
     		final Method getIdentifierMethod, final Method setIdentifierMethod, AbstractComponentType componentIdType) throws HibernateException {
         this.entityName = entityName;
         this.persistentClass = persistentClass;

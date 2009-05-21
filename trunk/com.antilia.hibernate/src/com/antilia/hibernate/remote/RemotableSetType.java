@@ -65,17 +65,17 @@ public class RemotableSetType implements UserCollectionType {
     public PersistentCollection wrap(SessionImplementor session,
             Object collection) {
         
-         return new Wrapper( session, (Set) collection );
+         return new Wrapper( session, (Set<?>) collection );
     }
 
-    public Iterator getElementsIterator(Object collection) {
+    public Iterator<?> getElementsIterator(Object collection) {
         
-        return ((Collection)collection).iterator();
+        return ((Collection<?>)collection).iterator();
     }
 
     public boolean contains(Object collection, Object entity) {
         
-        return ((Collection)collection).contains(entity);
+        return ((Collection<?>)collection).contains(entity);
     }
 
     public Object indexOf(Object collection, Object entity) {
@@ -83,11 +83,12 @@ public class RemotableSetType implements UserCollectionType {
         return null;
     }
 
-    public Object replaceElements(Object original, Object target,
+    @SuppressWarnings("unchecked")
+	public Object replaceElements(Object original, Object target,
             CollectionPersister persister, Object owner, Map copyCache,
             SessionImplementor session) throws HibernateException {
         
-        Collection result = (Collection) target;
+        Collection<?> result = (Collection<?>) target;
 
         result.clear();
 
@@ -97,7 +98,7 @@ public class RemotableSetType implements UserCollectionType {
         
     }
 
-    public Class getReturnedClass() {
+    public Class<?> getReturnedClass() {
         
         return Set.class;
     }

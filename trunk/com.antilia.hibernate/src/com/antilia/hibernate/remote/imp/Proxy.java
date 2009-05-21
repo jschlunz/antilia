@@ -26,7 +26,7 @@ import com.antilia.hibernate.command.DefaultCommander;
  */
 public class Proxy {
     
-    private static final Class[] CALLBACK_TYPES = new Class[]{ InvocationHandler.class,NoOp.class };
+    private static final Class<?>[] CALLBACK_TYPES = new Class[]{ InvocationHandler.class,NoOp.class };
     
     private static final class CollectionProxy extends AbstractSet {
         

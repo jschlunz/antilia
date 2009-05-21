@@ -28,7 +28,7 @@ import com.antilia.hibernate.context.RequestContext;
  */
 public class AntiliaLazyInitializerImpl extends BasicLazyInitializer implements InvocationHandler{
    
- private static final Class[] CALLBACK_TYPES = new Class[]{ InvocationHandler.class,NoOp.class };
+ private static final Class<?>[] CALLBACK_TYPES = new Class[]{ InvocationHandler.class,NoOp.class };
     
     private static final CallbackFilter FINALIZE_FILTER = new CallbackFilter() {
         public int accept(Method method) {
@@ -42,8 +42,8 @@ public class AntiliaLazyInitializerImpl extends BasicLazyInitializer implements 
         }
     };
 
-    private AntiliaLazyInitializerImpl(final String entityName, final Class persistentClass,
-            final Class[] interfaces, final Serializable id, final Method getIdentifierMethod,
+    private AntiliaLazyInitializerImpl(final String entityName, final Class<?> persistentClass,
+            final Class<?>[] interfaces, final Serializable id, final Method getIdentifierMethod,
             final Method setIdentifierMethod, final AbstractComponentType componentIdType,
             final SessionImplementor session) {
         super(
@@ -57,7 +57,8 @@ public class AntiliaLazyInitializerImpl extends BasicLazyInitializer implements 
             );
     }
     
-    protected Object serializableProxy() {
+    @SuppressWarnings("unchecked")
+	protected Object serializableProxy() {
         
         if(isUninitialized()){            
             LazyReference ref = new LazyReference();
@@ -101,7 +102,7 @@ public class AntiliaLazyInitializerImpl extends BasicLazyInitializer implements 
     }
         
 
-    public static Class getProxyFactory(final Class persistentClass, Class[] interfaces) {
+    public static Class<?> getProxyFactory(final Class<?> persistentClass, Class<?>[] interfaces) {
         
             Enhancer en = new Enhancer();
             en.setUseCache( false );
@@ -121,8 +122,8 @@ public class AntiliaLazyInitializerImpl extends BasicLazyInitializer implements 
 
     }
 
-    public static HibernateProxy getProxy(final Class factory, final String entityName,
-            final Class persistentClass, final Class[] interfaces,
+    public static HibernateProxy getProxy(final Class<?> factory, final String entityName,
+            final Class<?> persistentClass, final Class<?>[] interfaces,
             final Method getIdentifierMethod, final Method setIdentifierMethod,
             final AbstractComponentType componentIdType, final Serializable id,
             final SessionImplementor session) throws HibernateException {
