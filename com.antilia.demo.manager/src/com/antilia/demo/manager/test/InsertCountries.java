@@ -9,7 +9,7 @@ import java.io.Serializable;
 import com.antilia.demo.manager.entities.Country;
 import com.antilia.hibernate.cfg.IPersistenceUnit;
 import com.antilia.hibernate.command.AbstractPersistentCommand;
-import com.antilia.hibernate.command.CommandExecuter;
+import com.antilia.hibernate.command.DefaultCommander;
 import com.antilia.hibernate.context.RequestContext;
 
 /**
@@ -28,11 +28,11 @@ public class InsertCountries {
 		
 		@Override
 		protected Serializable doExecute() throws Throwable {			
-			CommandExecuter.persist(createCuba());
-			CommandExecuter.persist(createSpain());
-			CommandExecuter.persist(createGermany());
-			CommandExecuter.persist(createTheNederlands());
-			CommandExecuter.persist(createFrance());
+			DefaultCommander.persist(createCuba());
+			DefaultCommander.persist(createSpain());
+			DefaultCommander.persist(createGermany());
+			DefaultCommander.persist(createTheNederlands());
+			DefaultCommander.persist(createFrance());
 			return "Success";
 		}
 	}
@@ -47,7 +47,7 @@ public class InsertCountries {
 		
 		
 		try {	
-			CommandExecuter.execute(new PersistCountriesCommand());
+			DefaultCommander.execute(new PersistCountriesCommand());
 		} catch (Throwable e) {
 			e.printStackTrace();
 		}

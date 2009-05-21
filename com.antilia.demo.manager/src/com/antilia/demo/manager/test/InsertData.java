@@ -8,7 +8,7 @@ import java.util.List;
 import com.antilia.demo.manager.entities.City;
 import com.antilia.demo.manager.entities.Country;
 import com.antilia.hibernate.command.AbstractPersistentCommand;
-import com.antilia.hibernate.command.CommandExecuter;
+import com.antilia.hibernate.command.DefaultCommander;
 
 /**
  * @author Ernesto Reinaldo Barreiro (reiern70@gmail.com)
@@ -25,7 +25,7 @@ public class InsertData extends AbstractPersistentCommand<Country, Boolean> {
 		Country country = new Country();
 		country.setName("Cuba");
 		country.setDomain("cu");		
-		CommandExecuter.persist(country);
+		DefaultCommander.persist(country);
 		return Boolean.TRUE;
 	}
 	
@@ -43,7 +43,7 @@ public class InsertData extends AbstractPersistentCommand<Country, Boolean> {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		CommandExecuter.execute(new InsertData());
+		DefaultCommander.execute(new InsertData());
 	}
 
 }
