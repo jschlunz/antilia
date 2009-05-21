@@ -11,7 +11,7 @@ import java.util.Iterator;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 
-import com.antilia.hibernate.command.CommandExecuter;
+import com.antilia.hibernate.command.DefaultCommander;
 import com.antilia.hibernate.query.IQuery;
 import com.antilia.hibernate.query.Query;
 import com.antilia.web.beantable.provider.IQuerableUpdatebleDataProvider;
@@ -41,7 +41,7 @@ public class HibernateQuerableUpdatebleDataProvider<E extends Serializable> impl
 	public Iterator<E> iterator(int first, int count) {
 		query.setFirstResult(first);
 		query.setMaxResults(count);
-		return CommandExecuter.loadList(query).iterator();
+		return DefaultCommander.loadList(query).iterator();
 	}
 
 	/* (non-Javadoc)
@@ -56,7 +56,7 @@ public class HibernateQuerableUpdatebleDataProvider<E extends Serializable> impl
 	 * @see org.apache.wicket.markup.repeater.data.IDataProvider#size()
 	 */
 	public int size() {
-		return  ((Long)CommandExecuter.count((Query<E>)query)).intValue();
+		return  ((Long)DefaultCommander.count((Query<E>)query)).intValue();
 	}
 
 	/* (non-Javadoc)
@@ -85,7 +85,7 @@ public class HibernateQuerableUpdatebleDataProvider<E extends Serializable> impl
 	 * @see com.antilia.web.beantable.provider.IUpdatable#add(java.io.Serializable)
 	 */
 	public void add(E element) {
-		CommandExecuter.persist(element);		
+		DefaultCommander.persist(element);		
 	}
 
 	
@@ -94,7 +94,7 @@ public class HibernateQuerableUpdatebleDataProvider<E extends Serializable> impl
 	 * @see com.antilia.web.beantable.provider.IUpdatable#addAll(java.util.Collection)
 	 */
 	public void addAll(Collection<E> element) {
-		CommandExecuter.persistAll(element);		
+		DefaultCommander.persistAll(element);		
 	}
 
 	
@@ -103,7 +103,7 @@ public class HibernateQuerableUpdatebleDataProvider<E extends Serializable> impl
 	 * @see com.antilia.web.beantable.provider.IUpdatable#remove(java.io.Serializable)
 	 */
 	public void remove(E element) {
-		CommandExecuter.delete(element);
+		DefaultCommander.delete(element);
 	}
 
 	/*
@@ -111,7 +111,7 @@ public class HibernateQuerableUpdatebleDataProvider<E extends Serializable> impl
 	 * @see com.antilia.web.beantable.provider.IUpdatable#removeAll(java.util.Collection)
 	 */
 	public void removeAll(Collection<E> element) {
-		CommandExecuter.deleteAll(element);
+		DefaultCommander.deleteAll(element);
 	}
 
 	/*
@@ -119,7 +119,7 @@ public class HibernateQuerableUpdatebleDataProvider<E extends Serializable> impl
 	 * @see com.antilia.web.beantable.provider.IUpdatable#update(java.io.Serializable)
 	 */
 	public void update(E element) {
-		CommandExecuter.update(element);
+		DefaultCommander.update(element);
 	}
 
 	/*
@@ -127,7 +127,7 @@ public class HibernateQuerableUpdatebleDataProvider<E extends Serializable> impl
 	 * @see com.antilia.web.beantable.provider.IUpdatable#updateAll(java.util.Collection)
 	 */
 	public void updateAll(Collection<E> element) {
-		CommandExecuter.updateAll(element);
+		DefaultCommander.updateAll(element);
 	}
 
 }

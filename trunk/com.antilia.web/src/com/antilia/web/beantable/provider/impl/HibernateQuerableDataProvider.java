@@ -10,9 +10,8 @@ import java.util.Iterator;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 
-import com.antilia.hibernate.command.CommandExecuter;
+import com.antilia.hibernate.command.DefaultCommander;
 import com.antilia.hibernate.query.IQuery;
-import com.antilia.hibernate.query.Query;
 import com.antilia.web.beantable.provider.IQuerableDataProvider;
 
 /**
@@ -44,7 +43,7 @@ public class HibernateQuerableDataProvider<E extends Serializable> implements IQ
 	public Iterator<E> iterator(int first, int count) {
 		query.setFirstResult(first);
 		query.setMaxResults(count);
-		return CommandExecuter.loadList(query).iterator();
+		return DefaultCommander.loadList(query).iterator();
 	}
 
 	/* (non-Javadoc)
@@ -58,7 +57,7 @@ public class HibernateQuerableDataProvider<E extends Serializable> implements IQ
 	 * @see org.apache.wicket.markup.repeater.data.IDataProvider#size()
 	 */
 	public int size() {
-		return  ((Long)CommandExecuter.count((Query<E>)query)).intValue();
+		return  ((Long)DefaultCommander.count(query)).intValue();
 	}
 
 	/* (non-Javadoc)
