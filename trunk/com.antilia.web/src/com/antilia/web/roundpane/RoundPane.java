@@ -7,9 +7,10 @@ package com.antilia.web.roundpane;
 import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.Component;
 import org.apache.wicket.ResourceReference;
-import org.apache.wicket.behavior.HeaderContributor;
 import org.apache.wicket.markup.ComponentTag;
 import org.apache.wicket.markup.MarkupStream;
+import org.apache.wicket.markup.html.CSSPackageResource;
+import org.apache.wicket.markup.html.JavascriptPackageResource;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.HiddenField;
@@ -213,16 +214,16 @@ public class RoundPane extends Panel implements IMenuItemsFactory {
 				setBrowserIExplorer6(true);
 			}
 		}
-		add(HeaderContributor.forCss(RBOX_CSS));
-		add(HeaderContributor.forJavaScript(DefaultStyle.JS_COMMON));
-		add(HeaderContributor.forJavaScript(DefaultStyle.JS_PROTOTYPE));
-		add(HeaderContributor.forJavaScript(DefaultStyle.JS_EFFECT));
+		add(CSSPackageResource.getHeaderContribution(RBOX_CSS));
+		add(JavascriptPackageResource.getHeaderContribution(DefaultStyle.JS_COMMON));
+		add(JavascriptPackageResource.getHeaderContribution(DefaultStyle.JS_PROTOTYPE));
+		add(JavascriptPackageResource.getHeaderContribution(DefaultStyle.JS_EFFECT));
 		
-		add(HeaderContributor.forJavaScript(DefaultStyle.JS_YUI_DOM_EVENT));
-		add(HeaderContributor.forJavaScript(DefaultStyle.JS_YUI_DOM_MIN));
-		add(HeaderContributor.forJavaScript(DefaultStyle.JS_YUI_ANIMATION));
+		add(JavascriptPackageResource.getHeaderContribution(DefaultStyle.JS_YUI_DOM_EVENT));
+		add(JavascriptPackageResource.getHeaderContribution(DefaultStyle.JS_YUI_DOM_MIN));
+		add(JavascriptPackageResource.getHeaderContribution(DefaultStyle.JS_YUI_ANIMATION));
 		
-		add(HeaderContributor.forJavaScript(RBOX_JS));
+		add(JavascriptPackageResource.getHeaderContribution(RBOX_JS));
 		
 		
 		// creating the header panel
