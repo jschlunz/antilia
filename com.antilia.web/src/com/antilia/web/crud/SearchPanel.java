@@ -12,6 +12,8 @@ import java.util.Map;
 
 import org.apache.wicket.markup.html.panel.Panel;
 
+import com.antilia.hibernate.dao.HibernateQuerableDao;
+import com.antilia.hibernate.dao.IQuerableDao;
 import com.antilia.hibernate.query.IQuery;
 import com.antilia.hibernate.query.Query;
 import com.antilia.web.beantable.Table;
@@ -21,8 +23,9 @@ import com.antilia.web.beantable.model.TableModel;
 import com.antilia.web.beantable.provider.ILoadable;
 import com.antilia.web.beantable.provider.IPageableProvider;
 import com.antilia.web.beantable.provider.IProviderSelector;
+import com.antilia.web.beantable.provider.IQuerableDataProvider;
 import com.antilia.web.beantable.provider.impl.DataProviderPageableProvider;
-import com.antilia.web.beantable.provider.impl.HibernateQuerableUpdatebleDataProvider;
+import com.antilia.web.beantable.provider.impl.HibernateQuerableDataProvider;
 import com.antilia.web.button.IMenuItemHolder;
 import com.antilia.web.button.IMenuItemsFactory;
 import com.antilia.web.feedback.AntiliaFeedBackPanel;
@@ -84,7 +87,7 @@ public class SearchPanel<B extends Serializable> extends Panel implements ILoada
 		if(pageableProvider != null) 
 			this.pageableProvider =  pageableProvider;
 		else {
-			this.pageableProvider = new DataProviderPageableProvider<B>(new HibernateQuerableUpdatebleDataProvider<B>(this.filterQuery), this.filterQuery);
+			this.pageableProvider = new DataProviderPageableProvider<B>(createPageableProvider(this.filterQuery), this.filterQuery);
 		}
 		
 		this.styler = styler;
@@ -96,7 +99,7 @@ public class SearchPanel<B extends Serializable> extends Panel implements ILoada
 		add(beanForm);
 				
 				
-		 Menu menu = newTopMenuMenu("topMenu");
+		Menu menu = newTopMenuMenu("topMenu");
 		 
 		beanForm.add(menu);
 		 
@@ -126,6 +129,24 @@ public class SearchPanel<B extends Serializable> extends Panel implements ILoada
 		
 		table.setFeedback(feedback);
 		
+	}
+	
+	/**
+	 * Give the chance to sub-classes to return 
+	 * 
+	 * @param filterQuery
+	 * @return
+	 */
+	protected IQuerableDataProvider<B> createPageableProvider(IQuery<B> filterQuery) {
+		return new HibernateQuerableDataProvider<B>(filterQuery, createQuerableUpdatableDao());
+	}
+	
+	/**
+	 * 
+	 * @return
+	 */
+	protected IQuerableDao<B> createQuerableUpdatableDao() {
+		return new HibernateQuerableDao<B>();
 	}
 	
 	protected Menu newTopMenuMenu(String id) {

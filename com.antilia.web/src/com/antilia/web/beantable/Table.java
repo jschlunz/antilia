@@ -319,15 +319,14 @@ public class Table<E extends Serializable> extends Panel implements IPageableCom
 			this.table = table;
 		}
 
-		@SuppressWarnings("unchecked")
 		@Override
 		protected Iterator<IModel<E>> getItemModels() {
-			ITableModel tableModel = getTable().getTableModel();		
+			ITableModel<E> tableModel = getTable().getTableModel();		
 			List<IModel<E>> models = new ArrayList<IModel<E>>();
-			models.add(new Model(""));
-			Iterator<IModel> it =  tableModel.getColumnModels();
+			models.add(new Model<E>(null));
+			Iterator<IColumnModel<E>> it =  tableModel.getColumnModels();
 			while(it.hasNext()) {
-				IModel model = it.next();
+				IModel<E> model = it.next();
 				models.add(model);
 			}
 			return models.iterator();
@@ -428,17 +427,17 @@ public class Table<E extends Serializable> extends Panel implements IPageableCom
 			this.table = table;			
 		}
 		
-		@SuppressWarnings("unchecked")
+		
 		private void initialize() {
 			Table.this.clearRowCheckBoxes();
 			models = new ArrayList<IModel<E>>();
-			ITableModel tableModel = getTable().getTableModel();
+			ITableModel<E> tableModel = getTable().getTableModel();
 			if(tableModel == null)
 				return;	
 			Iterator<IModel<E>> it = getTable().getPageableProvider().getCurrentPage();
 			while(it.hasNext()) {
 				IModel<E> object = it.next();
-				models.add(tableModel.newModel(object));
+				models.add(tableModel.newModel(object));				
 			}
 		}
 

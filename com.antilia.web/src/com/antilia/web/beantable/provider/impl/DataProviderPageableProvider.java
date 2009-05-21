@@ -176,7 +176,7 @@ public class DataProviderPageableProvider<E extends Serializable> implements ILo
 				((IQuerable<E>)dataProvider).setQuery(query);			
 			}
 			cachedEntities = new ArrayList<IModel<E>>();
-			Iterator<E> it = (Iterator<E>)dataProvider.iterator(start, pageSize);
+			Iterator<? extends E> it = dataProvider.iterator(start, pageSize);
 			while(it.hasNext()) {
 				cachedEntities.add(dataProvider.model(it.next()));
 			}			

@@ -10,10 +10,12 @@ import java.util.List;
 
 import org.apache.wicket.Component;
 
+import com.antilia.hibernate.query.IQuery;
 import com.antilia.web.beantable.Table;
 import com.antilia.web.beantable.model.IColumnModel;
 import com.antilia.web.beantable.model.ITableModel;
 import com.antilia.web.beantable.provider.IPageableProvider;
+import com.antilia.web.beantable.provider.IQuerableDataProvider;
 import com.antilia.web.button.IMenuItemHolder;
 import com.antilia.web.button.IMenuItemsFactory;
 import com.antilia.web.crud.CRUDPanel;
@@ -98,6 +100,12 @@ public class InPlaceSelectionCRUDPanel<B extends Serializable> extends Selection
 			protected void configureColumnModel(IColumnModel<B> model) {
 				InPlaceSelectionCRUDPanel.this.configureColumnModel(model);
 			}
+			
+			@Override
+			protected IQuerableDataProvider<B> createPageableProvider( IQuery<B> filterQuery) {
+				return InPlaceSelectionCRUDPanel.this.createPageableProvider(filterQuery);
+			}
+						
 			
 			@Override
 			protected Table<B> newTable(String id, ITableModel<B> tableModel,
