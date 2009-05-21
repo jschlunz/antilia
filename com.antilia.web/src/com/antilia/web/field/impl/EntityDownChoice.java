@@ -10,7 +10,7 @@ import org.apache.wicket.markup.html.form.ChoiceRenderer;
 import org.apache.wicket.markup.html.form.DropDownChoice;
 import org.apache.wicket.model.IModel;
 
-import com.antilia.hibernate.command.CommandExecuter;
+import com.antilia.hibernate.command.DefaultCommander;
 
 /**
  * @author Ernesto Reinaldo Barreiro (reiern70@gmail.com)
@@ -42,6 +42,6 @@ public class EntityDownChoice<B extends Serializable> extends DropDownChoice<B> 
 			}
 		});	
 				
-		setChoices(CommandExecuter.loadAll(beanClass));
+		setChoices(DefaultCommander.loadAll(beanClass));
 	}
 }

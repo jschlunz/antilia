@@ -18,13 +18,13 @@ import com.antilia.web.beantable.provider.IQuerable;
  * @author Ernesto Reinaldo Barreiro (reiern70@gmail.com)
  *
  */
-public class InMemomyDataProvider<E extends Serializable> extends ListDataProvider<E> implements IQuerable<E> {
+public class QuerableListDataProvider<E extends Serializable> extends ListDataProvider<E> implements IQuerable<E> {
 	
 	private IQuery<E> query;
 	
 	private static final long serialVersionUID = 1L;
 
-	public InMemomyDataProvider(List<E> list) {
+	public QuerableListDataProvider(List<E> list) {
 		super(list);
 	}
 
