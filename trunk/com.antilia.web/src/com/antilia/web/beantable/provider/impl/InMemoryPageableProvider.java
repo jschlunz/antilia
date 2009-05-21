@@ -10,6 +10,9 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
+import org.apache.wicket.model.CompoundPropertyModel;
+import org.apache.wicket.model.IModel;
+
 import com.antilia.hibernate.query.IQuery;
 import com.antilia.hibernate.query.Query;
 import com.antilia.web.beantable.provider.ILoadablePageableProvider;
@@ -39,13 +42,15 @@ public class InMemoryPageableProvider<E extends Serializable> implements ILoadab
 		
 	private List<IPageableProviderNavigationListener>  navigationListeners = new ArrayList<IPageableProviderNavigationListener>();
 
+
+	
 	/**
 	 * Constructor.
 	 * 
 	 * @param collection
 	 */
 	public InMemoryPageableProvider(Collection<E> collection, Class<E> beanClass) {
-		this.collection = new ArrayList<E>(collection);		
+		this.collection = toList(collection);		
 		this.currentIndex = 0;
 		this.currentPage = 0;
 		this.query  = new Query<E>(beanClass);
@@ -58,10 +63,11 @@ public class InMemoryPageableProvider<E extends Serializable> implements ILoadab
 		this.query  = new Query<E>(beanClass);
 	}
 	
+	
 	public final  void load(Query<E> filter) {
 		Collection<E> collection = onLoad(filter);
 		if(collection != null) {
-			this.collection = new ArrayList<E>(collection);				
+			this.collection = toList(collection);
 		}
 		for(IPageableProviderNavigationListener listener: navigationListeners) {
 			listener.onClear();
@@ -130,7 +136,7 @@ public class InMemoryPageableProvider<E extends Serializable> implements ILoadab
 	}
 	
 	public void addAll(Collection<E> element) {
-		collection.addAll(element);
+		collection.addAll(toList(element));
 	}
 	
 	public void remove(E element) {		
@@ -154,9 +160,18 @@ public class InMemoryPageableProvider<E extends Serializable> implements ILoadab
 	/* (non-Javadoc)
 	 * @see com.antilia.common.sonullurces.IPageableSource#getCurrentPage()
 	 */
-	public Iterator<E> getCurrentPage() {
-		return collection.subList((currentPage*pageSize), Math.min(((currentPage+1)*pageSize),collection.size())).listIterator();
+	public Iterator<IModel<E>> getCurrentPage() {
+		return toModelList(collection.subList((currentPage*pageSize), Math.min(((currentPage+1)*pageSize),collection.size()))).iterator();
 	}
+	
+	private List<IModel<E>> toModelList(Iterable<E> list) {
+		List<IModel<E>> wrappedList = new ArrayList<IModel<E>>();
+		for(E bean: list) {
+			wrappedList.add(new CompoundPropertyModel<E>(bean));
+		}
+		return wrappedList;
+	}
+	
 
 	public boolean hasNext() {
 		return currentIndex < (size()-1);
@@ -201,7 +216,7 @@ public class InMemoryPageableProvider<E extends Serializable> implements ILoadab
 	/* (non-Javadoc)
 	 * @see com.antilia.common.sources.IPageableSource#nextPage()
 	 */
-	public Iterator<E> nextPage() {		
+	public Iterator<IModel<E>> nextPage() {		
 		if(hasNextPage()) {
 			currentPage++;	
 			for(IPageableProviderNavigationListener listener: navigationListeners) {
@@ -214,7 +229,7 @@ public class InMemoryPageableProvider<E extends Serializable> implements ILoadab
 	/* (non-Javadoc)
 	 * @see com.antilia.common.sources.IPageableSource#previousPage()
 	 */
-	public Iterator<E> previousPage() {
+	public Iterator<IModel<E>> previousPage() {
 		if(hasPreviousPage()) {
 			currentPage--;
 			for(IPageableProviderNavigationListener listener: navigationListeners) {
@@ -272,8 +287,9 @@ public class InMemoryPageableProvider<E extends Serializable> implements ILoadab
 		return true;
 	}
 
-	/* (non-Javadoc)
-	 * @see com.antilia.common.sources.ISource#iterator()
+	/*
+	 * (non-Javadoc)
+	 * @see com.antilia.web.beantable.provider.IProvider#iterator()
 	 */
 	public Iterator<E> iterator() {
 		return collection.iterator();
@@ -290,7 +306,7 @@ public class InMemoryPageableProvider<E extends Serializable> implements ILoadab
 		return null;
 	}
 	
-	public Iterator<E> firstPage() {
+	public Iterator<IModel<E>> firstPage() {
 		if(!isEmpty()) {
 			currentPage = 0;
 			for(IPageableProviderNavigationListener listener: navigationListeners) {
@@ -301,7 +317,7 @@ public class InMemoryPageableProvider<E extends Serializable> implements ILoadab
 		return null;
 	}
 
-	public Iterator<E> lastPage() {
+	public Iterator<IModel<E>> lastPage() {
 		if(!isEmpty()) {
 			currentPage = getNumberOfPages()-1;
 			for(IPageableProviderNavigationListener listener: navigationListeners) {

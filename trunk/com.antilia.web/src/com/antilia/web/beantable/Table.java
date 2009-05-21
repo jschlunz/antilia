@@ -234,7 +234,7 @@ public class Table<E extends Serializable> extends Panel implements IPageableCom
 				sb.append("new Array(");
 				IPageableProvider<E> source = Table.this.getPageableProvider();
 				IProviderSelector<E> selector = Table.this.getSourceSelector();
-				Iterator<E> it = source.getCurrentPage();
+				Iterator<IModel<E>> it = source.getCurrentPage();
 				int i=0;
 				while(it.hasNext()) {
 					boolean selected = selector.isSelected(i);					
@@ -435,10 +435,11 @@ public class Table<E extends Serializable> extends Panel implements IPageableCom
 			ITableModel tableModel = getTable().getTableModel();
 			if(tableModel == null)
 				return;	
-			Iterator<E> it = getTable().getPageableProvider().getCurrentPage();
+			Iterator<IModel<E>> it = getTable().getPageableProvider().getCurrentPage();
 			while(it.hasNext()) {
-				E object = it.next();
-				models.add(tableModel.newModel(object));
+				IModel<E> object = it.next();
+				models.add(tableModel.newModel(object.getObject()));
+				//models.add(object);
 			}
 		}
 

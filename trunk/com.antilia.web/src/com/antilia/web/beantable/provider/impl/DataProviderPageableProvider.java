@@ -11,6 +11,7 @@ import java.util.Iterator;
 import java.util.List;
 
 import org.apache.wicket.markup.repeater.data.IDataProvider;
+import org.apache.wicket.model.IModel;
 
 import com.antilia.hibernate.query.IQuery;
 import com.antilia.hibernate.query.Query;
@@ -54,7 +55,7 @@ public class DataProviderPageableProvider<E extends Serializable> implements ILo
 		
 	private List<IPageableProviderNavigationListener>  navigationListeners = new ArrayList<IPageableProviderNavigationListener>();
 	
-	private List<E> cachedEntities;
+	private List<IModel<E>> cachedEntities;
 	
 	private IDataProvider<E> dataProvider;
 
@@ -153,10 +154,11 @@ public class DataProviderPageableProvider<E extends Serializable> implements ILo
 	}
 	
 	
-	/* (non-Javadoc)
-	 * @see com.antilia.common.sonullurces.IPageableSource#getCurrentPage()
+	/*
+	 * (non-Javadoc)
+	 * @see com.antilia.web.beantable.provider.IPageableProvider#getCurrentPage()
 	 */
-	public Iterator<E> getCurrentPage() {		
+	public Iterator<IModel<E>> getCurrentPage() {		
 		return getCachedEntities().iterator();
 	}
 
@@ -164,7 +166,7 @@ public class DataProviderPageableProvider<E extends Serializable> implements ILo
 	 * @return the cachedEntities
 	 */
 	@SuppressWarnings("unchecked")
-	private List<E> getCachedEntities() {
+	private List<IModel<E>> getCachedEntities() {
 		if(cachedEntities == null) {
 			int start = (currentPage*pageSize);
 			currentIndex = pageStart = start;			
@@ -173,15 +175,24 @@ public class DataProviderPageableProvider<E extends Serializable> implements ILo
 			if(dataProvider instanceof IQuerable) {
 				((IQuerable<E>)dataProvider).setQuery(query);			
 			}
-			cachedEntities = new ArrayList<E>();
+			cachedEntities = new ArrayList<IModel<E>>();
 			Iterator<E> it = (Iterator<E>)dataProvider.iterator(start, pageSize);
 			while(it.hasNext()) {
-				cachedEntities.add(it.next());
+				cachedEntities.add(dataProvider.model(it.next()));
 			}			
 			totalSize = getTotalSize();
 			pageEnd = Math.min((pageStart+pageSize)-1,totalSize-1);
 		}
 		return cachedEntities;
+	}
+	
+	
+	private List<E> getRealObject(Iterable<IModel<E>> iterable) {
+		List<E> list = new ArrayList<E>();
+		for(IModel<E> model: iterable) {
+			list.add(model.getObject());
+		}
+		return list;
 	}
 	
 	public boolean hasNext() {
@@ -227,7 +238,7 @@ public class DataProviderPageableProvider<E extends Serializable> implements ILo
 	/* (non-Javadoc)
 	 * @see com.antilia.common.sources.IPageableSource#nextPage()
 	 */
-	public Iterator<E> nextPage() {		
+	public Iterator<IModel<E>> nextPage() {		
 		if(hasNextPage()) {
 			clearCached();
 			currentPage++;	
@@ -241,7 +252,7 @@ public class DataProviderPageableProvider<E extends Serializable> implements ILo
 	/* (non-Javadoc)
 	 * @see com.antilia.common.sources.IPageableSource#previousPage()
 	 */
-	public Iterator<E> previousPage() {
+	public Iterator<IModel<E>> previousPage() {
 		if(hasPreviousPage()) {
 			clearCached();
 			currentPage--;			
@@ -265,7 +276,7 @@ public class DataProviderPageableProvider<E extends Serializable> implements ILo
 	 * @see com.antilia.common.sources.ISource#current()
 	 */
 	public E current() {
-		return getCachedEntities().get(currentIndex-pageStart);
+		return getCachedEntities().get(currentIndex-pageStart).getObject();
 	}
 
 	/* (non-Javadoc)
@@ -304,11 +315,12 @@ public class DataProviderPageableProvider<E extends Serializable> implements ILo
 		return true;
 	}
 
-	/* (non-Javadoc)
-	 * @see com.antilia.common.sources.ISource#iterator()
+	/*
+	 * (non-Javadoc)
+	 * @see com.antilia.web.beantable.provider.IProvider#iterator()
 	 */
 	public Iterator<E> iterator() {
-		return getCachedEntities().iterator();
+		return getRealObject(getCachedEntities()).iterator();
 	}
 
 	/* (non-Javadoc)
@@ -322,7 +334,7 @@ public class DataProviderPageableProvider<E extends Serializable> implements ILo
 		return null;
 	}
 	
-	public Iterator<E> firstPage() {
+	public Iterator<IModel<E>> firstPage() {
 		if(!isEmpty()) {
 			clearCached();
 			currentPage = 0;
@@ -334,7 +346,7 @@ public class DataProviderPageableProvider<E extends Serializable> implements ILo
 		return null;
 	}
 
-	public Iterator<E> lastPage() {
+	public Iterator<IModel<E>> lastPage() {
 		if(!isEmpty()) {
 			clearCached();
 			currentPage = getNumberOfPages()-1;

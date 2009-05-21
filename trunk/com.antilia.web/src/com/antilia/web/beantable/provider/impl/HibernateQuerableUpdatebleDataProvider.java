@@ -9,6 +9,7 @@ import java.util.Collection;
 import java.util.Iterator;
 
 import org.apache.wicket.model.IModel;
+import org.apache.wicket.model.Model;
 
 import com.antilia.hibernate.command.CommandExecuter;
 import com.antilia.hibernate.query.IQuery;
@@ -47,7 +48,8 @@ public class HibernateQuerableUpdatebleDataProvider<E extends Serializable> impl
 	 * @see org.apache.wicket.markup.repeater.data.IDataProvider#model(java.lang.Object)
 	 */
 	public IModel<E> model(E object) {
-		return null;
+		// TODO: make it detachable.
+		return new Model<E>(object);
 	}
 
 	/* (non-Javadoc)

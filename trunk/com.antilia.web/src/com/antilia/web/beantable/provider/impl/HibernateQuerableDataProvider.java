@@ -8,6 +8,7 @@ import java.io.Serializable;
 import java.util.Iterator;
 
 import org.apache.wicket.model.IModel;
+import org.apache.wicket.model.Model;
 
 import com.antilia.hibernate.command.CommandExecuter;
 import com.antilia.hibernate.query.IQuery;
@@ -50,7 +51,7 @@ public class HibernateQuerableDataProvider<E extends Serializable> implements IQ
 	 * @see org.apache.wicket.markup.repeater.data.IDataProvider#model(java.lang.Object)
 	 */
 	public IModel<E> model(E object) {
-		return null;
+		return new Model<E>(object);
 	}
 
 	/* (non-Javadoc)
