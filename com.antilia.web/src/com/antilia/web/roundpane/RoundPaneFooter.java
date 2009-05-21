@@ -83,7 +83,7 @@ public class RoundPaneFooter extends Panel {
 		add(bl);
 		
 		WebMarkupContainer titleColumnBottom = new WebMarkupContainer("titleColumnBottom");
-		titleColumnBottom.add(new AttributeModifier("style", new Model("background-color: "+getRoundBox().getBoxStyle().getBackgroundColor())));
+		titleColumnBottom.add(new AttributeModifier("style", new Model<String>("background-color: "+getRoundBox().getBoxStyle().getBackgroundColor())));
 		add(titleColumnBottom);
 	}
 
