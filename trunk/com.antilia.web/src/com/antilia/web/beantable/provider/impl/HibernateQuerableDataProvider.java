@@ -10,8 +10,8 @@ import java.util.Iterator;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 
-import com.antilia.hibernate.command.DefaultCommander;
 import com.antilia.hibernate.query.IQuery;
+import com.antilia.web.beantable.provider.IQuerableDao;
 import com.antilia.web.beantable.provider.IQuerableDataProvider;
 
 /**
@@ -26,15 +26,25 @@ public class HibernateQuerableDataProvider<E extends Serializable> implements IQ
 	
 	private IQuery<E> query;
 	
-	public HibernateQuerableDataProvider() {
-		this(null);
+	private IQuerableDao<E> querableDao;
+	
+	public HibernateQuerableDataProvider(IQuerableDao<E> querableDao) {
+		this(null, querableDao);
 	}
 	
+	public HibernateQuerableDataProvider() {
+		this(null, new HibernateQuerableDao<E>());
+	}
+	
+	public HibernateQuerableDataProvider(IQuery<E> query) {
+		this(query, new HibernateQuerableDao<E>());
+	}
 	/**
 	 * 
 	 */
-	public HibernateQuerableDataProvider(IQuery<E> query) {
+	public HibernateQuerableDataProvider(IQuery<E> query, IQuerableDao<E> querableDao) {
 		this.query = query;
+		this.querableDao = querableDao;
 	}
 
 	/* (non-Javadoc)
@@ -43,7 +53,7 @@ public class HibernateQuerableDataProvider<E extends Serializable> implements IQ
 	public Iterator<E> iterator(int first, int count) {
 		query.setFirstResult(first);
 		query.setMaxResults(count);
-		return DefaultCommander.loadList(query).iterator();
+		return querableDao.findAll(query).iterator();
 	}
 
 	/* (non-Javadoc)
@@ -57,7 +67,7 @@ public class HibernateQuerableDataProvider<E extends Serializable> implements IQ
 	 * @see org.apache.wicket.markup.repeater.data.IDataProvider#size()
 	 */
 	public int size() {
-		return  ((Long)DefaultCommander.count(query)).intValue();
+		return  querableDao.count(query).intValue();
 	}
 
 	/* (non-Javadoc)
@@ -79,5 +89,12 @@ public class HibernateQuerableDataProvider<E extends Serializable> implements IQ
 	 */
 	public void setQuery(IQuery<E> query) {
 		this.query = query;
+	}
+
+	/**
+	 * @return the querableDao
+	 */
+	public IQuerableDao<E> getQuerableDao() {
+		return querableDao;
 	}
 }
