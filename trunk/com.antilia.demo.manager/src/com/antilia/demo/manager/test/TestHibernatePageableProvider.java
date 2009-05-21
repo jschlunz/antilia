@@ -4,14 +4,8 @@
  */
 package com.antilia.demo.manager.test;
 
-import java.util.Iterator;
-
-import com.antilia.demo.manager.entities.City;
-import com.antilia.demo.manager.entities.Country;
 import com.antilia.hibernate.cfg.IPersistenceUnit;
 import com.antilia.hibernate.context.RequestContext;
-import com.antilia.hibernate.query.Query;
-import com.antilia.web.hibernate.provider.HibernatePageableProvider;
 
 /**
  * 
@@ -31,6 +25,7 @@ public class TestHibernatePageableProvider {
 		requestContext.setPersistenceUnit(persistenceUnit);
 		requestContext.setUser("test");
 		
+		/*
 		Query<Country> query = new Query<Country>(Country.class);
 		HibernatePageableProvider<Country> hibernatePageableProvider = new HibernatePageableProvider<Country>(query);
 		Iterator<Country> it = hibernatePageableProvider.getCurrentPage(); 
@@ -59,6 +54,7 @@ public class TestHibernatePageableProvider {
 			City city = it2.next();
 			System.out.println(city.getName());
 		}
+		*/
 	}
 
 }
