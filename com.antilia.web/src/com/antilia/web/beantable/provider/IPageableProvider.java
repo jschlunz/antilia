@@ -7,6 +7,8 @@ package com.antilia.web.beantable.provider;
 import java.io.Serializable;
 import java.util.Iterator;
 
+import org.apache.wicket.model.IModel;
+
 import com.antilia.hibernate.query.IQuery;
 
 /**
@@ -19,15 +21,15 @@ public interface IPageableProvider<E extends Serializable> extends IProvider<E>,
 	
 	void setPageSize(int size);
 	
-	Iterator<E> getCurrentPage();
+	Iterator<IModel<E>> getCurrentPage();
 	
-	Iterator<E> firstPage();
+	Iterator<IModel<E>> firstPage();
 	
-	Iterator<E> nextPage();
+	Iterator<IModel<E>> nextPage();
 	
-	Iterator<E> previousPage();
+	Iterator<IModel<E>> previousPage();
 	
-	Iterator<E> lastPage();	
+	Iterator<IModel<E>> lastPage();	
 	
 	int getNumberOfPages();	
 	

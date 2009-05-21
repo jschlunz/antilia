@@ -10,6 +10,8 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
+import org.apache.wicket.model.IModel;
+
 import com.antilia.web.beantable.provider.IPageableProvider;
 import com.antilia.web.beantable.provider.IPageableProviderNavigationListener;
 import com.antilia.web.beantable.provider.IProviderSelector;
@@ -57,10 +59,10 @@ public class SourceSelector<E extends Serializable> implements IProviderSelector
 	public E addToSelected(int indexInCurrentPage) {
 		if(getSelectionMode().equals(SelectionMode.NONE))
 			return null;
-		Iterator<E> pageIterator = getPageableSource().getCurrentPage();
+		Iterator<IModel<E>> pageIterator = getPageableSource().getCurrentPage();
 		int count = 0;
 		while(pageIterator.hasNext()) {
-			E bean = pageIterator.next();
+			E bean = pageIterator.next().getObject();
 			if(indexInCurrentPage == count) {
 				addToSelected(bean);
 				return bean;
@@ -87,10 +89,10 @@ public class SourceSelector<E extends Serializable> implements IProviderSelector
 	public boolean isSelected(int indexInCurrentPage) {
 		if(getSelectionMode().equals(SelectionMode.NONE))
 			return false;
-		Iterator<E> pageIterator = getPageableSource().getCurrentPage();
+		Iterator<IModel<E>> pageIterator = getPageableSource().getCurrentPage();
 		int count = 0;
 		while(pageIterator.hasNext()) {
-			E bean = pageIterator.next();
+			E bean = pageIterator.next().getObject();
 			if(indexInCurrentPage == count) 
 				return isSelected(bean);
 			count++;
@@ -103,10 +105,10 @@ public class SourceSelector<E extends Serializable> implements IProviderSelector
 	}
 
 	public E removeFromSelected(int indexInCurrentPage) {
-		Iterator<E> pageIterator = getPageableSource().getCurrentPage();
+		Iterator<IModel<E>> pageIterator = getPageableSource().getCurrentPage();
 		int count = 0;
 		while(pageIterator.hasNext()) {
-			E bean = pageIterator.next();
+			E bean = pageIterator.next().getObject();
 			if(indexInCurrentPage == count) {
 				removeFromSelected(bean);
 				return bean;
@@ -136,9 +138,9 @@ public class SourceSelector<E extends Serializable> implements IProviderSelector
 	
 	public void togglePageSelection() {
 		this.pageSelected = !this.pageSelected;
-		Iterator<E> pageIterator = getPageableSource().getCurrentPage();
+		Iterator<IModel<E>> pageIterator = getPageableSource().getCurrentPage();
 		while(pageIterator.hasNext()) {
-			E bean = pageIterator.next();
+			E bean = pageIterator.next().getObject();
 			if(this.pageSelected) 
 				addToSelected(bean);
 			else 
@@ -147,10 +149,10 @@ public class SourceSelector<E extends Serializable> implements IProviderSelector
 	}
 	
 	public void revertPageSelection() {
-		Iterator<E> pageIterator = getPageableSource().getCurrentPage();
+		Iterator<IModel<E>> pageIterator = getPageableSource().getCurrentPage();
 		int count = 0;
 		while(pageIterator.hasNext()) {
-			E bean = pageIterator.next();
+			E bean = pageIterator.next().getObject();
 			toggleSelected(bean);
 			count++;
 		}
