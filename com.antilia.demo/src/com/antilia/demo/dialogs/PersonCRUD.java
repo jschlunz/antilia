@@ -5,6 +5,9 @@
 package com.antilia.demo.dialogs;
 
 import com.antilia.demo.beans.Person;
+import com.antilia.hibernate.query.IQuery;
+import com.antilia.web.beantable.model.IColumnModel;
+import com.antilia.web.beantable.provider.IQuerableDataProvider;
 import com.antilia.web.crud.CRUDPanel;
 import com.antilia.web.crud.CrudStyler;
 import com.antilia.web.crud.SearchPanel;
@@ -44,7 +47,21 @@ public class PersonCRUD extends CRUDPanel<Person> {
 	 */
 	@Override
 	protected SearchPanel<Person> newSearchPanel(String id, CrudStyler<Person> styler) {
-		return new PersonSearchPanel(id, styler);
+		return new PersonSearchPanel(id, styler) {
+			
+			private static final long serialVersionUID = 1L;
+
+			@Override
+			protected void configureColumnModel(IColumnModel<Person> model) {
+				PersonCRUD.this.configureColumnModel(model);
+			}
+			
+						
+			@Override
+			protected IQuerableDataProvider<Person> createPageableProvider(IQuery<Person> filterQuery) {
+				return PersonCRUD.this.createPageableProvider(filterQuery);
+			}
+		};
 	}
 
 }
