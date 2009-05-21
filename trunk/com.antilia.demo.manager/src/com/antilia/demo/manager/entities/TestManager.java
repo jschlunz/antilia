@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.antilia.demo.manager.test.PostgrePersistenceUnit;
 import com.antilia.hibernate.cfg.IPersistenceUnit;
-import com.antilia.hibernate.command.CommandExecuter;
+import com.antilia.hibernate.command.DefaultCommander;
 import com.antilia.hibernate.context.RequestContext;
 
 public class TestManager {
@@ -21,7 +21,7 @@ public class TestManager {
 		requestContext.setPersistenceUnit(persistenceUnit);		
 		requestContext.setUser("test");
 		
-		List<Address> addresses = CommandExecuter.loadAll(Address.class);
+		List<Address> addresses = DefaultCommander.loadAll(Address.class);
 		for(Address address: addresses) {
 			System.err.println(address.getAddress1());
 		}
