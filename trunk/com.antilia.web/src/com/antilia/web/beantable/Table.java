@@ -438,8 +438,7 @@ public class Table<E extends Serializable> extends Panel implements IPageableCom
 			Iterator<IModel<E>> it = getTable().getPageableProvider().getCurrentPage();
 			while(it.hasNext()) {
 				IModel<E> object = it.next();
-				models.add(tableModel.newModel(object.getObject()));
-				//models.add(object);
+				models.add(tableModel.newModel(object));
 			}
 		}
 
