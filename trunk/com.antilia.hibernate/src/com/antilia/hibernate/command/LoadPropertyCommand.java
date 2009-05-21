@@ -19,7 +19,6 @@ public class LoadPropertyCommand<E extends Serializable, T extends Object> exten
 	protected Serializable key;
 	protected String property;
 
-	@SuppressWarnings("unchecked")
 	public LoadPropertyCommand(Class<E> beanClass, Serializable key, String property) {
 		super(beanClass);
 		if (StringUtils.isEmpty(property))

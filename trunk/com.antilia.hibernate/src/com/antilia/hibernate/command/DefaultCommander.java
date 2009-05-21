@@ -11,7 +11,6 @@ import java.util.List;
 import org.hibernate.criterion.Criterion;
 
 import com.antilia.hibernate.query.IQuery;
-import com.antilia.hibernate.query.Query;
 
 
 /**
@@ -20,22 +19,22 @@ import com.antilia.hibernate.query.Query;
  * @author Ernesto Reinaldo Barreiro (reiern70@gmail.com)
  *
  */
-public class CommandExecuter {
+public class DefaultCommander {
 	
 	public static <T extends Serializable> Long countAll(Class<T> entityClass)  {
-		return CommandExecuter.execute(new CountCommand<T>(entityClass));
+		return DefaultCommander.execute(new CountCommand<T>(entityClass));
 	}
 	
-	public static <T extends Serializable> Long count(Query<T> query)  {
-		return CommandExecuter.execute(new CountCommand<T>(query));
+	public static <T extends Serializable> Long count(IQuery<T> query)  {
+		return DefaultCommander.execute(new CountCommand<T>(query));
 	}
 		
 	public static <T extends Serializable> Long count(Class<T> entityClass, Criterion... criteria)  {
-		return CommandExecuter.execute(new CountCommand<T>(entityClass, criteria));
+		return DefaultCommander.execute(new CountCommand<T>(entityClass, criteria));
 	}
 	
 	public static <T extends Serializable> Long countAllLike(Class<T> entityClass, T sample)  {
-		return CommandExecuter.execute(new CountCommand<T>(sample));
+		return DefaultCommander.execute(new CountCommand<T>(sample));
 	}
 	
 	/**

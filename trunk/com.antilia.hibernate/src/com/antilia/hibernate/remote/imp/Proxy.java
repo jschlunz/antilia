@@ -18,7 +18,7 @@ import net.sf.cglib.proxy.Enhancer;
 import net.sf.cglib.proxy.InvocationHandler;
 import net.sf.cglib.proxy.NoOp;
 
-import com.antilia.hibernate.command.CommandExecuter;
+import com.antilia.hibernate.command.DefaultCommander;
 /**
  * Client side proxy, it interceps methods calls statefull bean to initialize entity
  * @author Juozas
@@ -123,7 +123,7 @@ public class Proxy {
                     }
             }
             if(entity == null){
-            	CommandExecuter.findById(ref.getEntityClass(), ref.getId());
+            	DefaultCommander.findById(ref.getEntityClass(), ref.getId());
                 //entity = ClientSession.getLoader().initializeEntity(ref.getClassName(),ref.getId(),ref.getToken());
             }
             try{

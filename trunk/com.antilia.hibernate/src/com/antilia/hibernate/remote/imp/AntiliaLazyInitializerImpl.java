@@ -18,7 +18,7 @@ import org.hibernate.proxy.HibernateProxy;
 import org.hibernate.proxy.pojo.BasicLazyInitializer;
 import org.hibernate.type.AbstractComponentType;
 
-import com.antilia.hibernate.command.CommandExecuter;
+import com.antilia.hibernate.command.DefaultCommander;
 import com.antilia.hibernate.context.RequestContext;
 
 /**
@@ -83,7 +83,7 @@ public class AntiliaLazyInitializerImpl extends BasicLazyInitializer implements 
             
         	setSession((SessionImplementor)RequestContext.get().getSession());
         	
-            Object target = CommandExecuter.findById(getEntityName(), getIdentifier());
+            Object target = DefaultCommander.findById(getEntityName(), getIdentifier());
             
             if ( !method.isAccessible() ) method.setAccessible( true );
             Object returnValue;
