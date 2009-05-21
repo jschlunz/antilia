@@ -30,7 +30,7 @@ class DefaultCommandExecuter  implements ICommandExecuter, Serializable {
 	static public ICommandExecuter getInstance() {
 		if (instance == null)
 			instance = new DefaultCommandExecuter();
-		return (instance);
+		return instance;
 	}
 
 	protected DefaultCommandExecuter() {

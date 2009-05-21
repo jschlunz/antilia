@@ -36,7 +36,7 @@ public class PersistentCollectionHandler<E extends Serializable> extends Virtual
 	
 		
 		try {
-			return((PersistentCollection)CommandExecuter.execute(new LoadPropertyCommand<E, Serializable>(beanClass,key,property)));
+			return((PersistentCollection)DefaultCommander.execute(new LoadPropertyCommand<E, Serializable>(beanClass,key,property)));
 		} finally {
 			beanClass = null;
 			key = null;

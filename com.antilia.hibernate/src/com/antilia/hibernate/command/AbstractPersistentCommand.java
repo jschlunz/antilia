@@ -35,7 +35,6 @@ public abstract class AbstractPersistentCommand<E extends Serializable,R extends
 	
 	private Class<E> persistentClass;
 	
-	@SuppressWarnings("unchecked")
 	public AbstractPersistentCommand(Class<E> persistentClass) {		
 		this.persistentClass = persistentClass;
 	}
