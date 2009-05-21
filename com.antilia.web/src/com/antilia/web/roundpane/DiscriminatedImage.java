@@ -32,7 +32,7 @@ public abstract class DiscriminatedImage extends Image
 	 * @param id
 	 * @param model
 	 */
-	public DiscriminatedImage(String id, IModel model)
+	public DiscriminatedImage(String id, IModel<?> model)
 	{
 		super(id, model);
 	}
