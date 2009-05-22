@@ -36,6 +36,7 @@ public class CreatePanel<B extends Serializable> extends Panel implements ICRUDM
 	
 	private AntiliaFeedBackPanel feedback;
 	
+	
 	/**
 	 * 
 	 * @param id
