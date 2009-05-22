@@ -36,7 +36,7 @@ import com.antilia.web.navigator.IPageableNavigator;
 import com.antilia.web.navigator.impl.DataProviderPageableNavigator;
 import com.antilia.web.provider.ILoadable;
 import com.antilia.web.provider.IQuerableDataProvider;
-import com.antilia.web.provider.impl.HibernateQuerableDataProvider;
+import com.antilia.web.provider.impl.DaoQuerableDataProvider;
 
 /**
  * 
@@ -143,7 +143,7 @@ public class SearchPanel<B extends Serializable> extends Panel implements ILoada
 	 * @return
 	 */
 	protected IQuerableDataProvider<B> createPageableProvider(IQuery<B> filterQuery) {
-		return new HibernateQuerableDataProvider<B>(filterQuery, createQuerableUpdatableDao());
+		return new DaoQuerableDataProvider<B>(filterQuery, createQuerableUpdatableDao());
 	}
 	
 	/**

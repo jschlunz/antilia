@@ -59,7 +59,7 @@ public class BackToHomeCRUD<B extends Serializable> extends TitledCRUDPanel<B> {
 			}
 			
 			@Override
-			protected IQuerableDataProvider<B> createPageableProvider( IQuery<B> filterQuery) {
+			protected IQuerableDataProvider<B> createPageableProvider(IQuery<B> filterQuery) {
 				return BackToHomeCRUD.this.createPageableProvider(filterQuery);
 			}
 		};

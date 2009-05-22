@@ -21,7 +21,7 @@ import com.antilia.web.provider.IQuerableDataProvider;
  * @author Ernesto Reinaldo Barreiro (reiern70@gmail.com)
  *
  */
-public class HibernateQuerableDataProvider<E extends Serializable> implements IQuerableDataProvider<E> {
+public class DaoQuerableDataProvider<E extends Serializable> implements IQuerableDataProvider<E> {
 
 	private static final long serialVersionUID = 1L;
 	
@@ -29,21 +29,21 @@ public class HibernateQuerableDataProvider<E extends Serializable> implements IQ
 	
 	private IQuerableDao<E> querableDao;
 	
-	public HibernateQuerableDataProvider(IQuerableDao<E> querableDao) {
+	public DaoQuerableDataProvider(IQuerableDao<E> querableDao) {
 		this(null, querableDao);
 	}
 	
-	public HibernateQuerableDataProvider() {
+	public DaoQuerableDataProvider() {
 		this(null, new HibernateQuerableDao<E>());
 	}
 	
-	public HibernateQuerableDataProvider(IQuery<E> query) {
+	public DaoQuerableDataProvider(IQuery<E> query) {
 		this(query, new HibernateQuerableDao<E>());
 	}
 	/**
 	 * 
 	 */
-	public HibernateQuerableDataProvider(IQuery<E> query, IQuerableDao<E> querableDao) {
+	public DaoQuerableDataProvider(IQuery<E> query, IQuerableDao<E> querableDao) {
 		this.query = query;
 		this.querableDao = querableDao;
 	}

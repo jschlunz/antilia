@@ -24,9 +24,7 @@ public class CRUDLink<T extends Serializable> extends AbstractLink {
 	private static final long serialVersionUID = 1L;
 
 	private String label;
-	
-	private IContainer page;
-	
+		
 	private Class<T> beanClass;
 	
 	private Class<CRUDPanel<T>> crudClass;
@@ -42,7 +40,6 @@ public class CRUDLink<T extends Serializable> extends AbstractLink {
 	public CRUDLink(String label, IContainer page, Class<CRUDPanel<T>> crudClass, Class<T> beanClass) {
 		super(crudClass.getSimpleName());
 		this.label = label;
-		this.page = page;
 		this.crudClass = crudClass;		
 		this.beanClass = beanClass;
 	}
@@ -50,10 +47,9 @@ public class CRUDLink<T extends Serializable> extends AbstractLink {
 	/**
 	 * @param id
 	 */
-	public CRUDLink(String label, IContainer page, Class<T> beanClass) {
+	public CRUDLink(String label, Class<T> beanClass) {
 		super(beanClass.getSimpleName());
 		this.label = label;
-		this.page = page;
 		this.beanClass = beanClass;
 	}
 
@@ -85,10 +81,30 @@ public class CRUDLink<T extends Serializable> extends AbstractLink {
 	@Override
 	protected void onClick(AjaxRequestTarget target) {
 		if(target != null) {
-			ScopedCrudPanel<T> modalContainer = new ScopedCrudPanel<T>(IContainer.BODY_CONTENT_ID, CRUDLink.this.beanClass, CRUDLink.this.crudClass);			
-			this.page.getBody().addOrReplace(modalContainer);
-			target.addComponent(this.page.getBody());
+			ScopedCrudPanel<T> modalContainer = new ScopedCrudPanel<T>(IContainer.BODY_CONTENT_ID, CRUDLink.this.beanClass, CRUDLink.this.crudClass) {
+				private static final long serialVersionUID = 1L;
+
+				@Override
+				protected CRUDPanel<T> createCrudPanel(String id) {
+					CRUDPanel<T> crud =  CRUDLink.this.createCRUDPanel(id);
+					if(crud != null) {
+						return crud;
+					}
+					return super.createCrudPanel(id);
+				}				
+			};
+			IContainer container = findContainer();
+			container.getBody().addOrReplace(modalContainer);
+			target.addComponent(container.getBody());
 		}
+	}
+	
+	protected CRUDPanel<T> createCRUDPanel(String id) {
+		return null;
+	}
+	
+	private IContainer findContainer() {
+		return findParent(IContainer.class);
 	}
 
 }
