@@ -16,10 +16,8 @@ import com.antilia.hibernate.query.IQuery;
 public interface IQuerableDao<E extends Serializable> extends Serializable {
 	
 	/**
-	 * Returns a list of all elements;
-	 * @param first
-	 * @param count
-	 * @return
+	 * @param query The query.
+	 * @return Returns a list of all elements matching the query.
 	 */
 	List<E> findAll(IQuery<E> query);
 	
@@ -33,6 +31,12 @@ public interface IQuerableDao<E extends Serializable> extends Serializable {
 	public E findById(Class<E> beanClass, Serializable key);	
 	 
 	
+	/**
+	 * Counts the elements matching the query.
+	 * 
+	 * @param query
+	 * @return
+	 */
 	public Long count(IQuery<E> query);
 	 
 }
