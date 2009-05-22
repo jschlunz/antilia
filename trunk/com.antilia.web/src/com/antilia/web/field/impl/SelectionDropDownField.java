@@ -43,7 +43,7 @@ public class SelectionDropDownField<B extends Serializable> extends BaseFormFiel
 	protected void onBeforeRender() {
 		if(textField == null) {
 			Class<B> beansClass = (Class<B>)getFieldModel().getFieldClass();
-			textField = new EntityDownChoice("field", beansClass, getBeanProxy().getPropertyValue(getPropertyPath()).getModel());
+			textField = new EntityDropDownChoice("field", beansClass, getBeanProxy().getPropertyValue(getPropertyPath()).getModel());
 			add(textField);
 			textField.setOutputMarkupId(true);
 			textField.setLabel(getLabelModel());
