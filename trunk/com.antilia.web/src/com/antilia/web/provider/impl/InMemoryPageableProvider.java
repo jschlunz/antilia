@@ -2,7 +2,7 @@
  * This software is provided as IS by Antilia-Soft SL.
  * Copyright 2006-2007.
  */
-package com.antilia.web.beantable.provider.impl;
+package com.antilia.web.provider.impl;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -15,16 +15,16 @@ import org.apache.wicket.model.IModel;
 
 import com.antilia.hibernate.query.IQuery;
 import com.antilia.hibernate.query.Query;
-import com.antilia.web.beantable.provider.ILoadablePageableProvider;
-import com.antilia.web.beantable.provider.IPageableProvider;
-import com.antilia.web.beantable.provider.IPageableProviderNavigationListener;
+import com.antilia.web.navigator.ILoadablePageableNavigator;
+import com.antilia.web.navigator.IPageableNavigator;
+import com.antilia.web.navigator.IPageableNavigatorListener;
 
 
 /**
  * 
  * @author Ernesto Reinaldo Barreiro (reiern70@gmail.com)
  */
-public class InMemoryPageableProvider<E extends Serializable> implements ILoadablePageableProvider<E> {
+public class InMemoryPageableProvider<E extends Serializable> implements ILoadablePageableNavigator<E> {
 
 	public static final int DEFAULT_PAGE_SIZE = 10;
 	 
@@ -40,7 +40,7 @@ public class InMemoryPageableProvider<E extends Serializable> implements ILoadab
 	
 	private int pageSize = DEFAULT_PAGE_SIZE;
 		
-	private List<IPageableProviderNavigationListener>  navigationListeners = new ArrayList<IPageableProviderNavigationListener>();
+	private List<IPageableNavigatorListener>  navigationListeners = new ArrayList<IPageableNavigatorListener>();
 
 
 	
@@ -69,7 +69,7 @@ public class InMemoryPageableProvider<E extends Serializable> implements ILoadab
 		if(collection != null) {
 			this.collection = toList(collection);
 		}
-		for(IPageableProviderNavigationListener listener: navigationListeners) {
+		for(IPageableNavigatorListener listener: navigationListeners) {
 			listener.onClear();
 		}
 		this.currentIndex = 0;
@@ -219,7 +219,7 @@ public class InMemoryPageableProvider<E extends Serializable> implements ILoadab
 	public Iterator<IModel<E>> nextPage() {		
 		if(hasNextPage()) {
 			currentPage++;	
-			for(IPageableProviderNavigationListener listener: navigationListeners) {
+			for(IPageableNavigatorListener listener: navigationListeners) {
 				listener.onNextPage();
 			}
 		}
@@ -232,7 +232,7 @@ public class InMemoryPageableProvider<E extends Serializable> implements ILoadab
 	public Iterator<IModel<E>> previousPage() {
 		if(hasPreviousPage()) {
 			currentPage--;
-			for(IPageableProviderNavigationListener listener: navigationListeners) {
+			for(IPageableNavigatorListener listener: navigationListeners) {
 				listener.onPreviousPage();
 			}
 		}
@@ -309,7 +309,7 @@ public class InMemoryPageableProvider<E extends Serializable> implements ILoadab
 	public Iterator<IModel<E>> firstPage() {
 		if(!isEmpty()) {
 			currentPage = 0;
-			for(IPageableProviderNavigationListener listener: navigationListeners) {
+			for(IPageableNavigatorListener listener: navigationListeners) {
 				listener.onFirstPage();
 			}
 			return getCurrentPage();
@@ -320,7 +320,7 @@ public class InMemoryPageableProvider<E extends Serializable> implements ILoadab
 	public Iterator<IModel<E>> lastPage() {
 		if(!isEmpty()) {
 			currentPage = getNumberOfPages()-1;
-			for(IPageableProviderNavigationListener listener: navigationListeners) {
+			for(IPageableNavigatorListener listener: navigationListeners) {
 				listener.onLastPage();
 			}
 			return getCurrentPage();
@@ -365,16 +365,16 @@ public class InMemoryPageableProvider<E extends Serializable> implements ILoadab
 		
 	}
 
-	public void addNavigationListener(IPageableProviderNavigationListener listener) {
+	public void addNavigationListener(IPageableNavigatorListener listener) {
 		navigationListeners.add(listener);
 	}
 
-	public Iterator<IPageableProviderNavigationListener> getNavigationListeners() {
+	public Iterator<IPageableNavigatorListener> getNavigationListeners() {
 		return navigationListeners.iterator();
 	}
 
 	public void removeNavigationListener(
-			IPageableProviderNavigationListener listener) {
+			IPageableNavigatorListener listener) {
 		navigationListeners.remove(listener);
 	}
 
@@ -399,7 +399,7 @@ public class InMemoryPageableProvider<E extends Serializable> implements ILoadab
 		return currentIndex;
 	}
 	
-	public IPageableProvider<E> duplicate() {
+	public IPageableNavigator<E> duplicate() {
 		ArrayList<E> newColection = new ArrayList<E>(this.collection);
 		return new InMemoryPageableProvider<E>(newColection, this.query.getEntityClass());
 	}

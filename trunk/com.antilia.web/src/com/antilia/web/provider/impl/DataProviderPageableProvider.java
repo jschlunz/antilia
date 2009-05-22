@@ -2,7 +2,7 @@
  * This software is provided as IS by Antilia-Soft SL.
  * Copyright 2006-2007.
  */
-package com.antilia.web.beantable.provider.impl;
+package com.antilia.web.provider.impl;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -15,11 +15,11 @@ import org.apache.wicket.model.IModel;
 
 import com.antilia.hibernate.query.IQuery;
 import com.antilia.hibernate.query.Query;
-import com.antilia.web.beantable.provider.ILoadablePageableProvider;
-import com.antilia.web.beantable.provider.IPageableProvider;
-import com.antilia.web.beantable.provider.IPageableProviderNavigationListener;
-import com.antilia.web.beantable.provider.IQuerable;
-import com.antilia.web.beantable.provider.IUpdatable;
+import com.antilia.web.navigator.ILoadablePageableNavigator;
+import com.antilia.web.navigator.IPageableNavigator;
+import com.antilia.web.navigator.IPageableNavigatorListener;
+import com.antilia.web.provider.IQuerable;
+import com.antilia.web.provider.IUpdatable;
 
 
 /**
@@ -28,7 +28,7 @@ import com.antilia.web.beantable.provider.IUpdatable;
  * 
  * @author Ernesto Reinaldo Barreiro (reiern70@gmail.com)
  */
-public class DataProviderPageableProvider<E extends Serializable> implements ILoadablePageableProvider<E> {
+public class DataProviderPageableProvider<E extends Serializable> implements ILoadablePageableNavigator<E> {
 
 	public static final int DEFAULT_PAGE_SIZE = 10;
 	
@@ -53,7 +53,7 @@ public class DataProviderPageableProvider<E extends Serializable> implements ILo
 	
 	private int totalSize = UNDEFINED_SIZE;
 		
-	private List<IPageableProviderNavigationListener>  navigationListeners = new ArrayList<IPageableProviderNavigationListener>();
+	private List<IPageableNavigatorListener>  navigationListeners = new ArrayList<IPageableNavigatorListener>();
 	
 	private List<IModel<E>> cachedEntities;
 	
@@ -82,7 +82,7 @@ public class DataProviderPageableProvider<E extends Serializable> implements ILo
 		this.currentIndex = 0;
 		this.currentPage = 0;
 		this.totalSize = UNDEFINED_SIZE;
-		for(IPageableProviderNavigationListener listener: navigationListeners) {
+		for(IPageableNavigatorListener listener: navigationListeners) {
 			listener.onClear();
 		}
 		clearCached();
@@ -101,7 +101,7 @@ public class DataProviderPageableProvider<E extends Serializable> implements ILo
 		this.currentIndex = 0;
 		this.currentPage = 0;
 		this.totalSize = UNDEFINED_SIZE;
-		for(IPageableProviderNavigationListener listener: navigationListeners) {
+		for(IPageableNavigatorListener listener: navigationListeners) {
 			listener.onClear();
 		}
 		clearCached();
@@ -242,7 +242,7 @@ public class DataProviderPageableProvider<E extends Serializable> implements ILo
 		if(hasNextPage()) {
 			clearCached();
 			currentPage++;	
-			for(IPageableProviderNavigationListener listener: navigationListeners) {
+			for(IPageableNavigatorListener listener: navigationListeners) {
 				listener.onNextPage();
 			}
 		}
@@ -256,7 +256,7 @@ public class DataProviderPageableProvider<E extends Serializable> implements ILo
 		if(hasPreviousPage()) {
 			clearCached();
 			currentPage--;			
-			for(IPageableProviderNavigationListener listener: navigationListeners) {
+			for(IPageableNavigatorListener listener: navigationListeners) {
 				listener.onPreviousPage();
 			}
 		}
@@ -338,7 +338,7 @@ public class DataProviderPageableProvider<E extends Serializable> implements ILo
 		if(!isEmpty()) {
 			clearCached();
 			currentPage = 0;
-			for(IPageableProviderNavigationListener listener: navigationListeners) {
+			for(IPageableNavigatorListener listener: navigationListeners) {
 				listener.onFirstPage();
 			}
 			return getCurrentPage();
@@ -350,7 +350,7 @@ public class DataProviderPageableProvider<E extends Serializable> implements ILo
 		if(!isEmpty()) {
 			clearCached();
 			currentPage = getNumberOfPages()-1;
-			for(IPageableProviderNavigationListener listener: navigationListeners) {
+			for(IPageableNavigatorListener listener: navigationListeners) {
 				listener.onLastPage();
 			}
 			return getCurrentPage();
@@ -404,16 +404,16 @@ public class DataProviderPageableProvider<E extends Serializable> implements ILo
 		}
 	}
 
-	public void addNavigationListener(IPageableProviderNavigationListener listener) {
+	public void addNavigationListener(IPageableNavigatorListener listener) {
 		navigationListeners.add(listener);
 	}
 
-	public Iterator<IPageableProviderNavigationListener> getNavigationListeners() {
+	public Iterator<IPageableNavigatorListener> getNavigationListeners() {
 		return navigationListeners.iterator();
 	}
 
 	public void removeNavigationListener(
-			IPageableProviderNavigationListener listener) {
+			IPageableNavigatorListener listener) {
 		navigationListeners.remove(listener);
 	}
 
@@ -442,7 +442,7 @@ public class DataProviderPageableProvider<E extends Serializable> implements ILo
 	}
 
 
-	public IPageableProvider<E> duplicate() {
+	public IPageableNavigator<E> duplicate() {
 		return new DataProviderPageableProvider<E>(this.dataProvider, this.query, true);
 	}
 	
