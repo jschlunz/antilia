@@ -2,7 +2,7 @@
  * This software is provided as IS by Antilia-Soft SL.
  * Copyright 2006-2007.
  */
-package com.antilia.web.beantable.provider.impl;
+package com.antilia.web.provider.impl;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -12,20 +12,20 @@ import java.util.List;
 
 import org.apache.wicket.model.IModel;
 
-import com.antilia.web.beantable.provider.IPageableProvider;
-import com.antilia.web.beantable.provider.IPageableProviderNavigationListener;
-import com.antilia.web.beantable.provider.IProviderSelector;
-import com.antilia.web.beantable.provider.SelectionMode;
+import com.antilia.web.navigator.INavigatorSelector;
+import com.antilia.web.navigator.IPageableNavigator;
+import com.antilia.web.navigator.IPageableNavigatorListener;
+import com.antilia.web.provider.SelectionMode;
 
 /**
  * @author Ernesto Reinaldo Barreiro (reiern70@gmail.com)
  *
  */
-public class SourceSelector<E extends Serializable> implements IProviderSelector<E>, IPageableProviderNavigationListener {
+public class SourceSelector<E extends Serializable> implements INavigatorSelector<E>, IPageableNavigatorListener {
 
 	private static final long serialVersionUID = 1L;
 
-	private IPageableProvider<E> pageableSource;
+	private IPageableNavigator<E> pageableSource;
 	
 	private boolean pageSelected = false;
 	
@@ -35,11 +35,11 @@ public class SourceSelector<E extends Serializable> implements IProviderSelector
 	
 	private List<E> selected;
 	
-	public SourceSelector(IPageableProvider<E> pageableSource) {
+	public SourceSelector(IPageableNavigator<E> pageableSource) {
 		this(pageableSource, SelectionMode.MULTIPLE);
 	}
 	
-	public SourceSelector(IPageableProvider<E> pageableSource, SelectionMode selectionMode) {
+	public SourceSelector(IPageableNavigator<E> pageableSource, SelectionMode selectionMode) {
 		this.pageableSource = pageableSource;
 		this.pageableSource.addNavigationListener(this);
 		this.selectionMode = selectionMode;
@@ -235,11 +235,11 @@ public class SourceSelector<E extends Serializable> implements IProviderSelector
 
 	}
 
-	public IPageableProvider<E> getPageableSource() {
+	public IPageableNavigator<E> getPageableSource() {
 		return pageableSource;
 	}
 
-	public void setPageableSource(IPageableProvider<E> pageableSource) {
+	public void setPageableSource(IPageableNavigator<E> pageableSource) {
 		this.pageableSource = pageableSource;
 	}
 
