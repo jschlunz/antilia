@@ -9,8 +9,10 @@ import org.apache.wicket.Component;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.ResourceModel;
 
+import com.antilia.web.crud.CRUDPanel;
 import com.antilia.web.dialog.DialogStyle;
 import com.antilia.web.dialog.IDialogLink;
+import com.antilia.web.layout.ScopedCrudPanel;
 
 /**
  * @author Ernesto Reinaldo Barreiro (reirn70@gmail.com)
@@ -53,7 +55,17 @@ public class WorkSpaceCrudDialog<T extends Serializable> extends WorkSpaceDialog
 	 */
 	@Override
 	protected Component createBody(String id) {
-		return new CrudDialogPanel<T>(id, beanClass);
+		//return new CrudDialogPanel<T>(id, beanClass);
+		ScopedCrudPanel<T> scopedCrudPanel = new ScopedCrudPanel<T>(id, beanClass) {
+			
+			private static final long serialVersionUID = 1L;
+
+			@Override
+			protected CRUDPanel<T> createCrudPanel(String id) {
+				return new CRUDPanel<T>(id, beanClass);
+			}
+		};
+		return scopedCrudPanel;
 	}
 	
 	@Override
