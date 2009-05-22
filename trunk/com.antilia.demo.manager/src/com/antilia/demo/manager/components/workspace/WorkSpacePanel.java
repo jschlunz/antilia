@@ -57,7 +57,7 @@ public class WorkSpacePanel extends BackToHomeTopMenuPanel<Serializable> {
 
 			@Override
 			protected void configureDialog(DefaultDialog defaultDialog) {
-				defaultDialog.getDialogStyle().setBackgroundColor("#3e4d52");
+				defaultDialog.getDialogStyle().setBackgroundColor("#AEB99E");
 				defaultDialog.getDialogStyle().setTitleStyle("color: #ffffff;");
 			}
 		});
