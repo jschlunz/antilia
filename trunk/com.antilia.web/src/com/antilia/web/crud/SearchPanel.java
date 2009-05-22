@@ -20,12 +20,6 @@ import com.antilia.web.beantable.Table;
 import com.antilia.web.beantable.model.IColumnModel;
 import com.antilia.web.beantable.model.ITableModel;
 import com.antilia.web.beantable.model.TableModel;
-import com.antilia.web.beantable.provider.ILoadable;
-import com.antilia.web.beantable.provider.IPageableProvider;
-import com.antilia.web.beantable.provider.IProviderSelector;
-import com.antilia.web.beantable.provider.IQuerableDataProvider;
-import com.antilia.web.beantable.provider.impl.DataProviderPageableProvider;
-import com.antilia.web.beantable.provider.impl.HibernateQuerableDataProvider;
 import com.antilia.web.button.IMenuItemHolder;
 import com.antilia.web.button.IMenuItemsFactory;
 import com.antilia.web.feedback.AntiliaFeedBackPanel;
@@ -37,6 +31,12 @@ import com.antilia.web.field.IAutoFieldCreator;
 import com.antilia.web.field.IFieldModel;
 import com.antilia.web.field.factory.FieldMode;
 import com.antilia.web.menu.Menu;
+import com.antilia.web.navigator.INavigatorSelector;
+import com.antilia.web.navigator.IPageableNavigator;
+import com.antilia.web.navigator.impl.DataProviderPageableNavigator;
+import com.antilia.web.provider.ILoadable;
+import com.antilia.web.provider.IQuerableDataProvider;
+import com.antilia.web.provider.impl.HibernateQuerableDataProvider;
 
 /**
  * 
@@ -50,7 +50,7 @@ public class SearchPanel<B extends Serializable> extends Panel implements ILoada
 	
 	private BeanProxy<B> beanProxy;
 	
-	private IPageableProvider<B> pageableProvider;
+	private IPageableNavigator<B> pageableProvider;
 	
 	private Table<B> table;
 	
@@ -60,6 +60,11 @@ public class SearchPanel<B extends Serializable> extends Panel implements ILoada
 	
 	private AntiliaFeedBackPanel feedback;
 
+	/**
+	 * 
+	 * @param id
+	 * @param styler
+	 */
 	public SearchPanel(String id, CrudStyler<B> styler) {
 		this(id,  null, null, styler);
 	}
@@ -70,7 +75,7 @@ public class SearchPanel<B extends Serializable> extends Panel implements ILoada
 	 * @param beanClass
 	 * @param filterQuery
 	 */
-	public SearchPanel(String id,  Query<B> filterQuery, IPageableProvider<B> pageableProvider, CrudStyler<B> styler) {
+	public SearchPanel(String id,  Query<B> filterQuery, IPageableNavigator<B> pageableProvider, CrudStyler<B> styler) {
 		super(id);
 		
 		setOutputMarkupId(true);
@@ -87,7 +92,7 @@ public class SearchPanel<B extends Serializable> extends Panel implements ILoada
 		if(pageableProvider != null) 
 			this.pageableProvider =  pageableProvider;
 		else {
-			this.pageableProvider = new DataProviderPageableProvider<B>(createPageableProvider(this.filterQuery), this.filterQuery);
+			this.pageableProvider = new DataProviderPageableNavigator<B>(createPageableProvider(this.filterQuery), this.filterQuery);
 		}
 		
 		this.styler = styler;
@@ -190,7 +195,7 @@ public class SearchPanel<B extends Serializable> extends Panel implements ILoada
 		
 	}
 	
-	 public IProviderSelector<B> getSelected() {
+	 public INavigatorSelector<B> getSelected() {
 		 return table.getSourceSelector();
 	 }
 	
@@ -215,7 +220,7 @@ public class SearchPanel<B extends Serializable> extends Panel implements ILoada
 		return new BeanForm<B>(id, beanProxy);
 	}
 	
-	protected Table<B> newTable(String id, ITableModel<B> tableModel, IPageableProvider<B> pageableProvider) {
+	protected Table<B> newTable(String id, ITableModel<B> tableModel, IPageableNavigator<B> pageableProvider) {
 		return new Table<B>(id,tableModel, pageableProvider);
 	}
 	
@@ -268,7 +273,7 @@ public class SearchPanel<B extends Serializable> extends Panel implements ILoada
 	/**
 	 * @return the pageableProvider
 	 */
-	public IPageableProvider<B> getPageableProvider() {
+	public IPageableNavigator<B> getPageableProvider() {
 		return pageableProvider;
 	}
 	

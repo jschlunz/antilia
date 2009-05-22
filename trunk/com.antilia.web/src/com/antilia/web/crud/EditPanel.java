@@ -13,8 +13,6 @@ import org.apache.commons.beanutils.BeanUtils;
 import org.apache.wicket.markup.html.panel.Panel;
 
 import com.antilia.hibernate.query.IQuery;
-import com.antilia.web.beantable.provider.IProviderSelector;
-import com.antilia.web.beantable.provider.impl.InMemoryPageableProvider;
 import com.antilia.web.feedback.AntiliaFeedBackPanel;
 import com.antilia.web.field.AutoFieldCreator;
 import com.antilia.web.field.AutoFieldPanel;
@@ -24,6 +22,8 @@ import com.antilia.web.field.IAutoFieldCreator;
 import com.antilia.web.field.IFieldModel;
 import com.antilia.web.field.factory.FieldMode;
 import com.antilia.web.menu.Menu;
+import com.antilia.web.navigator.INavigatorSelector;
+import com.antilia.web.navigator.impl.InMemoryPageableNavigator;
 
 /**
  * 
@@ -38,7 +38,7 @@ public class EditPanel<B extends Serializable> extends Panel implements ICRUDMod
 	private BeanProxy<B> beanProxy;
 	
 
-	private InMemoryPageableProvider<B> pageableProvider;
+	private InMemoryPageableNavigator<B> pageableProvider;
 	
 	private CrudStyler<B> styler;
 	
@@ -66,7 +66,7 @@ public class EditPanel<B extends Serializable> extends Panel implements ICRUDMod
 	protected void onBeforeRender() {		
 		if(pageableProvider == null) {
 			ArrayList< B> beans = new ArrayList<B>();
-			IProviderSelector<B> selector = getCRUDPanel().getSelected();		
+			INavigatorSelector<B> selector = getCRUDPanel().getSelected();		
 			Iterator<B> it = selector.getSelected().iterator();
 			while(it.hasNext() ) {
 				B bean = it.next();
@@ -76,7 +76,7 @@ public class EditPanel<B extends Serializable> extends Panel implements ICRUDMod
 					beans.add(bean);
 				}
 			}
-			pageableProvider = new InMemoryPageableProvider<B>(beans, beanClass);
+			pageableProvider = new InMemoryPageableNavigator<B>(beans, beanClass);
 		}				
 		
 		this.beanProxy = new BeanProxy<B>(pageableProvider.current());
@@ -160,7 +160,7 @@ public class EditPanel<B extends Serializable> extends Panel implements ICRUDMod
 	/**
 	 * @return the pageableProvider
 	 */
-	public InMemoryPageableProvider<B> getPageableProvider() {
+	public InMemoryPageableNavigator<B> getPageableProvider() {
 		return pageableProvider;
 	}
 

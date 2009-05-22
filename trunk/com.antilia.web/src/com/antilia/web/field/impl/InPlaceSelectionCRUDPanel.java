@@ -14,8 +14,6 @@ import com.antilia.hibernate.query.IQuery;
 import com.antilia.web.beantable.Table;
 import com.antilia.web.beantable.model.IColumnModel;
 import com.antilia.web.beantable.model.ITableModel;
-import com.antilia.web.beantable.provider.IPageableProvider;
-import com.antilia.web.beantable.provider.IQuerableDataProvider;
 import com.antilia.web.button.IMenuItemHolder;
 import com.antilia.web.button.IMenuItemsFactory;
 import com.antilia.web.crud.CRUDPanel;
@@ -26,6 +24,8 @@ import com.antilia.web.crud.SearchPanelButtonsFactory;
 import com.antilia.web.field.BeanProxy;
 import com.antilia.web.field.IFieldModel;
 import com.antilia.web.menu.Menu;
+import com.antilia.web.navigator.IPageableNavigator;
+import com.antilia.web.provider.IQuerableDataProvider;
 
 /**
  * 
@@ -109,7 +109,7 @@ public class InPlaceSelectionCRUDPanel<B extends Serializable> extends Selection
 			
 			@Override
 			protected Table<B> newTable(String id, ITableModel<B> tableModel,
-					IPageableProvider<B> pageableProvider) {
+					IPageableNavigator<B> pageableProvider) {
 				
 				return  new Table<B>(id,tableModel, pageableProvider) {
 

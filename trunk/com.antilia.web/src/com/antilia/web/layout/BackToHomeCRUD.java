@@ -8,11 +8,11 @@ import java.io.Serializable;
 
 import com.antilia.hibernate.query.IQuery;
 import com.antilia.web.beantable.model.IColumnModel;
-import com.antilia.web.beantable.provider.IQuerableDataProvider;
 import com.antilia.web.button.IMenuItemHolder;
 import com.antilia.web.crud.CrudStyler;
 import com.antilia.web.crud.SearchPanel;
 import com.antilia.web.crud.TitledCRUDPanel;
+import com.antilia.web.provider.IQuerableDataProvider;
 
 /**
  * 
