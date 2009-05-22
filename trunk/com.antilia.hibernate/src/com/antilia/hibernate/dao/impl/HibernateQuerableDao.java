@@ -1,12 +1,13 @@
 /**
  * 
  */
-package com.antilia.hibernate.dao;
+package com.antilia.hibernate.dao.impl;
 
 import java.io.Serializable;
 import java.util.List;
 
 import com.antilia.hibernate.command.DefaultCommander;
+import com.antilia.hibernate.dao.IQuerableDao;
 import com.antilia.hibernate.query.IQuery;
 
 /**
