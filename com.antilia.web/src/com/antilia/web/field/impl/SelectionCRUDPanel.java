@@ -10,12 +10,12 @@ import com.antilia.hibernate.query.IQuery;
 import com.antilia.web.beantable.Table;
 import com.antilia.web.beantable.model.IColumnModel;
 import com.antilia.web.beantable.model.ITableModel;
-import com.antilia.web.beantable.provider.IPageableProvider;
-import com.antilia.web.beantable.provider.IQuerableDataProvider;
 import com.antilia.web.button.IMenuItemHolder;
 import com.antilia.web.crud.CRUDPanel;
 import com.antilia.web.crud.CrudStyler;
 import com.antilia.web.crud.SearchPanel;
+import com.antilia.web.navigator.IPageableNavigator;
+import com.antilia.web.provider.IQuerableDataProvider;
 
 /**
  * 
@@ -61,7 +61,7 @@ public abstract class SelectionCRUDPanel<B extends Serializable> extends CRUDPan
 			
 			@Override
 			protected Table<B> newTable(String id, ITableModel<B> tableModel,
-					IPageableProvider<B> pageableProvider) {
+					IPageableNavigator<B> pageableProvider) {
 				
 				return  new Table<B>(id,tableModel, pageableProvider) {
 

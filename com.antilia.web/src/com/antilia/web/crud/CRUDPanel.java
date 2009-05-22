@@ -14,10 +14,10 @@ import com.antilia.hibernate.dao.HibernateQuerableUpdatableDao;
 import com.antilia.hibernate.dao.IQuerableUpdatableDao;
 import com.antilia.hibernate.query.IQuery;
 import com.antilia.web.beantable.model.IColumnModel;
-import com.antilia.web.beantable.provider.IProviderSelector;
-import com.antilia.web.beantable.provider.IQuerableDataProvider;
-import com.antilia.web.beantable.provider.IQuerableUpdatebleDataProvider;
-import com.antilia.web.beantable.provider.impl.HibernateQuerableUpdatebleDataProvider;
+import com.antilia.web.navigator.INavigatorSelector;
+import com.antilia.web.provider.IQuerableDataProvider;
+import com.antilia.web.provider.IQuerableUpdatebleDataProvider;
+import com.antilia.web.provider.impl.HibernateQuerableUpdatebleDataProvider;
 
 /**
  * Panel that automates the creation of CRUD pages.
@@ -107,7 +107,7 @@ public class CRUDPanel<B extends Serializable> extends Panel implements ICRUDMod
 		super.onBeforeRender();
 	}
 	
-	 public IProviderSelector<B> getSelected() {
+	 public INavigatorSelector<B> getSelected() {
 		 return getSearchPanel().getSelected();
 	 }
 	
