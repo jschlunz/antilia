@@ -10,7 +10,7 @@ import com.antilia.demo.manager.components.beans.Person;
 import com.antilia.web.beantable.Table;
 import com.antilia.web.beantable.model.IColumnModel;
 import com.antilia.web.beantable.model.TableModel;
-import com.antilia.web.beantable.provider.SelectionMode;
+import com.antilia.web.provider.SelectionMode;
 
 /**
  * @author Ernesto Reinaldo Barreiro (reiern70@gmail.com)
