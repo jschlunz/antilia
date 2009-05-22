@@ -10,14 +10,16 @@ import org.apache.wicket.Component;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.panel.Panel;
 
-import com.antilia.hibernate.dao.HibernateQuerableUpdatableDao;
+import com.antilia.hibernate.dao.IDaoLocator;
 import com.antilia.hibernate.dao.IQuerableUpdatableDao;
+import com.antilia.hibernate.dao.impl.DefaultDaoLocator;
 import com.antilia.hibernate.query.IQuery;
 import com.antilia.web.beantable.model.IColumnModel;
 import com.antilia.web.navigator.INavigatorSelector;
 import com.antilia.web.provider.IQuerableDataProvider;
 import com.antilia.web.provider.IQuerableUpdatebleDataProvider;
 import com.antilia.web.provider.impl.DaoQuerableUpdatebleDataProvider;
+import com.google.inject.Inject;
 
 /**
  * Panel that automates the creation of CRUD pages.
@@ -45,6 +47,11 @@ public class CRUDPanel<B extends Serializable> extends Panel implements ICRUDMod
 	public static final String AFTER_BODY_ID = "afterBody";
 	
 	public static final String BODY_ID = "body";
+	
+	public static final String EXTRA_ID_CRUD = "CRUDPanel";
+	
+	@Inject(optional=true)
+	private transient IDaoLocator daoLocator;
 	
 	/**
 	 * Constructs a default CRUD panel.
@@ -169,16 +176,27 @@ public class CRUDPanel<B extends Serializable> extends Panel implements ICRUDMod
 	 * @return
 	 */
 	protected IQuerableUpdatebleDataProvider<B> createPageableProvider(IQuery<B> filterQuery) {
-		return new DaoQuerableUpdatebleDataProvider<B>(filterQuery, createQuerableUpdatableDao());
+		return new DaoQuerableUpdatebleDataProvider<B>(filterQuery, createQuerableUpdatableDao(filterQuery));
 	}
 	
 	/**
 	 * 
 	 * @return
 	 */
-	protected IQuerableUpdatableDao<B> createQuerableUpdatableDao() {
-		return new HibernateQuerableUpdatableDao<B>();
+	protected IQuerableUpdatableDao<B> createQuerableUpdatableDao(IQuery<B> filterQuery) {
+		try {
+			return daoLocator.locateQuerableUpdatableDao(filterQuery.getEntityClass(), getExtraId());
+		}catch (Exception e) {
+			// do nothing
+		}
+		daoLocator = DefaultDaoLocator.getInstance();
+		return daoLocator.locateQuerableUpdatableDao(filterQuery.getEntityClass(), getExtraId());
 	}
+	
+	protected String getExtraId() {
+		return EXTRA_ID_CRUD;
+	}
+	
 	
 	/**
 	 * This method is called for each column model to give the user a chance to configure the 

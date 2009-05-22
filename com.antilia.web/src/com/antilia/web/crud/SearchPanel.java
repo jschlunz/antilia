@@ -12,8 +12,9 @@ import java.util.Map;
 
 import org.apache.wicket.markup.html.panel.Panel;
 
-import com.antilia.hibernate.dao.HibernateQuerableDao;
+import com.antilia.hibernate.dao.IDaoLocator;
 import com.antilia.hibernate.dao.IQuerableDao;
+import com.antilia.hibernate.dao.impl.DefaultDaoLocator;
 import com.antilia.hibernate.query.IQuery;
 import com.antilia.hibernate.query.Query;
 import com.antilia.web.beantable.Table;
@@ -37,6 +38,7 @@ import com.antilia.web.navigator.impl.DataProviderPageableNavigator;
 import com.antilia.web.provider.ILoadable;
 import com.antilia.web.provider.IQuerableDataProvider;
 import com.antilia.web.provider.impl.DaoQuerableDataProvider;
+import com.google.inject.Inject;
 
 /**
  * 
@@ -59,6 +61,11 @@ public class SearchPanel<B extends Serializable> extends Panel implements ILoada
 	private Map<String,IFieldModel<B>> models;
 	
 	private AntiliaFeedBackPanel feedback;
+	
+	@Inject(optional=true)
+	private transient IDaoLocator daoLocator;
+	
+	public static final String EXTRA_ID_SEARCH = "SearchPanel";
 
 	/**
 	 * 
@@ -143,15 +150,25 @@ public class SearchPanel<B extends Serializable> extends Panel implements ILoada
 	 * @return
 	 */
 	protected IQuerableDataProvider<B> createPageableProvider(IQuery<B> filterQuery) {
-		return new DaoQuerableDataProvider<B>(filterQuery, createQuerableUpdatableDao());
+		return new DaoQuerableDataProvider<B>(filterQuery, createQuerableDao(filterQuery));
 	}
 	
 	/**
 	 * 
 	 * @return
 	 */
-	protected IQuerableDao<B> createQuerableUpdatableDao() {
-		return new HibernateQuerableDao<B>();
+	protected IQuerableDao<B> createQuerableDao(IQuery<B> filterQuery) {
+		try {
+			return daoLocator.locateQuerableDao(filterQuery.getEntityClass(), getExtraId());
+		}catch (Exception e) {
+			// do nothing
+		}		
+		daoLocator = DefaultDaoLocator.getInstance();
+		return daoLocator.locateQuerableDao(filterQuery.getEntityClass(), getExtraId());
+	}
+	
+	protected String getExtraId() {
+		return EXTRA_ID_SEARCH;
 	}
 	
 	protected Menu newTopMenuMenu(String id) {
