@@ -16,7 +16,7 @@ import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 
 import com.antilia.common.util.AnnotationUtils;
-import com.antilia.web.beantable.provider.SelectionMode;
+import com.antilia.web.provider.SelectionMode;
 
 /**
  * 
