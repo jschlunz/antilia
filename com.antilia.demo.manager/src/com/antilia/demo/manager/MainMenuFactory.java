@@ -61,9 +61,9 @@ public class MainMenuFactory implements IToolbarItemsFactory {
 				}
 			};
 			
-			subToolbar2.addItem(new CRUDLink<City>("Cities", this.page, City.class));
-			subToolbar2.addItem(new CRUDLink<Country>("Countries", this.page, Country.class));
-			subToolbar2.addItem(new CRUDLink<Address>("Addresses", this.page, Address.class));
+			subToolbar2.addItem(new CRUDLink<City>("Cities",  City.class));
+			subToolbar2.addItem(new CRUDLink<Country>("Countries", Country.class));
+			subToolbar2.addItem(new CRUDLink<Address>("Addresses", Address.class));
 			
 			
 			subToolbar.addItem(subToolbar2);
@@ -76,7 +76,7 @@ public class MainMenuFactory implements IToolbarItemsFactory {
 					return "Other";
 				}
 			};			
-			subToolbar2.addItem(new CRUDLink<Employee>("Employees", this.page, Employee.class));
+			subToolbar2.addItem(new CRUDLink<Employee>("Employees", Employee.class));
 			subToolbar.addItem(subToolbar2);
 			
 			subToolbar = new SubToolbar("Components", toolbar) {
