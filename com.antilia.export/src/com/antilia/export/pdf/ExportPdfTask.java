@@ -12,8 +12,8 @@ import com.antilia.common.util.ReflectionUtils;
 import com.antilia.hibernate.context.IProgressReporter;
 import com.antilia.web.beantable.model.IColumnModel;
 import com.antilia.web.beantable.model.ITableModel;
-import com.antilia.web.beantable.provider.IPageableProvider;
 import com.antilia.web.export.AbstractExportTask;
+import com.antilia.web.navigator.IPageableNavigator;
 import com.lowagie.text.Document;
 import com.lowagie.text.pdf.PdfPTable;
 import com.lowagie.text.pdf.PdfWriter;
@@ -27,12 +27,12 @@ import com.lowagie.text.pdf.PdfWriter;
 public class ExportPdfTask<E extends Serializable> extends AbstractExportTask {
 
 	
-	private IPageableProvider<E> pageableProvider;
+	private IPageableNavigator<E> pageableProvider;
 		
 	private ITableModel<E> tableModel;
 	
 	
-	public ExportPdfTask(IPageableProvider<E> pageableProvider, ITableModel<E> tableModel) {
+	public ExportPdfTask(IPageableNavigator<E> pageableProvider, ITableModel<E> tableModel) {
 		super();
 		this.pageableProvider = pageableProvider.duplicate();
 		this.tableModel = tableModel;
