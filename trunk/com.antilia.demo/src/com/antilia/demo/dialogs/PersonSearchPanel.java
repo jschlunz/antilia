@@ -7,12 +7,12 @@ package com.antilia.demo.dialogs;
 import com.antilia.demo.beans.Person;
 import com.antilia.web.beantable.Table;
 import com.antilia.web.beantable.model.ITableModel;
-import com.antilia.web.beantable.provider.IPageableProvider;
-import com.antilia.web.beantable.provider.impl.InMemoryPageableProvider;
 import com.antilia.web.button.MenuItemsFactory;
 import com.antilia.web.crud.CrudStyler;
 import com.antilia.web.crud.SearchPanel;
 import com.antilia.web.dialog.DialogButton;
+import com.antilia.web.navigator.IPageableNavigator;
+import com.antilia.web.navigator.impl.InMemoryPageableNavigator;
 
 /**
  * 
@@ -26,11 +26,11 @@ public class PersonSearchPanel extends SearchPanel<Person> {
 	 * @param id
 	 */
 	public PersonSearchPanel(String id, CrudStyler<Person> styler) {
-		super(id, null, new InMemoryPageableProvider<Person>(DialogsPanel.createPersons(), Person.class), styler);
+		super(id, null, new InMemoryPageableNavigator<Person>(DialogsPanel.createPersons(), Person.class), styler);
 	}
 	
 	 @Override
-	protected Table<Person> newTable(String id, ITableModel<Person> tableModel, IPageableProvider<Person> pageableProvider) {
+	protected Table<Person> newTable(String id, ITableModel<Person> tableModel, IPageableNavigator<Person> pageableProvider) {
 		 return new Table<Person>(id,tableModel, pageableProvider) {
 				private static final long serialVersionUID = 1L;
 
