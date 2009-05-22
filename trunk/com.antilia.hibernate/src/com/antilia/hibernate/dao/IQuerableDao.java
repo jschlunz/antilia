@@ -25,6 +25,13 @@ public interface IQuerableDao<E extends Serializable> extends Serializable {
 	/**
 	 * 
 	 * @param beanClass
+	 * @return
+	 */
+	List<E> findAll(Class<E> beanClass);
+	
+	/**
+	 * 
+	 * @param beanClass
 	 * @param id
 	 * @return
 	 */

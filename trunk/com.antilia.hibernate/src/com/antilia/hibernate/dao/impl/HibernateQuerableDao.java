@@ -26,6 +26,10 @@ public class HibernateQuerableDao<E extends Serializable> implements IQuerableDa
 		return DefaultCommander.loadList(query);
 	}
 	
+	public List<E> findAll(Class<E> beanClass) {
+		return DefaultCommander.loadList(beanClass);
+	}
+	
 	public Long count(IQuery<E> query) {
 		return DefaultCommander.count(query);
 	}
@@ -33,4 +37,6 @@ public class HibernateQuerableDao<E extends Serializable> implements IQuerableDa
 	public E findById(Class<E> beanClass, Serializable key) {
 		return DefaultCommander.findById(beanClass, key);
 	}
+	
+	
 }
