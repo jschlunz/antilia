@@ -13,6 +13,7 @@ import java.util.List;
 import org.apache.wicket.markup.repeater.data.IDataProvider;
 import org.apache.wicket.model.IModel;
 
+import com.antilia.hibernate.dao.IQuerableUpdatableDao;
 import com.antilia.hibernate.query.IQuery;
 import com.antilia.hibernate.query.Query;
 import com.antilia.web.navigator.ILoadablePageableNavigator;
@@ -20,6 +21,7 @@ import com.antilia.web.navigator.IPageableNavigator;
 import com.antilia.web.navigator.IPageableNavigatorListener;
 import com.antilia.web.provider.IQuerable;
 import com.antilia.web.provider.IUpdatable;
+import com.antilia.web.provider.impl.DaoQuerableUpdatebleDataProvider;
 
 
 /**
@@ -59,6 +61,14 @@ public class DataProviderPageableNavigator<E extends Serializable> implements IL
 	
 	private IDataProvider<E> dataProvider;
 
+	public DataProviderPageableNavigator(IQuerableUpdatableDao<E> dao, IQuery<E> query) {
+		this(new DaoQuerableUpdatebleDataProvider<E>(dao), query, false);
+	}
+	
+	public DataProviderPageableNavigator(IQuerableUpdatableDao<E> dao, IQuery<E> query, boolean shouldLoad) {
+		this(new DaoQuerableUpdatebleDataProvider<E>(dao), query, shouldLoad);
+	}
+	
 	public DataProviderPageableNavigator(IDataProvider<E> dataProvider, IQuery<E> query, boolean shouldLoad) {
 		this.query = query;
 		this.dataProvider = dataProvider;

@@ -47,10 +47,19 @@ public class ScopedCrudPanel<T extends Serializable> extends ScopedPanel {
 	
 
 	@Override
-	protected Component createBody(String id) {
+	protected final Component createBody(String id) {
+		return createCrudPanel(id);
+	}
+	
+	/**
+	 * 
+	 * @param id
+	 * @return
+	 */
+	protected CRUDPanel<T> createCrudPanel(String id) {
 		try {
 			if(this.crudClass != null)
-				return (Component)ClassUtils.createInstance(this.crudClass, id);
+				return (CRUDPanel<T>)ClassUtils.createInstance(this.crudClass, id);
 		} catch (Exception e) {
 			// fall-back to default						
 		}

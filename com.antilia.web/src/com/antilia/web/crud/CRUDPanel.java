@@ -17,7 +17,7 @@ import com.antilia.web.beantable.model.IColumnModel;
 import com.antilia.web.navigator.INavigatorSelector;
 import com.antilia.web.provider.IQuerableDataProvider;
 import com.antilia.web.provider.IQuerableUpdatebleDataProvider;
-import com.antilia.web.provider.impl.HibernateQuerableUpdatebleDataProvider;
+import com.antilia.web.provider.impl.DaoQuerableUpdatebleDataProvider;
 
 /**
  * Panel that automates the creation of CRUD pages.
@@ -169,7 +169,7 @@ public class CRUDPanel<B extends Serializable> extends Panel implements ICRUDMod
 	 * @return
 	 */
 	protected IQuerableUpdatebleDataProvider<B> createPageableProvider(IQuery<B> filterQuery) {
-		return new HibernateQuerableUpdatebleDataProvider<B>(filterQuery, createQuerableUpdatableDao());
+		return new DaoQuerableUpdatebleDataProvider<B>(filterQuery, createQuerableUpdatableDao());
 	}
 	
 	/**
