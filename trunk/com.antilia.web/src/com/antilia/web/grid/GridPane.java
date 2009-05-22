@@ -19,6 +19,7 @@ import com.antilia.web.dragdrop.DraggableBehavior;
  */
 public class GridPane extends Panel implements IGridPane {
 
+	@SuppressWarnings("unchecked")
 	private static class DashBoardRows extends RefreshingView {
 
 		private static final long serialVersionUID = 1L;
@@ -32,7 +33,7 @@ public class GridPane extends Panel implements IGridPane {
 		}
 
 		@Override
-		protected Iterator<?> getItemModels() {
+		protected Iterator getItemModels() {
 			int columns = getColumns();
 			int size = getModels().size();
 			int rows = (size/columns) + ((size%columns==0)?0:1);  
@@ -57,7 +58,6 @@ public class GridPane extends Panel implements IGridPane {
 			return models.iterator();
 		}
 
-		@SuppressWarnings("unchecked")
 		@Override
 		protected void populateItem(Item item) {
 			GridPaneRowModel dashboardPaneRowModel = (GridPaneRowModel)item.getModel();

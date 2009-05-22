@@ -12,11 +12,11 @@ import org.apache.wicket.Component;
 import org.apache.wicket.ResourceReference;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.markup.html.AjaxLink;
-import org.apache.wicket.behavior.HeaderContributor;
 import org.apache.wicket.feedback.FeedbackMessage;
 import org.apache.wicket.feedback.FeedbackMessagesModel;
 import org.apache.wicket.feedback.IFeedback;
 import org.apache.wicket.feedback.IFeedbackMessageFilter;
+import org.apache.wicket.markup.html.CSSPackageResource;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.image.Image;
@@ -105,7 +105,7 @@ public class AntiliaFeedBackPanel extends Panel implements IFeedback {
 	 */
 	public AntiliaFeedBackPanel(String id, IFeedbackMessageFilter filter) {
 		super(id);
-		add(HeaderContributor.forCss(CSS));								
+		add(CSSPackageResource.getHeaderContribution(CSS));								
 		setOutputMarkupId(true);		
 		this.filter = filter;		
 		feedBackContainer = new WebMarkupContainer("feedBackContainer") {

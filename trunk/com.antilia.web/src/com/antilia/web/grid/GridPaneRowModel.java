@@ -8,7 +8,7 @@ import org.apache.wicket.model.Model;
 /**
  * @author Ernesto Reinaldo Barreiro (reiern70@gmail.com)
  */
-public class GridPaneRowModel extends Model {
+public class GridPaneRowModel extends Model<String> {
 
 	private static final long serialVersionUID = 1L;
 

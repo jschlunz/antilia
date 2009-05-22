@@ -1,12 +1,12 @@
 /**
  * This software is provided as IS by Antilia-Soft SL.
- * Copyright 2006-2007.
+ * Copyright 2007-2009.
  */
 package com.antilia.web.effect;
 
 import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.Component;
-import org.apache.wicket.behavior.HeaderContributor;
+import org.apache.wicket.markup.html.JavascriptPackageResource;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 
 import com.antilia.web.resources.DefaultStyle;
@@ -40,8 +40,8 @@ public abstract class EffectAttributeModifier extends AttributeModifier {
 		this.target = target;
 		trigger.add(this);
 		target.setOutputMarkupId(true);
-		target.add(HeaderContributor.forJavaScript(DefaultStyle.JS_PROTOTYPE));
-		target.add(HeaderContributor.forJavaScript(DefaultStyle.JS_EFFECT));
+		target.add(JavascriptPackageResource.getHeaderContribution(DefaultStyle.JS_PROTOTYPE));
+		target.add(JavascriptPackageResource.getHeaderContribution(DefaultStyle.JS_EFFECT));
 	}
 
 	@Override
