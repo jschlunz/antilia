@@ -19,7 +19,7 @@ import com.antilia.web.resources.DefaultStyle;
 import com.antilia.web.utils.RequestUtils;
 
 /**
- * 
+ * Our extension of palette priving a custom look and feel.
  *
  * @author Ernesto Reinaldo Barreiro (reiern70@gmail.com)
  *
