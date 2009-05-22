@@ -10,10 +10,10 @@ import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.panel.Panel;
 
-import com.antilia.web.beantable.provider.SelectionMode;
 import com.antilia.web.button.IMenuItemHolder;
 import com.antilia.web.button.IMenuItemsFactory;
 import com.antilia.web.menu.Menu;
+import com.antilia.web.provider.SelectionMode;
 
 /**
  * 

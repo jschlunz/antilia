@@ -33,16 +33,16 @@ import org.apache.wicket.model.Model;
 import com.antilia.web.beantable.model.FirstColumnModel;
 import com.antilia.web.beantable.model.IColumnModel;
 import com.antilia.web.beantable.model.ITableModel;
-import com.antilia.web.beantable.provider.IPageableProvider;
-import com.antilia.web.beantable.provider.IProviderSelector;
-import com.antilia.web.beantable.provider.SelectionMode;
-import com.antilia.web.beantable.provider.impl.InMemoryPageableProvider;
-import com.antilia.web.beantable.provider.impl.SourceSelector;
 import com.antilia.web.button.AjaxRefreshableMenuItem;
 import com.antilia.web.button.IMenuItemHolder;
 import com.antilia.web.button.MenuItemsFactory;
 import com.antilia.web.menu.IMenuItemsAuthorizer;
+import com.antilia.web.navigator.INavigatorSelector;
+import com.antilia.web.navigator.IPageableNavigator;
+import com.antilia.web.navigator.impl.InMemoryPageableNavigator;
 import com.antilia.web.osgi.MenuFactoryService;
+import com.antilia.web.provider.SelectionMode;
+import com.antilia.web.provider.impl.SourceSelector;
 import com.antilia.web.resources.DefaultStyle;
 import com.antilia.web.resources.ResourceLocator;
 import com.antilia.web.utils.RequestUtils;
@@ -55,9 +55,9 @@ public class Table<E extends Serializable> extends Panel implements IPageableCom
 
 	private static final long serialVersionUID = 1L;
 
-	private IPageableProvider<E> pageableProvider; 
+	private IPageableNavigator<E> pageableProvider; 
 	
-	private IProviderSelector<E> sourceSelector;
+	private INavigatorSelector<E> sourceSelector;
 	
 	private ITableModel<E> tableModel;	
 	
@@ -125,7 +125,7 @@ public class Table<E extends Serializable> extends Panel implements IPageableCom
 	 * @param elements
 	 */
 	public Table(String id, ITableModel<E> tableModel, Collection<E> elements) {
-		this(id, tableModel, new InMemoryPageableProvider<E>(elements, tableModel.getBeanClass()));
+		this(id, tableModel, new InMemoryPageableNavigator<E>(elements, tableModel.getBeanClass()));
 	}
 	
 	/**
@@ -133,8 +133,8 @@ public class Table<E extends Serializable> extends Panel implements IPageableCom
 	 * 
 	 * @param id
 	 */
-	public Table(String id, ITableModel<E> tableModel, IPageableProvider<E> pageablePrivider)  {
-		super(id, new Model<IPageableProvider<E>>(pageablePrivider));	
+	public Table(String id, ITableModel<E> tableModel, IPageableNavigator<E> pageablePrivider)  {
+		super(id, new Model<IPageableNavigator<E>>(pageablePrivider));	
 		setOutputMarkupId(true);		
 		this.pageableProvider = pageablePrivider;
 		this.sourceSelector = new SourceSelector<E>(this.pageableProvider ,tableModel.getSelectionMode());
@@ -232,8 +232,8 @@ public class Table<E extends Serializable> extends Panel implements IPageableCom
 				sb.append(" = new Table('" + tableId + "','");
 				sb.append(getFirstColumnUrl()+ "',");
 				sb.append("new Array(");
-				IPageableProvider<E> source = Table.this.getPageableProvider();
-				IProviderSelector<E> selector = Table.this.getSourceSelector();
+				IPageableNavigator<E> source = Table.this.getPageableProvider();
+				INavigatorSelector<E> selector = Table.this.getSourceSelector();
 				Iterator<IModel<E>> it = source.getCurrentPage();
 				int i=0;
 				while(it.hasNext()) {
@@ -502,14 +502,14 @@ public class Table<E extends Serializable> extends Panel implements IPageableCom
 	/**
 	 * @return the pageableSource
 	 */
-	public IPageableProvider<E> getPageableProvider() {
+	public IPageableNavigator<E> getPageableProvider() {
 		return pageableProvider;
 	}
 
 	/**
 	 * @param pageableProvider the pageableSource to set
 	 */
-	public void setPageableProvider(IPageableProvider<E> elements) {
+	public void setPageableProvider(IPageableNavigator<E> elements) {
 		this.pageableProvider = elements;
 	}
 
@@ -532,11 +532,11 @@ public class Table<E extends Serializable> extends Panel implements IPageableCom
 		return firstHeaderMenuItemsFactory;
 	}
 
-	public IProviderSelector<E> getSourceSelector() {
+	public INavigatorSelector<E> getSourceSelector() {
 		return sourceSelector;
 	}
 
-	public void setSourceSelector(IProviderSelector<E> sourceSelector) {
+	public void setSourceSelector(INavigatorSelector<E> sourceSelector) {
 		this.sourceSelector = sourceSelector;
 	}
 

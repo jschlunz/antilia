@@ -7,9 +7,9 @@ import org.apache.wicket.ResourceReference;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 
-import com.antilia.web.beantable.provider.IProviderSelector;
-import com.antilia.web.beantable.provider.SelectionMode;
 import com.antilia.web.button.AbstractLink;
+import com.antilia.web.navigator.INavigatorSelector;
+import com.antilia.web.provider.SelectionMode;
 import com.antilia.web.resources.DefaultStyle;
 
 public class ToggleSelectRowButton<E extends Serializable> extends AbstractLink {
@@ -29,7 +29,7 @@ public class ToggleSelectRowButton<E extends Serializable> extends AbstractLink 
 
 	@Override
 	protected ResourceReference getImage() {
-		IProviderSelector<E> source = getTable().getSourceSelector();
+		INavigatorSelector<E> source = getTable().getSourceSelector();
 		boolean selected = source.isSelected(getIndex());
 		if(this.table.getTableModel().getSelectionMode().equals(SelectionMode.MULTIPLE)) {		
 			if(selected)

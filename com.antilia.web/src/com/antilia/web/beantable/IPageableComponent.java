@@ -9,8 +9,8 @@ import java.io.Serializable;
 import org.apache.wicket.Component;
 import org.apache.wicket.feedback.IFeedback;
 
-import com.antilia.web.beantable.provider.IPageableProvider;
-import com.antilia.web.beantable.provider.IProviderSelector;
+import com.antilia.web.navigator.INavigatorSelector;
+import com.antilia.web.navigator.IPageableNavigator;
 
 /**
  * 
@@ -22,7 +22,7 @@ public interface IPageableComponent<E extends Serializable> {
 	 * Returns the provider of the component.
 	 * @return
 	 */
-	IPageableProvider<E> getPageableProvider();
+	IPageableNavigator<E> getPageableProvider();
 	
 	/**
 	 * Returns the component to be update when navigating.
@@ -48,6 +48,6 @@ public interface IPageableComponent<E extends Serializable> {
 	 * 
 	 * @return
 	 */
-	IProviderSelector<E> getSourceSelector();
+	INavigatorSelector<E> getSourceSelector();
 	
 }

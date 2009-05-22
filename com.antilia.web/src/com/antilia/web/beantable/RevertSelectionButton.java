@@ -7,8 +7,8 @@ import org.apache.wicket.ResourceReference;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 
-import com.antilia.web.beantable.provider.IProviderSelector;
 import com.antilia.web.button.AbstractLink;
+import com.antilia.web.navigator.INavigatorSelector;
 import com.antilia.web.resources.DefaultStyle;
 
 public class RevertSelectionButton<E extends Serializable> extends AbstractLink {
@@ -37,7 +37,7 @@ public class RevertSelectionButton<E extends Serializable> extends AbstractLink 
 	@Override
 	protected void onClick(AjaxRequestTarget target) {		
 		//IPageableSource<E> pageableSource = getTable().getPageableSource();
-		IProviderSelector<E> selector = getTable().getSourceSelector();
+		INavigatorSelector<E> selector = getTable().getSourceSelector();
 		selector.revertPageSelection();
 		Iterator<WebMarkupContainer> it = getTable().getRowCheckBoxes();
 		while(it.hasNext()) {

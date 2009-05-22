@@ -12,7 +12,7 @@ import java.util.List;
 import org.apache.wicket.model.IComponentInheritedModel;
 import org.apache.wicket.model.IModel;
 
-import com.antilia.web.beantable.provider.SelectionMode;
+import com.antilia.web.provider.SelectionMode;
 
 /**
  * 

@@ -11,9 +11,9 @@ import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.Model;
 
 import com.antilia.web.beantable.IPageableComponent;
-import com.antilia.web.beantable.provider.IPageableProvider;
 import com.antilia.web.button.AbstractButton;
 import com.antilia.web.button.IMenuItem;
+import com.antilia.web.navigator.IPageableNavigator;
 import com.antilia.web.toolbar.IToolbarItem;
 
 /**
@@ -39,7 +39,7 @@ public class PageNumberItem<E extends Serializable> extends Panel implements IMe
 				IPageableComponent< E> component = findPageableComponent();
 				if(component  == null)
 					return 0;
-				IPageableProvider<E> source = component.getPageableProvider();
+				IPageableNavigator<E> source = component.getPageableProvider();
 				if(source.isEmpty())
 					return 1;
 				return (source.currentPageNumber()+1);
@@ -55,7 +55,7 @@ public class PageNumberItem<E extends Serializable> extends Panel implements IMe
 				IPageableComponent< E> component = findPageableComponent();
 				if(component  == null)
 					return 0;
-				IPageableProvider<E> source = component.getPageableProvider();
+				IPageableNavigator<E> source = component.getPageableProvider();
 				if(source.isEmpty())
 					return 1;
 				return source.getNumberOfPages();
