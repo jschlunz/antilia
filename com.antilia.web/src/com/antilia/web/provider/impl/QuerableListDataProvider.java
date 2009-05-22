@@ -2,7 +2,7 @@
  * This software is provided as IS by Antilia-Soft SL.
  * Copyright 2006-2007.
  */
-package com.antilia.web.beantable.provider.impl;
+package com.antilia.web.provider.impl;
 
 import java.io.Serializable;
 import java.util.List;
@@ -10,7 +10,7 @@ import java.util.List;
 import org.apache.wicket.markup.repeater.data.ListDataProvider;
 
 import com.antilia.hibernate.query.IQuery;
-import com.antilia.web.beantable.provider.IQuerable;
+import com.antilia.web.provider.IQuerable;
 
 /**
  * 
