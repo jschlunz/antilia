@@ -7,10 +7,10 @@ package com.antilia.demo.dialogs;
 import com.antilia.demo.beans.Person;
 import com.antilia.hibernate.query.IQuery;
 import com.antilia.web.beantable.model.IColumnModel;
-import com.antilia.web.beantable.provider.IQuerableDataProvider;
 import com.antilia.web.crud.CRUDPanel;
 import com.antilia.web.crud.CrudStyler;
 import com.antilia.web.crud.SearchPanel;
+import com.antilia.web.provider.IQuerableDataProvider;
 
 /**
  * 
