@@ -39,16 +39,16 @@ public class PageSizeButton<E extends Serializable> extends Panel implements IMe
 			public Serializable getObject() {
 				IPageableComponent<E> pageableComponent = findPageableComponent();
 				if(pageableComponent != null)
-					return pageableComponent.getPageableProvider().getPageSize();
+					return pageableComponent.getPageableNavidator().getPageSize();
 				return 10;
 			}
 			
 			@Override
 			public void setObject(Serializable object) {
 				try {
-					findPageableComponent().getPageableProvider().setPageSize(Integer.parseInt(object.toString()));
+					findPageableComponent().getPageableNavidator().setPageSize(Integer.parseInt(object.toString()));
 				} catch (Exception e) {
-					findPageableComponent().getPageableProvider().setPageSize(10);
+					findPageableComponent().getPageableNavidator().setPageSize(10);
 				}
 			}			
 		});

@@ -197,7 +197,7 @@ public class DefaultHeaderCell<E extends Serializable> extends Panel {
 							return;
 						}
 						IPageableComponent<E> component = getTable();
-						IQuery<E> query = component.getPageableProvider().getQuery();				
+						IQuery<E> query = component.getPageableNavidator().getQuery();				
 						IOrder<E> order = query.getOrder(columnModel.getPropertyPath());
 						if(order == null || order.getType().equals(OrderType.DESCENDING))
 							order = Order.asc(columnModel.getPropertyPath());
@@ -205,7 +205,7 @@ public class DefaultHeaderCell<E extends Serializable> extends Panel {
 							order = Order.des(columnModel.getPropertyPath());
 						query.clearOrders();
 						query.addOrder(order);
-						component.getPageableProvider().reset();
+						component.getPageableNavidator().reset();
 						target.addComponent((Component)component);
 					}
 				}

@@ -39,7 +39,7 @@ public class PageNumberItem<E extends Serializable> extends Panel implements IMe
 				IPageableComponent< E> component = findPageableComponent();
 				if(component  == null)
 					return 0;
-				IPageableNavigator<E> source = component.getPageableProvider();
+				IPageableNavigator<E> source = component.getPageableNavidator();
 				if(source.isEmpty())
 					return 1;
 				return (source.currentPageNumber()+1);
@@ -55,7 +55,7 @@ public class PageNumberItem<E extends Serializable> extends Panel implements IMe
 				IPageableComponent< E> component = findPageableComponent();
 				if(component  == null)
 					return 0;
-				IPageableNavigator<E> source = component.getPageableProvider();
+				IPageableNavigator<E> source = component.getPageableNavidator();
 				if(source.isEmpty())
 					return 1;
 				return source.getNumberOfPages();

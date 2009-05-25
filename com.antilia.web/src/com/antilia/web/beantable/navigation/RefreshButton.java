@@ -55,7 +55,7 @@ public class RefreshButton<E extends Serializable> extends AbstractButton {
 	@Override
 	protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
 		IPageableComponent<E> component = findPageableComponent();
-		component.getPageableProvider().reset();
+		component.getPageableNavidator().reset();
 		target.addComponent((Component)component);
 	}
 
