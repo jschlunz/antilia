@@ -68,7 +68,7 @@ public class ExportExcelButton<B extends Serializable> extends AbstractExportDia
 	@Override
 	protected AbstractExportTask newExportTask() {
 		Table<B> table = findPageableComponent();
-		return new ExportExcelTask<B>(table.getPageableProvider(), table.getTableModel());
+		return new ExportExcelTask<B>(table.getPageableNavidator(), table.getTableModel());
 	}
 	
 	/* (non-Javadoc)
