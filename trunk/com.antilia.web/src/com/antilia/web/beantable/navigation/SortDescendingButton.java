@@ -71,11 +71,11 @@ public class SortDescendingButton<E extends Serializable> extends AbstractButton
 	
 	protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
 		IPageableComponent<E> component = findPageableComponent();
-		IQuery<E> query = component.getPageableProvider().getQuery();
+		IQuery<E> query = component.getPageableNavidator().getQuery();
 		query.clearOrders();
 		IOrder<E> order = Order.des(this.columnModel.getPropertyPath());		
 		query.addOrder(order);
-		component.getPageableProvider().reset();
+		component.getPageableNavidator().reset();
 		target.addComponent((Component)component);
 	}
 	
@@ -86,7 +86,7 @@ public class SortDescendingButton<E extends Serializable> extends AbstractButton
 			return false;
 		}
 		IPageableComponent<E> component = findPageableComponent();
-		IQuery<E> query = component.getPageableProvider().getQuery();
+		IQuery<E> query = component.getPageableNavidator().getQuery();
 		IOrder<E> order = query.getOrder(columnModel.getPropertyPath());
 		if(order != null && order.getType().equals(OrderType.ASCENDING))
 			return true;

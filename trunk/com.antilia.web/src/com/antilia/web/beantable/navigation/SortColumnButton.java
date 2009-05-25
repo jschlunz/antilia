@@ -149,11 +149,11 @@ public class SortColumnButton<E extends Serializable> extends Panel implements I
 	 */
 	protected void onAscendingSubmit(AjaxRequestTarget target, Form<?> form) {
 		IPageableComponent<E> component = findPageableComponent();
-		IQuery<E> query = component.getPageableProvider().getQuery();
+		IQuery<E> query = component.getPageableNavidator().getQuery();
 		IOrder<E> order = Order.asc(this.columnModel.getPropertyPath());
 		query.clearOrders();
 		query.addOrder(order);
-		component.getPageableProvider().reset();
+		component.getPageableNavidator().reset();
 		target.addComponent((Component)component);
 	}
 	
@@ -163,7 +163,7 @@ public class SortColumnButton<E extends Serializable> extends Panel implements I
 			return false;
 		}
 		IPageableComponent<E> component = findPageableComponent();
-		IQuery<E> query = component.getPageableProvider().getQuery();
+		IQuery<E> query = component.getPageableNavidator().getQuery();
 		IOrder<E> order = query.getOrder(columnModel.getPropertyPath());
 		if(order == null)
 			return true;
@@ -178,11 +178,11 @@ public class SortColumnButton<E extends Serializable> extends Panel implements I
 	 */
 	protected void onDescendingSubmit(AjaxRequestTarget target, Form<?> form) {
 		IPageableComponent<E> component = findPageableComponent();
-		IQuery<E> query = component.getPageableProvider().getQuery();
+		IQuery<E> query = component.getPageableNavidator().getQuery();
 		query.clearOrders();
 		IOrder<E> order = Order.des(this.columnModel.getPropertyPath());		
 		query.addOrder(order);
-		component.getPageableProvider().reset();
+		component.getPageableNavidator().reset();
 		target.addComponent((Component)component);
 	}
 
