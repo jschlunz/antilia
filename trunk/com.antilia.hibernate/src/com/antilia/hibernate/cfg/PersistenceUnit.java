@@ -15,6 +15,7 @@ import org.hibernate.cfg.Environment;
 import org.hibernate.connection.ConnectionProvider;
 import org.hibernate.context.CurrentSessionContext;
 import org.hibernate.dialect.Dialect;
+import org.hibernate.proxy.EntityNotFoundDelegate;
 import org.hibernate.transaction.TransactionFactory;
 
 import com.antilia.common.util.StringUtils;
@@ -34,6 +35,8 @@ public  class  PersistenceUnit implements IPersistenceUnit {
 	private Map<String, String> properties = new HashMap<String, String>();
 
 	private String name;	
+	
+	private EntityNotFoundDelegate entityNotFoundDelegate;
 			
 	/**
 	 * Enumeration for the default supported {@link CurrentSessionContext} classes.
@@ -106,6 +109,9 @@ public  class  PersistenceUnit implements IPersistenceUnit {
 			if(!StringUtils.isEmpty(value)) 
 				configuration.setProperty(property, value);
 		}		
+		if(getEntityNotFoundDelegate() != null) {
+			configuration.setEntityNotFoundDelegate(getEntityNotFoundDelegate());
+		}
 		return configuration;
 	}
 	
@@ -281,6 +287,21 @@ public  class  PersistenceUnit implements IPersistenceUnit {
 
 	public void setConnectionProviderClass(Class<? extends ConnectionProvider> connectionProviderClass) {
 		properties.put(Environment.CONNECTION_PROVIDER, connectionProviderClass.getName());
+	}
+
+	/**
+	 * @return the entityNotFoundDelegate
+	 */
+	public EntityNotFoundDelegate getEntityNotFoundDelegate() {
+		return entityNotFoundDelegate;
+	}
+
+	/**
+	 * @param entityNotFoundDelegate the entityNotFoundDelegate to set
+	 */
+	public void setEntityNotFoundDelegate(
+			EntityNotFoundDelegate entityNotFoundDelegate) {
+		this.entityNotFoundDelegate = entityNotFoundDelegate;
 	}
 	
 	
