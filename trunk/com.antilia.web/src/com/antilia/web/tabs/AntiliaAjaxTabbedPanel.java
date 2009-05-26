@@ -19,6 +19,7 @@ import com.antilia.web.ajax.AntiliaAjaxCallDecorator;
 import com.antilia.web.ajax.IDialogFinder;
 import com.antilia.web.crud.IFeedBackAware;
 import com.antilia.web.dialog.IDialogScope;
+import com.antilia.web.utils.ExceptionUtils;
 
 /**
  * @author Ernesto Reinaldo Barreiro (reirn70@gmail.com)
@@ -103,6 +104,10 @@ public class AntiliaAjaxTabbedPanel extends AjaxTabbedPanel implements IDialogFi
 		IFeedBackAware feedBackAware = findParent(IFeedBackAware.class);
 		if(feedBackAware != null) {
 			target.addComponent((Component)(feedBackAware.getFeedback()));
+			String script = 
+				ExceptionUtils.getChangetextFieldsStyleScript(this, "error", "requiredText") 
+				+ ExceptionUtils.getChangeStyleScript("error");
+			target.appendJavascript(script.toString());
 		}
 	}
 
