@@ -5,6 +5,7 @@
 package com.antilia.web.button;
 
 import org.apache.wicket.AttributeModifier;
+import org.apache.wicket.Component;
 import org.apache.wicket.ResourceReference;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.IAjaxCallDecorator;
@@ -16,8 +17,9 @@ import org.apache.wicket.markup.html.image.Image;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.ResourceModel;
-import org.wicketstuff.minis.veil.VeilResources;
 
+import com.antilia.web.ajax.AntiliaAjaxCallDecorator;
+import com.antilia.web.ajax.IDialogFinder;
 import com.antilia.web.dialog.IDialogScope;
 import com.antilia.web.toolbar.IToolbarItem;
 
@@ -26,7 +28,7 @@ import com.antilia.web.toolbar.IToolbarItem;
  * 
  * @author Ernesto Reinaldo Barreiro (reiern70@gmail.com)
  */
-public abstract class AbstractButton extends Panel implements IMenuItem, IToolbarItem {
+public abstract class AbstractButton extends Panel implements IMenuItem, IToolbarItem, IDialogFinder {
 
 	private static final long serialVersionUID = 1L;
 
@@ -178,6 +180,7 @@ public abstract class AbstractButton extends Panel implements IMenuItem, IToolba
 	 */
 	protected IAjaxCallDecorator getAjaxCallDecorator()
 	{
+		/*
 		return new IAjaxCallDecorator() {
 			
 			private static final long serialVersionUID = 1L;
@@ -207,10 +210,17 @@ public abstract class AbstractButton extends Panel implements IMenuItem, IToolba
 				return VeilResources.Javascript.Generic.show("AT_body") + ";" + script;
 			}
 		};
+		*/
+		return new AntiliaAjaxCallDecorator(this);
 	}
 	
-	private IDialogScope findParentDialog() {
+	public IDialogScope findParentDialog() {
 		return (IDialogScope)findParent(IDialogScope.class);
+	}
+	
+	
+	public Component getDefiningComponent() {
+		return this;
 	}
 	
 	/**
