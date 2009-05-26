@@ -5,12 +5,13 @@ package com.antilia.web.wizard;
 
 import org.apache.wicket.Component;
 import org.apache.wicket.ResourceReference;
-import org.apache.wicket.behavior.HeaderContributor;
 import org.apache.wicket.extensions.wizard.IWizardModel;
 import org.apache.wicket.extensions.wizard.Wizard;
 import org.apache.wicket.feedback.ContainerFeedbackMessageFilter;
-import org.apache.wicket.markup.html.panel.FeedbackPanel;
+import org.apache.wicket.feedback.IFeedback;
+import org.apache.wicket.markup.html.CSSPackageResource;
 
+import com.antilia.web.crud.IFeedBackAware;
 import com.antilia.web.feedback.AntiliaFeedBackPanel;
 import com.antilia.web.resources.DefaultStyle;
 
@@ -18,11 +19,11 @@ import com.antilia.web.resources.DefaultStyle;
  * @author Ernesto Reinaldo Barreiro (reirn70@gmail.com)
  *
  */
-public class AjaxWizard extends Wizard implements IAjaxWizard {
+public class AjaxWizard extends Wizard implements IAjaxWizard, IFeedBackAware {
 
 	private static final long serialVersionUID = 1L;
 
-	private FeedbackPanel feedbackPanel;
+	private AntiliaFeedBackPanel feedbackPanel;
 	
 	private AjaxWizardButtonBar ajaxWizardButtonBar;
 	
@@ -32,7 +33,7 @@ public class AjaxWizard extends Wizard implements IAjaxWizard {
 	public AjaxWizard(String id) {
 		super(id, false);
 		setOutputMarkupId(true);
-		add(HeaderContributor.forCss(getCssResource()));
+		add(CSSPackageResource.getHeaderContribution(getCssResource()));
 	}
 
 
@@ -43,7 +44,7 @@ public class AjaxWizard extends Wizard implements IAjaxWizard {
 	public AjaxWizard(String id, IWizardModel wizardModel) {
 		super(id, wizardModel, false);
 		setOutputMarkupId(true);
-		add(HeaderContributor.forCss(getCssResource()));
+		add(CSSPackageResource.getHeaderContribution(getCssResource()));
 	}
 
 
@@ -60,7 +61,7 @@ public class AjaxWizard extends Wizard implements IAjaxWizard {
 
 	
 	protected AntiliaFeedBackPanel newAntiliaFeedBackPanel(String id) {
-		return new AntiliaFeedBackPanel(id, new ContainerFeedbackMessageFilter(this));
+		return (feedbackPanel=new AntiliaFeedBackPanel(id, new ContainerFeedbackMessageFilter(this)));
 	}
 	
 	
@@ -68,23 +69,22 @@ public class AjaxWizard extends Wizard implements IAjaxWizard {
 	{
 		super.init(wizardModel);
 		
-		if (wizardModel == null)
-			getForm().addOrReplace(newFeedbackPanel(FEEDBACK_ID));
+		if (feedbackPanel == null)
+			getForm().addOrReplace(newAntiliaFeedBackPanel(FEEDBACK_ID));
 		
 	}
 	
-	/**
-	 * @return the feedbackPanel
-	 */
-	public FeedbackPanel getFeedbackPanel() {
-		return feedbackPanel;
-	}
 
 	/**
 	 * @return the ajaxWizardButtonBar
 	 */
 	public AjaxWizardButtonBar getAjaxWizardButtonBar() {
 		return ajaxWizardButtonBar;
+	}
+
+
+	public IFeedback getFeedback() {
+		return feedbackPanel;
 	}
 
 }

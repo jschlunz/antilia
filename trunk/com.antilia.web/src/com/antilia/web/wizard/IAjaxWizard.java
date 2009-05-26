@@ -4,15 +4,14 @@
 package com.antilia.web.wizard;
 
 import org.apache.wicket.extensions.wizard.IWizard;
-import org.apache.wicket.markup.html.panel.FeedbackPanel;
+
+import com.antilia.web.crud.IFeedBackAware;
 
 /**
  * @author Ernesto Reinaldo Barreiro (reirn70@gmail.com)
  *
  */
-public interface IAjaxWizard extends IWizard {
-
-	public FeedbackPanel getFeedbackPanel();
+public interface IAjaxWizard extends IWizard, IFeedBackAware {
 	
 	public AjaxWizardButtonBar getAjaxWizardButtonBar();
 }
