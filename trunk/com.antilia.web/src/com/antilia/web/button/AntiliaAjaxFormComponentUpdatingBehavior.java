@@ -3,20 +3,23 @@
  */
 package com.antilia.web.button;
 
+import org.apache.wicket.Component;
 import org.apache.wicket.ajax.IAjaxCallDecorator;
 import org.apache.wicket.ajax.form.AjaxFormComponentUpdatingBehavior;
-import org.wicketstuff.minis.veil.VeilResources;
 
+import com.antilia.web.ajax.AntiliaAjaxCallDecorator;
+import com.antilia.web.ajax.IDialogFinder;
 import com.antilia.web.dialog.IDialogScope;
 
 /**
+ * 
  * @author Ernesto Reinaldo Barreiro (reirn70@gmail.com)
- *
  */
-public abstract class AntiliaAjaxFormComponentUpdatingBehavior extends AjaxFormComponentUpdatingBehavior {
+public abstract class AntiliaAjaxFormComponentUpdatingBehavior extends AjaxFormComponentUpdatingBehavior implements IDialogFinder {
 
 	private static final long serialVersionUID = 1L;
 
+	/*
 	public class AntiliaAjaxCallDecorator implements IAjaxCallDecorator {
 
 		private static final long serialVersionUID = 1L;
@@ -46,10 +49,14 @@ public abstract class AntiliaAjaxFormComponentUpdatingBehavior extends AjaxFormC
 			return VeilResources.Javascript.Generic.show("AT_body") + ";" + script;
 		}
 	};
-	
+	*/
 
-	private IDialogScope findParentDialog() {
+	public IDialogScope findParentDialog() {
 		return (IDialogScope)getComponent().findParent(IDialogScope.class);
+	}
+
+	public Component getDefiningComponent() {
+		return getComponent();
 	}
 		
 	private IAjaxCallDecorator decorator;
@@ -64,7 +71,7 @@ public abstract class AntiliaAjaxFormComponentUpdatingBehavior extends AjaxFormC
 	@Override
 	protected IAjaxCallDecorator getAjaxCallDecorator() {
 		if(decorator == null) 		
-			decorator = new AntiliaAjaxCallDecorator();
+			decorator = new AntiliaAjaxCallDecorator(this);
 		return decorator;
 	}
 	
