@@ -22,6 +22,8 @@ import org.apache.wicket.extensions.wizard.IWizardModel;
 import org.apache.wicket.extensions.wizard.IWizardStep;
 import org.apache.wicket.markup.html.form.Form;
 
+import com.antilia.web.resources.DefaultStyle;
+
 /**
  * Models a 'last' button in the wizard. When pressed, it calls {@link IWizardStep#applyState()} on
  * the active wizard step, and then moves to the last step in the model with
@@ -73,6 +75,8 @@ public class AjaxLastButton extends AjaxWizardButton
 	
 	@Override
 	protected ResourceReference getImage() {
-		return null;
+		if(isEnabled())
+			return DefaultStyle.IMG_LAST_ENABLED_PNG;
+		return DefaultStyle.IMG_LAST_DISABLED_PNG;
 	}
 }

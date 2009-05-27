@@ -36,6 +36,12 @@ public class AjaxWizard extends Wizard implements IAjaxWizard, IFeedBackAware {
 		add(CSSPackageResource.getHeaderContribution(getCssResource()));
 	}
 
+	/**
+	 * Override this method to create your own cancel button;
+	 */
+	public Component createCacelButton(String id, IAjaxWizard wizard) {
+		return new AjaxCancelButton(id, wizard);
+	}
 
 	/**
 	 * @param id

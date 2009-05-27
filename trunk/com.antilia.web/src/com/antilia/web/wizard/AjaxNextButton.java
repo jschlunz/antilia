@@ -100,9 +100,9 @@ public class AjaxNextButton extends AjaxWizardButton
 	@Override
 	protected ResourceReference getImage() {
 		if(isEnabled()) {
-			return DefaultStyle.IMG_NEXT_ENABLED;
+			return DefaultStyle.IMG_NEXT_ENABLED_PNG;
 		} else {
-			return DefaultStyle.IMG_NEXT_DISABLED;
+			return DefaultStyle.IMG_NEXT_DISABLED_PNG;
 		}
 	}
 }
