@@ -22,7 +22,7 @@ public class DialogStyle implements Serializable {
 	
 	private String bodyColor;
 	
-	private boolean roundedHeader = false;
+	private boolean roundedHeader = true;
 	
 	/**
 	 * 

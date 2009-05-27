@@ -129,8 +129,12 @@
 		this.overlay.className = 'dark-mask-dark';
 		this.panelBody.appendChild(this.overlay);
 		this.overlay.style.display = 'none';
-		this.overlay.style.width = "1900px";
-		this.overlay.style.height = "1800px";
+		//this.overlay.style.width = "1900px";
+		this.overlay.style.left = "0px";
+		this.overlay.style.top = "0px";
+		//this.overlay.style.height = "1800px";
+		this.overlay.style.right = "0px";
+		this.overlay.style.bottom = "0px";
 	}
 		
 	Panel.prototype.toggleModal = function() {		
@@ -204,26 +208,43 @@
 		var w = element.parentNode;	
 		if(this.drag != true) {
 		    this.drag = true;
-		    var panel = Antilia_dragPanels.getPanel(element.parentNode.id);
+		    var panel = Antilia_dragPanels.getPanel(w.id);
+		    if(panel.parentPanel) {
+		    	this.pWidth = parseInt(panel.parentPanel.style.width, 10);
+		    	this.pHeight = parseInt(panel.parentPanel.style.height, 10);		    	
+		    }
             var Dom = YAHOO.util.Dom;
             
-            if(Antilia.Browser.ie6 == false) {
+            if(Antilia.Browser.ie6 == false && Antilia.Browser.ie7 == false) {
             	Dom.setStyle(panel.panel, "opacity", 0.6);                         
             }
          }					
 		var x = parseInt(w.style.left, 10) + deltaX;
 		var y = parseInt(w.style.top, 10) + deltaY;
-
+		
+		
+		var width = parseInt(w.style.width, 10);
+		var height = parseInt(w.style.height, 10);
+		
+		
 		var res = [0, 0];
 		
 		if (x < 0) {
-			res[0] = -deltaX;
+			res[0] = 0;
 			x = 0;
+		} else if(this.pWidth != null && ((width + x) > this.pWidth)) {
+			res[0] = -deltaX;
+			x = this.pWidth-width-8;
 		}
+		
 		if (y < 0) {
 			res[1] = -deltaY;
 			y = 0;	
-		}						
+		} else if(this.pHeight != null && ((height + y) > this.pHeight)) {
+			res[0] = 0;
+			y = this.pHeight-height-24;
+		}
+				
 			
 		w.style.left = x + "px";
 		w.style.top = y + "px";		
@@ -244,14 +265,14 @@
 		if(this.drag == true) {
 		    this.drag = false;
 		    var Dom = YAHOO.util.Dom;
-		    if(Antilia.Browser.ie6 == false) {
+		    if(Antilia.Browser.ie6 == false && Antilia.Browser.ie7 == false ) {
 		    	Dom.setStyle(panel.panel, "opacity", 1);
 		    }		      
 		} 
 		panel.panel.className=panel.panelClass;		
 	}
 	
-	Panel.prototype.onResize = function(element, deltaX, deltaY) {
+	Panel.prototype.onResize = function(element, deltaX, deltaY) {		
 		var id = element.parentNode.parentNode.id;
 		var window = element.parentNode.parentNode;
 		var bodyId = id +"Body";
@@ -263,7 +284,7 @@
 						
 		var res = [0, 0];
 		
-		if(panel.folded) {
+		if(panel.folded || panel.overlay.style.display == 'block') {
 			return res;
 		}
 		
