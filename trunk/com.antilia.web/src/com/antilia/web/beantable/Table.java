@@ -643,7 +643,7 @@ public class Table<E extends Serializable> extends Panel implements IPageableCom
 	}
 
 
-	public void onLastPage(AjaxRequestTarget target) {
+	public final void onLastPage(AjaxRequestTarget target) {
 		lastPage(target);
 		for(IPageableNavigationListener listener: navigationListeners) {
 			listener.onLastPage(target);
@@ -659,7 +659,7 @@ public class Table<E extends Serializable> extends Panel implements IPageableCom
 		
 	}
 
-	public void onNextPage(AjaxRequestTarget target) {
+	public final void onNextPage(AjaxRequestTarget target) {
 		nextPage(target);
 		for(IPageableNavigationListener listener: navigationListeners) {
 			listener.onNextPage(target);
@@ -675,7 +675,7 @@ public class Table<E extends Serializable> extends Panel implements IPageableCom
 		
 	}
 
-	public void onPreviousPage(AjaxRequestTarget target) {
+	public final void onPreviousPage(AjaxRequestTarget target) {
 		previousPage(target);
 		for(IPageableNavigationListener listener: navigationListeners) {
 			listener.onPreviousPage(target);
