@@ -6,7 +6,8 @@ package com.antilia.web.menu;
 
 import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.Component;
-import org.apache.wicket.behavior.HeaderContributor;
+import org.apache.wicket.markup.html.CSSPackageResource;
+import org.apache.wicket.markup.html.JavascriptPackageResource;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.markup.repeater.RepeatingView;
@@ -44,8 +45,8 @@ public  class DropDownMenu extends Panel implements IMenuItem, IMenuItemHolder {
 	public DropDownMenu(String id, IMenuItemsFactory... factories) {
 		super(id);
 		
-		add(HeaderContributor.forCss(DefaultStyle.CSS_MAIN));	
-		add(HeaderContributor.forJavaScript(DefaultStyle.JS_COMMON));
+		add(CSSPackageResource.getHeaderContribution(DefaultStyle.CSS_MAIN));	
+		add(JavascriptPackageResource.getHeaderContribution(DefaultStyle.JS_COMMON));
 		
 		setOutputMarkupId(true);
 		this.factories = factories;
