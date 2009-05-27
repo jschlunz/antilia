@@ -70,7 +70,7 @@ public  class ConfirmationDialog extends DefaultDialog {
 	}
 	
 	private void init() {
-		setWidth(400);
+		setWidth(420);
 		setHeight(150);
 		setResizable(false);
 		setFoldable(false);

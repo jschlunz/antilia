@@ -66,7 +66,8 @@ public class AjaxConfirmationCancelButton extends AjaxWizardDialogButton
 				getWizardModel().cancel();
 			}
 		};
-		confirmationDialog.setModal(false);
+		confirmationDialog.setDraggable(false);
+		confirmationDialog.setModal(true);
 		confirmationDialog.getDialogStyle().setRoundedHeader(true);
 		return confirmationDialog;
 	}
