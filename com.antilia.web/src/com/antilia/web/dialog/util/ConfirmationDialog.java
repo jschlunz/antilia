@@ -114,9 +114,13 @@ public  class ConfirmationDialog extends DefaultDialog {
 
 			@Override
 			protected void onOk(AjaxRequestTarget target, Form<?> form) {
-				// do nothing
+				ConfirmationDialog.this.onOk(target, form);
 			}
 			
 		};
 	}
+	
+	protected void onOk(AjaxRequestTarget target, Form<?> form) {
+		
+	}	
 }

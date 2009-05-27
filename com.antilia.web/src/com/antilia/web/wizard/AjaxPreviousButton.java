@@ -43,7 +43,7 @@ public class AjaxPreviousButton extends AjaxWizardButton
 	@Override
 	protected ResourceReference getImage() {
 		if(isEnabled())
-			return DefaultStyle.IMG_PREVIOUS_ENABLED;
-		return DefaultStyle.IMG_PREVIOUS_DISABLED;
+			return DefaultStyle.IMG_PREVIOUS_ENABLED_PNG;
+		return DefaultStyle.IMG_PREVIOUS_DISABLED_PNG;
 	}
 }

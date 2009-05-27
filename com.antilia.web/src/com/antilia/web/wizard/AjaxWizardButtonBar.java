@@ -22,13 +22,13 @@ public class AjaxWizardButtonBar extends Panel implements IDefaultButtonProvider
 	 * @param id
 	 * @param wizard
 	 */
-	public AjaxWizardButtonBar(String id, AjaxWizard wizard) {
+	public AjaxWizardButtonBar(String id, IAjaxWizard wizard) {
 		super(id);		
 		setOutputMarkupId(true);
 		add(new AjaxPreviousButton("previous", wizard));
 		add(new AjaxNextButton("next", wizard));
 		add(new AjaxLastButton("last", wizard));
-		add(new AjaxCancelButton("cancel", wizard));
+		add(wizard.createCacelButton("cancel", wizard));
 		add(new AjaxFinishButton("finish", wizard));
 	}
 
