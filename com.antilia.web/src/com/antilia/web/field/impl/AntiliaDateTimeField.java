@@ -10,6 +10,7 @@ import org.apache.wicket.Session;
 import org.apache.wicket.datetime.StyleDateConverter;
 import org.apache.wicket.datetime.markup.html.form.DateTextField;
 import org.apache.wicket.extensions.yui.calendar.DatePicker;
+import org.apache.wicket.extensions.yui.calendar.DateTimeField;
 import org.apache.wicket.markup.html.form.DropDownChoice;
 import org.apache.wicket.markup.html.form.FormComponentPanel;
 import org.apache.wicket.markup.html.form.TextField;
@@ -21,14 +22,13 @@ import org.apache.wicket.request.ClientInfo;
 import org.apache.wicket.util.convert.IConverter;
 import org.apache.wicket.util.convert.converters.ZeroPaddingIntegerConverter;
 import org.apache.wicket.util.lang.EnumeratedType;
-import org.apache.wicket.validation.IValidatable;
-import org.apache.wicket.validation.validator.NumberValidator;
+import org.apache.wicket.validation.validator.RangeValidator;
 import org.joda.time.DateTimeFieldType;
 import org.joda.time.DateTimeZone;
 import org.joda.time.MutableDateTime;
 import org.joda.time.format.DateTimeFormat;
 
-/**
+/**s
  * Works on a {@link java.util.Date} object. Displays a date field and a {@link DatePicker}, a
  * field for hours and a field for minutes, and an AM/PM field. The format (12h/24h) of the hours
  * field depends on the time format of this {@link AntiliaDateTimeField}'s {@link Locale}, as does the
@@ -131,7 +131,7 @@ public class AntiliaDateTimeField extends FormComponentPanel<Date>
 				return MINUTES_CONVERTER;
 			}
 		});
-		minutesField.add(NumberValidator.range(0, 59));
+		minutesField.add(new RangeValidator<Integer>(0, 59));
 		minutesField.setLabel(new Model<String>("minutes"));
 		add(amOrPmChoice = new DropDownChoice<AM_PM>("amOrPmChoice", new PropertyModel<AM_PM>(this,
 				"amOrPm"), Arrays.asList(AM_PM.values())));
@@ -421,48 +421,30 @@ public class AntiliaDateTimeField extends FormComponentPanel<Date>
 	}
 
 	/**
-	 * Validator for the {@link AntiliaDateTimeField}'s hours field. Behaves like
-	 * <code>RangeValidator</code>, with a flexible maximum value.
+	 * Validator for the {@link DateTimeField}'s hours field. Behaves like
+	 * <code>RangeValidator</code>, setting appropriate range according to
+	 * {@link DateTimeField#getMaximumHours()}
 	 * 
-	 * @see AntiliaDateTimeField#getMaximumHours()
+	 * @see DateTimeField#getMaximumHours()
 	 * @author Gerolf Seitz
 	 */
-	private class HoursValidator extends NumberValidator<Integer>
+	private class HoursValidator extends RangeValidator<Integer>
 	{
 		private static final long serialVersionUID = 1L;
 
 		/**
-		 * @see org.apache.wicket.validation.validator.AbstractValidator#onValidate(org.apache.wicket.validation.IValidatable)
+		 * Constructor
 		 */
-		@Override
-		protected void onValidate(IValidatable<Integer> validatable)
+		public HoursValidator()
 		{
-			Number value = (Number)validatable.getValue();
-			if (value.longValue() < 0 || value.longValue() > getMaximumHours())
+			if (getMaximumHours() == 24)
 			{
-				error(validatable);
+				setRange(0, 23);
 			}
-		}
-
-		/**
-		 * @see org.apache.wicket.validation.validator.AbstractValidator#variablesMap(org.apache.wicket.validation.IValidatable)
-		 */
-		@Override
-		protected Map<String, Object> variablesMap(IValidatable<Integer> validatable)
-		{
-			final Map<String, Object> map = super.variablesMap(validatable);
-			map.put("minimum", new Long(0));
-			map.put("maximum", new Long(getMaximumHours()));
-			return map;
-		}
-
-		/**
-		 * @see org.apache.wicket.validation.validator.AbstractValidator#resourceKey()
-		 */
-		@Override
-		protected String resourceKey()
-		{
-			return "NumberValidator.range";
+			else
+			{
+				setRange(1, 12);
+			}
 		}
 	}
 }
