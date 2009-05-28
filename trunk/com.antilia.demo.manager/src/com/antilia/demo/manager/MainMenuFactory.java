@@ -6,6 +6,7 @@ package com.antilia.demo.manager;
 
 import java.io.Serializable;
 
+import com.antilia.demo.manager.components.progress.ProgressShowPanel;
 import com.antilia.demo.manager.components.tables.TablesPanel;
 import com.antilia.demo.manager.components.workspace.WorkSpacePanel;
 import com.antilia.demo.manager.entities.Address;
@@ -109,6 +110,17 @@ public class MainMenuFactory implements IToolbarItemsFactory {
 					return new WorkSpacePanel(id);
 				}
 			});
+			
+			subToolbar.addItem(new TopMenuPanelLink<Serializable>("Progress Bar", this.page) {
+				
+				private static final long serialVersionUID = 1L;
+
+				@Override
+				protected TopMenuPanel<Serializable> createTopMenuPanel(String id) {					
+					return new ProgressShowPanel(id);
+				}
+			});
+			
 	}
 
 }
