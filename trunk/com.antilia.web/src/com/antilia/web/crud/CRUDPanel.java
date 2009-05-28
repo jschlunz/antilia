@@ -12,13 +12,13 @@ import org.apache.wicket.markup.html.panel.Panel;
 
 import com.antilia.hibernate.dao.IDaoLocator;
 import com.antilia.hibernate.dao.IQuerableUpdatableDao;
-import com.antilia.hibernate.dao.impl.DefaultDaoLocator;
 import com.antilia.hibernate.query.IQuery;
 import com.antilia.web.beantable.model.IColumnModel;
 import com.antilia.web.navigator.INavigatorSelector;
 import com.antilia.web.provider.IQuerableDataProvider;
 import com.antilia.web.provider.IQuerableUpdatebleDataProvider;
 import com.antilia.web.provider.impl.DaoQuerableUpdatebleDataProvider;
+import com.antilia.web.utils.DaoUtils;
 import com.google.inject.Inject;
 
 /**
@@ -184,13 +184,7 @@ public class CRUDPanel<B extends Serializable> extends Panel implements ICRUDMod
 	 * @return
 	 */
 	protected IQuerableUpdatableDao<B> createQuerableUpdatableDao(IQuery<B> filterQuery) {
-		try {
-			return daoLocator.locateQuerableUpdatableDao(filterQuery.getEntityClass(), getExtraId());
-		}catch (Exception e) {
-			// do nothing
-		}
-		daoLocator = DefaultDaoLocator.getInstance();
-		return daoLocator.locateQuerableUpdatableDao(filterQuery.getEntityClass(), getExtraId());
+		return DaoUtils.findQuerableUpdatableDao(daoLocator, filterQuery.getEntityClass(), getExtraId());
 	}
 	
 	protected String getExtraId() {

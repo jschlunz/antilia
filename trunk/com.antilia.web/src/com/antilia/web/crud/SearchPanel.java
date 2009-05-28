@@ -14,7 +14,6 @@ import org.apache.wicket.markup.html.panel.Panel;
 
 import com.antilia.hibernate.dao.IDaoLocator;
 import com.antilia.hibernate.dao.IQuerableDao;
-import com.antilia.hibernate.dao.impl.DefaultDaoLocator;
 import com.antilia.hibernate.query.IQuery;
 import com.antilia.hibernate.query.Query;
 import com.antilia.web.beantable.Table;
@@ -38,6 +37,7 @@ import com.antilia.web.navigator.impl.DataProviderPageableNavigator;
 import com.antilia.web.provider.ILoadable;
 import com.antilia.web.provider.IQuerableDataProvider;
 import com.antilia.web.provider.impl.DaoQuerableDataProvider;
+import com.antilia.web.utils.DaoUtils;
 import com.google.inject.Inject;
 
 /**
@@ -158,6 +158,8 @@ public class SearchPanel<B extends Serializable> extends Panel implements ILoada
 	 * @return
 	 */
 	protected IQuerableDao<B> createQuerableDao(IQuery<B> filterQuery) {
+		return DaoUtils.findQuerableDao(daoLocator, filterQuery.getEntityClass(), getExtraId());
+		/*
 		try {
 			return daoLocator.locateQuerableDao(filterQuery.getEntityClass(), getExtraId());
 		}catch (Exception e) {
@@ -165,6 +167,7 @@ public class SearchPanel<B extends Serializable> extends Panel implements ILoada
 		}		
 		daoLocator = DefaultDaoLocator.getInstance();
 		return daoLocator.locateQuerableDao(filterQuery.getEntityClass(), getExtraId());
+		*/
 	}
 	
 	protected String getExtraId() {
