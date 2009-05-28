@@ -8,6 +8,7 @@ import org.apache.wicket.ResourceReference;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.IAjaxCallDecorator;
 import org.apache.wicket.behavior.AttributeAppender;
+import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.Model;
 import org.wicketstuff.minis.veil.VeilResources;
@@ -45,11 +46,10 @@ public abstract class DialogLink extends Panel implements IDialogLink {
 	 */
 	private boolean showAtMousePosition = false;
 	
+	private WebMarkupContainer dParent;
+	
 	public DialogLink(String id) {
-		super(id);
-		
-		
-		
+		super(id);			
 	}
 	
 	@Override
@@ -99,14 +99,19 @@ public abstract class DialogLink extends Panel implements IDialogLink {
 			
 			add(button);
 		}
-		if(dialog == null || !cacheDialog) {
-			dialog = newDialog("dialog"); 
-			dialog.setVisible(false);				
-			dialog.setOutputMarkupPlaceholderTag(true);
-			dialog.add(new AttributeAppender("style", new Model<String>("position: relavive; z-index: 2;"), ";"));
-			dialog.setDialogButton(this);
-			addOrReplace(dialog);
+		
+		if(dParent == null){
+			dParent = new WebMarkupContainer("dParent");
+			dParent.setOutputMarkupId(true);
+			add(dParent);
 		}
+		  		
+		dialog = newDialog("dialog"); 
+		dialog.setVisible(false);				
+		dialog.add(new AttributeAppender("style", new Model<String>("position: relavive; z-index: 2;"), ";"));		
+		dialog.setDialogButton(this);
+		dParent.addOrReplace(dialog);
+		
 		super.onBeforeRender();
 	}
 	
@@ -168,9 +173,14 @@ public abstract class DialogLink extends Panel implements IDialogLink {
 	
 	protected void onClick(AjaxRequestTarget target) {
 		if(showDialog(target)) {
+			if(!cacheDialog) {
+				dialog = newDialog("dialog"); 						
+				dialog.add(new AttributeAppender("style", new Model<String>("position: relavive; z-index: 2;"), ";"));		
+				dialog.setDialogButton(this);
+				dParent.addOrReplace(dialog);				
+			}
 			dialog.setVisible(true);
-			target.addComponent(dialog);
-			target.addComponent(button);
+			target.addComponent(dParent);
 		}
 	}
 	
