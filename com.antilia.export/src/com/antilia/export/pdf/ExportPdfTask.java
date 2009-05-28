@@ -64,13 +64,13 @@ public class ExportPdfTask<E extends Serializable> extends AbstractExportTask {
 		
 		
 		for(long i=1; i<= total; i++) {
-			if(progressReporter != null && progressReporter.isCanceled())
+			if(progressReporter == null || progressReporter.isCanceled())
 				break;			
 			if(progressReporter != null) {
 				progressReporter.setCurrentTask(i);			
 				progressReporter.setMessage("Exporting record " + i + " of " + total);
-			}
-			Thread.sleep(10);
+			}			
+			Thread.sleep(1);			
 			table = new PdfPTable(widths);			
 			E bean = pageableProvider.current();
 			pageableProvider.next();
