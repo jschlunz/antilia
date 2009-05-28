@@ -9,6 +9,7 @@ import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.model.IModel;
 
+import com.antilia.hibernate.context.IProgressReporter;
 import com.antilia.web.dialog.DefaultDialog;
 import com.antilia.web.dialog.DialogButton;
 
@@ -76,14 +77,20 @@ public abstract class AbstractExportDialogButton extends DialogButton {
 					}
 				};
 			}
+			
+			@Override
+			protected void onClose(AjaxRequestTarget requestTarget, String actionKey) {
+				IProgressReporter reporter = getExportTask()!= null? getExportTask().getProgressReporter(): null;
+				if(reporter != null)
+					reporter.cancelJob();
+			}
 		};
+		
 		dialog.setModal(true);
 		dialog.setWidth(300);
 		dialog.setHeight(200);
 		dialog.setResizable(false);
-		dialog.setCentered(true);
-		dialog.setCloseable(false);
-		dialog.setFoldable(false);
+		dialog.setCentered(true);		
 		return dialog;
 	}
 
