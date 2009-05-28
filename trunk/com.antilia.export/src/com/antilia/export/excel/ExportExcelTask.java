@@ -70,7 +70,7 @@ public class ExportExcelTask<E extends Serializable> extends AbstractExportTask 
 		for(long i=1; i<= total; i++) {
 			row++;
 			column=0;
-			if(progressReporter != null && progressReporter.isCanceled())
+			if(progressReporter == null || progressReporter.isCanceled())
 				break;			
 			if(progressReporter != null) {
 				progressReporter.setCurrentTask(i);			
