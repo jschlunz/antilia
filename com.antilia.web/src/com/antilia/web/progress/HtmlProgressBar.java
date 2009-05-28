@@ -6,7 +6,7 @@ import org.apache.wicket.markup.html.CSSPackageResource;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.panel.Panel;
-import org.apache.wicket.model.Model;
+import org.apache.wicket.model.AbstractReadOnlyModel;
 import org.apache.wicket.protocol.http.ClientProperties;
 import org.apache.wicket.protocol.http.request.WebClientInfo;
 
@@ -38,7 +38,7 @@ public class HtmlProgressBar extends Panel {
 		add(CSSPackageResource.getHeaderContribution(newProgressCss()));		
 		progressBar = new WebMarkupContainer("pBar");
 		
-		progressBar.add(new AttributeModifier("style", new Model<String>() {
+		progressBar.add(new AttributeModifier("style", new AbstractReadOnlyModel<String>() {
 			private static final long serialVersionUID = 1L;
 
 			@Override
@@ -58,7 +58,7 @@ public class HtmlProgressBar extends Panel {
 	@Override
 	protected void onBeforeRender() {
 		WebMarkupContainer progressBarFill = new WebMarkupContainer("pBarFill");		
-		progressBarFill.add(new AttributeModifier("style", new Model<String>() {
+		progressBarFill.add(new AttributeModifier("style", new AbstractReadOnlyModel<String>() {
 			private static final long serialVersionUID = 1L;
 
 			@Override
@@ -68,15 +68,12 @@ public class HtmlProgressBar extends Panel {
 				sb.append("width:");
 				sb.append(getProgress());
 				sb.append("%;");
-				if(!isBrowserIExplorer()) {
-					sb.append("margin: 1px;");
-				}
 				return sb.toString();
 			}
 		}));
 		progressBar.addOrReplace(progressBarFill);
 		
-		Label progressBarText = new Label("pBarText", new Model<String>() {
+		Label progressBarText = new Label("pBarText", new AbstractReadOnlyModel<String>() {
 			private static final long serialVersionUID = 1L;
 
 			@Override

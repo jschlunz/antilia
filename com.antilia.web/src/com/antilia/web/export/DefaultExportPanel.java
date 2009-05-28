@@ -9,6 +9,7 @@ import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.util.time.Duration;
 
+import com.antilia.hibernate.context.IProgressReporter;
 import com.antilia.web.export.ProgressReportPanel;
 
 
@@ -36,18 +37,23 @@ public abstract class DefaultExportPanel extends Panel {
 		super(id);		
 		this.button = button;		
 		setOutputMarkupId(true);		
+		add(new AjaxSelfUpdatingTimerBehavior(Duration.seconds(5)));
 	}
 	
 	@Override
 	protected void onBeforeRender() {				
-		if(!this.button.getExportTask().isFinished()) {			
-			for(Object behavior : getBehaviors()) {
-				if(behavior instanceof AjaxSelfUpdatingTimerBehavior) {
-					remove((AjaxSelfUpdatingTimerBehavior)behavior);
+		if(this.button == null || this.button.getExportTask() == null || !this.button.getExportTask().isFinished()) {						
+			progress = new ProgressReportPanel("progress") {
+				
+				private static final long serialVersionUID = 1L;
+
+				@Override
+				protected IProgressReporter getProgressReporter() {
+					if(DefaultExportPanel.this.button.getExportTask() != null)
+						return DefaultExportPanel.this.button.getExportTask().getProgressReporter();
+					return null;
 				}
-			}
-			add(new AjaxSelfUpdatingTimerBehavior(Duration.seconds(2)));
-			progress = new ProgressReportPanel("progress", DefaultExportPanel.this.button.getExportTask().getProgressReporter());
+			};
 			addOrReplace(progress);
 			
 		} else {
@@ -56,7 +62,7 @@ public abstract class DefaultExportPanel extends Panel {
 					remove((AjaxSelfUpdatingTimerBehavior)behavior);
 				}
 			}
-			add(new AjaxSelfUpdatingTimerBehavior(Duration.seconds(100)));
+			add(new AjaxSelfUpdatingTimerBehavior(Duration.seconds(1000)));
 			progress = new DownLoadExportPanel("progress", this.button.getExportTask().getFile()) {
 				
 				private static final long serialVersionUID = 1L;
