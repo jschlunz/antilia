@@ -7,6 +7,7 @@ package com.antilia.demo.manager;
 import java.io.Serializable;
 
 import com.antilia.demo.manager.components.progress.ProgressShowPanel;
+import com.antilia.demo.manager.components.roundpane.ShowRoundPanel;
 import com.antilia.demo.manager.components.tables.TablesPanel;
 import com.antilia.demo.manager.components.workspace.WorkSpacePanel;
 import com.antilia.demo.manager.entities.Address;
@@ -120,6 +121,18 @@ public class MainMenuFactory implements IToolbarItemsFactory {
 					return new ProgressShowPanel(id);
 				}
 			});
+			
+			subToolbar.addItem(new TopMenuPanelLink<Serializable>("RoundPanes", this.page) {
+				
+				private static final long serialVersionUID = 1L;
+
+				@Override
+				protected TopMenuPanel<Serializable> createTopMenuPanel(String id) {					
+					return new ShowRoundPanel(id);
+				}
+			});
+			
+			
 			
 	}
 
