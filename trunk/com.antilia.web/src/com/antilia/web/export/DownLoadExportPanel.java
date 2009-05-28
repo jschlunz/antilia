@@ -30,7 +30,7 @@ public abstract class DownLoadExportPanel extends Panel {
 	public DownLoadExportPanel(String id, final File file) {
 		super(id);
 		
-		ResourceLink fileLink  = new ResourceLink("file", new DynamicWebResource(file.getName()) {
+		ResourceLink<Void> fileLink  = new ResourceLink<Void>("file", new DynamicWebResource(file.getName()) {
 			
 			private static final long serialVersionUID = 1L;
 

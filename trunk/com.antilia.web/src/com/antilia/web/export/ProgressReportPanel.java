@@ -19,25 +19,22 @@ import com.antilia.web.resources.DefaultStyle;
  * @author EReinaldoB
  *
  */
-public class ProgressReportPanel extends Panel {
+public abstract class ProgressReportPanel extends Panel {
 
 	private static final long serialVersionUID = 1L;
 
-	private IProgressReporter progresReporter;
-	
 	private CloseDialogButton cancelButton;
 	
-	public ProgressReportPanel(String id, IProgressReporter progresReporter) {
-		super(id);
-		this.progresReporter = progresReporter;
-		
-		
+	public ProgressReportPanel(String id) {
+		super(id);		
 	}
+	
 	
 	@Override
 	protected void onBeforeRender() {
 		super.onBeforeRender();		
-		Label message = new Label("message", progresReporter.getMessage());		
+		String messageStr = getProgressReporter() != null?  getProgressReporter().getMessage(): "";
+		Label message = new Label("message", messageStr);		
 		addOrReplace(message);
 		
 		HtmlProgressBar progress = new HtmlProgressBar("progress") {
@@ -46,7 +43,8 @@ public class ProgressReportPanel extends Panel {
 
 			@Override
 			public int getProgress() {
-				return (int)progresReporter.getProgress();
+				IProgressReporter reporter = ProgressReportPanel.this.getProgressReporter();
+				return reporter != null?(int)reporter.getProgress(): 0;
 			}
 		};	
 		addOrReplace(progress);
@@ -59,7 +57,9 @@ public class ProgressReportPanel extends Panel {
 				@Override
 				protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
 					super.onSubmit(target, form);
-					progresReporter.cancelJob();
+					IProgressReporter reporter = ProgressReportPanel.this.getProgressReporter();
+					if(reporter != null)
+						reporter.cancelJob();
 				}
 				
 				@Override
@@ -84,4 +84,6 @@ public class ProgressReportPanel extends Panel {
 	private DefaultDialog findDefaultDialog() {
 		return findParent(DefaultDialog.class);
 	}
+	
+	protected abstract IProgressReporter getProgressReporter();
 }

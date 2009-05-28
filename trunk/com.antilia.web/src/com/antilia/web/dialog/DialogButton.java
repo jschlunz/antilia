@@ -4,15 +4,18 @@
  */
 package com.antilia.web.dialog;
 
+import org.apache.wicket.Component;
 import org.apache.wicket.ResourceReference;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.IAjaxCallDecorator;
 import org.apache.wicket.behavior.AttributeAppender;
+import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.Model;
-import org.wicketstuff.minis.veil.VeilResources;
 
+import com.antilia.web.ajax.AntiliaAjaxCallDecorator;
+import com.antilia.web.ajax.IDialogFinder;
 import com.antilia.web.button.AbstractButton;
 
 
@@ -20,7 +23,7 @@ import com.antilia.web.button.AbstractButton;
  * 
  * @author Ernesto Reinaldo Barreiro (reiern70@gmail.com)
  */
-public abstract class DialogButton extends Panel implements IDialogLink {
+public abstract class DialogButton extends Panel implements IDialogLink, IDialogFinder {
 
 	private static final long serialVersionUID = 1L;
 
@@ -32,22 +35,17 @@ public abstract class DialogButton extends Panel implements IDialogLink {
 	
 	private IDialogScope dialogScope;
 	
-	/**
-	 * Flag to set if a new dialog should be created any time the user clicks 
-	 * on the link. By default no caching is done!
-	 */
-	private boolean cacheDialog = false;
+	private WebMarkupContainer dParent;
 	
 	/**
 	 * If the dialog should be opened at mouse position!
 	 */
 	private boolean showAtMousePosition = false;
 	
+	private boolean cacheDialog = true;
+	
 	public DialogButton(String id) {
-		super(id);
-		
-		
-		
+		super(id);				
 	}
 	
 	@Override
@@ -94,14 +92,19 @@ public abstract class DialogButton extends Panel implements IDialogLink {
 			
 			add(button);
 		}
-		if(dialog == null || !cacheDialog) {
-			dialog = newDialog("dialog"); 
-			dialog.setVisible(false);				
-			dialog.setOutputMarkupPlaceholderTag(true);
-			dialog.add(new AttributeAppender("style", new Model<String>("position: relavive; z-index: 2;"), ";"));
-			dialog.setDialogButton(this);
-			addOrReplace(dialog);
+		
+		if(dParent == null){
+			dParent = new WebMarkupContainer("dParent");
+			dParent.setOutputMarkupId(true);
+			add(dParent);
 		}
+		  		
+		dialog = newDialog("dialog"); 
+		dialog.setVisible(false);				
+		dialog.add(new AttributeAppender("style", new Model<String>("position: relavive; z-index: 2;"), ";"));		
+		dialog.setDialogButton(this);
+		dParent.addOrReplace(dialog);
+		
 		super.onBeforeRender();
 	}
 	
@@ -117,37 +120,7 @@ public abstract class DialogButton extends Panel implements IDialogLink {
 
 	
 	protected IAjaxCallDecorator getAjaxCallDecorator() {
-		return new IAjaxCallDecorator() {
-			
-			private static final long serialVersionUID = 1L;
-
-			public CharSequence decorateOnFailureScript(CharSequence script) {
-				IDialogScope dialogScope = getDialogScope();
-				String errorMessage = ";alert('"+DialogButton.this.getString("ServerDown", null, "Server Down!")+"');";
-				if(dialogScope != null) {
-					return script + ";" + VeilResources.Javascript.Generic.toggle(dialogScope.getDialogId()) + errorMessage ;
-				} 
-				return script + ";" + VeilResources.Javascript.Generic.toggle("AT_body") + errorMessage;
-			}
-			
-			public CharSequence decorateOnSuccessScript(CharSequence script) {
-				IDialogScope dialogScope = getDialogScope();
-				if(dialogScope != null) {
-					return script + ";" + VeilResources.Javascript.Generic.toggle(dialogScope.getDialogId()) + ";" 
-					+ "Antilia_dragPanels.showPanel('"+dialog.getDialogId()+"','"+button.getMarkupId()+"');"; 
-				}
-				return script + ";" + VeilResources.Javascript.Generic.toggle("AT_body") + ";" 
-				+ "Antilia_dragPanels.showPanel('"+dialog.getDialogId()+"','"+button.getMarkupId()+"');";
-			}
-			
-			public CharSequence decorateScript(CharSequence script) {
-				IDialogScope dialogScope = getDialogScope();
-				if(dialogScope != null) {
-					return VeilResources.Javascript.Generic.show(dialogScope.getDialogId()) + ";" + script;
-				}
-				return VeilResources.Javascript.Generic.show("AT_body") + ";" + script;
-			}
-		};
+		return new AntiliaAjaxCallDecorator(this);
 	}
 	
 	public IDialogScope getDialogScope() {
@@ -156,16 +129,25 @@ public abstract class DialogButton extends Panel implements IDialogLink {
 		return dialogScope;
 	}
 	
-	private IDialogScope findParentDialog() {
+	public Component getDefiningComponent() {
+		return this;
+	}
+	
+	public IDialogScope findParentDialog() {
 		return (IDialogScope)findParent(IDialogScope.class);
 	}
 	
 	
 	protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
 		if(showDialog(target, form)) {
+			if(!cacheDialog) {
+				dialog = newDialog("dialog"); 						
+				dialog.add(new AttributeAppender("style", new Model<String>("position: relavive; z-index: 2;"), ";"));		
+				dialog.setDialogButton(this);
+				dParent.addOrReplace(dialog);				
+			}
 			dialog.setVisible(true);
-			target.addComponent(dialog);
-			target.addComponent(button);
+			target.addComponent(dParent);			
 		}
 	}
 	

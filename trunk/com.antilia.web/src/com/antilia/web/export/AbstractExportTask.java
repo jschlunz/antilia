@@ -17,7 +17,7 @@ import com.antilia.hibernate.context.RequestContext;
  * @author Ernesto Reinaldo Barreiro (reiern70@gmail.com)
  *
  */
-public abstract class AbstractExportTask implements Runnable {
+public abstract class AbstractExportTask implements Runnable  {
 
 	private IProgressReporter progressReporter;
 	
@@ -42,26 +42,30 @@ public abstract class AbstractExportTask implements Runnable {
 	/* (non-Javadoc)
 	 * @see java.lang.Runnable#run()
 	 */
-	public final void  run() {								
-			try {						
-				// setting up the request context...
-				RequestContext requestContext = RequestContext.get();
-				requestContext.setPersistenceUnit(persistenceUnit);
-				requestContext.setUser(user);						
-				requestContext.setProgressReporter(progressReporter);
-				
-				this.progressReporter.setMessage(getIntialMessage());
-				this.progressReporter.setTotalTasks(getTotalTasks());
-				file = getExportFile();				
-				doExport(progressReporter);
-				
-			} catch (Exception e) {
-				e.printStackTrace();
-			}	finally {
-				finished = true;
-			}
+	public final void  run() {											
+		execute();
 	}
-
+	
+	public void execute() {
+		try {						
+			// setting up the request context...
+			RequestContext requestContext = RequestContext.get();
+			requestContext.setPersistenceUnit(persistenceUnit);
+			requestContext.setUser(user);						
+			requestContext.setProgressReporter(progressReporter);
+			
+			this.progressReporter.setMessage(getIntialMessage());
+			this.progressReporter.setTotalTasks(getTotalTasks());
+			file = getExportFile();				
+			doExport(progressReporter);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}	finally {
+			finished = true;
+		}
+	}
+	
 	protected abstract void doExport(IProgressReporter progressReporter) throws Exception;
 	
 	protected abstract File getExportFile() throws Exception;

@@ -32,14 +32,15 @@ public abstract class AbstractExportDialogButton extends DialogButton {
 	 */
 	public AbstractExportDialogButton(String id) {
 		super(id);
+		setCacheDialog(false);
 	}
 
 	@Override
 	protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
-		super.onSubmit(target, form);
 		exportTask = newExportTask();
 		Thread thread = new Thread(exportTask);
 		thread.start();
+		super.onSubmit(target, form);		
 	}
 	
 	protected abstract AbstractExportTask newExportTask();
