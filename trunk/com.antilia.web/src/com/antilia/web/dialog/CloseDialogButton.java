@@ -61,21 +61,6 @@ public class CloseDialogButton extends AbstractButton {
 	
 	@Override
 	protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
-		/*
-		dialog.setVisible(false);
-		target.addComponent(dialog);
-		// hide all sub dialogs as well
-		for(Iterator<DefaultDialog> it = dialog.getDialogs();it.hasNext();) {
-			DefaultDialog subDialog = it.next();
-			if(subDialog.isVisible())
-				subDialog.setVisible(false);
-		}
-		if(target != null) {
-			if(dialog.getDialogButton() != null) {
-				target.addComponent(dialog.getDialogButton().getButton());
-			}		
-		}
-		*/
 		new CloseDialogAction(this, dialog).onSubmit(target, form, "close");
 	}
 
