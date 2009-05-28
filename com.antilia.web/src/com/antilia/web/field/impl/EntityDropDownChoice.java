@@ -12,7 +12,7 @@ import org.apache.wicket.model.IModel;
 
 import com.antilia.hibernate.dao.IDaoLocator;
 import com.antilia.hibernate.dao.IQuerableDao;
-import com.antilia.hibernate.dao.impl.DefaultDaoLocator;
+import com.antilia.web.utils.DaoUtils;
 import com.google.inject.Inject;
 
 /**
@@ -58,12 +58,6 @@ public class EntityDropDownChoice<B extends Serializable> extends DropDownChoice
 	 * @return
 	 */
 	protected IQuerableDao<B> createQuerableDao(Class<B> beanClass) {
-		try {
-			return daoLocator.locateQuerableDao(beanClass, null);
-		}catch (Exception e) {
-			// do nothing
-		}		
-		daoLocator = DefaultDaoLocator.getInstance();
-		return daoLocator.locateQuerableDao(beanClass, null);
+		return DaoUtils.findQuerableDao(daoLocator, beanClass, null);
 	}
 }
