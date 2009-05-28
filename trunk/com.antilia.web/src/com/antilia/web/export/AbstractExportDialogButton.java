@@ -32,7 +32,7 @@ public abstract class AbstractExportDialogButton extends DialogButton {
 	 */
 	public AbstractExportDialogButton(String id) {
 		super(id);
-		setCacheDialog(false);
+		setCacheDialog(false);		
 	}
 
 	@Override
@@ -82,6 +82,8 @@ public abstract class AbstractExportDialogButton extends DialogButton {
 		dialog.setHeight(200);
 		dialog.setResizable(false);
 		dialog.setCentered(true);
+		dialog.setCloseable(false);
+		dialog.setFoldable(false);
 		return dialog;
 	}
 
