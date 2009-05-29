@@ -22,6 +22,12 @@ public class ListQuerableUpdatebleDataProvider<E extends Serializable> extends L
 
 	private static final long serialVersionUID = 1L;
 	
+	
+	public ListQuerableUpdatebleDataProvider(Iterable<E> iterable) {
+		this(new ListQuerableUpdatableDao<E>(iterable));
+	}
+	
+	
 	public ListQuerableUpdatebleDataProvider(List<E> list) {
 		this(new ListQuerableUpdatableDao<E>(list));
 	}

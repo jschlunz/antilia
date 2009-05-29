@@ -13,6 +13,7 @@ import java.util.List;
 import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.model.IModel;
 
+import com.antilia.common.util.CollectionUtils;
 import com.antilia.hibernate.query.IQuery;
 import com.antilia.hibernate.query.Query;
 import com.antilia.web.navigator.ILoadablePageableNavigator;
@@ -30,7 +31,7 @@ public class InMemoryPageableNavigator<E extends Serializable> implements ILoada
 	 
 	private static final long serialVersionUID = 1L;	
 	
-	private ArrayList<E> collection;
+	private List<E> collection;
 	
 	private int currentIndex;
 	
@@ -50,14 +51,14 @@ public class InMemoryPageableNavigator<E extends Serializable> implements ILoada
 	 * @param collection
 	 */
 	public InMemoryPageableNavigator(Collection<E> collection, Class<E> beanClass) {
-		this.collection = toList(collection);		
+		this.collection = CollectionUtils.toList(collection);		
 		this.currentIndex = 0;
 		this.currentPage = 0;
 		this.query  = new Query<E>(beanClass);
 	}
 	
 	public InMemoryPageableNavigator(Iterable<E> iterable, Class<E> beanClass) {
-		this.collection = toList(iterable);		
+		this.collection = CollectionUtils.toList(iterable);		
 		this.currentIndex = 0;
 		this.currentPage = 0;
 		this.query  = new Query<E>(beanClass);
@@ -67,7 +68,7 @@ public class InMemoryPageableNavigator<E extends Serializable> implements ILoada
 	public final  void load(Query<E> filter) {
 		Collection<E> collection = onLoad(filter);
 		if(collection != null) {
-			this.collection = toList(collection);
+			this.collection = CollectionUtils.toList(collection);
 		}
 		for(IPageableNavigatorListener listener: navigationListeners) {
 			listener.onClear();
@@ -93,16 +94,6 @@ public class InMemoryPageableNavigator<E extends Serializable> implements ILoada
 		return null;
 	}
 	
-	
-	private ArrayList<E> toList(Iterable<E> iterable) {
-		ArrayList<E> list = new ArrayList<E>();
-		if(iterable != null) {
-			for(E e: iterable) {
-				list.add(e);
-			}
-		}
-		return list;
-	}
 	
 	
 	public boolean removeCurrent() {
@@ -136,7 +127,7 @@ public class InMemoryPageableNavigator<E extends Serializable> implements ILoada
 	}
 	
 	public void addAll(Collection<E> element) {
-		collection.addAll(toList(element));
+		collection.addAll(CollectionUtils.toList(element));
 	}
 	
 	public void remove(E element) {		
