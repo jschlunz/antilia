@@ -10,7 +10,7 @@ package com.antilia.web.field.impl;
  * @author Ernesto Reinaldo Barreiro (reiern70@gmail.com)
  *
  */
-public enum SelectionMode {
+public enum DrillInSelectionMode {
 	DROPDOWN,
 	LARGE_IN_MODAL_DIALOG,
 	LARGE_ON_NEXT_PAGE
