@@ -118,6 +118,11 @@ public class Table<E extends Serializable> extends Panel implements IPageableCom
 	private boolean keepSelectionOnNavigation = true;
 	
 	/**
+	 * Flag to disable/enable column draggability.
+	 */
+	private boolean dragableColumns = true;
+	
+	/**
 	 * Constructor accepting a List.
 	 * 
 	 * @param id
@@ -255,6 +260,7 @@ public class Table<E extends Serializable> extends Panel implements IPageableCom
 				sb.append("," + (Table.this.getRendringCount()));
 				sb.append("," + Table.this.getDraggerUrlAsArray());
 				sb.append("," + Table.this.isIe6());
+				sb.append("," + Table.this.isDragableColumns());
 				sb.append(");");
 				sb.append(tableId+".");
 				sb.append("createDraggables();");								
@@ -717,5 +723,19 @@ public class Table<E extends Serializable> extends Panel implements IPageableCom
 	 */
 	public void setKeepSelectionOnNavigation(boolean keepSelectionOnNavigation) {
 		this.keepSelectionOnNavigation = keepSelectionOnNavigation;
+	}
+
+	/**
+	 * @return the dragableColumns
+	 */
+	public boolean isDragableColumns() {
+		return dragableColumns;
+	}
+
+	/**
+	 * @param dragableColumns the dragableColumns to set
+	 */
+	public void setDragableColumns(boolean dragableColumns) {
+		this.dragableColumns = dragableColumns;
 	}
 }
