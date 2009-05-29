@@ -30,6 +30,7 @@ import org.apache.wicket.model.IComponentInheritedModel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 
+import com.antilia.hibernate.query.Query;
 import com.antilia.web.beantable.model.FirstColumnModel;
 import com.antilia.web.beantable.model.IColumnModel;
 import com.antilia.web.beantable.model.ITableModel;
@@ -39,9 +40,10 @@ import com.antilia.web.button.MenuItemsFactory;
 import com.antilia.web.menu.IMenuItemsAuthorizer;
 import com.antilia.web.navigator.INavigatorSelector;
 import com.antilia.web.navigator.IPageableNavigator;
-import com.antilia.web.navigator.impl.InMemoryPageableNavigator;
+import com.antilia.web.navigator.impl.DataProviderPageableNavigator;
 import com.antilia.web.osgi.MenuFactoryService;
 import com.antilia.web.provider.SelectionMode;
+import com.antilia.web.provider.impl.ListQuerableUpdatebleDataProvider;
 import com.antilia.web.provider.impl.SourceSelector;
 import com.antilia.web.resources.DefaultStyle;
 import com.antilia.web.resources.ResourceLocator;
@@ -130,7 +132,7 @@ public class Table<E extends Serializable> extends Panel implements IPageableCom
 	 * @param elements
 	 */
 	public Table(String id, ITableModel<E> tableModel, Collection<E> elements) {
-		this(id, tableModel, new InMemoryPageableNavigator<E>(elements, tableModel.getBeanClass()));
+		this(id, tableModel, new DataProviderPageableNavigator<E>(new ListQuerableUpdatebleDataProvider<E>(elements),new Query<E>(tableModel.getBeanClass())));
 	}
 	
 	/**
