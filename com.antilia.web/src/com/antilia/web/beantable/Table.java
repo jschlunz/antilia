@@ -184,6 +184,14 @@ public class Table<E extends Serializable> extends Panel implements IPageableCom
 		addFirstHeaderMenuItems(getFirstHeaderMenuItemsFactory());
 	}	
 	
+	public void resetSelectionMode(SelectionMode selectionMode) {
+		tableModel.setSelectionMode(selectionMode);
+		getSourceSelector().setSelectionMode(selectionMode);
+		getSourceSelector().clear();
+		getFirstHeaderMenuItemsFactory().removeAll();		
+		configureFirstHeaderMenuItemsFactory(tableModel);
+	}
+	
 	@Override
 	protected void onBeforeRender() {	
 		
