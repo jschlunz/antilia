@@ -1,5 +1,5 @@
 
-function Table(id, url, rows, ncols, rendringCount, urls, ie6) {
+function Table(id, url, rows, ncols, rendringCount, urls, ie6, dragColumns) {
 	this.id = id;
 	// rows is an array of Rows	
 	this.rows = rows;
@@ -8,6 +8,7 @@ function Table(id, url, rows, ncols, rendringCount, urls, ie6) {
 	this.rendringCount = rendringCount;
 	this.urls = urls;
 	this.ie6 = ie6;
+	this.dragColumns = dragColumns;
 	this.columns = new Array();    
     for(var i = 0; i < this.ncols; i++) {               
         this.addColumn(i);
@@ -15,6 +16,8 @@ function Table(id, url, rows, ncols, rendringCount, urls, ie6) {
 }
 
 Table.prototype.createDraggables = function() { 
+    if(!this.dragColumns)
+    	return;
     var trashId  = this.id + '_' + 'dropCol';
     new YAHOO.util.DDTarget(trashId , this.id);
     
