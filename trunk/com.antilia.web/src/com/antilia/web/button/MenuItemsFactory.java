@@ -45,6 +45,11 @@ public class MenuItemsFactory implements IMenuItemsFactory {
 		items.add(item);
 		return this;
 	}
+	
+	public MenuItemsFactory removeAll() {
+		items.clear();
+		return this;
+	}
 
 
 	/**
