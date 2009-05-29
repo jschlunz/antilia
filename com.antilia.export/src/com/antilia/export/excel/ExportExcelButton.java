@@ -25,9 +25,6 @@ import com.antilia.web.utils.RequestUtils;
  */
 public class ExportExcelButton<B extends Serializable> extends AbstractExportDialogButton {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	
 	/**
