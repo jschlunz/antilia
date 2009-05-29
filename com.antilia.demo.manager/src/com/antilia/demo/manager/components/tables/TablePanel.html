@@ -1,13 +1,45 @@
 <html xmlns:wicket="org.apache.wicket">    
     <body>         
     	<wicket:panel>      
-    		<div style=" padding: 10px; padding-top: 20px;">  
-    			<div>Multiple selection</div>
-	        	<div wicket:id="table"></div>
-	        	<div>Single selection</div>
-	        	<div wicket:id="table1"></div>
-	        	<div>No selection</div>
-	        	<div wicket:id="table2"></div>
+    		<div style=" padding: 10px; padding-top: 20px;">      			
+    			<div> 
+    				<fieldset title="Table Options" style="width: 600px;"">
+    					<legend>Table Options</legend>
+    					<table>
+    						<tr>
+    							<td>
+    								<b><span>Draggable Columns</span></b>:
+    							</td>
+    							<td>
+    								<input wicket:id="draggableColoumns" type="checkbox">
+    							</td>
+    							<td>
+    								&nbsp;&nbsp;
+    							</td>
+    							<td>
+    								<b><span>Resizable Columns</span></b>:
+    							</td>
+    							<td>
+    								<input wicket:id="resizableColumns" type="checkbox">
+    							</td>
+    							<td>
+    								&nbsp;&nbsp;
+    							</td>
+    							<td>
+    								<b><span>First Column Resizable</span></b>:
+    							</td>
+    							<td>
+    								<input wicket:id="fresizableColumns" type="checkbox">
+    							</td>
+    						</tr>
+    					</table>
+    				</fieldset>
+    			</div>	        		      	
+    			<div style="float: left;">
+    				<div>
+    					<div wicket:id="table" style="padding-top: 5px;"></div>
+    				</div>    				
+    			</div>
 	        </div>
 		</wicket:panel>
     </body>
