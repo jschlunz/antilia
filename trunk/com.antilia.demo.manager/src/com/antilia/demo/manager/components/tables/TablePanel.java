@@ -13,6 +13,8 @@ import com.antilia.web.beantable.Table;
 import com.antilia.web.beantable.model.IColumnModel;
 import com.antilia.web.beantable.model.TableModel;
 import com.antilia.web.field.impl.AjaxCheckBox;
+import com.antilia.web.field.impl.AjaxEnumDropDownChoice;
+import com.antilia.web.provider.SelectionMode;
 
 /**
  * @author Ernesto Reinaldo Barreiro (reiern70@gmail.com)
@@ -134,6 +136,35 @@ public class TablePanel extends Panel {
 		
 		add(fresizableColumns);
 		
+		AjaxEnumDropDownChoice<SelectionMode> selectionMode = new AjaxEnumDropDownChoice<SelectionMode>("selectionMode", SelectionMode.class) {
+			
+			private static final long serialVersionUID = 1L;
+
+			@Override
+			protected void onUpdate(AjaxRequestTarget target) {
+				if(target != null) {
+					table.resetSelectionMode(tableModel.getSelectionMode());					
+					target.addComponent(table.getUpdatableComponent());
+				}
+			}
+		
+		};
+		selectionMode.setNullValid(false);
+		selectionMode.setModel(new Model<SelectionMode>() {
+			
+			private static final long serialVersionUID = 1L;
+
+			@Override
+			public SelectionMode getObject() {
+				return tableModel.getSelectionMode();
+			}
+			
+			@Override
+			public void setObject(SelectionMode object) {
+				tableModel.setSelectionMode(object);
+			}									
+		});
+		add(selectionMode);
 		
 		table = new Table<Person>("table",tableModel, Person.createPersons());
 		table.setFirstColumnResizable(true);
