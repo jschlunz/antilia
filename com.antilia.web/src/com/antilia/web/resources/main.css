@@ -4,12 +4,13 @@ fieldset, legend, td, th, input, textarea, select, a, li , span, button, p{
 }
 
 fieldset {
-	border: 1px solid #b0a4a4;	
+	border: 1px solid #b0a4a4;
+	padding: 10px;	
 }
 
 fieldset > legend {
 	font-weight: bold;
-	color: white;
+	color: black;
 }
 input {    
     vertical-align: middle;
