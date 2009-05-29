@@ -1,8 +1,16 @@
-td, th, input, textarea, select, a, li , span, button, p{
+fieldset, legend, td, th, input, textarea, select, a, li , span, button, p{
 	font-family: Verdana, Arial, Helvetica, sans-serif; 
 	font-size: 10px; 
 }
 
+fieldset {
+	border: 1px solid #b0a4a4;	
+}
+
+fieldset > legend {
+	font-weight: bold;
+	color: white;
+}
 input {    
     vertical-align: middle;
     border: 1px solid gray;
