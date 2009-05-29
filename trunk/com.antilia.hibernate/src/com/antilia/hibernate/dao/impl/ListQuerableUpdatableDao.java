@@ -17,6 +17,9 @@ public class ListQuerableUpdatableDao<E extends Serializable> extends ListQuerab
 
 	private static final long serialVersionUID = 1L;
 	
+	public ListQuerableUpdatableDao(Iterable<E> iterable) {
+		super(iterable);
+	}
 	
 	public ListQuerableUpdatableDao(List<E> list) {
 		super(list);

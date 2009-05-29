@@ -6,6 +6,7 @@ package com.antilia.hibernate.dao.impl;
 import java.io.Serializable;
 import java.util.List;
 
+import com.antilia.common.util.CollectionUtils;
 import com.antilia.hibernate.dao.IQuerableDao;
 import com.antilia.hibernate.query.IQuery;
 import com.antilia.hibernate.util.QueryUtils;
@@ -20,6 +21,10 @@ public class ListQuerableDao<E extends Serializable> implements IQuerableDao<E> 
 	
 	
 	private List<E> list;
+	
+	public ListQuerableDao(Iterable<E> iterable) {
+		this(CollectionUtils.toList(iterable));
+	}
 	
 	public ListQuerableDao(List<E> list) {
 		if(list == null)
