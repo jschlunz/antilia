@@ -15,7 +15,7 @@ import org.apache.wicket.Component;
 import com.antilia.common.util.AnnotationUtils;
 import com.antilia.web.field.IFieldModel;
 import com.antilia.web.field.impl.SelectionDropDownField;
-import com.antilia.web.field.impl.SelectionMode;
+import com.antilia.web.field.impl.DrillInSelectionMode;
 import com.antilia.web.field.impl.SelectionType;
 
 /**
@@ -39,7 +39,7 @@ public class SelectionFieldFieldFactory<B extends Serializable> implements IFiel
 				if(AnnotationUtils.isFieldAnnotationPresent(model.getBeanClass(), model.getPropertyPath(), SelectionType.class)) {
 					SelectionType selectionType = AnnotationUtils.findFieldAnnotation(model.getBeanClass(), model.getPropertyPath(), SelectionType.class);
 					if(selectionType != null) {
-						return selectionType.type().equals(SelectionMode.DROPDOWN);
+						return selectionType.type().equals(DrillInSelectionMode.DROPDOWN);
 					}
 				}
 				return true;

@@ -15,7 +15,7 @@ import org.apache.wicket.Component;
 import com.antilia.common.util.AnnotationUtils;
 import com.antilia.web.field.IFieldModel;
 import com.antilia.web.field.impl.LargeSelectionField;
-import com.antilia.web.field.impl.SelectionMode;
+import com.antilia.web.field.impl.DrillInSelectionMode;
 import com.antilia.web.field.impl.SelectionType;
 
 /**
@@ -39,7 +39,7 @@ public class LageSelectionFieldFactory<B extends Serializable> implements IField
 				if(AnnotationUtils.isFieldAnnotationPresent(model.getBeanClass(), model.getPropertyPath(), SelectionType.class)) {
 					SelectionType selectionType = AnnotationUtils.findFieldAnnotation(model.getBeanClass(), model.getPropertyPath(), SelectionType.class);
 					if(selectionType != null) {
-						return selectionType.type().equals(SelectionMode.LARGE_IN_MODAL_DIALOG) || selectionType.type().equals(SelectionMode.LARGE_ON_NEXT_PAGE);
+						return selectionType.type().equals(DrillInSelectionMode.LARGE_IN_MODAL_DIALOG) || selectionType.type().equals(DrillInSelectionMode.LARGE_ON_NEXT_PAGE);
 					}
 				}
 				return false;

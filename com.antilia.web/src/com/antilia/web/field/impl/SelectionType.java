@@ -16,6 +16,6 @@ import java.lang.annotation.RetentionPolicy;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface SelectionType {
 
-	SelectionMode type() default SelectionMode.DROPDOWN;
+	DrillInSelectionMode type() default DrillInSelectionMode.DROPDOWN;
 	
 }

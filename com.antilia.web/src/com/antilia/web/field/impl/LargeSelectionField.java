@@ -49,9 +49,9 @@ public class LargeSelectionField<B extends Serializable> extends BaseFormField<B
 		}		
 		try {
 			SelectionType selectionType = AnnotationUtils.findFieldAnnotation(getFieldModel().getBeanClass(), getFieldModel().getPropertyPath(), SelectionType.class);
-			if(selectionType.type().equals(SelectionMode.LARGE_IN_MODAL_DIALOG) )				
+			if(selectionType.type().equals(DrillInSelectionMode.LARGE_IN_MODAL_DIALOG) )				
 				add(new LargeSelectionDialogButton<B>("selectionPanel", getBeanProxy(), getFieldModel()));
-			else if(selectionType.type().equals(SelectionMode.LARGE_ON_NEXT_PAGE)) {
+			else if(selectionType.type().equals(DrillInSelectionMode.LARGE_ON_NEXT_PAGE)) {
 				add(new InPlaceLargeSelectionButton<B>("selectionPanel", getBeanProxy(), getFieldModel()));
 			}
 		} catch (Exception e) {
