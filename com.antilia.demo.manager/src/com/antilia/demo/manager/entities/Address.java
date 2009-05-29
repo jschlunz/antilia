@@ -18,7 +18,7 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import com.antilia.web.crud.Exclude;
-import com.antilia.web.field.impl.SelectionMode;
+import com.antilia.web.field.impl.DrillInSelectionMode;
 import com.antilia.web.field.impl.SelectionType;
 
 /**
@@ -39,7 +39,7 @@ public class Address implements java.io.Serializable, Comparable<Address> {
 	
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "city", nullable = false)
-	@SelectionType(type=SelectionMode.LARGE_ON_NEXT_PAGE)
+	@SelectionType(type=DrillInSelectionMode.LARGE_ON_NEXT_PAGE)
 	private City city;
 	
 	@Column(name = "address1", nullable = false, length = 300)	

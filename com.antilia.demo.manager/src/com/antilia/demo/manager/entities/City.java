@@ -15,7 +15,7 @@ import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
 import com.antilia.web.crud.Exclude;
-import com.antilia.web.field.impl.SelectionMode;
+import com.antilia.web.field.impl.DrillInSelectionMode;
 import com.antilia.web.field.impl.SelectionType;
 
 /**
@@ -36,7 +36,7 @@ public class City implements java.io.Serializable, Comparable<City>{
 
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "country", nullable = false)
-	@SelectionType(type=SelectionMode.LARGE_ON_NEXT_PAGE)
+	@SelectionType(type=DrillInSelectionMode.LARGE_ON_NEXT_PAGE)
 	private Country country;
 
 	@Column(name = "name", nullable = false, length = 300)
