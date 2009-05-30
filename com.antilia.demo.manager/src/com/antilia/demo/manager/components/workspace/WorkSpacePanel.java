@@ -7,7 +7,6 @@ package com.antilia.demo.manager.components.workspace;
 import java.io.Serializable;
 
 import org.apache.wicket.Component;
-import org.apache.wicket.markup.html.panel.EmptyPanel;
 
 import com.antilia.demo.manager.entities.City;
 import com.antilia.demo.manager.entities.Country;
@@ -36,7 +35,8 @@ public class WorkSpacePanel extends BackToHomeTopMenuPanel<Serializable> {
 	
 	@Override
 	protected Component createBody(String id) {
-		return new EmptyPanel(id);
+		//return new EmptyPanel(id);
+		return new WorkSpaceBodyPanel(id);
 	}
 
 	@Override
