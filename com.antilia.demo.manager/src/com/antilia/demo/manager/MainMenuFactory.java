@@ -9,6 +9,7 @@ import java.io.Serializable;
 import com.antilia.demo.manager.components.progress.ProgressShowPanel;
 import com.antilia.demo.manager.components.roundpane.ShowRoundPanel;
 import com.antilia.demo.manager.components.tables.TablesPanel;
+import com.antilia.demo.manager.components.validation.ValidationPanel;
 import com.antilia.demo.manager.components.workspace.WorkSpacePanel;
 import com.antilia.demo.manager.entities.Address;
 import com.antilia.demo.manager.entities.City;
@@ -132,7 +133,15 @@ public class MainMenuFactory implements IToolbarItemsFactory {
 				}
 			});
 			
-			
+			subToolbar.addItem(new TopMenuPanelLink<Serializable>("Validation", this.page) {
+				
+				private static final long serialVersionUID = 1L;
+
+				@Override
+				protected TopMenuPanel<Serializable> createTopMenuPanel(String id) {					
+					return new ValidationPanel(id);
+				}
+			});
 			
 	}
 
