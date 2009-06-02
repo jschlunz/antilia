@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.wicket.markup.html.panel.Panel;
+import org.apache.wicket.spring.injection.annot.SpringBean;
 
 import com.antilia.hibernate.dao.IDaoLocator;
 import com.antilia.hibernate.dao.IQuerableDao;
@@ -62,6 +63,7 @@ public class SearchPanel<B extends Serializable> extends Panel implements ILoada
 	
 	private AntiliaFeedBackPanel feedback;
 	
+	@SpringBean
 	@Inject(optional=true)
 	private transient IDaoLocator daoLocator;
 	

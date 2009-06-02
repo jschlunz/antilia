@@ -9,6 +9,7 @@ import java.io.Serializable;
 import org.apache.wicket.Component;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.panel.Panel;
+import org.apache.wicket.spring.injection.annot.SpringBean;
 
 import com.antilia.hibernate.dao.IDaoLocator;
 import com.antilia.hibernate.dao.IQuerableUpdatableDao;
@@ -50,6 +51,7 @@ public class CRUDPanel<B extends Serializable> extends Panel implements ICRUDMod
 	
 	public static final String EXTRA_ID_CRUD = "CRUDPanel";
 	
+	@SpringBean
 	@Inject(optional=true)
 	private transient IDaoLocator daoLocator;
 	

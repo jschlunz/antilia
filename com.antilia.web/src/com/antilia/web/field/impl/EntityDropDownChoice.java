@@ -9,6 +9,7 @@ import java.io.Serializable;
 import org.apache.wicket.markup.html.form.ChoiceRenderer;
 import org.apache.wicket.markup.html.form.DropDownChoice;
 import org.apache.wicket.model.IModel;
+import org.apache.wicket.spring.injection.annot.SpringBean;
 
 import com.antilia.hibernate.dao.IDaoLocator;
 import com.antilia.hibernate.dao.IQuerableDao;
@@ -26,6 +27,7 @@ public class EntityDropDownChoice<B extends Serializable> extends DropDownChoice
 	private Class<B> beanClass;
 	
 	@Inject(optional=true)
+	@SpringBean
 	private transient IDaoLocator daoLocator;
 	
 	/**
