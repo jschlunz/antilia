@@ -1,0 +1,32 @@
+<html xmlns:wicket="org.apache.wicket">    
+    <body>         
+    	<wicket:panel>      
+    		<div style=" padding: 10px; padding-top: 20px;">      			
+    			<form wicket:id="form">
+    				<table cellpadding="2" cellspacing="2">
+    					<tr>
+    						<td><wicket:message key="name">Name</wicket:message></td>
+    						<td><input wicket:id="name" type="text"/></td>
+    					</tr>    					
+    					<tr>
+    						<td><wicket:message key="lastName">Last Name</wicket:message></td>
+    						<td><input wicket:id="lastName" type="text"/></td>
+    					</tr>
+    					<tr>
+    						<td><wicket:message key="skillLevel">Last Name</wicket:message></td>
+    						<td><input wicket:id="skillLevel" type="text"/></td>
+    					</tr>
+    				</table>
+    				<table cellpadding="2" cellspacing="2">
+    					<tr>
+    						<td>
+    							<span wicket:id="submit"></span>
+    						</td>
+    					</tr>
+    				</table>
+    			</form>
+    			<div wicket:id="feedback"></div>
+	        </div>
+		</wicket:panel>
+    </body>
+</html>
