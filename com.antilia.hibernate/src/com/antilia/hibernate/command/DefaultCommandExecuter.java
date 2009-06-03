@@ -36,27 +36,14 @@ class DefaultCommandExecuter  implements ICommandExecuter, Serializable {
 	protected DefaultCommandExecuter() {
 	}
 	
-	protected void beginTransaction(Transaction transaction,int timeout) {
-		// if a timeout is specified, try to set it on the implementation
-		// (the EntityTransaction interface does not allow to set the timeout)
+	protected void beginTransaction(Session session, Transaction transaction,int timeout) {		
 		if (timeout != Transactional.TIMEOUT_DEFAULT) {
-			boolean timeoutSet = false;
-			/*	does not work: craches when setting the timeout on org.hibernate.Transaction	
-	  		if (transaction instanceof TransactionImpl) {
-				try {
-					Field field = TransactionImpl.class.getDeclaredField("tx");
-					field.setAccessible(true);
-					Transaction tx = (Transaction)field.get(transaction);
-					tx.setTimeout(timeout);
-					timeoutSet = true;
-				} catch (Exception e) {
-					throw new RuntimeException(e);
-				}
-			} */
-			if (!timeoutSet)
-				throw new PersistenceException(PersistenceException.UNABLE_TO_SET_TIME_OUT, "Unable to set the required transaction timeout !");
-		}		
-		transaction.begin();
+			transaction.setTimeout(timeout);
+			transaction.begin();			
+		} else {
+			session.beginTransaction();
+		}
+		
 	}
 
 	protected void detachResult(Serializable result) throws Throwable {			
@@ -140,7 +127,7 @@ class DefaultCommandExecuter  implements ICommandExecuter, Serializable {
 			if (transaction == null)
 				throw new PersistenceException("Service with propagation '"+propagation+"': unable to obtain a transaction");
 			if (!transaction.isActive()) {
-				beginTransaction(transaction,timeout);
+				beginTransaction(getSession(), transaction,timeout);
 				newTransaction = true;
 			}
 		}
@@ -149,7 +136,7 @@ class DefaultCommandExecuter  implements ICommandExecuter, Serializable {
 				throw new PersistenceException("Service with propagation '"+propagation+"': unable to obtain a transaction");
 			if (transaction.isActive())
 				throw new PersistenceException("Service with propagation '"+propagation+"': unable to suspend the active transaction");
-			beginTransaction(transaction,timeout);
+			beginTransaction(getSession(), transaction,timeout);
 			newTransaction = true;
 		}
 
@@ -180,7 +167,7 @@ class DefaultCommandExecuter  implements ICommandExecuter, Serializable {
 
 			throw e;
 		} finally {
-			// close the entityManager if we're returning to the presentation tier
+			// close the session if we're returning to the presentation tier
 			if (oldTier == Tier.PRESENTATION)
 				getSession().close();
 			
@@ -193,7 +180,7 @@ class DefaultCommandExecuter  implements ICommandExecuter, Serializable {
 	 * @return Returns the hibernate sesion to be used on the command...
 	 */
 	protected Session getSession() {
-				return HibernateUtil.getSessionFactory(getPersistenceUnit()).getCurrentSession();
+		return HibernateUtil.getSessionFactory(getPersistenceUnit()).getCurrentSession();
 	}
 	
 	/**
