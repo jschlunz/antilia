@@ -27,7 +27,7 @@ import java.lang.annotation.Target;
 @Documented
 public @interface Transactional {
 	
-	static final int TIMEOUT_DEFAULT = -1;
+	public static final int TIMEOUT_DEFAULT = -1;
 
 	/**
 	 * The transaction propagation type.
@@ -42,7 +42,7 @@ public @interface Transactional {
 	Isolation isolation() default Isolation.DEFAULT;
 	
 	/**
-     * The transaction timeout.
+     * The transaction timeout. The number of seconds before a timeout.
      * <p>Defaults to {@link TIMEOUT_DEFAULT}.
 	 */
 	int timeout() default TIMEOUT_DEFAULT;
