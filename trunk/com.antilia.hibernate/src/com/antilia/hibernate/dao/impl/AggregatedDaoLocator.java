@@ -36,7 +36,7 @@ public abstract class AggregatedDaoLocator implements IDaoLocator {
 				return (IQuerableDao<T>)locators.get(c);
 			}
 		}
-		return DefaultDaoLocator.getInstance().locateQuerableDao(beanClass, extraId);
+		return getDefaultDaoLocator().locateQuerableDao(beanClass, extraId);
 	}
 
 	/* (non-Javadoc)
@@ -51,14 +51,16 @@ public abstract class AggregatedDaoLocator implements IDaoLocator {
 				return (IQuerableUpdatableDao<T>)locators.get(c);
 			}
 		}
-		return DefaultDaoLocator.getInstance().locateQuerableUpdatableDao(beanClass, extraId);
+		return getDefaultDaoLocator().locateQuerableUpdatableDao(beanClass, extraId);
 	}
 
-	public AggregatedDaoLocator registerLocator(Class<? extends Serializable> beanClass, IQuerableUpdatableDao<? extends Serializable> dao) {
+	public <T extends Serializable> AggregatedDaoLocator registerLocator(Class<? extends T> beanClass, IQuerableUpdatableDao<T> dao) {
 		if(dao != null)
 			locators.put(beanClass, dao);
 		return this;
 	}
+	
+	protected abstract IDaoLocator getDefaultDaoLocator();
 	
 	protected abstract void initialize();
 	

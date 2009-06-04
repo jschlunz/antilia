@@ -4,12 +4,14 @@
  */
 package com.antilia.hibernate.query.transform;
 
+import java.io.Serializable;
+
 import com.antilia.hibernate.query.IOrder;
 
 /**
  * 
  * @author Ernesto Reinaldo Barreiro (reiern70@gmail.com)
  */
-public interface IOrderTransformer<R> extends ITransformer<IOrder, R> {
+public interface IOrderTransformer<R, B extends Serializable> extends ITransformer<IOrder<B>, R> {
 
 }
