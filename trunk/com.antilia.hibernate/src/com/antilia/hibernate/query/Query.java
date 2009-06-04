@@ -31,6 +31,8 @@ public class Query<B extends Serializable> implements IQuery<B> {
 	private int firstResult = ALL_RESULTS;
 	
 	public Query(Class<B> beanClass) {
+		if(beanClass == null)
+			throw new IllegalArgumentException("Bean class cannot be null");
 		this.beanClass = beanClass;
 	}
 	/* (non-Javadoc)
