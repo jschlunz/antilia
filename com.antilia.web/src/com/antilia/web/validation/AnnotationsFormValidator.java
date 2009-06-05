@@ -1,14 +1,12 @@
 package com.antilia.web.validation;
 
-import java.util.ResourceBundle;
-
 import org.apache.wicket.Component;
 import org.apache.wicket.Component.IVisitor;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.FormComponent;
 import org.apache.wicket.markup.html.form.validation.IFormValidator;
 import org.apache.wicket.validation.IValidationError;
-import org.hibernate.validator.ClassValidator;
+import org.apache.wicket.validation.ValidationError;
 import org.hibernate.validator.InvalidValue;
 
 /**
@@ -65,18 +63,14 @@ public class AnnotationsFormValidator<B> implements IFormValidator {
 
 	@SuppressWarnings("unchecked")
 	public void validate(Form<?> form) {
-		B object = (B)form.getModelObject();
-
-		Class<B> _clazz = clazz == null ? (Class<B>)object.getClass() : clazz;
-
-		ClassValidator<B> validator = new ClassValidator<B>(_clazz, ResourceBundle.getBundle(AnnotationBasedValidator.DEFAULT_VALIDATOR_MESSAGE));
-		InvalidValue[] invalidValues = validator.getInvalidValues(object);
+		B object = (B)form.getModelObject();		
+		InvalidValue[] invalidValues = ValidationUtils.validateBean(object, clazz);
 		for (InvalidValue iv : invalidValues) {
 			FormComponent<?> component = findComponent(form, iv.getPropertyPath());
 			if(component != null) {
-				component.error((IValidationError)new org.apache.wicket.validation.ValidationError().setMessage(iv.getMessage()));
+				component.error((IValidationError)new ValidationError().setMessage(iv.getMessage()));
 			} else
-				form.error(new org.apache.wicket.validation.ValidationError().setMessage(iv.getMessage()));
+				form.error(new ValidationError().setMessage(iv.getMessage()));
 		}
 	}
 	
