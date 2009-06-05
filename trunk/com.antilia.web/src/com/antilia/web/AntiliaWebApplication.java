@@ -4,9 +4,6 @@
  */
 package com.antilia.web;
 
-import org.apache.wicket.resource.loader.ClassStringResourceLoader;
-import org.apache.wicket.resource.loader.ComponentStringResourceLoader;
-
 import com.antilia.web.resources.PackageResourceLoader;
 
 
@@ -28,11 +25,13 @@ public abstract class AntiliaWebApplication extends org.apache.wicket.protocol.h
 	protected void init() {
 		super.init();
 		
+		/*
 		getResourceSettings().addStringResourceLoader(
 				new ComponentStringResourceLoader());
 		getResourceSettings().addStringResourceLoader(
 				new ClassStringResourceLoader(this.getClass()));
-
+		*/
+		
 		// Adding our custom StringResourceLoaders
 		getResourceSettings().addStringResourceLoader(PackageResourceLoader.getInstance());
 		
