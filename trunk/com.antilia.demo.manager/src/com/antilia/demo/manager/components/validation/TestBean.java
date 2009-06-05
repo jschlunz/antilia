@@ -32,6 +32,7 @@ public class TestBean implements Serializable {
 	private String email;
 	
 	@Past
+	@NotNull
 	private Date born;
 
 	public TestBean() {
