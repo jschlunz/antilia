@@ -15,6 +15,7 @@ import org.apache.wicket.util.string.interpolator.PropertyVariableInterpolator;
 import org.hibernate.validator.ClassValidator;
 import org.hibernate.validator.InvalidValue;
 import org.hibernate.validator.Validator;
+import org.hibernate.validator.ValidatorClass;
 
 import com.antilia.common.util.ResourceUtils;
 
@@ -81,7 +82,7 @@ public class ValidationUtils {
 		
 	}
 	
-	private static class ValidatorsReosurceBundle<B> extends ResourceBundle {
+	public static class ValidatorsReosurceBundle<B> extends ResourceBundle {
 		
 		private Class<B> beanClass;
 		
@@ -89,13 +90,26 @@ public class ValidationUtils {
 		
 		public ValidatorsReosurceBundle(Class<B> beanClass) {
 			this.beanClass = beanClass;
-			intitialize();
+			intitialize(this.beanClass);
 		}
 		
-		private void intitialize() {
+		@SuppressWarnings("unchecked")
+		private void intitialize(Class<B> beanClass) {
+			if(beanClass == null)
+				throw new IllegalArgumentException("Bean class cannot be null");
 			Annotation[] annotations = beanClass.getAnnotations();
 			for(Annotation annotation: annotations) {
-				
+				ValidatorClass validatorClassAn = annotation.getClass().getAnnotation(ValidatorClass.class);
+				if(validatorClassAn != null) {
+					// this is a validator associated annotation.
+					Class<? extends Validator> validatorClass = validatorClassAn.value();
+					if(validatorClass != null) {
+						String packageName = validatorClass.getPackage().getName();
+						if(!validatorPackages.contains(packageName))
+							validatorPackages.add(packageName);
+					}
+					
+				}
 			}
 		}
 
