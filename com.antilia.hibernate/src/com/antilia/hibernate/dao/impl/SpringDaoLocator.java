@@ -51,6 +51,9 @@ public class SpringDaoLocator implements IDaoLocator {
 	}
 	
 	protected  <T extends Serializable> void configureDao(SpringHibernateQuerableDao<T> dao) {
+		if(dao.getHibernateTemplate() != null) {
+			return;
+		}
 		if(getTemplate() != null)
 			dao.setHibernateTemplate(getTemplate());
 		else if(getSessionFactory() != null) 
