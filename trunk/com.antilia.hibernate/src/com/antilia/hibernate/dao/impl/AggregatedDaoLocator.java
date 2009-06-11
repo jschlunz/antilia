@@ -29,8 +29,10 @@ public abstract class AggregatedDaoLocator implements IDaoLocator {
 	 */
 	@SuppressWarnings("unchecked")
 	public <T extends Serializable> IQuerableDao<T> locateQuerableDao(Class<? extends T> beanClass, String extraId) {		
-		if(!initialized)
+		if(!initialized) {
 			initialize();
+			initialized = true;
+		}
 		for(Class<? extends Serializable> c: locators.keySet()) {
 			if(beanClass.isAssignableFrom(c)) {
 				return (IQuerableDao<T>)locators.get(c);
@@ -44,8 +46,10 @@ public abstract class AggregatedDaoLocator implements IDaoLocator {
 	 */
 	@SuppressWarnings("unchecked")
 	public <T extends Serializable> IQuerableUpdatableDao<T> locateQuerableUpdatableDao(Class<? extends T> beanClass, String extraId) {
-		if(!initialized)
+		if(!initialized) {
 			initialize();
+			initialized = true;
+		}
 		for(Class<? extends Serializable> c: locators.keySet()) {
 			if(beanClass.isAssignableFrom(c)) {
 				return (IQuerableUpdatableDao<T>)locators.get(c);

@@ -6,6 +6,7 @@ package com.antilia.hibernate.dao.impl;
 import java.io.Serializable;
 import java.util.Collection;
 
+import com.antilia.hibernate.cfg.IPersistenceUnit;
 import com.antilia.hibernate.command.DefaultCommander;
 import com.antilia.hibernate.dao.IQuerableUpdatableDao;
 
@@ -21,28 +22,58 @@ public class HibernateQuerableUpdatableDao<E extends Serializable> extends Hiber
 	public HibernateQuerableUpdatableDao() {
 	}
 
-	public E add(E element) {
-		return DefaultCommander.persist(element);		
+	public E add(E element) {				
+		IPersistenceUnit old = setPersistenceUnit();
+		try {
+			return DefaultCommander.persist(element);
+		} finally {
+			restorePersistenceUnit(old);
+		}
 	}
 
 	public void addAll(Collection<E> element) {
-		 DefaultCommander.persistAll(element);		
+		IPersistenceUnit old = setPersistenceUnit();
+		try {
+			DefaultCommander.persistAll(element);
+		} finally {
+			restorePersistenceUnit(old);
+		}		 		
 	}
 	
 	public E remove(E element) {
-		 return DefaultCommander.delete(element);
+		IPersistenceUnit old = setPersistenceUnit();
+		try {
+			return DefaultCommander.delete(element);
+		} finally {
+			restorePersistenceUnit(old);
+		}		 
 	}
 		 
 	 public void removeAll(Collection<E> element) {
-		 DefaultCommander.deleteAll(element);
+		 IPersistenceUnit old = setPersistenceUnit();
+		 try {
+			 DefaultCommander.deleteAll(element);
+		 } finally {
+			 restorePersistenceUnit(old);
+		 }		 
 	 }
 	 
-	 public void update(E element) {
-		 DefaultCommander.update(element);
+	 public void update(E element) {		 
+		 IPersistenceUnit old = setPersistenceUnit();
+		 try {
+			 DefaultCommander.update(element);
+		 } finally {
+			 restorePersistenceUnit(old);
+		 }
 	 }
 	 
 	 public void updateAll(Collection<E> element) {
-		 DefaultCommander.updateAll(element);
+		 IPersistenceUnit old = setPersistenceUnit();
+		 try {
+			 DefaultCommander.updateAll(element);
+		 } finally {
+			 restorePersistenceUnit(old);
+		 }		 
 	 }
-
+	 	 
 }
