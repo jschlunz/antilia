@@ -23,6 +23,7 @@ Bundle-ClassPath: lib/log4j-1.2.15.jar,
  lib/spring-2.5.6.jar
 Export-Package: com.antilia.common,
  com.antilia.common.iterator,
+ com.antilia.common.misc,
  com.antilia.common.osgi,
  com.antilia.common.proxy,
  com.antilia.common.util,
