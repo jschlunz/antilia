@@ -2,18 +2,14 @@
  * This software is provided as IS by Antilia-Soft SL.
  * Copyright 2006-2007.
  */
-package com.antilia.hibernate.query.transform;
+package com.antilia.ibatis;
 
 import java.io.Serializable;
 
-import org.hibernate.Criteria;
-import org.hibernate.criterion.Order;
-
-import com.antilia.hibernate.context.RequestContext;
-import com.antilia.hibernate.query.IFilter;
 import com.antilia.hibernate.query.IOrder;
 import com.antilia.hibernate.query.IQuery;
 import com.antilia.hibernate.query.IOrder.OrderType;
+import com.antilia.hibernate.query.transform.IQueryTransformer;
 
 /**
  * 
@@ -21,30 +17,32 @@ import com.antilia.hibernate.query.IOrder.OrderType;
  * @author Ernesto Reinaldo Barreiro (reiern70@gmail.com)
  *
  */
-public class QueryToCriteriaTransformer<E extends Serializable> implements IQueryTransformer<E, Criteria> {
+public class QueryToBatisQueryTransformer<E extends Serializable> implements IQueryTransformer<E, IBatisQuery<E>> {
 
-	public Criteria transform(IQuery<E> source, boolean includeOrdering) {
-		Criteria criteria = RequestContext.get().getSession().createCriteria(source.getEntityClass());		
-		return transform(criteria, source, includeOrdering);
+	public IBatisQuery<E> transform(IQuery<E> source, boolean includeOrdering) {
+		IBatisQuery<E> iBatisQuery = new IBatisQuery<E>(source.getEntityClass());
+		return transform(iBatisQuery, source, includeOrdering);
 	}
 	
-	public Criteria transform(Criteria criteria, IQuery<E> source,	boolean includeOrdering) {
+	public IBatisQuery<E> transform(IBatisQuery<E> iBatisQuery, IQuery<E> source,	boolean includeOrdering) {
 		if(source.getMaxResults() > 0) {
-			criteria.setMaxResults(source.getMaxResults());
+			iBatisQuery.setMaxResults(source.getMaxResults());
 		}
 		if(source.getFirstResult() > 0) {
-			criteria.setFirstResult(source.getFirstResult());
+			iBatisQuery.setFirstResult(source.getFirstResult());
 		}
+		/*
 		for(IFilter filter: source.getFilters()) {
-			criteria.add(filter.getTransformer().transform(filter));
-		}		
+			iBatisQuery.add(filter.getTransformer().transform(filter));
+		}
+		*/		
 		if(includeOrdering) {
 			for(IOrder<E> order: source.getOrders()) {					
 				if(order.getType().equals(OrderType.ASCENDING)) {
-					criteria.addOrder(Order.asc(order.getPropertyPath()));
+					iBatisQuery.addSort(order.getPropertyPath(), com.antilia.ibatis.IBatisQuery.Order.ASC);
 				}
 				if(order.getType().equals(OrderType.DESCENDING)) {
-					criteria.addOrder(Order.desc(order.getPropertyPath()));
+					iBatisQuery.addSort(order.getPropertyPath(), com.antilia.ibatis.IBatisQuery.Order.DESC);
 				}							
 			}
 		}
@@ -54,6 +52,6 @@ public class QueryToCriteriaTransformer<E extends Serializable> implements IQuer
 		//if(projection.getLength() > 0) {
 		//	criteria.setProjection(projection);
 		//}
-		return criteria;
+		return iBatisQuery;
 	}	
 }

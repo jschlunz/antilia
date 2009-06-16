@@ -6,17 +6,15 @@ package com.antilia.hibernate.query.transform;
 
 import java.io.Serializable;
 
-import org.hibernate.Criteria;
-
 import com.antilia.hibernate.query.IQuery;
 
 /**
  * 
  * @author Ernesto Reinaldo Barreiro (reiern70@gmail.com)
  */
-public interface IQueryTransformer<E extends Serializable, R, S> {
+public interface IQueryTransformer<E extends Serializable, R> {
 	
 	R transform(IQuery<E> source, boolean includeOrder);
 	
-	R transform(Criteria criteria,IQuery<E> source, boolean includeOrder);
+	R transform(R criteria,IQuery<E> source, boolean includeOrder);
 }
