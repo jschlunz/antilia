@@ -170,8 +170,8 @@ public class IBatisQuery<B extends Serializable> implements Serializable {
 		updateTotal();
 	}
 
-	public String getSort() {		
-		return getPrivateSort(false);
+	public String getSort(String aliasName) {		
+		return getPrivateSort(false, aliasName);
 	}
 	
 	public void addSort(String propertyName, Order order) {
@@ -179,11 +179,11 @@ public class IBatisQuery<B extends Serializable> implements Serializable {
 		sortInfo.add(new SortInfo(info.getColumnName(), order));
 	}
 	
-	public String getReverseSort() {		
-		return getPrivateSort(true);
+	public String getReverseSort(String aliasName) {		
+		return getPrivateSort(true, aliasName);
 	}
 	
-	public String getPrivateSort(boolean revert) {
+	public String getPrivateSort(boolean revert, String aliasName) {
 		if(sortInfo.size() > 0) {
 			StringBuffer sb = new StringBuffer();
 			Iterator<SortInfo> it = sortInfo.iterator();
@@ -191,14 +191,26 @@ public class IBatisQuery<B extends Serializable> implements Serializable {
 				SortInfo si = it.next();
 				if(revert)
 					si = si.revert();
+				if(!StringUtils.isEmpty(aliasName)) {
+					sb.append(aliasName);
+					sb.append(".");
+				}
 				sb.append(si.toString());				
 				if(it.hasNext())
 					sb.append(", ");
 			}
+			return sb.toString();
 		} else if(defaultSort != null) {
-			if(revert)
-				return defaultSort.revert().toString();
-			return defaultSort.toString();
+			StringBuffer sb = new StringBuffer();
+			if(!StringUtils.isEmpty(aliasName)) {
+				sb.append(aliasName);
+				sb.append(".");
+			}
+			if(revert) {				
+				sb.append(defaultSort.revert().toString());
+			} else 
+				sb.append(defaultSort.toString());
+			return sb.toString();
 		}
 		return "";
 	}
@@ -228,6 +240,8 @@ public class IBatisQuery<B extends Serializable> implements Serializable {
 	 * @return the whereClause
 	 */
 	public String getWhereClause() {
+		if(whereClause == null)
+			return "";
 		return whereClause;
 	}
 
@@ -273,6 +287,20 @@ public class IBatisQuery<B extends Serializable> implements Serializable {
 	 */
 	public void setTableName(String tableName) {
 		this.tableName = tableName;
+	}
+
+	/**
+	 * @return the dialect
+	 */
+	public IBatisDialect getDialect() {
+		return dialect;
+	}
+
+	/**
+	 * @param dialect the dialect to set
+	 */
+	public void setDialect(IBatisDialect dialect) {
+		this.dialect = dialect;
 	}
 
 }
