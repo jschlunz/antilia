@@ -64,7 +64,8 @@ Bundle-ClassPath: lib/ant-1.6.5.jar,
  .,
  lib/hibernate3.2.6-ga.jar,
  lib/hibernate-entitymanager-2.3.2-GA.jar,
- lib/hibernate-validator-3.0.0-ga.jar
+ lib/hibernate-validator-3.0.0-ga.jar,
+ lib/ibatis-2.3.4.726.jar
 Export-Package: EDU.oswego.cs.dl.util.concurrent,
  antlr,
  antlr.ASdebug,
