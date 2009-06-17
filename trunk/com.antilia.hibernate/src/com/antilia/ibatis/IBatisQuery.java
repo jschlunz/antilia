@@ -303,4 +303,11 @@ public class IBatisQuery<B extends Serializable> implements Serializable {
 		this.dialect = dialect;
 	}
 
+	/**
+	 * @return the beanClass
+	 */
+	public Class<B> getBeanClass() {
+		return beanClass;
+	}
+
 }

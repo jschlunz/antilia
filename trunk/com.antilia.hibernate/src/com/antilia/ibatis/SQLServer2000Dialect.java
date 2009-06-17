@@ -9,12 +9,12 @@ import java.io.Serializable;
  * @author Ernesto Reinaldo Barreiro (reirn70@gmail.com)
  *
  */
-public class SQLServer200Dialect implements IBatisDialect {
+public class SQLServer2000Dialect implements IBatisDialect {
 
 	/**
 	 * 
 	 */
-	public SQLServer200Dialect() {
+	public SQLServer2000Dialect() {
 	}
 
 	/* (non-Javadoc)
