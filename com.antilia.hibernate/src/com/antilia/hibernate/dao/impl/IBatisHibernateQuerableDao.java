@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.antilia.hibernate.dao.IQuerableDao;
 import com.antilia.hibernate.query.IQuery;
+import com.antilia.ibatis.IBatisDialect;
 import com.antilia.ibatis.IBatisQuery;
 import com.ibatis.sqlmap.client.SqlMapExecutor;
 
@@ -26,6 +27,8 @@ import com.ibatis.sqlmap.client.SqlMapExecutor;
 public class IBatisHibernateQuerableDao<E extends Serializable> extends SqlMapClientDaoSupport implements IQuerableDao<E>  {
 
 	private static final long serialVersionUID = 1L;
+	
+	private IBatisDialect dialect;
 	
 	public IBatisHibernateQuerableDao() {
 	}
@@ -85,5 +88,19 @@ public class IBatisHibernateQuerableDao<E extends Serializable> extends SqlMapCl
 				return null;
 			}									
 		}));						
+	}
+
+	/**
+	 * @return the dialect
+	 */
+	public IBatisDialect getDialect() {
+		return dialect;
+	}
+
+	/**
+	 * @param dialect the dialect to set
+	 */
+	public void setDialect(IBatisDialect dialect) {
+		this.dialect = dialect;
 	}	
 }
