@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.0.xsd
+       http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.0.xsd">
+	
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+  		<property name="driverClassName" value="org.apache.derby.jdbc.ClientDriver" />
+  		<property name="url" value="jdbc:derby://localhost:1527/manager" />
+  		<property name="username" value="reiern"/>
+  		<property name="password" value="reiern"/>
+	</bean>
+
+
+	<bean id="sqlMapConfig" class="org.springframework.core.io.ClassPathResource">
+		<constructor-arg type="java.lang.String" value="com/antilia/manager/ibatis/sqlMapConfig.xml"/>
+	</bean>
+	
+	<bean id="sqlMapClient" class="org.springframework.orm.ibatis.SqlMapClientFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="configLocation" ref="sqlMapConfig"/>
+	</bean>
+	
+	<bean id="sqlMapClientTemplate" class="org.springframework.orm.ibatis.SqlMapClientTemplate">
+		<property name="sqlMapClient" ref="sqlMapClient" />
+	</bean>
+	
+	<bean id="dialectSql" class="com.antilia.ibatis.SQLServer2000Dialect">
+	</bean>
+	
+	<bean id="IBPolizaDao" class="xxx.IBCountriesDao">	
+		<property name="dialect" ref="dialectSql" />
+		<property name="sqlMapClientTemplate" ref="sqlMapClientTemplate" />
+	</bean>
+	
+	<!-- setup wicket application -->
+	<bean id="wicketApplication" class="com.antilia.demo.manager.ManagerApplication"/>
+
+</beans>

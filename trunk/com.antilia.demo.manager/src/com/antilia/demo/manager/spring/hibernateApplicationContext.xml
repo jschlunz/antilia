@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.0.xsd
+       http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.0.xsd">
+	
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+  		<property name="driverClassName" value="org.apache.derby.jdbc.ClientDriver" />
+  		<property name="url" value="jdbc:derby://localhost:1527/manager" />
+  		<property name="username" value="reiern"/>
+  		<property name="password" value="reiern"/>
+	</bean>
+
+
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+	  <property name="dataSource" ref="dataSource" />
+	  <property name="annotatedClasses">
+	  	<list>
+	  		<value>com.antilia.demo.manager.entities.Country</value>	
+	  	</list>
+	  </property>	  	  
+	  <property name="hibernateProperties">	  	
+	  	<props>
+	  		<prop key="hibernate.dialect">org.hibernate.dialect.DerbyDialect</prop>	  		
+	  		<prop key="hibernate.show_sql">true</prop>
+	  	</props>	    
+	  </property>
+	</bean>
+
+	<bean id="txManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+	  <property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+	
+	<tx:annotation-driven transaction-manager="txManager"/>
+	
+	
+	<!-- Application DAOs. -->
+		
+	<!-- Daos -->
+	
+	<bean id="ICountriesDao" class="com.antilia.demo.manager.spring.dao.CountriesDao">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	
+	<bean id="IDaoLocator" class="com.antilia.demo.manager.spring.SpringDaoLocator" factory-method="getInstance">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	
+	<!-- setup wicket application -->
+	<bean id="wicketApplication" class="com.antilia.demo.manager.ManagerApplication"/>
+
+</beans>
