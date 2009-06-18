@@ -24,13 +24,13 @@ import com.ibatis.sqlmap.client.SqlMapExecutor;
  *
  */
 @Transactional(propagation = Propagation.SUPPORTS)
-public class IBatisHibernateQuerableDao<E extends Serializable> extends SqlMapClientDaoSupport implements IQuerableDao<E>  {
+public class SpringIBatisQuerableDao<E extends Serializable> extends SqlMapClientDaoSupport implements IQuerableDao<E>  {
 
 	private static final long serialVersionUID = 1L;
 	
 	private IBatisDialect dialect;
 	
-	public IBatisHibernateQuerableDao() {
+	public SpringIBatisQuerableDao() {
 	}
 	
 	@SuppressWarnings("unchecked")
@@ -82,8 +82,7 @@ public class IBatisHibernateQuerableDao<E extends Serializable> extends SqlMapCl
 		return (E)(getSqlMapClientTemplate().execute(new IBatisQueryCallback<E>(dialect,beanClass, false) {			
 			
 			@Override
-			public Object doInIBatis(SqlMapExecutor executor,
-					IBatisQuery<E> batisQuery) throws SQLException {
+			public Object doInIBatis(SqlMapExecutor executor, IBatisQuery<E> batisQuery) throws SQLException {
 				// TODO Auto-generated method stub
 				return null;
 			}									
