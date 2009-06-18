@@ -70,7 +70,7 @@ public class SpringIBatisQuerableDao<E extends Serializable> extends SqlMapClien
 			public Object doInIBatis(SqlMapExecutor executor, IBatisQuery<E> iBatisQuery) throws SQLException {
 				String name = iBatisQuery.getBeanClass().getSimpleName();
 				String id = "count" + name + "s";
-				return executor.queryForList(id, iBatisQuery);
+				return executor.queryForObject(id, iBatisQuery);
 			}									
 		}));
 		
