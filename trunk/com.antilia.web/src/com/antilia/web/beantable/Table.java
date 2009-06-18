@@ -30,6 +30,8 @@ import org.apache.wicket.model.IComponentInheritedModel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 
+import com.antilia.hibernate.dao.IQuerableUpdatableDao;
+import com.antilia.hibernate.query.IQuery;
 import com.antilia.hibernate.query.Query;
 import com.antilia.web.beantable.model.FirstColumnModel;
 import com.antilia.web.beantable.model.IColumnModel;
@@ -133,6 +135,17 @@ public class Table<E extends Serializable> extends Panel implements IPageableCom
 	 */
 	public Table(String id, ITableModel<E> tableModel, Collection<E> elements) {
 		this(id, tableModel, new DataProviderPageableNavigator<E>(new ListQuerableUpdatebleDataProvider<E>(elements),new Query<E>(tableModel.getBeanClass())));
+	}
+	
+	/**
+	 * 
+	 * @param id
+	 * @param tableModel
+	 * @param dao
+	 * @param query
+	 */
+	public Table(String id, ITableModel<E> tableModel, IQuerableUpdatableDao<E> dao, IQuery<E> query) {
+		this(id, tableModel, new DataProviderPageableNavigator<E>(dao, query));
 	}
 	
 	/**
