@@ -17,46 +17,46 @@ import com.antilia.hibernate.dao.IQuerableUpdatableDao;
  * @author Ernesto Reinaldo Barreiro (reirn70@gmail.com)
  *
  */
-public class SpringHibernateQuerableUpdatableDao<E extends Serializable> extends SpringHibernateQuerableDao<E> implements IQuerableUpdatableDao<E> {
+public class SpringIBatisQuerableUpdatableDao<E extends Serializable> extends SpringIBatisQuerableDao<E> implements IQuerableUpdatableDao<E> {
 
 	private static final long serialVersionUID = 1L;
 	
 	
-	public SpringHibernateQuerableUpdatableDao() {
+	public SpringIBatisQuerableUpdatableDao() {
 	}
 
 	@Transactional(propagation = Propagation.REQUIRED)
 	public E add(E element) {
-		getHibernateTemplate().saveOrUpdate(element);		
+		getSqlMapClientTemplate().insert(null, null);
 		return element;
 	}
 
 	@Transactional(propagation = Propagation.REQUIRED)
 	public void addAll(Collection<E> elements) {
-		getHibernateTemplate().saveOrUpdateAll(elements);
+		getSqlMapClientTemplate().insert(null, null);
 	}
 	
 	@Transactional(propagation = Propagation.REQUIRED)
 	public E remove(E element) {
-		getHibernateTemplate().delete(element);
+		getSqlMapClientTemplate().delete(null, null);
 		return element;
 	}
 	
 	
 	@Transactional(propagation = Propagation.REQUIRED)
 	public void removeAll(Collection<E> elements) {
-		getHibernateTemplate().deleteAll(elements);
+		getSqlMapClientTemplate().delete(null, null);
 	}
 	 
 	@Transactional(propagation = Propagation.REQUIRED)
 	public void update(E element) {
-		getHibernateTemplate().update(element);
+		getSqlMapClientTemplate().update(null, null);
 	}
 	 
 	@Transactional(propagation = Propagation.REQUIRED)
 	public void updateAll(Collection<E> elements) {
 		for(E element: elements) {
-			getHibernateTemplate().update(element);
+			getSqlMapClientTemplate().update(null, element);
 		}
 	}
 
