@@ -36,7 +36,7 @@ public class IBatisHibernateQuerableDao<E extends Serializable> extends SqlMapCl
 	@SuppressWarnings("unchecked")
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly=true)
 	public List<E> findAll(final IQuery<E> query) {
-		return (List<E>)(getSqlMapClientTemplate().execute(new IBatisQueryCallback<E>(query) {			
+		return (List<E>)(getSqlMapClientTemplate().execute(new IBatisQueryCallback<E>(dialect,query) {			
 			
 			@Override
 			public Object doInIBatis(SqlMapExecutor executor, IBatisQuery<E> iBatisQuery) throws SQLException {				
@@ -51,7 +51,7 @@ public class IBatisHibernateQuerableDao<E extends Serializable> extends SqlMapCl
 	@SuppressWarnings("unchecked")
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly=true)
 	public List<E> findAll(final Class<E> beanClass) {
-		return (List<E>)(getSqlMapClientTemplate().execute(new IBatisQueryCallback<E>(beanClass) {			
+		return (List<E>)(getSqlMapClientTemplate().execute(new IBatisQueryCallback<E>(dialect,beanClass) {			
 			
 			@Override
 			public Object doInIBatis(SqlMapExecutor executor, IBatisQuery<E> iBatisQuery) throws SQLException {
@@ -64,7 +64,7 @@ public class IBatisHibernateQuerableDao<E extends Serializable> extends SqlMapCl
 	
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly=true)
 	public Long count(final IQuery<E> query) {
-		return (Long)(getSqlMapClientTemplate().execute(new IBatisQueryCallback<E>(query, false) {			
+		return (Long)(getSqlMapClientTemplate().execute(new IBatisQueryCallback<E>(dialect,query, false) {			
 			
 			@Override
 			public Object doInIBatis(SqlMapExecutor executor, IBatisQuery<E> iBatisQuery) throws SQLException {
@@ -79,7 +79,7 @@ public class IBatisHibernateQuerableDao<E extends Serializable> extends SqlMapCl
 	@SuppressWarnings("unchecked")
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly=true)
 	public E findById(final Class<E> beanClass, final Serializable key) {
-		return (E)(getSqlMapClientTemplate().execute(new IBatisQueryCallback<E>(beanClass, false) {			
+		return (E)(getSqlMapClientTemplate().execute(new IBatisQueryCallback<E>(dialect,beanClass, false) {			
 			
 			@Override
 			public Object doInIBatis(SqlMapExecutor executor,
