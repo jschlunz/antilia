@@ -26,37 +26,44 @@ public class SpringIBatisQuerableUpdatableDao<E extends Serializable> extends Sp
 	}
 
 	@Transactional(propagation = Propagation.REQUIRED)
-	public E add(E element) {
-		getSqlMapClientTemplate().insert(null, null);
+	public E add(E element) {	
+		String id = "insert"+element.getClass().getSimpleName();
+		getSqlMapClientTemplate().insert(id, element);
 		return element;
 	}
 
 	@Transactional(propagation = Propagation.REQUIRED)
 	public void addAll(Collection<E> elements) {
-		getSqlMapClientTemplate().insert(null, null);
+		for(E element: elements) {
+			add(element);
+		}
 	}
 	
 	@Transactional(propagation = Propagation.REQUIRED)
 	public E remove(E element) {
-		getSqlMapClientTemplate().delete(null, null);
+		String id = "delete"+element.getClass().getSimpleName();
+		getSqlMapClientTemplate().delete(id, element);
 		return element;
 	}
 	
 	
 	@Transactional(propagation = Propagation.REQUIRED)
 	public void removeAll(Collection<E> elements) {
-		getSqlMapClientTemplate().delete(null, null);
+		for(E element: elements) {
+			remove(element);
+		}
 	}
 	 
 	@Transactional(propagation = Propagation.REQUIRED)
 	public void update(E element) {
-		getSqlMapClientTemplate().update(null, null);
+		String id = "update"+element.getClass().getSimpleName();
+		getSqlMapClientTemplate().update(id, element);
 	}
 	 
 	@Transactional(propagation = Propagation.REQUIRED)
 	public void updateAll(Collection<E> elements) {
 		for(E element: elements) {
-			getSqlMapClientTemplate().update(null, element);
+			update(element);
 		}
 	}
 
