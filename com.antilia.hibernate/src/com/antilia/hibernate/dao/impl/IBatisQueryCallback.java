@@ -10,6 +10,7 @@ import org.springframework.orm.ibatis.SqlMapClientCallback;
 
 import com.antilia.hibernate.query.IQuery;
 import com.antilia.hibernate.query.Query;
+import com.antilia.ibatis.IBatisDialect;
 import com.antilia.ibatis.IBatisQuery;
 import com.antilia.ibatis.QueryToBatisQueryTransformer;
 import com.ibatis.sqlmap.client.SqlMapExecutor;
@@ -26,27 +27,30 @@ public abstract class IBatisQueryCallback<B extends Serializable> implements Sql
 	
 	private Class<B> beanClass;
 	
-	public IBatisQueryCallback(Class<B> beanClass, boolean includeOrdering) {
-		this(new Query<B>(beanClass), includeOrdering);
+	private IBatisDialect dialect;
+	
+	public IBatisQueryCallback(IBatisDialect dialect, Class<B> beanClass, boolean includeOrdering) {
+		this(dialect,new Query<B>(beanClass), includeOrdering);
 	}
 	
-	public IBatisQueryCallback(Class<B> beanClass) {
-		this(new Query<B>(beanClass), true);
-	}
-	
-	/**
-	 * 
-	 */
-	public IBatisQueryCallback(IQuery<B> query) {
-		this(query, true);
+	public IBatisQueryCallback(IBatisDialect dialect,Class<B> beanClass) {
+		this(dialect, new Query<B>(beanClass), true);
 	}
 	
 	/**
 	 * 
 	 */
-	public IBatisQueryCallback(IQuery<B> query, boolean includeOrdering) {
+	public IBatisQueryCallback(IBatisDialect dialect,IQuery<B> query) {
+		this(dialect, query, true);
+	}
+	
+	/**
+	 * 
+	 */
+	public IBatisQueryCallback(IBatisDialect dialect,IQuery<B> query, boolean includeOrdering) {
 		if(query == null)
-			throw new IllegalArgumentException("Query cannot be null");					
+			throw new IllegalArgumentException("Query cannot be null");		
+		this.dialect = dialect;
 		this.query = query;
 		this.includeOrdering = includeOrdering;
 	}
@@ -54,6 +58,7 @@ public abstract class IBatisQueryCallback<B extends Serializable> implements Sql
 	
 	public Object doInSqlMapClient(SqlMapExecutor executor) throws SQLException {
 		IBatisQuery<B> iBatisQuery = new QueryToBatisQueryTransformer<B>().transform(getQuery(), isIncludeOrdering());
+		iBatisQuery.setDialect(dialect);
 		return doInIBatis(executor, iBatisQuery);
 	}
 
