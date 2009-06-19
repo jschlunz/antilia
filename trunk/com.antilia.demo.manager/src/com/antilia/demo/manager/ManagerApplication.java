@@ -9,7 +9,10 @@ import org.apache.wicket.Request;
 import org.apache.wicket.RequestCycle;
 import org.apache.wicket.Response;
 import org.apache.wicket.Session;
+import org.apache.wicket.spring.injection.annot.SpringComponentInjector;
 
+import com.antilia.common.util.StringUtils;
+import com.antilia.demo.manager.spring.SpringHibernateInitializer;
 import com.antilia.demo.manager.test.DerbyPersistenceUnit;
 import com.antilia.hibernate.cfg.IPersistenceUnit;
 import com.antilia.hibernate.context.RequestContext;
@@ -31,7 +34,22 @@ public class ManagerApplication extends AntiliaWebApplication {
 		};
 	};
 	
+	public static enum InjectionEngine {
+		GUICE,
+		SPRING,
+		SPRING_IBATIS
+	}
+	
+	private InjectionEngine injectionEngine;
+	
 	public ManagerApplication() {
+		String ie = System.getProperty("com.antilia.manager.injectionEngine");
+		if(StringUtils.isEmpty(ie) || ie.equalsIgnoreCase(InjectionEngine.GUICE.toString()))
+			injectionEngine = InjectionEngine.GUICE;
+		else if(ie.equalsIgnoreCase(InjectionEngine.SPRING.toString()))
+			injectionEngine = InjectionEngine.SPRING;
+		else 
+			injectionEngine = InjectionEngine.SPRING_IBATIS;	
 	}
 	
 	/* (non-Javadoc)
@@ -61,15 +79,24 @@ public class ManagerApplication extends AntiliaWebApplication {
 		getMarkupSettings().setStripWicketTags(true);
 		getDebugSettings().setAjaxDebugModeEnabled(false);
 		getDebugSettings().setOutputMarkupContainerClassName(false);
+		if(injectionEngine.equals(InjectionEngine.SPRING)) {
+			initializeSpring();
+		}
+	}
+	
+	private void initializeSpring() {						
+		addComponentInstantiationListener(new SpringComponentInjector(this, SpringHibernateInitializer.getInstance().intialize()));
 	}
 	
 	@Override
 	public RequestCycle newRequestCycle(Request request, Response response) {
 		//IPersistenceUnit persistenceUnit = PostgrePersistenceUnit.getInstance();
-		IPersistenceUnit persistenceUnit = DerbyPersistenceUnit.getInstance();
-		RequestContext requestContext = RequestContext.get();
-		requestContext.setPersistenceUnit(persistenceUnit);
-		requestContext.setUser("test");
+		if(injectionEngine.equals(InjectionEngine.GUICE)) {
+			IPersistenceUnit persistenceUnit = DerbyPersistenceUnit.getInstance();
+			RequestContext requestContext = RequestContext.get();
+			requestContext.setPersistenceUnit(persistenceUnit);
+			requestContext.setUser("test");
+		}
 		return super.newRequestCycle(request, response);
 	}
 }

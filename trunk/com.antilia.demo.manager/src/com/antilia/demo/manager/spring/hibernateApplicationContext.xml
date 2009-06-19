@@ -20,7 +20,18 @@
 	  <property name="dataSource" ref="dataSource" />
 	  <property name="annotatedClasses">
 	  	<list>
-	  		<value>com.antilia.demo.manager.entities.Country</value>	
+	  		<value>com.antilia.demo.manager.entities.Country</value>
+	  		<value>com.antilia.demo.manager.entities.City</value>
+	  		<value>com.antilia.demo.manager.entities.Address</value>
+	  		<value>com.antilia.demo.manager.entities.Asignment</value>
+	  		<value>com.antilia.demo.manager.entities.Chargerate</value>
+	  		<value>com.antilia.demo.manager.entities.Customer</value>
+	  		<value>com.antilia.demo.manager.entities.Employee</value>
+			<value>com.antilia.demo.manager.entities.EmployeeRole</value>
+			<value>com.antilia.demo.manager.entities.EmployeeRoleId</value>
+			<value>com.antilia.demo.manager.entities.Project</value>
+			<value>com.antilia.demo.manager.entities.Task</value>
+			<value>com.antilia.demo.manager.entities.Role</value>
 	  	</list>
 	  </property>	  	  
 	  <property name="hibernateProperties">	  	
