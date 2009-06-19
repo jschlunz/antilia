@@ -49,7 +49,7 @@ public class SearchPanel<B extends Serializable> extends Panel implements ILoada
 
 	private static final long serialVersionUID = 1L;
 
-	private Query<B> filterQuery;
+	private IQuery<B> filterQuery;
 	
 	private BeanProxy<B> beanProxy;
 	
@@ -75,7 +75,32 @@ public class SearchPanel<B extends Serializable> extends Panel implements ILoada
 	 * @param styler
 	 */
 	public SearchPanel(String id, CrudStyler<B> styler) {
-		this(id,  null, null, styler);
+		this(id,  null, (IPageableNavigator<B>)null, styler);
+	}
+	
+	/**
+	 * 
+	 * @param id
+	 * @param filterQuery
+	 * @param pageableProvider
+	 * @param styler
+	 */
+	public SearchPanel(String id,  IQuerableDao<B> dao, CrudStyler<B> styler) {
+		super(id);
+		IQuery<B> filterQuery = new Query<B>(styler.getBeanClass());
+		initialize(filterQuery, new DataProviderPageableNavigator<B>(new DaoQuerableDataProvider<B>(filterQuery, dao), filterQuery),styler);
+		
+	}
+	
+	/**
+	 * 
+	 * @param id
+	 * @param filterQuery
+	 * @param pageableProvider
+	 * @param styler
+	 */
+	public SearchPanel(String id,  IQuery<B> filterQuery, IQuerableDao<B> dao, CrudStyler<B> styler) {
+		this(id, filterQuery, new DataProviderPageableNavigator<B>(new DaoQuerableDataProvider<B>(filterQuery, dao), filterQuery),styler);
 	}
 	
 	/**
@@ -84,9 +109,12 @@ public class SearchPanel<B extends Serializable> extends Panel implements ILoada
 	 * @param beanClass
 	 * @param filterQuery
 	 */
-	public SearchPanel(String id,  Query<B> filterQuery, IPageableNavigator<B> pageableProvider, CrudStyler<B> styler) {
-		super(id);
-		
+	public SearchPanel(String id,  IQuery<B> filterQuery, IPageableNavigator<B> pageableProvider, CrudStyler<B> styler) {
+		super(id);		
+		initialize(filterQuery, pageableProvider, styler);		
+	}
+	
+	private void initialize(IQuery<B> filterQuery, IPageableNavigator<B> pageableProvider, CrudStyler<B> styler) {
 		setOutputMarkupId(true);
 		
 		this.models = new HashMap<String,IFieldModel<B>>();
@@ -142,7 +170,6 @@ public class SearchPanel<B extends Serializable> extends Panel implements ILoada
 		add(feedback);
 		
 		table.setFeedback(feedback);
-		
 	}
 	
 	/**
@@ -160,16 +187,7 @@ public class SearchPanel<B extends Serializable> extends Panel implements ILoada
 	 * @return
 	 */
 	protected IQuerableDao<B> createQuerableDao(IQuery<B> filterQuery) {
-		return DaoUtils.findQuerableDao(daoLocator, filterQuery.getEntityClass(), getExtraId());
-		/*
-		try {
-			return daoLocator.locateQuerableDao(filterQuery.getEntityClass(), getExtraId());
-		}catch (Exception e) {
-			// do nothing
-		}		
-		daoLocator = DefaultDaoLocator.getInstance();
-		return daoLocator.locateQuerableDao(filterQuery.getEntityClass(), getExtraId());
-		*/
+		return DaoUtils.findQuerableDao(daoLocator, filterQuery.getEntityClass(), getExtraId());		
 	}
 	
 	protected String getExtraId() {
@@ -275,7 +293,7 @@ public class SearchPanel<B extends Serializable> extends Panel implements ILoada
 	 * @return the filterQuery
 	 */
 	public Query<B> getFilterQuery() {
-		return filterQuery;
+		return (Query<B>)filterQuery;
 	}
 
 	/**
