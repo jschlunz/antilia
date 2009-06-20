@@ -9,6 +9,8 @@ import org.apache.wicket.spring.injection.annot.SpringBean;
 import com.antilia.demo.manager.ibatis.IBCountriesDao;
 import com.antilia.demo.manager.ibatis.IBCountry;
 import com.antilia.web.button.IMenuItemHolder;
+import com.antilia.web.crud.CrudStyler;
+import com.antilia.web.crud.IBatisSearchPanel;
 import com.antilia.web.layout.BackToHomeTopMenuPanel;
 
 
@@ -34,7 +36,11 @@ public class ListCountriesPanel extends BackToHomeTopMenuPanel<IBCountry> {
 	
 	@Override
 	protected Component createBody(String id) {
-		return new ListBeanPanel<IBCountry>(id, dao, IBCountry.class, "codigo","nif", "direccion","poblacion", "consultorSenior");
+		String[] fields = new String[]{"id","name", "domain"};
+		CrudStyler<IBCountry> styler = new CrudStyler<IBCountry>(IBCountry.class);
+		styler.addTableColumns(fields);
+		styler.addSearchFields(fields);
+		return new IBatisSearchPanel<IBCountry>(id, dao, styler);
 	}
 	
 }
