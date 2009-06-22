@@ -15,9 +15,9 @@ import org.apache.wicket.markup.html.image.Image;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.wicketstuff.minis.veil.VeilResources;
 
-import com.antilia.hibernate.query.IOrder;
-import com.antilia.hibernate.query.IQuery;
-import com.antilia.hibernate.query.Order;
+import com.antilia.common.query.IOrder;
+import com.antilia.common.query.IQuery;
+import com.antilia.common.query.Order;
 import com.antilia.web.beantable.IPageableComponent;
 import com.antilia.web.beantable.model.IColumnModel;
 import com.antilia.web.button.IMenuItem;

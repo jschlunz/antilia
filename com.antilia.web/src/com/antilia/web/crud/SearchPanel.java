@@ -13,10 +13,10 @@ import java.util.Map;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 
+import com.antilia.common.query.IQuery;
+import com.antilia.common.query.Query;
 import com.antilia.hibernate.dao.IDaoLocator;
 import com.antilia.hibernate.dao.IQuerableDao;
-import com.antilia.hibernate.query.IQuery;
-import com.antilia.hibernate.query.Query;
 import com.antilia.web.beantable.Table;
 import com.antilia.web.beantable.model.IColumnModel;
 import com.antilia.web.beantable.model.ITableModel;

@@ -12,7 +12,7 @@ import org.apache.wicket.markup.html.form.IChoiceRenderer;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.Model;
 
-import com.antilia.hibernate.query.Operator;
+import com.antilia.common.query.Operator;
 import com.antilia.web.field.IFieldModel;
 
 /**

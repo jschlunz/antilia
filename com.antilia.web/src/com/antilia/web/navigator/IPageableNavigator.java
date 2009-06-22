@@ -9,7 +9,7 @@ import java.util.Iterator;
 
 import org.apache.wicket.model.IModel;
 
-import com.antilia.hibernate.query.IQuery;
+import com.antilia.common.query.IQuery;
 import com.antilia.web.provider.IUpdatable;
 
 /**

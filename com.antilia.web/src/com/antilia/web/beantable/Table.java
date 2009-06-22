@@ -30,9 +30,9 @@ import org.apache.wicket.model.IComponentInheritedModel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 
+import com.antilia.common.query.IQuery;
+import com.antilia.common.query.Query;
 import com.antilia.hibernate.dao.IQuerableUpdatableDao;
-import com.antilia.hibernate.query.IQuery;
-import com.antilia.hibernate.query.Query;
 import com.antilia.web.beantable.model.FirstColumnModel;
 import com.antilia.web.beantable.model.IColumnModel;
 import com.antilia.web.beantable.model.ITableModel;

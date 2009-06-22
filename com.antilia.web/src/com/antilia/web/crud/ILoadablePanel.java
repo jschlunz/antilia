@@ -6,7 +6,7 @@ package com.antilia.web.crud;
 
 import java.io.Serializable;
 
-import com.antilia.hibernate.query.Query;
+import com.antilia.common.query.Query;
 import com.antilia.web.field.BeanProxy;
 
 /**

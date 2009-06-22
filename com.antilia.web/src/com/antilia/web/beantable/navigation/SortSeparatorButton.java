@@ -6,8 +6,8 @@ package com.antilia.web.beantable.navigation;
 
 import java.io.Serializable;
 
-import com.antilia.hibernate.query.IOrder;
-import com.antilia.hibernate.query.IQuery;
+import com.antilia.common.query.IOrder;
+import com.antilia.common.query.IQuery;
 import com.antilia.web.beantable.IPageableComponent;
 import com.antilia.web.beantable.model.IColumnModel;
 import com.antilia.web.button.SmallSeparatorButton;

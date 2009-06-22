@@ -13,9 +13,9 @@ import java.util.List;
 import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.model.IModel;
 
+import com.antilia.common.query.IQuery;
+import com.antilia.common.query.Query;
 import com.antilia.common.util.CollectionUtils;
-import com.antilia.hibernate.query.IQuery;
-import com.antilia.hibernate.query.Query;
 import com.antilia.web.navigator.ILoadablePageableNavigator;
 import com.antilia.web.navigator.IPageableNavigator;
 import com.antilia.web.navigator.IPageableNavigatorListener;

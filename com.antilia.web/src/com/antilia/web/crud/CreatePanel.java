@@ -9,7 +9,7 @@ import java.util.List;
 
 import org.apache.wicket.markup.html.panel.Panel;
 
-import com.antilia.hibernate.query.IQuery;
+import com.antilia.common.query.IQuery;
 import com.antilia.web.feedback.AntiliaFeedBackPanel;
 import com.antilia.web.field.AutoFieldCreator;
 import com.antilia.web.field.AutoFieldPanel;

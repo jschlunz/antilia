@@ -12,9 +12,9 @@ import java.util.List;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 
+import com.antilia.common.query.IQuery;
 import com.antilia.hibernate.dao.IQuerableDao;
 import com.antilia.hibernate.dao.impl.ListQuerableDao;
-import com.antilia.hibernate.query.IQuery;
 import com.antilia.web.provider.IQuerableDataProvider;
 
 /**

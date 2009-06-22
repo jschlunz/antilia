@@ -11,8 +11,8 @@ import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.StringResourceModel;
 
+import com.antilia.common.query.Operator;
 import com.antilia.common.util.ResourceUtils;
-import com.antilia.hibernate.query.Operator;
 import com.antilia.web.field.BeanForm;
 import com.antilia.web.field.BeanProxy;
 import com.antilia.web.field.IFieldModel;

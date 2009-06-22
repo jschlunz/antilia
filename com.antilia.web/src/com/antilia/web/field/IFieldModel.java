@@ -6,7 +6,7 @@ package com.antilia.web.field;
 
 import java.io.Serializable;
 
-import com.antilia.hibernate.query.Operator;
+import com.antilia.common.query.Operator;
 
 /**
  * @author Ernesto Reinaldo Barreiro (reiern70@gmail.com)
