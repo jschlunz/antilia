@@ -13,6 +13,7 @@ import java.util.Map;
 
 import com.antilia.common.util.AnnotationUtils;
 import com.antilia.common.util.StringUtils;
+import com.antilia.hibernate.query.Operator;
 
 /**
  * @author Ernesto Reinaldo Barreiro (reirn70@gmail.com)
@@ -78,8 +79,9 @@ public class IBatisQuery<B extends Serializable> implements Serializable {
 			this.order = order;
 		}
 	}
+	
 
-	private class ColumnInfo implements Serializable {
+	public static class ColumnInfo implements Serializable {
 		private static final long serialVersionUID = 1L;
 		
 		/**
@@ -127,6 +129,8 @@ public class IBatisQuery<B extends Serializable> implements Serializable {
 	private Map<String, ColumnInfo> tableColumns = new HashMap<String, ColumnInfo>();
 	
 	private IBatisDialect dialect;
+	
+	private B searchBean;
 	
 	public String getListQuery() {
 		return dialect.buildListQuery(this);
@@ -177,6 +181,10 @@ public class IBatisQuery<B extends Serializable> implements Serializable {
 	public void addSort(String propertyName, Order order) {
 		ColumnInfo info = tableColumns.get(propertyName);
 		sortInfo.add(new SortInfo(info.getColumnName(), order));
+	}
+	
+	public ColumnInfo getColumnInfo(String propertyName) {
+		return tableColumns.get(propertyName);
 	}
 	
 	public String getReverseSort(String aliasName) {		
@@ -308,6 +316,20 @@ public class IBatisQuery<B extends Serializable> implements Serializable {
 	 */
 	public Class<B> getBeanClass() {
 		return beanClass;
+	}
+
+	/**
+	 * @return the searchBean
+	 */
+	public B getSearchBean() {
+		return searchBean;
+	}
+
+	/**
+	 * @param searchBean the searchBean to set
+	 */
+	public void setSearchBean(B searchBean) {
+		this.searchBean = searchBean;
 	}
 
 }

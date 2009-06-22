@@ -5,9 +5,14 @@
 package com.antilia.ibatis;
 
 import java.io.Serializable;
+import java.util.Iterator;
 
+import com.antilia.hibernate.query.IFilter;
 import com.antilia.hibernate.query.IOrder;
 import com.antilia.hibernate.query.IQuery;
+import com.antilia.hibernate.query.Operator;
+import com.antilia.hibernate.query.PropertyRestriction;
+import com.antilia.hibernate.query.SimpleRestriction;
 import com.antilia.hibernate.query.IOrder.OrderType;
 import com.antilia.hibernate.query.transform.IQueryTransformer;
 
@@ -30,12 +35,9 @@ public class QueryToBatisQueryTransformer<E extends Serializable> implements IQu
 		}
 		if(source.getFirstResult() > 0) {
 			iBatisQuery.setFirstResult(source.getFirstResult());
-		}
-		/*
-		for(IFilter filter: source.getFilters()) {
-			iBatisQuery.add(filter.getTransformer().transform(filter));
-		}
-		*/		
+		}		
+		buildWhereClause(iBatisQuery, source.getFilters());
+		
 		if(includeOrdering) {
 			for(IOrder<E> order: source.getOrders()) {					
 				if(order.getType().equals(OrderType.ASCENDING)) {
@@ -54,4 +56,44 @@ public class QueryToBatisQueryTransformer<E extends Serializable> implements IQu
 		//}
 		return iBatisQuery;
 	}	
+	
+	private void buildWhereClause(IBatisQuery<E> iBatisQuery, Iterable<IFilter> filters) {				
+		Iterator<IFilter> it = filters.iterator();
+		if(it.hasNext()) {
+			
+			StringBuffer sb = new StringBuffer();
+			sb.append(" WHERE ");
+			while(it.hasNext()) {			
+				IFilter filter =  it.next();
+				if(filter instanceof PropertyRestriction) {
+					PropertyRestriction propertyRestriction = (PropertyRestriction)filter;					
+					sb.append(getColumnName(iBatisQuery, propertyRestriction.getPropertyName()));
+					sb.append(operatorToString(propertyRestriction.getOp()));
+					sb.append(getColumnName(iBatisQuery, propertyRestriction.getOtherPropertyName()));
+				} else if(filter instanceof SimpleRestriction) {
+					SimpleRestriction restriction = (SimpleRestriction)filter;
+					sb.append(getColumnName(iBatisQuery, restriction.getPropertyName()));
+					sb.append(operatorToString(restriction.getOp()));
+					sb.append("'"+restriction.getValue()+"'");
+				}
+				if(it.hasNext()) {
+					sb.append(" AND ");
+				} else {
+					sb.append(" ");
+				}
+			}
+			iBatisQuery.setWhereClause(sb.toString());
+		} else {
+			iBatisQuery.setWhereClause(" ");
+		}
+		
+	}
+	
+	private String getColumnName(IBatisQuery<E> iBatisQuery, String propertyName) {
+		return iBatisQuery.getColumnInfo(propertyName).getColumnName();
+	}
+	
+	private String operatorToString(Operator operator) {
+		return operator.getValue();
+	}
 }

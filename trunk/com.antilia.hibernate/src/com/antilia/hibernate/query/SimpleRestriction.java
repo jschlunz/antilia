@@ -79,4 +79,11 @@ public class SimpleRestriction extends FilterToCriterionTransfomer  implements I
 	public String getPropertyName() {
 		return propertyName;
 	}
+
+	/**
+	 * @return the value
+	 */
+	public Object getValue() {
+		return value;
+	}
 }
