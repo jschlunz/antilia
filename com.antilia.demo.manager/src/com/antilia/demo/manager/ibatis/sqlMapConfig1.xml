@@ -11,10 +11,10 @@
        and a managed datasource -->
   <transactionManager type="JDBC" commitRequired="false">
     <dataSource type="SIMPLE">
-      <property name="JDBC.Driver" value=""/>
-      <property name="JDBC.ConnectionURL" value=""/>
-      <property name="JDBC.Username" value=""/>
-      <property name="JDBC.Password" value=""/>
+      <property name="JDBC.Driver" value="org.apache.derby.jdbc.ClientDriver"/>
+      <property name="JDBC.ConnectionURL" value="jdbc:derby://localhost:1527/manager"/>
+      <property name="JDBC.Username" value="reiern"/>
+      <property name="JDBC.Password" value="reiern"/>
     </dataSource>
   </transactionManager>
 
