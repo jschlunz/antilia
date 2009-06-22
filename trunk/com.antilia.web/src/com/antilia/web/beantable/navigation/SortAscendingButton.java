@@ -11,10 +11,10 @@ import org.apache.wicket.ResourceReference;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.markup.html.form.Form;
 
-import com.antilia.hibernate.query.IOrder;
-import com.antilia.hibernate.query.IQuery;
-import com.antilia.hibernate.query.Order;
-import com.antilia.hibernate.query.IOrder.OrderType;
+import com.antilia.common.query.IOrder;
+import com.antilia.common.query.IQuery;
+import com.antilia.common.query.Order;
+import com.antilia.common.query.IOrder.OrderType;
 import com.antilia.web.beantable.IPageableComponent;
 import com.antilia.web.beantable.model.IColumnModel;
 import com.antilia.web.button.AbstractButton;

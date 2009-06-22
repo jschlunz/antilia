@@ -13,9 +13,9 @@ import java.util.Map;
 
 import org.apache.wicket.util.lang.PropertyResolver;
 
-import com.antilia.hibernate.query.IQuery;
-import com.antilia.hibernate.query.Operator;
-import com.antilia.hibernate.query.Restrictions;
+import com.antilia.common.query.IQuery;
+import com.antilia.common.query.Operator;
+import com.antilia.common.query.Restrictions;
 
 /**
  * 

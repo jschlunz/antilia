@@ -6,7 +6,7 @@ package com.antilia.web.field.impl;
 
 import java.io.Serializable;
 
-import com.antilia.hibernate.query.IQuery;
+import com.antilia.common.query.IQuery;
 import com.antilia.web.beantable.Table;
 import com.antilia.web.beantable.model.IColumnModel;
 import com.antilia.web.beantable.model.ITableModel;

@@ -9,7 +9,7 @@ import java.util.Date;
 
 import org.apache.wicket.Component;
 
-import com.antilia.hibernate.query.Operator;
+import com.antilia.common.query.Operator;
 import com.antilia.web.field.IFieldModel;
 import com.antilia.web.field.impl.DateField;
 /**

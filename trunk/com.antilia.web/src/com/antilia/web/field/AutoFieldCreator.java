@@ -10,9 +10,9 @@ import java.util.Map;
 
 import org.apache.wicket.model.Model;
 
-import com.antilia.hibernate.query.IQuery;
-import com.antilia.hibernate.query.Operator;
-import com.antilia.hibernate.query.Query;
+import com.antilia.common.query.IQuery;
+import com.antilia.common.query.Operator;
+import com.antilia.common.query.Query;
 
 /**
  * @author Ernesto Reinaldo Barreiro (reiern70@gmail.com)

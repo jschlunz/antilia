@@ -19,8 +19,8 @@ import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.model.StringResourceModel;
 
+import com.antilia.common.query.Operator;
 import com.antilia.common.util.ResourceUtils;
-import com.antilia.hibernate.query.Operator;
 import com.antilia.web.field.factory.DefaultFieldFactory;
 import com.antilia.web.field.factory.FieldMode;
 import com.antilia.web.field.impl.BaseFormField;

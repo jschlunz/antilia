@@ -8,9 +8,9 @@ import java.io.Serializable;
 
 import org.apache.wicket.model.Model;
 
+import com.antilia.common.query.Operator;
 import com.antilia.common.util.ReflectionUtils;
 import com.antilia.common.util.StringUtils;
-import com.antilia.hibernate.query.Operator;
 
 /**
  * @author Ernesto Reinaldo Barreiro (reiern70@gmail.com)
