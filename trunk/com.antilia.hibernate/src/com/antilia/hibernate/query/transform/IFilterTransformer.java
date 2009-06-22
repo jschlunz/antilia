@@ -4,7 +4,7 @@
  */
 package com.antilia.hibernate.query.transform;
 
-import com.antilia.hibernate.query.IFilter;
+import com.antilia.common.query.IFilter;
 
 /**
  * 

@@ -6,12 +6,12 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
+import com.antilia.common.query.IFilter;
+import com.antilia.common.query.IOrder;
+import com.antilia.common.query.IQuery;
+import com.antilia.common.query.IlikeRestriction;
+import com.antilia.common.query.IOrder.OrderType;
 import com.antilia.common.util.ReflectionUtils;
-import com.antilia.hibernate.query.IFilter;
-import com.antilia.hibernate.query.IOrder;
-import com.antilia.hibernate.query.IQuery;
-import com.antilia.hibernate.query.IlikeRestriction;
-import com.antilia.hibernate.query.IOrder.OrderType;
 
 /**
  * @author Ernesto Reinaldo Barreiro (reirn70@gmail.com)

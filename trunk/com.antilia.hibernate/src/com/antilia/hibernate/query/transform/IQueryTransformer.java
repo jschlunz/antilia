@@ -6,7 +6,7 @@ package com.antilia.hibernate.query.transform;
 
 import java.io.Serializable;
 
-import com.antilia.hibernate.query.IQuery;
+import com.antilia.common.query.IQuery;
 
 /**
  * 

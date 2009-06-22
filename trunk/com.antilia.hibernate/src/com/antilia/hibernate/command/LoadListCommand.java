@@ -12,8 +12,8 @@ import org.hibernate.Query;
 import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.Example;
 
-import com.antilia.hibernate.query.IQuery;
-import com.antilia.hibernate.query.transform.QueryToCriteriaTransformer;
+import com.antilia.common.query.IQuery;
+import com.antilia.hibernate.query.transform.impl.QueryToCriteriaTransformer;
 
 /**
  * 
