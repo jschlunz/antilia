@@ -7,13 +7,13 @@ package com.antilia.ibatis;
 import java.io.Serializable;
 import java.util.Iterator;
 
-import com.antilia.hibernate.query.IFilter;
-import com.antilia.hibernate.query.IOrder;
-import com.antilia.hibernate.query.IQuery;
-import com.antilia.hibernate.query.Operator;
-import com.antilia.hibernate.query.PropertyRestriction;
-import com.antilia.hibernate.query.SimpleRestriction;
-import com.antilia.hibernate.query.IOrder.OrderType;
+import com.antilia.common.query.IFilter;
+import com.antilia.common.query.IOrder;
+import com.antilia.common.query.IQuery;
+import com.antilia.common.query.Operator;
+import com.antilia.common.query.PropertyRestriction;
+import com.antilia.common.query.SimpleRestriction;
+import com.antilia.common.query.IOrder.OrderType;
 import com.antilia.hibernate.query.transform.IQueryTransformer;
 
 /**

@@ -11,8 +11,8 @@ import org.springframework.orm.ibatis.support.SqlMapClientDaoSupport;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.antilia.common.query.IQuery;
 import com.antilia.hibernate.dao.IQuerableDao;
-import com.antilia.hibernate.query.IQuery;
 import com.antilia.ibatis.IBatisDialect;
 import com.antilia.ibatis.IBatisQuery;
 import com.ibatis.sqlmap.client.SqlMapExecutor;

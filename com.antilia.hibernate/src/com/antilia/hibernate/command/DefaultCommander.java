@@ -10,7 +10,7 @@ import java.util.List;
 
 import org.hibernate.criterion.Criterion;
 
-import com.antilia.hibernate.query.IQuery;
+import com.antilia.common.query.IQuery;
 
 
 /**

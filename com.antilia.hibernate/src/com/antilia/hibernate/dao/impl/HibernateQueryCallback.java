@@ -11,9 +11,9 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.springframework.orm.hibernate3.HibernateCallback;
 
-import com.antilia.hibernate.query.IQuery;
-import com.antilia.hibernate.query.Query;
-import com.antilia.hibernate.query.transform.QueryToCriteriaTransformer;
+import com.antilia.common.query.IQuery;
+import com.antilia.common.query.Query;
+import com.antilia.hibernate.query.transform.impl.QueryToCriteriaTransformer;
 
 /**
  * @author Ernesto Reinaldo Barreiro (reirn70@gmail.com)

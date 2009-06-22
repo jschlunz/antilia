@@ -6,7 +6,7 @@ package com.antilia.hibernate.dao;
 import java.io.Serializable;
 import java.util.List;
 
-import com.antilia.hibernate.query.IQuery;
+import com.antilia.common.query.IQuery;
 
 /**
  * 

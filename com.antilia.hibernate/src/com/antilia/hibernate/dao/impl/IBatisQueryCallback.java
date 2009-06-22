@@ -8,8 +8,8 @@ import java.sql.SQLException;
 
 import org.springframework.orm.ibatis.SqlMapClientCallback;
 
-import com.antilia.hibernate.query.IQuery;
-import com.antilia.hibernate.query.Query;
+import com.antilia.common.query.IQuery;
+import com.antilia.common.query.Query;
 import com.antilia.ibatis.IBatisDialect;
 import com.antilia.ibatis.IBatisQuery;
 import com.antilia.ibatis.QueryToBatisQueryTransformer;
