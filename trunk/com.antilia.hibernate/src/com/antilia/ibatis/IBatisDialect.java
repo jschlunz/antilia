@@ -26,5 +26,8 @@ public interface IBatisDialect  {
 	 * @return
 	 */
 	<B extends Serializable> String buildCountQuery(IBatisQuery<B> iBatisQuery);
+	
+	
+	boolean useNativePagination();
 
 }

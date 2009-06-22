@@ -13,7 +13,6 @@ import java.util.Map;
 
 import com.antilia.common.util.AnnotationUtils;
 import com.antilia.common.util.StringUtils;
-import com.antilia.hibernate.query.Operator;
 
 /**
  * @author Ernesto Reinaldo Barreiro (reirn70@gmail.com)
@@ -125,6 +124,8 @@ public class IBatisQuery<B extends Serializable> implements Serializable {
 	private SortInfo defaultSort;
 	
 	private String tableName;
+	
+	private boolean useNativePagination = false;
 	
 	private Map<String, ColumnInfo> tableColumns = new HashMap<String, ColumnInfo>();
 	
@@ -301,6 +302,10 @@ public class IBatisQuery<B extends Serializable> implements Serializable {
 	 * @return the dialect
 	 */
 	public IBatisDialect getDialect() {
+		if(this.dialect == null) {
+			this.dialect = new DefaultDialect();
+			setUseNativePagination(this.dialect.useNativePagination());
+		}
 		return dialect;
 	}
 
@@ -308,7 +313,11 @@ public class IBatisQuery<B extends Serializable> implements Serializable {
 	 * @param dialect the dialect to set
 	 */
 	public void setDialect(IBatisDialect dialect) {
-		this.dialect = dialect;
+		this.dialect = dialect;		
+		if(this.dialect == null) {
+			this.dialect = new DefaultDialect();
+			setUseNativePagination(this.dialect.useNativePagination());
+		}		
 	}
 
 	/**
@@ -330,6 +339,20 @@ public class IBatisQuery<B extends Serializable> implements Serializable {
 	 */
 	public void setSearchBean(B searchBean) {
 		this.searchBean = searchBean;
+	}
+
+	/**
+	 * @return the useNativePagination
+	 */
+	public boolean isUseNativePagination() {
+		return useNativePagination;
+	}
+
+	/**
+	 * @param useNativePagination the useNativePagination to set
+	 */
+	public void setUseNativePagination(boolean useNativePagination) {
+		this.useNativePagination = useNativePagination;
 	}
 
 }

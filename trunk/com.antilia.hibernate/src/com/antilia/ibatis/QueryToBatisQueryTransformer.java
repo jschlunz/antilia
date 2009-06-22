@@ -60,7 +60,8 @@ public class QueryToBatisQueryTransformer<E extends Serializable> implements IQu
 	private void buildWhereClause(IBatisQuery<E> iBatisQuery, Iterable<IFilter> filters) {				
 		Iterator<IFilter> it = filters.iterator();
 		if(it.hasNext()) {
-			
+			// It is very difficult to get this to work right.
+			// ... and is somehow reinventing the wheel.
 			StringBuffer sb = new StringBuffer();
 			sb.append(" WHERE ");
 			while(it.hasNext()) {			

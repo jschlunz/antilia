@@ -41,7 +41,11 @@ public class SpringIBatisQuerableDao<E extends Serializable> extends SqlMapClien
 			@Override
 			public Object doInIBatis(SqlMapExecutor executor, IBatisQuery<E> iBatisQuery) throws SQLException {				
 				String name = iBatisQuery.getBeanClass().getSimpleName();
-				String id = "select" + name + "s";
+				String id = "select" + name + "s";				
+				//TODO:Find out why this is so inefficient for SQL server 2000!
+				if(iBatisQuery.getMaxResults()>0 && !iBatisQuery.isUseNativePagination()) {
+					return executor.queryForList(id, iBatisQuery, iBatisQuery.getFirstResult(), iBatisQuery.getMaxResults());
+				}				
 				return executor.queryForList(id, iBatisQuery);
 			}									
 		}));
@@ -57,6 +61,10 @@ public class SpringIBatisQuerableDao<E extends Serializable> extends SqlMapClien
 			public Object doInIBatis(SqlMapExecutor executor, IBatisQuery<E> iBatisQuery) throws SQLException {
 				String name = iBatisQuery.getBeanClass().getSimpleName();
 				String id = "select" + name + "s";
+				//TODO: Find out why this is so inefficient for SQL server 2000!
+				if(iBatisQuery.getMaxResults()>0 && !iBatisQuery.isUseNativePagination()) {
+					return executor.queryForList(id, iBatisQuery, iBatisQuery.getFirstResult(), iBatisQuery.getMaxResults());
+				}				
 				return executor.queryForList(id, iBatisQuery);
 			}									
 		}));		
