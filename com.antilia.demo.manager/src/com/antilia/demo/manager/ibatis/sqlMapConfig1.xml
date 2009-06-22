@@ -20,7 +20,7 @@
 
   <!-- List the SQL Map XML files. They can be loaded from the 
        classpath, as they are here (com.domain.data...) -->
-  <sqlMap resource="com/antilia/demo/manager/ibatis/Country.xml"/>
+  <sqlMap resource="com/antilia/demo/manager/ibatis/IBCountry.xml"/>
   <!-- List more here...
   <sqlMap resource="com/antilia/demo/manager/ibatis/Country.xml"/>
   -->
