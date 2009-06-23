@@ -6,9 +6,9 @@ package com.antilia.hibernate.dao.impl;
 import java.io.Serializable;
 import java.util.List;
 
+import com.antilia.common.dao.IQuerableDao;
 import com.antilia.common.query.IQuery;
 import com.antilia.common.util.CollectionUtils;
-import com.antilia.hibernate.dao.IQuerableDao;
 import com.antilia.hibernate.util.QueryUtils;
 
 /**

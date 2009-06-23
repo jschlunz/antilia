@@ -6,9 +6,9 @@ package com.antilia.hibernate.dao.impl;
 import java.io.Serializable;
 import java.util.Collection;
 
+import com.antilia.common.dao.IQuerableUpdatableDao;
 import com.antilia.hibernate.cfg.IPersistenceUnit;
 import com.antilia.hibernate.command.DefaultCommander;
-import com.antilia.hibernate.dao.IQuerableUpdatableDao;
 
 /**
  * @author Ernesto Reinaldo Barreiro (reirn70@gmail.com)

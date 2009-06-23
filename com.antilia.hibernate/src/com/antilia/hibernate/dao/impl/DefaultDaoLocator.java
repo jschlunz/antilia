@@ -5,9 +5,9 @@ package com.antilia.hibernate.dao.impl;
 
 import java.io.Serializable;
 
-import com.antilia.hibernate.dao.IDaoLocator;
-import com.antilia.hibernate.dao.IQuerableDao;
-import com.antilia.hibernate.dao.IQuerableUpdatableDao;
+import com.antilia.common.dao.IDaoLocator;
+import com.antilia.common.dao.IQuerableDao;
+import com.antilia.common.dao.IQuerableUpdatableDao;
 
 /**
  * 
