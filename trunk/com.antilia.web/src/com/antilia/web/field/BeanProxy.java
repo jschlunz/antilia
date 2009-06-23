@@ -78,7 +78,7 @@ public class BeanProxy<B extends Serializable> implements Serializable {
 	 * @param query
 	 */
 	public void updateFilterQuery(IQuery<B> query, Map<String, IFieldModel<B>> models) {
-		query.clearFilters();
+		query.clearRestrictions();
 		for(String propertyName: propertyValues.keySet()) {			
 			Object value = PropertyResolver.getValue(propertyName, getBean());			
 			IFieldModel<B> model = models.get(propertyName);
@@ -89,27 +89,27 @@ public class BeanProxy<B extends Serializable> implements Serializable {
 			if(value != null) {
 				if(value instanceof String) {
 					if(operator == null || operator.equals(Operator.EQUAL))
-						query.addFilter(Restrictions.eq(propertyName, ((String)value).trim()));
+						query.addRestriction(Restrictions.eq(propertyName, ((String)value).trim()));
 					else if(operator.equals(Operator.LIKE) || operator.equals(Operator.ILIKE)) 	
-						query.addFilter(Restrictions.ilike(propertyName, value));		
+						query.addRestriction(Restrictions.ilike(propertyName, value));		
 					else 
-						query.addFilter(Restrictions.eq(propertyName, value));
+						query.addRestriction(Restrictions.eq(propertyName, value));
 				} else if(value instanceof Date) {
 					Date date = (Date) value;
 					if(operator == null || operator.equals(Operator.EQUAL))
-						query.addFilter(Restrictions.eq(propertyName, date));
+						query.addRestriction(Restrictions.eq(propertyName, date));
 					else if(operator.equals(Operator.LESS_THAN)) 	
-						query.addFilter(Restrictions.lt(propertyName, date));
+						query.addRestriction(Restrictions.lt(propertyName, date));
 					else if(operator.equals(Operator.LESS_EQUAL_THAN)) 	
-						query.addFilter(Restrictions.le(propertyName, date));
+						query.addRestriction(Restrictions.le(propertyName, date));
 					else if(operator.equals(Operator.GREATER_THAN)) 	
-						query.addFilter(Restrictions.gt(propertyName, date));
+						query.addRestriction(Restrictions.gt(propertyName, date));
 					else if(operator.equals(Operator.GREATER_EQUAL_THAN)) 	
-						query.addFilter(Restrictions.ge(propertyName, date));
+						query.addRestriction(Restrictions.ge(propertyName, date));
 					else 
-						query.addFilter(Restrictions.eq(propertyName, value));
+						query.addRestriction(Restrictions.eq(propertyName, value));
 				} else {
-					query.addFilter(Restrictions.eq(propertyName, value));
+					query.addRestriction(Restrictions.eq(propertyName, value));
 				}
 			}
 		}
