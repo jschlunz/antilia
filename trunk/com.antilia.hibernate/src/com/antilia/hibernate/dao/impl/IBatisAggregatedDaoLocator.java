@@ -5,7 +5,8 @@ package com.antilia.hibernate.dao.impl;
 
 import org.springframework.orm.ibatis.SqlMapClientTemplate;
 
-import com.antilia.hibernate.dao.IDaoLocator;
+import com.antilia.common.dao.IDaoLocator;
+import com.antilia.common.dao.impl.AggregatedDaoLocator;
 
 /**
  * @author Ernesto Reinaldo Barreiro (reirn70@gmail.com)

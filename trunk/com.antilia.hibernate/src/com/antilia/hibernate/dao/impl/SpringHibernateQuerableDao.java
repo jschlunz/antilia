@@ -20,9 +20,9 @@ import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.antilia.common.dao.IQuerableDao;
 import com.antilia.common.query.IQuery;
 import com.antilia.common.util.AnnotationUtils;
-import com.antilia.hibernate.dao.IQuerableDao;
 
 /**
  * A querable DAO that uses Spring Hibernate support.

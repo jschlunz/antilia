@@ -7,7 +7,7 @@ import java.io.Serializable;
 import java.util.Collection;
 import java.util.List;
 
-import com.antilia.hibernate.dao.IQuerableUpdatableDao;
+import com.antilia.common.dao.IQuerableUpdatableDao;
 
 /**
  * @author Ernesto Reinaldo Barreiro (reirn70@gmail.com)

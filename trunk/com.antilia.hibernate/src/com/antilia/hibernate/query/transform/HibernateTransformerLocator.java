@@ -25,7 +25,7 @@ public class HibernateTransformerLocator implements ITransformerLocator {
 	 */
 	@SuppressWarnings("unchecked")
 	public IFilterTransformer<Criterion> getTransformer(IRestriction filter) {
-		String className = "com.antilia.hibernate.query.transform.impl." + filter.getClass().getSimpleName() + "Transformer";
+		String className = "com.antilia.hibernate.query.transform." + filter.getClass().getSimpleName() + "Transformer";
 		try {
 			Class<IFilterTransformer<Criterion>> clazz = (Class<IFilterTransformer<Criterion>>)Thread.currentThread().getContextClassLoader().loadClass(className);
 			IFilterTransformer<Criterion> transformer = clazz.newInstance();

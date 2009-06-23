@@ -9,7 +9,7 @@ import java.util.Collection;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.antilia.hibernate.dao.IQuerableUpdatableDao;
+import com.antilia.common.dao.IQuerableUpdatableDao;
 
 /**
  * A QuerableUpdatable DAO that uses Spring Hibernate support.
