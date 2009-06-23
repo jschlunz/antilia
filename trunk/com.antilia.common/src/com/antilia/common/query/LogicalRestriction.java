@@ -10,19 +10,19 @@ package com.antilia.common.query;
  * 
  * @author Ernesto Reinaldo Barreiro (reiern70@gmail.com)
  */
-public class LogicalRestriction implements IRestrictionFilter {
+public class LogicalRestriction implements IRestriction {
 
 	private static final long serialVersionUID = 1L;
 
-	private final IRestrictionFilter lhs;
-	private final IRestrictionFilter rhs;
+	private final IRestriction lhs;
+	private final IRestriction rhs;
 	private final LogicalOperator op;
 	
 	/**
 	 * 
 	 */
-	public LogicalRestriction(final IRestrictionFilter lhs,
-	final IRestrictionFilter rhs,
+	public LogicalRestriction(final IRestriction lhs,
+	final IRestriction rhs,
 	final LogicalOperator op) {
 		this.lhs = lhs;
 		this.rhs = rhs;
@@ -32,14 +32,14 @@ public class LogicalRestriction implements IRestrictionFilter {
 	/**
 	 * @return the lhs
 	 */
-	public IRestrictionFilter getLhs() {
+	public IRestriction getLhs() {
 		return lhs;
 	}
 
 	/**
 	 * @return the rhs
 	 */
-	public IRestrictionFilter getRhs() {
+	public IRestriction getRhs() {
 		return rhs;
 	}
 

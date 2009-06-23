@@ -8,6 +8,8 @@ import java.io.Serializable;
 
 
 /**
+ * Abstarct representation of a query.
+ * 
  * @author Ernesto Reinaldo Barreiro (reiern70@gmail.com)
  *
  */
@@ -15,20 +17,56 @@ public interface IQuery<B extends Serializable> extends Serializable  {
 	
 	public static final int ALL_RESULTS = -1;
 	
+	/**
+	 * The bean class associated with the query.
+	 * 
+	 * @return
+	 */
 	Class<B> getEntityClass();
 
-	IQuery<B> addFilter(IFilter filter);
+	/**
+	 * Adds a restriction.
+	 * 
+	 * @param filter
+	 * @return
+	 */
+	IQuery<B> addRestriction(IRestriction filter);
 	
-	IQuery<B> removeFilter(String propertyName);
+	/**
+	 * Removes a restriction.
+	 * 
+	 * @param propertyName
+	 * @return
+	 */
+	IQuery<B> removeRestriction(String propertyName);
 		
-	Iterable<IFilter> getFilters(); 
+	/**
+	 * @return Returns an {@link Iterable} over the filters.
+	 */
+	Iterable<IRestriction> getRestrictions(); 
 	
-	IFilter findFilter(String propertyName);
+	/**
+	 * Finds the {@link IRestriction}s for a given property name.
+	 * @param propertyName
+	 * @return
+	 */
+	IRestriction findRestriction(String propertyName);
 	
-	public void clearFilters();
+	/**
+	 * Clear all the restrictions.
+	 */
+	public void clearRestrictions();
 	
+	/**
+	 * Adds a order.
+	 * @param order
+	 * @return
+	 */
 	IQuery<B> addOrder(IOrder<B> order);
 	
+	/**
+	 * @return Returns an {@link Iterable} over the orders.
+	 */
 	Iterable<IOrder<B>> getOrders();
 	
 	/**
@@ -38,10 +76,23 @@ public interface IQuery<B extends Serializable> extends Serializable  {
 	 */
 	IOrder<B> getOrder(String propertyPath);
 	
+	/**
+	 * Clears any orders present on the query.
+	 */
 	public void clearOrders();
 	
+	/**
+	 * Adds a projection to the query.
+	 * 
+	 * @param projection
+	 * @return
+	 */
 	IQuery<B> setProjection(IProjection projection);
 	
+	/**
+	 * 
+	 * @return
+	 */
 	public IProjection getProjection();
 	
 	public IQuery<B> setMaxResults(int maxResults);

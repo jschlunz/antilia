@@ -8,26 +8,27 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * Base class for junction restrictions.
  * 
  * @author Ernesto Reinaldo Barreiro (reiern70@gmail.com)
  */
-public abstract class JunctionFilter  implements IRestrictionFilter {
+public abstract class JunctionRestriction  implements IRestriction {
 
 	private static final long serialVersionUID = 1L;
 	
-	private final List<IRestrictionFilter> filters = new ArrayList<IRestrictionFilter>();
+	private final List<IRestriction> filters = new ArrayList<IRestriction>();
 	private final LogicalOperator op;
 	
-	protected JunctionFilter(LogicalOperator op) {
+	protected JunctionRestriction(LogicalOperator op) {
 		this.op = op;
 	}
 	
-	public JunctionFilter add(IRestrictionFilter filter) {
+	public JunctionRestriction add(IRestriction filter) {
 		filters.add(filter);
 		return this;
 	}
 	
-	public Iterable<IRestrictionFilter> getFilters() {
+	public Iterable<IRestriction> getFilters() {
 		return filters;
 	}
 

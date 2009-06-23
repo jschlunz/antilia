@@ -4,19 +4,31 @@
  */
 package com.antilia.common.query;
 
-
-
 /**
- * 
+ *  A simple restriction on a property.
+ *  
  * @author Ernesto Reinaldo Barreiro (reiern70@gmail.com)
  */
-public class SimpleRestriction implements IRestrictionFilter {
+public class SimpleRestriction implements IRestriction {
 
 	private static final long serialVersionUID = 1L;
 	
+	/**
+	 * The property to which the restriction will apply.
+	 */
 	private final String propertyName;
+	
+	/**
+	 * The value applied to the restriction.
+	 */
 	private final Object value;
+	/**
+	 * If case should matter for the restriction.
+	 */
 	private boolean ignoreCase;
+	/**
+	 * The operator to apply to the restriction.
+	 */
 	private final Operator op;
 	
 	protected SimpleRestriction(String propertyName, Object value, Operator op) {

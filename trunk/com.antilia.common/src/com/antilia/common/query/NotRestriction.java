@@ -9,21 +9,21 @@ package com.antilia.common.query;
  * 
  * @author Ernesto Reinaldo Barreiro (reiern70@gmail.com)
  */
-public class NotRestriction implements IRestrictionFilter {
+public class NotRestriction implements IRestriction {
 
 	private static final long serialVersionUID = 1L;
 
-	private final IRestrictionFilter filter;
+	private final IRestriction filter;
 	/**
 	 * 
 	 */
-	public NotRestriction(IRestrictionFilter filter) {
+	public NotRestriction(IRestriction filter) {
 		this.filter = filter;
 	}
 	/**
 	 * @return the filter
 	 */
-	public IRestrictionFilter getFilter() {
+	public IRestriction getFilter() {
 		return filter;
 	}
 	

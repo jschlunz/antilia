@@ -11,14 +11,22 @@ import java.util.List;
 import com.antilia.common.util.StringUtils;
 
 /**
+ * A neutral representation of a query. The API is similar to Hibernate 
+ * Criteria or OJB Criteria, but with no references to any of them. 
+ * That way a query could be used to filter tabular data 
+ * coming from different sources  (e.g. iBatis, or a simple list) without 
+ * needing to include references to those projects.
+ * 
+ * Additionally, advantage is taken from Java 5 main additions (e.g. generics 
+ * and enumerations).
+ * 
  * @author Ernesto Reinaldo Barreiro (reiern70@gmail.com)
- *
  */
 public class Query<B extends Serializable> implements IQuery<B> {
 
 	private static final long serialVersionUID = 1L;
 
-	private List<IFilter> filters = new ArrayList<IFilter>();
+	private List<IRestriction> restrictions = new ArrayList<IRestriction>();
 	
 	private List<IOrder<B>> orders = new ArrayList<IOrder<B>>();
 	
@@ -35,16 +43,14 @@ public class Query<B extends Serializable> implements IQuery<B> {
 			throw new IllegalArgumentException("Bean class cannot be null");
 		this.beanClass = beanClass;
 	}
-	/* (non-Javadoc)
-	 * @see com.antilia.persistence.filter.IQuery#addFilter(com.antilia.persistence.filter.IFilter)
-	 */
-	public IQuery<B> addFilter(IFilter filter) {
-		filters.add(filter);
+		
+	public IQuery<B> addRestriction(IRestriction filter) {
+		restrictions.add(filter);
 		return this;
 	}
 
-	public void clearFilters() {
-		filters.clear();
+	public void clearRestrictions() {
+		restrictions.clear();
 	}
 	
 	public void clearOrders() {
@@ -67,35 +73,35 @@ public class Query<B extends Serializable> implements IQuery<B> {
 	public IProjection getProjection() {
 		return projection;
 	}
-
-	public Iterable<IFilter> getFilters() {
-		return filters;
+	
+	public Iterable<IRestriction> getRestrictions() {
+		return restrictions;
 	}
 	
-	public IFilter findFilter(String propertyName) {
+	public IRestriction findRestriction(String propertyName) {
 		if(StringUtils.isEmpty(propertyName)) {
 			return null;
 		}
-		for(IFilter filter: filters) {
+		for(IRestriction filter: restrictions) {
 			if(filter.getPropertyName() != null && filter.getPropertyName().equals(propertyName)){
 				return filter;
 			}
 		}
 		return null;
 	}
-
-	public IQuery<B> removeFilter(String propertyName) {
+	
+	public IQuery<B> removeRestriction(String propertyName) {
 		if(StringUtils.isEmpty(propertyName)) {
 			return this;
 		}
-		List<IFilter> nfilters = new ArrayList<IFilter>();
-		for(IFilter filter: filters) {
+		List<IRestriction> nfilters = new ArrayList<IRestriction>();
+		for(IRestriction filter: restrictions) {
 			if(filter.getPropertyName() != null && filter.getPropertyName().equals(propertyName)){				
 				continue;
 			}
 			nfilters.add(filter);
 		}
-		this.filters = nfilters;
+		this.restrictions = nfilters;
 		return this;
 	}
 	

@@ -9,7 +9,7 @@ package com.antilia.common.query;
  * 
  * @author Ernesto Reinaldo Barreiro (reiern70@gmail.com)
  */
-public class IdentifierEqRestriction implements IRestrictionFilter{
+public class IdentifierEqRestriction implements IRestriction{
 
 	private static final long serialVersionUID = 1L;
 
