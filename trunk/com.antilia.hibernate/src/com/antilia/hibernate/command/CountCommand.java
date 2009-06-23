@@ -13,7 +13,7 @@ import org.hibernate.criterion.Example;
 import org.hibernate.criterion.Projections;
 
 import com.antilia.common.query.IQuery;
-import com.antilia.hibernate.query.transform.impl.QueryToCriteriaTransformer;
+import com.antilia.hibernate.query.transform.QueryToCriteriaTransformer;
 
 /**
  * 

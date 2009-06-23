@@ -2,7 +2,7 @@
  * This software is provided as IS by Antilia-Soft SL.
  * Copyright 2006-2007.
  */
-package com.antilia.hibernate.query.transform.impl;
+package com.antilia.hibernate.query.transform;
 
 import java.io.Serializable;
 
@@ -14,9 +14,9 @@ import com.antilia.common.query.IOrder;
 import com.antilia.common.query.IQuery;
 import com.antilia.common.query.IRestriction;
 import com.antilia.common.query.IOrder.OrderType;
+import com.antilia.common.query.transform.IFilterTransformer;
+import com.antilia.common.query.transform.IQueryTransformer;
 import com.antilia.hibernate.context.RequestContext;
-import com.antilia.hibernate.query.transform.IFilterTransformer;
-import com.antilia.hibernate.query.transform.IQueryTransformer;
 
 /**
  * 

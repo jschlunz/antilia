@@ -1,4 +1,4 @@
-package com.antilia.hibernate.query.transform.impl;
+package com.antilia.hibernate.query.transform;
 
 import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.Restrictions;

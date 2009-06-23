@@ -13,7 +13,7 @@ import org.springframework.orm.hibernate3.HibernateCallback;
 
 import com.antilia.common.query.IQuery;
 import com.antilia.common.query.Query;
-import com.antilia.hibernate.query.transform.impl.QueryToCriteriaTransformer;
+import com.antilia.hibernate.query.transform.QueryToCriteriaTransformer;
 
 /**
  * @author Ernesto Reinaldo Barreiro (reirn70@gmail.com)
