@@ -3,7 +3,7 @@
  */
 package com.antilia.demo.manager.ibatis;
 
-import com.antilia.hibernate.dao.impl.SpringIBatisQuerableUpdatableDao;
+import com.antilia.ibatis.dao.SpringIBatisQuerableUpdatableDao;
 
 /**
  * @author Ernesto Reinaldo Barreiro (reirn70@gmail.com)
