@@ -7,8 +7,7 @@ package com.antilia.hibernate.query.transform.impl;
 import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.Restrictions;
 
-import com.antilia.common.query.IFilter;
-import com.antilia.common.query.IRestrictionFilter;
+import com.antilia.common.query.IRestriction;
 import com.antilia.common.query.LogicalOperator;
 import com.antilia.common.query.LogicalRestriction;
 import com.antilia.hibernate.query.transform.IFilterTransformer;
@@ -20,12 +19,12 @@ import com.antilia.hibernate.query.transform.IFilterTransformer;
  */
 class LogicalRestrictionTransformer extends FilterToCriterionTransformer {
 	
-	public Criterion transform(IFilter source) {
+	public Criterion transform(IRestriction source) {
 		if(source instanceof LogicalRestriction) {
 			LogicalRestriction logicalRestriction = (LogicalRestriction)source;
-			IRestrictionFilter lhs = logicalRestriction.getLhs();
+			IRestriction lhs = logicalRestriction.getLhs();
 			IFilterTransformer<Criterion> lhst = HibernateTransformerLocator.getInstance().getTransformer(lhs);
-			IRestrictionFilter rhs = logicalRestriction.getRhs();
+			IRestriction rhs = logicalRestriction.getRhs();
 			IFilterTransformer<Criterion> rhst = HibernateTransformerLocator.getInstance().getTransformer(rhs);
 			if(logicalRestriction.getOp().equals(LogicalOperator.OR)) {								
 				return Restrictions.or(lhst.transform(lhs), rhst.transform(rhs));

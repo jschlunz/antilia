@@ -7,7 +7,7 @@ package com.antilia.hibernate.query.transform.impl;
 import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.Restrictions;
 
-import com.antilia.common.query.IFilter;
+import com.antilia.common.query.IRestriction;
 
 /**
  * 
@@ -15,7 +15,7 @@ import com.antilia.common.query.IFilter;
  */
 public class NotEmptyRestrictionTransformer extends FilterToCriterionTransformer {
 	
-	public Criterion transform(IFilter source) {
+	public Criterion transform(IRestriction source) {
 		return Restrictions.isNotEmpty(source.getPropertyName());
 	}
 }

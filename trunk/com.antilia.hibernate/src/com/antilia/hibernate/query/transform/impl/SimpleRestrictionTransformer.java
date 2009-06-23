@@ -6,7 +6,7 @@ package com.antilia.hibernate.query.transform.impl;
 
 import org.hibernate.criterion.Criterion;
 
-import com.antilia.common.query.IFilter;
+import com.antilia.common.query.IRestriction;
 import com.antilia.common.query.SimpleRestriction;
 
 
@@ -27,7 +27,7 @@ public class SimpleRestrictionTransformer extends FilterToCriterionTransformer  
 	}
 	
 	
-	public Criterion transform(IFilter source) {
+	public Criterion transform(IRestriction source) {
 		if(source instanceof SimpleRestriction) {
 			SimpleRestriction simpleRestriction = (SimpleRestriction)source;
 			return new SimpleExpressionWrapper(simpleRestriction.getPropertyName(), simpleRestriction.getValue(), simpleRestriction.getOp().getValue());

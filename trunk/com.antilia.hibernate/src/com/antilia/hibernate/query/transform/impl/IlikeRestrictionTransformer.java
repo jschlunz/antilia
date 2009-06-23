@@ -7,7 +7,7 @@ package com.antilia.hibernate.query.transform.impl;
 import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.Restrictions;
 
-import com.antilia.common.query.IFilter;
+import com.antilia.common.query.IRestriction;
 import com.antilia.common.query.IlikeRestriction;
 import com.antilia.common.query.MatchMode;
 
@@ -20,7 +20,7 @@ public class IlikeRestrictionTransformer extends FilterToCriterionTransformer {
 
 
 	
-	public Criterion transform(IFilter source) {
+	public Criterion transform(IRestriction source) {
 		if(source instanceof IlikeRestriction) {
 			IlikeRestriction restriction = (IlikeRestriction)source;
 			if(restriction.getMatchMode() != null)

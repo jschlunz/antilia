@@ -6,7 +6,7 @@ package com.antilia.hibernate.query.transform.impl;
 
 import org.hibernate.criterion.Criterion;
 
-import com.antilia.common.query.IFilter;
+import com.antilia.common.query.IRestriction;
 import com.antilia.common.query.NotRestriction;
 import com.antilia.hibernate.query.transform.IFilterTransformer;
 
@@ -17,7 +17,7 @@ import com.antilia.hibernate.query.transform.IFilterTransformer;
 public class NotRestrictionTransformer extends FilterToCriterionTransformer {
 
 
-	public Criterion transform(IFilter source) {
+	public Criterion transform(IRestriction source) {
 		if(source instanceof NotRestriction) {
 			IFilterTransformer<Criterion> transformer = HibernateTransformerLocator.getInstance().getTransformer(source);
 			if(transformer != null) {

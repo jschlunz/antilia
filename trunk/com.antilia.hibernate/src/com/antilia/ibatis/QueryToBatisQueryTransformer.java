@@ -7,9 +7,9 @@ package com.antilia.ibatis;
 import java.io.Serializable;
 import java.util.Iterator;
 
-import com.antilia.common.query.IFilter;
 import com.antilia.common.query.IOrder;
 import com.antilia.common.query.IQuery;
+import com.antilia.common.query.IRestriction;
 import com.antilia.common.query.Operator;
 import com.antilia.common.query.PropertyRestriction;
 import com.antilia.common.query.SimpleRestriction;
@@ -36,7 +36,7 @@ public class QueryToBatisQueryTransformer<E extends Serializable> implements IQu
 		if(source.getFirstResult() > 0) {
 			iBatisQuery.setFirstResult(source.getFirstResult());
 		}		
-		buildWhereClause(iBatisQuery, source.getFilters());
+		buildWhereClause(iBatisQuery, source.getRestrictions());
 		
 		if(includeOrdering) {
 			for(IOrder<E> order: source.getOrders()) {					
@@ -57,15 +57,15 @@ public class QueryToBatisQueryTransformer<E extends Serializable> implements IQu
 		return iBatisQuery;
 	}	
 	
-	private void buildWhereClause(IBatisQuery<E> iBatisQuery, Iterable<IFilter> filters) {				
-		Iterator<IFilter> it = filters.iterator();
+	private void buildWhereClause(IBatisQuery<E> iBatisQuery, Iterable<IRestriction> filters) {				
+		Iterator<IRestriction> it = filters.iterator();
 		if(it.hasNext()) {
 			// It is very difficult to get this to work right.
 			// ... and is somehow reinventing the wheel.
 			StringBuffer sb = new StringBuffer();
 			sb.append(" WHERE ");
 			while(it.hasNext()) {			
-				IFilter filter =  it.next();
+				IRestriction filter =  it.next();
 				if(filter instanceof PropertyRestriction) {
 					PropertyRestriction propertyRestriction = (PropertyRestriction)filter;					
 					sb.append(getColumnName(iBatisQuery, propertyRestriction.getPropertyName()));
