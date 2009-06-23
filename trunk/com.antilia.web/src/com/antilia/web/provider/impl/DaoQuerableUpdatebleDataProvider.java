@@ -7,8 +7,8 @@ package com.antilia.web.provider.impl;
 import java.io.Serializable;
 import java.util.Collection;
 
+import com.antilia.common.dao.IQuerableUpdatableDao;
 import com.antilia.common.query.IQuery;
-import com.antilia.hibernate.dao.IQuerableUpdatableDao;
 import com.antilia.web.provider.IQuerableUpdatebleDataProvider;
 
 /**

@@ -247,4 +247,5 @@ Bundle-ClassPath: .,
  lib/wicket-ioc-1.4.jar,
  lib/wicket-spring-1.4.jar
 Require-Bundle: com.antilia.common,
- com.antilia.hibernate
+ com.antilia.hibernate,
+ com.antilia.ibatis;bundle-version="1.0.0"

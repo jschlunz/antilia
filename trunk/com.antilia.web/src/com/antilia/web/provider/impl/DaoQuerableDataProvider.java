@@ -10,8 +10,8 @@ import java.util.Iterator;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 
+import com.antilia.common.dao.IQuerableDao;
 import com.antilia.common.query.IQuery;
-import com.antilia.hibernate.dao.IQuerableDao;
 import com.antilia.hibernate.dao.impl.HibernateQuerableDao;
 import com.antilia.web.provider.IQuerableDataProvider;
 
