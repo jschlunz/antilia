@@ -1,7 +1,7 @@
 package com.antilia.common.query;
 
 
-public class NotNullRestriction implements IRestrictionFilter {
+public class NotNullRestriction implements IRestriction {
 
 	private static final long serialVersionUID = 1L;
 

@@ -6,10 +6,11 @@ package com.antilia.common.query;
 
 
 /**
+ * Represents a size restriction (for collections).
  * 
  * @author Ernesto Reinaldo Barreiro (reiern70@gmail.com)
  */
-public class SizeRestriction implements IRestrictionFilter {
+public class SizeRestriction implements IRestriction {
 
 	private static final long serialVersionUID = 1L;
 	

@@ -60,7 +60,7 @@ public class Order<B extends Serializable> implements IOrder<B> {
 	/**
 	 * @param type the type to set
 	 */
-	public Order<B> setType(OrderType type) {
+	public IOrder<B> setType(OrderType type) {
 		this.type = type;
 		return this;
 	}
@@ -75,7 +75,7 @@ public class Order<B extends Serializable> implements IOrder<B> {
 	/**
 	 * @param ignoreCase the ignoreCase to set
 	 */
-	public Order<B> ignoreCase(boolean ignoreCase) {
+	public IOrder<B> ignoreCase(boolean ignoreCase) {
 		this.ignoreCase = ignoreCase;
 		return this;
 	}
@@ -90,7 +90,7 @@ public class Order<B extends Serializable> implements IOrder<B> {
 	/**
 	 * @param propertyPath the propertyPath to set
 	 */
-	public Order<B> setPropertyPath(String propertyPath) {
+	public IOrder<B> setPropertyPath(String propertyPath) {
 		this.propertyPath = propertyPath;
 		return this;
 	}

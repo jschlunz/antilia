@@ -11,6 +11,7 @@ import java.util.Map;
 
 
 /**
+ * Utility class that allows to easily add restrictions to a query.
  * 
  * @author Ernesto Reinaldo Barreiro (reiern70@gmail.com)
  */
@@ -19,113 +20,227 @@ public class Restrictions {
 	private Restrictions() {		
 	}
 	
-	public static IRestrictionFilter idEq(Object value) {
+	/**
+	 * Adds an ID equality restriction.
+	 * @param value
+	 * @return
+	 */
+	public static IRestriction idEq(Object value) {
 		return new IdentifierEqRestriction(value);
 	}
 	
-	public static IRestrictionFilter eq(String propertyName, Object value) {
+	/**
+	 * Adds an equality restriction to property name.
+	 * 
+	 * @param propertyName
+	 * @param value
+	 * @return
+	 */
+	public static IRestriction eq(String propertyName, Object value) {
 		return new SimpleRestriction(propertyName, value, Operator.EQUAL);
 	}
 	
-	public static IRestrictionFilter ne(String propertyName, Object value) {
+	/**
+	 * Adds a not equal restriction.
+	 * 
+	 * @param propertyName
+	 * @param value
+	 * @return
+	 */
+	public static IRestriction ne(String propertyName, Object value) {
 		return new SimpleRestriction(propertyName, value, Operator.NOTEQUAL);
 	}
 	
-	public static IRestrictionFilter like(String propertyName, Object value) {
+	/**
+	 * Adds a like restriction.
+	 * 
+	 * @param propertyName
+	 * @param value
+	 * @return
+	 */
+	public static IRestriction like(String propertyName, Object value) {
 		return new SimpleRestriction(propertyName, value, Operator.LIKE);
 	}
 	
-	public static IRestrictionFilter like(String propertyName, String value, MatchMode matchMode) {
+	/**
+	 * Adds a like restriction.
+	 * 
+	 * @param propertyName
+	 * @param value
+	 * @param matchMode
+	 * @return
+	 */
+	public static IRestriction like(String propertyName, String value, MatchMode matchMode) {
 		return new SimpleRestriction(propertyName, matchMode.toMatchString(value), Operator.LIKE);
 	}
 	
-	public static IRestrictionFilter ilike(String propertyName, Object value) {
+	/**
+	 * Adds an ilike restriction.
+	 * 
+	 * @param propertyName
+	 * @param value
+	 * @return
+	 */
+	public static IRestriction ilike(String propertyName, Object value) {
 		return new IlikeRestriction(propertyName, value);
 	}
 	
-	public static IRestrictionFilter ilike(String propertyName, Object value, MatchMode matchMode) {
+	/**
+	 * Adds an ilike restriction.
+	 * 
+	 * @param propertyName
+	 * @param value
+	 * @param matchMode
+	 * @return
+	 */
+	public static IRestriction ilike(String propertyName, Object value, MatchMode matchMode) {
 		return new IlikeRestriction(propertyName, matchMode.toMatchString(value.toString()));
 	}
 	
-	public static IRestrictionFilter gt(String propertyName, Object value) {
+	/**
+	 * Adds an greater than restriction.
+	 * 
+	 * @param propertyName
+	 * @param value
+	 * @return
+	 */
+	public static IRestriction gt(String propertyName, Object value) {
 		return new SimpleRestriction(propertyName, value, Operator.GREATER_THAN);
 	}
 	
-	public static IRestrictionFilter lt(String propertyName, Object value) {
+	/**
+	 * Adds an less than restriction.
+	 * 
+	 * @param propertyName
+	 * @param value
+	 * @return
+	 */
+	public static IRestriction lt(String propertyName, Object value) {
 		return new SimpleRestriction(propertyName, value, Operator.LESS_THAN);
 	}
 	
-	public static IRestrictionFilter le(String propertyName, Object value) {
+	/**
+	 * Adds a less equal than restriction.
+	 * 
+	 * @param propertyName
+	 * @param value
+	 * @return
+	 */
+	public static IRestriction le(String propertyName, Object value) {
 		return new SimpleRestriction(propertyName, value, Operator.LESS_EQUAL_THAN);
 	}
 	
-	public static IRestrictionFilter ge(String propertyName, Object value) {
+	/**
+	 * 
+	 * @param propertyName The property to which the restriction will apply.
+	 * @param value The value of the restriction.
+	 * @return
+	 */
+	public static IRestriction ge(String propertyName, Object value) {
 		return new SimpleRestriction(propertyName, value, Operator.GREATER_EQUAL_THAN);
 	}
 	
-	public static IRestrictionFilter between(String propertyName, Object lo, Object hi) {
+	/**
+	 * Adds a between restriction.
+	 * 
+	 * @param propertyName The property to which the restriction will apply.
+	 * @param lo Low limit.
+	 * @param hi Top limit 
+	 * @return
+	 */
+	public static IRestriction between(String propertyName, Object lo, Object hi) {
 		return new BetweenRestriction(propertyName, lo, hi);
 	}
 	
 	/**
 	 * Apply an "in" constraint to the named property
-	 * @param propertyName
-	 * @param values
-	 * @return Criterion
+	 * 
+	 * @param propertyName The property to which the restriction will apply.
+	 * @param values The values included in the in constraint.
+	 * @return {@link InRestriction}
 	 */
-	public static IRestrictionFilter in(String propertyName, Object[] values) {
+	public static IRestriction in(String propertyName, Object[] values) {
 		return new InRestriction(propertyName, values);
 	}
 	/**
 	 * Apply an "in" constraint to the named property
 	 * @param propertyName
 	 * @param values
-	 * @return Criterion
+	 * @return {@link InRestriction}
 	 */
-	public static IRestrictionFilter in(String propertyName, Collection<?> values) {
+	public static IRestriction in(String propertyName, Collection<?> values) {
 		return new InRestriction( propertyName, values.toArray() );
 	}
 	
 	/**
 	 * Apply an "is null" constraint to the named property
-	 * @return Criterion
+	 * @return {@link NullRestriction}
 	 */
-	public static IRestrictionFilter isNull(String propertyName) {
+	public static IRestriction isNull(String propertyName) {
 		return new NullRestriction(propertyName);
 	}
 	
 	/**
 	 * Apply an "equal" constraint to two properties
+	 * 
+	 * @param propertyName The property to which the restriction will apply
+	 * @param otherPropertyName The other property to which the restriction will apply
+	 * @return {@link PropertyRestriction}
 	 */
 	public static PropertyRestriction eqProperty(String propertyName, String otherPropertyName) {
 		return new PropertyRestriction(propertyName, otherPropertyName, Operator.EQUAL);
 	}
+	
 	/**
 	 * Apply a "not equal" constraint to two properties
+	 * 
+	 * @param propertyName The property to which the restriction will apply
+	 * @param otherPropertyName The other property to which the restriction will apply
+	 * @return {@link PropertyRestriction}
 	 */
 	public static PropertyRestriction neProperty(String propertyName, String otherPropertyName) {
 		return new PropertyRestriction(propertyName, otherPropertyName, Operator.NOTEQUAL);
 	}
+	
 	/**
 	 * Apply a "less than" constraint to two properties
+	 * 
+	 * @param propertyName The property to which the restriction will apply
+	 * @param otherPropertyName The other property to which the restriction will apply
+	 * @return {@link PropertyRestriction}
 	 */
 	public static PropertyRestriction ltProperty(String propertyName, String otherPropertyName) {
 		return new PropertyRestriction(propertyName, otherPropertyName, Operator.LESS_THAN);
 	}
+	
 	/**
 	 * Apply a "less than or equal" constraint to two properties
+	 * 
+	 * @param propertyName The property to which the restriction will apply
+	 * @param otherPropertyName The other property to which the restriction will apply
+	 * @return
 	 */
 	public static PropertyRestriction leProperty(String propertyName, String otherPropertyName) {
 		return new PropertyRestriction(propertyName, otherPropertyName, Operator.LESS_EQUAL_THAN);
 	}
+	
 	/**
 	 * Apply a "greater than" constraint to two properties
+	 * 
+	 * @param propertyName The property to which the restriction will apply
+	 * @param otherPropertyName The other property to which the restriction will apply
+	 * @return
 	 */
 	public static PropertyRestriction gtProperty(String propertyName, String otherPropertyName) {
 		return new PropertyRestriction(propertyName, otherPropertyName, Operator.GREATER_THAN);
 	}
+	
 	/**
 	 * Apply a "greater than or equal" constraint to two properties
+	 * 
+	 * @param propertyName The property to which the restriction will apply
+	 * @param otherPropertyName The other property to which the restriction will apply
+	 * @return
 	 */
 	public static PropertyRestriction geProperty(String propertyName, String otherPropertyName) {
 		return new PropertyRestriction(propertyName, otherPropertyName, Operator.GREATER_EQUAL_THAN);
@@ -133,19 +248,22 @@ public class Restrictions {
 	
 	/**
 	 * Apply an "is not null" constraint to the named property
-	 * @return Criterion
+	 * 
+	 * @param propertyName The property to which the restriction will apply
+	 * @return
 	 */
-	public static IRestrictionFilter isNotNull(String propertyName) {
+	public static IRestriction isNotNull(String propertyName) {
 		return new NotNullRestriction(propertyName);
 	}
+	
 	/**
-	 * Return the conjuction of two expressions
-	 *
+	 * Return the conjunction of two restrictions.
+	 * 
 	 * @param lhs
 	 * @param rhs
-	 * @return Criterion
+	 * @return {@link LogicalRestriction}
 	 */
-	public static IRestrictionFilter and(IRestrictionFilter lhs, IRestrictionFilter rhs) {
+	public static IRestriction and(IRestriction lhs, IRestriction rhs) {
 		return new LogicalRestriction(lhs, rhs, LogicalOperator.AND);
 	}
 	
@@ -154,92 +272,137 @@ public class Restrictions {
 	 *
 	 * @param lhs
 	 * @param rhs
-	 * @return Criterion
+	 * @return {@link LogicalRestriction}
 	 */
-	public static IRestrictionFilter or(IRestrictionFilter lhs, IRestrictionFilter rhs) {
+	public static IRestriction or(IRestriction lhs, IRestriction rhs) {
 		return new LogicalRestriction(lhs, rhs, LogicalOperator.OR);
 	}
+	
 	/**
-	 * Return the negation of an expression
+	 * Return the negation of a restriction.
 	 *
-	 * @param expression
-	 * @return Criterion
+	 * @param filter
+	 * @return {@link NotRestriction}
 	 */
-	public static IRestrictionFilter not(IRestrictionFilter filter) {
+	public static IRestriction not(IRestriction filter) {
 		return new NotRestriction(filter);
 	}
 	
-	public static ConjunctionFilter conjunction() {
-		return new ConjunctionFilter();
+	/**
+	 * @return Returns a {@link ConjunctionRestriction}
+	 */
+	public static ConjunctionRestriction conjunction() {
+		return new ConjunctionRestriction();
 	}
 	
-	public static DisjunctionFilter disjunction() {
-		return new DisjunctionFilter();
+	/**
+	 * 
+	 * @return Returns a {@link DisjunctionRestriction}
+	 */
+	public static DisjunctionRestriction disjunction() {
+		return new DisjunctionRestriction();
 	}
 	
-	public static IRestrictionFilter allEq(Map<String, Object> propertyNameValues) {
-		ConjunctionFilter conj = conjunction();
+	/**
+	 * Creates a conjunction with equality restrictions with pairs 
+	 * (porteprtyName, value) using the values stored on the Map.
+	 * 
+	 * @param propertyNameValues Map with pairs (propertyName,value)
+	 * @return {@link ConjunctionRestriction}
+	 */
+	public static IRestriction allEq(Map<String, Object> propertyNameValues) {
+		ConjunctionRestriction conj = conjunction();
 		Iterator<Map.Entry<String, Object>> iter = propertyNameValues.entrySet().iterator();
 		while ( iter.hasNext() ) {
 			Map.Entry<String, Object> me = (Map.Entry<String, Object>) iter.next();
-			conj.add( eq( (String) me.getKey(), me.getValue() ) );
+			conj.add(eq(me.getKey(), me.getValue()) );
 		}
 		return conj;
 	}
 	
 	/**
 	 * Constrain a collection valued property to be empty
+	 * 
+	 * @param propertyName
+	 * @return
 	 */
-	public static IRestrictionFilter isEmpty(String propertyName) {
+	public static IRestriction isEmpty(String propertyName) {
 		return new EmptyRestriction(propertyName);
 	}
 
 	/**
 	 * Constrain a collection valued property to be non-empty
+	 * 
+	 * @param propertyName
+	 * @return
 	 */
-	public static IRestrictionFilter isNotEmpty(String propertyName) {
+	public static IRestriction isNotEmpty(String propertyName) {
 		return new NotEmptyRestriction(propertyName);
 	}
 	
 	/**
-	 * Constrain a collection valued property by size
+	 * Constrain a collection valued property by size: EQUAL to size.
+	 * 
+	 * @param propertyName
+	 * @param size
+	 * @return
 	 */
-	public static IRestrictionFilter sizeEq(String propertyName, int size) {
+	public static IRestriction sizeEq(String propertyName, int size) {
 		return new SizeRestriction(propertyName, size, Operator.EQUAL);
 	}
 	
 	/**
-	 * Constrain a collection valued property by size
+	 * Constrain a collection valued property by size: NOT EQUAL to size.
+	 * 
+	 * @param propertyName
+	 * @param size
+	 * @return
 	 */
-	public static IRestrictionFilter sizeNe(String propertyName, int size) {
+	public static IRestriction sizeNe(String propertyName, int size) {
 		return new SizeRestriction(propertyName, size, Operator.NOTEQUAL);
 	}
 	
 	/**
-	 * Constrain a collection valued property by size
+	 * Constrain a collection valued property by size:  greater than to size.
+	 * 
+	 * @param propertyName
+	 * @param size
+	 * @return
 	 */
-	public static IRestrictionFilter sizeGt(String propertyName, int size) {
-		return new SizeRestriction(propertyName, size, Operator.LESS_THAN);
-	}
-	
-	/**
-	 * Constrain a collection valued property by size
-	 */
-	public static IRestrictionFilter sizeLt(String propertyName, int size) {
+	public static IRestriction sizeGt(String propertyName, int size) {
 		return new SizeRestriction(propertyName, size, Operator.GREATER_THAN);
 	}
 	
 	/**
-	 * Constrain a collection valued property by size
+	 * Constrain a collection valued property by size:  less than size
+	 * 
+	 * @param propertyName
+	 * @param size
+	 * @return
 	 */
-	public static IRestrictionFilter sizeGe(String propertyName, int size) {
-		return new SizeRestriction(propertyName, size, Operator.LESS_EQUAL_THAN);
+	public static IRestriction sizeLt(String propertyName, int size) {
+		return new SizeRestriction(propertyName, size, Operator.LESS_THAN);
 	}
 	
 	/**
-	 * Constrain a collection valued property by size
+	 * Constrain a collection valued property by size:  greater or equal than size
+	 * 
+	 * @param propertyName
+	 * @param size
+	 * @return
 	 */
-	public static IRestrictionFilter sizeLe(String propertyName, int size) {
+	public static IRestriction sizeGe(String propertyName, int size) {
 		return new SizeRestriction(propertyName, size, Operator.GREATER_EQUAL_THAN);
+	}
+	
+	/**
+	 * Constrain a collection valued property by size: less or equal than size
+	 * 
+	 * @param propertyName
+	 * @param size
+	 * @return
+	 */
+	public static IRestriction sizeLe(String propertyName, int size) {
+		return new SizeRestriction(propertyName, size, Operator.LESS_EQUAL_THAN);
 	}
 }

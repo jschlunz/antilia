@@ -6,21 +6,18 @@ package com.antilia.common.query;
 
 
 /**
+ * Represents a conjunction of filters.
  * 
  * @author Ernesto Reinaldo Barreiro (reiern70@gmail.com)
  */
-public class DisjunctionFilter extends JunctionFilter {
+public class ConjunctionRestriction extends JunctionRestriction {
 
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @param op
 	 */
-	public DisjunctionFilter() {
-		super(LogicalOperator.OR);
-	}
-	
-	public String getPropertyName() {
-		return null;
+	public ConjunctionRestriction() {
+		super(LogicalOperator.AND);
 	}
 }

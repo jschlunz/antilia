@@ -11,6 +11,7 @@ import java.io.Serializable;
  * @author Ernesto Reinaldo Barreiro (reiern70@gmail.com)
  */
 public interface IOrder<B extends Serializable> extends Serializable {
+	
 	public static enum  OrderType {
 		ASCENDING,
 		DESCENDING,
@@ -25,7 +26,7 @@ public interface IOrder<B extends Serializable> extends Serializable {
 	/**
 	 * @param type the type to set
 	 */
-	public Order<B> setType(OrderType type);
+	public IOrder<B> setType(OrderType type);
 
 	/**
 	 * @return the ignoreCase
@@ -35,7 +36,7 @@ public interface IOrder<B extends Serializable> extends Serializable {
 	/**
 	 * @param ignoreCase the ignoreCase to set
 	 */
-	public Order<B> ignoreCase(boolean ignoreCase);
+	public IOrder<B> ignoreCase(boolean ignoreCase);
 
 	/**
 	 * @return the propertyPath
@@ -45,5 +46,5 @@ public interface IOrder<B extends Serializable> extends Serializable {
 	/**
 	 * @param propertyPath the propertyPath to set
 	 */
-	public Order<B> setPropertyPath(String propertyPath);;
+	public IOrder<B> setPropertyPath(String propertyPath);;
 }
