@@ -8,7 +8,7 @@ import java.io.Serializable;
 import java.util.Collection;
 import java.util.List;
 
-import com.antilia.hibernate.dao.IQuerableUpdatableDao;
+import com.antilia.common.dao.IQuerableUpdatableDao;
 import com.antilia.hibernate.dao.impl.ListQuerableUpdatableDao;
 import com.antilia.web.provider.IQuerableUpdatebleDataProvider;
 

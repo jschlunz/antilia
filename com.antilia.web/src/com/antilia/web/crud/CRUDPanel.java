@@ -11,9 +11,9 @@ import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 
+import com.antilia.common.dao.IDaoLocator;
+import com.antilia.common.dao.IQuerableUpdatableDao;
 import com.antilia.common.query.IQuery;
-import com.antilia.hibernate.dao.IDaoLocator;
-import com.antilia.hibernate.dao.IQuerableUpdatableDao;
 import com.antilia.web.beantable.model.IColumnModel;
 import com.antilia.web.navigator.INavigatorSelector;
 import com.antilia.web.provider.IQuerableDataProvider;

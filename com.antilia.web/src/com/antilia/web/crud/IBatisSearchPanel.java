@@ -5,7 +5,7 @@ package com.antilia.web.crud;
 
 import java.io.Serializable;
 
-import com.antilia.hibernate.dao.IQuerableDao;
+import com.antilia.common.dao.IQuerableDao;
 
 /**
  * @author Ernesto Reinaldo Barreiro (reirn70@gmail.com)

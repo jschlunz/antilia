@@ -11,8 +11,8 @@ import org.apache.wicket.markup.html.form.DropDownChoice;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 
-import com.antilia.hibernate.dao.IDaoLocator;
-import com.antilia.hibernate.dao.IQuerableDao;
+import com.antilia.common.dao.IDaoLocator;
+import com.antilia.common.dao.IQuerableDao;
 import com.antilia.web.utils.DaoUtils;
 import com.google.inject.Inject;
 

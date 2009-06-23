@@ -13,9 +13,9 @@ import java.util.List;
 import org.apache.wicket.markup.repeater.data.IDataProvider;
 import org.apache.wicket.model.IModel;
 
+import com.antilia.common.dao.IQuerableUpdatableDao;
 import com.antilia.common.query.IQuery;
 import com.antilia.common.query.Query;
-import com.antilia.hibernate.dao.IQuerableUpdatableDao;
 import com.antilia.web.navigator.ILoadablePageableNavigator;
 import com.antilia.web.navigator.IPageableNavigator;
 import com.antilia.web.navigator.IPageableNavigatorListener;
