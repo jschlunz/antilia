@@ -7,7 +7,7 @@ package com.antilia.hibernate.query.transform.impl;
 import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.PropertyExpression;
 
-import com.antilia.common.query.IFilter;
+import com.antilia.common.query.IRestriction;
 import com.antilia.common.query.PropertyRestriction;
 
 /**
@@ -27,7 +27,7 @@ public class PropertyRestrictionTransformer extends FilterToCriterionTransformer
 	}
 
 
-	public Criterion transform(IFilter source) {
+	public Criterion transform(IRestriction source) {
 		if(source instanceof PropertyRestriction) {
 			PropertyRestriction propertyRestriction = (PropertyRestriction)source;
 			return new PropertyExpressionWrapper(propertyRestriction.getPropertyName(), propertyRestriction.getOtherPropertyName(), propertyRestriction.getOp().getValue());

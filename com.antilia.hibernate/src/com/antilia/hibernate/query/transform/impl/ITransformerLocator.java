@@ -5,7 +5,7 @@ package com.antilia.hibernate.query.transform.impl;
 
 import org.hibernate.criterion.Criterion;
 
-import com.antilia.common.query.IFilter;
+import com.antilia.common.query.IRestriction;
 import com.antilia.hibernate.query.transform.IFilterTransformer;
 
 /**
@@ -14,6 +14,6 @@ import com.antilia.hibernate.query.transform.IFilterTransformer;
  */
 public interface ITransformerLocator {
 
-	IFilterTransformer<Criterion> getTransformer(IFilter filter);
+	IFilterTransformer<Criterion> getTransformer(IRestriction filter);
 	
 }

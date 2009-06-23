@@ -4,12 +4,12 @@
  */
 package com.antilia.hibernate.query.transform;
 
-import com.antilia.common.query.IFilter;
+import com.antilia.common.query.IRestriction;
 
 /**
  * 
  * @author Ernesto Reinaldo Barreiro (reiern70@gmail.com)
  */
-public interface IFilterTransformer<R> extends ITransformer<IFilter, R> {
+public interface IFilterTransformer<R> extends ITransformer<IRestriction, R> {
 
 }

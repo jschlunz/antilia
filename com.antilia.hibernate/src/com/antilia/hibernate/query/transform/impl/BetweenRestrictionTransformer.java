@@ -8,7 +8,7 @@ import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.Restrictions;
 
 import com.antilia.common.query.BetweenRestriction;
-import com.antilia.common.query.IFilter;
+import com.antilia.common.query.IRestriction;
 
 /**
  * 
@@ -22,7 +22,7 @@ public class BetweenRestrictionTransformer extends FilterToCriterionTransformer 
 	protected BetweenRestrictionTransformer() {
 	}
 	
-	public Criterion transform(IFilter source) {
+	public Criterion transform(IRestriction source) {
 		if(source instanceof BetweenRestriction) {
 			BetweenRestriction betweenRestriction = (BetweenRestriction)source;
 			return Restrictions.between(betweenRestriction.getPropertyName(), betweenRestriction.getLo(), betweenRestriction.getHi());

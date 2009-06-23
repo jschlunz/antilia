@@ -10,9 +10,9 @@ import org.hibernate.Criteria;
 import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.Order;
 
-import com.antilia.common.query.IFilter;
 import com.antilia.common.query.IOrder;
 import com.antilia.common.query.IQuery;
+import com.antilia.common.query.IRestriction;
 import com.antilia.common.query.IOrder.OrderType;
 import com.antilia.hibernate.context.RequestContext;
 import com.antilia.hibernate.query.transform.IFilterTransformer;
@@ -39,7 +39,7 @@ public class QueryToCriteriaTransformer<E extends Serializable> implements IQuer
 			criteria.setFirstResult(source.getFirstResult());
 		}
 		
-		for(IFilter filter: source.getFilters()) {
+		for(IRestriction filter: source.getRestrictions()) {
 			IFilterTransformer<Criterion> transformer = HibernateTransformerLocator.getInstance().getTransformer(filter);
 			criteria.add(transformer.transform(filter));
 		}		

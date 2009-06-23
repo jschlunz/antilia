@@ -8,24 +8,23 @@ import org.hibernate.criterion.Conjunction;
 import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.Restrictions;
 
-import com.antilia.common.query.ConjunctionFilter;
-import com.antilia.common.query.IFilter;
-import com.antilia.common.query.IRestrictionFilter;
+import com.antilia.common.query.ConjunctionRestriction;
+import com.antilia.common.query.IRestriction;
 import com.antilia.hibernate.query.transform.IFilterTransformer;
 
 /**
  * 
  * @author Ernesto Reinaldo Barreiro (reiern70@gmail.com)
  */
-class ConjunctionFilterTransformer extends FilterToCriterionTransformer {
+class ConjunctionRestrictionTransformer extends FilterToCriterionTransformer {
 
 	private static final long serialVersionUID = 1L;
 
-	public Criterion transform(IFilter source) {
-		if(source instanceof ConjunctionFilter) {			
-			ConjunctionFilter conjunctionFilter = (ConjunctionFilter)source;
+	public Criterion transform(IRestriction source) {
+		if(source instanceof ConjunctionRestriction) {			
+			ConjunctionRestriction conjunctionFilter = (ConjunctionRestriction)source;
 			Conjunction conjunction =  Restrictions.conjunction();		
-			for(IRestrictionFilter filter: conjunctionFilter.getFilters()) {
+			for(IRestriction filter: conjunctionFilter.getFilters()) {
 				IFilterTransformer<Criterion>  transformer = HibernateTransformerLocator.getInstance().getTransformer(filter);				
 				if(transformer != null)
 					conjunction.add(transformer.transform(filter));

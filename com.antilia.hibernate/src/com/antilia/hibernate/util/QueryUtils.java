@@ -6,9 +6,9 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-import com.antilia.common.query.IFilter;
 import com.antilia.common.query.IOrder;
 import com.antilia.common.query.IQuery;
+import com.antilia.common.query.IRestriction;
 import com.antilia.common.query.IlikeRestriction;
 import com.antilia.common.query.IOrder.OrderType;
 import com.antilia.common.util.ReflectionUtils;
@@ -50,7 +50,7 @@ public class QueryUtils {
 			return null;
 		if(query == null)
 			return bean;
-		for(IFilter filter: query.getFilters()) {
+		for(IRestriction filter: query.getRestrictions()) {
 			if(filter instanceof IlikeRestriction) {
 				IlikeRestriction restriction = (IlikeRestriction)filter;
 				String propertyName = restriction.getPropertyName();				

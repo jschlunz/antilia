@@ -5,7 +5,7 @@ package com.antilia.hibernate.query.transform.impl;
 
 import org.hibernate.criterion.Criterion;
 
-import com.antilia.common.query.IFilter;
+import com.antilia.common.query.IRestriction;
 import com.antilia.hibernate.PersistenceException;
 import com.antilia.hibernate.query.transform.IFilterTransformer;
 
@@ -24,7 +24,7 @@ public class HibernateTransformerLocator implements ITransformerLocator {
 	 * @see com.antilia.hibernate.query.transform.ITransformerLocator#getTransformer(com.antilia.hibernate.query.IFilter)
 	 */
 	@SuppressWarnings("unchecked")
-	public IFilterTransformer<Criterion> getTransformer(IFilter filter) {
+	public IFilterTransformer<Criterion> getTransformer(IRestriction filter) {
 		String className = "com.antilia.hibernate.query.transform.impl." + filter.getClass().getSimpleName() + "Transformer";
 		try {
 			Class<IFilterTransformer<Criterion>> clazz = (Class<IFilterTransformer<Criterion>>)Thread.currentThread().getContextClassLoader().loadClass(className);
