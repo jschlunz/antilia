@@ -1,13 +1,13 @@
 /**
  * 
  */
-package com.antilia.hibernate.query.transform.impl;
+package com.antilia.hibernate.query.transform;
 
 import org.hibernate.criterion.Criterion;
 
 import com.antilia.common.query.IRestriction;
+import com.antilia.common.query.transform.IFilterTransformer;
 import com.antilia.hibernate.PersistenceException;
-import com.antilia.hibernate.query.transform.IFilterTransformer;
 
 /**
  * @author Ernesto Reinaldo Barreiro (reirn70@gmail.com)

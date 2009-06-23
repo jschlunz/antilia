@@ -2,7 +2,7 @@
  * This software is provided as IS by Antilia-Soft SL.
  * Copyright 2006-2007.
  */
-package com.antilia.hibernate.query.transform.impl;
+package com.antilia.hibernate.query.transform;
 
 import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.PropertyExpression;

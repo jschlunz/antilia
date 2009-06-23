@@ -2,33 +2,34 @@
  * This software is provided as IS by Antilia-Soft SL.
  * Copyright 2006-2007.
  */
-package com.antilia.hibernate.query.transform.impl;
+package com.antilia.hibernate.query.transform;
 
-import org.hibernate.criterion.Conjunction;
 import org.hibernate.criterion.Criterion;
+import org.hibernate.criterion.Disjunction;
 import org.hibernate.criterion.Restrictions;
 
-import com.antilia.common.query.ConjunctionRestriction;
+import com.antilia.common.query.DisjunctionRestriction;
 import com.antilia.common.query.IRestriction;
-import com.antilia.hibernate.query.transform.IFilterTransformer;
+import com.antilia.common.query.transform.IFilterTransformer;
 
 /**
  * 
  * @author Ernesto Reinaldo Barreiro (reiern70@gmail.com)
  */
-class ConjunctionRestrictionTransformer extends FilterToCriterionTransformer {
+class DisjunctionRestrictionTransformer extends FilterToCriterionTransformer {
 
 	private static final long serialVersionUID = 1L;
 
 	public Criterion transform(IRestriction source) {
-		if(source instanceof ConjunctionRestriction) {			
-			ConjunctionRestriction conjunctionFilter = (ConjunctionRestriction)source;
-			Conjunction conjunction =  Restrictions.conjunction();		
-			for(IRestriction filter: conjunctionFilter.getFilters()) {
+		if(source instanceof DisjunctionRestriction) {
+			DisjunctionRestriction disjunctionFilter = (DisjunctionRestriction)source;
+			Disjunction conjunction =  Restrictions.disjunction();		
+			for(IRestriction filter: disjunctionFilter.getFilters()) {
 				IFilterTransformer<Criterion>  transformer = HibernateTransformerLocator.getInstance().getTransformer(filter);				
 				if(transformer != null)
 					conjunction.add(transformer.transform(filter));
-			}			
+			}
+			
 			return conjunction;
 		}
 		return null;

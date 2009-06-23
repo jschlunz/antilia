@@ -14,7 +14,7 @@ import com.antilia.common.query.Operator;
 import com.antilia.common.query.PropertyRestriction;
 import com.antilia.common.query.SimpleRestriction;
 import com.antilia.common.query.IOrder.OrderType;
-import com.antilia.hibernate.query.transform.IQueryTransformer;
+import com.antilia.common.query.transform.IQueryTransformer;
 
 /**
  * 
