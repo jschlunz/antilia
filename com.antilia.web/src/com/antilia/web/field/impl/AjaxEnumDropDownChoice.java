@@ -71,15 +71,7 @@ public abstract class AjaxEnumDropDownChoice<T extends Enum<?>> extends EnumDrop
 	 */
 	public AjaxEnumDropDownChoice(String id, List<T> choices, IModel<T> model) {
 		super(id, choices, model);
-		
-		add(new OnChangeAjaxBehavior() {
-			private static final long serialVersionUID = 1L;
-
-			@Override
-			protected void onUpdate(AjaxRequestTarget target) {
-				AjaxEnumDropDownChoice.this.onUpdate(target);
-			}
-		});
+		init();
 	}
 
 	/**
