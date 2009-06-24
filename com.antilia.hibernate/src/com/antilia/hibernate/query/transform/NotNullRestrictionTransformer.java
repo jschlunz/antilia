@@ -5,7 +5,7 @@ import org.hibernate.criterion.Restrictions;
 
 import com.antilia.common.query.IRestriction;
 
-public class NotNullRestrictionTransformer extends FilterToCriterionTransformer {
+public class NotNullRestrictionTransformer extends RestrictionToCriterionTransformer {
 
 	
 	public Criterion transform(IRestriction source) {

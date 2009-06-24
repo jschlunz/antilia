@@ -13,7 +13,7 @@ import com.antilia.common.query.IRestriction;
  * 
  * @author Ernesto Reinaldo Barreiro (reiern70@gmail.com)
  */
-public class EmptyRestrictionTransformer extends FilterToCriterionTransformer {
+public class EmptyRestrictionTransformer extends RestrictionToCriterionTransformer {
 	
 	public Criterion transform(IRestriction source) {
 		return Restrictions.isEmpty(source.getPropertyName());

@@ -16,7 +16,7 @@ import com.antilia.common.query.transform.IRestrictionTransformer;
  * 
  * @author Ernesto Reinaldo Barreiro (reiern70@gmail.com)
  */
-class ConjunctionRestrictionTransformer extends FilterToCriterionTransformer {
+class ConjunctionRestrictionTransformer extends RestrictionToCriterionTransformer {
 
 	private static final long serialVersionUID = 1L;
 

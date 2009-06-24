@@ -15,7 +15,7 @@ import com.antilia.common.query.SizeRestriction;
  * 
  * @author Ernesto Reinaldo Barreiro (reiern70@gmail.com)
  */
-public class SizeRestrictionTransformer extends FilterToCriterionTransformer {
+public class SizeRestrictionTransformer extends RestrictionToCriterionTransformer {
 	
 	public Criterion transform(IRestriction source) {
 		if(source instanceof SizeRestriction) {
