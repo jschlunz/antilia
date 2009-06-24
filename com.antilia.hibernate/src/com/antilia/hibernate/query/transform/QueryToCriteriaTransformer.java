@@ -14,7 +14,7 @@ import com.antilia.common.query.IOrder;
 import com.antilia.common.query.IQuery;
 import com.antilia.common.query.IRestriction;
 import com.antilia.common.query.IOrder.OrderType;
-import com.antilia.common.query.transform.IFilterTransformer;
+import com.antilia.common.query.transform.IRestrictionTransformer;
 import com.antilia.common.query.transform.IQueryTransformer;
 import com.antilia.hibernate.context.RequestContext;
 
@@ -40,7 +40,7 @@ public class QueryToCriteriaTransformer<E extends Serializable> implements IQuer
 		}
 		
 		for(IRestriction filter: source.getRestrictions()) {
-			IFilterTransformer<Criterion> transformer = HibernateTransformerLocator.getInstance().getTransformer(filter);
+			IRestrictionTransformer<Criterion> transformer = HibernateTransformerLocator.getInstance().getTransformer(filter);
 			criteria.add(transformer.transform(filter));
 		}		
 		if(includeOrdering) {

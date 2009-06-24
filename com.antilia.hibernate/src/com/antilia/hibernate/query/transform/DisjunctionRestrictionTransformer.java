@@ -10,7 +10,7 @@ import org.hibernate.criterion.Restrictions;
 
 import com.antilia.common.query.DisjunctionRestriction;
 import com.antilia.common.query.IRestriction;
-import com.antilia.common.query.transform.IFilterTransformer;
+import com.antilia.common.query.transform.IRestrictionTransformer;
 
 /**
  * 
@@ -25,7 +25,7 @@ class DisjunctionRestrictionTransformer extends FilterToCriterionTransformer {
 			DisjunctionRestriction disjunctionFilter = (DisjunctionRestriction)source;
 			Disjunction conjunction =  Restrictions.disjunction();		
 			for(IRestriction filter: disjunctionFilter.getFilters()) {
-				IFilterTransformer<Criterion>  transformer = HibernateTransformerLocator.getInstance().getTransformer(filter);				
+				IRestrictionTransformer<Criterion>  transformer = HibernateTransformerLocator.getInstance().getTransformer(filter);				
 				if(transformer != null)
 					conjunction.add(transformer.transform(filter));
 			}
