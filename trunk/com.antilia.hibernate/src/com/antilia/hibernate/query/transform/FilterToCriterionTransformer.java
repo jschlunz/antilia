@@ -6,7 +6,7 @@ package com.antilia.hibernate.query.transform;
 
 import org.hibernate.criterion.Criterion;
 
-import com.antilia.common.query.transform.IFilterTransformer;
+import com.antilia.common.query.transform.IRestrictionTransformer;
 
 /**
  * 
@@ -14,6 +14,6 @@ import com.antilia.common.query.transform.IFilterTransformer;
  * @author Ernesto Reinaldo Barreiro (reiern70@gmail.com)
  *
  */
-public abstract class FilterToCriterionTransformer implements IFilterTransformer<Criterion>{
+public abstract class FilterToCriterionTransformer implements IRestrictionTransformer<Criterion>{
 
 }

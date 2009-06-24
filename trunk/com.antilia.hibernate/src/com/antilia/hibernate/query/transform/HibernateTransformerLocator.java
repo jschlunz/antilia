@@ -6,7 +6,7 @@ package com.antilia.hibernate.query.transform;
 import org.hibernate.criterion.Criterion;
 
 import com.antilia.common.query.IRestriction;
-import com.antilia.common.query.transform.IFilterTransformer;
+import com.antilia.common.query.transform.IRestrictionTransformer;
 import com.antilia.hibernate.PersistenceException;
 
 /**
@@ -24,11 +24,11 @@ public class HibernateTransformerLocator implements ITransformerLocator {
 	 * @see com.antilia.hibernate.query.transform.ITransformerLocator#getTransformer(com.antilia.hibernate.query.IFilter)
 	 */
 	@SuppressWarnings("unchecked")
-	public IFilterTransformer<Criterion> getTransformer(IRestriction filter) {
+	public IRestrictionTransformer<Criterion> getTransformer(IRestriction filter) {
 		String className = "com.antilia.hibernate.query.transform." + filter.getClass().getSimpleName() + "Transformer";
 		try {
-			Class<IFilterTransformer<Criterion>> clazz = (Class<IFilterTransformer<Criterion>>)Thread.currentThread().getContextClassLoader().loadClass(className);
-			IFilterTransformer<Criterion> transformer = clazz.newInstance();
+			Class<IRestrictionTransformer<Criterion>> clazz = (Class<IRestrictionTransformer<Criterion>>)Thread.currentThread().getContextClassLoader().loadClass(className);
+			IRestrictionTransformer<Criterion> transformer = clazz.newInstance();
 			return transformer;
 		} catch (ClassNotFoundException e) {
 			throw new PersistenceException("XXX", e);

@@ -10,6 +10,6 @@ import com.antilia.common.query.IRestriction;
  * 
  * @author Ernesto Reinaldo Barreiro (reiern70@gmail.com)
  */
-public interface IFilterTransformer<R> extends ITransformer<IRestriction, R> {
+public interface IRestrictionTransformer<R> extends ITransformer<IRestriction, R> {
 
 }
