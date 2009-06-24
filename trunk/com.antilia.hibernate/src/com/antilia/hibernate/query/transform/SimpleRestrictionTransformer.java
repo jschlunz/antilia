@@ -14,7 +14,7 @@ import com.antilia.common.query.SimpleRestriction;
  * 
  * @author Ernesto Reinaldo Barreiro (reiern70@gmail.com)
  */
-public class SimpleRestrictionTransformer extends FilterToCriterionTransformer  {
+public class SimpleRestrictionTransformer extends RestrictionToCriterionTransformer  {
 
 
 	private static class SimpleExpressionWrapper extends org.hibernate.criterion.SimpleExpression {

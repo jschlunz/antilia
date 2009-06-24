@@ -16,7 +16,7 @@ import com.antilia.common.query.MatchMode;
  * 
  * @author Ernesto Reinaldo Barreiro (reiern70@gmail.com)
  */
-public class IlikeRestrictionTransformer extends FilterToCriterionTransformer {
+public class IlikeRestrictionTransformer extends RestrictionToCriterionTransformer {
 
 
 	

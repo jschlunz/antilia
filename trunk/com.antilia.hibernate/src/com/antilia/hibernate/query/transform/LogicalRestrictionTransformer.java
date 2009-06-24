@@ -17,7 +17,7 @@ import com.antilia.common.query.transform.IRestrictionTransformer;
  * 
  * @author Ernesto Reinaldo Barreiro (reiern70@gmail.com)
  */
-class LogicalRestrictionTransformer extends FilterToCriterionTransformer {
+class LogicalRestrictionTransformer extends RestrictionToCriterionTransformer {
 	
 	public Criterion transform(IRestriction source) {
 		if(source instanceof LogicalRestriction) {

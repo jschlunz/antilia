@@ -14,7 +14,7 @@ import com.antilia.common.query.PropertyRestriction;
  * 
  * @author Ernesto Reinaldo Barreiro (reiern70@gmail.com)
  */
-public class PropertyRestrictionTransformer extends FilterToCriterionTransformer {
+public class PropertyRestrictionTransformer extends RestrictionToCriterionTransformer {
 
 	
 	private static class PropertyExpressionWrapper extends PropertyExpression {

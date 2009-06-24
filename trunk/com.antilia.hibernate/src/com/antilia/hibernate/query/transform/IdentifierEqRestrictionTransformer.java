@@ -14,7 +14,7 @@ import com.antilia.common.query.IdentifierEqRestriction;
  * 
  * @author Ernesto Reinaldo Barreiro (reiern70@gmail.com)
  */
-public class IdentifierEqRestrictionTransformer extends FilterToCriterionTransformer {
+public class IdentifierEqRestrictionTransformer extends RestrictionToCriterionTransformer {
 	
 	
 	public Criterion transform(IRestriction source) {
