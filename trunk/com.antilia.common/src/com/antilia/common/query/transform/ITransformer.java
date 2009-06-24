@@ -14,7 +14,7 @@ package com.antilia.common.query.transform;
 public interface ITransformer<S,R> {
 
 	/**
-	 * Transforms an instance of S (source) to an instance of R (result)
+	 * Transforms an instance of S (source) into an instance of R (result)
 	 * @param source
 	 * @return
 	 */
