@@ -5,7 +5,7 @@ package com.antilia.demo.manager.ibatis;
 
 import org.apache.wicket.injection.web.InjectorHolder;
 
-import com.antilia.hibernate.dao.impl.IBatisAggregatedDaoLocator;
+import com.antilia.ibatis.dao.IBatisAggregatedDaoLocator;
 
 /**
  * @author Ernesto Reinaldo Barreiro (reirn70@gmail.com)
