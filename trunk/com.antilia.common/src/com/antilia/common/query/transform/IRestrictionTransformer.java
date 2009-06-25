@@ -7,6 +7,7 @@ package com.antilia.common.query.transform;
 import com.antilia.common.query.IRestriction;
 
 /**
+ * Defines a transformer for {@link IRestriction}s into somethig else (e.g. Hibernate criterias).
  * 
  * @author Ernesto Reinaldo Barreiro (reiern70@gmail.com)
  */

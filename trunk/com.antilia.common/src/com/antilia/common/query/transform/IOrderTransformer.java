@@ -9,6 +9,7 @@ import java.io.Serializable;
 import com.antilia.common.query.IOrder;
 
 /**
+ * A transformer for IOrder.
  * 
  * @author Ernesto Reinaldo Barreiro (reiern70@gmail.com)
  */
