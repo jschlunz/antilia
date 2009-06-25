@@ -1,9 +1,11 @@
 /**
  * 
  */
-package com.antilia.ibatis;
+package com.antilia.ibatis.dialect;
 
 import java.io.Serializable;
+
+import com.antilia.ibatis.query.IBatisQuery;
 
 /**
  * @author Ernesto Reinaldo Barreiro (reirn70@gmail.com)

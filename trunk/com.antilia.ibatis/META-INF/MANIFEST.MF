@@ -14,6 +14,8 @@ Bundle-ClassPath: lib/ibatis-2.3.4.726.jar,
  .
 Export-Package: com.antilia.ibatis,
  com.antilia.ibatis.dao,
+ com.antilia.ibatis.dialect,
+ com.antilia.ibatis.query,
  com.ibatis.common.beans,
  com.ibatis.common.io,
  com.ibatis.common.jdbc,
