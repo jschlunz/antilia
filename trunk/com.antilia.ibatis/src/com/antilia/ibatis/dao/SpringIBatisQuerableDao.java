@@ -96,6 +96,8 @@ public class SpringIBatisQuerableDao<E extends Serializable> extends SqlMapClien
 			}									
 		}));						
 	}
+	
+	
 
 	/**
 	 * @return the dialect
@@ -109,5 +111,10 @@ public class SpringIBatisQuerableDao<E extends Serializable> extends SqlMapClien
 	 */
 	public void setDialect(IBatisDialect dialect) {
 		this.dialect = dialect;
+	}
+
+	public List<E> findByExample(E bean) {
+		// TODO Auto-generated method stub
+		return null;
 	}	
 }
