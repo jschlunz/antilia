@@ -48,7 +48,11 @@ public class ListQuerableDao<E extends Serializable> implements IQuerableDao<E> 
 		//TODO: implement this somehow
 		return null;
 	}
-
+	
+	public List<E> findByExample(E bean) {
+		//TODO: implement this somehow
+		return null;
+	};
 	/**
 	 * @return the list
 	 */
