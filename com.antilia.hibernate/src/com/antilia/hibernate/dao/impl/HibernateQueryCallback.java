@@ -9,6 +9,7 @@ import java.sql.SQLException;
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
+import org.hibernate.criterion.Example;
 import org.springframework.orm.hibernate3.HibernateCallback;
 
 import com.antilia.common.query.IQuery;
@@ -27,6 +28,9 @@ public abstract class HibernateQueryCallback<B extends Serializable> implements 
 	
 	private Class<B> beanClass;
 	
+	private B sample;
+	
+	
 	public HibernateQueryCallback(Class<B> beanClass, boolean includeOrdering) {
 		this(new Query<B>(beanClass), includeOrdering);
 	}
@@ -40,6 +44,14 @@ public abstract class HibernateQueryCallback<B extends Serializable> implements 
 	 */
 	public HibernateQueryCallback(IQuery<B> query) {
 		this(query, true);
+	}
+	
+	public HibernateQueryCallback(B bean) {
+		if(query == null)
+			throw new IllegalArgumentException("Query cannot be null");					
+		this.query = null;
+		this.sample = bean;
+		this.includeOrdering = false;
 	}
 	
 	/**
@@ -57,7 +69,10 @@ public abstract class HibernateQueryCallback<B extends Serializable> implements 
 	 */
 	public final Object doInHibernate(Session session) throws HibernateException, SQLException {
 		Criteria criteria = session.createCriteria(getQuery().getEntityClass());
-		criteria = new QueryToCriteriaTransformer<B>().transform(criteria,getQuery(), isIncludeOrdering());
+		if(sample != null)
+			criteria.add(Example.create(sample));
+		else
+			criteria = new QueryToCriteriaTransformer<B>().transform(criteria,getQuery(), isIncludeOrdering());
 		return doInHibernate(session, criteria);
 	}
 

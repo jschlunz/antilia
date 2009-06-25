@@ -51,6 +51,16 @@ public class HibernateQuerableDao<E extends Serializable> implements IQuerableDa
 		}
 	}
 	
+	public java.util.List<E> findByExample(E bean) {
+		IPersistenceUnit old = setPersistenceUnit();
+		try {
+			return DefaultCommander.loadListByExample(bean);
+		} finally {
+			restorePersistenceUnit(old);
+		}
+		
+	};
+		
 	public E findById(Class<E> beanClass, Serializable key) {
 		IPersistenceUnit old = setPersistenceUnit();
 		try {

@@ -50,6 +50,8 @@ public class SpringHibernateQuerableDao<E extends Serializable> extends Hibernat
 		
 	}
 	
+	
+	
 	@SuppressWarnings("unchecked")
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly=true)
 	public List<E> findAll(final Class<E> beanClass) {
@@ -59,6 +61,8 @@ public class SpringHibernateQuerableDao<E extends Serializable> extends Hibernat
 			}						
 		}));		
 	}
+	
+	
 	
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly=true)
 	public Long count(final IQuery<E> query) {
@@ -87,5 +91,15 @@ public class SpringHibernateQuerableDao<E extends Serializable> extends Hibernat
 				return (E)criteria.uniqueResult();
 			}			
 		}));						
+	}
+
+	@SuppressWarnings("unchecked")
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly=true)
+	public List<E> findByExample(E bean) {
+		return (List<E>)(getHibernateTemplate().execute(new HibernateQueryCallback<E>(bean) {			
+			public Object doInHibernate(Session session, Criteria criteria) throws HibernateException, SQLException {
+				return (List<E>)criteria.list();
+			}						
+		}));			
 	}	
 }
