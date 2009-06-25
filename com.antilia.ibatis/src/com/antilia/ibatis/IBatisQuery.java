@@ -315,9 +315,9 @@ public class IBatisQuery<B extends Serializable> implements Serializable {
 	public void setDialect(IBatisDialect dialect) {
 		this.dialect = dialect;		
 		if(this.dialect == null) {
-			this.dialect = new DefaultDialect();
-			setUseNativePagination(this.dialect.useNativePagination());
-		}		
+			this.dialect = new DefaultDialect();			
+		}
+		setUseNativePagination(this.dialect.useNativePagination());
 	}
 
 	/**
