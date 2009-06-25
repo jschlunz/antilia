@@ -7,12 +7,12 @@ import java.io.Serializable;
 
 /**
  * 
- * @author Juozas
+ * @author Ernesto Reinaldo Barreiro (reirn70@gmail.com)
  *
  */
 public class LazyReference implements Serializable {
 
-    private static final long serialVersionUID = 7799616869249915673L;
+    private static final long serialVersionUID = 1;
 
     private Serializable id;
 
