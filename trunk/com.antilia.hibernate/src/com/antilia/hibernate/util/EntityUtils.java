@@ -10,6 +10,7 @@ import javax.persistence.Id;
 
 import com.antilia.common.util.AnnotationUtils;
 import com.antilia.common.util.FileUtils;
+import com.antilia.common.util.QueryUtils;
 import com.antilia.common.util.ReflectionUtils;
 import com.antilia.hibernate.PersistenceException;
 import com.antilia.hibernate.cfg.IPersistenceSet;
@@ -21,7 +22,7 @@ import com.antilia.hibernate.cfg.IPersistenceSet;
  * @author Ernesto Reinaldo Barreiro (reiern70@gmail.com)
  *
  */
-public class EntityUtils {
+public class EntityUtils extends QueryUtils {
 	
 	public static boolean isEntity(Serializable serializable) {
 		if(serializable == null)
@@ -66,19 +67,6 @@ public class EntityUtils {
 				throw new PersistenceException(PersistenceException.KEY_VALUE_ILLEGAL_ACCESS,e);
 			}
 		return null;
-	}
-	
-	public static void setPropertyValue(String propertyPath,Object bean,Object value) {
-		if (bean == null)
-			return;
-		
-		try {
-			Field field = getPropertyField(bean.getClass(), propertyPath);
-			field.setAccessible(true);
-			field.set(bean,value);
-		} catch(Exception e) {
-			throw new PersistenceException(PersistenceException.SET_PROPERTY_VALUE,e);
-		}
 	}
 		
 	public static Object getPropertyValue(Object bean,String propertyPath) throws NoSuchFieldException {
