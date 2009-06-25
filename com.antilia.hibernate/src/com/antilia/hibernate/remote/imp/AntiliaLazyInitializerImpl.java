@@ -22,11 +22,12 @@ import com.antilia.hibernate.command.DefaultCommander;
 import com.antilia.hibernate.context.RequestContext;
 
 /**
- * Custom lazy loder
- * @author Juozas
+ * Lazy initializer for entities.
+ * 
+ * @author Ernesto Reinaldo Barreiro (reirn70@gmail.com)
  *
  */
-public class AntiliaLazyInitializerImpl extends BasicLazyInitializer implements InvocationHandler{
+public class AntiliaLazyInitializerImpl extends BasicLazyInitializer implements InvocationHandler {
    
  private static final Class<?>[] CALLBACK_TYPES = new Class[]{ InvocationHandler.class,NoOp.class };
     

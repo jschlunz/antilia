@@ -28,10 +28,10 @@ public class Proxy {
     
     private static final Class<?>[] CALLBACK_TYPES = new Class[]{ InvocationHandler.class,NoOp.class };
     
-    private static final class CollectionProxy extends AbstractSet {
+    private static final class CollectionProxy<E> extends AbstractSet<E> {
         
         private final CollectionReference reference;
-        private Set remote;
+        private Set<E> remote;
 
         private CollectionProxy(CollectionReference reference) {
             super();
@@ -47,10 +47,10 @@ public class Proxy {
             }
         }
 
-        private Set load() {
+        private Set<E> load() {
             try{
                 if(remote == null){
-                    remote = (Set) null;
+                    remote = (Set<E>) null;
                 }
             }catch(Exception e){
                 throw new RuntimeException(e);
@@ -80,20 +80,19 @@ public class Proxy {
             return load().contains(o);
         }
 
-        public boolean containsAll(Collection c) {
-            
+        public boolean containsAll(Collection<?> c) {            
             return load().containsAll(c);
         }
 
-        public Iterator iterator() {
+        public Iterator<E> iterator() {
             
             return load().iterator();
         }
 
-        public Object[] toArray(Object[] a) {
-            
-            return load().toArray(a);
+        public <T> T[] toArray(T[] a) {
+        	return load().toArray(a);
         }
+       
     }
 
     public interface WriteReplace {
@@ -138,8 +137,7 @@ public class Proxy {
     
     
     
-    public static Object create( final LazyReference ref) throws ClassNotFoundException{
-        
+    public static Object create( final LazyReference ref) throws ClassNotFoundException{        
         Class<?> cls = ref.getEntityClass();
         Enhancer enhancer = new Enhancer();
         enhancer.setSuperclass(cls);
@@ -162,9 +160,9 @@ public class Proxy {
         return enhancer.create();
     }
 
-    public static Set create(final CollectionReference reference) {
+    public static <E> Set<E> create(final CollectionReference reference) {
         
-        Set set = new CollectionProxy(reference);
+        Set<E> set = new CollectionProxy<E>(reference);
         
         return Collections.unmodifiableSet(set);
     }
