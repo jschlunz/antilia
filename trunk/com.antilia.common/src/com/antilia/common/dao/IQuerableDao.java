@@ -9,6 +9,7 @@ import java.util.List;
 import com.antilia.common.query.IQuery;
 
 /**
+ * Interface modeling a read only DAO.
  * 
  * @author Ernesto Reinaldo Barreiro (reirn70@gmail.com)
  *
@@ -16,6 +17,8 @@ import com.antilia.common.query.IQuery;
 public interface IQuerableDao<E extends Serializable> extends Serializable {
 	
 	/**
+	 * Returns a list of all elements matching the query.
+	 * 
 	 * @param query The query.
 	 * @return Returns a list of all elements matching the query.
 	 */
@@ -23,6 +26,7 @@ public interface IQuerableDao<E extends Serializable> extends Serializable {
 	
 	
 	/**
+	 * Returns a list of all elements of a certain class.
 	 * 
 	 * @param beanClass
 	 * @return
@@ -30,6 +34,15 @@ public interface IQuerableDao<E extends Serializable> extends Serializable {
 	List<E> findAll(Class<E> beanClass);
 	
 	/**
+	 * Finds all beans matching <code>bean</code>
+	 * 
+	 * @param bean
+	 * @return
+	 */
+	List<E> findByExample(E bean);
+	
+	/**
+	 * Find an entity given its ID.
 	 * 
 	 * @param beanClass
 	 * @param id
@@ -41,7 +54,7 @@ public interface IQuerableDao<E extends Serializable> extends Serializable {
 	/**
 	 * Counts the elements matching the query.
 	 * 
-	 * @param query
+	 * @param query The query.
 	 * @return
 	 */
 	public Long count(IQuery<E> query);
