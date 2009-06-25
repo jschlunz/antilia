@@ -13,8 +13,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.antilia.common.dao.IQuerableDao;
 import com.antilia.common.query.IQuery;
-import com.antilia.ibatis.IBatisDialect;
-import com.antilia.ibatis.IBatisQuery;
+import com.antilia.ibatis.dialect.IBatisDialect;
+import com.antilia.ibatis.query.IBatisQuery;
 import com.ibatis.sqlmap.client.SqlMapExecutor;
 
 /**

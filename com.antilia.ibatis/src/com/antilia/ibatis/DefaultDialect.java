@@ -5,6 +5,9 @@ package com.antilia.ibatis;
 
 import java.io.Serializable;
 
+import com.antilia.ibatis.dialect.IBatisDialect;
+import com.antilia.ibatis.query.IBatisQuery;
+
 /**
  * @author Ernesto Reinaldo Barreiro (reirn70@gmail.com)
  *

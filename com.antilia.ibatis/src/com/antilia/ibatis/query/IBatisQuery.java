@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.antilia.ibatis;
+package com.antilia.ibatis.query;
 
 import java.io.Serializable;
 import java.lang.reflect.Field;
@@ -13,6 +13,10 @@ import java.util.Map;
 
 import com.antilia.common.util.AnnotationUtils;
 import com.antilia.common.util.StringUtils;
+import com.antilia.ibatis.Column;
+import com.antilia.ibatis.DefaultDialect;
+import com.antilia.ibatis.Table;
+import com.antilia.ibatis.dialect.IBatisDialect;
 
 /**
  * @author Ernesto Reinaldo Barreiro (reirn70@gmail.com)

@@ -2,7 +2,7 @@
  * This software is provided as IS by Antilia-Soft SL.
  * Copyright 2006-2007.
  */
-package com.antilia.ibatis;
+package com.antilia.ibatis.query;
 
 import java.io.Serializable;
 import java.util.Iterator;
@@ -41,10 +41,10 @@ public class QueryToBatisQueryTransformer<E extends Serializable> implements IQu
 		if(includeOrdering) {
 			for(IOrder<E> order: source.getOrders()) {					
 				if(order.getType().equals(OrderType.ASCENDING)) {
-					iBatisQuery.addSort(order.getPropertyPath(), com.antilia.ibatis.IBatisQuery.Order.ASC);
+					iBatisQuery.addSort(order.getPropertyPath(), com.antilia.ibatis.query.IBatisQuery.Order.ASC);
 				}
 				if(order.getType().equals(OrderType.DESCENDING)) {
-					iBatisQuery.addSort(order.getPropertyPath(), com.antilia.ibatis.IBatisQuery.Order.DESC);
+					iBatisQuery.addSort(order.getPropertyPath(), com.antilia.ibatis.query.IBatisQuery.Order.DESC);
 				}							
 			}
 		}

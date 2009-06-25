@@ -12,7 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.antilia.common.dao.IQuerableUpdatableDao;
 
 /**
- * A QuerableUpdatable DAO that uses Spring Hibernate support.
+ * A QuerableUpdatable DAO that uses Spring IBatis support.
  * 
  * @author Ernesto Reinaldo Barreiro (reirn70@gmail.com)
  *

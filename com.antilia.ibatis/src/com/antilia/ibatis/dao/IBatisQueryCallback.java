@@ -10,12 +10,14 @@ import org.springframework.orm.ibatis.SqlMapClientCallback;
 
 import com.antilia.common.query.IQuery;
 import com.antilia.common.query.Query;
-import com.antilia.ibatis.IBatisDialect;
-import com.antilia.ibatis.IBatisQuery;
-import com.antilia.ibatis.QueryToBatisQueryTransformer;
+import com.antilia.ibatis.dialect.IBatisDialect;
+import com.antilia.ibatis.query.IBatisQuery;
+import com.antilia.ibatis.query.QueryToBatisQueryTransformer;
 import com.ibatis.sqlmap.client.SqlMapExecutor;
 
 /**
+ * Helper class to call iBatis.
+ * 
  * @author Ernesto Reinaldo Barreiro (reirn70@gmail.com)
  *
  */
