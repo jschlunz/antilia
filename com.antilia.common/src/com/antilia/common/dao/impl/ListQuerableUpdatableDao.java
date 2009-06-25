@@ -10,6 +10,8 @@ import java.util.List;
 import com.antilia.common.dao.IQuerableUpdatableDao;
 
 /**
+ * An IQuerableUpdatableDao which uses a List (or Iterable<E>) as is persistence storage.
+ * 
  * @author Ernesto Reinaldo Barreiro (reirn70@gmail.com)
  *
  */

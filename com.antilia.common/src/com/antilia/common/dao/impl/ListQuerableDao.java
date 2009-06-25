@@ -12,8 +12,11 @@ import com.antilia.common.util.CollectionUtils;
 import com.antilia.common.util.QueryUtils;
 
 /**
+ * An IQuerableDao which uses a List (or Iterable<E>) as is persistence storage.
+ * 
+ * The DAO is capable of filtering the list taking into account a query object.
+ * 
  * @author Ernesto Reinaldo Barreiro (reirn70@gmail.com)
- *
  */
 public class ListQuerableDao<E extends Serializable> implements IQuerableDao<E> {
 
