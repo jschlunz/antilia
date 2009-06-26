@@ -11,17 +11,28 @@ import com.antilia.common.query.IQuery;
 import com.antilia.hibernate.cfg.IPersistenceUnit;
 import com.antilia.hibernate.command.DefaultCommander;
 import com.antilia.hibernate.context.RequestContext;
+import com.antilia.hibernate.util.EntityUtils;
 
 /**
+ * An {@link IQuerableDao} DAO that uses Antilia's Hibernate machinery to work with entities.
+ * 
  * @author Ernesto Reinaldo Barreiro (reirn70@gmail.com)
  *
  */
-public class HibernateQuerableDao<E extends Serializable> implements IQuerableDao<E> {
+public class HibernateQuerableDao<E extends Serializable> implements IHibernateDao<E> {
 
 	private static final long serialVersionUID = 1L;
 	
 	
 	public HibernateQuerableDao() {
+	}
+	
+	/*
+	 * (non-Javadoc)
+	 * @see com.antilia.hibernate.dao.impl.IHibernateDao#getKey(java.io.Serializable)
+	 */
+	public Serializable getKey(E entity) {
+		return EntityUtils.getKeyValue(entity);
 	}
 	
 	public List<E> findAll(IQuery<E> query) {		

@@ -23,20 +23,31 @@ import org.springframework.transaction.annotation.Transactional;
 import com.antilia.common.dao.IQuerableDao;
 import com.antilia.common.query.IQuery;
 import com.antilia.common.util.AnnotationUtils;
+import com.antilia.hibernate.util.EntityUtils;
 
 /**
- * A querable DAO that uses Spring Hibernate support.
+ * A {@link IQuerableDao} DAO that uses Spring Hibernate support.
  *  
  * @author Ernesto Reinaldo Barreiro (reirn70@gmail.com)
  *
  */
 @Transactional(propagation = Propagation.SUPPORTS)
-public class SpringHibernateQuerableDao<E extends Serializable> extends HibernateDaoSupport implements IQuerableDao<E>  {
+public class SpringHibernateQuerableDao<E extends Serializable> extends HibernateDaoSupport implements IHibernateDao<E>  {
 
 	private static final long serialVersionUID = 1L;
 	
 	public SpringHibernateQuerableDao() {
 	}
+	
+	
+	/*
+	 * (non-Javadoc)
+	 * @see com.antilia.hibernate.dao.impl.IHibernateDao#getKey(java.io.Serializable)
+	 */
+	public Serializable getKey(E entity) {
+		return EntityUtils.getKeyValue(entity);
+	}
+	
 	
 	@SuppressWarnings("unchecked")
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly=true)

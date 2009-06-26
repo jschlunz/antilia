@@ -26,7 +26,7 @@ public class PersistentCollectionHandler<E extends Serializable> extends Virtual
 		super(collection);
 		
 		this.beanClass = (Class<E>)entity.getClass();
-		this.key = (Serializable)EntityUtils.getKeyValue(entity);
+		this.key = EntityUtils.getKeyValue(entity);
 		this.property = property;
 	}
 

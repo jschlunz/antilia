@@ -52,7 +52,7 @@ public class EntityUtils extends QueryUtils {
 		}
 	}
 	
-	public static Object getKeyValue(Object entity) {
+	public static Serializable getKeyValue(Object entity) {
 		if (entity == null)
 			return null;
 		Field[] fields = AnnotationUtils.findAnnotatedFields(entity.getClass(),Id.class);
@@ -62,9 +62,11 @@ public class EntityUtils extends QueryUtils {
 		if (fields != null && fields.length > 0)
 			try {
 				fields[0].setAccessible(true);
-				return fields[0].get(entity);
+				return (Serializable)fields[0].get(entity);
 			} catch (IllegalAccessException e) {
 				throw new PersistenceException(PersistenceException.KEY_VALUE_ILLEGAL_ACCESS,e);
+			} catch (ClassCastException e) {
+				throw new PersistenceException(PersistenceException.NOT_SERIALIZABLE_KEY,e);
 			}
 		return null;
 	}
