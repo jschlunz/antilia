@@ -31,7 +31,7 @@ public class HibernateQuerableDao<E extends Serializable> implements IHibernateD
 	 * (non-Javadoc)
 	 * @see com.antilia.hibernate.dao.impl.IHibernateDao#getKey(java.io.Serializable)
 	 */
-	public Serializable getKey(E entity) {
+	public Serializable getId(E entity) {
 		return EntityUtils.getKeyValue(entity);
 	}
 	
