@@ -16,12 +16,15 @@ public class PersistenceException extends FrameworkException {
 
 	private static final long serialVersionUID = 1L;
 
-	public static String UNABLE_TO_SET_TIME_OUT 			= "PER001";
+	public static String  UNABLE_TO_SET_TIME_OUT 			= "PER001";
 	public static String  KEY_VALUE_ILLEGAL_ACCESS 		= "PER002";
 	public static String  LAZY_LOAD_FAILED 							= "PER003";	
 	public static String  NO_PROPERTIES_TO_LOAD 			=  "PER004";
 	public static String  SET_PROPERTY_VALUE					=  "PER005";
-	public static String  COMMAND_EXECUTION					=  "PER005";
+	public static String  COMMAND_EXECUTION					=  "PER006";
+	public static String  EMPTY_NOT_FOUND					=  "PER007";
+	public static String  NOT_SERIALIZABLE_KEY					=  "PER007";
+	
 	
 	
 	public PersistenceException(String code) {

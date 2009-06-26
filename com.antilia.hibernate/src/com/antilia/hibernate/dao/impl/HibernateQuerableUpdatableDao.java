@@ -11,6 +11,8 @@ import com.antilia.hibernate.cfg.IPersistenceUnit;
 import com.antilia.hibernate.command.DefaultCommander;
 
 /**
+ * An {@link IQuerableUpdatableDao} DAO that uses Antilia's Hibernate machinery to work with entities.
+ * 
  * @author Ernesto Reinaldo Barreiro (reirn70@gmail.com)
  *
  */
