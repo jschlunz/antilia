@@ -44,7 +44,7 @@ public class SpringHibernateQuerableDao<E extends Serializable> extends Hibernat
 	 * (non-Javadoc)
 	 * @see com.antilia.hibernate.dao.impl.IHibernateDao#getKey(java.io.Serializable)
 	 */
-	public Serializable getKey(E entity) {
+	public Serializable getId(E entity) {
 		return EntityUtils.getKeyValue(entity);
 	}
 	
