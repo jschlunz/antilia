@@ -30,7 +30,7 @@ public class HibernateEntityModel<E extends Serializable> extends AbstractEntity
 	
 	protected Serializable getId(E entity) {
 		if(this.dao != null)
-			return this.dao.getKey(entity);
+			return this.dao.getId(entity);
 		return null;
 	};
 	
