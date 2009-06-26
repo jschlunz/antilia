@@ -13,6 +13,8 @@ import org.apache.wicket.model.Model;
 import com.antilia.common.dao.IQuerableDao;
 import com.antilia.common.query.IQuery;
 import com.antilia.hibernate.dao.impl.HibernateQuerableDao;
+import com.antilia.hibernate.dao.impl.IHibernateDao;
+import com.antilia.web.provider.HibernateEntityModel;
 import com.antilia.web.provider.IQuerableDataProvider;
 
 /**
@@ -40,6 +42,7 @@ public class DaoQuerableDataProvider<E extends Serializable> implements IQuerabl
 	public DaoQuerableDataProvider(IQuery<E> query) {
 		this(query, new HibernateQuerableDao<E>());
 	}
+	
 	/**
 	 * 
 	 */
@@ -61,6 +64,9 @@ public class DaoQuerableDataProvider<E extends Serializable> implements IQuerabl
 	 * @see org.apache.wicket.markup.repeater.data.IDataProvider#model(java.lang.Object)
 	 */
 	public IModel<E> model(E object) {
+		if(querableDao instanceof IHibernateDao<?>) {
+			return new HibernateEntityModel<E>(object,(IHibernateDao<E>)this.querableDao);
+		}
 		return new Model<E>(object);
 	}
 
