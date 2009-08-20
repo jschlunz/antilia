@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Ext Plug-in
+Bundle-SymbolicName: com.antilia.web.ext
+Bundle-Version: 1.0.0
+Bundle-Activator: com.antilia.web.ext.Activator
+Bundle-Vendor: ANTILIA
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Import-Package: org.osgi.framework;version="1.3.0"
+Bundle-ActivationPolicy: lazy
+Require-Bundle: com.antilia.web;bundle-version="1.0.0"
