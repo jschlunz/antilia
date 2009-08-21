@@ -3,19 +3,20 @@ Bundle-ManifestVersion: 2
 Bundle-Name: Taglib
 Bundle-SymbolicName: com.antilia.jsp.taglib
 Bundle-Version: 1.0.0
-Bundle-ClassPath: taglib.jar,
- lib/jsp-api-2.0.jar,
- lib/servlet-api-2.5-20081211.jar
+Bundle-ClassPath: taglib.jar
 Export-Package: com.antilia.jsp.component,
- javax.servlet,
- javax.servlet.http,
- javax.servlet.jsp,
- javax.servlet.jsp.el,
- javax.servlet.jsp.resources,
- javax.servlet.jsp.tagext,
- javax.servlet.resources
+ com.antilia.jsp.resources,
+ com.antilia.jsp.taglib
 Require-Bundle: com.antilia.common;bundle-version="1.0.0",
  com.antilia.hibernate;bundle-version="1.0.0",
  com.antilia.web;bundle-version="1.0.0"
 Bundle-Activator: com.antilia.jsp.taglib.Activator
-Import-Package: org.osgi.framework;version="1.4.0"
+Import-Package: javax.servlet;version="2.4.0",
+ javax.servlet.http;version="2.4.0",
+ javax.servlet.jsp;version="2.0.0",
+ javax.servlet.jsp.el;version="2.0.0",
+ javax.servlet.jsp.resources;version="2.0.0",
+ javax.servlet.jsp.tagext;version="2.0.0",
+ javax.servlet.resources;version="2.4.0",
+ org.osgi.framework;version="1.4.0",
+ org.osgi.service.http;version="1.2.0"
