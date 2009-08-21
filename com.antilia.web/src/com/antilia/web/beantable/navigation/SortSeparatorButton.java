@@ -34,7 +34,7 @@ public class SortSeparatorButton<E extends Serializable> extends SmallSeparatorB
 			return true;
 		}
 		IPageableComponent<E> component = findPageableComponent();
-		IQuery<E> query = component.getPageableNavidator().getQuery();
+		IQuery<E> query = component.getPageableNavigator().getQuery();
 		IOrder<E> order = query.getOrder(columnModel.getPropertyPath());
 		if(order != null)
 			return false;

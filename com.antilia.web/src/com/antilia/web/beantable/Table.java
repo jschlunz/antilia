@@ -153,10 +153,10 @@ public class Table<E extends Serializable> extends Panel implements IPageableCom
 	 * 
 	 * @param id
 	 */
-	public Table(String id, ITableModel<E> tableModel, IPageableNavigator<E> pageablePrivider)  {
-		super(id, new Model<IPageableNavigator<E>>(pageablePrivider));	
+	public Table(String id, ITableModel<E> tableModel, IPageableNavigator<E> pageableProvider)  {
+		super(id, new Model<IPageableNavigator<E>>(pageableProvider));	
 		setOutputMarkupId(true);		
-		this.pageableProvider = pageablePrivider;
+		this.pageableProvider = pageableProvider;
 		this.sourceSelector = new SourceSelector<E>(this.pageableProvider ,tableModel.getSelectionMode());
 		this.tableModel = tableModel;
 		this.firstColumnModel = new FirstColumnModel(65);
@@ -260,7 +260,7 @@ public class Table<E extends Serializable> extends Panel implements IPageableCom
 				sb.append(" = new Table('" + tableId + "','");
 				sb.append(getFirstColumnUrl()+ "',");
 				sb.append("new Array(");
-				IPageableNavigator<E> source = Table.this.getPageableNavidator();
+				IPageableNavigator<E> source = Table.this.getPageableNavigator();
 				INavigatorSelector<E> selector = Table.this.getSourceSelector();
 				Iterator<IModel<E>> it = source.getCurrentPage();
 				int i=0;
@@ -463,7 +463,7 @@ public class Table<E extends Serializable> extends Panel implements IPageableCom
 			ITableModel<E> tableModel = getTable().getTableModel();
 			if(tableModel == null)
 				return;	
-			Iterator<IModel<E>> it = getTable().getPageableNavidator().getCurrentPage();
+			Iterator<IModel<E>> it = getTable().getPageableNavigator().getCurrentPage();
 			while(it.hasNext()) {
 				IModel<E> object = it.next();
 				models.add(tableModel.newModel(object));				
@@ -531,7 +531,7 @@ public class Table<E extends Serializable> extends Panel implements IPageableCom
 	/**
 	 * @return the pageableSource
 	 */
-	public IPageableNavigator<E> getPageableNavidator() {
+	public IPageableNavigator<E> getPageableNavigator() {
 		return pageableProvider;
 	}
 

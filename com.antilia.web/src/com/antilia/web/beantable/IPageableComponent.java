@@ -22,7 +22,7 @@ public interface IPageableComponent<E extends Serializable> {
 	 * Returns the provider of the component.
 	 * @return
 	 */
-	IPageableNavigator<E> getPageableNavidator();
+	IPageableNavigator<E> getPageableNavigator();
 	
 	/**
 	 * Returns the component to be update when navigating.
