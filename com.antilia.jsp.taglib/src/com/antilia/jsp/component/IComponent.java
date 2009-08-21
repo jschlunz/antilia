@@ -3,8 +3,9 @@
  */
 package com.antilia.jsp.component;
 
+import java.io.PrintWriter;
+
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 /**
  * @author Ernesto Reinaldo Barreiro (reirn70@gmail.com)
@@ -12,5 +13,9 @@ import javax.servlet.http.HttpServletResponse;
  */
 public interface IComponent {
 
-	public void render(HttpServletRequest request, HttpServletResponse response);
+	public void render(HttpServletRequest request, PrintWriter writer);
+	
+	
+	public String getId();
+
 }
