@@ -62,14 +62,14 @@ public class NextPageButton<E extends Serializable> extends PageableButton<E> {
 	public boolean isEnabled() {
 		IPageableComponent<E> component = findPageableComponent();
 		if(component != null)
-			return component.getPageableNavidator().hasNextPage();
+			return component.getPageableNavigator().hasNextPage();
 		return false;
 	}
 	
 	@Override
 	protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
 		IPageableComponent<E> component = findPageableComponent();
-		component.getPageableNavidator().nextPage();
+		component.getPageableNavigator().nextPage();
 		if(!component.isKeepSelectionOnNavigation() && component.getSourceSelector() != null) {
 			component.getSourceSelector().clear();
 		}

@@ -48,7 +48,7 @@ public class FirstPageButton<E extends Serializable> extends PageableButton<E> {
 	@Override
 	public boolean isEnabled() {
 		IPageableComponent<E> component = findPageableComponent();
-		return component.getPageableNavidator().hasPreviousPage();
+		return component.getPageableNavigator().hasPreviousPage();
 	}
 	
 	/* (non-Javadoc)
@@ -68,7 +68,7 @@ public class FirstPageButton<E extends Serializable> extends PageableButton<E> {
 	@Override
 	protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
 		IPageableComponent<E> component = findPageableComponent();
-		component.getPageableNavidator().firstPage();
+		component.getPageableNavigator().firstPage();
 		if(!component.isKeepSelectionOnNavigation() && component.getSourceSelector() != null) {
 			component.getSourceSelector().clear();
 		}
