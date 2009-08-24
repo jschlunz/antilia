@@ -1,0 +1,17 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Test Plug-in
+Bundle-SymbolicName: com.antilia.jsp.taglib.test
+Bundle-Version: 1.0.0
+Bundle-Activator: com.antilia.jsp.taglib.test.Activator
+Bundle-Vendor: ANTILIA
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Import-Package: javax.servlet;version="2.4.0",
+ javax.servlet.http;version="2.4.0",
+ org.osgi.framework;version="1.3.0",
+ org.osgi.service.http;version="1.2.0"
+Bundle-ActivationPolicy: lazy
+Require-Bundle: com.antilia.common;bundle-version="1.0.0",
+ com.antilia.hibernate;bundle-version="1.0.0",
+ com.antilia.web;bundle-version="1.0.0",
+ com.antilia.jsp.taglib;bundle-version="1.0.0"
