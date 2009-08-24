@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 /**
  * @author Ernesto Reinaldo Barreiro (reirn70@gmail.com)
@@ -18,12 +17,22 @@ public abstract class AbstractComponent implements IComponent {
 	
 	private String id;
 	
+	
+	private IComponent parent;
+	
+	
 	private boolean outputMarkupId;
 	
 	private List<HeaderContributor> headerContributors = new ArrayList<HeaderContributor>();
 	
 	public AbstractComponent(String id) {
+		this(id, null);
+	}
+	
+	public AbstractComponent(String id, IComponent parent) {
+		this.parent = null;
 		this.id = id;
+		RequestContext.get().bindComponent(this);
 	}
 
 	/* (non-Javadoc)
@@ -74,6 +83,20 @@ public abstract class AbstractComponent implements IComponent {
 	 */
 	public List<HeaderContributor> getHeaderContributors() {
 		return headerContributors;
+	}
+
+	/**
+	 * @return the parent
+	 */
+	public IComponent getParent() {
+		return parent;
+	}
+
+	/**
+	 * @param parent the parent to set
+	 */
+	public void setParent(IComponent parent) {
+		this.parent = parent;
 	}
 
 
