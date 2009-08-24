@@ -16,7 +16,6 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.wicket.model.IModel;
 
 import com.antilia.common.dao.IQuerableUpdatableDao;
-import com.antilia.common.iterator.EmptyIterator;
 import com.antilia.common.query.IQuery;
 import com.antilia.common.query.Query;
 import com.antilia.common.util.ReflectionUtils;
