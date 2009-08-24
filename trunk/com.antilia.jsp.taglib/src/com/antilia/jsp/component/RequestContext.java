@@ -22,6 +22,8 @@ public class RequestContext {
 	
 	private HttpServletResponse response;
 	
+	private IUrlGenerator urlGenerator;
+	
 	private RequestContext() {		
 	}
 	
@@ -50,6 +52,15 @@ public class RequestContext {
 		return url.toString();
 	}
 
+	
+	public  void bindComponent(IComponent component) {
+		if(component instanceof IBindableComponent) {
+			ComponentContext componentContext = ComponentContext.bind(getRequest().getSession());
+			componentContext.add(component);
+		}
+	}
+	
+	
 	/**
 	 * @return the request
 	 */
@@ -76,6 +87,20 @@ public class RequestContext {
 	 */
 	public void setResponse(HttpServletResponse response) {
 		this.response = response;
+	}
+
+	/**
+	 * @return the urlGenerator
+	 */
+	public IUrlGenerator getUrlGenerator() {
+		return urlGenerator;
+	}
+
+	/**
+	 * @param urlGenerator the urlGenerator to set
+	 */
+	public void setUrlGenerator(IUrlGenerator urlGenerator) {
+		this.urlGenerator = urlGenerator;
 	}
 
 }

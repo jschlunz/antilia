@@ -86,6 +86,7 @@ Column.prototype.onEndDrag = function (obj) {
     var td = obj.parentNode.parentNode.parentNode.parentNode;  
     var url = this.url+ '&sourceId=' + parseInt(td.style.width) + '&targetId=resize' + '&number=' + this.number
     //wicketAjaxGet(url);      
+    alert(url);
 }
 
 function TColumn(tableId, id, url, ie6) {
@@ -105,6 +106,7 @@ TColumn.prototype.initialize = function() {
       
     this.dd.onDragDrop = function(e, id) { 
         //wicketAjaxGet(this.url+ '&sourceId=' + this.getEl().id + '&targetId=' + id);
+        alert(this.url+ '&sourceId=' + this.getEl().id + '&targetId=' + id);
     }
     
     this.dd.onInvalidDrop = function(e) {         

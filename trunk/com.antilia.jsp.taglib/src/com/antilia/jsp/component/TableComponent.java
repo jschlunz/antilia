@@ -5,8 +5,11 @@ package com.antilia.jsp.component;
 
 import java.io.PrintWriter;
 import java.io.Serializable;
+import java.io.Writer;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -32,7 +35,7 @@ import com.antilia.web.provider.impl.SourceSelector;
  * @author Ernesto Reinaldo Barreiro (reirn70@gmail.com)
  
  */
-public class TableComponent<E extends Serializable> extends AbstractComponent {
+public class TableComponent<E extends Serializable> extends AbstractCompoundComponent {
 	
 	private Class<E> beanClass;
 	
@@ -55,6 +58,41 @@ public class TableComponent<E extends Serializable> extends AbstractComponent {
 	 * Flag to set all columns re-sizable or not.
 	 */
 	private boolean columnsResizable = true;
+	
+	private static class OnDropColumnListener extends AbstractComponent implements ILinkListener {
+		
+		private int column;
+		
+		public OnDropColumnListener(String id, int column) {
+			super(id);
+			this.column = column;
+		}
+		
+		public void onLinkClicked(HttpServletRequest request, Writer writer) {
+			
+		}
+		
+		@Override
+		protected void onRender(PrintWriter writer, HttpServletRequest request) throws Exception {
+			writer.append("Hi, column = " + request.getParameter("column"));
+		}
+
+		/**
+		 * @return the column
+		 */
+		public int getColumn() {
+			return column;
+		}
+
+		/**
+		 * @param column the column to set
+		 */
+		public void setColumn(int column) {
+			this.column = column;
+		}
+	}
+	
+	private List<OnDropColumnListener> ondropListeners = new ArrayList<OnDropColumnListener>();
 	
 	/**
 	 * Constructor accepting a List.
@@ -109,6 +147,7 @@ public class TableComponent<E extends Serializable> extends AbstractComponent {
 	
 	@Override
 	protected void onRender(PrintWriter writer, HttpServletRequest request) throws Exception {		
+		removeAllComponents();
 		writer.println("<div id=\"");
 		writer.println(getId());
 		writer.println("\">");
@@ -175,9 +214,9 @@ public class TableComponent<E extends Serializable> extends AbstractComponent {
 	public String getDraggerUrlAsArray() {
 		StringBuffer sb = new StringBuffer();
 		sb .append("new Array(");
-		Iterator<String> it = new EmptyIterator<String>();
-		while(it.hasNext()) {
-			String url = it.next();			
+		Iterator<OnDropColumnListener> it = ondropListeners.iterator();
+		while(it.hasNext()) {			
+			String url = RequestContext.get().getUrlGenerator().generateUrlFor(it.next());			
 			sb .append("'");	
 			sb .append(url);
 			sb .append("'");
@@ -213,6 +252,7 @@ public class TableComponent<E extends Serializable> extends AbstractComponent {
 	}
 	
 	private void renderDefaultHeaderCell(PrintWriter writer, HttpServletRequest request, IColumnModel<E> model, int column) throws Exception {
+		ondropListeners.clear();
 		writer.println("<input name=\"colWidth\" type=\"hidden\"/>");	
 		writer.println("<table height=\"100%\" width=\"100%\" cellpadding=\"0\" cellspacing=\"0\">");
 		writer.println("<tr>");
@@ -227,6 +267,10 @@ public class TableComponent<E extends Serializable> extends AbstractComponent {
 		writer.println("	</table>");
 		writer.println("	</div>");
 		writer.println("	</td>");
+		
+		OnDropColumnListener listener = new OnDropColumnListener("ondrop"+column, column);
+		addComponent(listener);
+		ondropListeners.add(listener);
 		
 		String resizeId = null;
 		if(!isColumnsResizable())

@@ -17,5 +17,9 @@ public interface IComponent {
 	
 	
 	public String getId();
+	
+	public IComponent getParent();
+	
+	public void setParent(IComponent parent);
 
 }
