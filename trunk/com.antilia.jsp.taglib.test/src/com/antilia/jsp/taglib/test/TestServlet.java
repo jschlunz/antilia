@@ -3,7 +3,6 @@
  */
 package com.antilia.jsp.taglib.test;
 
-import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.StringTokenizer;
