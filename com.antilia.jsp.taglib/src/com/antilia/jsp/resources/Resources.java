@@ -6,6 +6,8 @@ import com.antilia.web.resources.DefaultStyle;
 
 public class Resources {
 
+	public static ResourceReference JS_ANTILIA_AJAX = new ResourceReference(Resources.class, "ant-ajax.js");
+	
 	public static ResourceReference JS_TABLE = new ResourceReference(Resources.class, "table.js");
 	public static ResourceReference CSS_TABLE = new ResourceReference(DefaultStyle.class, "table.css");
 	

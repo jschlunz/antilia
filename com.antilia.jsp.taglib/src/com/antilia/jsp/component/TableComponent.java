@@ -20,6 +20,7 @@ import com.antilia.common.query.IQuery;
 import com.antilia.common.query.Query;
 import com.antilia.common.util.ReflectionUtils;
 import com.antilia.jsp.resources.Resources;
+import com.antilia.jsp.sandbox.JQuery;
 import com.antilia.web.beantable.model.FirstColumnModel;
 import com.antilia.web.beantable.model.IColumnModel;
 import com.antilia.web.beantable.model.ITableModel;
@@ -89,6 +90,36 @@ public class TableComponent<E extends Serializable> extends AbstractCompoundComp
 		public void setColumn(int column) {
 			this.column = column;
 		}
+
+		/* (non-Javadoc)
+		 * @see java.lang.Object#hashCode()
+		 */
+		@Override
+		public int hashCode() {
+			final int prime = 31;
+			int result = 1;
+			result = prime * result + column;
+			return result;
+		}
+
+		/* (non-Javadoc)
+		 * @see java.lang.Object#equals(java.lang.Object)
+		 */
+		@Override
+		public boolean equals(Object obj) {
+			if (this == obj)
+				return true;
+			if (obj == null)
+				return false;
+			if (getClass() != obj.getClass())
+				return false;
+			OnDropColumnListener other = (OnDropColumnListener) obj;
+			if (column != other.column)
+				return false;
+			return true;
+		}
+		
+		
 	}
 	
 	private List<OnDropColumnListener> ondropListeners = new ArrayList<OnDropColumnListener>();
@@ -123,9 +154,14 @@ public class TableComponent<E extends Serializable> extends AbstractCompoundComp
 		this.tableModel = tableModel;
 		this.firstColumnModel = new FirstColumnModel(65);
 		
-		addHeaderContributor(HeaderContributor.forJavaScript(Resources.JS_PROTOTYPE));
-		addHeaderContributor(HeaderContributor.forJavaScript(Resources.JS_EFFECT));
-		addHeaderContributor(HeaderContributor.forJavaScript(Resources.JS_DRAGDROP));
+		addHeaderContributor(HeaderContributor.forJavaScript(JQuery.JQUERY));
+		
+		addHeaderContributor(HeaderContributor.forJavaScript(Resources.JS_ANTILIA_AJAX));
+		
+		
+		//addHeaderContributor(HeaderContributor.forJavaScript(Resources.JS_PROTOTYPE));
+		//addHeaderContributor(HeaderContributor.forJavaScript(Resources.JS_EFFECT));
+		//addHeaderContributor(HeaderContributor.forJavaScript(Resources.JS_DRAGDROP));
 		addHeaderContributor(HeaderContributor.forCss(Resources.CSS_MAIN));
 		addHeaderContributor(HeaderContributor.forCss(getTableCSS()));
 		
@@ -228,6 +264,7 @@ public class TableComponent<E extends Serializable> extends AbstractCompoundComp
 	}
 	
 	private void renderHeaderCells(PrintWriter writer, HttpServletRequest request, FirstColumnModel firstColumnModel, ITableModel<E> tableModel) throws Exception {
+		ondropListeners.clear();
 		writer.println("<tr class=\"theaderrow\">");
 		
 		writer.println("<td width=\"100px\" class=\"resizeCell\" nowrap=\"nowrap\"><div wicket:id=\"hcell\">");
@@ -250,8 +287,7 @@ public class TableComponent<E extends Serializable> extends AbstractCompoundComp
 		writer.println("</tr>");
 	}
 	
-	private void renderDefaultHeaderCell(PrintWriter writer, HttpServletRequest request, IColumnModel<E> model, int column) throws Exception {
-		ondropListeners.clear();
+	private void renderDefaultHeaderCell(PrintWriter writer, HttpServletRequest request, IColumnModel<E> model, int column) throws Exception {		
 		writer.println("<input name=\"colWidth\" type=\"hidden\"/>");	
 		writer.println("<table height=\"100%\" width=\"100%\" cellpadding=\"0\" cellspacing=\"0\">");
 		writer.println("<tr>");

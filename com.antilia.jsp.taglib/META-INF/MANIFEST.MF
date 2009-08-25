@@ -6,6 +6,7 @@ Bundle-Version: 1.0.0
 Bundle-ClassPath: taglib.jar
 Export-Package: com.antilia.jsp.component,
  com.antilia.jsp.resources,
+ com.antilia.jsp.sandbox,
  com.antilia.jsp.taglib
 Require-Bundle: com.antilia.common;bundle-version="1.0.0",
  com.antilia.hibernate;bundle-version="1.0.0",
