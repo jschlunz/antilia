@@ -55,13 +55,13 @@ public class TestServlet extends HttpServlet {
 		private String generateComponentUrl(IComponent component) {
 			StringBuffer sb = new StringBuffer();
 			IComponent temp = component;
-			while(temp != null) {
-				sb.insert(0, ":");
+			while(temp != null) {				
 				sb.insert(0,temp.getId());
+				sb.insert(0, ":");
 				temp = temp.getParent();
 										
 			}
-			sb.insert(0, IActionListener.IDENTIFIER+":");
+			sb.insert(0, IActionListener.IDENTIFIER);
 			return sb.toString();
 		}
 	}
@@ -82,6 +82,10 @@ public class TestServlet extends HttpServlet {
 			
 			if(serviceReosurces(request, response))
 				return;
+			
+			if(serviceEvents(request, response))
+				return;
+			
 			TableModel<Persona> tableModel = new TableModel<Persona>(Persona.class, "nombre", "apellidos");
 			Query<Persona> query = new Query<Persona>(Persona.class);
 			DataProviderPageableNavigator<Persona> navigator = new DataProviderPageableNavigator<Persona>(new ListQuerableUpdatebleDataProvider<Persona>(MockClientesDao.getInstance()), query);
@@ -133,6 +137,32 @@ public class TestServlet extends HttpServlet {
 					response.getOutputStream().flush();
 					response.getOutputStream().close();
 					return true;
+				} catch (Exception e) {
+					throw new ServletException(e);
+				}				
+			}			
+		}
+		return false;
+	}
+	
+	private boolean serviceEvents(HttpServletRequest request, HttpServletResponse response) throws ServletException {
+		String pathInfo = request.getRequestURI();
+		if(pathInfo.contains("/"+IActionListener.IDENTIFIER)) {			
+			StringTokenizer st = new StringTokenizer(pathInfo, "/");
+			String listenerName =  null;			
+			while(st.hasMoreTokens()) {
+				listenerName = st.nextToken();
+			}
+			if(!StringUtils.isEmpty(listenerName)) {				
+				try {
+					IComponent component = RequestContext.get().findComponent(listenerName);
+					if(component != null) {
+						PrintWriter writer = response.getWriter();
+						component.render(request, writer);
+						writer.flush();
+						writer.close();
+						return true;
+					}					
 				} catch (Exception e) {
 					throw new ServletException(e);
 				}				
