@@ -35,7 +35,7 @@ import com.antilia.web.provider.impl.SourceSelector;
  * @author Ernesto Reinaldo Barreiro (reirn70@gmail.com)
  
  */
-public class TableComponent<E extends Serializable> extends AbstractCompoundComponent {
+public class TableComponent<E extends Serializable> extends AbstractCompoundComponent implements IBindableComponent {
 	
 	private Class<E> beanClass;
 	
@@ -59,13 +59,15 @@ public class TableComponent<E extends Serializable> extends AbstractCompoundComp
 	 */
 	private boolean columnsResizable = true;
 	
-	private static class OnDropColumnListener extends AbstractComponent implements ILinkListener {
+	private static class OnDropColumnListener<E extends Serializable> extends AbstractComponent implements ILinkListener {
 		
 		private int column;
 		
-		public OnDropColumnListener(String id, int column) {
+		private TableComponent<E> tableComponent;
+		public OnDropColumnListener(String id, TableComponent<E> tableComponent, int column) {
 			super(id);
 			this.column = column;
+			this.tableComponent = tableComponent;
 		}
 		
 		public void onLinkClicked(HttpServletRequest request, Writer writer) {
@@ -74,7 +76,10 @@ public class TableComponent<E extends Serializable> extends AbstractCompoundComp
 		
 		@Override
 		protected void onRender(PrintWriter writer, HttpServletRequest request) throws Exception {
-			writer.append("Hi, column = " + request.getParameter("column"));
+			//tableComponent.render(request, writer);
+			//writer.println("<script>alert('Hi!');</script>");
+			writer.println("<p>alert('Hi!');</p>");
+			//tableComponent.renderJavaScript(writer, request);
 		}
 
 		/**
@@ -89,40 +94,11 @@ public class TableComponent<E extends Serializable> extends AbstractCompoundComp
 		 */
 		public void setColumn(int column) {
 			this.column = column;
-		}
-
-		/* (non-Javadoc)
-		 * @see java.lang.Object#hashCode()
-		 */
-		@Override
-		public int hashCode() {
-			final int prime = 31;
-			int result = 1;
-			result = prime * result + column;
-			return result;
-		}
-
-		/* (non-Javadoc)
-		 * @see java.lang.Object#equals(java.lang.Object)
-		 */
-		@Override
-		public boolean equals(Object obj) {
-			if (this == obj)
-				return true;
-			if (obj == null)
-				return false;
-			if (getClass() != obj.getClass())
-				return false;
-			OnDropColumnListener other = (OnDropColumnListener) obj;
-			if (column != other.column)
-				return false;
-			return true;
-		}
-		
+		}		
 		
 	}
 	
-	private List<OnDropColumnListener> ondropListeners = new ArrayList<OnDropColumnListener>();
+	private List<OnDropColumnListener<E>> ondropListeners = new ArrayList<OnDropColumnListener<E>>();
 	
 	/**
 	 * Constructor accepting a List.
@@ -158,10 +134,6 @@ public class TableComponent<E extends Serializable> extends AbstractCompoundComp
 		
 		addHeaderContributor(HeaderContributor.forJavaScript(Resources.JS_ANTILIA_AJAX));
 		
-		
-		//addHeaderContributor(HeaderContributor.forJavaScript(Resources.JS_PROTOTYPE));
-		//addHeaderContributor(HeaderContributor.forJavaScript(Resources.JS_EFFECT));
-		//addHeaderContributor(HeaderContributor.forJavaScript(Resources.JS_DRAGDROP));
 		addHeaderContributor(HeaderContributor.forCss(Resources.CSS_MAIN));
 		addHeaderContributor(HeaderContributor.forCss(getTableCSS()));
 		
@@ -182,9 +154,10 @@ public class TableComponent<E extends Serializable> extends AbstractCompoundComp
 	
 	@Override
 	protected void onRender(PrintWriter writer, HttpServletRequest request) throws Exception {		
+		rendringCount++;
 		removeAllComponents();
 		writer.println("<div id=\"");
-		writer.println(getId());
+		writer.println(getDinamicId());
 		writer.println("\">");
 		writer.println("<table cellpadding=\"0\" cellspacing=\"0\" class=\"tbody\">");
 		writer.println("<tbody>");
@@ -204,9 +177,15 @@ public class TableComponent<E extends Serializable> extends AbstractCompoundComp
 		writer.println("</tbody>");
 		writer.println("</table>");
 		
-
-		writer.println("<script wicket:id=\"script\" type=\"text/javascript\">");
-		String tableId = getId();
+		renderJavaScript(writer, request);
+		
+		writer.println("</div>");
+		writer.flush();
+	}
+	
+	private void renderJavaScript(PrintWriter writer, HttpServletRequest request) {
+		writer.print("<script>");
+		String tableId = getDinamicId();
 		StringBuffer sb = new StringBuffer();
 		sb.append("var ");
 		sb.append(tableId);
@@ -240,16 +219,14 @@ public class TableComponent<E extends Serializable> extends AbstractCompoundComp
 		sb.append(");");
 		sb.append(tableId+".");
 		sb.append("createDraggables();");
-		writer.println(sb.toString());
-		writer.println("</script>");
-		writer.println("</div>");
-		writer.flush();
+		writer.print(sb.toString());
+		writer.print("</script>");
 	}
 	
 	public String getDraggerUrlAsArray() {
 		StringBuffer sb = new StringBuffer();
 		sb .append("new Array(");
-		Iterator<OnDropColumnListener> it = ondropListeners.iterator();
+		Iterator<OnDropColumnListener<E>> it = ondropListeners.iterator();
 		while(it.hasNext()) {			
 			String url = RequestContext.get().getUrlGenerator().generateUrlFor(it.next());			
 			sb .append("'");	
@@ -261,6 +238,10 @@ public class TableComponent<E extends Serializable> extends AbstractCompoundComp
 		}
 		sb .append(")");
 		return sb.toString();		
+	}
+	
+	private String getDinamicId() {
+		return getId()+rendringCount;
 	}
 	
 	private void renderHeaderCells(PrintWriter writer, HttpServletRequest request, FirstColumnModel firstColumnModel, ITableModel<E> tableModel) throws Exception {
@@ -292,8 +273,8 @@ public class TableComponent<E extends Serializable> extends AbstractCompoundComp
 		writer.println("<table height=\"100%\" width=\"100%\" cellpadding=\"0\" cellspacing=\"0\">");
 		writer.println("<tr>");
 		writer.println("<td nowrap=\"nowrap\">");
-		String id = getId()+"_dragger_"+ getRendringCount() + "_" +column;		
-		writer.println("<div id=\""+id+"\" class=\""+getId()+"\" ondblclick=\"\" style=\"border: 1px solid transparent;\">");
+		String id = getDinamicId()+"_dragger_"+ getRendringCount() + "_" +column;		
+		writer.println("<div id=\""+id+"\" class=\""+id+"\" ondblclick=\"\" style=\"border: 1px solid transparent;\">");
 		writer.println("	<table  height=\"100%\" width=\"100%\" cellpadding=\"0\" cellspacing=\"0\">");
 		writer.println("	<td nowrap=\"nowrap\"><div  wicket:id=\"title\" class=\"headerTitle\">");
 		writer.println(model.getPropertyPath());
@@ -303,18 +284,18 @@ public class TableComponent<E extends Serializable> extends AbstractCompoundComp
 		writer.println("	</div>");
 		writer.println("	</td>");
 		
-		OnDropColumnListener listener = new OnDropColumnListener("ondrop"+column, column);
+		OnDropColumnListener<E> listener = new OnDropColumnListener<E>("ondrop"+column, this, column);
 		addComponent(listener);
 		ondropListeners.add(listener);
 		
 		String resizeId = null;
 		if(!isColumnsResizable())
-			resizeId = getId()+"_cND_"+column;
+			resizeId = getDinamicId()+"_cND_"+column;
 		else if(model.isResizable() )
-			resizeId = getId()+"_c_"+column;				
+			resizeId = getDinamicId()+"_c_"+column;				
 		// this naming does the trick of making the column non re-sizable
 		else 
-			resizeId =getId()+"_c_"+column;
+			resizeId =getDinamicId()+"_c_"+column;
 		
 		String dragableClass = null;		
 		if(!isColumnsResizable())
@@ -343,7 +324,7 @@ public class TableComponent<E extends Serializable> extends AbstractCompoundComp
 		writer.println("	</table>");
 		writer.println("	</div>");
 		writer.println("	</td>");
-		String id = getId()+"_dragger_"+ getRendringCount() + "_" +0;
+		String id = getDinamicId()+"_dragger_"+ getRendringCount() + "_" +0;
 		writer.write("	<td id=\"");
 		writer.write(id);
 		writer.println("\" class=\"resCol\" nowrap=\"nowrap\" style=\"min-width: 10px;\">&nbsp;</td>");

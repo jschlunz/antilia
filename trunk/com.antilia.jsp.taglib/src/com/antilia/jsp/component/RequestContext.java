@@ -60,6 +60,16 @@ public class RequestContext {
 		}
 	}
 	
+	public  IComponent findComponent(String componentPath) {
+		String path = componentPath;
+		if(path.startsWith(IActionListener.IDENTIFIER)){
+			path = path.substring(path.indexOf(':')+1);
+		}
+		ComponentContext componentContext = ComponentContext.bind(getRequest().getSession());
+		return componentContext.find(path);	
+	}
+	
+	
 	
 	/**
 	 * @return the request
