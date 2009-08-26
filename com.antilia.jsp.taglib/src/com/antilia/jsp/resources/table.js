@@ -102,12 +102,13 @@ TColumn.prototype.initialize = function() {
     this.dd = new YAHOO.util.DD(this.id, this.tableId);    
     this.startPos = YAHOO.util.Dom.getXY(el);
     this.dd.url = this.url;
+    this.dd.tableId = this.tableId;
     el.ie6 = this.ie6;
       
     this.dd.onDragDrop = function(e, id) { 
         //wicketAjaxGet(this.url+ '&sourceId=' + this.getEl().id + '&targetId=' + id);
-        alert(this.url+ '&sourceId=' + this.getEl().id + '&targetId=' + id);
-        Antilia.Ajax.replaceWith("", this.url, null);
+        //alert(this.url+ '&sourceId=' + this.getEl().id + '&targetId=' + id);
+        Antilia.Ajax.replaceWith(this.tableId, this.url, null);
     }
     
     this.dd.onInvalidDrop = function(e) {         

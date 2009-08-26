@@ -3,14 +3,19 @@ if (typeof(Antilia) == "undefined")
 
 Antilia.Ajax = {
 	replaceWith: function(id, url, params) {
-		alert(url);
 		if(params != null) {
 			$.get(url, params, function(data){
 				    alert("Data Loaded: " + data);
+				    //alert(id);
+				    $('#'+id).replaceWith(data);
+				    alert(id);
 			});
 		} else {
-			$.get(url, params, function(data){
+			$.get(url,  function(data){
 			    alert("Data Loaded: " + data);
+			    //alert(id);
+			    $('#'+id).replaceWith(data);
+			    alert(id);
 			});
 		}
 		
