@@ -108,7 +108,8 @@ TColumn.prototype.initialize = function() {
     this.dd.onDragDrop = function(e, id) { 
         //wicketAjaxGet(this.url+ '&sourceId=' + this.getEl().id + '&targetId=' + id);
         //alert(this.url+ '&sourceId=' + this.getEl().id + '&targetId=' + id);
-        Antilia.Ajax.replaceWith(this.tableId, this.url, null);
+        var params = { sourceId: this.getEl().id, targetId: id }
+        Antilia.Ajax.replaceWith(this.tableId, this.url, params);
     }
     
     this.dd.onInvalidDrop = function(e) {         

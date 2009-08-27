@@ -19,6 +19,7 @@ import com.antilia.common.dao.IQuerableUpdatableDao;
 import com.antilia.common.query.IQuery;
 import com.antilia.common.query.Query;
 import com.antilia.common.util.ReflectionUtils;
+import com.antilia.common.util.StringUtils;
 import com.antilia.jsp.resources.Resources;
 import com.antilia.jsp.sandbox.JQuery;
 import com.antilia.web.beantable.model.FirstColumnModel;
@@ -54,6 +55,8 @@ public class TableComponent<E extends Serializable> extends AbstractCompoundComp
 	
 	private boolean dragableColumns = true;
 	
+	private MenuComponent menuComponent;
+	
 	/**
 	 * Flag to set all columns re-sizable or not.
 	 */
@@ -76,11 +79,58 @@ public class TableComponent<E extends Serializable> extends AbstractCompoundComp
 		
 		@Override
 		protected void onRender(PrintWriter writer, HttpServletRequest request) throws Exception {
-			//tableComponent.render(request, writer);
-			//writer.println("<script>alert('Hi!');</script>");
-			writer.println("<p>alert('Hi!');</p>");
-			//tableComponent.renderJavaScript(writer, request);
+			swapColumns(request);
+			tableComponent.render(request, writer);
 		}
+		
+		private void swapColumns(HttpServletRequest request) {
+			String sourceId = request.getParameter("sourceId");
+			String targetId = request.getParameter("targetId");
+			if(StringUtils.isEmpty(targetId)) 
+				return;				
+			if(targetId.indexOf("dropCol")>0)  {
+				int dropedColumn = getDropedColumnIndex(sourceId)-1;
+				if(dropedColumn == -2)
+					return;
+				/*
+				if(target != null) {
+					DefaultHeaderCell.this.getTable().getTableModel().hideColumn(dropedColumn);
+					target.addComponent(DefaultHeaderCell.this.getTable());
+				}
+				*/
+			} else if(targetId.indexOf("dropLas")>0)  {
+				int dropedColumn = getDropedColumnIndex(sourceId)-1;
+				if(dropedColumn == -2 || dropedColumn ==tableComponent.getTableModel().getColumns()-1) {					
+					return;
+				}
+				tableComponent.getTableModel().moveColumnBefore(dropedColumn, tableComponent.getTableModel().getColumns());
+			}  else {
+				int dropedColumn = getDropedColumnIndex(sourceId)-1;
+				int thisColumn = getDropedColumnIndex(targetId)-1;
+				if(dropedColumn == -2 || dropedColumn == thisColumn)
+					return;
+				tableComponent.getTableModel().moveColumnBefore(dropedColumn, thisColumn);
+			}
+		}
+			
+		/**
+		 * -1 means something is wrong and the table should be reloaded.
+		 * @return
+		 */
+		private int getDropedColumnIndex(String input) {
+				if(StringUtils.isEmpty(input))
+					return -1;
+				String tableId = tableComponent.getDinamicId();
+				if(input.startsWith(tableId)) {
+					try {
+						String columnId = input.substring(input.lastIndexOf('_')+1);
+						return Integer.parseInt(columnId);
+					} catch (Exception e) {
+					}
+				}
+				return -1;
+		}
+		
 
 		/**
 		 * @return the column
@@ -156,13 +206,17 @@ public class TableComponent<E extends Serializable> extends AbstractCompoundComp
 	protected void onRender(PrintWriter writer, HttpServletRequest request) throws Exception {		
 		rendringCount++;
 		removeAllComponents();
-		writer.println("<div id=\"");
+		menuComponent = new TableNavigationMenu<E>("menu", this);
+		addComponent(menuComponent);
+		writer.print("<div id=\"");
 		writer.println(getDinamicId());
 		writer.println("\">");
 		writer.println("<table cellpadding=\"0\" cellspacing=\"0\" class=\"tbody\">");
 		writer.println("<tbody>");
 		writer.println("<tr class=\"theader\">");
-		writer.println("<td class=\"theader\" nowrap=\"nowrap\"></td>");
+		writer.println("<td class=\"theader\" nowrap=\"nowrap\">");
+		menuComponent.render(request, writer);
+		writer.println("</td>");
 		writer.println("</tr>");
 		writer.println("<tr>");			
 		writer.println("<td>");
@@ -241,7 +295,7 @@ public class TableComponent<E extends Serializable> extends AbstractCompoundComp
 	}
 	
 	private String getDinamicId() {
-		return getId()+rendringCount;
+		return (getId()+rendringCount).trim();
 	}
 	
 	private void renderHeaderCells(PrintWriter writer, HttpServletRequest request, FirstColumnModel firstColumnModel, ITableModel<E> tableModel) throws Exception {

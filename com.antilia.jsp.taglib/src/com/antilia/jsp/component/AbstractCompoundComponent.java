@@ -37,6 +37,10 @@ public abstract class AbstractCompoundComponent extends AbstractComponent implem
 	public IComponent getComponent(String id) {
 		return components.get(id);
 	}
+	
+	public Iterable<IComponent> getChildrem() {
+		return components.values();
+	}
 
 	public void addComponent(IComponent component) {
 		components.put(component.getId(), component);
