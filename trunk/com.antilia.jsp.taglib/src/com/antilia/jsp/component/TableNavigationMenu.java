@@ -16,7 +16,8 @@ public class TableNavigationMenu<E extends Serializable> extends MenuComponent {
 	 */
 	public TableNavigationMenu(String id, TableComponent<E> tableComponent) {
 		super(id);
-		addMenuItem(new NextPageLink<E>("next", tableComponent));
+		addMenuItem(new PreviousPageLink<E>("Previous", tableComponent));
+		addMenuItem(new NextPageLink<E>("Next", tableComponent));
 	}
 
 }

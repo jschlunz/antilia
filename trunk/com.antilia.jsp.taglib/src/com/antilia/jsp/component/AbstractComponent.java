@@ -99,7 +99,9 @@ public abstract class AbstractComponent implements IComponent {
 		this.parent = parent;
 	}
 
-
+	public String getMarkupId() {
+		return getId();
+	}
 	
 
 }
