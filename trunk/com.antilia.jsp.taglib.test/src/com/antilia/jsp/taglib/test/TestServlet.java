@@ -18,6 +18,7 @@ import com.antilia.common.util.StringUtils;
 import com.antilia.jsp.component.HeaderContributor;
 import com.antilia.jsp.component.IActionListener;
 import com.antilia.jsp.component.IComponent;
+import com.antilia.jsp.component.ILinkListener;
 import com.antilia.jsp.component.IUrlGenerator;
 import com.antilia.jsp.component.RequestContext;
 import com.antilia.jsp.component.TableComponent;
@@ -79,6 +80,7 @@ public class TestServlet extends HttpServlet {
 			RequestContext.get().setRequest(request);
 			RequestContext.get().setResponse(response);
 			RequestContext.get().setUrlGenerator(new TestUrlGenerator());
+			RequestContext.get().setAjax(false);
 			
 			if(serviceReosurces(request, response))
 				return;
@@ -142,27 +144,49 @@ public class TestServlet extends HttpServlet {
 				}				
 			}			
 		}
+		
 		return false;
 	}
 	
 	private boolean serviceEvents(HttpServletRequest request, HttpServletResponse response) throws ServletException {
-		String pathInfo = request.getRequestURI();
+		String pathInfo = request.getRequestURI();		
 		if(pathInfo.contains("/"+IActionListener.IDENTIFIER)) {			
 			StringTokenizer st = new StringTokenizer(pathInfo, "/");
 			String listenerName =  null;			
+			String test = request.getHeader("X-Requested-With"); 
+			if(test != null) {
+				RequestContext.get().setAjax(true);
+			}
 			while(st.hasMoreTokens()) {
 				listenerName = st.nextToken();
 			}
 			if(!StringUtils.isEmpty(listenerName)) {				
 				try {
 					IComponent component = RequestContext.get().findComponent(listenerName);
-					if(component != null) {
-						PrintWriter writer = response.getWriter();
-						component.render(request, writer);
-						writer.flush();
-						writer.close();
-						return true;
-					}					
+					if(component != null && component instanceof ILinkListener) {
+						ILinkListener linkListener = (ILinkListener)component;						
+						linkListener.onLinkClicked(request);					
+					}				
+					if(component != null && RequestContext.get().isAjax()) {
+						IComponent ajax = RequestContext.get().getAjaxTarget();
+						if(ajax != null) {
+							PrintWriter writer = response.getWriter();
+							response.setContentType("text/xml");
+							writer.println("<?xml version=\"1.0\"?>");
+							writer.print("<ajax id=\"");
+							writer.print(ajax.getMarkupId());
+							writer.print("\"");
+							writer.println(">");
+							writer.println("<![CDATA[");
+							ajax.render(request, writer);
+							//writer.println("<p>Hi!</p>");
+							writer.println("]]>");
+							writer.append("</ajax>");
+							writer.flush();
+							writer.close();
+							return true;
+						}
+					}
 				} catch (Exception e) {
 					throw new ServletException(e);
 				}				
