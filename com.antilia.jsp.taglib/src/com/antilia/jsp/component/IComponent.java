@@ -21,5 +21,7 @@ public interface IComponent {
 	public IComponent getParent();
 	
 	public void setParent(IComponent parent);
+	
+	public String getMarkupId();
 
 }

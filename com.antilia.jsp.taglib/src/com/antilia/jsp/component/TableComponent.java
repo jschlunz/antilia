@@ -5,7 +5,6 @@ package com.antilia.jsp.component;
 
 import java.io.PrintWriter;
 import java.io.Serializable;
-import java.io.Writer;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
@@ -73,13 +72,13 @@ public class TableComponent<E extends Serializable> extends AbstractCompoundComp
 			this.tableComponent = tableComponent;
 		}
 		
-		public void onLinkClicked(HttpServletRequest request, Writer writer) {
-			
+		public void onLinkClicked(HttpServletRequest request) {
+			swapColumns(request);
+			RequestContext.get().setAjaxTarget(tableComponent);
 		}
 		
 		@Override
-		protected void onRender(PrintWriter writer, HttpServletRequest request) throws Exception {
-			swapColumns(request);
+		protected void onRender(PrintWriter writer, HttpServletRequest request) throws Exception {			
 			tableComponent.render(request, writer);
 		}
 		
@@ -120,7 +119,7 @@ public class TableComponent<E extends Serializable> extends AbstractCompoundComp
 		private int getDropedColumnIndex(String input) {
 				if(StringUtils.isEmpty(input))
 					return -1;
-				String tableId = tableComponent.getDinamicId();
+				String tableId = tableComponent.getMarkupId();
 				if(input.startsWith(tableId)) {
 					try {
 						String columnId = input.substring(input.lastIndexOf('_')+1);
@@ -209,7 +208,7 @@ public class TableComponent<E extends Serializable> extends AbstractCompoundComp
 		menuComponent = new TableNavigationMenu<E>("menu", this);
 		addComponent(menuComponent);
 		writer.print("<div id=\"");
-		writer.println(getDinamicId());
+		writer.println(getMarkupId());
 		writer.println("\">");
 		writer.println("<table cellpadding=\"0\" cellspacing=\"0\" class=\"tbody\">");
 		writer.println("<tbody>");
@@ -239,7 +238,7 @@ public class TableComponent<E extends Serializable> extends AbstractCompoundComp
 	
 	private void renderJavaScript(PrintWriter writer, HttpServletRequest request) {
 		writer.print("<script>");
-		String tableId = getDinamicId();
+		String tableId = getMarkupId();
 		StringBuffer sb = new StringBuffer();
 		sb.append("var ");
 		sb.append(tableId);
@@ -294,9 +293,11 @@ public class TableComponent<E extends Serializable> extends AbstractCompoundComp
 		return sb.toString();		
 	}
 	
-	private String getDinamicId() {
-		return (getId()+rendringCount).trim();
+	@Override
+	public String getMarkupId() {
+		return (getId()/*+rendringCount*/).trim();
 	}
+	
 	
 	private void renderHeaderCells(PrintWriter writer, HttpServletRequest request, FirstColumnModel firstColumnModel, ITableModel<E> tableModel) throws Exception {
 		ondropListeners.clear();
@@ -327,7 +328,7 @@ public class TableComponent<E extends Serializable> extends AbstractCompoundComp
 		writer.println("<table height=\"100%\" width=\"100%\" cellpadding=\"0\" cellspacing=\"0\">");
 		writer.println("<tr>");
 		writer.println("<td nowrap=\"nowrap\">");
-		String id = getDinamicId()+"_dragger_"+ getRendringCount() + "_" +column;		
+		String id = getMarkupId()+"_dragger_"+ getRendringCount() + "_" +column;		
 		writer.println("<div id=\""+id+"\" class=\""+id+"\" ondblclick=\"\" style=\"border: 1px solid transparent;\">");
 		writer.println("	<table  height=\"100%\" width=\"100%\" cellpadding=\"0\" cellspacing=\"0\">");
 		writer.println("	<td nowrap=\"nowrap\"><div  wicket:id=\"title\" class=\"headerTitle\">");
@@ -344,12 +345,12 @@ public class TableComponent<E extends Serializable> extends AbstractCompoundComp
 		
 		String resizeId = null;
 		if(!isColumnsResizable())
-			resizeId = getDinamicId()+"_cND_"+column;
+			resizeId = getMarkupId()+"_cND_"+column;
 		else if(model.isResizable() )
-			resizeId = getDinamicId()+"_c_"+column;				
+			resizeId = getMarkupId()+"_c_"+column;				
 		// this naming does the trick of making the column non re-sizable
 		else 
-			resizeId =getDinamicId()+"_c_"+column;
+			resizeId =getMarkupId()+"_c_"+column;
 		
 		String dragableClass = null;		
 		if(!isColumnsResizable())
@@ -378,7 +379,7 @@ public class TableComponent<E extends Serializable> extends AbstractCompoundComp
 		writer.println("	</table>");
 		writer.println("	</div>");
 		writer.println("	</td>");
-		String id = getDinamicId()+"_dragger_"+ getRendringCount() + "_" +0;
+		String id = getMarkupId()+"_dragger_"+ getRendringCount() + "_" +0;
 		writer.write("	<td id=\"");
 		writer.write(id);
 		writer.println("\" class=\"resCol\" nowrap=\"nowrap\" style=\"min-width: 10px;\">&nbsp;</td>");

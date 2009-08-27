@@ -3,8 +3,6 @@
  */
 package com.antilia.jsp.component;
 
-import java.io.Writer;
-
 import javax.servlet.http.HttpServletRequest;
 
 /**
@@ -13,6 +11,6 @@ import javax.servlet.http.HttpServletRequest;
  */
 public interface ILinkListener extends IActionListener {
 
-	public void onLinkClicked(HttpServletRequest request, Writer writer);
+	public void onLinkClicked(HttpServletRequest request);
 	
 }

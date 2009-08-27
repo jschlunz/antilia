@@ -24,6 +24,10 @@ public class RequestContext {
 	
 	private IUrlGenerator urlGenerator;
 	
+	private boolean ajax;
+	
+	private IComponent ajaxTarget;
+	
 	private RequestContext() {		
 	}
 	
@@ -111,6 +115,34 @@ public class RequestContext {
 	 */
 	public void setUrlGenerator(IUrlGenerator urlGenerator) {
 		this.urlGenerator = urlGenerator;
+	}
+
+	/**
+	 * @return the ajax
+	 */
+	public boolean isAjax() {
+		return ajax;
+	}
+
+	/**
+	 * @param ajax the ajax to set
+	 */
+	public void setAjax(boolean ajax) {
+		this.ajax = ajax;
+	}
+
+	/**
+	 * @return the ajaxTarget
+	 */
+	public IComponent getAjaxTarget() {
+		return ajaxTarget;
+	}
+
+	/**
+	 * @param ajaxTarget the ajaxTarget to set
+	 */
+	public void setAjaxTarget(IComponent ajaxTarget) {
+		this.ajaxTarget = ajaxTarget;
 	}
 
 }

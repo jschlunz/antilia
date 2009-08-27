@@ -109,7 +109,7 @@ TColumn.prototype.initialize = function() {
         //wicketAjaxGet(this.url+ '&sourceId=' + this.getEl().id + '&targetId=' + id);
         //alert(this.url+ '&sourceId=' + this.getEl().id + '&targetId=' + id);
         var params = { sourceId: this.getEl().id, targetId: id }
-        Antilia.Ajax.replaceWith(this.tableId, this.url, params);
+        Antilia.Ajax.doAjax(this.url, params);
     }
     
     this.dd.onInvalidDrop = function(e) {         

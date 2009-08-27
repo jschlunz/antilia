@@ -25,12 +25,12 @@ public abstract class AjaxLink extends AbstractComponent implements ImenuItem, I
 	 */
 	@Override
 	protected void onRender(PrintWriter writer, HttpServletRequest request) throws Exception {		
-		writer.print("<a ");
-		writer.print(" href=\"");
+		writer.print("<a href=\"javascript:void(0);\"" );
+		writer.print(" onclick=\"Antilia.Ajax.doAjax(\'");
 		writer.print(RequestContext.get().getUrlGenerator().generateUrlFor(this));
-		writer.println("\">");
+		writer.println("\');\">");
 		writer.println(getId());
-		writer.print(">");
+		writer.print("</a>");
 	}
 
 }
