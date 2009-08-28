@@ -135,6 +135,7 @@ public class TestServlet extends HttpServlet {
 					} 
 					Class<?> clazz = Thread.currentThread().getContextClassLoader().loadClass(className);
 					String name = request.getParameter("res");
+					//System.out.println(name);
 					response.getOutputStream().write(FileUtils.bytes(clazz.getResourceAsStream(name)));
 					response.getOutputStream().flush();
 					response.getOutputStream().close();
