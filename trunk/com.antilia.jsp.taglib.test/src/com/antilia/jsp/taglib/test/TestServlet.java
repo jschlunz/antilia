@@ -160,6 +160,7 @@ public class TestServlet extends HttpServlet {
 			while(st.hasMoreTokens()) {
 				listenerName = st.nextToken();
 			}
+			
 			if(!StringUtils.isEmpty(listenerName)) {				
 				try {
 					IComponent component = RequestContext.get().findComponent(listenerName);
@@ -169,8 +170,8 @@ public class TestServlet extends HttpServlet {
 					}				
 					if(component != null && RequestContext.get().isAjax()) {
 						IComponent ajax = RequestContext.get().getAjaxTarget();
+						PrintWriter writer = response.getWriter();
 						if(ajax != null) {
-							PrintWriter writer = response.getWriter();
 							response.setContentType("text/xml");
 							writer.println("<?xml version=\"1.0\"?>");
 							writer.print("<ajax id=\"");
@@ -181,6 +182,17 @@ public class TestServlet extends HttpServlet {
 							ajax.render(request, writer);
 							//writer.println("<p>Hi!</p>");
 							writer.println("]]>");
+							writer.append("</ajax>");							
+							writer.flush();
+							writer.close();
+							return true;
+						} else {
+							response.setContentType("text/xml");
+							writer.println("<?xml version=\"1.0\"?>");
+							writer.print("<ajax id=\"");
+							writer.print("_NOTHING_TO_TO");
+							writer.print("\"");
+							writer.println(">");
 							writer.append("</ajax>");
 							writer.flush();
 							writer.close();
