@@ -7,6 +7,8 @@ import java.io.Serializable;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.antilia.jsp.resources.Resources;
+
 /**
  * @author Ernesto Reinaldo Barreiro (reirn70@gmail.com)
  *
@@ -19,7 +21,7 @@ public class NextPageLink<E extends Serializable> extends AjaxLink {
 	 * @param id
 	 */
 	public NextPageLink(String id, TableComponent<E> tableComponent) {
-		super(id);
+		super(id, null, "Next page", Resources.IMG_NEXT_ENABLED_PNG);
 		this.tableComponent = tableComponent;
 	}
 

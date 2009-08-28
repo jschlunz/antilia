@@ -33,12 +33,18 @@ Antilia.Ajax = {
 			$.get(url, params, function(data){			
 				var content = Antilia.Ajax.parseXml(data);
 				var id = "#"+content.childNodes[0].getAttribute('id');
+				if(id == "_NOTHING_TO_TO") {
+					return;
+				}
 				var content = content.childNodes[0].childNodes[0];
 				$(id).replaceWith(content.wholeText);								
 			}, "text");
 		} else {
 			$.get(url,  function(data){
 				var id = "#"+data.childNodes[0].getAttribute('id');
+				if(id == "_NOTHING_TO_TO") {
+					return;
+				}
 				var content = data.childNodes[0].childNodes[0];
 				$(id).replaceWith(content.wholeText);				
 			},"text");

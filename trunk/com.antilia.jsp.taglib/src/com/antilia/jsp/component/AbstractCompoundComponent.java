@@ -3,8 +3,8 @@
  */
 package com.antilia.jsp.component;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author Ernesto Reinaldo Barreiro (reirn70@gmail.com)
@@ -13,13 +13,13 @@ import java.util.Map;
 public abstract class AbstractCompoundComponent extends AbstractComponent implements ICompoundComponent {
 
 	
-	private Map<String, IComponent> components = new HashMap<String, IComponent>();
+	private List<IComponent> components = new ArrayList<IComponent>();
+	
 	/**
 	 * @param id
 	 */
 	public AbstractCompoundComponent(String id) {
 		super(id);
-		// TODO Auto-generated constructor stub
 	}
 
 	/**
@@ -35,20 +35,24 @@ public abstract class AbstractCompoundComponent extends AbstractComponent implem
 	 * @see com.antilia.jsp.component.ICompoundComponent#getComponent(java.lang.String)
 	 */
 	public IComponent getComponent(String id) {
-		return components.get(id);
+		for(IComponent component: components) {
+			if(component.getId().equals(id))
+				return component;
+		}
+		return null;
 	}
 	
 	public Iterable<IComponent> getChildrem() {
-		return components.values();
+		return components;
 	}
 
 	public void addComponent(IComponent component) {
-		components.put(component.getId(), component);
+		components.add(component);
 		component.setParent(this);
 	}
 	
 	public void removeComponent(IComponent component) {
-		components.remove(component.getId());
+		components.remove(component);
 		component.setParent(null);
 	}
 	

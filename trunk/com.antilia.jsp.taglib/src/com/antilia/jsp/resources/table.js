@@ -34,7 +34,7 @@ Table.prototype.createDraggables = function() {
 
 Table.prototype.addColumn = function(col) {
     var url = this.url;	
-	var column = new Column(this.id, col, url);	
+	var column = new Column(this.id, col, url, this.rendringCount);	
 	this.columns[this.columns.length]= column;
 }
 
@@ -56,13 +56,14 @@ Table.prototype.unhighlight = function(row) {
 		rowObj.unhighlight();
 }
 
-function Column(tableId, number, url) {
+function Column(tableId, number, url, rendringCount) {
 	this.tableId = tableId;
 	this.url = url;
+	this.rendringCount = rendringCount;
 	this.number = number;
-	this.resizeHandleId = this.tableId + '_c_' + this.number;
+	this.resizeHandleId = this.tableId + '_c_' + this.number +'_'+this.rendringCount;
 	this.resizeHandle = document.getElementById(this.resizeHandleId);	
-	if(this.resizeHandle) {
+	if(this.resizeHandle) {	
 	     this.resizeHandle.url = url;
 	     this.resizeHandle.number = number;
 		Antilia.Drag.init(this.resizeHandle, function() {} , this.onEndDrag, this.onResize);
@@ -84,9 +85,8 @@ Column.prototype.onResize = function (obj, deltaX, deltaY) {
  
 Column.prototype.onEndDrag = function (obj) {
     var td = obj.parentNode.parentNode.parentNode.parentNode;  
-    var url = this.url+ '&sourceId=' + parseInt(td.style.width) + '&targetId=resize' + '&number=' + this.number
-    //wicketAjaxGet(url);       
-    alert(url);    
+    var params = { sourceId: parseInt(td.style.width), targetId: 'resize', number: this.number }
+    Antilia.Ajax.doAjax(obj.url, params); 
 }
 
 function TColumn(tableId, id, url, ie6) {
@@ -106,8 +106,6 @@ TColumn.prototype.initialize = function() {
     el.ie6 = this.ie6;
       
     this.dd.onDragDrop = function(e, id) { 
-        //wicketAjaxGet(this.url+ '&sourceId=' + this.getEl().id + '&targetId=' + id);
-        //alert(this.url+ '&sourceId=' + this.getEl().id + '&targetId=' + id);
         var params = { sourceId: this.getEl().id, targetId: id }
         Antilia.Ajax.doAjax(this.url, params);
     }
