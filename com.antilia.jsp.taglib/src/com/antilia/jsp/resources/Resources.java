@@ -3,6 +3,7 @@ package com.antilia.jsp.resources;
 
 import com.antilia.jsp.component.ResourceReference;
 import com.antilia.web.resources.DefaultStyle;
+import com.antilia.web.resources.images.ImgDummy;
 
 public class Resources {
 
@@ -28,5 +29,9 @@ public class Resources {
 	
 	public static ResourceReference JS_COMMON = new ResourceReference(DefaultStyle.class, "common.js");
 	
+	public static ResourceReference IMG_NEXT_ENABLED  = new ResourceReference(ImgDummy.class, "next_enabled.gif");
+	public static ResourceReference IMG_NEXT_ENABLED_PNG  = new ResourceReference(ImgDummy.class, "next_enabled.png");
 	
+	public static ResourceReference IMG_PREVIOUS_ENABLED = new ResourceReference(ImgDummy.class, "previous_enabled.gif");	
+	public static ResourceReference IMG_PREVIOUS_ENABLED_PNG = new ResourceReference(ImgDummy.class, "previous_enabled.png");
 }

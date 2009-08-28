@@ -73,8 +73,8 @@ public class TableComponent<E extends Serializable> extends AbstractCompoundComp
 		}
 		
 		public void onLinkClicked(HttpServletRequest request) {
-			swapColumns(request);
-			RequestContext.get().setAjaxTarget(tableComponent);
+			if(swapColumns(request))			
+				RequestContext.get().setAjaxTarget(tableComponent);
 		}
 		
 		@Override
@@ -82,15 +82,18 @@ public class TableComponent<E extends Serializable> extends AbstractCompoundComp
 			tableComponent.render(request, writer);
 		}
 		
-		private void swapColumns(HttpServletRequest request) {
+		private boolean swapColumns(HttpServletRequest request) {
 			String sourceId = request.getParameter("sourceId");
-			String targetId = request.getParameter("targetId");
+			String targetId = request.getParameter("targetId");			
 			if(StringUtils.isEmpty(targetId)) 
-				return;				
+				return false;				
+			if(targetId.equals("resize")) {
+				return false;
+			}
 			if(targetId.indexOf("dropCol")>0)  {
 				int dropedColumn = getDropedColumnIndex(sourceId)-1;
 				if(dropedColumn == -2)
-					return;
+					return false;
 				/*
 				if(target != null) {
 					DefaultHeaderCell.this.getTable().getTableModel().hideColumn(dropedColumn);
@@ -100,16 +103,19 @@ public class TableComponent<E extends Serializable> extends AbstractCompoundComp
 			} else if(targetId.indexOf("dropLas")>0)  {
 				int dropedColumn = getDropedColumnIndex(sourceId)-1;
 				if(dropedColumn == -2 || dropedColumn ==tableComponent.getTableModel().getColumns()-1) {					
-					return;
+					return false;
 				}
 				tableComponent.getTableModel().moveColumnBefore(dropedColumn, tableComponent.getTableModel().getColumns());
+				return true;
 			}  else {
 				int dropedColumn = getDropedColumnIndex(sourceId)-1;
 				int thisColumn = getDropedColumnIndex(targetId)-1;
 				if(dropedColumn == -2 || dropedColumn == thisColumn)
-					return;
+					return false;
 				tableComponent.getTableModel().moveColumnBefore(dropedColumn, thisColumn);
-			}
+				return true;
+			}			
+			return false;
 		}
 			
 		/**
@@ -147,6 +153,45 @@ public class TableComponent<E extends Serializable> extends AbstractCompoundComp
 		
 	}
 	
+	private static class FirstColumnListener<E extends Serializable> extends AbstractComponent implements ILinkListener {
+		
+		private TableComponent<E> tableComponent;
+		
+		public FirstColumnListener(TableComponent<E> tableComponent) {
+			super("firstColumnListener");
+			this.tableComponent = tableComponent;
+		}
+		
+		public void onLinkClicked(HttpServletRequest request) {
+			String sourceId = request.getParameter("sourceId");
+			String targetId = request.getParameter("targetId");
+			if(StringUtils.isEmpty(targetId)) 
+				return;
+			if(targetId.equals("resize")) {
+				try {
+					int width = Integer.parseInt(sourceId);
+					int column = Integer.parseInt(request.getParameter("number"));
+					if(column == 0) {
+						tableComponent.getFirstColumnModel().setWidth(width);
+					} else {							
+						tableComponent.getTableModel().getColumnModel(column-1).setWidth(width);
+					}
+					
+					
+				} catch (Exception e) {
+				}
+			}
+		}
+		
+		@Override
+		protected void onRender(PrintWriter writer, HttpServletRequest request) throws Exception {
+			
+		}
+		
+	}
+	
+	private FirstColumnListener<E> firstColumnListener;
+	
 	private List<OnDropColumnListener<E>> ondropListeners = new ArrayList<OnDropColumnListener<E>>();
 	
 	/**
@@ -179,6 +224,7 @@ public class TableComponent<E extends Serializable> extends AbstractCompoundComp
 		this.tableModel = tableModel;
 		this.firstColumnModel = new FirstColumnModel(65);
 		
+		
 		addHeaderContributor(HeaderContributor.forJavaScript(JQuery.JQUERY));
 		
 		addHeaderContributor(HeaderContributor.forJavaScript(Resources.JS_ANTILIA_AJAX));
@@ -205,6 +251,8 @@ public class TableComponent<E extends Serializable> extends AbstractCompoundComp
 	protected void onRender(PrintWriter writer, HttpServletRequest request) throws Exception {		
 		rendringCount++;
 		removeAllComponents();
+		this.firstColumnListener = new FirstColumnListener<E>(this);		
+		addComponent(this.firstColumnListener);
 		menuComponent = new TableNavigationMenu<E>("menu", this);
 		addComponent(menuComponent);
 		writer.print("<div id=\"");
@@ -243,7 +291,7 @@ public class TableComponent<E extends Serializable> extends AbstractCompoundComp
 		sb.append("var ");
 		sb.append(tableId);
 		sb.append(" = new Table('" + tableId + "','");
-		sb.append(/*getFirstColumnUrl()+*/ "',");
+		sb.append(RequestContext.get().getUrlGenerator().generateUrlFor(this.firstColumnListener)+ "',");
 		sb.append("new Array(");
 		IPageableNavigator<E> source = TableComponent.this.getPageableNavigator();
 		INavigatorSelector<E> selector = TableComponent.this.getSourceSelector();
@@ -310,7 +358,11 @@ public class TableComponent<E extends Serializable> extends AbstractCompoundComp
 		int column = 1;
 		while(it.hasNext()) {
 			IColumnModel<E> model = it.next();			
-			writer.println("<td width=\"100px\" class=\"resizeCell\" nowrap=\"nowrap\">");
+			writer.println("<td  ");
+			writer.print("width=\"");
+			writer.print(model.getWidth()+"px");
+			writer.print("\" ");
+			writer.println("class=\"resizeCell\" nowrap=\"nowrap\">");
 			renderDefaultHeaderCell(writer, request, model, column);	
 			writer.println("</td>");
 			column ++;
@@ -347,10 +399,10 @@ public class TableComponent<E extends Serializable> extends AbstractCompoundComp
 		if(!isColumnsResizable())
 			resizeId = getMarkupId()+"_cND_"+column;
 		else if(model.isResizable() )
-			resizeId = getMarkupId()+"_c_"+column;				
+			resizeId = getMarkupId()+"_c_"+column+"_"+rendringCount;				
 		// this naming does the trick of making the column non re-sizable
 		else 
-			resizeId =getMarkupId()+"_c_"+column;
+			resizeId =getMarkupId()+"_c_"+column+"_"+rendringCount;
 		
 		String dragableClass = null;		
 		if(!isColumnsResizable())
