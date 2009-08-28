@@ -21,7 +21,7 @@ import com.antilia.jsp.component.IComponent;
 import com.antilia.jsp.component.ILinkListener;
 import com.antilia.jsp.component.IUrlGenerator;
 import com.antilia.jsp.component.RequestContext;
-import com.antilia.jsp.component.TableComponent;
+import com.antilia.jsp.component.table.TableComponent;
 import com.antilia.jsp.taglib.beans.Persona;
 import com.antilia.jsp.taglib.dao.MockClientesDao;
 import com.antilia.web.beantable.model.TableModel;
@@ -109,7 +109,7 @@ public class TestServlet extends HttpServlet {
 			TableComponent<Persona> tableComponent2 = new TableComponent<Persona>("personas2", tableModel, navigator);
 			tableComponent2.render(request, out);
 			out.println("</body>");
-			out.println("<html>");
+			out.println("</html>");
 			out.flush();
 			out.close();
 		} finally {
