@@ -5,6 +5,7 @@ Bundle-SymbolicName: com.antilia.jsp.taglib
 Bundle-Version: 1.0.0
 Bundle-ClassPath: taglib.jar
 Export-Package: com.antilia.jsp.component,
+ com.antilia.jsp.component.table,
  com.antilia.jsp.resources,
  com.antilia.jsp.sandbox,
  com.antilia.jsp.taglib

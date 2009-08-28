@@ -1,12 +1,14 @@
 /**
  * 
  */
-package com.antilia.jsp.component;
+package com.antilia.jsp.component.table;
 
 import java.io.Serializable;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.antilia.jsp.component.AjaxLink;
+import com.antilia.jsp.component.RequestContext;
 import com.antilia.jsp.resources.Resources;
 
 /**
