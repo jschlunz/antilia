@@ -35,7 +35,7 @@ public class QueryToCriteriaTransformer<E extends Serializable> implements IQuer
 		if(source.getMaxResults() > 0) {
 			criteria.setMaxResults(source.getMaxResults());
 		}
-		if(source.getFirstResult() > 0) {
+		if(source.getFirstResult() > 0 && includeOrdering) {
 			criteria.setFirstResult(source.getFirstResult());
 		}
 		
