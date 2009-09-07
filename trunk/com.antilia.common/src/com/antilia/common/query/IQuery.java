@@ -8,7 +8,7 @@ import java.io.Serializable;
 
 
 /**
- * Abstarct representation of a query.
+ * Abstract representation of a query.
  * 
  * @author Ernesto Reinaldo Barreiro (reiern70@gmail.com)
  *
@@ -90,18 +90,36 @@ public interface IQuery<B extends Serializable> extends Serializable  {
 	IQuery<B> setProjection(IProjection projection);
 	
 	/**
-	 * 
+	 * Returns the projection.
 	 * @return
 	 */
 	public IProjection getProjection();
 	
+	/**
+	 * Sets the maximum number of results that executing the query should return.
+	 * 
+	 * @param maxResults
+	 * @return
+	 */
 	public IQuery<B> setMaxResults(int maxResults);
 	
+	/**
+	 * @return Gets the maximum number of results that executing the query should return.
+	 */
 	public int getMaxResults( );
 	
+	/**
+	 * 	Sets the first result that executing the query should return.
+	 * 
+	 * @param firstResult
+	 * @return
+	 */
 	public IQuery<B> setFirstResult(int firstResult);
 	
+	/**
+	 * 
+	 * @return Gets the first result that executing the query should return.
+	 */
 	public int getFirstResult( );
-	
-	
+
 }
