@@ -12,7 +12,6 @@ import com.antilia.web.beantable.Table;
 import com.antilia.web.beantable.model.TableModel;
 import com.antilia.web.beantable.navigation.NextPageButton;
 import com.antilia.web.beantable.navigation.PageNumberItem;
-import com.antilia.web.toolbar.ProductPanel;
 import com.antilia.web.toolbar.SubToolbar;
 import com.antilia.web.toolbar.Toolbar;
 
@@ -30,8 +29,9 @@ public class TablePanel extends Panel {
 	public TablePanel(String id) {
 		super(id);
 		Toolbar toolbar = new Toolbar("adxMenu");
-		toolbar.addItem(new ProductPanel("products1"));
-		toolbar.addItem(new ProductPanel("products2"));
+		
+		//toolbar.addItem(new ProductPanel("products1"));
+		//toolbar.addItem(new ProductPanel("products2"));
 		
 		SubToolbar subToolbar = new SubToolbar("Products3", toolbar) {
 			
