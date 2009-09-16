@@ -8,9 +8,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.wicket.Component;
-import org.apache.wicket.behavior.HeaderContributor;
 import org.apache.wicket.markup.ComponentTag;
 import org.apache.wicket.markup.MarkupStream;
+import org.apache.wicket.markup.html.CSSPackageResource;
+import org.apache.wicket.markup.html.JavascriptPackageResource;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.panel.Panel;
@@ -48,15 +49,15 @@ public class Toolbar extends Panel implements IToolbar {
 	public Toolbar(String id, IToolbarItemsFactory... factories) {
 		super(id);
 		
-		add(HeaderContributor.forJavaScript(DefaultStyle.JS_YUI_DOM_EVENT));
-		add(HeaderContributor.forJavaScript(DefaultStyle.JS_YUI_DOM_MIN));
-		add(HeaderContributor.forJavaScript(DefaultStyle.JS_YUI_EVENT));
-		add(HeaderContributor.forJavaScript(DefaultStyle.JS_YUI_ANIMATION));
-		add(HeaderContributor.forJavaScript(DefaultStyle.JS_YUI_DRAG_DROP));
+		//add(HeaderContributor.forJavaScript(DefaultStyle.JS_YUI_DOM_EVENT));
+		//add(HeaderContributor.forJavaScript(DefaultStyle.JS_YUI_DOM_MIN));
+		//add(HeaderContributor.forJavaScript(DefaultStyle.JS_YUI_EVENT));
+		//add(HeaderContributor.forJavaScript(DefaultStyle.JS_YUI_ANIMATION));
+		//add(HeaderContributor.forJavaScript(DefaultStyle.JS_YUI_DRAG_DROP));
 		
-		add(HeaderContributor.forCss(DefaultStyle.CC_menu));
-		add(HeaderContributor.forJavaScript(DefaultStyle.JS_ie5));
-		add(HeaderContributor.forJavaScript(DefaultStyle.JS_DropDownMenuX));
+		add(CSSPackageResource.getHeaderContribution(DefaultStyle.CC_menu));
+		add(JavascriptPackageResource.getHeaderContribution(DefaultStyle.JS_ie5));
+		add(JavascriptPackageResource.getHeaderContribution(DefaultStyle.JS_DropDownMenuX));
 	
 		toolbar = new WebMarkupContainer("toolbar");		
 		add(toolbar);
@@ -105,7 +106,8 @@ public class Toolbar extends Panel implements IToolbar {
 				sb.append(".delay.hide = 400;\n");
 				sb.append(toolbarId);
 				sb.append(".position.levelX.left = 2;\n");
-				sb.append("YAHOO.util.Event.onDOMReady(function(){"+toolbarId+".init();})");
+				//sb.append("YAHOO.util.Event.onDOMReady(function(){"+toolbarId+".init();})");
+				sb.append(toolbarId+".init();");
 				replaceComponentTagBody(markupStream, openTag, sb.toString());
 			}
 		};
