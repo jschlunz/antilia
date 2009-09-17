@@ -12,7 +12,6 @@ Require-Bundle: com.antilia.common,
  com.antilia.web,
  com.antilia.web.hibernate,
  com.antilia.hibernate,
- com.antilia.wicketstuff,
  com.antilia.ibatis;bundle-version="1.0.0"
 Bundle-ClassPath: lib/postgresql-8.3-603.jdbc4.jar,
  lib/DdlUtils-1.0.jar,
