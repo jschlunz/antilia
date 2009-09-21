@@ -20,6 +20,9 @@ import org.apache.wicket.markup.repeater.RepeatingView;
 import org.apache.wicket.model.Model;
 
 /**
+ * This component is based on this Menu
+ * 
+ * http://www.dynamicdrive.com/style/csslibrary/item/jquery_multi_level_css_menu_2/
  * 
  *
  * @author Ernesto Reinaldo Barreiro (reiern70@gmail.com)

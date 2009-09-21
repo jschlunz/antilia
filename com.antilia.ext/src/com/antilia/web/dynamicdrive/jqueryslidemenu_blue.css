@@ -1,5 +1,5 @@
 .jqueryslidemenu{
-font: bold 11px Verdana;
+font: bold 10px Verdana;
 background: #9eb7e8;
 width: 100%;
 }
@@ -23,7 +23,6 @@ display: block;
 background: #9eb7e8; /*background of tabs (default state)*/
 color: white;
 padding: 8px 10px;
-border-right: 1px solid #b0a4a4;
 color: #2d2b2b;
 text-decoration: none;
 }
@@ -60,9 +59,15 @@ float: none;
 top: 0;
 }
 
+/*Fix IE6 sub menu list   */
+.jqueryslidemenu ul li ul li ul li{
+	_left: -4px;     /* IE6 only */
+}
+
+
 /* Sub level menu links style */
 .jqueryslidemenu ul li ul li a{
-font: normal 13px Verdana;
+font: normal 10px Verdana;
 width: 160px; /*width of sub menus*/
 padding: 5px;
 margin: 0;
