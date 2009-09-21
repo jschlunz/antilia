@@ -33,7 +33,10 @@ public class Menubar extends Panel implements IMenu {
 	
 	private static final ResourceReference SLIDEMENU = new ResourceReference(Menubar.class, "jqueryslidemenu.js");
 	
-	private static final ResourceReference SLIDEMENU_CSS = new ResourceReference(Menubar.class, "jqueryslidemenu.css");
+	protected static final ResourceReference SLIDEMENU_CSS = new ResourceReference(Menubar.class, "jqueryslidemenu.css");
+	
+	protected static final ResourceReference SLIDEMENU_CSS_BLUE = new ResourceReference(Menubar.class, "jqueryslidemenu_blue.css");
+	
 	
 	private static final ResourceReference RIGHT_IMG = new ResourceReference(Menubar.class, "right.gif");
 	
@@ -57,8 +60,8 @@ public class Menubar extends Panel implements IMenu {
 		setRenderBodyOnly(true);
 		
 		add(JavascriptPackageResource.getHeaderContribution(JQUERY));
-		add(JavascriptPackageResource.getHeaderContribution(SLIDEMENU));		
-		add(CSSPackageResource.getHeaderContribution(SLIDEMENU_CSS));
+		add(JavascriptPackageResource.getHeaderContribution(newMenuJavaScript()));		
+		add(CSSPackageResource.getHeaderContribution(newMenuCss()));
 			
 		toolbar = new WebMarkupContainer("toolbar");				
 		toolbar.setOutputMarkupId(true);
@@ -68,7 +71,31 @@ public class Menubar extends Panel implements IMenu {
 		itemsView = new RepeatingView("items");		
 		toolbar.addOrReplace(itemsView);
 	}
-
+	
+	/**
+	 * 
+	 * @return
+	 */
+	protected ResourceReference newMenuJavaScript() {
+		return SLIDEMENU;
+	}
+	
+	/**
+	 * 
+	 * @return
+	 */
+	protected ResourceReference newMenuCss() {
+		return SLIDEMENU_CSS;
+	}
+	
+	
+	protected ResourceReference newDownImage() {
+		return DOWN_IMG;
+	}
+	
+	protected ResourceReference newRightImage() {
+		return RIGHT_IMG;
+	}
 	
 	@Override
 	protected void onBeforeRender() {
@@ -89,9 +116,9 @@ public class Menubar extends Panel implements IMenu {
 				String toolbarId =  toolbar.getMarkupId();
 				StringBuffer sb = new StringBuffer();
 				sb.append("var arrowimages={down:['downarrowclass', '");
-				sb.append(urlFor(DOWN_IMG));
+				sb.append(urlFor(Menubar.this.newDownImage()));
 				sb.append("', 23], right:['rightarrowclass', '");
-				sb.append(urlFor(RIGHT_IMG));
+				sb.append(urlFor(Menubar.this.newRightImage()));
 				sb.append("']};");
 				sb.append("jqueryslidemenu.buildmenu(\"");
 				sb.append(toolbarId);
