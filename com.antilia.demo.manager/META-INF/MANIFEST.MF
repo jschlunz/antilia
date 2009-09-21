@@ -10,7 +10,8 @@ Import-Package: org.osgi.framework;version="1.3.0"
 Require-Bundle: com.antilia.common,
  com.antilia.web,
  com.antilia.hibernate,
- com.antilia.ibatis;bundle-version="1.0.0"
+ com.antilia.ibatis;bundle-version="1.0.0",
+ com.antilia.ext;bundle-version="1.0.0"
 Bundle-ClassPath: lib/postgresql-8.3-603.jdbc4.jar,
  lib/DdlUtils-1.0.jar,
  .,
