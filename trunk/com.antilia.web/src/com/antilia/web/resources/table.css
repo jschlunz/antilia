@@ -28,6 +28,10 @@ div.pNumber {
 	padding-left: 2px;		
 }
 
+.firstHeaderMenu {
+	margin-left: 3px;
+}
+
 span.pageNCurr, span.pageNOff, span.pageNSep  {
 	background-color:transparent;
 	vertical-align: middle;

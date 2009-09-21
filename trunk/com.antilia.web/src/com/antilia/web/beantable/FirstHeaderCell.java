@@ -91,7 +91,7 @@ public class FirstHeaderCell<E extends Serializable> extends Panel {
 		}, Integer.class));
 		MenuItemsFactory factory = getTable().getFirstHeaderMenuItemsFactory();		
 		Menu menu = Menu.createMenu("headerMenu", null,factory);
-		menu.setHorizontalStyleClass("trans-menu");
+		menu.setHorizontalStyleClass("trans-menu firstHeaderMenu");
 		add(menu);
 		WebMarkupContainer dragTd = new WebMarkupContainer("dragTd");
 		dragTd.add(new AttributeModifier("id", new Model<String>() {
