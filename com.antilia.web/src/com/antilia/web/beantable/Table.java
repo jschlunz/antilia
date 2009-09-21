@@ -178,32 +178,42 @@ public class Table<E extends Serializable> extends Panel implements IPageableCom
 		
 		addMenuItemsAfterNavidation(getAfterNavigationMenuItemsFactory());
 		
-		configureFirstHeaderMenuItemsFactory(tableModel);
+		configureFirstHeaderMenuItemsFactory(tableModel, getFirstHeaderMenuItemsFactory());
 		
 		addMenuItemsBeforeNavigation(getBeforeNavigationMenuItemsFactory());
 		
 	}
 	
-	protected void configureFirstHeaderMenuItemsFactory(ITableModel<E> tableModel) {
-		if(tableModel.getSelectionMode().equals(SelectionMode.MULTIPLE)) {
-			getFirstHeaderMenuItemsFactory().addItem(
+	/**
+	 * Configure the Menu of the table first header.
+	 * 
+	 * @param tableModel
+	 * @param factory
+	 */
+	private void configureFirstHeaderMenuItemsFactory(ITableModel<E> tableModel, MenuItemsFactory factory) {
+		if(tableModel.getSelectionMode().equals(SelectionMode.MULTIPLE)) {			
+			factory.addItem(
 				AjaxRefreshableMenuItem.createRefreshableMenuItem(
 						ToggleSelectAllButton.ID, 
 						new ToggleSelectAllButton<E>(
 								AjaxRefreshableMenuItem.getItemId(), this)));
-			getFirstHeaderMenuItemsFactory().addItem(				
-						new RevertSelectionButton<E>(RevertSelectionButton.ID, this));		
+			//factory.addItem(new RevertSelectionButton<E>(RevertSelectionButton.ID, this));		
 		} 
-		addFirstHeaderMenuItems(getFirstHeaderMenuItemsFactory());
+		addFirstHeaderMenuItems(factory);
 	}	
 	
+	/**
+	 * Done when the selection mode of the table change.
+	 * @param selectionMode
+	 */
 	public void resetSelectionMode(SelectionMode selectionMode) {
 		tableModel.setSelectionMode(selectionMode);
 		getSourceSelector().setSelectionMode(selectionMode);
 		getSourceSelector().clear();
 		getFirstHeaderMenuItemsFactory().removeAll();		
-		configureFirstHeaderMenuItemsFactory(tableModel);
+		configureFirstHeaderMenuItemsFactory(tableModel, getFirstHeaderMenuItemsFactory());
 	}
+	
 	
 	@Override
 	protected void onBeforeRender() {	
@@ -439,6 +449,10 @@ public class Table<E extends Serializable> extends Panel implements IPageableCom
 		MenuFactoryService.getInstance().populateFactory(AFTER_NAVIGATION_MENU, factory);
 	}
 
+	/**
+	 * 
+	 * @param factory
+	 */
 	protected void addFirstHeaderMenuItems(MenuItemsFactory factory) {
 		
 	}
