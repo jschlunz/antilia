@@ -31,7 +31,7 @@ public class TestMenu extends WebPage  {
 
 			@Override
 			protected ResourceReference newMenuCss() {
-				return Menubar.SLIDEMENU_CSS_BLUE;
+				return Menubar.SLIDEMENU_CSS;
 			}
 		};
 		add(menubar);
