@@ -12,9 +12,11 @@ import org.apache.wicket.Session;
 import org.apache.wicket.spring.injection.annot.SpringComponentInjector;
 
 import com.antilia.common.util.StringUtils;
+import com.antilia.demo.manager.entities.InsertData;
 import com.antilia.demo.manager.spring.SpringHibernateInitializer;
 import com.antilia.demo.manager.test.HSQLDBPersistenceUnit;
 import com.antilia.hibernate.cfg.IPersistenceUnit;
+import com.antilia.hibernate.command.DefaultCommander;
 import com.antilia.hibernate.context.RequestContext;
 import com.antilia.web.AntiliaWebApplication;
 import com.antilia.web.login.DisableAllAuthorizationStrategy;
@@ -80,9 +82,20 @@ public class ManagerApplication extends AntiliaWebApplication {
 		getMarkupSettings().setStripWicketTags(true);
 		getDebugSettings().setAjaxDebugModeEnabled(false);
 		getDebugSettings().setOutputMarkupContainerClassName(false);
+		initializeDatabase();
+
 		if(injectionEngine.equals(InjectionEngine.SPRING)) {
 			initializeSpring();
 		}
+		
+	}
+	
+	private void initializeDatabase() {						
+		IPersistenceUnit persistenceUnit = HSQLDBPersistenceUnit.getInstance();
+		RequestContext requestContext = RequestContext.get();
+		requestContext.setPersistenceUnit(persistenceUnit);
+		requestContext.setUser("test");
+		DefaultCommander.execute(new InsertData());
 	}
 	
 	private void initializeSpring() {						

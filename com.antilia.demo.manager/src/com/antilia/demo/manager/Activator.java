@@ -6,7 +6,7 @@ import com.antilia.web.osgi.WebApplicationActivator;
 public class Activator extends WebApplicationActivator {
 
 	public Activator() {	
-		addServiceActivator(new StartDerbyActivator());
+		//addServiceActivator(new StartDerbyActivator());
 	}
 	
 	@Override
