@@ -9,6 +9,8 @@ import java.util.Collection;
 
 import org.hibernate.Session;
 
+import com.antilia.hibernate.util.CommandUtils;
+
 /**
  * 
  *
@@ -29,7 +31,9 @@ public class DeleteAllCommand<E extends Serializable> extends  AbstractPersisten
 	protected Collection<E> doExecute() throws Throwable {
 		Session session = getSession();
 		for(E entity: getEntities()) {
-			session .delete(entity);
+			session.delete(CommandUtils.attachObject(entity));	
+			// without this this HSQLDB does not works.
+			session.flush();
 		}
 		return getEntities();
 	}
