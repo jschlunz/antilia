@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.apache.wicket.Component;
+import org.apache.wicket.ajax.AbstractDefaultAjaxBehavior;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 
 import com.antilia.common.FrameworkException;
@@ -18,7 +19,7 @@ import com.antilia.common.FrameworkException;
  * @author Ernesto Reinaldo Barreiro (reiern70@gmail.com)
  *
  */
-public class YuiDraggableTargetBehavior extends ScriptaculousAjaxBehavior {
+public class YuiDraggableBehavior extends AbstractDefaultAjaxBehavior {
 
 	private static final long serialVersionUID = 1L;
 
@@ -26,7 +27,7 @@ public class YuiDraggableTargetBehavior extends ScriptaculousAjaxBehavior {
 	
 	private final Map<String, Object> dropOptions = new HashMap<String, Object>();
 	
-	public YuiDraggableTargetBehavior(IDraggableDroppable dragableDroppable) {
+	public YuiDraggableBehavior(IDraggableDroppable dragableDroppable) {
 		this.dragableDroppable = dragableDroppable;
 		if(!(dragableDroppable instanceof Component))
 			throw new FrameworkException("", "IDraggableDroppable target has to be a component");

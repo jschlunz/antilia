@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.apache.wicket.RequestCycle;
 import org.apache.wicket.Response;
+import org.apache.wicket.ajax.AbstractDefaultAjaxBehavior;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.behavior.AttributeAppender;
 import org.apache.wicket.model.Model;
@@ -20,7 +21,7 @@ import com.antilia.web.effect.JavascriptHelper;
  * @see http://wiki.script.aculo.us/scriptaculous/show/Draggable
  * @see DraggableTarget
  */
-public abstract class DraggableBehavior extends ScriptaculousAjaxBehavior
+public abstract class DraggableBehavior extends AbstractDefaultAjaxBehavior
 {
 	private static final long serialVersionUID = 1L;
 	private Map<String, Object> options = new HashMap<String, Object>();
