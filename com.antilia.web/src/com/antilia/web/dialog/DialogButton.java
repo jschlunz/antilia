@@ -85,7 +85,7 @@ public abstract class DialogButton extends Panel implements IDialogLink, IDialog
 				}
 				
 				@Override
-				protected IAjaxCallDecorator getAjaxCallDecorator() {
+				public IAjaxCallDecorator getAjaxCallDecorator() {
 					return DialogButton.this.getAjaxCallDecorator();
 				}			
 			};

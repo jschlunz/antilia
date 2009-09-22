@@ -53,7 +53,7 @@ public class CancelDialogButton extends AbstractButton {
 
 
 	@Override
-	protected IAjaxCallDecorator getAjaxCallDecorator() {
+	public IAjaxCallDecorator getAjaxCallDecorator() {
 		return new CloseDialogAction(this, dialog).getAjaxCallDecorator();
 	}
 	

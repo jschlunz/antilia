@@ -19,6 +19,7 @@ import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.ResourceModel;
 
 import com.antilia.web.ajax.AntiliaAjaxCallDecorator;
+import com.antilia.web.ajax.IAjaxCallDecoratorProvider;
 import com.antilia.web.ajax.IDialogFinder;
 import com.antilia.web.dialog.IDialogScope;
 import com.antilia.web.toolbar.IToolbarItem;
@@ -28,7 +29,7 @@ import com.antilia.web.toolbar.IToolbarItem;
  * 
  * @author Ernesto Reinaldo Barreiro (reiern70@gmail.com)
  */
-public abstract class AbstractButton extends Panel implements IMenuItem, IToolbarItem, IDialogFinder {
+public abstract class AbstractButton extends Panel implements IMenuItem, IToolbarItem, IDialogFinder, IAjaxCallDecoratorProvider {
 
 	private static final long serialVersionUID = 1L;
 
@@ -43,6 +44,8 @@ public abstract class AbstractButton extends Panel implements IMenuItem, IToolba
 	private int order = NO_ORDER;
 	
 	private IDialogScope dialogScope;
+	
+	private IAjaxCallDecoratorProvider provider = null;
 	
 	
 	/**
@@ -116,7 +119,7 @@ public abstract class AbstractButton extends Panel implements IMenuItem, IToolba
 				
 				@Override
 				protected IAjaxCallDecorator getAjaxCallDecorator() {
-					return AbstractButton.this.getAjaxCallDecorator();
+					return AbstractButton.this.findAjaxCallDecorator();					
 				}
 				
 				@Override
@@ -174,45 +177,25 @@ public abstract class AbstractButton extends Panel implements IMenuItem, IToolba
 		
 	}
 	
+	protected IAjaxCallDecorator findAjaxCallDecorator() {
+		if(provider == null) {
+			provider = findParent(IAjaxCallDecoratorProvider.class);
+			if(provider == null) {
+				provider = this;				
+			}
+		}
+		return provider.getAjaxCallDecorator();
+	}
+	
 	/**
 	 * Overide this method to add your own AjaxCallDecorator.
 	 * @return
 	 */
-	protected IAjaxCallDecorator getAjaxCallDecorator()
-	{
-		/*
-		return new IAjaxCallDecorator() {
-			
-			private static final long serialVersionUID = 1L;
-
-			public CharSequence decorateOnFailureScript(CharSequence script) {
-				IDialogScope dialogScope = getDialogScope();
-				String errorMessage = ";alert('"+AbstractButton.this.getString("ServerDown", null, "Server Down!")+"');";
-				if(dialogScope != null) {
-					return script + ";" + VeilResources.Javascript.Generic.toggle(dialogScope.getDialogId()) + errorMessage ;
-				} 
-				return script + ";" + VeilResources.Javascript.Generic.toggle("AT_body") + errorMessage;
-			}
-			
-			public CharSequence decorateOnSuccessScript(CharSequence script) {
-				IDialogScope dialogScope = getDialogScope();
-				if(dialogScope != null) {
-					return script + ";" + VeilResources.Javascript.Generic.toggle(dialogScope.getDialogId()) + ";" ;
-				}
-				return script + ";" + VeilResources.Javascript.Generic.toggle("AT_body") + ";";
-			}
-			
-			public CharSequence decorateScript(CharSequence script) {
-				IDialogScope dialogScope = getDialogScope();
-				if(dialogScope != null) {
-					return VeilResources.Javascript.Generic.show(dialogScope.getDialogId()) + ";" + script;
-				}
-				return VeilResources.Javascript.Generic.show("AT_body") + ";" + script;
-			}
-		};
-		*/
+	public IAjaxCallDecorator getAjaxCallDecorator()
+	{						
 		return new AntiliaAjaxCallDecorator(this);
 	}
+	
 	
 	public IDialogScope findParentDialog() {
 		return (IDialogScope)findParent(IDialogScope.class);

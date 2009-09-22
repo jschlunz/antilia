@@ -94,7 +94,7 @@ public abstract class AbstractActionSetButton extends AbstractButton implements 
 	}
 	
 	@Override
-	protected IAjaxCallDecorator getAjaxCallDecorator() {
+	public IAjaxCallDecorator getAjaxCallDecorator() {
 		// TODO: should we have a kind of aggregated decorator? instead of returning the first non null?
 		for(IAction action: elements()) {
 			IAjaxCallDecorator decorator = action.getAjaxCallDecorator();
