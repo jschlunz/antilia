@@ -58,6 +58,7 @@ public class ManagerApplication extends AntiliaWebApplication {
 	@Override
 	public Class<? extends Page> getHomePage() {
 		return Index.class;
+		//return TestTablePage.class;
 	}
 
 	@Override
