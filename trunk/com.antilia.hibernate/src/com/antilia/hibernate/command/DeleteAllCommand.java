@@ -32,8 +32,6 @@ public class DeleteAllCommand<E extends Serializable> extends  AbstractPersisten
 		Session session = getSession();
 		for(E entity: getEntities()) {
 			session.delete(CommandUtils.attachObject(entity));	
-			// without this this HSQLDB does not works.
-			session.flush();
 		}
 		return getEntities();
 	}
