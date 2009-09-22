@@ -82,12 +82,10 @@ public class ManagerApplication extends AntiliaWebApplication {
 		getMarkupSettings().setStripWicketTags(true);
 		getDebugSettings().setAjaxDebugModeEnabled(false);
 		getDebugSettings().setOutputMarkupContainerClassName(false);
-		initializeDatabase();
-
 		if(injectionEngine.equals(InjectionEngine.SPRING)) {
 			initializeSpring();
 		}
-		
+		initializeDatabase();				
 	}
 	
 	private void initializeDatabase() {						

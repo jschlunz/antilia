@@ -9,15 +9,14 @@
        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.0.xsd">
 	
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
-  		<property name="driverClassName" value="org.apache.derby.jdbc.ClientDriver" />
-  		<property name="url" value="jdbc:derby://localhost:1527/manager" />
-  		<property name="username" value="reiern"/>
-  		<property name="password" value="reiern"/>
+  		<property name="driverClassName" value="org.hsqldb.jdbcDriver" />
+  		<property name="url" value="sa" />
+  		<property name="username" value="sa"/>
+  		<property name="password" value=""/>
 	</bean>
 
 
 	<bean id="sessionFactory" class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
-	  <property name="dataSource" ref="dataSource" />
 	  <property name="annotatedClasses">
 	  	<list>
 	  		<value>com.antilia.demo.manager.entities.Country</value>
@@ -36,8 +35,15 @@
 	  </property>	  	  
 	  <property name="hibernateProperties">	  	
 	  	<props>
-	  		<prop key="hibernate.dialect">org.hibernate.dialect.DerbyDialect</prop>	  		
+	  		<prop key="hibernate.dialect">org.hibernate.dialect.HSQLDialect</prop>	  			
+	  		<prop key="hibernate.connection.username">sa</prop>	
+	  		<prop key="hibernate.connection.password"></prop>
+	  		<prop key="hibernate.connection.url">jdbc:hsqldb:mem:manager</prop>	  		
 	  		<prop key="hibernate.show_sql">true</prop>
+	  		<prop key="hibernate.connection.pool_size">1</prop>
+	  		<prop key="hibernate.connection.autocommit">true</prop>
+	  		<prop key="hibernate.cache.provider_class">org.hibernate.cache.HashtableCacheProvider</prop>
+	  		<prop key="hibernate.hbm2ddl.auto">create-drop</prop>	  					  		
 	  	</props>	    
 	  </property>
 	</bean>
