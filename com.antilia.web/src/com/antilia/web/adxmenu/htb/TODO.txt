@@ -1,1 +1,0 @@
-Convert this to some wicket component!
