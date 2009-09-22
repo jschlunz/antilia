@@ -304,5 +304,9 @@ public  class  PersistenceUnit implements IPersistenceUnit {
 		this.entityNotFoundDelegate = entityNotFoundDelegate;
 	}
 	
+	public PersistenceUnit setProperty(String name, String value) {
+		properties.put(name, value);
+		return this;
+	}
 	
 }
