@@ -68,7 +68,11 @@ Wicket.Veil = {
 	*/
 	showModal:function() {						
 		var target = document.getElementById("AT_body");
+		if(target==null)
+			return;
 		var veil=document.getElementById("AT_body_modal");	
+		if(veil==null)
+			return;
 		veil.style.position="absolute";
 		veil.style.left=Wicket.Veil.left(target);
 		veil.style.top=Wicket.Veil.top(target);		
@@ -93,6 +97,8 @@ Wicket.Veil = {
 
 	hideModal:function() {
 		var veil=document.getElementById("AT_body_modal");		
+		if(veil == null)
+			return;
 		if (veil.style.display=="block") {			
 			veil.style.display="none";	
 			if(Antilia.Browser.ie6==true) {
@@ -109,6 +115,8 @@ Wicket.Veil = {
 	*/
 	show:function(targetId, options) {
 		var target = document.getElementById(targetId);	
+		if(target == null)
+			return;
 		var veil=document.createElement("div");	
 		veil.innerHTML="&nbsp;";
 		veil.className=options.className;

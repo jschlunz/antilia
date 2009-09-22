@@ -60,7 +60,7 @@ public abstract class OkDialogButton extends AbstractButton {
 	protected abstract void onOk(AjaxRequestTarget target, Form<?> form);
 
 	@Override
-	protected IAjaxCallDecorator getAjaxCallDecorator() {
+	public IAjaxCallDecorator getAjaxCallDecorator() {
 		return new CloseDialogAction(this, dialog).getAjaxCallDecorator();
 	}
 }

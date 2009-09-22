@@ -66,26 +66,7 @@ public class CloseDialogButton extends AbstractButton {
 
 
 	@Override
-	protected IAjaxCallDecorator getAjaxCallDecorator() {
-		/*
-		return new IAjaxCallDecorator() 
-		{
-			private static final long serialVersionUID = 1L;
-
-			public CharSequence decorateOnFailureScript(CharSequence script) {
-				return script;
-			}
-
-			public CharSequence decorateOnSuccessScript(CharSequence script) {
-				return "Antilia_dragPanels.deletePanel('"+dialog.getDialogId()+"');"+script;
-			}
-
-			public CharSequence decorateScript(CharSequence script) {
-				return  script;
-			}
-			
-		};
-		*/
+	public IAjaxCallDecorator getAjaxCallDecorator() {		
 		return new CloseDialogAction(this, dialog).getAjaxCallDecorator();
 	}
 }

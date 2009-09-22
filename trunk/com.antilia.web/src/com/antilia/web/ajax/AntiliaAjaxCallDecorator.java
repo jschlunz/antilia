@@ -30,25 +30,25 @@ public class AntiliaAjaxCallDecorator implements IAjaxCallDecorator {
 		IDialogScope dialogScope = getDialogScope();
 		String errorMessage = ";alert('"+this.dialogFinder.getDefiningComponent().getString("ServerDown", null, "Server Down!")+"');";
 		if(dialogScope != null) {
-			return script + ";" + VeilResources.Javascript.Generic.toggle(dialogScope.getDialogId()) + errorMessage ;
+			return script + ";if(Wicket.Veil){" + VeilResources.Javascript.Generic.toggle(dialogScope.getDialogId()) + ";};"+ errorMessage ;
 		} 
-		return script + ";" + VeilResources.Javascript.Generic.toggle("AT_body") + errorMessage;
+		return script + ";if(Wicket.Veil){" + VeilResources.Javascript.Generic.toggle("AT_body") + ";};"+errorMessage;
 	}
 	
 	public CharSequence decorateOnSuccessScript(CharSequence script) {
 		IDialogScope dialogScope = getDialogScope();
 		if(dialogScope != null) {
-			return script + ";" + VeilResources.Javascript.Generic.toggle(dialogScope.getDialogId()) + ";" ;
+			return script + ";if(Wicket.Veil){" + VeilResources.Javascript.Generic.toggle(dialogScope.getDialogId()) + ";};" ;
 		}
-		return script + ";" + VeilResources.Javascript.Generic.toggle("AT_body") + ";";
+		return script + ";if(Wicket.Veil){" + VeilResources.Javascript.Generic.toggle("AT_body") + ";};";
 	}
 	
 	public CharSequence decorateScript(CharSequence script) {
 		IDialogScope dialogScope = getDialogScope();
 		if(dialogScope != null) {
-			return VeilResources.Javascript.Generic.show(dialogScope.getDialogId()) + ";" + script;
+			return "if(Wicket.Veil){"+VeilResources.Javascript.Generic.show(dialogScope.getDialogId()) + ";};" + script;
 		}
-		return VeilResources.Javascript.Generic.show("AT_body") + ";" + script;
+		return "if(Wicket.Veil){"+VeilResources.Javascript.Generic.show("AT_body") + ";};" + script;
 	}
 	
 	private IDialogScope getDialogScope() {

@@ -58,7 +58,18 @@ import com.antilia.web.utils.RequestUtils;
 public class Table<E extends Serializable> extends Panel implements IPageableComponent<E>, IPageableNavigationListener {
 
 	private static final long serialVersionUID = 1L;
+	
+	public static final String AFTER_NAVIGATION_MENU = "AFTER_NAVIGATION_MENU";
+	
+	public static final String BEFORE_NAVIGATION_MENU = "BEFORE_NAVIGATION_MENU";
+	
+	public static final String FIRST_HEADER_MENU = "FIRST_HEADER_MENU";
+	
+	private static final String TABLE_CSS_ID = "ANT_TABLE_CSS_ID";
 
+	/**
+	 * The pageable provider navigator.
+	 */
 	private IPageableNavigator<E> pageableProvider; 
 	
 	private INavigatorSelector<E> sourceSelector;
@@ -86,15 +97,8 @@ public class Table<E extends Serializable> extends Panel implements IPageableCom
 	
 	private String firstColumnUrl;
 	
-	public static final String AFTER_NAVIGATION_MENU = "AFTER_NAVIGATION_MENU";
-	
-	public static final String BEFORE_NAVIGATION_MENU = "BEFORE_NAVIGATION_MENU";
-	
-	public static final String FIRST_HEADER_MENU = "FIRST_HEADER_MENU";
-	
 	private List<IPageableNavigationListener> navigationListeners = new ArrayList<IPageableNavigationListener>();
 	
-	private static final String TABLE_CSS_ID = "ANT_TABLE_CSS_ID";
 	
 	/**
 	 * Flag to set first column re-sizable or not.
