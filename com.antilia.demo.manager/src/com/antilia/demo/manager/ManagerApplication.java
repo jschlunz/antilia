@@ -13,7 +13,7 @@ import org.apache.wicket.spring.injection.annot.SpringComponentInjector;
 
 import com.antilia.common.util.StringUtils;
 import com.antilia.demo.manager.spring.SpringHibernateInitializer;
-import com.antilia.demo.manager.test.DerbyPersistenceUnit;
+import com.antilia.demo.manager.test.HSQLDBPersistenceUnit;
 import com.antilia.hibernate.cfg.IPersistenceUnit;
 import com.antilia.hibernate.context.RequestContext;
 import com.antilia.web.AntiliaWebApplication;
@@ -93,7 +93,7 @@ public class ManagerApplication extends AntiliaWebApplication {
 	public RequestCycle newRequestCycle(Request request, Response response) {
 		//IPersistenceUnit persistenceUnit = PostgrePersistenceUnit.getInstance();
 		if(injectionEngine.equals(InjectionEngine.GUICE)) {
-			IPersistenceUnit persistenceUnit = DerbyPersistenceUnit.getInstance();
+			IPersistenceUnit persistenceUnit = HSQLDBPersistenceUnit.getInstance();
 			RequestContext requestContext = RequestContext.get();
 			requestContext.setPersistenceUnit(persistenceUnit);
 			requestContext.setUser("test");
