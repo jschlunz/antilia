@@ -9,27 +9,7 @@ This page describes how to get started using Antilia's Wicket components and bui
 
 For the time being we just describe how to get the couple of demo application we provide. Our demo applications, as Antilia itself, are build as (equinox) OSGI application. So, you will need to use Eclipse as IDE if you want to be able to run the demos as they are now. NOTE: this doesn't imply that some of the component we provide cannot be used in non-OSGi WEB applications.
 
-We provide two demo applications:
-
-== Antilia's components demo == 
-
-NOTE: right now this demo is broken. It will be blended with manager demo.
-
-This applications is a small show-case of some of the the widgets we have built.
-
- * Table component: with re-sizable/draggable columns columns. A plug-in is available that  (automatically) adds export funtionality to tables (so, far PDF is the only supported format, but excel and CSV will follow soon). This is provided in a non-intrusive way via the plugin *com.antilia.export*  
- * Floating panels: modal and non-modal.
- * Round pane boxes
-  
-  
-In order to get the first demo application working you have to check-out the following bundles into a workspace:
- * com.antilia.common
- * com.antilia.hibernate
- * com.antilia.web
- * com.antilia.demo
- * com.antilia.export (optional)
-
-The last one is the main application bundle. If you open the Debugs dialog configuration  and you go to the section OSGi Framework, you will find the *demo34* launcher. You can use it to start the application. Then browse to http:localhost:8080/demo to see the application working.
+We provide a application:
 
 ==A demo showing how to use Antilia to build Data-base oriented applications==
 
@@ -38,15 +18,16 @@ This application shows Antilia's Data-oriented components: so, far this mean a C
 In order to get the second application working, you will need to: 
 
  * Check out the projects:
-   # com.antilia.common
-   # com.antilia.web
-   # com.antilia.hibernate
-   # com.antilia.web.hibernate
-   # com.antilia.demo.manager
-   # com.antilia.export (optional)
+    # com.antilia.common
+    # com.antilia.demo.manager
+    # com.antilia.export
+    # com.antilia.ext
+    # com.antilia.hibernate
+    # com.antilia.ibatis
+    # com.antilia.web  
  * If you open the Debugs dialog configuration  and you go to the section OSGi Framework, you will find the *manager34* launcher. You can use it to start the application. 
- * Start the application using previous launcher. The application will launch a jetty server. Then you can use the external ant launcher with name *buildDatabase* to launch and ANT script that will build the database.
- * Then browse to http:localhost:8080/manager to see the application working and start entering data.
+ * Start the application using previous launcher. 
+ * Then browse to http:localhost:8080/manager to see the application working. Just use any user=password to login into the application. 
 
 *Note:* This is still work in progress.
   
