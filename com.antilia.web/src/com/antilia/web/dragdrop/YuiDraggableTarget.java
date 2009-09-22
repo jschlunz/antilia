@@ -5,9 +5,9 @@ import java.util.Iterator;
 import java.util.Map;
 
 import org.apache.wicket.Component;
-import org.apache.wicket.behavior.HeaderContributor;
 import org.apache.wicket.behavior.IBehavior;
 import org.apache.wicket.markup.MarkupStream;
+import org.apache.wicket.markup.html.JavascriptPackageResource;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 
 import com.antilia.web.resources.DefaultStyle;
@@ -21,17 +21,17 @@ import com.antilia.web.resources.DefaultStyle;
 public abstract class YuiDraggableTarget extends WebMarkupContainer implements IDraggableDroppable
 {
 	private static final long serialVersionUID = 1L;
-	protected final YuiDraggableTargetBehavior onDropBehavior;
+	protected final YuiDraggableBehavior onDropBehavior;
 	private final Map<String, Object> dropOptions = new HashMap<String, Object>();
 
 	public YuiDraggableTarget(String id)
 	{
 		super(id);
 
-		add(HeaderContributor.forJavaScript(DefaultStyle.JS_YUI_DOM_EVENT));
+		add(JavascriptPackageResource.getHeaderContribution(DefaultStyle.JS_YUI_DOM_EVENT));
 		
 		setOutputMarkupId(true);
-		this.onDropBehavior = new YuiDraggableTargetBehavior(this);
+		this.onDropBehavior = new YuiDraggableBehavior(this);
 		add(onDropBehavior);
 	}
 
@@ -48,16 +48,6 @@ public abstract class YuiDraggableTarget extends WebMarkupContainer implements I
 				addAcceptClass(((DraggableBehavior)behavior).getDraggableClassName());
 			}
 		}
-	}
-
-	/**
-	 * configure the draggable target to accept any draggable item from the {@link SortableListView}
-	 * The sortable container needs to override {@link SortableListView#getDraggableClassName()}
-	 * in order for the draggable target to know what to accept.
-	 * @param container
-	 */
-	public void acceptAll(SortableListView container) {
-		addAcceptClass(container.getDraggableClassName());
 	}
 
 	/**
