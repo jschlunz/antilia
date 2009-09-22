@@ -6,6 +6,8 @@ package com.antilia.hibernate.command;
 
 import java.io.Serializable;
 
+import com.antilia.hibernate.util.CommandUtils;
+
 /**
  * 
  *
@@ -24,7 +26,7 @@ public class DeleteCommand<E extends Serializable> extends  AbstractPersistentCo
 		
 	@Override
 	protected E doExecute() throws Throwable {
-		getSession().delete(entity);
+		getSession().delete(CommandUtils.attachObject(entity));
 		return entity;
 	}
 }
