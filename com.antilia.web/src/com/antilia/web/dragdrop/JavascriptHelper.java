@@ -1,4 +1,4 @@
-package com.antilia.web.effect;
+package com.antilia.web.dragdrop;
 
 import java.io.Serializable;
 import java.util.Iterator;

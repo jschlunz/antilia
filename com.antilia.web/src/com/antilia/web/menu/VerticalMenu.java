@@ -19,8 +19,6 @@ import com.antilia.web.button.IMenuItem;
 import com.antilia.web.button.IMenuItemHolder;
 import com.antilia.web.button.IMenuItemsFactory;
 import com.antilia.web.button.MenuItemsFactory;
-import com.antilia.web.effect.Effect;
-import com.antilia.web.effect.EffectAttributeModifier;
 import com.antilia.web.resources.DefaultStyle;
 
 /**
@@ -103,6 +101,7 @@ public  class VerticalMenu extends Panel implements IMenuItem, IMenuItemHolder {
 		mainDiv.add(handle);		
 		if(VerticalMenu.this.getType().equals(Type.VERTICAL)) {
 			menu.setOutputMarkupId(true);
+			/*
 			new EffectAttributeModifier(menu, handle, "ondblclick", true){
 				private static final long serialVersionUID = 1L;
 
@@ -113,6 +112,7 @@ public  class VerticalMenu extends Panel implements IMenuItem, IMenuItemHolder {
 					return toggle;
 				}
 			};
+			*/
 		} else {
 			menu.setRenderBodyOnly(true);
 		}		

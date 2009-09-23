@@ -10,8 +10,6 @@ import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.behavior.AttributeAppender;
 import org.apache.wicket.model.Model;
 
-import com.antilia.web.effect.JavascriptHelper;
-
 /**
  * adds draggable behavior to any component.
  *
