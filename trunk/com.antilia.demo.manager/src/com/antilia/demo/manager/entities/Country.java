@@ -17,6 +17,9 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
+import org.hibernate.annotations.Tuplizer;
+
+import com.antilia.hibernate.remote.TuplizerImpl;
 import com.antilia.web.crud.Exclude;
 
 /**
@@ -24,6 +27,7 @@ import com.antilia.web.crud.Exclude;
  */
 @Entity
 @Table(name = "country", uniqueConstraints = @UniqueConstraint(columnNames = "name"))
+@Tuplizer(impl=TuplizerImpl.class)
 public class Country implements java.io.Serializable, Comparable<Country> {
 
 	private static final long serialVersionUID = 1L;

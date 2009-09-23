@@ -72,6 +72,22 @@ public class InsertData extends AbstractPersistentCommand<Country, Serializable>
 			}
 		}		
 		DefaultCommander.persistAll(addresses);
+		addCustomers(addresses);
+	}
+
+	
+	private void addCustomers(List<Address> addresses) {
+		int i = 0;
+		List<Customer> customers = new ArrayList<Customer>();
+		for(Address address: addresses) {
+			Customer customer = new Customer();
+			customer.setName("Customer " + i);
+			customer.setStatus(CustomerStatus.ACTIVE);
+			customer.setAddress(address);
+			customers.add(customer);
+			i++;
+		}
+		DefaultCommander.persistAll(customers);
 	}
 	
 }

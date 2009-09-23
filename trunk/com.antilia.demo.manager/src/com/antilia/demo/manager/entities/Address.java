@@ -17,6 +17,9 @@ import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Tuplizer;
+
+import com.antilia.hibernate.remote.TuplizerImpl;
 import com.antilia.web.crud.Exclude;
 import com.antilia.web.field.impl.DrillInSelectionMode;
 import com.antilia.web.field.impl.SelectionType;
@@ -26,6 +29,7 @@ import com.antilia.web.field.impl.SelectionType;
  */
 @Entity
 @Table(name = "address")
+@Tuplizer(impl=TuplizerImpl.class)
 public class Address implements java.io.Serializable, Comparable<Address> {
 
 	private static final long serialVersionUID = 1L;
