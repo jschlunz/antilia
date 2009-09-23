@@ -7,8 +7,8 @@ import org.apache.wicket.markup.html.image.Image;
 import org.apache.wicket.markup.html.panel.Panel;
 
 import com.antilia.web.dragdrop.DraggableBehavior;
-import com.antilia.web.dragdrop.DraggableTarget;
-import com.antilia.web.dragdrop.Indicator;
+import com.antilia.web.scriptaculous.drag.DraggableTarget;
+import com.antilia.web.scriptaculous.drag.Indicator;
 
 
 

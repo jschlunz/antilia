@@ -12,4 +12,7 @@ Require-Bundle: com.antilia.common,
 Export-Package: com.antilia.ext,
  com.antilia.web.dynamicdrive,
  com.antilia.web.dynamicdrive.test,
- com.antilia.web.mygosumenu.xul
+ com.antilia.web.effect,
+ com.antilia.web.grid,
+ com.antilia.web.mygosumenu.xul,
+ com.antilia.web.scriptaculous.drag
