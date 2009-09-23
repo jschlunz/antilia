@@ -66,7 +66,7 @@ public class InsertData extends AbstractPersistentCommand<Country, Serializable>
 			for(int i = 0; i < 5;i++) {
 				Address address = new Address();
 				address.setCity(city);
-				address.setAddress1("Street XXX"+i);
+				address.setAddress1("Street XXX-FFF dDSDDDD  DDDdd ddd Eeee Eee"+i);
 				address.setZipcode("XXZA"+i);
 				addresses.add(address);
 			}
