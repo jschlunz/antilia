@@ -14,6 +14,7 @@ import com.antilia.demo.manager.components.workspace.WorkSpacePanel;
 import com.antilia.demo.manager.entities.Address;
 import com.antilia.demo.manager.entities.City;
 import com.antilia.demo.manager.entities.Country;
+import com.antilia.demo.manager.entities.Customer;
 import com.antilia.demo.manager.entities.Employee;
 import com.antilia.web.layout.CRUDLink;
 import com.antilia.web.layout.TopMenuPanel;
@@ -79,6 +80,7 @@ public class MainMenuFactory implements IToolbarItemsFactory {
 					return "Other";
 				}
 			};			
+			subToolbar2.addItem(new CRUDLink<Customer>("Customers", Customer.class));
 			subToolbar2.addItem(new CRUDLink<Employee>("Employees", Employee.class));
 			subToolbar.addItem(subToolbar2);
 			

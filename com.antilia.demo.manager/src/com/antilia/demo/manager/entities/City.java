@@ -34,7 +34,7 @@ public class City implements java.io.Serializable, Comparable<City>{
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "country", nullable = false)
 	@SelectionType(type=DrillInSelectionMode.LARGE_ON_NEXT_PAGE)
 	private Country country;
@@ -42,17 +42,6 @@ public class City implements java.io.Serializable, Comparable<City>{
 	@Column(name = "name", nullable = false, length = 300)
 	private String name;
 	
-	/*
-	private transient Timestamp test;
-	
-	public Timestamp getTest() {
-		return test;
-	}
-
-	public void setTest(Timestamp test) {
-		this.test = test;
-	}
-	*/
 
 	public City() {
 	}
