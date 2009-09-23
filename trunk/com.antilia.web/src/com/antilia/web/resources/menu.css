@@ -5,7 +5,7 @@
 .ddmx .item1:hover,
 .ddmx .item1-active,
 .ddmx .item1-active:hover {
-    padding: 3px 10px 3px 10px;
+    padding: 2px 10px 2px 10px;
     background: transparent;
     font: 12px arial;
     color: black;
@@ -13,6 +13,12 @@
     display: block;
     white-space: nowrap;
     position: relative;
+    font-weight: bold;
+}
+
+.ddmx .item1:hover, .ddmx .item1-active, .ddmx .item1-active:hover {
+	color: gray;
+	font-weight: bold;
 }
 
 .ddmx .smallbutton {
@@ -30,7 +36,7 @@
     border: solid 0px black;
     vertical-align: middle;
     padding: 0px;
-    margin-top: 1px;
+    margin-top: 2px;    
 } 
 
 .ddmx .smallbutton span {
@@ -38,7 +44,7 @@
     border: solid 0px black;
     vertical-align: middle;
     padding: 0px;
-    margin-top: 1px;    
+    margin-top: 0px;    
 }
 
 .ddmx .item2,
@@ -54,6 +60,7 @@
     white-space: nowrap;
     position: relative;
     z-index: 500;
+    height: 12px;
 }
 
 .ddmx .item2  {
@@ -97,7 +104,7 @@
 .ddmx .item2:hover,
 .ddmx .item2-active,
 .ddmx .item2-active:hover {
-    background: #ffffff;
+   color: gray;
 }
 .ddmx .arrow,
 .ddmx .arrow:hover {
@@ -116,6 +123,7 @@
     width: auto;
     position: absolute;
     visibility: hidden;
+    margin-left: 2px;
     z-index: 499;
 }
 
@@ -124,8 +132,8 @@
     padding-right: 4px;
 }
 
-.ddmx .section td:hover {
-     background-color: #ffffff;
+.ddmx .section td a:hover {
+     color: gray;
 }
 
 * html .ddmx td { position: relative; } /* ie 5.0 fix */
