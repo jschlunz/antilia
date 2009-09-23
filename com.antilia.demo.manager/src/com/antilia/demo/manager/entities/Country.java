@@ -41,6 +41,7 @@ public class Country implements java.io.Serializable, Comparable<Country> {
 	
 	@Column(name = "name", unique = true, nullable = false, length = 150)
 	private String name;
+	
 	@Column(name = "domain", nullable = false, length = 3)
 	private String domain;
 
