@@ -9,7 +9,7 @@ import java.io.Serializable;
 import org.apache.wicket.ResourceReference;
 
 import com.antilia.web.dialog.DefaultDialog;
-import com.antilia.web.dialog.DialogButton;
+import com.antilia.web.dialog.DialogLink;
 import com.antilia.web.field.BeanProxy;
 import com.antilia.web.field.IFieldModel;
 import com.antilia.web.resources.DefaultStyle;
@@ -20,7 +20,7 @@ import com.antilia.web.resources.DefaultStyle;
  * @author Ernesto Reinaldo Barreiro (reiern70@gmail.com)
  *
  */
-public class LargeSelectionDialogButton<B extends Serializable> extends DialogButton {
+public class LargeSelectionDialogButton<B extends Serializable> extends DialogLink {
 
 	private static final long serialVersionUID = 1L;
 
