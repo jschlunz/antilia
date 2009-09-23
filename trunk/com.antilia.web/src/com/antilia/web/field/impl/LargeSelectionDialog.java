@@ -10,8 +10,7 @@ import org.apache.wicket.Component;
 
 import com.antilia.common.util.ReflectionUtils;
 import com.antilia.web.dialog.DefaultDialog;
-import com.antilia.web.dialog.DialogButton;
-import com.antilia.web.dialog.DialogLink;
+import com.antilia.web.dialog.IDialogLink;
 import com.antilia.web.field.BeanProxy;
 import com.antilia.web.field.IFieldModel;
 import com.antilia.web.field.IFieldPanel;
@@ -37,7 +36,7 @@ public class LargeSelectionDialog<B extends Serializable> extends DefaultDialog 
 	 * @param id
 	 * @param button
 	 */
-	public LargeSelectionDialog(String id, DialogLink button, BeanProxy<B> beanProxy, IFieldModel<B> fieldModel) {
+	public LargeSelectionDialog(String id, IDialogLink button, BeanProxy<B> beanProxy, IFieldModel<B> fieldModel) {
 		super(id, button);
 		this.beanProxy = beanProxy;
 		this.fieldModel = fieldModel;
@@ -54,7 +53,7 @@ public class LargeSelectionDialog<B extends Serializable> extends DefaultDialog 
 	@SuppressWarnings("unchecked")
 	@Override
 	protected Component createBody(String id) {		
-		return new DialogSelectionCRUDPanel(id, ReflectionUtils.getPropertyClass(beanProxy.getBeanClass(), fieldModel.getPropertyPath()), this, this.beanProxy, this.fieldModel, findFieldPanel());
+		return new SelectionScopedCrudPanel(id, ReflectionUtils.getPropertyClass(beanProxy.getBeanClass(), fieldModel.getPropertyPath()), this, this.beanProxy, this.fieldModel, findFieldPanel());
 	}
 
 	private IFieldPanel findFieldPanel() {

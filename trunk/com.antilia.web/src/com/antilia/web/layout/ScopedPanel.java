@@ -52,6 +52,11 @@ public class ScopedPanel extends Panel implements IScopedPanel {
 		}
 	}
 	
+	/**
+	 * Overrride this method to create your panel.
+	 * @param id
+	 * @return
+	 */
 	protected Component createBody(String id) {		
 		return new EmptyPanel(id);
 	}
