@@ -36,7 +36,7 @@ public class TextFieldFactory<B extends Serializable> implements IFieldFactory<B
 	public Component newField(String id, IFieldModel<B> fieldModel, FieldMode mode) {
 		fieldModel.setOperators(new Operator[]{Operator.EQUAL, Operator.ILIKE});
 		if(fieldModel.getSelectedOperator()==null)
-			fieldModel.setSelectedOperator(Operator.EQUAL);
+			fieldModel.setSelectedOperator(Operator.ILIKE);
 		return new TextField<B>(id, fieldModel, mode);
 	}
 
