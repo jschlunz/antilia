@@ -8,7 +8,8 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 
 /**
- * 
+ * Allows to annotate a field representing an entity to set
+ * which selection model will be used.
  *
  * @author Ernesto Reinaldo Barreiro (reiern70@gmail.com)
  *
@@ -16,6 +17,6 @@ import java.lang.annotation.RetentionPolicy;
 @Retention(RetentionPolicy.RUNTIME)
 public @interface SelectionType {
 
-	DrillInSelectionMode type() default DrillInSelectionMode.DROPDOWN;
+	DrillInSelectionMode type() default DrillInSelectionMode.LARGE_ON_NEXT_PAGE;
 	
 }
