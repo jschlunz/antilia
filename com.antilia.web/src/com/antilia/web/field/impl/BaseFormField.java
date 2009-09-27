@@ -55,8 +55,9 @@ public abstract class BaseFormField<B extends Serializable> extends Panel implem
 	}
 
 	protected IModel<String> getLabelModel() {
-		String key = ResourceUtils.getPropertyResourceKey(getFieldModel().getBeanClass(), getFieldModel().getPropertyPath());
-		return new StringResourceModel(key, this, null, "Not Found");
+		String propertyPath = getFieldModel().getPropertyPath();
+		String key = ResourceUtils.getPropertyResourceKey(getFieldModel().getBeanClass(), propertyPath);
+		return new StringResourceModel(key, this, null, propertyPath);
 		
 	}
 	
