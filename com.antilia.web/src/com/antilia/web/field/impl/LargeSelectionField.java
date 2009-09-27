@@ -19,7 +19,7 @@ import com.antilia.web.field.factory.FieldMode;
  * @author Ernesto Reinaldo Barreiro (reiern70@gmail.com)
  *
  */
-public class LargeSelectionField<B extends Serializable> extends BaseFormField<B> {
+public class LargeSelectionField<B extends Serializable> extends BaseFormField<B>  implements ISelectionField {
 
 	private static final long serialVersionUID = 1L;
 
@@ -31,7 +31,7 @@ public class LargeSelectionField<B extends Serializable> extends BaseFormField<B
 	 */
 	public LargeSelectionField(String id, IFieldModel<B> model, FieldMode mode) {
 		super(id, model, mode);
-		
+		setOutputMarkupId(true);
 		label = new Label("label", getLabelModel());
 		add(label);
 						
@@ -50,19 +50,19 @@ public class LargeSelectionField<B extends Serializable> extends BaseFormField<B
 		try {
 			SelectionType selectionType = AnnotationUtils.findFieldAnnotation(getFieldModel().getBeanClass(), getFieldModel().getPropertyPath(), SelectionType.class);
 			if(selectionType.type().equals(DrillInSelectionMode.LARGE_IN_MODAL_DIALOG) )				
-				add(new LargeSelectionDialogButton<B>("selectionPanel", getBeanProxy(), getFieldModel()));
+				addOrReplace(new LargeSelectionDialogLink<B>("selectionPanel", getBeanProxy(), getFieldModel()));
 			else if(selectionType.type().equals(DrillInSelectionMode.LARGE_ON_NEXT_PAGE)) {
-				add(new InPlaceLargeSelectionButton<B>("selectionPanel", getBeanProxy(), getFieldModel()));
+				addOrReplace(new InPlaceLargeSelectionButton<B>("selectionPanel", getBeanProxy(), getFieldModel()));
 			}
 		} catch (Exception e) {
-			add(new Label("selectionPanel", e.getMessage()));
+			addOrReplace(new Label("selectionPanel", e.getMessage()));
 		}
 		if(getMode() == FieldMode.EDIT && getFieldModel().isRequiered()) {
 			// if we are in EDIT mode and field is required then do not allow to get rid of selection
 			// so that user is forced to select one.
-			add(new Label("dropSelection",new Model<String>("")));
+			addOrReplace(new Label("dropSelection",new Model<String>("")));
 		} else
-			add(new DropSelectionButton("dropSelection",getBeanProxy(), getFieldModel()));
+			addOrReplace(new DropSelectionButton("dropSelection",getBeanProxy(), getFieldModel()));
 	}
 
 }

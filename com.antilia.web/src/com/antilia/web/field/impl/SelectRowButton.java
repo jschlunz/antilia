@@ -16,7 +16,6 @@ import com.antilia.web.dialog.DefaultDialog;
 import com.antilia.web.dialog.util.OkDialogButton;
 import com.antilia.web.field.BeanProxy;
 import com.antilia.web.field.IFieldModel;
-import com.antilia.web.field.IFieldPanel;
 import com.antilia.web.resources.DefaultStyle;
 
 /**
@@ -31,7 +30,7 @@ public class SelectRowButton<B extends Serializable> extends OkDialogButton {
 
 	private BeanProxy<B> beanProxy;
 	private IFieldModel<B> fieldModel;
-	private IFieldPanel fieldPanel;
+	private ISelectionField selectionField;
 	
 	private B bean;
 	
@@ -39,11 +38,11 @@ public class SelectRowButton<B extends Serializable> extends OkDialogButton {
 	 * @param id
 	 * @param dialog
 	 */
-	public SelectRowButton(String id, DefaultDialog dialog, BeanProxy<B> beanProxy, IFieldModel<B> fieldModel, IFieldPanel fieldPanel, B bean) {
+	public SelectRowButton(String id, DefaultDialog dialog, BeanProxy<B> beanProxy, IFieldModel<B> fieldModel, ISelectionField selectionField, B bean) {
 		super(id, dialog);
 		this.beanProxy = beanProxy;
 		this.fieldModel = fieldModel;
-		this.fieldPanel = fieldPanel;
+		this.selectionField = selectionField;
 		this.bean = bean;		
 	}
 
@@ -55,7 +54,7 @@ public class SelectRowButton<B extends Serializable> extends OkDialogButton {
 		String propertyName = fieldModel.getPropertyPath();
 		PropertyResolver.setValue(propertyName, beanProxy.getBean(), bean, null);
 		if(target != null) {
-			target.addComponent((Component) fieldPanel);
+			target.addComponent((Component) selectionField);
 		}
 	}
 	
