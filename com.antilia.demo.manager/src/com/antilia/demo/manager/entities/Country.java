@@ -39,7 +39,7 @@ public class Country implements java.io.Serializable, Comparable<Country> {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	
-	@Column(name = "name", unique = true, nullable = false, length = 150)
+	@Column(name = "name", unique = true, nullable = false, length = 100)
 	private String name;
 	
 	@Column(name = "domain", nullable = false, length = 3)

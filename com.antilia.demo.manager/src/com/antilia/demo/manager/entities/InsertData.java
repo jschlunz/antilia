@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.StringTokenizer;
 
@@ -63,7 +64,7 @@ public class InsertData extends AbstractPersistentCommand<Country, Serializable>
 	private void addAddresses(Country country) {
 		List<Address> addresses = new ArrayList<Address>();
 		for(City city: country.getCities()) {			
-			for(int i = 0; i < 5;i++) {
+			for(int i = 0; i < 2;i++) {
 				Address address = new Address();
 				address.setCity(city);
 				address.setAddress1("Street XXX-FFF dDSDDDD  DDDdd ddd Eeee Eee"+i);
@@ -84,6 +85,7 @@ public class InsertData extends AbstractPersistentCommand<Country, Serializable>
 			customer.setName("Customer " + i);
 			customer.setStatus(CustomerStatus.ACTIVE);
 			customer.setAddress(address);
+			customer.setRegistered(new Date(14551l));
 			customers.add(customer);
 			i++;
 		}
