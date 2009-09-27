@@ -9,7 +9,6 @@ import org.apache.wicket.Component;
 
 import com.antilia.web.field.BeanProxy;
 import com.antilia.web.field.IFieldModel;
-import com.antilia.web.field.IFieldPanel;
 import com.antilia.web.layout.ScopedPanel;
 
 /**
@@ -24,25 +23,25 @@ public class SelectionScopedCrudPanel<B extends Serializable> extends ScopedPane
 	private LargeSelectionDialog<B> selectionDialog;
 	private BeanProxy<B> beanProxy; 
 	private IFieldModel<B> fieldModel;
-	private IFieldPanel fieldPanel;
+	private ISelectionField selectionField;
 	
 	
 	/**
 	 * @param id
 	 */
-	public SelectionScopedCrudPanel(String id,  Class<B> beanClass, LargeSelectionDialog<B> selectionDialog, BeanProxy<B> beanProxy, IFieldModel<B> fieldModel, IFieldPanel fieldPanel) {
+	public SelectionScopedCrudPanel(String id,  Class<B> beanClass, LargeSelectionDialog<B> selectionDialog, BeanProxy<B> beanProxy, IFieldModel<B> fieldModel, ISelectionField selectionField) {
 		super(id);	
 		this.beanClass = beanClass;
 		this.beanProxy = beanProxy;
 		this.fieldModel = fieldModel;
-		this.fieldPanel= fieldPanel;
+		this.selectionField= selectionField;
 		this.selectionDialog = selectionDialog;
 	}
 
 	
 	@Override
 	protected Component createBody(String id) {
-		return new DialogSelectionCRUDPanel<B>(id, beanClass, selectionDialog, this.beanProxy, this.fieldModel, fieldPanel);
+		return new DialogSelectionCRUDPanel<B>(id, beanClass, selectionDialog, this.beanProxy, this.fieldModel, selectionField);
 	}
 
 }

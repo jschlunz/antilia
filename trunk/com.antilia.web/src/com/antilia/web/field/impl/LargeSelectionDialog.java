@@ -13,7 +13,6 @@ import com.antilia.web.dialog.DefaultDialog;
 import com.antilia.web.dialog.IDialogLink;
 import com.antilia.web.field.BeanProxy;
 import com.antilia.web.field.IFieldModel;
-import com.antilia.web.field.IFieldPanel;
 
 /**
  * 
@@ -53,10 +52,10 @@ public class LargeSelectionDialog<B extends Serializable> extends DefaultDialog 
 	@SuppressWarnings("unchecked")
 	@Override
 	protected Component createBody(String id) {		
-		return new SelectionScopedCrudPanel(id, ReflectionUtils.getPropertyClass(beanProxy.getBeanClass(), fieldModel.getPropertyPath()), this, this.beanProxy, this.fieldModel, findFieldPanel());
+		return new SelectionScopedCrudPanel(id, ReflectionUtils.getPropertyClass(beanProxy.getBeanClass(), fieldModel.getPropertyPath()), this, this.beanProxy, this.fieldModel, findSelectionField());
 	}
 
-	private IFieldPanel findFieldPanel() {
-			return (IFieldPanel)findParent(IFieldPanel.class);
+	private ISelectionField findSelectionField() {
+			return (ISelectionField)findParent(ISelectionField.class);
 	}
 }
