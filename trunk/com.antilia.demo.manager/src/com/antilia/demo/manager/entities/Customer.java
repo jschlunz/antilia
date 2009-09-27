@@ -2,6 +2,7 @@ package com.antilia.demo.manager.entities;
 
 // Generated Apr 23, 2008 5:11:37 PM by Hibernate Tools 3.2.1.GA
 
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.CascadeType;
@@ -45,12 +46,15 @@ public class Customer implements java.io.Serializable {
 	@SelectionType(type=DrillInSelectionMode.LARGE_IN_MODAL_DIALOG)
 	private Address address;
 	
-	@Column(name = "name", nullable = false, length = 500)
+	@Column(name = "name", nullable = false, length = 90)
 	private String name;
 
 	@Column(name = "status", length = 20, nullable = false)
 	@Enumerated(EnumType.STRING)
 	private CustomerStatus status;
+	
+	@Column(name = "registered", nullable = false, length = 8)
+	private Date registered;
 	
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "customer")
 	private Set<Project> projects = new HashSet<Project>(0);
@@ -179,6 +183,14 @@ public class Customer implements java.io.Serializable {
 		} else if (!name.equals(other.name))
 			return false;
 		return true;
+	}
+
+	public Date getRegistered() {
+		return registered;
+	}
+
+	public void setRegistered(Date registered) {
+		this.registered = registered;
 	}
 
 }
