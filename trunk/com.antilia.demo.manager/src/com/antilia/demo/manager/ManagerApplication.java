@@ -82,6 +82,10 @@ public class ManagerApplication extends AntiliaWebApplication {
 		getMarkupSettings().setStripWicketTags(true);
 		getDebugSettings().setAjaxDebugModeEnabled(false);
 		getDebugSettings().setOutputMarkupContainerClassName(false);
+		
+		getMarkupSettings().setDefaultMarkupEncoding("UTF-8");
+		getRequestCycleSettings().setResponseRequestEncoding("UTF-8");
+		   
 		if(injectionEngine.equals(InjectionEngine.SPRING)) {
 			initializeSpring();
 		}
