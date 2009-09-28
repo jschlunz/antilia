@@ -45,9 +45,10 @@ public class EnumDropDownField<B extends Serializable> extends BaseFormField<B> 
 	@SuppressWarnings("unchecked")
 	@Override
 	protected void onBeforeRender() {
-		if(textField == null) {
+		if(textField == null) {			
 			Class<Enum> enumClass = (Class<Enum>)getFieldModel().getFieldClass();
 			textField = new EnumDropDownChoice("field", enumClass, getBeanProxy().getPropertyValue(getPropertyPath()).getModel());
+			textField.setOutputMarkupId(true);
 			if(getMode() == FieldMode.EDIT && getFieldModel().isRequiered()) {
 				textField.setRequired(true);
 				textField.add(new AttributeModifier("class",new Model<String>("requiredText")));
