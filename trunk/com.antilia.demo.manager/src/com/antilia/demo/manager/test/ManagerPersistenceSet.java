@@ -8,7 +8,7 @@ import com.antilia.demo.manager.entities.City;
 import com.antilia.hibernate.cfg.PersistenceSet;
 
 /**
- * The persistence set of all entities in RDS.
+ * The persistence set of all entities.
  *
  * @author Ernesto Reinaldo Barreiro (reiern70@gmail.com)
  *
