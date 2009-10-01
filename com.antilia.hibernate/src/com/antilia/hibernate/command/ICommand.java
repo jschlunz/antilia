@@ -15,7 +15,7 @@ public interface ICommand<R extends Object> {
 
 	/**
 	 * The method performing the logic of the command. 
-	 * @return returns an object of Type <code>R</code>.
+	 * @return returns an object of Type <code>R</code>. If object is null transactions will not commit.
 	 */
 	R execute() throws Throwable;
 	
