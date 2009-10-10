@@ -61,10 +61,14 @@ public class FileUtils {
 	            Enumeration<URL> resources = cld.getResources(path);
             	File directory = null;
 	            while (resources.hasMoreElements()) {
-	            	String path2 = resources.nextElement().getPath();
-	            	if (!path2.contains(syspath))
+	            	String path2 = resources.nextElement().getPath();	            	
+	            	if (!path2.contains(syspath)) {
+	            		// needed to get it working on Eclipse 3.5
+	            		if(path2.indexOf("bin/")<1) {
+	            			path2 = "/bin" + path2;
+		            	}
 	            	    directory = new File(URLDecoder.decode(syspath+path2, "UTF-8"));
-	            	else
+	            	} else
 	            		directory = new File(URLDecoder.decode(path2, "UTF-8"));
 	            	directories.add(directory);
 	            }
