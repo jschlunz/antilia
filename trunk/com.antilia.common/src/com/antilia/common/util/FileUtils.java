@@ -64,8 +64,8 @@ public class FileUtils {
 	            	String path2 = resources.nextElement().getPath();	            	
 	            	if (!path2.contains(syspath)) {
 	            		// needed to get it working on Eclipse 3.5
-	            		if(path2.indexOf("bin/")<1) {
-	            			path2 = "/bin" + path2;
+	            		if(syspath.indexOf("/bin")<1) {
+	            			syspath = syspath + "/bin";
 		            	}
 	            	    directory = new File(URLDecoder.decode(syspath+path2, "UTF-8"));
 	            	} else
