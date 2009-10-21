@@ -49,7 +49,9 @@ textarea, select {
     cursor: pointer;
     padding: 0px;     
     margin: 0px;
+    text-decoration: none;
     vertical-align: middle;
+    color: black;
 }
 
 .smallbutton img, .spacedLink img {
