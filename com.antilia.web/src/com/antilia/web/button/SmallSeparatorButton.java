@@ -22,7 +22,7 @@ public class SmallSeparatorButton extends Panel implements IMenuItem {
 	private static long counter = 0;
 	
 	public SmallSeparatorButton() {
-		super("separator"+getCounter());
+		super("mseparator"+getCounter());
 		add(new Image("image", getImage()));
 	}
 	
