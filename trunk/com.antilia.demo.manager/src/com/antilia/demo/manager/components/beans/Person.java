@@ -25,6 +25,8 @@ public class Person implements Serializable, Comparable<Person> {
 	
 	private String lastName2;
 	
+	private String address;
+	
 	private Date birthDay;
 	
 	private MaritalStatus maritalStatus;
@@ -141,6 +143,15 @@ public class Person implements Serializable, Comparable<Person> {
 		person.setId(new Long(i));
 		person.setName("Person "+i);
 		person.setLastName1("Lastname "+i);
+		person.setAddress("Address! Address! Address! Address! Address! Address! Address! Address! Address! "+i);
 		return person;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
 	}
 }
