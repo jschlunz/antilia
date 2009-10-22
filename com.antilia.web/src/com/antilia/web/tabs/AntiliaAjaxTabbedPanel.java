@@ -19,6 +19,7 @@ import com.antilia.web.ajax.AntiliaAjaxCallDecorator;
 import com.antilia.web.ajax.IDialogFinder;
 import com.antilia.web.crud.IFeedBackAware;
 import com.antilia.web.dialog.IDialogScope;
+import com.antilia.web.dialog.IVeilScope;
 import com.antilia.web.utils.ExceptionUtils;
 
 /**
@@ -109,6 +110,10 @@ public class AntiliaAjaxTabbedPanel extends AjaxTabbedPanel implements IDialogFi
 				+ ExceptionUtils.getChangeStyleScript("error");
 			target.appendJavascript(script.toString());
 		}
+	}
+	
+	public IVeilScope findVeilScope() {
+		return findParent(IVeilScope.class);
 	}
 
 	public IDialogScope findParentDialog() {

@@ -137,6 +137,9 @@ public abstract class DialogButton extends Panel implements IDialogLink, IDialog
 		return (IDialogScope)findParent(IDialogScope.class);
 	}
 	
+	public IVeilScope findVeilScope() {
+		return findParent(IVeilScope.class);
+	}
 	
 	protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
 		if(showDialog(target, form)) {

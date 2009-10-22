@@ -14,6 +14,7 @@ import org.apache.wicket.model.IModel;
 import com.antilia.web.ajax.AntiliaAjaxCallDecorator;
 import com.antilia.web.ajax.IDialogFinder;
 import com.antilia.web.dialog.IDialogScope;
+import com.antilia.web.dialog.IVeilScope;
 
 /**
  * @author Ernesto Reinaldo Barreiro (reirn70@gmail.com)
@@ -57,6 +58,10 @@ public abstract class AjaxEnumDropDownChoice<T extends Enum<?>> extends EnumDrop
 	
 	public IDialogScope findParentDialog() {
 		return findParent(IDialogScope.class);
+	}
+	
+	public IVeilScope findVeilScope() {
+		return findParent(IVeilScope.class);
 	}
 	
 	public Component getDefiningComponent() {

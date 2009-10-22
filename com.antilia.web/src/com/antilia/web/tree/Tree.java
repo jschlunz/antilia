@@ -17,6 +17,7 @@ import org.apache.wicket.model.IModel;
 import com.antilia.web.ajax.AntiliaAjaxCallDecorator;
 import com.antilia.web.ajax.IDialogFinder;
 import com.antilia.web.dialog.IDialogScope;
+import com.antilia.web.dialog.IVeilScope;
 
 /**
  * A version of the tree that will display the loading icon.
@@ -120,6 +121,10 @@ public class Tree extends org.apache.wicket.extensions.markup.html.tree.Tree imp
 	
 	public IDialogScope findParentDialog() {
 		return findParent(IDialogScope.class);
+	}
+	
+	public IVeilScope findVeilScope() {
+		return findParent(IVeilScope.class);
 	}
 
 	public Component getDefiningComponent() {

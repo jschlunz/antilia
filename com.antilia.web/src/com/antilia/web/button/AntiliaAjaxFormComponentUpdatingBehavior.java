@@ -10,6 +10,7 @@ import org.apache.wicket.ajax.form.AjaxFormComponentUpdatingBehavior;
 import com.antilia.web.ajax.AntiliaAjaxCallDecorator;
 import com.antilia.web.ajax.IDialogFinder;
 import com.antilia.web.dialog.IDialogScope;
+import com.antilia.web.dialog.IVeilScope;
 
 /**
  * 
@@ -21,6 +22,10 @@ public abstract class AntiliaAjaxFormComponentUpdatingBehavior extends AjaxFormC
 
 	public IDialogScope findParentDialog() {
 		return (IDialogScope)getComponent().findParent(IDialogScope.class);
+	}
+	
+	public IVeilScope findVeilScope() {
+		return getComponent().findParent(IVeilScope.class);
 	}
 
 	public Component getDefiningComponent() {
