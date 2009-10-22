@@ -121,37 +121,6 @@ public abstract class AbstractLink extends Panel implements IMenuItem, IToolbarI
 	}
 	
 	protected IAjaxCallDecorator getAjaxCallDecorator() {
-		/*
-		return  new IAjaxCallDecorator() {
-			
-			private static final long serialVersionUID = 1L;
-
-			public CharSequence decorateOnFailureScript(CharSequence script) {
-				IDialogScope dialogScope = getDialogScope();
-				String errorMessage = ";alert('"+AbstractLink.this.getString("ServerDown", null, "Server Down!")+"');";
-				if(dialogScope != null) {
-					return script + ";" + VeilResources.Javascript.Generic.toggle(dialogScope.getDialogId()) + errorMessage ;
-				} 				
-				return script + ";" + VeilResources.Javascript.Generic.toggle("AT_body") + errorMessage;
-			}
-			
-			public CharSequence decorateOnSuccessScript(CharSequence script) {
-				IDialogScope dialogScope = getDialogScope();
-				if(dialogScope != null) {
-					return script + ";" + VeilResources.Javascript.Generic.toggle(dialogScope.getDialogId()) + ";" ;
-				}
-				return script + ";" + VeilResources.Javascript.Generic.toggle("AT_body") + ";" ;
-			}
-			
-			public CharSequence decorateScript(CharSequence script) {
-				IDialogScope dialogScope = getDialogScope();
-				if(dialogScope != null) {
-					return VeilResources.Javascript.Generic.show(dialogScope.getDialogId()) + ";" + script;
-				} 
-				return VeilResources.Javascript.Generic.toggle("AT_body") + ";" + script;									
-			}
-		};
-		*/
 		return new AntiliaAjaxCallDecorator(this);
 	}
 	
