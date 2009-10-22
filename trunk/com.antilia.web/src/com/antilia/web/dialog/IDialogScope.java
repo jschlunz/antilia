@@ -12,7 +12,7 @@ import org.apache.wicket.Component;
  * @author Ernesto Reinaldo Barreiro (reiern70@gmail.com)
  *
  */
-public interface IDialogScope {
+public interface IDialogScope extends IVeilScope {
 
 	public static final String BODY_ID = "body";
 	

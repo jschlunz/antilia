@@ -437,6 +437,11 @@ public abstract class DefaultDialog extends Panel implements IDialogScope, IMenu
 		return "dialog";
 	}
 	
+	public String getVeilId() {
+		return getDialogId();
+	}
+	
+	
 	protected abstract Component createBody(String id);
 
 	/**

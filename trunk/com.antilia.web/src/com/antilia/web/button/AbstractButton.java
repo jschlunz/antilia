@@ -22,6 +22,7 @@ import com.antilia.web.ajax.AntiliaAjaxCallDecorator;
 import com.antilia.web.ajax.IAjaxCallDecoratorProvider;
 import com.antilia.web.ajax.IDialogFinder;
 import com.antilia.web.dialog.IDialogScope;
+import com.antilia.web.dialog.IVeilScope;
 import com.antilia.web.toolbar.IToolbarItem;
 
 
@@ -198,7 +199,11 @@ public abstract class AbstractButton extends Panel implements IMenuItem, IToolba
 	
 	
 	public IDialogScope findParentDialog() {
-		return (IDialogScope)findParent(IDialogScope.class);
+		return findParent(IDialogScope.class);
+	}
+	
+	public IVeilScope findVeilScope() {
+		return findParent(IVeilScope.class);
 	}
 	
 	

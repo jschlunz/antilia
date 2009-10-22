@@ -332,6 +332,10 @@ public abstract class ModalContainer extends Panel implements IDialogScope, IMen
 		return "dialog";
 	}
 	
+	public String getVeilId() {
+		return getDialogId();
+	}
+	
 	protected abstract Component createBody(String id);
 
 	/**

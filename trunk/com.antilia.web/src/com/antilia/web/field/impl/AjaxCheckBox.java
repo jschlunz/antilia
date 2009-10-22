@@ -26,6 +26,7 @@ import org.apache.wicket.model.IModel;
 import com.antilia.web.ajax.AntiliaAjaxCallDecorator;
 import com.antilia.web.ajax.IDialogFinder;
 import com.antilia.web.dialog.IDialogScope;
+import com.antilia.web.dialog.IVeilScope;
 
 /**
  * A CheckBox which is updated via ajax when the user changes its value
@@ -79,6 +80,10 @@ public abstract class AjaxCheckBox extends CheckBox implements IDialogFinder
 
 	public IDialogScope findParentDialog() {
 		return findParent(IDialogScope.class);
+	}
+	
+	public IVeilScope findVeilScope() {
+		return findParent(IVeilScope.class);
 	}
 	
 	public Component getDefiningComponent() {
