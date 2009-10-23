@@ -21,16 +21,6 @@ public class TestTablePage extends WebPage  {
 	
 	public TestTablePage() {		
 		super();			
-		/*
-		add(new AntiliaVeilResource());
-		add(JavascriptPackageResource.getHeaderContribution(DefaultStyle.JS_YUI_DOM_EVENT));
-		add(JavascriptPackageResource.getHeaderContribution(DefaultStyle.JS_YUI_DOM_MIN));
-		add(JavascriptPackageResource.getHeaderContribution(DefaultStyle.JS_YUI_ANIMATION));
-		
-		add(JavascriptPackageResource.getHeaderContribution(DefaultStyle.JS_COMMON));
-		add(JavascriptPackageResource.getHeaderContribution(DefaultStyle.JS_TABLE));		
-		add(CSSPackageResource.getHeaderContribution(DefaultStyle.CSS_MAIN));
-		*/
 		Form<Person> form = new Form<Person>("form");
 		add(form);
 		form.add(new TablePanel("test"));

@@ -35,7 +35,7 @@ public class TablePanel extends Panel {
 	 */
 	public TablePanel(String id) {
 		super(id);
-		tableModel = new TableModel<Person>(Person.class, "id", "name", "lastName1", "address") {
+		tableModel = new TableModel<Person>(Person.class, "id", "name", "lastName1", "address", "address", "address", "lastName1") {
 			
 			private static final long serialVersionUID = 1L;
 
