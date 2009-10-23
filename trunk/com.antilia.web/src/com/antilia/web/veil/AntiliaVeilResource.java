@@ -19,9 +19,9 @@ public class AntiliaVeilResource extends VeilResources {
 
 	private static final long serialVersionUID = 1L;
 	
-	private static final ResourceReference JS = new JavascriptResourceReference(AntiliaVeilResource.class, "antilia-veil.js");
+	public static final ResourceReference JS = new JavascriptResourceReference(AntiliaVeilResource.class, "antilia-veil.js");
 
-	private static final ResourceReference CSS = new ResourceReference(AntiliaVeilResource.class, "antilia-veil.css");
+	public static final ResourceReference CSS = new ResourceReference(AntiliaVeilResource.class, "antilia-veil.css");
 	
 	public static final String DEFAULT_CSS_CLASS_NAME_MODAL = "antilia-modal";
 

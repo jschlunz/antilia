@@ -159,8 +159,8 @@ public class DefaultHeaderCell<E extends Serializable> extends Panel {
 			@Override
 			public String getObject() {
 				if(RequestUtils.isBrowserIeExplorer6())
-					return "border: none;";
-				return "border: 1px solid transparent;";
+					return "border: none; overflow: hidden;";
+				return "border: 1px solid transparent; overflow: hidden;";
 			}
 		}));
 
