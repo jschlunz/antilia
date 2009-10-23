@@ -68,7 +68,12 @@ tr.highlightedRow {
 	padding-top: 1px;
 }
 
-.theaderrow .resizeCell {
+.theaderrow .defaultHeader {
+	
+}
+
+.theaderrow .defaultHeaderOver .headerTitle {
+	color: white;
 }
 
 .ondrop {
