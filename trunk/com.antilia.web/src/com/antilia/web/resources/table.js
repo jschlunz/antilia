@@ -72,7 +72,7 @@ function Column(tableId, number, url) {
 
 Column.prototype.onResize = function (obj, deltaX, deltaY) {
 	var td = obj.parentNode.parentNode.parentNode.parentNode;		
-	if ((parseInt(td.offsetWidth)+(deltaX))>0) {
+	if ((parseInt(td.offsetWidth)+(deltaX))>40) {
     	td.style.width =  parseInt(td.offsetWidth)+deltaX+"px";
 		td.getElementsByTagName("input")[0].value=parseInt(td.style.width);
     }
