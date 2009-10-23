@@ -50,6 +50,7 @@ import com.antilia.web.provider.impl.SourceSelector;
 import com.antilia.web.resources.DefaultStyle;
 import com.antilia.web.resources.ResourceLocator;
 import com.antilia.web.utils.RequestUtils;
+import com.antilia.web.veil.AntiliaVeilResource;
 
 /**
  * 
@@ -179,6 +180,9 @@ public class Table<E extends Serializable> extends Panel implements IPageableCom
 		
 		add(JavascriptPackageResource.getHeaderContribution(DefaultStyle.JS_COMMON));
 		add(JavascriptPackageResource.getHeaderContribution(DefaultStyle.JS_TABLE));
+
+		add(JavascriptPackageResource.getHeaderContribution(AntiliaVeilResource.JS));
+		add(CSSPackageResource.getHeaderContribution(AntiliaVeilResource.CSS));
 		
 		addMenuItemsAfterNavidation(getAfterNavigationMenuItemsFactory());
 		
