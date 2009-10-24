@@ -170,7 +170,7 @@ div.dropColumn {
 	background: url("images/ColumnResize.gif") 0px 1px no-repeat;
 }
 
-.theaderrow .fnoResCol, .theaderrow .fnoResCol{
+.theaderrow .fnoResCol, .theaderrowOver .fnoResCol{
 	width: 10px;
 	white-space: nowrap; 
 	padding:0;
