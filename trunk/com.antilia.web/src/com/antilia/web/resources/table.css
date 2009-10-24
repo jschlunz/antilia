@@ -57,10 +57,16 @@ tr.highlightedRow {
 }
 
 .theaderrow {	
-	background-color: #9eb7e8;	
+	background-image: url("images/tableheader_up.png");
+	background-repeat: repeat-x;		
 }
 
-.theaderrow td {	
+.theaderrowOver  {
+	background-image: url("images/tableheader.png");
+	background-repeat: repeat-x;
+}
+
+.theaderrow > td, .theaderrowOver > td {	
 	color: black;
 	text-align: center;
 	font-weight: bold;
@@ -72,9 +78,11 @@ tr.highlightedRow {
 	
 }
 
-.theaderrow .defaultHeaderOver .headerTitle {
-	color: white;
+.theaderrowOver .defaultHeaderOver .headerTitle {
+	color: black;
 }
+
+
 
 .ondrop {
     border-left: 1px solid white;
@@ -118,7 +126,7 @@ span.defaultBodyCell {
     float: none;
 }
 
-.theaderrow .addCol {
+.theaderrow .addCol, .theaderrowOver .addCol {
 	white-space: nowrap; 
 	padding: 0;		
 }
@@ -135,7 +143,7 @@ div.dropColumn {
 	vertical-align: middle;
 }
 
-.theaderrow .resCol{
+.theaderrow .resCol, .theaderrowOver .resCol {
 	width: 10px;
 	white-space: nowrap; 
 	padding:0;
@@ -144,7 +152,7 @@ div.dropColumn {
 	background: url("images/ColumnResize.gif") 0px 3px no-repeat;
 }
 
-.theaderrow .noResCol{
+.theaderrow .noResCol, .theaderrowOver .noResCol {
 	width: 10px;
 	white-space: nowrap; 
 	padding:0;
@@ -153,7 +161,7 @@ div.dropColumn {
 	background: url("images/ColumnDivide.gif") 0px 3px no-repeat;
 }
 
-.theaderrow .fresCol{
+.theaderrow .fresCol, .theaderrowOver .fresCol{
 	width: 10px;
 	white-space: nowrap; 
 	padding:0;
@@ -162,7 +170,7 @@ div.dropColumn {
 	background: url("images/ColumnResize.gif") 0px 1px no-repeat;
 }
 
-.theaderrow .fnoResCol{
+.theaderrow .fnoResCol, .theaderrow .fnoResCol{
 	width: 10px;
 	white-space: nowrap; 
 	padding:0;

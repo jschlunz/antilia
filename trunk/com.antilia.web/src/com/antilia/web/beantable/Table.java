@@ -382,7 +382,7 @@ public class Table<E extends Serializable> extends Panel implements IPageableCom
 		@Override
 		protected Item<E> newItem(String id, int index, final IModel<E> model) {
 			Item<E> item = super.newItem(id, index, model);
-			if(model instanceof IColumnModel) {			
+			if(model instanceof IColumnModel<?>) {			
 				item.add(new AttributeModifier("width", true, new Model<String>() {
 					
 					private static final long serialVersionUID = 1L;
