@@ -76,8 +76,10 @@ Column.prototype.onResize = function (obj, deltaX, deltaY) {
     	td.style.width =  parseInt(td.offsetWidth)+deltaX+"px";
 		td.getElementsByTagName("input")[0].value=parseInt(td.style.width);
     }
-    else
-  		td.style.width=1;
+    else {
+  		td.style.width =  "40px";
+		td.getElementsByTagName("input")[0].value=parseInt(td.style.width);
+    }
   	var res = [0, 0];
 	return res;
 }	
