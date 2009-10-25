@@ -1,4 +1,4 @@
-<wicket:panel>
+<wicket:panel xmlns:wicket="org.apache.wicket">
 	<input wicket:id="colWidth" name="colWidth" type="hidden"/>	
 	<table height="100%" width="100%" cellpadding="0" cellspacing="0" style="table-layout: fixed;">
 		<tbody>
@@ -8,8 +8,18 @@
 				     <table  height="100%" width="100%" cellpadding="0" cellspacing="0">
 				     	<tbody>
 				     		<tr>
-				     		 <td nowrap="nowrap"><div  wicket:id="title" class="headerTitle"></div></td>
-	                         <td nowrap="nowrap" style="vertical-align: top;"><div  wicket:id="menu"></div></td>
+				     		 <td nowrap="nowrap" style="height: 20px; margin: 0px;">
+					     		 <table align="center">
+					     		 	<tbody>
+					     		 		<tr>
+					     		 			<td>
+					     		 				<span  wicket:id="title" class="headerTitle"></span>
+					     		 			</td>
+					     		 			<td><span  wicket:id="menu"></span></td>
+					     		 		</tr>
+					     		 	</tbody>
+					     		 </table>
+				     		 </td>					     		 	     		 
 				     		</tr>
 				     	</tbody>	
 				     </table>
