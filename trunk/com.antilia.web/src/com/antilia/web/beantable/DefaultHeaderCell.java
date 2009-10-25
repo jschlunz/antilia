@@ -256,7 +256,7 @@ public class DefaultHeaderCell<E extends Serializable> extends Panel {
 				return DefaultHeaderCell.this.getColumnModel();
 			}
 		});
-		menu.setMenuStyle("width: auto; height: 16px; background: transparent; display: inline;");
+		menu.setMenuStyle("width: auto; height: 16px; background: transparent; display: inline; margin: 0px;");
 		menu.setRenderBodyOnly(true);
 		menu.setOutputMarkupId(false);
 		draggableTarget.add(menu);		
