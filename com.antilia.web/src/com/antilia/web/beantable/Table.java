@@ -25,6 +25,7 @@ import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.markup.repeater.Item;
 import org.apache.wicket.markup.repeater.RefreshingView;
 import org.apache.wicket.markup.repeater.RepeatingView;
+import org.apache.wicket.markup.repeater.data.IDataProvider;
 import org.apache.wicket.model.AbstractReadOnlyModel;
 import org.apache.wicket.model.IComponentInheritedModel;
 import org.apache.wicket.model.IModel;
@@ -142,6 +143,16 @@ public class Table<E extends Serializable> extends Panel implements IPageableCom
 		this(id, tableModel, new DataProviderPageableNavigator<E>(new ListQuerableUpdatebleDataProvider<E>(elements),new Query<E>(tableModel.getBeanClass())));
 	}
 	
+	/**
+	 * 
+	 * @param id
+	 * @param tableModel
+	 * @param dataProvider
+	 * @param query
+	 */
+	public Table(String id, ITableModel<E> tableModel, IDataProvider<E> dataProvider, IQuery<E> query) {
+		this(id, tableModel, new DataProviderPageableNavigator<E>(dataProvider, query, true));
+	}
 	/**
 	 * 
 	 * @param id
