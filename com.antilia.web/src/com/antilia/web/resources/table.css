@@ -74,8 +74,9 @@ tr.highlightedRow {
 	padding-top: 1px;
 }
 
-.theaderrow .defaultHeader {
-	
+td.defaultHeader ,  td.defaultHeaderOver{
+	padding-top: 0px;
+	padding-bottom: 0px;
 }
 
 .theaderrowOver .defaultHeaderOver .headerTitle {
