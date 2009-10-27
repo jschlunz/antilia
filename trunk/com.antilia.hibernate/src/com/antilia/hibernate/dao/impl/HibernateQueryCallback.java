@@ -47,8 +47,8 @@ public abstract class HibernateQueryCallback<B extends Serializable> implements 
 	}
 	
 	public HibernateQueryCallback(B bean) {
-		if(query == null)
-			throw new IllegalArgumentException("Query cannot be null");					
+		if(bean == null)
+			throw new IllegalArgumentException("Bean cannot be null");					
 		this.query = null;
 		this.sample = bean;
 		this.includeOrdering = false;
