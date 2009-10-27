@@ -38,6 +38,11 @@ public class Query<B extends Serializable> implements IQuery<B> {
 	
 	private int firstResult = ALL_RESULTS;
 	
+	@SuppressWarnings("unchecked")
+	public Query(B bean) {
+		this((Class<B>)bean.getClass());
+	}
+	
 	public Query(Class<B> beanClass) {
 		if(beanClass == null)
 			throw new IllegalArgumentException("Bean class cannot be null");
