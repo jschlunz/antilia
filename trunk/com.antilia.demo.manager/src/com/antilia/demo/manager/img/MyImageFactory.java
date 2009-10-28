@@ -1,6 +1,7 @@
 package com.antilia.demo.manager.img;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -50,8 +51,11 @@ public class MyImageFactory {
 
 		private String name;
 		
-		public ImageFromFolderWebResource(String name) {
+		private File folder;
+		
+		public ImageFromFolderWebResource(String name, File folder) {
 			this.name = name;
+			this.folder = folder;
 		}
 		
 		@Override
@@ -63,13 +67,20 @@ public class MyImageFactory {
 				return null;
 			}
 		}
+
+		public File getFolder() {
+			return folder;
+		}
 	}
 	
 	public static Image createImage(String id, String imageName, MODE mode) {
 		if(mode.equals(MODE.FROM_CODE)) {
 			return new Image(id, new ResourceReference(MyImageFactory.class, imageName));
 		} else {
-			return new Image(id, new ImageFromFolderWebResource(imageName));
+			// maybe has some system property from where you read file?
+			// e.g. File folder = new File(System.getProperty("xxx.externalImageFolder"));
+			File folder = null;
+			return new Image(id, new ImageFromFolderWebResource(imageName, folder));
 		}
 	}
 }
