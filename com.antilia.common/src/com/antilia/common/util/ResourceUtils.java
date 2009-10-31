@@ -142,7 +142,7 @@ public class ResourceUtils {
 				key.append(KEYS_SEPARATOR);
 				key.append(getPropertyResourceKey(beanClass, propertyPath));
 			} catch (NoSuchFieldException e) {
-				return(null);
+				return key.toString();
 			}
 		}
 		else {
@@ -161,7 +161,7 @@ public class ResourceUtils {
 					key.append(ClassUtils.getUnqualifiedName(type));
 				}
 			} catch (NoSuchFieldException e) {
-				return(null);
+				return key.toString();
 			}
 		}
 	
