@@ -1,3 +1,5 @@
+	Wicket.Window.Mask.zIndex = 1;
+	
 	//Class for draggable panel.	
 	function Panel(id, parentId, ie, minWidth, minHeight, modal, panelClass, onDragClass, selectedClass, centered, isContainer,draggable) {
 		this.id = id;
@@ -21,24 +23,14 @@
 		
 		this.panel = document.getElementById(id);
 		
-		this.parentPanel = document.getElementById(parentId);
-
-		/*
-		if(!isContainer) {
-			if(this.parentPanel) {		
-				var element = document.createElement("div");
-				element.id = this.id +"C";
-				element.style.position = 'absolute';
-				element.style.top = '10px';
-				element.style.left = '10px';
-				element.style.zindex = 2;				
-				document.body.appendChild(element);
-				element.innerHTML = this.panel.parentNode.innerHTML;
-				this.panel.parentNode.innerHTML = '';
-			} else {
-			}
+		this.parentPanel = document.getElementById(parentId);		
+				
+		if(this.parentPanel == null) {		
+			var element = document.createElement("div");			
+			element.id='mask-'+this.id;
+			this.panel.parentNode.appendChild(element);	
 		}
-		*/
+				
 		
 		this.panel = document.getElementById(id);
 		
@@ -67,9 +59,8 @@
 		if(this.parentId) {	
 			this.parent = Antilia_dragPanels.getPanel(this.parentId);			
 		}							
-				
+
 		this.toggleModal();
-		
 				
 		if(this.centered) {			
 			if(this.parent) {
@@ -123,6 +114,7 @@
 		}
 	}
 	
+	
 	Panel.prototype.addModalLayer = function() {
 		this.overlay = $(document.createElement('div'));
 		this.overlay.id = this.id + 'modal_overlay';
@@ -140,7 +132,8 @@
 	Panel.prototype.toggleModal = function() {		
 		if(this.modal == false)
 			return;		
-		if(this.parent) {
+		
+		if(this.parent != null) {
 			if(!this.overlayVisible) {			
 				this.overlayVisible = true;	
 				if(Antilia.Browser.ie6==true) {
@@ -155,7 +148,17 @@
 				this.parent.overlay.style.display = 'none'; 
 			}			
 		} else {
-			Wicket.Veil.toggleModal();
+			if(!this.overlayVisible) {			
+				this.overlayVisible = true;	
+				var element = document.getElementById("mask-"+this.id);
+				if(element)
+					element.className  = "wicket-mask-dark"; 
+			} else {
+				this.overlayVisible = false;
+				var element = document.getElementById("mask-"+this.id);
+				if(element)
+					element.style.display = 'none'; 
+			}
 		}		
 	}	
 		
@@ -475,31 +478,9 @@
 	ModalContainer.prototype.toggleModal = function() {
         if(!this.overlayVisible) {          
             this.overlayVisible = true;
-            /*
-            new Effect.toggle(this.overlay, 
-            'appear',
-            {
-                afterFinish: this.afterFold,
-                beforeStart: this.beforeFold, 
-                duration: 0.1,
-                from: 0,
-                to: 0.3
-            });
-            */ 
             this.parent.overlay.style.display = 'block';       
         } else {
-            this.overlayVisible = false;
-            /*
-            new Effect.toggle(this.overlay, 
-            'appear',
-            {
-                afterFinish: this.afterFold,
-                beforeStart: this.beforeFold, 
-                duration: 0.1,
-                from: 0.3,
-                to: 0
-            });
-            */
+            this.overlayVisible = false;            
             this.parent.overlay.style.display  = 'none';        
         }       
     }

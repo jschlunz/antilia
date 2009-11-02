@@ -12,6 +12,7 @@ import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.Component;
 import org.apache.wicket.ResourceReference;
 import org.apache.wicket.ajax.AjaxRequestTarget;
+import org.apache.wicket.extensions.ajax.markup.html.modal.ModalWindow;
 import org.apache.wicket.markup.ComponentTag;
 import org.apache.wicket.markup.MarkupStream;
 import org.apache.wicket.markup.html.CSSPackageResource;
@@ -19,6 +20,8 @@ import org.apache.wicket.markup.html.JavascriptPackageResource;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.panel.Panel;
+import org.apache.wicket.markup.html.resources.CompressedResourceReference;
+import org.apache.wicket.markup.html.resources.JavascriptResourceReference;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.protocol.http.ClientProperties;
@@ -50,6 +53,12 @@ public abstract class DefaultDialog extends Panel implements IDialogScope, IMenu
 	
 	private boolean browserIExplorer6 = false;
 	
+	private static ResourceReference JAVASCRIPT = new JavascriptResourceReference(
+			ModalWindow.class, "res/modal.js");
+
+	private static ResourceReference CSS = new CompressedResourceReference(ModalWindow.class,
+			"res/modal.css");
+		
 	private int posX = 100;
 	
 	private int posY = 100;
@@ -155,6 +164,9 @@ public abstract class DefaultDialog extends Panel implements IDialogScope, IMenu
 			}
 		}
 		add(new AntiliaVeilResource());
+		
+		add(CSSPackageResource.getHeaderContribution(CSS));
+		add(JavascriptPackageResource.getHeaderContribution(JAVASCRIPT));
 		
 		// add the CSS style of the dialog.	
 		add(CSSPackageResource.getHeaderContribution(getCSSStyle()));
