@@ -13,8 +13,8 @@ import org.apache.wicket.model.ResourceModel;
 
 import com.antilia.web.button.AbstractButton;
 import com.antilia.web.dialog.DefaultDialog;
-import com.antilia.web.dialog.DialogButton;
 import com.antilia.web.dialog.DialogStyle;
+import com.antilia.web.dialog.IDialogLink;
 
 /**
  * 
@@ -32,12 +32,12 @@ public  class ConfirmationDialog extends DefaultDialog {
 	 * @param id
 	 * @param button
 	 */
-	public ConfirmationDialog(String id, DialogButton button, String message) {
+	public ConfirmationDialog(String id, IDialogLink button, String message) {
 		this(id, button, new Model<String>(message));
 	}
 	
 	
-	public ConfirmationDialog(String id, DialogButton button, IModel<String> message) {
+	public ConfirmationDialog(String id, IDialogLink button, IModel<String> message) {
 		super(id, button);
 		this.message = message;		
 		init();
@@ -49,7 +49,7 @@ public  class ConfirmationDialog extends DefaultDialog {
 	 * @param button
 	 * @param dialogStyle
 	 */
-	public ConfirmationDialog(String id, DialogButton button, DialogStyle dialogStyle, String message) {
+	public ConfirmationDialog(String id, IDialogLink button, DialogStyle dialogStyle, String message) {
 		this(id, button, dialogStyle, new Model<String>(message));
 	}
 	
@@ -58,7 +58,7 @@ public  class ConfirmationDialog extends DefaultDialog {
 	 * @param button
 	 * @param dialogStyle
 	 */
-	public ConfirmationDialog(String id, DialogButton button, DialogStyle dialogStyle, IModel<String> message) {
+	public ConfirmationDialog(String id, IDialogLink button, DialogStyle dialogStyle, IModel<String> message) {
 		super(id, button, dialogStyle);
 		this.message = message;
 		init();
