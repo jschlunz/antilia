@@ -547,7 +547,7 @@ public class Table<E extends Serializable> extends Panel implements IPageableCom
 		return new FirstBodyCell<E>(id, row, table, item);
 	}
 	
-	protected WebMarkupContainer newBodyCell(String id, IColumnModel<E> columnModel, E object) {
+	protected Component newBodyCell(String id, IColumnModel<E> columnModel, E object) {
 		return new DefaultBodyCell<E>(id, columnModel, object);
 	}
 	
