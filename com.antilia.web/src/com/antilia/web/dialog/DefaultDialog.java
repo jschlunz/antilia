@@ -250,6 +250,8 @@ public abstract class DefaultDialog extends Panel implements IDialogScope, IMenu
 					return DefaultDialog.this.getDialogId()+"Body";
 				}
 			}));		
+			
+			
 			dialogBody.add(new AttributeModifier("style", new Model<String>() {
 				private static final long serialVersionUID = 1L;
 
@@ -275,7 +277,18 @@ public abstract class DefaultDialog extends Panel implements IDialogScope, IMenu
 			}));
 			dialogBackground.add(dialogBody);
 					
+			WebMarkupContainer veil = new WebMarkupContainer("veil");
+			veil.add(new AttributeModifier("id", new Model<String>() {
+
+				private static final long serialVersionUID = 1L;
+
+				@Override
+				public String getObject() {
+					return DefaultDialog.this.getDialogId()+"modal_overlay";
+				}
+			}));
 			
+			dialogBody.add(veil);
 			
 			
 			WebMarkupContainer footer = new WebMarkupContainer("footer") ;
