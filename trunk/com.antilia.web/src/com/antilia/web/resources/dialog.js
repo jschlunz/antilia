@@ -29,8 +29,11 @@
 			var element = document.createElement("div");			
 			element.id='mask-'+this.id;
 			this.panel.parentNode.appendChild(element);	
-		}
-				
+			YAHOO.util.Dom.setStyle(this.id, "position", "fixed");
+		} 
+		
+		var overlay = this.id + 'modal_overlay';
+		this.overlay = document.getElementById(overlay);				
 		
 		this.panel = document.getElementById(id);
 		
@@ -55,7 +58,10 @@
 		this.folded = false;
 		this.overlayVisible = false;
 		this.loadingVisible = false;
-		this.addModalLayer();
+		//this.addModalLayer();
+		
+		
+		
 		if(this.parentId) {	
 			this.parent = Antilia_dragPanels.getPanel(this.parentId);			
 		}							
@@ -87,8 +93,9 @@
 					var fwidth = YAHOO.util.Dom.getViewportWidth();
 					var fheight = parseInt(fbody.style.height, 10);
 					
+					
 					YAHOO.util.Dom.setStyle(this.id, "top", ((fheight/2)-height/2)+ "px"); 
-					YAHOO.util.Dom.setStyle(this.id, "left", ((fwidth/2)-width/2) + "px");
+					YAHOO.util.Dom.setStyle(this.id, "left", ((fwidth/2)-width/2) + "px");					
 				} else {
 					var width = parseInt(this.panel.style.width, 10);
 					var height = parseInt(this.panel.style.height, 10);		
@@ -115,7 +122,7 @@
 	}
 	
 	
-	Panel.prototype.addModalLayer = function() {
+	Panel.prototype.addModalLayer = function(parent) {
 		this.overlay = $(document.createElement('div'));
 		this.overlay.id = this.id + 'modal_overlay';
 		this.overlay.className = 'dark-mask-dark';
