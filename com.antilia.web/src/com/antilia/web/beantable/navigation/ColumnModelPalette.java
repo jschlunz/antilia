@@ -27,17 +27,14 @@ public class ColumnModelPalette<E extends Serializable> extends AntiliaBasePalet
 
 	private static final long serialVersionUID = 1L;
 
-	private static class ColumnModelChoiceRenderer<E extends Serializable> implements IChoiceRenderer<IColumnModel<E>> {
+	private abstract static class ColumnModelChoiceRenderer<E extends Serializable> implements IChoiceRenderer<IColumnModel<E>> {
 		
 		private static final long serialVersionUID = 1L;
-
-		public Object getDisplayValue(IColumnModel<E> object) {
-			return ((IColumnModel<E>)object).getPropertyPath();
-		}
 		
 		public String getIdValue(IColumnModel<E> object, int index) {
-			return ((IColumnModel<E>)object).getPropertyPath();
+			return object.getPropertyPath();
 		}		
+		
 	}
 	
 	private static class AvailableList<E extends Serializable> extends ArrayList<IColumnModel<E>> {
@@ -81,11 +78,20 @@ public class ColumnModelPalette<E extends Serializable> extends AntiliaBasePalet
 	 * @param renderer
 	 */
 	@SuppressWarnings("unchecked")
-	public ColumnModelPalette(String id, Table<E> table) {
+	public ColumnModelPalette(String id, final Table<E> table) {
 		super(id, 
 				new Model(new SelectedList<E>(table.getTableModel())),  
 				new Model(new AvailableList<E>(table.getTableModel())), 
-				new ColumnModelChoiceRenderer<E>(), 10, true);
+				new ColumnModelChoiceRenderer<E>() {
+			
+					private static final long serialVersionUID = 1L;
+
+					public Object getDisplayValue(IColumnModel<E> object) {
+						
+						return object.getTitleModel(table).getObject();
+					}
+				
+				}, 10, true);
 		//this.table = table;
 	}
 	

@@ -19,14 +19,12 @@ import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.AbstractReadOnlyModel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
-import org.apache.wicket.model.StringResourceModel;
 import org.wicketstuff.minis.veil.VeilResources;
 
 import com.antilia.common.query.IOrder;
 import com.antilia.common.query.IQuery;
 import com.antilia.common.query.Order;
 import com.antilia.common.query.IOrder.OrderType;
-import com.antilia.common.util.ResourceUtils;
 import com.antilia.common.util.StringUtils;
 import com.antilia.web.beantable.model.IColumnModel;
 import com.antilia.web.beantable.navigation.ColumnMenuItemsFactory;
@@ -312,10 +310,8 @@ public class DefaultHeaderCell<E extends Serializable> extends Panel {
 		
 	}
 	
-	@SuppressWarnings("unchecked")
-	protected IModel getLabelModel() {
-		String key = ResourceUtils.getPropertyResourceKey(getBeanClass(), getColumnModel().getPropertyPath());
-		return new StringResourceModel(key, this, null, getColumnModel().getPropertyPath());
+	protected IModel<String> getLabelModel() {
+		return getColumnModel().getTitleModel(this);
 	}
 	
 	@SuppressWarnings("unchecked")

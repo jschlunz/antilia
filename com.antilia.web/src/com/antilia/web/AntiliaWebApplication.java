@@ -23,15 +23,7 @@ public abstract class AntiliaWebApplication extends org.apache.wicket.protocol.h
 	
 	@Override
 	protected void init() {
-		super.init();
-		
-		/*
-		getResourceSettings().addStringResourceLoader(
-				new ComponentStringResourceLoader());
-		getResourceSettings().addStringResourceLoader(
-				new ClassStringResourceLoader(this.getClass()));
-		*/
-		
+		super.init();		
 		// Adding our custom StringResourceLoaders
 		getResourceSettings().addStringResourceLoader(PackageResourceLoader.getInstance());
 		

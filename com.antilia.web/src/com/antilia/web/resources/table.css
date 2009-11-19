@@ -57,7 +57,7 @@ tr.highlightedRow {
 }
 
 .theaderrow {	
-	background-image: url("images/tableheader_up.png");
+	background-image: url("images/tableheader.png");
 	background-repeat: repeat-x;		
 }
 
@@ -71,7 +71,8 @@ tr.highlightedRow {
 	text-align: center;
 	font-weight: bold;
 	padding-bottom: 2px;
-	padding-top: 1px;
+	padding-top: 1px; 
+	border-right: 1px solid white;
 }
 
 td.defaultHeader ,  td.defaultHeaderOver{
@@ -94,6 +95,7 @@ td.tbodycol {
 	margin: 0px;
 	vertical-align: middle;
 	padding-left: 3px;
+	border-right: 1px solid white;
 }
 
 td.droptarget {    
@@ -127,9 +129,10 @@ span.defaultBodyCell {
     float: none;
 }
 
-.theaderrow .addCol, .theaderrowOver .addCol {
+.theaderrow td.addCol, .theaderrowOver td.addCol {
 	white-space: nowrap; 
 	padding: 0;		
+	border-right: none;
 }
 
 img.dropColumn {

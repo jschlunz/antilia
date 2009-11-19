@@ -30,6 +30,7 @@ public class UnusedColumnsDialog<E extends Serializable> extends DefaultDialog {
 		setPosY(10);
 		setWidth(320);
 		setHeight(240);
+		setCentered(true);
 	}
 	
 	@Override
