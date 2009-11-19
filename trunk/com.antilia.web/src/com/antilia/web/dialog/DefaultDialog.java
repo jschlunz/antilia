@@ -82,6 +82,20 @@ public abstract class DefaultDialog extends Panel implements IDialogScope, IMenu
 	private Panel header;
 	
 	/**
+	 * Flag to set the dialog as a top level one.
+	 */
+	private boolean isTopLevel = false;
+	
+	
+	public boolean isTopLevel() {
+		return isTopLevel;
+	}
+
+	public void setTopLevel(boolean isTopLevel) {
+		this.isTopLevel = isTopLevel;
+	}
+
+	/**
 	 * If the dialog is re-sizable or not
 	 */
 	private boolean resizable = true;
@@ -356,6 +370,8 @@ public abstract class DefaultDialog extends Panel implements IDialogScope, IMenu
 				sb.append(DefaultDialog.this.isCentered());
 				sb.append(", false,");
 				sb.append(DefaultDialog.this.isDraggable());
+				sb.append(",");
+				sb.append(DefaultDialog.this.isTopLevel());
 				sb.append(");");
 				replaceComponentTagBody(markupStream, openTag, sb.toString());
 			}

@@ -6,7 +6,12 @@ package com.antilia.web.beantable.model;
 
 import java.io.Serializable;
 
+import org.apache.wicket.Component;
+import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
+import org.apache.wicket.model.StringResourceModel;
+
+import com.antilia.common.util.ResourceUtils;
 
 /**
  * 
@@ -110,4 +115,8 @@ public class ColumnModel<E extends Serializable> extends Model<E> implements ICo
 		this.resizable = resizable;
 	}
 
+	public IModel<String> getTitleModel(Component component) {
+		String key = ResourceUtils.getPropertyResourceKey(tableModel.getBeanClass(), getPropertyPath());
+		return new StringResourceModel(key, component, null, getPropertyPath());
+	}
 }

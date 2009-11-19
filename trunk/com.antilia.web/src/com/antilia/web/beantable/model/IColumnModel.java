@@ -6,6 +6,7 @@ package com.antilia.web.beantable.model;
 
 import java.io.Serializable;
 
+import org.apache.wicket.Component;
 import org.apache.wicket.model.IModel;
 
 /**
@@ -45,15 +46,30 @@ public interface IColumnModel<E extends Serializable> extends IModel<E> {
 	public boolean isResizable();
 
 	/**
+	 * Flag to set column resizability.
+	 * 
 	 * @param resizable the resizable to set
 	 */
 	public void setResizable(boolean resizable);
 	
 	/**
-	 * 
+	 * The property path asociated with the column.
 	 * @return The property path
 	 */		
 	String getPropertyPath();
 	
+	/**
+	 * @return Returns the table model.
+	 */
 	ITableModel<E> getTableModel();
+	
+	
+	/**
+	 * Returns a model for the column title.
+	 * 
+	 * @param component
+	 * @return
+	 */
+	IModel<String> getTitleModel(Component component);
+	
 }

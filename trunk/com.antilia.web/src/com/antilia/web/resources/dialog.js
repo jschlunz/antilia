@@ -1,7 +1,7 @@
 	Wicket.Window.Mask.zIndex = 1;
 	
 	//Class for draggable panel.	
-	function Panel(id, parentId, ie, minWidth, minHeight, modal, panelClass, onDragClass, selectedClass, centered, isContainer,draggable) {
+	function Panel(id, parentId, ie, minWidth, minHeight, modal, panelClass, onDragClass, selectedClass, centered, isContainer,draggable, toLevel) {
 		this.id = id;
 		this.parentId = parentId;
 		this.ie = ie;
@@ -11,6 +11,7 @@
 		this.panelClass = panelClass;
 		this.onDragClass =  onDragClass;
 		this.selectedClass = selectedClass;
+		this.toLevel = toLevel;
 		
 		if(minWidth)
 			this.minWidth = minWidth;
@@ -24,27 +25,27 @@
 		this.panel = document.getElementById(id);
 		
 		this.parentPanel = document.getElementById(parentId);		
-				
+			
+		if(this.toLevel == true) {
+			YAHOO.util.Dom.setStyle(this.id, "position", "fixed");			
+		}
+		
 		if(this.parentPanel == null) {		
 			var element = document.createElement("div");			
 			element.id='mask-'+this.id;
-			this.panel.parentNode.appendChild(element);	
-			YAHOO.util.Dom.setStyle(this.id, "position", "fixed");
+			this.panel.parentNode.appendChild(element);				
 		} 
 		
 		var overlay = this.id + 'modal_overlay';
 		this.overlay = document.getElementById(overlay);				
 		
-		this.panel = document.getElementById(id);
 		
 		if(Antilia.Browser.ie6 == true) {
-			this.panel.innerHTML =  '<iframe id="'+id+'-iframe" src="" scrolling="no" frameborder="0" style="position: absolute; top: 0px; left: 0px; z-index: -1; width: 100px; height: 100px; display: block; filter:alpha(opacity=0);"></iframe>' + this.panel.innerHTML;
+			this.panel.innerHTML =  '<iframe id="'+id+'-iframe" src="\/\/:" scrolling="no" frameborder="0" style="position: absolute; top: 0px; left: 0px; z-index: -1; width: 100px; height: 100px; display: block; filter:alpha(opacity=0);"></iframe>' + this.panel.innerHTML;
 			this.iframe = document.getElementById(id+'-iframe');
 			this.resizeIFrame(this.iframe, this.panel);
 		}
-		
-		this.parentPanel = document.getElementById(parentId);
-		
+				
 		this.height = parseInt(this.panel.style.height, 10);	
 		this.panelBody = document.getElementById(id+"Body");		
 		this.panelHeader = document.getElementById(id+"Header");
@@ -58,16 +59,13 @@
 		this.folded = false;
 		this.overlayVisible = false;
 		this.loadingVisible = false;
-		//this.addModalLayer();
-		
-		
 		
 		if(this.parentId) {	
 			this.parent = Antilia_dragPanels.getPanel(this.parentId);			
 		}							
 
 		this.toggleModal();
-				
+						
 		if(this.centered) {			
 			if(this.parent) {
 				var pwidth = parseInt(this.parent.panel.style.width, 10);
@@ -122,6 +120,7 @@
 	}
 	
 	
+	/*
 	Panel.prototype.addModalLayer = function(parent) {
 		this.overlay = $(document.createElement('div'));
 		this.overlay.id = this.id + 'modal_overlay';
@@ -135,6 +134,7 @@
 		this.overlay.style.right = "0px";
 		this.overlay.style.bottom = "0px";
 	}
+	*/
 		
 	Panel.prototype.toggleModal = function() {		
 		if(this.modal == false)
@@ -146,6 +146,13 @@
 				if(Antilia.Browser.ie6==true) {
 					Antilia.disableSelects();
 				}
+				
+				//alert(this.parent.panelBody.style.width);
+				//alert(this.parent.panelBody.scrollWidth);
+				//alert(this.parent.panelBody.offsetWidth);
+				this.parent.overlay.style.width = "2000px";
+				this.parent.overlay.style.height = "2000px";
+				this.parent.panelBody.style.overflow = "hidden";
 				this.parent.overlay.style.display = 'block'; 
 			} else {
 				this.overlayVisible = false;
@@ -153,6 +160,7 @@
 					Antilia.enableSelects();
 				}
 				this.parent.overlay.style.display = 'none'; 
+				this.parent.panelBody.style.overflow = "auto";
 			}			
 		} else {
 			if(!this.overlayVisible) {			
@@ -244,7 +252,7 @@
 			x = 0;
 		} else if(this.pWidth != null && ((width + x) > this.pWidth)) {
 			res[0] = -deltaX;
-			x = this.pWidth-width-8;
+			x = this.pWidth-width-6;
 		}
 		
 		if (y < 0) {
@@ -352,10 +360,10 @@
 	function Panels() {
 		this.panels = new Array();
 			
-		this.addPanel = function(id, parentId, ie, minWidth, minHeight, modal, panelClass, onDragClass, selectedClass, centered, isContainer, draggable) {
+		this.addPanel = function(id, parentId, ie, minWidth, minHeight, modal, panelClass, onDragClass, selectedClass, centered, isContainer, draggable,topLevel) {
 			var panel = this.getPanel(id)
 			if(panel == null) {
-				panel = new Panel(id, parentId, ie, minWidth, minHeight, modal, panelClass, onDragClass, selectedClass, centered, isContainer, draggable);
+				panel = new Panel(id, parentId, ie, minWidth, minHeight, modal, panelClass, onDragClass, selectedClass, centered, isContainer, draggable,topLevel);
 				this.panels[this.panels.length]= panel;
 				this.panels.id = id;
 				if(panel.parentPanel) {
@@ -371,12 +379,12 @@
 			}			
 		}
 		
-		this.addAndRemovePanel = function(id, parentId, ie, minWidth, minHeight, modal, panelClass, onDragClass, selectedClass, centered,isContainer, draggable) {
+		this.addAndRemovePanel = function(id, parentId, ie, minWidth, minHeight, modal, panelClass, onDragClass, selectedClass, centered,isContainer, draggable, topLevel) {
             var panel = this.getPanel(id)
            if(panel != null) {
                 this.deletePanel(id);
            }
-            panel = new Panel(id, parentId, ie, minWidth, minHeight, modal, panelClass, onDragClass, selectedClass, centered,isContainer, draggable);
+            panel = new Panel(id, parentId, ie, minWidth, minHeight, modal, panelClass, onDragClass, selectedClass, centered,isContainer, draggable,topLevel);
             this.panels[this.panels.length]= panel;
             this.panels.id = id;
             if(panel.parentPanel) {
