@@ -27,10 +27,8 @@ import com.antilia.common.query.Order;
 import com.antilia.common.query.IOrder.OrderType;
 import com.antilia.common.util.StringUtils;
 import com.antilia.web.beantable.model.IColumnModel;
-import com.antilia.web.beantable.navigation.ColumnMenuItemsFactory;
 import com.antilia.web.dialog.IDialogScope;
 import com.antilia.web.dragdrop.YuiDraggableTarget;
-import com.antilia.web.menu.Menu;
 import com.antilia.web.utils.RequestUtils;
 
 /**
@@ -245,6 +243,7 @@ public class DefaultHeaderCell<E extends Serializable> extends Panel {
 		
 		add(draggableTarget);
 		
+		/*
 		Menu menu = Menu.createMenu("menu", null,new ColumnMenuItemsFactory<E>() {
 			
 			private static final long serialVersionUID = 1L;
@@ -258,6 +257,7 @@ public class DefaultHeaderCell<E extends Serializable> extends Panel {
 		menu.setRenderBodyOnly(true);
 		menu.setOutputMarkupId(false);
 		draggableTarget.add(menu);		
+		*/
 		
 		//HeaderTitleLabel<E> title = new HeaderTitleLabel<E>("title", this);
 		
