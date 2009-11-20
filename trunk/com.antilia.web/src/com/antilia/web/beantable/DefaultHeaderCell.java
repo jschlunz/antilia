@@ -262,6 +262,26 @@ public class DefaultHeaderCell<E extends Serializable> extends Panel {
 		//HeaderTitleLabel<E> title = new HeaderTitleLabel<E>("title", this);
 		
 		Label title = new Label("title", DefaultHeaderCell.this.getLabelModel());
+		title.add(new AttributeModifier("class", new AbstractReadOnlyModel<String>() {
+			private static final long serialVersionUID = 1L;
+
+			@Override
+			public String getObject() {
+				IColumnModel<E> columnModel = DefaultHeaderCell.this.getColumnModel();
+				if(!columnModel.isSortable()) {
+					return "headerTitle";
+				}
+				IPageableComponent<E> component = getTable();
+				IQuery<E> query = component.getPageableNavigator().getQuery();				
+				IOrder<E> order = query.getOrder(columnModel.getPropertyPath());
+				if(order == null) {
+					return "headerTitle";
+				}else if(order.getType().equals(OrderType.DESCENDING))
+					return "headerTitleDesc";
+				else 
+					return "headerTitleAsc";
+			}
+		}));
 		draggableTarget.add(title);
 		
 		/*
@@ -278,7 +298,7 @@ public class DefaultHeaderCell<E extends Serializable> extends Panel {
 		add(title);
 		*/
 		WebMarkupContainer dragTd = new WebMarkupContainer("dragTd");
-		dragTd.add(new AttributeModifier("id", new Model<String>() {
+		dragTd.add(new AttributeModifier("id", new AbstractReadOnlyModel<String>() {
 			private static final long serialVersionUID = 1L;
 
 			@Override
