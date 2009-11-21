@@ -39,6 +39,7 @@ span.pageNCurr, span.pageNOff, span.pageNSep  {
   	margin-top: 2px;
 	padding-top: 0px;
 	padding-left: 2px;	
+	height: 20px;
 }
 
 tr.tbodyrow1 {	
@@ -99,20 +100,37 @@ td.tbodycol {
 }
 
 td.droptarget {    
-    background: url("images/drop-arrow-black.gif") 1px 3px no-repeat transparent;
+    background: url("images/drop-arrow-white.gif") 1px 0px no-repeat transparent;
+}
+
+div.droptarget  {    
+    background: url("images/drop-arrow-white.gif") 1px 1px no-repeat transparent;
 }
 
 div.ondrag {    
     border: 1px solid white;
 }
 
-div.headerTitle {
+div.headerTitle, div.headerTitleAsc, div.headerTitleDesc {
 	width: 98%; 
 	height: 100%; 
 	vertical-align: bottom; 
-	margin-top:  3px; 
+	margin-top:  2px; 
 	margin-bottom: 2px;
 }
+
+div.headerTitleAsc {
+	background-image: url("images/bullet_arrow_up_small_white.gif");
+  	background-position: right;
+  	background-repeat: no-repeat;	
+}
+
+div.headerTitleDesc {
+	background-image: url("images/bullet_arrow_down_small_white.gif");
+  	background-position: right;
+  	background-repeat: no-repeat;
+}
+
 span.defaultBodyCell {
 	width: 100%; 
 	overflow: hidden; 
@@ -153,7 +171,7 @@ div.dropColumn {
 	padding:0;
 	margin: 0px;
 	cursor: w-resize;
-	background: url("images/ColumnResize.gif") 0px 3px no-repeat;
+	background: url("images/ColumnResize.gif") 0px 0px no-repeat;
 }
 
 .theaderrow .noResCol, .theaderrowOver .noResCol {
@@ -162,7 +180,7 @@ div.dropColumn {
 	padding:0;
 	margin: 0px;
 	cursor: default;
-	background: url("images/ColumnDivide.gif") 0px 3px no-repeat;
+	background: url("images/ColumnDivide.gif") 0px 0px no-repeat;
 }
 
 .theaderrow .fresCol, .theaderrowOver .fresCol{
@@ -171,7 +189,7 @@ div.dropColumn {
 	padding:0;
 	margin: 0px;
 	cursor: w-resize;
-	background: url("images/ColumnResize.gif") 0px 1px no-repeat;
+	background: url("images/ColumnResize.gif") 0px 0px no-repeat;
 }
 
 .theaderrow .fnoResCol, .theaderrowOver .fnoResCol{
@@ -180,5 +198,5 @@ div.dropColumn {
 	padding:0;
 	margin: 0px;
 	cursor: default;
-	background: url("images/ColumnDivide.gif") 0px 1px no-repeat;
+	background: url("images/ColumnDivide.gif") 0px 0px no-repeat;
 }

@@ -7,8 +7,10 @@ package com.antilia.web.beantable;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.Component;
@@ -265,8 +267,8 @@ public class Table<E extends Serializable> extends Panel implements IPageableCom
 			@Override
 			public String getObject() {
 				if(Table.this.ie6)
-					return  "min-width: 30px; height: 22px;";					
-				return  "min-width: 30px; height: 22px; border: 1px solid transparent;";
+					return  "min-width: 30px; height: 16px;";					
+				return  "min-width: 30px; height: 16px; border: 1px solid transparent;";
 			}
 		}));
 		
@@ -794,4 +796,19 @@ public class Table<E extends Serializable> extends Panel implements IPageableCom
 	public void setDragableColumns(boolean dragableColumns) {
 		this.dragableColumns = dragableColumns;
 	}
+	
+	
+	public Map<String, String> getColumnHeaderNames() {
+		Map<String, String> translations = new HashMap<String, String>();
+		Iterator<IColumnModel<E>> it = getTableModel().getColumnModels();
+		while(it.hasNext()) {
+			IColumnModel<E> model = it.next();
+			String path = model.getPropertyPath();
+			String translation = model.getTitleModel(this).getObject();
+			translations.put(path, translation);
+		}
+		return translations;
+	}
+	
+	
 }
