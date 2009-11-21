@@ -144,7 +144,7 @@ TColumn.prototype.initialize = function() {
         var el = YAHOO.util.Dom.get(id);
         el.parentNode.className='droptarget';
         //Dom.setStyle(el, "opacity", 0.8);
-        Dom.setStyle(el, "border", "1px dashed gray");   
+        Dom.setStyle(el, "border", "1px dashed #fbfacc");   
     }
     
     this.dd.onDragOut =  function(e, id) { 
