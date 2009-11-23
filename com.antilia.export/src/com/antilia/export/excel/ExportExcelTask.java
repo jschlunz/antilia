@@ -6,11 +6,14 @@ package com.antilia.export.excel;
 
 import java.io.File;
 import java.io.Serializable;
+import java.util.Map;
 
 import jxl.Workbook;
 import jxl.WorkbookSettings;
+import jxl.format.Colour;
 import jxl.write.Label;
 import jxl.write.WritableCell;
+import jxl.write.WritableCellFormat;
 import jxl.write.WritableSheet;
 import jxl.write.WritableWorkbook;
 
@@ -34,11 +37,23 @@ public class ExportExcelTask<E extends Serializable> extends AbstractExportTask 
 		
 	private ITableModel<E> tableModel;
 	
+	private Map<String,  String> columnTranslations;
 	
-	public ExportExcelTask(IPageableNavigator<E> pageableProvider, ITableModel<E> tableModel) {
+	private static WritableCellFormat HEADER_FROMAT = new WritableCellFormat();
+	
+	static {
+		try {
+			HEADER_FROMAT.setBackground(Colour.GRAY_25);
+		} catch (Exception e) {
+			// do nothing
+		}
+	}
+	
+	public ExportExcelTask(IPageableNavigator<E> pageableProvider, ITableModel<E> tableModel, Map<String,  String> columnTranslations) {
 		super();
 		this.pageableProvider = pageableProvider.duplicate();
 		this.tableModel = tableModel;
+		this.columnTranslations = columnTranslations;
 	}
 	
 	@Override
@@ -62,7 +77,8 @@ public class ExportExcelTask<E extends Serializable> extends AbstractExportTask 
 		int column = 0;
 		while(it.hasNext()) {
 			IColumnModel<E> columnModel = it.next();
-			WritableCell cell = new Label(column, row, columnModel.getPropertyPath());
+			WritableCell cell = new Label(column, row, columnTranslations.get(columnModel.getPropertyPath()));
+			cell.setCellFormat(HEADER_FROMAT);
 			sheet.addCell(cell);
 			column++;
 		}
