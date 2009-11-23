@@ -4,9 +4,11 @@
  */
 package com.antilia.export.pdf;
 
+import java.awt.Color;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.Serializable;
+import java.util.Map;
 
 import com.antilia.common.util.ReflectionUtils;
 import com.antilia.hibernate.context.IProgressReporter;
@@ -15,6 +17,8 @@ import com.antilia.web.beantable.model.ITableModel;
 import com.antilia.web.export.AbstractExportTask;
 import com.antilia.web.navigator.IPageableNavigator;
 import com.lowagie.text.Document;
+import com.lowagie.text.Phrase;
+import com.lowagie.text.pdf.PdfPCell;
 import com.lowagie.text.pdf.PdfPTable;
 import com.lowagie.text.pdf.PdfWriter;
 
@@ -31,11 +35,14 @@ public class ExportPdfTask<E extends Serializable> extends AbstractExportTask {
 		
 	private ITableModel<E> tableModel;
 	
+	private Map<String,  String> columnTranslations;
 	
-	public ExportPdfTask(IPageableNavigator<E> pageableProvider, ITableModel<E> tableModel) {
+	
+	public ExportPdfTask(IPageableNavigator<E> pageableProvider, ITableModel<E> tableModel, Map<String,  String> columnTranslations) {
 		super();
 		this.pageableProvider = pageableProvider.duplicate();
 		this.tableModel = tableModel;
+		this.columnTranslations = columnTranslations;
 	}
 	
 	@Override
@@ -58,7 +65,9 @@ public class ExportPdfTask<E extends Serializable> extends AbstractExportTask {
 		it = tableModel.getColumnModels();
 		while(it.hasNext()) {
 			IColumnModel<E> columnModel = it.next();
-			table.addCell(columnModel.getPropertyPath());
+			PdfPCell cell = new PdfPCell(new Phrase(this.columnTranslations.get(columnModel.getPropertyPath())));
+			cell.setBackgroundColor(Color.LIGHT_GRAY);
+			table.addCell(cell);
 		}
 		document.add(table);
 		

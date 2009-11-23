@@ -68,7 +68,7 @@ public class ExportPdfButton<B extends Serializable> extends AbstractExportDialo
 	@Override
 	protected AbstractExportTask newExportTask() {
 		Table<B> table = findPageableComponent();
-		return new ExportPdfTask<B>(table.getPageableNavigator(), table.getTableModel());
+		return new ExportPdfTask<B>(table.getPageableNavigator(), table.getTableModel(), table.getColumnHeaderNames());
 	}
 	
 	/* (non-Javadoc)
