@@ -15,6 +15,8 @@ import org.apache.wicket.markup.MarkupStream;
 import org.apache.wicket.markup.html.JavascriptPackageResource;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.basic.Label;
+import org.apache.wicket.markup.html.image.NonCachingImage;
+import org.apache.wicket.markup.html.image.resource.DynamicImageResource;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.markup.repeater.Item;
 import org.apache.wicket.markup.repeater.RefreshingView;
@@ -187,6 +189,18 @@ public class ScrambledWordPanel extends Panel {
 			}
 		};
 		addOrReplace(script);
+		
+		NonCachingImage image = new NonCachingImage("image", new DynamicImageResource() {
+			
+			private static final long serialVersionUID = 1L;
+
+			@Override
+			protected byte[] getImageData() {
+				return ScrambledWordPanel.this.word.getImage().getBytes();
+			}
+		});
+		
+		add(image);
 	}
 
 	public List<DDTarget> getTargets() {

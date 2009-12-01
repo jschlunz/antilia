@@ -1,24 +1,36 @@
 <html xmlns:wicket="org.apache.wicket">
 <body>
     <wicket:panel>
-        <table cellpadding="4" cellspacing="4">
-        	<tr>
-        		<td wicket:id="cell">
-        			<div wicket:id="source" class="letter">
-        				<span wicket:id="letter"></span>
-        			</div>
-        		</td>
-        	</tr>
-        </table>
-        <table cellpadding="4" cellspacing="4">	
-        	<tr>
-        		<td wicket:id="targets">
-        			<div wicket:id="target" class="letter target">
-        				<span wicket:id="letter"></span>
-        			</div>
-        		</td>
-        	</tr>        	
-        </table>
+    	<table width="100%" cellpadding="1" cellspacing="1">
+    		<tbody>
+    			<tr>
+    				<td>
+    					<table cellpadding="4" cellspacing="4">
+				        	<tr>
+				        		<td wicket:id="cell">
+				        			<div wicket:id="source" class="letter">
+				        				<span wicket:id="letter"></span>
+				        			</div>
+				        		</td>
+				        	</tr>
+				        </table>
+				        <table cellpadding="4" cellspacing="4">	
+				        	<tr>
+				        		<td wicket:id="targets">
+				        			<div wicket:id="target" class="letter target">
+				        				<span wicket:id="letter"></span>
+				        			</div>
+				        		</td>
+				        	</tr>        	
+				        </table>
+    				</td>
+    				<td>
+    					<img wicket:id="image" alt="" src=""/>
+    				</td>
+    			</tr>
+    		</tbody>
+    	</table>
+               
         <script type="text/javascript" wicket:id="script">
         </script>
      </wicket:panel>

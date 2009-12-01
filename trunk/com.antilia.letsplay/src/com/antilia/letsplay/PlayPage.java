@@ -9,6 +9,7 @@ import org.apache.wicket.markup.html.WebPage;
 
 import com.antilia.letsplay.components.ScrambledWordPanel;
 import com.antilia.letsplay.model.Word;
+import com.antilia.letsplay.model.mock.CabezaImage;
 import com.antilia.letsplay.resources.AppStyle;
 import com.antilia.web.resources.DefaultStyle;
 import com.antilia.web.veil.AntiliaVeilResource;
@@ -32,7 +33,9 @@ public class PlayPage extends WebPage  {
 		
 		add(CSSPackageResource.getHeaderContribution(AppStyle.CSS));
 		
-		ScrambledWordPanel scrambled  = new ScrambledWordPanel("scrambled", new Word("Cabeza"));
+		Word word = new Word("Cabeza");
+		word.setImage(new CabezaImage());
+		ScrambledWordPanel scrambled  = new ScrambledWordPanel("scrambled",word);
 		add(scrambled);
 	}
 }

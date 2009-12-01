@@ -32,6 +32,8 @@ public class Word implements Serializable {
 
 	private List<IModel<Letter>> dummyLetters;
 	
+	private Image image;
+	
 	public Word(String text) {
 		if(StringUtils.isEmpty(text))
 			throw new IllegalArgumentException("Text cannot be null!");
@@ -103,5 +105,13 @@ public class Word implements Serializable {
 			}
 		}
 		return dummyLetters;
+	}
+
+	public Image getImage() {
+		return image;
+	}
+
+	public void setImage(Image image) {
+		this.image = image;
 	}
 }
