@@ -8,25 +8,40 @@ div.contents {
 }
 
 div.pheader {
-	border: 1px solid red;
-	height: 100px;
+	height: 86px;
 }
 
 div.pbody {
-	border: 1px solid green;
-	height: 698px;
+	height: 700px;
 }
 
 div.letter {
 	border: 1px solid red;
 	height: 50px;
 	width: 50px;
+	color: red;
 	font-size: 40px;
 	font: Verdana;
 	vertical-align: middle;
 	text-align: center;
 }
-	
+
+td.hleft {
+	background-image: url("LPT.gif");
+	width: 286px;
+	height: 86px;	
+}
+
+td.hright {
+	background-image: url("LP.gif");
+	height: 86px;	
+}
+
+div.target {
+	border: solid 1px gray;
+	color: gray;
+}
+		
 td.banner-left {
 	background: transparent;	
 }
