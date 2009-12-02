@@ -23,6 +23,7 @@ import org.apache.wicket.markup.repeater.RefreshingView;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 
+import com.antilia.letsplay.components.failure.ImageFailureReporter;
 import com.antilia.letsplay.model.Letter;
 import com.antilia.letsplay.model.Word;
 import com.antilia.web.dragdrop.YuiDraggableTarget;
@@ -71,6 +72,9 @@ public class ScrambledWordPanel extends Panel {
 	private List<IModel<Letter>> answer;
 	
 	private List<IModel<Letter>> source;
+	
+	//TODO: injection.
+	private IFailureReporter failureReporter = ImageFailureReporter.getInstance();
 	
 	private int failures = 0;
 	
@@ -153,8 +157,9 @@ public class ScrambledWordPanel extends Panel {
 								if(allowed.getText()==letter.getText()) {
 									ScrambledWordPanel.this.answer.set(ntarget, new Model<Letter>(letter));
 									ScrambledWordPanel.this.source.remove(nsource);
+								} else {
+									ScrambledWordPanel.this.failures++;
 								}
-								
 							}
 							target.addComponent(ScrambledWordPanel.this);
 						}
@@ -202,7 +207,15 @@ public class ScrambledWordPanel extends Panel {
 			}
 		});
 		
+		add(failureReporter.createErrorReporter("failure", failures));
+		
 		add(image);
+	}
+	
+	@Override
+	protected void onBeforeRender() {
+		addOrReplace(failureReporter.createErrorReporter("failure", failures));
+		super.onBeforeRender();
 	}
 
 	public List<DDTarget> getTargets() {
