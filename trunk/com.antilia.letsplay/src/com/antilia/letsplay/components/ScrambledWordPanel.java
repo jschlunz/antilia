@@ -72,6 +72,8 @@ public class ScrambledWordPanel extends Panel {
 	
 	private List<IModel<Letter>> source;
 	
+	private int failures = 0;
+	
 	public ScrambledWordPanel(String id,Word word) {
 		super(id);
 		setOutputMarkupId(true);
@@ -209,6 +211,14 @@ public class ScrambledWordPanel extends Panel {
 
 	public void setTargets(List<DDTarget> targets) {
 		this.targets = targets;
+	}
+
+	public int getFailures() {
+		return failures;
+	}
+
+	public void setFailures(int failures) {
+		this.failures = failures;
 	}
 
 }

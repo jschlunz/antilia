@@ -29,9 +29,6 @@ public class Word implements Serializable {
 	
 	private List<Letter> letters;
 	
-
-	private List<IModel<Letter>> dummyLetters;
-	
 	private Image image;
 	
 	public Word(String text) {
@@ -84,7 +81,7 @@ public class Word implements Serializable {
 	}
 
 	public void setText(String text) {
-		this.text = text;
+		this.text = text;		
 	}
 
 	public List<Letter> getLetters() {
@@ -98,12 +95,10 @@ public class Word implements Serializable {
 	}
 
 	public List<IModel<Letter>> getDummyLetters() {
-		if(dummyLetters == null) {
-			dummyLetters = new ArrayList<IModel<Letter>>();
-			for(int i=0;i < text.length(); i++) {
-				dummyLetters.add(new Model<Letter>(new Letter('?', i, i)));
-			}
-		}
+		List<IModel<Letter>> dummyLetters = new ArrayList<IModel<Letter>>();
+		for(int i=0;i < text.length(); i++) {
+			dummyLetters.add(new Model<Letter>(new Letter('?', i, i)));
+		}		
 		return dummyLetters;
 	}
 
