@@ -7,8 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import com.antilia.letsplay.model.mock.CabezaImage;
-import com.antilia.letsplay.model.mock.GormitiImage;
+import com.antilia.letsplay.model.mock.NamedImage;
 
 /**
  * @author Ernesto Reinaldo Barreiro (reiern70@gmail.com)
@@ -18,16 +17,28 @@ public class Words {
 
 	private static List<Word> words = new ArrayList<Word>();
 	
+	public static final String[] WORDS = {
+		"ardilla",
+		"cabeza",
+		"cocodrilo",
+		"dinosaurio",
+		"jirafa",		
+		"gormiti",
+		"guitarra",
+		
+	};
+	
 	private static final Words instance = new Words();
 	
+
+	
 	private Words() {
-		Word word = new Word("Cabeza");
-		word.setImage(new CabezaImage());
-		words.add(word);
 		
-		word = new Word("Gormiti");
-		word.setImage(new GormitiImage());
-		words.add(word);
+		for(String w: WORDS) {
+			Word word = new Word(w);
+			word.setImage(new NamedImage(w));
+			words.add(word);
+		}		
 	}
 	
 	public Word getRandom() {

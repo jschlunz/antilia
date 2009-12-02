@@ -4,7 +4,7 @@
     	<table width="100%" cellpadding="1" cellspacing="1">
     		<tbody>
     			<tr>
-    				<td style="vertical-align: top;">
+    				<td style="vertical-align: top;" align="center">
     					<table cellpadding="4" cellspacing="4">
 				        	<tr>
 				        		<td wicket:id="cell">
@@ -23,10 +23,14 @@
 				        		</td>
 				        	</tr>        	
 				        </table>
-				        <img wicket:id="failure" alt="" src="">
+				        <div style="border: solid 1px black; width: 350px; margin-top: 20px;">
+				        	<img wicket:id="image" alt="" src=""/>		        
+				        </div>
     				</td>
     				<td>
-    					<img wicket:id="image" alt="" src=""/>
+    					<div style="border: solid 1px black; width: 200px; margin-top: 20px;">
+    						<img wicket:id="failure" alt="" src="">
+    					</div>
     				</td>
     			</tr>
     		</tbody>
