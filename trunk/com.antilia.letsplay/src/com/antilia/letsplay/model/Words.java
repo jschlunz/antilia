@@ -26,6 +26,7 @@ public class Words {
 		"gormiti",
 		"gorra",
 		"guitarra",
+		"paloma",
 		"zapato"
 		
 	};
