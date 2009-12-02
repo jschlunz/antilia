@@ -127,6 +127,18 @@ public class ScrambledWordPanel extends Panel {
 		
 		add(cell);
 		
+		WebMarkupContainer exito  = new WebMarkupContainer("exito") {
+			
+			private static final long serialVersionUID = 1L;
+
+			@Override
+			public boolean isVisible() {
+				return ScrambledWordPanel.this.source.size() == 0;
+			}
+		};
+		
+		add(exito);
+		
 		RefreshingView<Letter> targets =  new RefreshingView<Letter>("targets") {
 			
 			private static final long serialVersionUID = 1L;
@@ -197,7 +209,7 @@ public class ScrambledWordPanel extends Panel {
 			public boolean isVisible() {
 				return failures >= 4;
 			}
-		};
+		};		
 		
 		add(solu);
 		
