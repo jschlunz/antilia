@@ -39,8 +39,9 @@ div.solucionHead {
 }
 
 DIV.vidas {
-	background-color: gray;
+	background-color: #b6dcfd;
 	font-size: 15px;
+	width: 200px; margin-top: 20px;
 }
 
 td.hleft {
