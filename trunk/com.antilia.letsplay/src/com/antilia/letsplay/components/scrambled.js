@@ -18,7 +18,7 @@ Letter.prototype.initialize = function() {
     this.dd.onInvalidDrop = function(e) {         
     	// Animating the move is more intesting 
        var Dom = YAHOO.util.Dom;               
-       Dom.setStyle(this.getEl(), "border", "1px solid red");
+       Dom.setStyle(this.getEl(), "border", "1px solid");
        new YAHOO.util.Motion(  
         this.getEl().id, {  
                       points: {  
@@ -37,14 +37,14 @@ Letter.prototype.initialize = function() {
     this.dd.startDrag = function(x, y) { 
         var Dom = YAHOO.util.Dom;
         //Dom.setStyle(this.getEl(), "opacity", 0.8);
-        Dom.setStyle(this.getEl(), "border", "1px solid red");
+        Dom.setStyle(this.getEl(), "border", "1px dashed");
     }
     
     this.dd.onDragOver =  function(e, id) { 
         var Dom = YAHOO.util.Dom;
         var el = YAHOO.util.Dom.get(id);
         //Dom.setStyle(el, "opacity", 0.8);
-        Dom.setStyle(el, "border", "1px solid green");   
+        Dom.setStyle(el, "border", "1px dashed");   
     }
    
     this.dd.onDragOut =  function(e, id) { 
@@ -52,7 +52,7 @@ Letter.prototype.initialize = function() {
         var el = YAHOO.util.Dom.get(id);
         el.parentNode.className='';        
         //Dom.setStyle(el, "opacity", 1);          
-        Dom.setStyle(el, "border", "1px solid red");
+        Dom.setStyle(el, "border", "1px solid");
     }	    	
 }
 

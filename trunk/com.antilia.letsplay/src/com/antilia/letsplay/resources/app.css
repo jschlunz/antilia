@@ -1,6 +1,6 @@
 
 div.contents {
-	width: 850px;
+	width: 900px;
 	height: 800px;
 	margin-left: auto;
 	margin-right: auto;
@@ -16,14 +16,31 @@ div.pbody {
 }
 
 div.letter {
-	border: 1px solid red;
+	border: 1px solid green;
 	height: 50px;
 	width: 50px;
-	color: red;
+	color: green;
 	font-size: 40px;
 	font: Verdana;
 	vertical-align: middle;
 	text-align: center;
+}
+
+div.solution {
+	border: 1px solid red;
+	color: red;
+	text-decoration: blink;
+}
+
+div.solucionHead {
+	font-size: 40px;
+	font: Verdana;
+	color: black;
+}
+
+DIV.vidas {
+	background-color: gray;
+	font-size: 15px;
 }
 
 td.hleft {

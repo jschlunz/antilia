@@ -103,6 +103,11 @@ public class ScrambledWordPanel extends Panel {
 			}
 			
 			@Override
+			public boolean isVisible() {
+				return failures < 4;
+			}
+			
+			@Override
 			protected void populateItem(final Item<Letter> item) {
 				WebMarkupContainer source =  new WebMarkupContainer("source") {
 					 
@@ -129,6 +134,11 @@ public class ScrambledWordPanel extends Panel {
 			@Override
 			protected Iterator<IModel<Letter>> getItemModels() {	
 				return ScrambledWordPanel.this.answer.iterator();
+			}
+			
+			@Override
+			public boolean isVisible() {
+				return failures < 4;
 			}
 			
 			@Override
@@ -180,6 +190,40 @@ public class ScrambledWordPanel extends Panel {
 		
 		add(targets);
 		
+		WebMarkupContainer solu = new WebMarkupContainer("solu") {
+			private static final long serialVersionUID = 1L;
+
+			@Override
+			public boolean isVisible() {
+				return failures >= 4;
+			}
+		};
+		
+		add(solu);
+		
+		RefreshingView<Letter> solution = new RefreshingView<Letter>("solution") {
+			private static final long serialVersionUID = 1L;
+
+			@Override
+			protected Iterator<IModel<Letter>> getItemModels() {	
+				return ScrambledWordPanel.this.word.getLetterModels().iterator();
+			}
+			
+			@Override
+			protected void populateItem(final Item<Letter> item) {				
+				Label letter = new Label("letter", item.getModel().getObject().getText()+"");
+				letter.setRenderBodyOnly(true);
+				item.add(letter);
+			}
+			
+			@Override
+			public boolean isVisible() {
+				return failures >= 4;
+			}
+		};
+		
+		solu.add(solution);
+		
 		Label script = new Label("script", new Model<String>()) {
 			private static final long serialVersionUID = 1L;
 
@@ -196,7 +240,7 @@ public class ScrambledWordPanel extends Panel {
 			}
 		};
 		addOrReplace(script);
-		
+				
 		NonCachingImage image = new NonCachingImage("image", new DynamicImageResource() {
 			
 			private static final long serialVersionUID = 1L;
