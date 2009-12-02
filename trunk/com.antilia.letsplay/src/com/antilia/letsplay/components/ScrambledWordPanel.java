@@ -165,7 +165,6 @@ public class ScrambledWordPanel extends Panel {
 					
 					@Override
 					public void onDrop(String sourceId, String targetId, AjaxRequestTarget target) {
-						System.out.println(sourceId +","+targetId);						
 						if(target != null) {
 							if(targetId.indexOf("s")>0)
 								target.addComponent(ScrambledWordPanel.this);
@@ -173,7 +172,6 @@ public class ScrambledWordPanel extends Panel {
 							int ntarget = Integer.parseInt(targetId.substring(9));
 							Letter letter = ScrambledWordPanel.this.source.get(nsource).getObject();
 							Letter tLater = ScrambledWordPanel.this.answer.get(ntarget).getObject();
-							System.out.println(letter.getText());
 							if(tLater.getText() == '?') {
 								Letter allowed = ScrambledWordPanel.this.word.getLetters().get(ntarget);
 								if(allowed.getText()==letter.getText()) {
