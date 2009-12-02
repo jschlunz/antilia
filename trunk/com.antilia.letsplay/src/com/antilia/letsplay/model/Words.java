@@ -24,6 +24,7 @@ public class Words {
 		"dinosaurio",
 		"jirafa",		
 		"gormiti",
+		"gorra",
 		"guitarra",
 		"zapato"
 		
