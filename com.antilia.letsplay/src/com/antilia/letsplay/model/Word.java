@@ -93,6 +93,15 @@ public class Word implements Serializable {
 		}
 		return letters;
 	}
+	
+	public List<IModel<Letter>> getLetterModels() {
+		List<Letter> letters = getLetters();
+		List<IModel<Letter>> models = new ArrayList<IModel<Letter>>();
+		for(Letter letter: letters) {
+			models.add(new Model<Letter>(letter));
+		}
+		return models;
+	}
 
 	public List<IModel<Letter>> getDummyLetters() {
 		List<IModel<Letter>> dummyLetters = new ArrayList<IModel<Letter>>();
