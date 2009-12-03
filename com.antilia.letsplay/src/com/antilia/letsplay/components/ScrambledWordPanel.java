@@ -20,6 +20,7 @@ import org.apache.wicket.markup.html.image.resource.DynamicImageResource;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.markup.repeater.Item;
 import org.apache.wicket.markup.repeater.RefreshingView;
+import org.apache.wicket.model.AbstractReadOnlyModel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 
@@ -277,10 +278,21 @@ public class ScrambledWordPanel extends Panel {
 
 			@Override
 			protected void onBeforeRender() {
-				addOrReplace(failureReporter.createErrorReporter("failure", failures));
+				addOrReplace(failureReporter.createErrorReporter("failure", failures));				
 				super.onBeforeRender();
 			}
 		};
+		Label vidas = new Label("vidas", new AbstractReadOnlyModel<String>() {
+				
+			private static final long serialVersionUID = 1L;
+
+			@Override
+				public String getObject() {
+					return Integer.toString(4 - ScrambledWordPanel.this.failures);
+				}
+		});			
+		failureBox.add(vidas);
+
 		failureBox.setOutputMarkupId(true);
 		add(failureBox);
 	}
