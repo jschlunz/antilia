@@ -78,6 +78,10 @@ public class ScrambledWordPanel extends Panel {
 	
 	private int failures = 0;
 	
+	private WebMarkupContainer solutionBox;
+	
+	private WebMarkupContainer failureBox;
+	
 	public ScrambledWordPanel(String id,Word word) {
 		super(id);
 		setOutputMarkupId(true);
@@ -93,6 +97,9 @@ public class ScrambledWordPanel extends Panel {
 		add(JavascriptPackageResource.getHeaderContribution(JS));
 		targets = new ArrayList<DDTarget>();
 		
+		solutionBox = new WebMarkupContainer("solutionBox");
+		solutionBox.setOutputMarkupId(true);
+		add(solutionBox);
 		RefreshingView<Letter> cell =  new RefreshingView<Letter>("cell") {
 			
 			private static final long serialVersionUID = 1L;
@@ -125,7 +132,7 @@ public class ScrambledWordPanel extends Panel {
 			}
 		};
 		
-		add(cell);
+		solutionBox.add(cell);
 		
 		WebMarkupContainer exito  = new WebMarkupContainer("exito") {
 			
@@ -137,7 +144,8 @@ public class ScrambledWordPanel extends Panel {
 			}
 		};
 		
-		add(exito);
+		
+		solutionBox.add(exito);
 		
 		RefreshingView<Letter> targets =  new RefreshingView<Letter>("targets") {
 			
@@ -179,9 +187,10 @@ public class ScrambledWordPanel extends Panel {
 									ScrambledWordPanel.this.source.remove(nsource);
 								} else {
 									ScrambledWordPanel.this.failures++;
+									target.addComponent(ScrambledWordPanel.this.failureBox);
 								}
 							}
-							target.addComponent(ScrambledWordPanel.this);
+							target.addComponent(ScrambledWordPanel.this.solutionBox);							
 						}
 					}
 					
@@ -198,7 +207,7 @@ public class ScrambledWordPanel extends Panel {
 			}
 		};
 		
-		add(targets);
+		solutionBox.add(targets);
 		
 		WebMarkupContainer solu = new WebMarkupContainer("solu") {
 			private static final long serialVersionUID = 1L;
@@ -209,7 +218,7 @@ public class ScrambledWordPanel extends Panel {
 			}
 		};		
 		
-		add(solu);
+		solutionBox.add(solu);
 		
 		RefreshingView<Letter> solution = new RefreshingView<Letter>("solution") {
 			private static final long serialVersionUID = 1L;
@@ -249,7 +258,7 @@ public class ScrambledWordPanel extends Panel {
 				replaceComponentTagBody(markupStream, openTag, sb.toString());
 			}
 		};
-		addOrReplace(script);
+		solutionBox.addOrReplace(script);
 				
 		NonCachingImage image = new NonCachingImage("image", new DynamicImageResource() {
 			
@@ -260,15 +269,25 @@ public class ScrambledWordPanel extends Panel {
 				return ScrambledWordPanel.this.word.getImage().getBytes();
 			}
 		});
-		
-		add(failureReporter.createErrorReporter("failure", failures));
-		
+
 		add(image);
+		 
+		failureBox = new WebMarkupContainer("failureBox") {
+			private static final long serialVersionUID = 1L;
+
+			@Override
+			protected void onBeforeRender() {
+				addOrReplace(failureReporter.createErrorReporter("failure", failures));
+				super.onBeforeRender();
+			}
+		};
+		failureBox.setOutputMarkupId(true);
+		add(failureBox);
 	}
 	
 	@Override
 	protected void onBeforeRender() {
-		addOrReplace(failureReporter.createErrorReporter("failure", failures));
+		
 		super.onBeforeRender();
 	}
 

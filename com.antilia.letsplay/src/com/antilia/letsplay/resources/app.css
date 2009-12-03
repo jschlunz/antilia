@@ -33,13 +33,16 @@ div.solution {
 }
 
 div.solucionHead {
-	font-size: 40px;
+	font-size: 35px;
 	font: Verdana;
 	color: black;
+	padding-bottom: 20px;
+	padding-top: 20px;
 }
 
 DIV.vidas {
 	background-color: #b6dcfd;
+	text-align: center;
 	font-size: 15px;
 	width: 200px; margin-top: 20px;
 }

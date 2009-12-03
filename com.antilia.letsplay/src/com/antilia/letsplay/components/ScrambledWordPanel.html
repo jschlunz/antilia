@@ -5,65 +5,68 @@
     		<tbody>
     			<tr>
     				<td style="vertical-align: top;" align="center">
-    					<table cellpadding="4" cellspacing="4">
-				        	<tr>
-				        		<td wicket:id="cell">
-				        			<div wicket:id="source" class="letter">
-				        				<span wicket:id="letter"></span>
-				        			</div>
-				        		</td>
-				        	</tr>
-				        </table>
-				        
-				        <div wicket:id="exito" class="solucionHead">
-				        	Si. La solucion es:
-				        </div>
-				        
-				        <table cellpadding="4" cellspacing="4">	
-				        	<tr>
-				        		<td wicket:id="targets">
-				        			<div wicket:id="target" class="letter target">
-				        				<span wicket:id="letter"></span>
-				        			</div>
-				        		</td>
-				        	</tr>        	
-				        </table>
-				        
-				        <div wicket:id="solu" cellpadding="4" cellspacing="4">	
-				        	<div class="solucionHead">
-				        		La solucion es:
-				        	</div>
-				        	
-				        	<table cellpadding="4" cellspacing="4">
-					       		<tbody>
-					       			<tr>
-					        		
-					        		<td wicket:id="solution">
-						        			<div class="letter solution">
-						        				<span wicket:id="letter"></span>
-						        			</div>
-						        		</td>
-						        	</tr>
-					        	</tbody>				      	        	
+    					<div wicket:id="solutionBox">
+	    					<table cellpadding="4" cellspacing="4">
+					        	<tr>
+					        		<td wicket:id="cell">
+					        			<div wicket:id="source" class="letter">
+					        				<span wicket:id="letter"></span>
+					        			</div>
+					        		</td>
+					        	</tr>
 					        </table>
-				       </div>
-				        
+					        
+					        <div wicket:id="exito" class="solucionHead">
+					        	<wicket:message key="yesSolutionIs"/>
+					        </div>
+					        
+					        <table  cellpadding="4" cellspacing="4">	
+					        	<tr>
+					        		<td wicket:id="targets">
+					        			<div wicket:id="target" class="letter target">
+					        				<span wicket:id="letter"></span>
+					        			</div>
+					        		</td>
+					        	</tr>        	
+					        </table>
+					        
+					        <div wicket:id="solu">	
+					        	<div class="solucionHead">
+					        		<wicket:message key="solutionIs"/>			        		
+					        	</div>
+					        	
+					        	<table cellpadding="4" cellspacing="4">
+						       		<tbody>
+						       			<tr>
+						        		
+						        		<td wicket:id="solution">
+							        			<div class="letter solution">
+							        				<span wicket:id="letter"></span>
+							        			</div>
+							        		</td>
+							        	</tr>
+						        	</tbody>				      	        	
+						        </table>
+					       	</div>
+					       	 <script type="text/javascript" wicket:id="script">
+        					 </script>
+				    	</div>
+				    	    
 				        <div style="border: solid 1px black; width: 400px; margin-top: 20px; overflow: auto;">
-				        	<img wicket:id="image" alt="" src=""/>		        
+				        	<img wicket:id="image"/>		        
 				        </div>
     				</td>
-    				<td style="width: 210px; vertical-align: t">
-    					<div class="vidas">VIDAS:</div>
-    					<div style="border: solid 1px black; width: 200px; margin-top: 20px;">
-    						<img wicket:id="failure" alt="" src="">
+    				<td style="width: 210px; vertical-align: top;">
+    					<div class="vidas">VIDAS</div>
+    					<div wicket:id="failureBox" style="border: solid 1px black; width: 200px; margin-top: 20px;">
+    						<img wicket:id="failure"/>
     					</div>
     				</td>
     			</tr>
     		</tbody>
     	</table>
                
-        <script type="text/javascript" wicket:id="script">
-        </script>
+       
      </wicket:panel>
 </body>
 </html>
