@@ -27,8 +27,8 @@ public class Words {
 		"gorra",
 		"guitarra",
 		"paloma",
-		"zapato"
-		
+		"pelota",
+		"zapato"		
 	};
 	
 	private static final Words instance = new Words();

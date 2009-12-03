@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.antilia.letsplay.components.failure;
+package com.antilia.letsplay.components.failure.copy;
 
 /**
  * @author Ernesto Reinaldo Barreiro (reiern70@gmail.com)
@@ -16,7 +16,7 @@ public class HangImage extends FailureImage {
 	 * @param level
 	 */
 	public HangImage(int level) {
-		super("Vida", level);
+		super("Hang", level);
 	}
 
 }
