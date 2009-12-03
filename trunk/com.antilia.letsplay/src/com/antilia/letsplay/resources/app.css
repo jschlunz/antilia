@@ -18,10 +18,10 @@ div.pbody {
 }
 
 div.letter {
-	border: 1px solid green;
+	border: 1px solid #4a584a;
 	height: 50px;
 	width: 50px;
-	color: green;
+	color: #3e4d3e;
 	font-size: 40px;
 	font: Verdana;
 	vertical-align: middle;
@@ -51,7 +51,7 @@ DIV.vidas {
 
 td.hleft {
 	background-image: url("LPT.gif");
-	width: 286px;
+	width: 237px;
 	height: 86px;	
 }
 
