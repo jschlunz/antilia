@@ -83,6 +83,8 @@ public class ScrambledWordPanel extends Panel {
 	
 	private WebMarkupContainer failureBox;
 	
+	private int renderingCount = 0;
+	
 	public ScrambledWordPanel(String id,Word word) {
 		super(id);
 		setOutputMarkupId(true);
@@ -122,7 +124,7 @@ public class ScrambledWordPanel extends Panel {
 					private static final long serialVersionUID = 1L;
 
 					public String getMarkupId() {
-						return "letter_s_" + item.getIndex();
+						return "letter_s_" + item.getIndex() + "_" + renderingCount;
 					}					
 				};
 				source.setOutputMarkupId(true);
@@ -169,16 +171,17 @@ public class ScrambledWordPanel extends Panel {
 					private static final long serialVersionUID = 1L;
 
 					public String getMarkupId() {
-						return "letter_t_" + item.getIndex();
+						return "letter_t_" + item.getIndex() + "_" + renderingCount;
 					}
 					
 					@Override
 					public void onDrop(String sourceId, String targetId, AjaxRequestTarget target) {
 						if(target != null) {
+							renderingCount++;
 							if(targetId.indexOf("s")>0)
 								target.addComponent(ScrambledWordPanel.this);
-							int nsource = Integer.parseInt(sourceId.substring(9));
-							int ntarget = Integer.parseInt(targetId.substring(9));
+							int nsource = Integer.parseInt(sourceId.substring(9, sourceId.lastIndexOf('_')));
+							int ntarget = Integer.parseInt(targetId.substring(9, sourceId.lastIndexOf('_')));
 							Letter letter = ScrambledWordPanel.this.source.get(nsource).getObject();
 							Letter tLater = ScrambledWordPanel.this.answer.get(ntarget).getObject();
 							if(tLater.getText() == '?') {
@@ -198,7 +201,7 @@ public class ScrambledWordPanel extends Panel {
 					
 					@Override
 					protected void renderOnDrag(MarkupStream markupStream) {
-						getTargets().add(new DDTarget("letter_s_" + item.getIndex(), onDropBehavior.getCallbackUrl().toString()));
+						getTargets().add(new DDTarget("letter_s_" + item.getIndex() + "_" + renderingCount, onDropBehavior.getCallbackUrl().toString()));
 					}
 				};
 				item.add(target);
@@ -254,7 +257,7 @@ public class ScrambledWordPanel extends Panel {
 					sb.append("new Letter('"+target.getSource()+"','"+target.getUrl()+"');");					
 				}								
 				for(int i = 0; i < ScrambledWordPanel.this.answer.size();i++){
-					sb.append("new Target('letter_t_" + i +"');");
+					sb.append("new Target('letter_t_" + i + "_" + renderingCount+"');");
 				}				
 				replaceComponentTagBody(markupStream, openTag, sb.toString());
 			}
