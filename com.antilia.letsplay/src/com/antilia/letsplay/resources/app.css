@@ -4,7 +4,9 @@ div.contents {
 	height: 800px;
 	margin-left: auto;
 	margin-right: auto;
-	border: 1px solid #938c8c;
+	border: 1px solid #3e4d3e;
+	background-image: url("Green.gif");
+	background-repeat: repeat-x;
 }
 
 div.pheader {
@@ -12,7 +14,7 @@ div.pheader {
 }
 
 div.pbody {
-	height: 700px;
+	height: 700px;	
 }
 
 div.letter {
@@ -41,7 +43,7 @@ div.solucionHead {
 }
 
 DIV.vidas {
-	background-color: #b6dcfd;
+	background-color: #528752;
 	text-align: center;
 	font-size: 15px;
 	width: 200px; margin-top: 20px;
