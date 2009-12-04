@@ -12,18 +12,18 @@ import com.antilia.hibernate.cfg.PersistenceSet;
  * @author Ernesto Reinaldo Barreiro (reiern70@gmail.com)
  *
  */
-public class ManagerPersistenceSet extends PersistenceSet {
+public class PlayPersistenceSet extends PersistenceSet {
 
-	private static final ManagerPersistenceSet  instance = new ManagerPersistenceSet();
+	private static final PlayPersistenceSet  instance = new PlayPersistenceSet();
 	
-	private  ManagerPersistenceSet() {
-		//addEntitiesInSamePackageAs(City.class);
+	private  PlayPersistenceSet() {
+		addEntitiesInSamePackageAs(DWord.class);
 	}
 
 	/**
 	 * @return the instance
 	 */
-	public static ManagerPersistenceSet getInstance() {
+	public static PlayPersistenceSet getInstance() {
 		return instance;
 	}
 }

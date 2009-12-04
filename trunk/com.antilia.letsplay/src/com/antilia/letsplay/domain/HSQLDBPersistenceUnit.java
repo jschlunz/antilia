@@ -41,7 +41,7 @@ public class HSQLDBPersistenceUnit extends PersistenceUnit {
 		setProperty("hibernate.cache.provider_class", "org.hibernate.cache.HashtableCacheProvider").
 		setProperty("hibernate.hbm2ddl.auto", "create-drop");
          
-		addPersistenceSet(ManagerPersistenceSet.getInstance());
+		addPersistenceSet(PlayPersistenceSet.getInstance());
 				
 	}
 
