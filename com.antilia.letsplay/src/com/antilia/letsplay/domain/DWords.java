@@ -15,6 +15,7 @@ import com.antilia.letsplay.model.Word;
 public class DWords {
 		
 	private Integer size;
+
 	
 	public DWords() {
 		size = DefaultCommander.count(DWord.class).intValue();

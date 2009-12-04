@@ -1,10 +1,25 @@
 <html xmlns:wicket="org.apache.wicket">
 <body>
-    <wicket:panel>
+    <wicket:panel>    	
     	<table width="100%" cellpadding="1" cellspacing="1">
     		<tbody>
     			<tr>
     				<td style="vertical-align: top;" align="center">
+    					<table align="center">
+				    		<tbody>
+				    			<tr>
+				    				<td>
+				    					<span wicket:id="previous"></span>
+				    				</td>
+				    				<td>
+				    					<span wicket:id="random"></span>
+				    				</td>
+				    				<td>
+				    					<span wicket:id="next"></span>
+				    				</td>
+				    			</tr>
+				    		</tbody>
+				    	</table>
     					<div wicket:id="solutionBox">
 	    					<table cellpadding="4" cellspacing="4">
 					        	<tr>
@@ -52,15 +67,15 @@
         					 </script>
 				    	</div>
 				    	    
-				        <div style="border: solid 1px #3e4d3e; width: 400px; margin-top: 20px; padding: 2px; overflow: visible;">
+				        <div class="image">
 				        	<img wicket:id="image"/>		        
 				        </div>
     				</td>
     				<td style="width: 210px; vertical-align: top;">
     					<div class="vidas">VIDAS</div>
-    					<div wicket:id="failureBox" style="border: solid 1px black; width: 200px; margin-top: 20px; vertical-align: middle; text-align: center; position: relative;">	
+    					<div wicket:id="failureBox" class="failureBox">	
     						<img wicket:id="failure"/>
-    						<div wicket:id="vidas" style="position: absolute; top: 91px; left: 92px; font-size: 20px;"></div>
+    						<div wicket:id="vidas" class="livesText"></div>
     					</div>
     				</td>
     			</tr>

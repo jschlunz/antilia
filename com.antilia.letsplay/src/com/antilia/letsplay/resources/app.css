@@ -17,6 +17,31 @@ div.pbody {
 	height: 700px;	
 }
 
+div.image {
+	border: solid 1px #3e4d3e; 
+	width: 400px; 
+	margin-top: 20px; 
+	padding: 3px; 
+	overflow: visible;	
+}
+
+div.failureBox {
+	border: solid 1px black; 
+	width: 200px; 
+	margin-top: 20px; 
+	vertical-align: middle; 
+	text-align: center; 
+	position: relative;
+	padding: 3px;
+}
+
+div.livesText {
+	position: absolute; 
+	top: 91px; 
+	left: 92px; 
+	font-size: 20px;
+}
+
 div.letter {
 	border: 1px solid #4a584a;
 	height: 50px;
