@@ -27,31 +27,31 @@ public class AntiliaAjaxCallDecorator implements IAjaxCallDecorator {
 	}
 	
 	public CharSequence decorateOnFailureScript(CharSequence script) {
-		IVeilScope dialogScope = getDialogScope();
+		IVeilScope veilScope = getVeilScope();
 		String errorMessage = ";alert('"+this.veilFinder.getDefiningComponent().getString("ServerDown", null, "Server Down!")+"');";
-		if(dialogScope != null) {
-			return script + ";if(Wicket.Veil){" + VeilResources.Javascript.Generic.toggle(dialogScope.getVeilId()) + ";};"+ errorMessage ;
+		if(veilScope != null) {
+			return script + ";if(Wicket.Veil){" + VeilResources.Javascript.Generic.toggle(veilScope.getVeilId()) + ";};"+ errorMessage ;
 		} 
 		return script + ";if(Wicket.Veil){" + VeilResources.Javascript.Generic.toggle("AT_body") + ";};"+errorMessage;
 	}
 	
 	public CharSequence decorateOnSuccessScript(CharSequence script) {
-		IVeilScope dialogScope = getDialogScope();
-		if(dialogScope != null) {
-			return script + ";if(Wicket.Veil){" + VeilResources.Javascript.Generic.toggle(dialogScope.getVeilId()) + ";};" ;
+		IVeilScope veilScope = getVeilScope();
+		if(veilScope != null) {
+			return script + ";if(Wicket.Veil){" + VeilResources.Javascript.Generic.toggle(veilScope.getVeilId()) + ";};" ;
 		}
 		return script + ";if(Wicket.Veil){" + VeilResources.Javascript.Generic.toggle("AT_body") + ";};";
 	}
 	
 	public CharSequence decorateScript(CharSequence script) {
-		IVeilScope dialogScope = getDialogScope();
-		if(dialogScope != null) {
-			return "if(Wicket.Veil){"+VeilResources.Javascript.Generic.show(dialogScope.getVeilId()) + ";};" + script;
+		IVeilScope veilScope = getVeilScope();
+		if(veilScope != null) {
+			return "if(Wicket.Veil){"+VeilResources.Javascript.Generic.show(veilScope.getVeilId()) + ";};" + script;
 		}
 		return "if(Wicket.Veil){"+VeilResources.Javascript.Generic.show("AT_body") + ";};" + script;
 	}
 	
-	private IVeilScope getDialogScope() {
+	private IVeilScope getVeilScope() {
 		if(veilScope == null) {
 			veilScope = this.veilFinder.findVeilScope();
 		}
