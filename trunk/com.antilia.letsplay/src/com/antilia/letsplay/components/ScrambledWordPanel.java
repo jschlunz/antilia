@@ -25,6 +25,8 @@ import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 
 import com.antilia.letsplay.components.failure.ImageFailureReporter;
+import com.antilia.letsplay.domain.PersistentWordService;
+import com.antilia.letsplay.model.IWordService;
 import com.antilia.letsplay.model.Letter;
 import com.antilia.letsplay.model.Word;
 import com.antilia.web.dragdrop.YuiDraggableTarget;
@@ -85,12 +87,14 @@ public class ScrambledWordPanel extends Panel {
 	
 	private int renderingCount = 0;
 	
-	public ScrambledWordPanel(String id,Word word) {
-		super(id);
+	//TODO: injection.
+	private IWordService wordService = new PersistentWordService();
+	
+	public ScrambledWordPanel(String id) {
+		super(id);		
 		setOutputMarkupId(true);
-		this.word = word;
-		this.answer = this.word.getDummyLetters();
-		this.source = this.word.getScrambledLetterModels();
+		this.word = wordService.random();
+		init();
 		add(JavascriptPackageResource.getHeaderContribution(DefaultStyle.JS_YUI_DOM_EVENT));
 		add(JavascriptPackageResource.getHeaderContribution(DefaultStyle.JS_YUI_DOM_MIN));
 		add(JavascriptPackageResource.getHeaderContribution(DefaultStyle.JS_YUI_EVENT));
@@ -98,7 +102,10 @@ public class ScrambledWordPanel extends Panel {
 		add(JavascriptPackageResource.getHeaderContribution(DefaultStyle.JS_YUI_DRAG_DROP));
 		
 		add(JavascriptPackageResource.getHeaderContribution(JS));
-		targets = new ArrayList<DDTarget>();
+		
+		add(new PreviousWordLink("previous"));		
+		add(new RandomWordLink("random"));		
+		add(new NextWordLink("next"));
 		
 		solutionBox = new WebMarkupContainer("solutionBox");
 		solutionBox.setOutputMarkupId(true);
@@ -302,6 +309,36 @@ public class ScrambledWordPanel extends Panel {
 
 		failureBox.setOutputMarkupId(true);
 		add(failureBox);
+	}
+	
+	public void init() {	
+		targets = new ArrayList<DDTarget>();
+		this.answer = this.word.getDummyLetters();
+		this.source = this.word.getScrambledLetterModels();
+	}
+	
+	public void next(AjaxRequestTarget target) {
+		this.word = wordService.next();
+		init();
+		if(target != null) {
+			target.addComponent(this);
+		}
+	}
+	
+	public void previous(AjaxRequestTarget target) {
+		this.word = wordService.previous();
+		init();
+		if(target != null) {
+			target.addComponent(this);
+		}
+	}
+	
+	public void random(AjaxRequestTarget target) {
+		this.word = wordService.random();
+		init();
+		if(target != null) {
+			target.addComponent(this);
+		}
 	}
 	
 	@Override
