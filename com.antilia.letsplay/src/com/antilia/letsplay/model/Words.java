@@ -48,6 +48,10 @@ public class Words {
 		int word = new Random().nextInt(words.size());
 		return words.get(word);
 	}
+	
+	public Iterable<Word> getAll() {
+		return words;
+	}
 
 	public static Words getInstance() {
 		return instance;

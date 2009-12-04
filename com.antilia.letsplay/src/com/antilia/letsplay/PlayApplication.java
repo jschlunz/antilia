@@ -11,8 +11,10 @@ import org.apache.wicket.Response;
 import org.apache.wicket.Session;
 
 import com.antilia.hibernate.cfg.IPersistenceUnit;
+import com.antilia.hibernate.command.DefaultCommander;
 import com.antilia.hibernate.context.RequestContext;
 import com.antilia.letsplay.domain.HSQLDBPersistenceUnit;
+import com.antilia.letsplay.domain.InsertData;
 import com.antilia.web.AntiliaWebApplication;
 import com.antilia.web.login.DisableAllAuthorizationStrategy;
 
@@ -71,6 +73,7 @@ public class PlayApplication extends AntiliaWebApplication {
 		RequestContext requestContext = RequestContext.get();
 		requestContext.setPersistenceUnit(persistenceUnit);
 		requestContext.setUser("test");
+		DefaultCommander.execute(new InsertData());
 	}
 	
 	@Override

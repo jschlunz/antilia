@@ -8,7 +8,7 @@ import org.apache.wicket.markup.html.JavascriptPackageResource;
 import org.apache.wicket.markup.html.WebPage;
 
 import com.antilia.letsplay.components.ScrambledWordPanel;
-import com.antilia.letsplay.model.Words;
+import com.antilia.letsplay.domain.DWords;
 import com.antilia.letsplay.resources.AppStyle;
 import com.antilia.web.resources.DefaultStyle;
 import com.antilia.web.veil.AntiliaVeilResource;
@@ -33,7 +33,7 @@ public class PlayPage extends WebPage  {
 		add(CSSPackageResource.getHeaderContribution(AppStyle.CSS));
 		
 		
-		ScrambledWordPanel scrambled  = new ScrambledWordPanel("scrambled",Words.getInstance().getRandom());
+		ScrambledWordPanel scrambled  = new ScrambledWordPanel("scrambled",new DWords().getRandom());
 		add(scrambled);
 	}
 }
