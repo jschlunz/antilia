@@ -175,9 +175,13 @@ public class ScrambledWordPanel extends Panel {
 					}
 					
 					@Override
-					public void onDrop(String sourceId, String targetId, AjaxRequestTarget target) {
+					public void onDrop(String sourceId, String targetId, AjaxRequestTarget target) {												
 						if(target != null) {
 							renderingCount++;
+							if(targetId.indexOf("_s")>0) {
+								target.addComponent(ScrambledWordPanel.this.solutionBox);
+								return;
+							}	
 							if(targetId.indexOf("s")>0)
 								target.addComponent(ScrambledWordPanel.this);
 							int nsource = Integer.parseInt(sourceId.substring(9, sourceId.lastIndexOf('_')));
