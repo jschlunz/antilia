@@ -7,6 +7,7 @@ package com.antilia.letsplay.components;
 import org.apache.wicket.ResourceReference;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 
+import com.antilia.letsplay.resources.AppStyle;
 import com.antilia.web.button.AbstractLink;
 
 
@@ -35,12 +36,12 @@ public class RandomWordLink extends AbstractLink {
 	 */
 	@Override
 	protected ResourceReference getImage() {		
-		return null;
+		return AppStyle.IMG_RANDOM;
 	}
 	
 	@Override
 	protected ResourceReference getDisabledImage() {
-		return null;
+		return AppStyle.IMG_RANDOM;
 	}
 
 	/* (non-Javadoc)
@@ -48,7 +49,7 @@ public class RandomWordLink extends AbstractLink {
 	 */
 	@Override
 	protected String getLabel() {
-		return "?";
+		return null;
 	}
 	
 	@Override
