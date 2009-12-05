@@ -3,12 +3,10 @@ package com.antilia.letsplay;
 import org.apache.wicket.Component;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 
-import com.antilia.web.layout.FullPage;
-import com.antilia.web.login.BlueStyle;
 import com.antilia.web.login.LogInRoundPanel;
 
 
-public class LoginPage extends FullPage {
+public class LoginPage extends BasePage {
 
 	private static final long serialVersionUID = 1L;	
 	
@@ -17,7 +15,7 @@ public class LoginPage extends FullPage {
 	public LoginPage() {		
 		super();			
 		
-		content = new LogInRoundPanel("content",  new BlueStyle()) {
+		content = new LogInRoundPanel("content",  new GreenStyle()) {
 			
 			private static final long serialVersionUID = 1L;
 
