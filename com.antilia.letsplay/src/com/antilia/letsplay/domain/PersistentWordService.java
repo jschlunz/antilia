@@ -74,6 +74,10 @@ public class PersistentWordService implements IWordService {
 		long word = new Random().nextInt(size.intValue());
 		DWord dWord = DefaultCommander.findById(DWord.class, new Long(word));
 		Word w = new Word();
+		while(dWord == null) {
+			word = new Random().nextInt(size.intValue());
+			dWord = DefaultCommander.findById(DWord.class, new Long(word));
+		}
 		w.setText(dWord.getText());
 		w.setImage(new DataBaseImage(dWord.getImage().getBytes()));
 		return w;
