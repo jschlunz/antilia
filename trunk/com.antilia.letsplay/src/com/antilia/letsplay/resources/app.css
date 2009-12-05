@@ -97,3 +97,19 @@ td.banner-left {
 td.banner-right {
 	background: transparent;	
 }
+
+table.navigation {
+	background-image: url("Navegation.gif");
+	background-repeat: no-repeat;
+	background-position: -4px 2px;
+	width: 160px;
+	height: 45px;
+}
+
+table.navigation > td {
+	text-align: center;
+}
+
+img.smallbutton {
+	padding-top: -2px;
+}
