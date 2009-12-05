@@ -3,7 +3,9 @@ package com.antilia.letsplay;
 import org.apache.wicket.Request;
 import org.apache.wicket.Session;
 
-import com.antilia.common.util.StringUtils;
+import com.antilia.letsplay.dao.IUserDao;
+import com.antilia.letsplay.dao.UserDao;
+import com.antilia.letsplay.domain.User;
 import com.antilia.web.AntiliaSession;
 
 /**
@@ -14,10 +16,8 @@ import com.antilia.web.AntiliaSession;
  */
 public class PlaySession extends AntiliaSession {
 
-	private String userName;
-	
-	private String passWord;
-	
+	private User user;
+		
 	private static final long serialVersionUID = 1L;
 
 	private Language language;
@@ -35,35 +35,28 @@ public class PlaySession extends AntiliaSession {
 	}
 
 	public boolean isAuthenticated() {
-		if(!StringUtils.isEmpty(userName))
+		if(user != null)
 			return true;
 		return false;
 	}
 
 	public boolean authenticated(String userName, String passWord) {
-		if(!StringUtils.isEmpty(userName) && passWord.equals(userName)) {
-			this.userName = userName;
-			this.passWord = passWord;
+		if(this.user != null) {
 			return true;
+		}
+		IUserDao dao =  new UserDao();
+		try {
+			User user = dao.findByLogname(userName);
+			if(user.getPassword().trim().equals(passWord.trim())) {
+				this.user = user;
+				return true;
+			}				
+		} catch (Exception e) {
+			return false;
 		}
 		return false;
 	}
 	
-	public String getUserName() {
-		return userName;
-	}
-
-	public void setUserName(String userName) {
-		this.userName = userName;
-	}
-
-	public String getPassWord() {
-		return passWord;
-	}
-
-	public void setPassWord(String passWord) {
-		this.passWord = passWord;
-	}
 
 	public Language getLanguage() {
 		return language;
