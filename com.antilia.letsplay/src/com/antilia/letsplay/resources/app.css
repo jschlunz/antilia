@@ -113,3 +113,10 @@ table.navigation > td {
 img.smallbutton {
 	padding-top: -2px;
 }
+
+button.login {
+	border: 1px ridge gray; 
+	background-color: #4c5743;
+	color: #dbe7cf; 
+	padding: 2px;
+}
