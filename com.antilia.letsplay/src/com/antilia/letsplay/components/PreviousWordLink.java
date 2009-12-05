@@ -7,9 +7,8 @@ package com.antilia.letsplay.components;
 import org.apache.wicket.ResourceReference;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 
+import com.antilia.letsplay.resources.AppStyle;
 import com.antilia.web.button.AbstractLink;
-import com.antilia.web.resources.DefaultStyle;
-import com.antilia.web.utils.RequestUtils;
 
 
 /**
@@ -36,17 +35,13 @@ public class PreviousWordLink extends AbstractLink {
 	 * @see com.antilia.web.toolbar.AButton#getImage()
 	 */
 	@Override
-	protected ResourceReference getImage() {
-		if(RequestUtils.isBrowserIeExplorer6())
-			return DefaultStyle.IMG_PREVIOUS_ENABLED;
-		return DefaultStyle.IMG_PREVIOUS_ENABLED_PNG;
+	protected ResourceReference getImage() {		
+		return AppStyle.IMG_PREVIOUS;
 	}
 	
 	@Override
 	protected ResourceReference getDisabledImage() {
-		if(RequestUtils.isBrowserIeExplorer6())	
-			return DefaultStyle.IMG_PREVIOUS_DISABLED;
-		return DefaultStyle.IMG_PREVIOUS_DISABLED_PNG;
+		return AppStyle.IMG_PREVIOUS;
 	}
 
 	/* (non-Javadoc)
