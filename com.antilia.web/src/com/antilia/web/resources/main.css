@@ -281,3 +281,9 @@ span.feedbackPanelERROR {
     color: red;
     
 }
+
+button.login {
+	border: 1px ridge gray; 
+	background-color: #9eb7e8; 
+	padding: 2px;
+}
