@@ -26,7 +26,7 @@ public class InsertData extends AbstractPersistentCommand<DWord, Serializable> {
 			DefaultCommander.persist(dImage);
 			dWord.setImage(dImage);
 			DefaultCommander.persist(dWord);
-		}
+		}		
 		return true;
 	}
 	
