@@ -26,7 +26,29 @@ public class InsertData extends AbstractPersistentCommand<DWord, Serializable> {
 			DefaultCommander.persist(dImage);
 			dWord.setImage(dImage);
 			DefaultCommander.persist(dWord);
-		}		
+		}
+		
+		User user = new User();
+		user.setName("Ernesto");
+		user.setLastName("Reinaldo Barreiro");
+		user.setEmail("erb@test.cl");
+		user.setLogname("erbjulio");
+		user.setPassword("erbjulio");
+		user.setRole(Role.PARENT);
+		
+		DefaultCommander.persist(user);
+		
+		User child = new User();
+		child.setName("Julio");
+		child.setLastName("Reinaldo Barreiro");
+		child.setEmail("erb@test.cl");
+		child.setLogname("julior");
+		child.setPassword("julior");
+		child.setRole(Role.CHILD);
+		child.setParent(user);
+		
+		DefaultCommander.persist(child);
+		
 		return true;
 	}
 	
