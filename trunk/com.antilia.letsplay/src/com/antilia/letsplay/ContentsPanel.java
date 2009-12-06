@@ -28,7 +28,7 @@ public  class ContentsPanel extends RoundPane {
 	public ContentsPanel(String id, String title, RoundPaneStyle boxStyle) {
 		super(id, title, boxStyle);
 		addToBody(newContentPanel("content"));
-		setWidth(860);
+		setWidth(890);
 		setHeight(800);
 		setCentered(false);
 	}
