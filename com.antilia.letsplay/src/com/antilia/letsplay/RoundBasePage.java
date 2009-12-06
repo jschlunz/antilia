@@ -32,7 +32,7 @@ public abstract class RoundBasePage extends WebPage  {
 		
 		add(CSSPackageResource.getHeaderContribution(AppStyle.CSS));
 			
-		RoundPane roundPanel = new ContentsPanel("roundPanel", new GreenStyle()) {
+		RoundPane roundPanel = new ContentsPanel("roundPanel", new LightGreenStyle()) {
 			
 			/**
 			 * 
