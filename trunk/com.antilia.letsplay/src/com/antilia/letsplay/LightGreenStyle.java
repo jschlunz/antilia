@@ -18,10 +18,10 @@ public class LightGreenStyle extends RoundPaneStyle {
 	 * 
 	 */
 	public LightGreenStyle() {
-		setBackgroundColor("#a6ac9c");
+		setBackgroundColor("#536653");
 		setHandleColor("#ffffff");
 		setTitleStyle("color: #dbe7cf; text-align: center; font-weight: bold; padding-top: 2px;");
-		setBodyStyle("background-color: #dbe7cf; color: black; border: 1px solid #9eb7e8;");		
+		setBodyStyle("background-color: #dbe7cf; color: black; border: 1px solid #a6ac9c;");		
 	}
 
 }

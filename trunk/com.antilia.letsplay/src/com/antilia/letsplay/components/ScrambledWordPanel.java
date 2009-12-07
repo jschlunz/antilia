@@ -311,7 +311,8 @@ public class ScrambledWordPanel extends Panel {
 		add(failureBox);
 	}
 	
-	public void init() {	
+	public void init() {
+		failures = 0;
 		targets = new ArrayList<DDTarget>();
 		this.answer = this.word.getDummyLetters();
 		this.source = this.word.getScrambledLetterModels();
