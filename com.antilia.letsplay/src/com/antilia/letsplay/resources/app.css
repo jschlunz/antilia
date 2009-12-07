@@ -10,11 +10,12 @@ div.contents {
 }
 
 div.pheader {
-	height: 86px;
+	height: 70px;
 }
 
 div.pbody {
-	height: 700px;	
+	height: 600px;	
+	border-top: 3px solid #a6ac9c;
 }
 
 div.image {
@@ -68,21 +69,21 @@ div.solucionHead {
 }
 
 DIV.vidas {
-	background-color: #528752;
+	background-color: #a6ac9c;
 	text-align: center;
 	font-size: 15px;
 	width: 200px; margin-top: 20px;
 }
 
 td.hleft {
-	background-image: url("LPT.gif");
-	width: 237px;
-	height: 86px;	
+	background-image: url("bgl.gif");
+	width: 420px;
+	height: 70px;	
 }
 
 td.hright {
-	background-image: url("LP.gif");
-	height: 86px;	
+	background-image: url("bg.gif");
+	height: 70px;	
 }
 
 div.target {
