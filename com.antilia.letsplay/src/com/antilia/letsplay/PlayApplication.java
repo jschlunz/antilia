@@ -13,6 +13,7 @@ import org.apache.wicket.Session;
 import com.antilia.hibernate.cfg.IPersistenceUnit;
 import com.antilia.hibernate.command.DefaultCommander;
 import com.antilia.hibernate.context.RequestContext;
+import com.antilia.letsplay.crud.DWordPage;
 import com.antilia.letsplay.domain.HSQLDBPersistenceUnit;
 import com.antilia.letsplay.domain.InsertData;
 import com.antilia.web.AntiliaWebApplication;
@@ -42,7 +43,7 @@ public class PlayApplication extends AntiliaWebApplication {
 	 */
 	@Override
 	public Class<? extends Page> getHomePage() {
-		return PlayPage.class;
+		return DWordPage.class;
 		//return TestTablePage.class;
 	}
 
