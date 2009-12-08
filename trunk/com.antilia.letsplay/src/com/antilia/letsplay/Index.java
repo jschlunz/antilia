@@ -5,9 +5,9 @@
 package com.antilia.letsplay;
 
 import org.apache.wicket.markup.html.CSSPackageResource;
+import org.apache.wicket.markup.html.panel.Panel;
 
 import com.antilia.letsplay.resources.AppStyle;
-import com.antilia.web.layout.ToolBarFullPage;
 import com.antilia.web.login.IProtectedPage;
 import com.antilia.web.toolbar.Toolbar;
 
@@ -17,7 +17,7 @@ import com.antilia.web.toolbar.Toolbar;
  * @author Ernesto Reinaldo Barreiro (reiern70@gmail.com)
  *
  */
-public class Index extends ToolBarFullPage implements IProtectedPage {
+public class Index extends RoundBasePage implements IProtectedPage {
 
 	private static final long serialVersionUID = 1L;	
 	
@@ -26,9 +26,9 @@ public class Index extends ToolBarFullPage implements IProtectedPage {
 		add(CSSPackageResource.getHeaderContribution((AppStyle.CSS)));
 		
 	}
-
+	
 	@Override
-	protected Toolbar createToolbar(String id, ToolBarFullPage page) {
+	protected Panel newContentPanel(String id) {
 		return Toolbar.createToolbar(id);
 	}
 }
