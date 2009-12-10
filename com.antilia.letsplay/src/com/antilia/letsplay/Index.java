@@ -29,6 +29,6 @@ public class Index extends RoundBasePage implements IProtectedPage {
 	
 	@Override
 	protected Panel newContentPanel(String id) {
-		return Toolbar.createToolbar(id);
+		return Toolbar.createToolbar(id, new MainMenuFactory(this));
 	}
 }

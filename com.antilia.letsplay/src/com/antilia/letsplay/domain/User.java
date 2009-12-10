@@ -78,14 +78,7 @@ public class User implements java.io.Serializable, Comparable<User> {
 	public String toString() {
 		return getName() + " " + getLastName();
 	}
-	
-	@Override
-	public boolean equals(Object obj) {
-		if(obj instanceof User) {
-			return (logname.equals(((User)obj).getLogname()));
-		}
-		return false;
-	}
+
 
 
 	@Override
@@ -160,5 +153,32 @@ public class User implements java.io.Serializable, Comparable<User> {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((logname == null) ? 0 : logname.hashCode());
+		return result;
+	}
+
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		User other = (User) obj;
+		if (logname == null) {
+			if (other.logname != null)
+				return false;
+		} else if (!logname.equals(other.logname))
+			return false;
+		return true;
 	}
 }
