@@ -74,21 +74,13 @@ public class DWord implements java.io.Serializable, Comparable<DWord> {
 		return getText();
 	}
 	
-	@Override
-	public boolean equals(Object obj) {
-		if(obj instanceof DWord) {
-			return text.toLowerCase().equals(((DWord)obj).getText());
-		}
-		return false;
-	}
-
 	public String getText() {
 		return text;
 	}
 
 	public void setText(String text) {
 		if(text != null)			
-			this.text = text.trim();
+			this.text = text.trim().toUpperCase();
 	}
 
 	public DImage getImage() {
@@ -97,5 +89,30 @@ public class DWord implements java.io.Serializable, Comparable<DWord> {
 
 	public void setImage(DImage image) {
 		this.image = image;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((text == null) ? 0 : text.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		DWord other = (DWord) obj;
+		if (text == null) {
+			if (other.text != null)
+				return false;
+		} else if (!text.equals(other.text))
+			return false;
+		return true;
 	}
 }
