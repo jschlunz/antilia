@@ -3,6 +3,8 @@
  */
 package com.antilia.letsplay.domain;
 
+import com.antilia.letsplay.Language;
+
 /**
  * @author  Ernesto Reinaldo Barreiro (reiern70@gmail.com)
  *
@@ -14,5 +16,5 @@ public interface ITranslationService {
 		 * @param translatable
 		 * @return
 		 */
-		public String translate(ITranslatable translatable);
+		public String translate(ITranslatable translatable, Language original, Language target);
 }
