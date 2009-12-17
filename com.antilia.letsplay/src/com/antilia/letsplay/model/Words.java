@@ -19,6 +19,7 @@ public class Words {
 	
 	public static final String[] WORDS = {
 		"ardilla",
+		"caballo",
 		"cabeza",
 		"cocodrilo",
 		"dinosaurio",
