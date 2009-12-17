@@ -97,7 +97,7 @@ public class ManagerApplication extends AntiliaWebApplication {
 	}
 	
 	private void initializeSpring() {						
-		addComponentInstantiationListener(new SpringComponentInjector(this, SpringHibernateInitializer.getInstance().intialize()));
+		addComponentInstantiationListener(new SpringComponentInjector(this, SpringHibernateInitializer.getInstance().intialize(), true));
 	}
 	
 	@Override
