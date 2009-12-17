@@ -27,7 +27,7 @@ import com.antilia.web.field.impl.SelectionType;
 @Entity
 @Table(name = "word", uniqueConstraints = @UniqueConstraint(columnNames = "text"))
 @Tuplizer(impl=TuplizerImpl.class)
-public class DWord implements java.io.Serializable, Comparable<DWord> {
+public class DWord implements java.io.Serializable, Comparable<DWord>, ITranslatable {
 
 	private static final long serialVersionUID = 1L;
 	
@@ -114,5 +114,10 @@ public class DWord implements java.io.Serializable, Comparable<DWord> {
 		} else if (!text.equals(other.text))
 			return false;
 		return true;
+	}
+	
+	@Override
+	public String getTranslationKey() {
+		return this.text.toLowerCase();
 	}
 }
