@@ -30,12 +30,12 @@ public class GoogleTranslationService implements ITranslationService {
 	 * @see org.inqle.ui.model.ITranslationService#translate(org.inqle.ui.model.ITranslatable)
 	 */
 	@Override
-	public String translate(ITranslatable translatable) {
+	public String translate(ITranslatable translatable, com.antilia.letsplay.Language original, com.antilia.letsplay.Language target) {
 		String key = translatable.getTranslationKey();
 		if(!StringUtils.isEmpty(key)) {
 			try {
 				configureProxy();
-				return Translate.execute(key, Language.ENGLISH, Language.SPANISH);
+				return Translate.execute(key, Language.fromString(original.getShortName()), Language.fromString(target.getShortName()));
 			} catch (Exception e) {
 				// TODO: handle exception
 				e.printStackTrace();
