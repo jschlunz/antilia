@@ -22,7 +22,7 @@ public class LightGreenDialogStyle extends DialogStyle {
 		setBackgroundColor("#536653");
 		setBodyColor("#dbe7cf");
 		setHandleColor("#000000");
-		setTitleStyle("color: #000000;");
+		setTitleStyle("color: #ffffff;");
 	}
 
 }
