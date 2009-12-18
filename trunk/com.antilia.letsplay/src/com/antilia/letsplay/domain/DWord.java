@@ -4,6 +4,8 @@ package com.antilia.letsplay.domain;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -17,6 +19,7 @@ import javax.persistence.UniqueConstraint;
 import org.hibernate.annotations.Tuplizer;
 
 import com.antilia.hibernate.remote.TuplizerImpl;
+import com.antilia.letsplay.Language;
 import com.antilia.web.crud.Exclude;
 import com.antilia.web.field.impl.DrillInSelectionMode;
 import com.antilia.web.field.impl.SelectionType;
@@ -41,10 +44,16 @@ public class DWord implements java.io.Serializable, Comparable<DWord>, ITranslat
 	@Column(name = "text", unique = true, nullable = false, length = 40)
 	private String text;
 
+	@Enumerated(EnumType.STRING)
+	@Column(name = "laguage", unique = false, nullable = false, length = 40)
+	private Language laguage;
+	
 	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "image", nullable = true)
 	@SelectionType(type=DrillInSelectionMode.LARGE_ON_NEXT_PAGE)
 	private DImage image;
+	
+	
 	
 	public DWord() {
 	}
@@ -119,5 +128,19 @@ public class DWord implements java.io.Serializable, Comparable<DWord>, ITranslat
 	@Override
 	public String getTranslationKey() {
 		return this.text.toLowerCase();
+	}
+
+	/**
+	 * @return the laguage
+	 */
+	public Language getLaguage() {
+		return laguage;
+	}
+
+	/**
+	 * @param laguage the laguage to set
+	 */
+	public void setLaguage(Language laguage) {
+		this.laguage = laguage;
 	}
 }
