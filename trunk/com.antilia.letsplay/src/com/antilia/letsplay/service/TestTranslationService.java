@@ -1,9 +1,10 @@
 /**
  * 
  */
-package com.antilia.letsplay.domain;
+package com.antilia.letsplay.service;
 
 import com.antilia.letsplay.Language;
+import com.antilia.letsplay.domain.DWord;
 
 
 /**

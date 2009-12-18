@@ -1,9 +1,10 @@
 /**
  * 
  */
-package com.antilia.letsplay.domain;
+package com.antilia.letsplay.service;
 
 import com.antilia.common.util.StringUtils;
+import com.antilia.letsplay.domain.ITranslatable;
 import com.google.api.translate.Language;
 import com.google.api.translate.Translate;
 

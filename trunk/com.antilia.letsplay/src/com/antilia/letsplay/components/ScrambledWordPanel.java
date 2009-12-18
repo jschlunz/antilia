@@ -25,10 +25,10 @@ import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 
 import com.antilia.letsplay.components.failure.ImageFailureReporter;
-import com.antilia.letsplay.domain.PersistentWordService;
-import com.antilia.letsplay.model.IWordService;
 import com.antilia.letsplay.model.Letter;
 import com.antilia.letsplay.model.Word;
+import com.antilia.letsplay.service.IWordService;
+import com.antilia.letsplay.service.PersistentWordService;
 import com.antilia.web.dragdrop.YuiDraggableTarget;
 import com.antilia.web.resources.DefaultStyle;
 

@@ -1,14 +1,15 @@
 /**
  * 
  */
-package com.antilia.letsplay.domain;
+package com.antilia.letsplay.service;
 
 import java.util.Random;
 
 import com.antilia.common.query.IQuery;
 import com.antilia.common.query.Query;
 import com.antilia.hibernate.command.DefaultCommander;
-import com.antilia.letsplay.model.IWordService;
+import com.antilia.letsplay.domain.DWord;
+import com.antilia.letsplay.domain.DataBaseImage;
 import com.antilia.letsplay.model.Word;
 
 /**
