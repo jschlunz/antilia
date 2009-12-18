@@ -11,6 +11,7 @@ import org.apache.wicket.markup.html.WebPage;
 
 import com.antilia.letsplay.crud.DWordPage;
 import com.antilia.letsplay.crud.ImagesPage;
+import com.antilia.letsplay.crud.TranslationPage;
 import com.antilia.letsplay.crud.UsersPage;
 import com.antilia.web.button.AbstractLink;
 import com.antilia.web.resources.DefaultStyle;
@@ -117,6 +118,15 @@ public class MainMenuFactory implements IToolbarItemsFactory {
 				@Override
 				protected String getLabel() {
 					return "Users";
+				}
+			});
+			
+			subToolbar.addItem(new PageLink("translations", TranslationPage.class) {
+				private static final long serialVersionUID = 1L;
+
+				@Override
+				protected String getLabel() {
+					return "Translations";
 				}
 			});
 			

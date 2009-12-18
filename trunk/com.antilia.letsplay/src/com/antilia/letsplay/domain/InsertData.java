@@ -6,7 +6,9 @@ import com.antilia.hibernate.cfg.IPersistenceUnit;
 import com.antilia.hibernate.command.AbstractPersistentCommand;
 import com.antilia.hibernate.command.DefaultCommander;
 import com.antilia.hibernate.context.RequestContext;
+import com.antilia.letsplay.Language;
 import com.antilia.letsplay.model.Words;
+import com.antilia.letsplay.service.GoogleTranslationService;
 
 public class InsertData extends AbstractPersistentCommand<DWord, Serializable> {
 
@@ -26,6 +28,28 @@ public class InsertData extends AbstractPersistentCommand<DWord, Serializable> {
 			DefaultCommander.persist(dImage);
 			dWord.setImage(dImage);
 			DefaultCommander.persist(dWord);
+		}
+		
+		GoogleTranslationService tS = new GoogleTranslationService(); 
+		for(com.antilia.letsplay.model.Word w:  Words.getInstance().getAll()) {
+			DWord dWord = new DWord();
+			dWord.setText(w.getText().toLowerCase());
+			String tEnglish = tS.translate(dWord, Language.SPANISH, Language.ENGLISH);
+			String tCatalonian = tS.translate(dWord, Language.SPANISH, Language.CATALAN);
+			Translation eng = new Translation();
+			eng.setOriginal(Language.SPANISH);
+			eng.setTarget(Language.ENGLISH);
+			eng.setText(w.getText().toLowerCase());
+			eng.setTranslation(tEnglish);
+			
+			Translation cat = new Translation();
+			cat.setOriginal(Language.SPANISH);
+			cat.setTarget(Language.CATALAN);
+			cat.setText(w.getText().toLowerCase());
+			cat.setTranslation(tCatalonian);
+			
+			DefaultCommander.persist(eng);
+			DefaultCommander.persist(cat);
 		}
 		
 		User user = new User();
