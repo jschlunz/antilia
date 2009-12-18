@@ -8,8 +8,10 @@ import java.util.Random;
 import com.antilia.common.query.IQuery;
 import com.antilia.common.query.Query;
 import com.antilia.hibernate.command.DefaultCommander;
+import com.antilia.letsplay.Language;
 import com.antilia.letsplay.domain.DWord;
 import com.antilia.letsplay.domain.DataBaseImage;
+import com.antilia.letsplay.domain.Translation;
 import com.antilia.letsplay.model.Word;
 
 /**
@@ -35,7 +37,7 @@ public class PersistentWordService implements IWordService {
 	 * @see com.antilia.letsplay.model.IWordService#next()
 	 */
 	@Override
-	public Word next() {
+	public Word next(Language language) {
 		current++;
 		if(current >= size)
 			current = 0L;
@@ -44,7 +46,7 @@ public class PersistentWordService implements IWordService {
 		query.setMaxResults(1);
 		DWord dWord =  DefaultCommander.loadList(query).get(0);
 		Word w = new Word();
-		w.setText(dWord.getText());
+		w.setText(getTranslation(dWord.getText(), dWord.getLaguage(), language));
 		w.setImage(new DataBaseImage(dWord.getImage().getBytes()));
 		return w;
 	}
@@ -53,7 +55,7 @@ public class PersistentWordService implements IWordService {
 	 * @see com.antilia.letsplay.model.IWordService#previous()
 	 */
 	@Override
-	public Word previous() {
+	public Word previous(Language language) {
 		current--;
 		if(current < 0)
 			current = size-1;
@@ -62,7 +64,7 @@ public class PersistentWordService implements IWordService {
 		query.setMaxResults(1);
 		DWord dWord =  DefaultCommander.loadList(query).get(0);
 		Word w = new Word();
-		w.setText(dWord.getText());
+		w.setText(getTranslation(dWord.getText(), dWord.getLaguage(), language));
 		w.setImage(new DataBaseImage(dWord.getImage().getBytes()));
 		return w;
 	}
@@ -71,7 +73,7 @@ public class PersistentWordService implements IWordService {
 	 * @see com.antilia.letsplay.model.IWordService#random()
 	 */
 	@Override
-	public Word random() {
+	public Word random(Language language) {
 		long word = new Random().nextInt(size.intValue());
 		DWord dWord = DefaultCommander.findById(DWord.class, new Long(word));
 		Word w = new Word();
@@ -79,9 +81,19 @@ public class PersistentWordService implements IWordService {
 			word = new Random().nextInt(size.intValue());
 			dWord = DefaultCommander.findById(DWord.class, new Long(word));
 		}
-		w.setText(dWord.getText());
+		w.setText(getTranslation(dWord.getText(), dWord.getLaguage(), language));
 		w.setImage(new DataBaseImage(dWord.getImage().getBytes()));
 		return w;
+	}
+	
+	private String getTranslation(String text, Language original, Language target) {
+		if(target.equals(original))
+			return text;
+		Translation tlt = new Translation();
+		tlt.setText(text.toLowerCase());
+		tlt.setOriginal(original);
+		tlt.setTarget(target);
+		return DefaultCommander.findByExample(tlt).getTranslation().toUpperCase();
 	}
 
 }
