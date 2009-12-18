@@ -63,6 +63,11 @@ public  class ContentsPanel extends RoundPane {
 			}
 			
 			@Override
+			public String getLinkClass() {
+				return "smallbutton whitebutton";
+			}
+			
+			@Override
 			public DefaultDialog newDialog(String id) {
 				return new AboutDialog(id, this);
 			}

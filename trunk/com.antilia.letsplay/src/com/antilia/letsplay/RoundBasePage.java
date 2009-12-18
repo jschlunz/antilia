@@ -29,8 +29,6 @@ public abstract class RoundBasePage extends WebPage  {
 		add(JavascriptPackageResource.getHeaderContribution(DefaultStyle.JS_TABLE));		
 		add(CSSPackageResource.getHeaderContribution(DefaultStyle.CSS_MAIN));		
 		add(CSSPackageResource.getHeaderContribution(DefaultStyle.CSS_DIALOG));
-		
-		add(CSSPackageResource.getHeaderContribution(AppStyle.CSS));
 			
 		RoundPane roundPanel = new ContentsPanel("roundPanel", new LightGreenStyle()) {
 			
@@ -44,6 +42,8 @@ public abstract class RoundBasePage extends WebPage  {
 			}
 		};
 		add(roundPanel);
+		
+		add(CSSPackageResource.getHeaderContribution(AppStyle.CSS));
 	}
 	
 	protected abstract Panel newContentPanel(String id);
