@@ -2,6 +2,7 @@ package com.antilia.letsplay.service;
 
 import java.io.Serializable;
 
+import com.antilia.letsplay.Language;
 import com.antilia.letsplay.model.Word;
 
 /**
@@ -10,10 +11,10 @@ import com.antilia.letsplay.model.Word;
  */
 public interface IWordService extends Serializable {
 
-	Word previous();
+	Word previous(Language language);
 	
-	Word next();
+	Word next(Language language);
 	
-	Word random();
+	Word random(Language language);
 	
 }

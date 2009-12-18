@@ -24,6 +24,7 @@ import org.apache.wicket.model.AbstractReadOnlyModel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 
+import com.antilia.letsplay.PlaySession;
 import com.antilia.letsplay.components.failure.ImageFailureReporter;
 import com.antilia.letsplay.model.Letter;
 import com.antilia.letsplay.model.Word;
@@ -93,7 +94,7 @@ public class ScrambledWordPanel extends Panel {
 	public ScrambledWordPanel(String id) {
 		super(id);		
 		setOutputMarkupId(true);
-		this.word = wordService.random();
+		this.word = wordService.random(PlaySession.getSession().getLanguage());
 		init();
 		add(JavascriptPackageResource.getHeaderContribution(DefaultStyle.JS_YUI_DOM_EVENT));
 		add(JavascriptPackageResource.getHeaderContribution(DefaultStyle.JS_YUI_DOM_MIN));
@@ -319,7 +320,7 @@ public class ScrambledWordPanel extends Panel {
 	}
 	
 	public void next(AjaxRequestTarget target) {
-		this.word = wordService.next();
+		this.word = wordService.next(PlaySession.getSession().getLanguage());
 		init();
 		if(target != null) {
 			target.addComponent(this);
@@ -327,7 +328,7 @@ public class ScrambledWordPanel extends Panel {
 	}
 	
 	public void previous(AjaxRequestTarget target) {
-		this.word = wordService.previous();
+		this.word = wordService.previous(PlaySession.getSession().getLanguage());
 		init();
 		if(target != null) {
 			target.addComponent(this);
@@ -335,7 +336,7 @@ public class ScrambledWordPanel extends Panel {
 	}
 	
 	public void random(AjaxRequestTarget target) {
-		this.word = wordService.random();
+		this.word = wordService.random(PlaySession.getSession().getLanguage());
 		init();
 		if(target != null) {
 			target.addComponent(this);
