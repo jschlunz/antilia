@@ -21,6 +21,7 @@ public class InsertData extends AbstractPersistentCommand<DWord, Serializable> {
 		for(com.antilia.letsplay.model.Word w:  Words.getInstance().getAll()) {
 			DWord dWord = new DWord();
 			dWord.setText(w.getText());
+			dWord.setLaguage(Language.SPANISH);
 			DImage dImage = new DImage();
 			dImage.setDescription(w.getText());
 			dImage.setMimeType("img/jpeg");
