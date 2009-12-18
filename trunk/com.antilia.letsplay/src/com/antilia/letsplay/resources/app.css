@@ -131,3 +131,30 @@ button.login {
 	margin-top: 0px;	
 	color: white;	
 }
+
+div.nav-menu {
+	background-image: url("title_green.png");
+	background-repeat: repeat-x;
+	height: 20px;
+}
+
+.ddmx .section td {
+    background-image: url("title_green.png");important!
+	background-repeat: repeat-x; important!
+    padding-right: 4px;
+}
+
+.ddmx .item1:hover, .ddmx .item1-active, .ddmx .item1-active:hover {
+	color: white;
+	font-weight: bold;
+}
+
+.ddmx .item2:hover,
+.ddmx .item2-active,
+.ddmx .item2-active:hover {
+   color: white;
+}
+
+.ddmx .section td a:hover {
+     color: white;
+}
