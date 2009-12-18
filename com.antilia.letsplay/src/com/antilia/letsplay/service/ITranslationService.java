@@ -1,9 +1,10 @@
 /**
  * 
  */
-package com.antilia.letsplay.domain;
+package com.antilia.letsplay.service;
 
 import com.antilia.letsplay.Language;
+import com.antilia.letsplay.domain.ITranslatable;
 
 /**
  * @author  Ernesto Reinaldo Barreiro (reiern70@gmail.com)
