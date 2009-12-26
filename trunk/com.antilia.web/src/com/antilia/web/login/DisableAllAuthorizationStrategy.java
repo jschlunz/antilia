@@ -14,7 +14,7 @@ import org.apache.wicket.protocol.http.WebSession;
 import com.antilia.web.IAuthenticableSession;
 
 /**
- * @author EReinaldoB
+ * @author Ernesto Reinaldo Barreiro (reiern70@gmail.com)
  *
  */
 public abstract class DisableAllAuthorizationStrategy implements
