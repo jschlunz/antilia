@@ -4,7 +4,7 @@
 	<classpathentry exported="true" kind="lib" path="lib/wicket-1.4.5.jar" sourcepath="lib/wicket.zip"/>
 	<classpathentry exported="true" kind="lib" path="lib/wicket-datetime-1.4.5.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/wicket-devutils-1.4.5.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/wicket-extensions-1.4.5.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/wicket-extensions-1.4.5.jar" sourcepath="lib/wicket-extensions.zip"/>
 	<classpathentry exported="true" kind="lib" path="lib/wicket-guice-1.4.5.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/wicket-ioc-1.4.5.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/wicket-jmx-1.4.5.jar"/>
