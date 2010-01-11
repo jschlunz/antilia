@@ -11,9 +11,21 @@ For the time being we just describe how to get the couple of demo application we
 
 *NOTE*: this doesn't imply that some of the components we provide cannot be used in non-OSGi WEB applications.
 
-== Let's play application ==
+== Let's play application
 
-*TODO*: add description.
+A small "gaming" application to help children learn to read.
+ 
+ * Check out the projects:
+     # com.antilia.common
+     # com.antilia.demo.letsplay         
+     # com.antilia.export
+     # com.antilia.ext
+     # com.antilia.hibernate
+     # com.antilia.web 
+  * If you open the Debugs dialog configuration and you go to the section OSGi Framework, you will find the letsplay34 launcher for Eclipse 3.4 (or letsplay35 for eclipse 3.5). You can use one them to start the application.
+  * Then browse to http:localhost:8080/letsplay to see the application working. Just use  user=julior and password=julior to log into the application. 
+
+
 
 ==A demo showing how to use Antilia to build Data-base oriented applications==
 
