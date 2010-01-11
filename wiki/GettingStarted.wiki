@@ -22,8 +22,8 @@ A small "gaming" application to help children learn to read.
      # com.antilia.ext
      # com.antilia.hibernate
      # com.antilia.web 
-  * If you open the Debugs dialog configuration and you go to the section OSGi Framework, you will find the letsplay34 launcher for Eclipse 3.4 (or letsplay35 for eclipse 3.5). You can use one them to start the application.
-  * Then browse to http:localhost:8080/letsplay to see the application working. Just use  user=julior and password=julior to log into the application. 
+ * If you open the Debugs dialog configuration and you go to the section OSGi Framework, you will find the letsplay34 launcher for Eclipse 3.4 (or letsplay35 for eclipse 3.5). You can use one them to start the application.
+ * Then browse to http:localhost:8080/letsplay to see the application working. Just use  user=julior and password=julior to log into the application. 
 
 
 
