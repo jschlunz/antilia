@@ -45,4 +45,6 @@ public interface ITableModel<E extends Serializable> extends IModel<ArrayList<IC
 	Class<E> getBeanClass();
 	
 	public IComponentInheritedModel<E> newModel(IModel<E> object);
+	
+	public void addColumnRenderer(IColumnRenderer<E> columnRenderer);
 }

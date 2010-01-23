@@ -38,6 +38,7 @@ import com.antilia.common.query.IQuery;
 import com.antilia.common.query.Query;
 import com.antilia.web.beantable.model.FirstColumnModel;
 import com.antilia.web.beantable.model.IColumnModel;
+import com.antilia.web.beantable.model.IColumnRenderer;
 import com.antilia.web.beantable.model.ITableModel;
 import com.antilia.web.button.AjaxRefreshableMenuItem;
 import com.antilia.web.button.IMenuItemHolder;
@@ -326,6 +327,15 @@ public class Table<E extends Serializable> extends Panel implements IPageableCom
 		super.onBeforeRender();
 	}
 	
+	public void addColumnRenderer(IColumnRenderer<E> columnRenderer) {
+		getTableModel().addColumnRenderer(columnRenderer);
+	}
+	
+	public void addColumnRenderers(List<IColumnRenderer<E>> columnRenderers) {
+		for(IColumnRenderer<E> renderer: columnRenderers)
+			getTableModel().addColumnRenderer(renderer);
+	}
+	
 	public void addDraggerUrl(String id) {
 			draggerURL.add(id);
 	}
@@ -550,6 +560,8 @@ public class Table<E extends Serializable> extends Panel implements IPageableCom
 	}
 	
 	protected Component newBodyCell(String id, IColumnModel<E> columnModel, E object) {
+		if(columnModel.getRenderer() != null)
+			return columnModel.getRenderer().newTableCell(id, columnModel, object);
 		return new DefaultBodyCell<E>(id, columnModel, object);
 	}
 	

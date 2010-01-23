@@ -72,4 +72,16 @@ public interface IColumnModel<E extends Serializable> extends IModel<E> {
 	 */
 	IModel<String> getTitleModel(Component component);
 	
+	
+	/**
+	 * Get the renderer (might be null). 
+	 */
+	IColumnRenderer<E> getRenderer();
+	
+	/**
+	 * Sets the renderer.
+	 * @param renderer
+	 */
+	void setRenderer(IColumnRenderer<E> renderer);
+	
 }

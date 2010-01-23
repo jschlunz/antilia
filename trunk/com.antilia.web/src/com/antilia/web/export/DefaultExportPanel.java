@@ -53,16 +53,14 @@ public abstract class DefaultExportPanel extends Panel {
 						return DefaultExportPanel.this.button.getExportTask().getProgressReporter();
 					return null;
 				}
-			};
-			addOrReplace(progress);
-			
+			};		
 		} else {
 			for(Object behavior : getBehaviors()) {
 				if(behavior instanceof AjaxSelfUpdatingTimerBehavior) {
-					remove((AjaxSelfUpdatingTimerBehavior)behavior);
+					((AjaxSelfUpdatingTimerBehavior)behavior).stop();
 				}
 			}
-			add(new AjaxSelfUpdatingTimerBehavior(Duration.seconds(1000)));
+			//add(new AjaxSelfUpdatingTimerBehavior(Duration.seconds(1000)));
 			progress = new DownLoadExportPanel("progress", this.button.getExportTask().getFile()) {
 				
 				private static final long serialVersionUID = 1L;
@@ -77,9 +75,10 @@ public abstract class DefaultExportPanel extends Panel {
 					return DefaultExportPanel.this.getDowloadMessage();
 				}
 			};
-			progress.setOutputMarkupId(true);
-			addOrReplace(progress);
+			
 		}
+		progress.setOutputMarkupId(true);
+		addOrReplace(progress);
 		super.onBeforeRender();
 	}
 	

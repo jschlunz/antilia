@@ -43,7 +43,7 @@ div.dark-mask-dark {
     -moz-opacity:0.1;  
     background-color: black; 
     filter: alpha(opacity=10); 
-    background-image: url('transparent1.gif');
+    background-image: url('images/transparent1.gif');
 }
 
 
