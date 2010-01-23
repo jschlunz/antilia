@@ -10,6 +10,7 @@ import org.apache.wicket.Component;
 
 import com.antilia.common.util.ClassUtils;
 import com.antilia.web.crud.CRUDPanel;
+import com.antilia.web.crud.CrudStyler;
 
 /**
  * @author Ernesto Reinaldo Barreiro (reiern70@gmail.com)
@@ -26,6 +27,8 @@ public class ScopedCrudPanel<T extends Serializable> extends ScopedPanel {
 	private Class<T> beanClass;
 	
 	private Class<CRUDPanel<T>> crudClass;
+	
+	private CrudStyler<T> crudStyler;
 
 	
 	/**
@@ -43,6 +46,15 @@ public class ScopedCrudPanel<T extends Serializable> extends ScopedPanel {
 	public ScopedCrudPanel(String id, Class<T> beanClass) {
 		super(id);
 		this.beanClass = beanClass;
+	}
+	
+	/**
+	 * @param id
+	 */
+	public ScopedCrudPanel(String id, CrudStyler<T> crudStyler) {
+		super(id);
+		this.beanClass = crudStyler.getBeanClass();
+		this.crudStyler = crudStyler;
 	}
 	
 
@@ -63,6 +75,8 @@ public class ScopedCrudPanel<T extends Serializable> extends ScopedPanel {
 		} catch (Exception e) {
 			// fall-back to default						
 		}
+		if(crudStyler != null)
+			return new BackToHomeCRUD<T>(id, crudStyler);
 		return new BackToHomeCRUD<T>(id, beanClass);
 	}
 }

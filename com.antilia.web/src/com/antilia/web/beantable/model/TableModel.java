@@ -16,6 +16,7 @@ import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 
 import com.antilia.common.util.AnnotationUtils;
+import com.antilia.common.util.StringUtils;
 import com.antilia.web.provider.SelectionMode;
 
 /**
@@ -219,4 +220,21 @@ public class TableModel<E extends Serializable> extends Model<ArrayList<IColumnM
 		this.hiddenModels = hiddenModels;
 	}
 
+	public void addColumnRenderer(IColumnRenderer<E> columnRenderer) {
+		if(columnRenderer == null || StringUtils.isEmpty(columnRenderer.getPropertyPath())) 
+			return;
+		for(IColumnModel<E> model: models) {
+			if(model.getPropertyPath().equals(columnRenderer.getPropertyPath())) {
+				model.setRenderer(columnRenderer);
+				return;
+			}
+		}
+		
+		for(IColumnModel<E> model: hiddenModels) {
+			if(model.getPropertyPath().equals(columnRenderer.getPropertyPath())) {
+				model.setRenderer(columnRenderer);
+				return;
+			}
+		}
+	}
 }

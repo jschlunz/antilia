@@ -32,6 +32,7 @@ public class InsertData extends AbstractPersistentCommand<DWord, Serializable> {
 		}
 		
 		GoogleTranslationService tS = new GoogleTranslationService(); 
+		
 		for(com.antilia.letsplay.model.Word w:  Words.getInstance().getAll()) {
 			DWord dWord = new DWord();
 			dWord.setText(w.getText().toLowerCase());

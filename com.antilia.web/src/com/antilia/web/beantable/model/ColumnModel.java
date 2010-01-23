@@ -38,6 +38,11 @@ public class ColumnModel<E extends Serializable> extends Model<E> implements ICo
 	 * Whether the column is re-sizable or not;
 	 */
 	private boolean resizable = true;
+	
+	/**
+	 * 
+	 */
+	private IColumnRenderer<E> renderer;
 			
 	/**
 	 * 
@@ -118,5 +123,13 @@ public class ColumnModel<E extends Serializable> extends Model<E> implements ICo
 	public IModel<String> getTitleModel(Component component) {
 		String key = ResourceUtils.getPropertyResourceKey(tableModel.getBeanClass(), getPropertyPath());
 		return new StringResourceModel(key, component, null, getPropertyPath());
+	}
+
+	public IColumnRenderer<E> getRenderer() {
+		return renderer;
+	}
+
+	public void setRenderer(IColumnRenderer<E> renderer) {
+		this.renderer = renderer;
 	}
 }

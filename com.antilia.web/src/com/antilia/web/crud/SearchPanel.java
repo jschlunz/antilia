@@ -164,6 +164,7 @@ public class SearchPanel<B extends Serializable> extends Panel implements ILoada
 		}
 		
 		table  = newTable("table",tableModel, this.pageableProvider);
+		table.addColumnRenderers(styler.getRenderers());
 		beanForm.add(table);
 		
 		feedback =  new AntiliaFeedBackPanel("messages");		

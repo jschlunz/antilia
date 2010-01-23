@@ -6,6 +6,9 @@ package com.antilia.web.crud;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
+
+import com.antilia.web.beantable.model.IColumnRenderer;
 
 /**
  * 
@@ -27,6 +30,8 @@ public class CrudStyler<E extends Serializable> implements Serializable {
 	private java.util.List<String> searchFields = new ArrayList<String>();
 	
 	private Class<E> beanClass;
+	
+	private List<IColumnRenderer<E>> renderers = new ArrayList<IColumnRenderer<E>>();
 	
 	public CrudStyler(Class<E> beanClass) {
 		this.beanClass = beanClass;
@@ -190,4 +195,15 @@ public class CrudStyler<E extends Serializable> implements Serializable {
 	public java.util.List<String> getHiddenTableColumns() {
 		return hiddenTableColumns;
 	}
+	
+	public CrudStyler<E> addRenderer(IColumnRenderer<E> renderer) {
+		renderers.add(renderer);
+		return this;
+	}
+
+	public List<IColumnRenderer<E>> getRenderers() {
+		return renderers;
+	}
+	
+	
 }
