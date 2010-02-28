@@ -27,7 +27,16 @@ public class LoginPage extends RoundBasePage {
 			
 			@Override
 			protected Component newBeforeFields(String id) {
-				return new LanguagePanel(id);
+				return new LanguagePanel(id) {
+	
+					private static final long serialVersionUID = 1L;
+
+					@Override
+					protected Component getReloadComponent() {
+						LogInRoundPanel inRoundPanel = (LogInRoundPanel)findParent(LogInRoundPanel.class);
+						return inRoundPanel.getRoundpane();
+					}
+				};
 			}			
 		};	
 	}

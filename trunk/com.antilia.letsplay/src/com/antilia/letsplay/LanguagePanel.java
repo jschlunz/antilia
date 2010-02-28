@@ -3,19 +3,19 @@
  */
 package com.antilia.letsplay;
 
+import org.apache.wicket.Component;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.form.OnChangeAjaxBehavior;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.Model;
 
 import com.antilia.web.field.impl.EnumDropDownChoice;
-import com.antilia.web.login.LogInRoundPanel;
 
 /**
  * @author Ernesto Reinaldo Barreiro (reiern70@gmail.com)
  *
  */
-public class LanguagePanel extends Panel {
+public abstract class LanguagePanel extends Panel {
 
 	private static final long serialVersionUID = 1L;
 
@@ -50,7 +50,7 @@ public class LanguagePanel extends Panel {
 			@Override
 			protected void onUpdate(AjaxRequestTarget target) {
 				if(target != null) {
-					target.addComponent(getPanel().getRoundpane());
+					target.addComponent(getReloadComponent());
 				}
 			}
 		});
@@ -58,8 +58,12 @@ public class LanguagePanel extends Panel {
 		add(language);
 	}
 	
+	protected abstract Component getReloadComponent();
+	
+	/*
 	private LogInRoundPanel getPanel() {
 		return (LogInRoundPanel)findParent(LogInRoundPanel.class);
 	}
+	*/
 
 }
