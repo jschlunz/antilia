@@ -8,7 +8,7 @@ import com.antilia.hibernate.command.DefaultCommander;
 import com.antilia.hibernate.context.RequestContext;
 import com.antilia.letsplay.Language;
 import com.antilia.letsplay.model.Words;
-import com.antilia.letsplay.service.GoogleTranslationService;
+import com.antilia.letsplay.service.PropertiesTranslationService;
 
 public class InsertData extends AbstractPersistentCommand<DWord, Serializable> {
 
@@ -31,7 +31,9 @@ public class InsertData extends AbstractPersistentCommand<DWord, Serializable> {
 			DefaultCommander.persist(dWord);
 		}
 		
-		GoogleTranslationService tS = new GoogleTranslationService(); 
+		
+		//GoogleTranslationService tS = new GoogleTranslationService(); 
+		PropertiesTranslationService tS = new PropertiesTranslationService();
 		
 		for(com.antilia.letsplay.model.Word w:  Words.getInstance().getAll()) {
 			DWord dWord = new DWord();
