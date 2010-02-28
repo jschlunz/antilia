@@ -16,7 +16,6 @@ import com.antilia.hibernate.context.RequestContext;
 import com.antilia.letsplay.domain.HSQLDBPersistenceUnit;
 import com.antilia.letsplay.domain.InsertData;
 import com.antilia.web.AntiliaWebApplication;
-import com.antilia.web.login.DisableAllAuthorizationStrategy;
 
 /**
  * 
@@ -26,12 +25,14 @@ import com.antilia.web.login.DisableAllAuthorizationStrategy;
  */
 public class PlayApplication extends AntiliaWebApplication {
 
+	/*
 	private static final DisableAllAuthorizationStrategy AUTORIZATION_STRATEGY = new DisableAllAuthorizationStrategy() {
 		
 		public java.lang.Class<? extends org.apache.wicket.markup.html.WebPage> getSignInPage() {
 			return LoginPage.class;
 		};
 	};
+	*/
 
 	
 	public PlayApplication() {
@@ -55,8 +56,8 @@ public class PlayApplication extends AntiliaWebApplication {
 		super.init();
 		
 		
-		getSecuritySettings().setUnauthorizedComponentInstantiationListener(AUTORIZATION_STRATEGY);
-		getSecuritySettings().setAuthorizationStrategy(AUTORIZATION_STRATEGY);
+		//getSecuritySettings().setUnauthorizedComponentInstantiationListener(AUTORIZATION_STRATEGY);
+		//getSecuritySettings().setAuthorizationStrategy(AUTORIZATION_STRATEGY);
 	
 		getApplicationSettings().setAccessDeniedPage(LoginPage.class);
 		getApplicationSettings().setPageExpiredErrorPage(LoginPage.class);
