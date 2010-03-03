@@ -3,11 +3,13 @@
  */
 package com.antilia.letsplay;
 
+import org.apache.wicket.Component;
 import org.apache.wicket.ResourceReference;
 import org.apache.wicket.markup.html.panel.EmptyPanel;
 import org.apache.wicket.markup.html.panel.Panel;
 
 import com.antilia.web.button.IMenuItemHolder;
+import com.antilia.web.button.SeparatorButton;
 import com.antilia.web.dialog.DefaultDialog;
 import com.antilia.web.dialog.DialogLink;
 import com.antilia.web.roundpane.RoundPane;
@@ -42,6 +44,20 @@ public  class ContentsPanel extends RoundPane {
 	}
 	
 	public void populateMenuItems(String menuId, IMenuItemHolder itemHolder) {
+		LanguagePanel languagePanel = new LanguagePanel("lan") {
+			
+			private static final long serialVersionUID = 1L;
+
+			@Override
+			protected Component getReloadComponent() {
+				return ContentsPanel.this.getRoundpane();
+			}
+		};
+		
+		itemHolder.addMenuItem(languagePanel);
+		
+		itemHolder.addMenuItem(new SeparatorButton());
+		
 		DialogLink dialogLink = new DialogLink("about") {			
 			
 			private static final long serialVersionUID = 1L;
@@ -73,6 +89,9 @@ public  class ContentsPanel extends RoundPane {
 			}
 		};
 		itemHolder.addMenuItem(dialogLink);
+		
+		
+		
 	}
 	
 }

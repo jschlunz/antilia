@@ -9,13 +9,14 @@ import org.apache.wicket.ajax.form.OnChangeAjaxBehavior;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.Model;
 
+import com.antilia.web.button.IMenuItem;
 import com.antilia.web.field.impl.EnumDropDownChoice;
 
 /**
  * @author Ernesto Reinaldo Barreiro (reiern70@gmail.com)
  *
  */
-public abstract class LanguagePanel extends Panel {
+public abstract class LanguagePanel extends Panel implements IMenuItem {
 
 	private static final long serialVersionUID = 1L;
 
@@ -66,4 +67,8 @@ public abstract class LanguagePanel extends Panel {
 	}
 	*/
 
+	@Override
+	public int getOrder() {
+		return 0;
+	}
 }
