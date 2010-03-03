@@ -405,4 +405,14 @@ public class Restrictions {
 	public static IRestriction sizeLe(String propertyName, int size) {
 		return new SizeRestriction(propertyName, size, Operator.LESS_EQUAL_THAN);
 	}
+	
+	/**
+	 * 
+	 * @param sql
+	 * @return
+	 */
+	public static IRestriction sqlRestriction(String sql) {
+		return new SqlRestriction(sql);
+	}
+	
 }
