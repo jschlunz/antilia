@@ -48,6 +48,29 @@ public class Query<B extends Serializable> implements IQuery<B> {
 			throw new IllegalArgumentException("Bean class cannot be null");
 		this.beanClass = beanClass;
 	}
+	
+	/**
+	 * Factory method for a bean.
+	 * 
+	 * @param <T>
+	 * @param bean
+	 * @return
+	 */
+	public static <T extends Serializable> Query<T> ofBean(T bean)
+	{
+		return new Query<T>(bean);
+	}
+	
+	/**
+	 * Factory method for a bean class.
+	 * @param <T>
+	 * @param beanClass
+	 * @return
+	 */
+	public static <T extends Serializable> Query<T> ofClass(Class<T> beanClass)
+	{
+		return new Query<T>(beanClass);
+	}
 		
 	public IQuery<B> addRestriction(IRestriction filter) {
 		restrictions.add(filter);
